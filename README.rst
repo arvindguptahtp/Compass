@@ -1,12 +1,29 @@
 Student Support Generator
 =========================
 
-CIS network search tool
+CIS network search tool.
 
-.. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
-     :target: https://github.com/pydanny/cookiecutter-django/
-     :alt: Built with Cookiecutter Django
+Quickstart
+----------
 
+This application is distributed using Docker and Docker Compose. This means *nothing* for the application is installed directly on your host system.
+
+1. Ensure you have Docker installed. The easiest way to run Docker on macOS is using `the desktop installer <https://www.docker.com/docker-mac>`_.
+2. Update your `.env` file to ensure it includes this line `COMPOSE_FILE=dev.yml`. This ensures Docker Compose will use the dev configuration for setting up the system.
+3. Run `docker-compose up` to download, build, and bring up the containers for the first time.
+4. If you want to stop the development servers run `docker-compose down`. You will need to run this from a different terminal pane but from the same project root.
+
+Because all commands are run *through* the containers, you must specify the containers you want to execute commands in. Docker Compose adds some porcelain to this:
+
+    docker-compose run django python manage.py makemigrations
+
+This command executes the `run` subcommand, targetting the container identified by Docker
+Compose as the `django` container, and then executes the command given.
+
+This is still verbose for common tasks, so the `dj.sh` convenience script can be used instead
+as a wrapper to the above Docker Composer command:
+
+    ./dj.sh makemigraions
 
 Settings
 --------
@@ -44,14 +61,6 @@ Running tests with py.test
 ::
 
   $ py.test
-
-Live reloading and Sass CSS compilation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Moved to `Live reloading and SASS compilation`_.
-
-.. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
-
 
 
 Celery
