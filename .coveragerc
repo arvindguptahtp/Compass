@@ -1,0 +1,5 @@
+[run]
+include = network_search/*
+omit = *migrations*, *tests*
+plugins =
+    django_coverage_plugin
