@@ -49,12 +49,12 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'users',
 ]
 
 # Apps specific for this project go here.
 LOCAL_APPS = [
     # custom users app
-    'network_search.users.apps.UsersConfig',
     # Your stuff: custom apps go here
 ]
 
@@ -253,8 +253,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
-ACCOUNT_ADAPTER = 'network_search.users.adapters.AccountAdapter'
-SOCIALACCOUNT_ADAPTER = 'network_search.users.adapters.SocialAccountAdapter'
 
 # Custom user app defaults
 # Select the correct user model
