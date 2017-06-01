@@ -14,7 +14,7 @@ urlpatterns = [
 
     # User management
     #url(r'^users/', include('network_search.users.urls', namespace='users')),
-    url(r'^accounts/', include('allauth.urls')),
+    #url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
 

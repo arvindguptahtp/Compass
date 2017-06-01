@@ -30,32 +30,24 @@ if READ_DOT_ENV_FILE:
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
-    # Default Django apps:
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Useful template tags:
-    # 'django.contrib.humanize',
-
-    # Admin
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
     'crispy_forms',  # Form layouts
-    'allauth',  # registration
-    'allauth.account',  # registration
-    'allauth.socialaccount',  # registration
     'users',
 ]
 
-# Apps specific for this project go here.
 LOCAL_APPS = [
-    # custom users app
-    # Your stuff: custom apps go here
+    'network_search.core',
+    'network_search.affiliates',
+    'network_search.programs',
+    'network_search.partners',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -244,7 +236,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 # Some really nice defaults
