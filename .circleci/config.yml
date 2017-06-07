@@ -29,3 +29,15 @@ jobs:
       - store_artifacts:
           path: test-reports/
           destination: tr1
+      - run: bash .circleci/setup-heroku.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "d2:eb:bf:5b:c9:fa:1a:cb:11:cf:c3:76:d3:2d:99:8b"
+      - deploy:
+          name: Deploy Master to Heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git push heroku master
+              heroku run python manage.py deploy
+              heroku restart
+            fi
