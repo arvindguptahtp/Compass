@@ -1,7 +1,9 @@
 from django.contrib import admin
 
-from network_search.programs.models import Program, NationalDatabase, RelatedResource
 from network_search.programs.forms import ProgramAdminForm
+from network_search.programs.models import Program
+from network_search.programs.models import RelatedResource
+from network_search.programs.models import NationalDatabase
 
 
 class NationalDatabaseInline(admin.TabularInline):

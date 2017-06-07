@@ -1,6 +1,8 @@
-from django.contrib.postgres.search import SearchVector, SearchVectorField
-from django.core.urlresolvers import reverse
 from django.db import models
+from django.core.urlresolvers import reverse
+from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVectorField
+
 from model_utils.models import TimeStampedModel
 
 

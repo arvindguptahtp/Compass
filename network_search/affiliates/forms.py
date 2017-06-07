@@ -1,7 +1,7 @@
 from django import forms
 
-from network_search.affiliates.models import Affiliate
 from network_search.core.forms import SearchForm
+from network_search.affiliates.models import Affiliate
 
 
 class AffiliateAdminForm(forms.ModelForm):

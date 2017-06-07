@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
-from network_search.programs.views import ProgramView, ProgramSearchView
+from network_search.programs.views import ProgramView
+from network_search.programs.views import ProgramSearchView
 
 urlpatterns = [
     url(r'^$', view=ProgramSearchView.as_view(), name="program_list"),

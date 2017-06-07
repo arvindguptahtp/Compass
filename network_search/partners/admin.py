@@ -1,7 +1,9 @@
 from django.contrib import admin
 
-from network_search.partners.models import Partner, WebinarLink, PresentationsLink
 from network_search.partners.forms import PartnerAdminForm
+from network_search.partners.models import Partner
+from network_search.partners.models import WebinarLink
+from network_search.partners.models import PresentationsLink
 
 
 class WebinarInline(admin.TabularInline):

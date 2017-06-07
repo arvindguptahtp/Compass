@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
-from network_search.partners.views import PartnerView, PartnerSearchView
+from network_search.partners.views import PartnerView
+from network_search.partners.views import PartnerSearchView
 
 urlpatterns = [
     url(r'^$', view=PartnerSearchView.as_view(), name="partner_list"),

@@ -1,7 +1,9 @@
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
-from network_search.core.models import Link, BaseResource, ResourceQueryset
+from network_search.core.models import Link
+from network_search.core.models import BaseResource
+from network_search.core.models import ResourceQueryset
 
 
 class ProgramQueryset(ResourceQueryset):
