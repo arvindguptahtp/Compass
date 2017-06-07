@@ -11,6 +11,7 @@ build:  ## Builds all available containers
 
 test:  ## Runs tests in the Django container
 	docker-compose -f dev.yml run django pytest
+	docker-compose -f dev.yml run django flake8 network_search
 
 psql:  ## Runs a psql shell against the network_search database
 	docker-compose -f dev.yml run postgres psql -h postgres -U postgres -d network_search
