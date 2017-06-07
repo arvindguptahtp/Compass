@@ -16,5 +16,8 @@ class Affiliate(BaseResource):
     
     All EOY data is related to this model
     """
+    url_name = "affiliate_detail"
+    search_content_fields = ["name"]
+
     affiliates = AffiliateQueryset.as_manager()
     objects = affiliates

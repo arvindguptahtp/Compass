@@ -8,12 +8,12 @@
 {{ form }}
 </form>
 
-{% for partner in partners.object_list %}
+{% for affiliate in affiliates.object_list %}
 
-    <li><a href="{{ partner.get_absolute_url }}">{{ partner }}</a></li>
+    <li><a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a></li>
 
     {% empty %}
 
-    <p>No matching partners</p>
+    <p>No matching affiliates</p>
 
 {% endfor %}

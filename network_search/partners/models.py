@@ -64,7 +64,7 @@ class Partner(BaseResource):
     is_cost_free = models.BooleanField(blank=True)
     cost_description = models.CharField(max_length=200, blank=True, null=True)
 
-    is_core_partner = models.BooleanField(blank=True)
+    is_core_partner = models.BooleanField(blank=True)  # is this based on link from Program???
 
     network_use = models.ManyToManyField('affiliates.Affiliate', related_name='partners', blank=True)
     featured_network = models.ManyToManyField('affiliates.Affiliate', related_name='featured_partners', blank=True)

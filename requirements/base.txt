@@ -5,8 +5,7 @@
 wheel==0.29.0
 
 
-# Bleeding edge Django
-django==1.11.1
+django==1.11.2
 
 # Configuration
 django-environ==0.4.3
@@ -28,7 +27,6 @@ argon2-cffi==16.3.0
 
 # For user registration, either via email or social
 # Well-built with regular release cycles!
-django-allauth==0.32.0
 django-email-users==1.0.0
 
 

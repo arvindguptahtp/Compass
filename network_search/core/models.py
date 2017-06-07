@@ -1,16 +1,20 @@
-from model_utils.models import TimeStampedModel
-from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.search import SearchVector, SearchVectorField
 from django.core.urlresolvers import reverse
 from django.db import models
 from model_utils.models import TimeStampedModel
 
-from django.db import models
-
 
 class Link(TimeStampedModel):
+    """
+    A model for links with optional titles
+    
+    The `url` field is nullable so that the title may be used without a link,
+    allowing not just lists of links but lists of described resources with or
+    without links as may be avaialble.
+    """
+
     title = models.CharField(max_length=100, blank=True, null=True, help_text="Optional visible for link")
-    url = models.URLField()
+    url = models.URLField(blank=True, null=True)
 
     class Meta:
         abstract = True
