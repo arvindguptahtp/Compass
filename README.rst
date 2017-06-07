@@ -25,6 +25,10 @@ as a wrapper to the above Docker Composer command:
 
     ./dj.sh makemigraions
 
+Tests can be run using a make command:
+
+    make test
+
 Settings
 --------
 
