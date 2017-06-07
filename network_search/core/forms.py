@@ -16,7 +16,7 @@ class SearchForm(forms.Form):
 class RequiredLinkForm(forms.ModelForm):
     """
     This form class requires the URL field is filled out
-    
+
     When used in the admin it results in the loss of the admin form's
     clickable link attribute, and so is not used.
     """

@@ -7,7 +7,7 @@ from model_utils.models import TimeStampedModel
 class Link(TimeStampedModel):
     """
     A model for links with optional titles
-    
+
     The `url` field is nullable so that the title may be used without a link,
     allowing not just lists of links but lists of described resources with or
     without links as may be avaialble.

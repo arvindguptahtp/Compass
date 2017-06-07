@@ -12,7 +12,7 @@ def sorted_choices(choice_tuple: List[Tuple[Any, Any]]) -> List[Tuple[Any, Any]]
 
 def inverted_choices(choice_tuple: List[Tuple[Any, Any]]) -> List[Tuple[Any, Any]]:
     """Returns a list of the reversed tuples
-    
+
     This is expected to be useful where matching data for imports
     """
     return [
@@ -22,7 +22,7 @@ def inverted_choices(choice_tuple: List[Tuple[Any, Any]]) -> List[Tuple[Any, Any
 
 def populator(choice_tuple: List[Tuple[Any, Any]]) -> Dict[Any, Any]:
     """Returns a dictionary of the tuples by inversion
-    
+
     This is expected to be useful where matching data for imports
     """
     return {

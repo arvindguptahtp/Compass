@@ -18,4 +18,3 @@ class AffiliateSearchView(SearchView):
     form_class = AffiliateSearchForm
     queryset = Affiliate.affiliates.active()
     template_name = "affiliates/affiliate_list.html"
-

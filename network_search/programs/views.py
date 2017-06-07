@@ -18,4 +18,3 @@ class ProgramSearchView(SearchView):
     form_class = ProgramSearchForm
     queryset = Program.programs.active()
     template_name = "programs/program_list.html"
-

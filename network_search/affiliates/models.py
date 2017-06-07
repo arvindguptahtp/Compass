@@ -5,7 +5,7 @@ Models for the affiliate directory and EOY data reports
 from django.db import models
 from model_utils.models import TimeStampedModel
 
-from network_search.core.models import Link, BaseResource, ResourceQueryset
+from network_search.core.models import BaseResource, ResourceQueryset
 
 
 class AffiliateQueryset(ResourceQueryset):
@@ -17,7 +17,7 @@ class AffiliateQueryset(ResourceQueryset):
 class Affiliate(BaseResource):
     """
     Represents the steady data for an affiliates directory
-    
+
     All EOY data is related to this model
     """
     url_name = "affiliate_detail"

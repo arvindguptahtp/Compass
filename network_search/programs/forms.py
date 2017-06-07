@@ -12,7 +12,7 @@ class ProgramAdminForm(forms.ModelForm):
     race = forms.MultipleChoiceField(choices=choices.RACE, required=False)
     region = forms.MultipleChoiceField(choices=choices.REGIONS, required=False)
     student_need = forms.MultipleChoiceField(choices=choices.STUDENT_NEEDS, required=False)
-    student_characteristics= forms.MultipleChoiceField(choices=choices.STUDENT_CHARACTERISTICS, required=False)
+    student_characteristics = forms.MultipleChoiceField(choices=choices.STUDENT_CHARACTERISTICS, required=False)
     setting = forms.MultipleChoiceField(choices=choices.SETTING, required=False)
     tiers_of_service = forms.MultipleChoiceField(choices=choices.TIERS_OF_SERVICE, required=False)
     tiers_of_evidence = forms.MultipleChoiceField(choices=choices.TIERS_OF_EVIDENCE, required=False)

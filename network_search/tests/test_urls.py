@@ -25,4 +25,3 @@ def test_affiliate_list():
 
 def test_affiliate_detail():
     assert reverse("affiliate_detail", kwargs={"pk": 487})
-

@@ -18,4 +18,3 @@ class PartnerSearchView(SearchView):
     form_class = PartnerSearchForm
     queryset = Partner.partners.active()
     template_name = "partners/partner_list.html"
-

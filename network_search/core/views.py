@@ -5,11 +5,11 @@ from django.core.exceptions import ImproperlyConfigured
 
 class SearchView(FormView):
     """
-    List and search 
-    
+    List and search
+
     Attributes:
         queryset: the queryset to list and filter
-        form_class: the form class for 
+        form_class: the form class for
         template_name: path to the template
         context_object_name: string name of the paging object
     """
@@ -24,7 +24,7 @@ class SearchView(FormView):
     def get_form_kwargs(self):
         """
         Returns the keyword arguments for instantiating the form.
-        
+
         Works with GET or POST
         """
         kwargs = {
