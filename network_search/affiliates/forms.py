@@ -1,6 +1,7 @@
 from django import forms
 
-from .models import Affiliate
+from network_search.affiliates.models import Affiliate
+from network_search.core.forms import SearchForm
 
 
 class AffiliateAdminForm(forms.ModelForm):
@@ -10,8 +11,7 @@ class AffiliateAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class AffiliateSearchForm(forms.Form):
+class AffiliateSearchForm(SearchForm):
     """
     Form class for searching partners
     """
-    q = forms.CharField(required=False)

@@ -24,23 +24,15 @@ class SearchView(FormView):
     def get_form_kwargs(self):
         """
         Returns the keyword arguments for instantiating the form.
-
-        Customized here to ensure that the optional 'q' is always included,
-        thus ensuring that the form *always* gets at least one input. Otherwise
-        if the form is initialized with an empty dict it will be invalid.
+        
+        Works with GET or POST
         """
         kwargs = {
             'initial': self.get_initial(),
             'prefix': self.get_prefix(),
         }
-
         request_dict = self.request.GET.copy() if self.request.method == 'GET' else self.request.POST.copy()
-
-        if 'q' not in request_dict:
-            request_dict.update({'q': ''})
-
         kwargs.update({'data': request_dict})
-
         return kwargs
 
     def get(self, request, *args, **kwargs):

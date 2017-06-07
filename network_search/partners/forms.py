@@ -1,8 +1,8 @@
 from django import forms
 
 from network_search.affiliates.models import Affiliate
+from network_search.core.forms import SearchForm
 from .models import Partner
-
 
 GRADE_CHOICES = [
     ('high school', 'High School'),
@@ -24,8 +24,7 @@ class PartnerAdminForm(forms.ModelForm):
         self.fields['featured_network'].queryset = self.instance.network_use.all()
 
 
-class PartnerSearchForm(forms.Form):
+class PartnerSearchForm(SearchForm):
     """
     Form class for searching partners
     """
-    q = forms.CharField(required=False)

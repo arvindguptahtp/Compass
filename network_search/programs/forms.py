@@ -1,8 +1,8 @@
 from django import forms
 
 from network_search.affiliates.models import Affiliate
-from .models import Program
-
+from network_search.core.forms import SearchForm
+from network_search.programs.models import Program
 
 GRADE_CHOICES = [
     ('high school', 'High School'),
@@ -23,8 +23,7 @@ class ProgramAdminForm(forms.ModelForm):
         exclude = ['search_content']
 
 
-class ProgramSearchForm(forms.Form):
+class ProgramSearchForm(SearchForm):
     """
     Form class for searching programs
     """
-    q = forms.CharField(required=False)
