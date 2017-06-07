@@ -1,0 +1,19 @@
+{% if not form.is_valid %}
+
+    <p>Search was not valid</p>
+
+{% endif %}
+
+<form action="." method="GET">
+{{ form }}
+</form>
+
+{% for partner in partners.object_list %}
+
+    <li><a href="{{ partner.get_absolute_url }}">{{ partner }}</a></li>
+
+    {% empty %}
+
+    <p>No matching partners</p>
+
+{% endfor %}

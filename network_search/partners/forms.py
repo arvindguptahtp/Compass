@@ -22,3 +22,10 @@ class PartnerAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['featured_network'].queryset = self.instance.network_use.all()
+
+
+class PartnerSearchForm(forms.Form):
+    """
+    Form class for searching partners
+    """
+    q = forms.CharField(required=False)

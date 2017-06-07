@@ -21,3 +21,10 @@ class ProgramAdminForm(forms.ModelForm):
     class Meta:
         model = Program
         exclude = ['search_content']
+
+
+class ProgramSearchForm(forms.Form):
+    """
+    Form class for searching programs
+    """
+    q = forms.CharField(required=False)

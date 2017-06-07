@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
     url(settings.ADMIN_URL, admin.site.urls),
     url(r'^partners/', include('network_search.partners.urls')),
+    url(r'^programs/', include('network_search.programs.urls')),
+    url(r'^affiliates/', include('network_search.affiliates.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

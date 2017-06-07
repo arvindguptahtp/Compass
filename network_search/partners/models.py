@@ -1,26 +1,23 @@
 from django.contrib.postgres.fields import ArrayField
-from django.contrib.postgres.search import SearchVector, SearchVectorField
 from django.db import models
 from model_utils.models import TimeStampedModel
 
-from network_search.core.models import Link
+from network_search.core.models import Link, BaseResource, ResourceQueryset
 
 
-class PartnerQueryset(models.QuerySet):
-
-    def active(self):
-        return self.filter(is_removed=False)
-
-    def delete(self):
-        self.update(is_removed=True)
+class PartnerQueryset(ResourceQueryset):
+    def search(self, **kwargs):
+        qs = super().search(**kwargs)
+        return qs
 
 
-class Partner(TimeStampedModel):
+class Partner(BaseResource):
     """
     Represents a partner organization
     """
-    is_removed = models.BooleanField(default=False)
-    name = models.CharField(max_length=400)
+
+    url_name = "partner_detail"
+    search_content_fields = ['name', 'mission', 'overview']
 
     contact_name = models.CharField(max_length=100)
     contact_title = models.CharField(max_length=100)
@@ -72,29 +69,8 @@ class Partner(TimeStampedModel):
     network_use = models.ManyToManyField('affiliates.Affiliate', related_name='partners', blank=True)
     featured_network = models.ManyToManyField('affiliates.Affiliate', related_name='featured_partners', blank=True)
 
-    search_content = SearchVectorField()
-
     partners = PartnerQueryset.as_manager()
     objects = partners
-
-    def __str__(self):
-        return "{}".format(self.name)
-
-    def save(self, *args, **kwargs):
-        """Keep the search field updated"""
-        self.search_content = SearchVector('name', 'mission', 'overview')
-        super().save(*args, **kwargs)
-
-    def delete(self, using=None, soft=True, *args, **kwargs):
-        """
-        Soft delete object (set its ``is_removed`` field to True).
-        Actually delete object if setting ``soft`` to False.
-        """
-        if soft:
-            self.is_removed = True
-            self.save(using=using)
-        else:
-            return super().delete(using=using, *args, **kwargs)
 
 
 class WebinarLink(Link):
