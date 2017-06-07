@@ -6,9 +6,8 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
-    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
     url(settings.ADMIN_URL, admin.site.urls),
+    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^partners/', include('network_search.partners.urls')),
     url(r'^programs/', include('network_search.programs.urls')),
     url(r'^affiliates/', include('network_search.affiliates.urls')),
