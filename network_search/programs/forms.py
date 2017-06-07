@@ -13,14 +13,14 @@ GRADE_CHOICES = [
 class ProgramAdminForm(forms.ModelForm):
 
     grade = forms.MultipleChoiceField(choices=GRADE_CHOICES, required=False)
-    network_use = forms.ModelMultipleChoiceField(
-        queryset=Affiliate.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-    )
 
     class Meta:
         model = Program
         exclude = ['search_content']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['featured_network'].queryset = self.instance.network_use.all()
 
 
 class ProgramSearchForm(SearchForm):

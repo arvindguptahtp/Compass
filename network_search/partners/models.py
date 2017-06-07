@@ -56,7 +56,7 @@ class Partner(BaseResource):
         models.CharField(max_length=100, blank=True),
         blank=True,
     )
-    tiers_of_ebp = ArrayField(
+    tiers_of_evidence = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
     )

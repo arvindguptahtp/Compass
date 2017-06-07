@@ -33,7 +33,7 @@ class Program(BaseResource):
         models.CharField(max_length=100, blank=True),
         blank=True,
     )
-    student_needs = ArrayField(
+    student_need = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
     )
@@ -54,6 +54,11 @@ class Program(BaseResource):
         blank=True,
     )
 
+    core_service_categories = ArrayField(
+        models.CharField(max_length=100, blank=True),
+        blank=True,
+    )
+
     assessment_available = models.BooleanField()
     assessment_info = models.CharField(max_length=400, blank=True, null=True)
 
@@ -67,6 +72,7 @@ class Program(BaseResource):
     study_weblink = models.URLField(blank=True, null=True)
 
     network_use = models.ManyToManyField('affiliates.Affiliate', related_name='programs', blank=True)
+    featured_network = models.ManyToManyField('affiliates.Affiliate', related_name='featured_programs', blank=True)
 
     programs = ProgramQueryset.as_manager()
     objects = programs

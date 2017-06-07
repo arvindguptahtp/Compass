@@ -31,7 +31,7 @@ class PartnerAdmin(admin.ModelAdmin):
         }),
         ('Partner details', {
             'fields': ('grade', 'gender', 'organizational_reach', 'student_need', 'tiers_of_service',
-                       'setting', 'service_categories', 'tiers_of_ebp', 'is_cost_free',
+                       'setting', 'service_categories', 'tiers_of_evidence', 'is_cost_free',
                        'cost_description', 'is_core_partner', 'network_use', 'featured_network'),
         }),
     )
