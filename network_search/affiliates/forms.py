@@ -8,7 +8,7 @@ class AffiliateAdminForm(forms.ModelForm):
 
     class Meta:
         model = Affiliate
-        fields = '__all__'
+        exclude = ['search_content', 'is_removed']
 
 
 class AffiliateSearchForm(SearchForm):
