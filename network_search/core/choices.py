@@ -30,7 +30,7 @@ def populator(choice_tuple: List[Tuple[Any, Any]]) -> Dict[Any, Any]:
     }
 
 
-GRADE_CHOICES = [
+GRADES = [
     ('ec', 'Early Childhood Education'),
     ('el', 'Elementary'),
     ('ms', 'Middle School'),

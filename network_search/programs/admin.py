@@ -32,12 +32,9 @@ class ProgramAdmin(admin.ModelAdmin):
                        'student_need', 'student_characteristics'],
         }),
         ('Program characteristics', {
-            'fields': [
-                'tiers_of_service',
-                'setting', 'national_partner',
-                'core_service_categories',
-                'is_cost_free',
-                'cost_description', 'assessment_available', 'assessment_info'],
+            'fields': ['tiers_of_service', 'setting', 'national_partner',
+                       'service_categories', 'is_cost_free', 'cost_description',
+                       'assessment_available', 'assessment_info'],
         }),
         ('Use in network', {
             'fields': ['network_use', 'featured_network'],
