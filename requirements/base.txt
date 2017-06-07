@@ -47,3 +47,4 @@ redis>=2.10.5
 celery==3.1.25
 
 django-pure-pagination==0.3.0
+django-simple-auth==0.2.0

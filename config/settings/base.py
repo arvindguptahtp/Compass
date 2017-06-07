@@ -41,6 +41,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'crispy_forms',  # Form layouts
     'users',
+    'simple_auth',
     'pure_pagination',
 ]
 
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_auth.middleware.SimpleAuthMiddleware',
 ]
 
 # MIGRATIONS CONFIGURATION
@@ -276,3 +278,7 @@ PAGINATION_SETTINGS = {
     'MARGIN_PAGES_DISPLAYED': 2,
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,
 }
+
+SIMPLE_AUTH_IGNORE = [
+    ADMIN_URL,
+]
