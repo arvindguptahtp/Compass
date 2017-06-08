@@ -43,6 +43,7 @@ THIRD_PARTY_APPS = [
     'users',
     'simple_auth',
     'pure_pagination',
+    'easy_pdf',
 ]
 
 LOCAL_APPS = [

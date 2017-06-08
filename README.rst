@@ -29,6 +29,8 @@ Tests can be run using a make command:
 
     make test
 
+See the 'Docker' section below for more information about using Docker and Docker Compose.
+
 Settings
 --------
 
@@ -92,6 +94,27 @@ See detailed `cookiecutter-django Heroku documentation`_.
 
 Docker
 ^^^^^^
+
+Use Docker Compose as your interface to working with the Docker containers.
+
+The Makefile includes several small convenience commands, including:
+
+    make build
+
+Which rebuilds the Docker images. This is a necessary step if you make changes to
+requirements.
+
+    make test
+
+This runs the tests.
+
+    make format
+
+This runs the autoformatting commands inside the Django container.
+
+    make run
+
+This is an alias to the `up` command to bring up the Docker container cluster.
 
 See detailed `cookiecutter-django Docker documentation`_.
 
