@@ -26,6 +26,7 @@ jobs:
           command: |
             . venv/bin/activate
             pytest
+            flake8 network_search
       - store_artifacts:
           path: test-reports/
           destination: tr1
