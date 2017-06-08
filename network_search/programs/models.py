@@ -31,10 +31,12 @@ class Program(BaseResource):
         models.CharField(max_length=100, blank=True),
         blank=True,
     )
+    race_other = models.CharField(max_length=100, blank=True, null=True)
     region = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
     )
+    region_other = models.CharField(max_length=100, blank=True, null=True)
     student_need = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
@@ -55,6 +57,7 @@ class Program(BaseResource):
         models.CharField(max_length=100, blank=True),
         blank=True,
     )
+    _study_details = models.TextField(name='study details', blank=True, null=True, help_text="Not for display")
 
     service_categories = ArrayField(
         models.CharField(max_length=100, blank=True),
