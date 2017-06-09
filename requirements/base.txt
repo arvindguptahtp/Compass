@@ -53,3 +53,5 @@ django-simple-auth==0.2.0
 # PDF
 django-easy-pdf==0.2.0.dev1
 WeasyPrint==0.36
+
+pandas==0.20.2
