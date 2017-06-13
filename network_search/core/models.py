@@ -68,6 +68,13 @@ class BaseResource(TimeStampedModel):
         return reverse(self.url_name, kwargs={"pk": self.pk})
 
 
+class DataUpload(TimeStampedModel):
+    """
+    Base model for
+    """
+    result = models.CharField(max_length=10)
+
+
 class ResourceQueryset(models.QuerySet):
     """
     Common queryset interface
