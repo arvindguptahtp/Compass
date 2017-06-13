@@ -21,23 +21,6 @@ class AffiliateQueryset(ResourceQueryset):
         return qs
 
 
-class Affiliate(BaseResource):
-    """
-    Represents the steady data for an affiliates directory
-
-    All EOY data is related to this model
-    """
-    url_name = "affiliate_detail"
-    search_content_fields = ["name"]
-
-    affiliates = AffiliateQueryset.as_manager()
-    objects = affiliates
-
-    class Meta:
-        verbose_name = "Affiliate"
-        verbose_name_plural = "Affiliates"
-
-
 class EndOfYear(TimeStampedModel):
     is_active = models.BooleanField(blank=True)
     year_ends = models.IntegerField(
@@ -61,6 +44,36 @@ class EndOfYear(TimeStampedModel):
         if self.is_active:
             EndOfYear.years.exclude(pk=self.pk).update(is_active=False)
         super().save(**kwargs)
+
+
+class Affiliate(BaseResource):
+    """
+    Represents the steady data for an affiliates directory
+
+    All EOY data is related to this model
+    """
+    url_name = "affiliate_detail"
+    search_content_fields = ["name", "official_name"]
+
+    # Descriptive organizational info
+    state = models.CharField(max_length=2)
+    cis_id = models.IntegerField(name="Affiliate ID")
+    official_name = models.CharField(max_length=200)
+    address_street = models.CharField(max_length=200)
+    address_city = models.CharField(max_length=200)
+    address_state = models.CharField(max_length=2)
+    address_postcode = models.CharField(max_length=10)
+    shipping_address = models.CharField(max_length=400, null=True, blank=True)
+    phone_number = models.CharField(max_length=30, null=True)
+    fax_number = models.CharField(max_length=30, null=True, blank=True)
+    website = models.URLField(null=True, blank=True)
+
+    affiliates = AffiliateQueryset.as_manager()
+    objects = affiliates
+
+    class Meta:
+        verbose_name = "Affiliate"
+        verbose_name_plural = "Affiliates"
 
 
 class AffiliateEOYData(TimeStampedModel):
