@@ -75,4 +75,6 @@ network_search/media/
 staticfiles/
 
 .cache/
+.ipynb_checkpoints
 
+local_data/
