@@ -33,6 +33,10 @@ class Affiliate(BaseResource):
     affiliates = AffiliateQueryset.as_manager()
     objects = affiliates
 
+    class Meta:
+        verbose_name = "Affiliate"
+        verbose_name_plural = "Affiliates"
+
 
 class EndOfYear(TimeStampedModel):
     is_active = models.BooleanField(blank=True)
@@ -44,13 +48,18 @@ class EndOfYear(TimeStampedModel):
     years = EOYQueryset.as_manager()
     objects = years
 
+    class Meta:
+        ordering = ['-year_ends']
+        verbose_name = "Reporting Year"
+        verbose_name_plural = "Reporting Years"
+
     def __str__(self):
         return "{}-{}".format(self.year_ends - 1, self.year_ends)
 
     def save(self, **kwargs):
         """Ensures no other EOY values are active on save"""
         if self.is_active:
-            self.objects.exclude(pk=self.pk).update(is_active=False)
+            EndOfYear.years.exclude(pk=self.pk).update(is_active=False)
         super().save(**kwargs)
 
 
@@ -60,6 +69,8 @@ class AffiliateEOYData(TimeStampedModel):
 
     class Meta:
         unique_together = ('affiliate', 'year')
+        verbose_name = "Affiliate EOY Data"
+        verbose_name_plural = "Affiliate EOY Data"
 
 
 class SchoolEOYData(TimeStampedModel):
@@ -68,7 +79,8 @@ class SchoolEOYData(TimeStampedModel):
 
     class Meta:
         unique_together = ('affiliate', 'year')
-
+        verbose_name = "School EOY Data"
+        verbose_name_plural = "School EOY Data"
 
 class StudentEOYData(TimeStampedModel):
     affiliate = models.ForeignKey('Affiliate', related_name='student_eoy_data')
@@ -76,3 +88,5 @@ class StudentEOYData(TimeStampedModel):
 
     class Meta:
         unique_together = ('affiliate', 'year')
+        verbose_name = "Student EOY Data"
+        verbose_name_plural = "Student EOY Data"
