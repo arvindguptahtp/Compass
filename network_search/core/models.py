@@ -45,9 +45,14 @@ class BaseResource(TimeStampedModel):
         return "{}".format(self.name)
 
     def save(self, *args, **kwargs):
-        """Keep the search field updated"""
-        self.search_content = SearchVector(*self.search_content_fields)
+        """Keep the search field updated
+
+        This uses F expressions under the hood so the values must first be save
+        """
         super().save(*args, **kwargs)
+        self.search_content = SearchVector(*self.search_content_fields)
+        kwargs.update({'force_insert': False})
+        super().save(update_fields=['search_content'], *args, **kwargs)
 
     def delete(self, using=None, soft=True, *args, **kwargs):
         """

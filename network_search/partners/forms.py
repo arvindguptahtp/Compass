@@ -21,10 +21,23 @@ class PartnerAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['featured_network'].queryset = self.instance.network_use.all()
+        if getattr(self.instance, 'pk'):
+            self.fields['featured_network'].queryset = self.instance.network_use.all()
+        else:
+            self.fields['featured_network'].queryset = Affiliate.affiliates.none()
 
 
 class PartnerSearchForm(SearchForm):
     """
     Form class for searching partners
     """
+    grade = forms.MultipleChoiceField(choices=choices.GRADES, required=False)
+    gender = forms.MultipleChoiceField(choices=choices.GENDER, required=False)
+    reach = forms.MultipleChoiceField(required=False)
+    need = forms.MultipleChoiceField(choices=choices.STUDENT_NEEDS, required=False)
+    service_tiers = forms.MultipleChoiceField(choices=choices.TIERS_OF_SERVICE, required=False)
+    setting = forms.MultipleChoiceField(choices=choices.SETTING, required=False)
+    use_in_network = forms.BooleanField(required=False)
+    service_categories = forms.MultipleChoiceField(required=False)
+    free_of_cost = forms.NullBooleanField(required=False)
+    evidence_tiers = forms.MultipleChoiceField(choices=choices.TIERS_OF_EVIDENCE, required=False)

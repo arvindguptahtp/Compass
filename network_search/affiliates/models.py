@@ -95,6 +95,7 @@ class SchoolEOYData(TimeStampedModel):
         verbose_name = "School EOY Data"
         verbose_name_plural = "School EOY Data"
 
+
 class StudentEOYData(TimeStampedModel):
     affiliate = models.ForeignKey('Affiliate', related_name='student_eoy_data')
     year = models.ForeignKey('EndOfYear', related_name='student_eoy_data')

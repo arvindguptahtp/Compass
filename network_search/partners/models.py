@@ -9,6 +9,15 @@ from network_search.core.models import ResourceQueryset
 class PartnerQueryset(ResourceQueryset):
     def search(self, **kwargs):
         qs = super().search(**kwargs)
+
+        grades = kwargs.pop('grade', [])
+        genders = kwargs.pop('gender', [])
+
+        if grades:
+            qs = qs.filter(grade__contains=grades)
+        if genders:
+            qs = qs.filter(gender__contains=genders)
+
         return qs
 
 
@@ -32,40 +41,48 @@ class Partner(BaseResource):
     grade = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     gender = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     organizational_reach = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     student_need = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     tiers_of_service = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     setting = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     service_categories = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     tiers_of_evidence = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
 
-    is_cost_free = models.BooleanField(blank=True)
+    is_cost_free = models.BooleanField(blank=True, default=False)
     cost_description = models.CharField(max_length=200, blank=True, null=True)
 
-    is_core_partner = models.BooleanField(blank=True)  # is this based on link from Program???
+    is_core_partner = models.BooleanField(blank=True, default=False)  # is this based on link from Program???
 
     network_use = models.ManyToManyField('affiliates.Affiliate', related_name='partners', blank=True)
     featured_network = models.ManyToManyField('affiliates.Affiliate', related_name='featured_partners', blank=True)
