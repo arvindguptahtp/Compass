@@ -15,12 +15,20 @@ def empty_partner():
 
 @pytest.fixture
 def girl_scouts():
-    yield Partner.partners.create(name="Girl Scouts", gender=['f'], grade=['el'])
+    yield Partner.partners.create(
+        name="Girl Scouts",
+        gender=['f'],
+        grade=['el'],
+    )
 
 
 @pytest.fixture
 def boy_scouts():
-    yield Partner.partners.create(name="Boy Scouts", gender=['m'], grade=['ms'])
+    yield Partner.partners.create(
+        name="Boy Scouts",
+        gender=['m'],
+        grade=['ms'],
+    )
 
 
 @pytest.fixture
