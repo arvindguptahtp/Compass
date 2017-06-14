@@ -10,10 +10,10 @@ class PartnerAdminForm(forms.ModelForm):
 
     grade = forms.MultipleChoiceField(choices=choices.Grades.as_choices(), required=False)
     featured_network = forms.ModelMultipleChoiceField(queryset=Affiliate.objects.all(), required=False)
-    setting = forms.MultipleChoiceField(choices=choices.SETTING, required=False)
-    service_categories = forms.MultipleChoiceField(choices=choices.CORE_SERVICES, required=False)
-    tiers_of_service = forms.MultipleChoiceField(choices=choices.TIERS_OF_SERVICE, required=False)
-    tiers_of_evidence = forms.MultipleChoiceField(choices=choices.TIERS_OF_EVIDENCE, required=False)
+    setting = forms.MultipleChoiceField(choices=choices.Setting.as_choices(), required=False)
+    service_categories = forms.MultipleChoiceField(choices=choices.CoreServices.as_choices(), required=False)
+    tiers_of_service = forms.MultipleChoiceField(choices=choices.TiersOfService.as_choices(), required=False)
+    tiers_of_evidence = forms.MultipleChoiceField(choices=choices.TiersOfEvidence.as_choices(), required=False)
 
     class Meta:
         model = Partner
@@ -35,9 +35,9 @@ class PartnerSearchForm(SearchForm):
     gender = forms.MultipleChoiceField(choices=choices.Gender.as_choices(), required=False)
     reach = forms.MultipleChoiceField(required=False)
     need = forms.MultipleChoiceField(choices=choices.StudentNeeds.as_choices(), required=False)
-    service_tiers = forms.MultipleChoiceField(choices=choices.TIERS_OF_SERVICE, required=False)
-    setting = forms.MultipleChoiceField(choices=choices.SETTING, required=False)
+    service_tiers = forms.MultipleChoiceField(choices=choices.TiersOfService.as_choices(), required=False)
+    setting = forms.MultipleChoiceField(choices=choices.Setting.as_choices(), required=False)
     use_in_network = forms.BooleanField(required=False)
     service_categories = forms.MultipleChoiceField(required=False)
     free_of_cost = forms.NullBooleanField(required=False)
-    evidence_tiers = forms.MultipleChoiceField(choices=choices.TIERS_OF_EVIDENCE, required=False)
+    evidence_tiers = forms.MultipleChoiceField(choices=choices.TiersOfEvidence.as_choices(), required=False)

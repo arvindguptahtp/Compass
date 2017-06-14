@@ -95,57 +95,52 @@ class StudentNeeds(Choice):
     juv = 'At risk of entering juvenile justice system'
 
 
-STUDENT_CHARACTERISTICS = [
-    ('frpl', 'Eligible for FRPL'),
-    ('ay', 'Adjudicated Youth'),
-    ('mil', 'Child of Active Duty Military'),
-    ('ell', 'English Language Learners'),
-    ('fos', 'Foster Care/Group Home'),
-    ('gang', 'Gang Involvement'),
-    ('hl', 'Homeless'),
-    ('ip', 'Incarcerated Parent'),
-    ('lgbt', 'LGBT'),
-    ('pp', 'Pregnant/Parenting'),
-    ('se', 'Special Education'),
-    ('sa', 'Substance Abuse'),
-    ('na', 'Not Applicable'),
-]
+class StudentCharacteristics(Choice):
+    frpl = 'Eligible for FRPL'
+    ay = 'Adjudicated Youth'
+    mil = 'Child of Active Duty Military'
+    ell = 'English Language Learners'
+    fos = 'Foster Care/Group Home'
+    gang = 'Gang Involvement'
+    hl = 'Homeless'
+    ip = 'Incarcerated Parent'
+    lgbt = 'LGBT'
+    pp = 'Pregnant/Parenting'
+    se = 'Special Education'
+    sa = 'Substance Abuse'
+    na = 'Not Applicable'
 
 
-TIERS_OF_SERVICE = [
-    ('1', 'Tier I'),
-    ('2', 'Tier II'),
-    ('3', 'Tier III'),
-]
+class TiersOfService(Choice):
+    i = 'Tier I'
+    ii = 'Tier II'
+    iii = 'Tier III'
 
 
-SETTING = [
-    ('sch', 'School'),
-    ('hf', 'Home/Family'),
-    ('co', 'Community'),
-    ('as', 'Afterschool'),
-    ('sp', 'Summer Program'),
-]
+class Setting(Choice):
+    sch = 'School'
+    hf = 'Home/Family'
+    co = 'Community'
+    aft = 'Afterschool'
+    sp = 'Summer Program'
 
 
-CORE_SERVICES = [
-    ('aa', 'Academic Assistance'),
-    ('bn', 'Basic Needs'),
-    ('bi', 'Behavioral Interventions'),
-    ('ccp', 'College and Career Preparation'),
-    ('csl', 'Community and Service Learning'),
-    ('en', 'Enrichment'),
-    ('fe', 'Family Engagement'),
-    ('ls', 'Life Skills/Social Development'),
-    ('pmh', 'Professional Mental Health'),
-    ('pph', 'Professional Physical Health'),
-]
+class CoreServices(Choice):
+    aa = 'Academic Assistance'
+    bn = 'Basic Needs'
+    bi = 'Behavioral Interventions'
+    ccp = 'College and Career Preparation'
+    csl = 'Community and Service Learning'
+    en = 'Enrichment'
+    fe = 'Family Engagement'
+    ls = 'Life Skills/Social Development'
+    pmh = 'Professional Mental Health'
+    pph = 'Professional Physical Health'
 
 
-TIERS_OF_EVIDENCE = [
-    ('1', 'Strong evidence'),
-    ('2', 'Moderate evidence'),
-    ('3', 'Promising evidence (High)'),
-    ('4', 'Promising evidence (low)'),
-    ('5', 'Demonstrates a rationale/Research-building'),
-]
+class TiersOfEvidence(Choice):
+    t1 = 'Strong evidence'
+    t2 = 'Moderate evidence'
+    t3 = 'Promising evidence (High)'
+    t4 = 'Promising evidence (low)'
+    t5 = 'Demonstrates a rationale/Research-building'

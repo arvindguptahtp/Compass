@@ -12,11 +12,14 @@ class ProgramAdminForm(forms.ModelForm):
     race = forms.MultipleChoiceField(choices=choices.Race, required=False)
     region = forms.MultipleChoiceField(choices=choices.Regions.as_choices(), required=False)
     student_need = forms.MultipleChoiceField(choices=choices.StudentNeeds.as_choices(), required=False)
-    student_characteristics = forms.MultipleChoiceField(choices=choices.STUDENT_CHARACTERISTICS, required=False)
-    setting = forms.MultipleChoiceField(choices=choices.SETTING, required=False)
-    tiers_of_service = forms.MultipleChoiceField(choices=choices.TIERS_OF_SERVICE, required=False)
-    tiers_of_evidence = forms.MultipleChoiceField(choices=choices.TIERS_OF_EVIDENCE, required=False)
-    service_categories = forms.MultipleChoiceField(choices=choices.CORE_SERVICES, required=False)
+    student_characteristics = forms.MultipleChoiceField(
+        choices=choices.StudentCharacteristics.as_choices(),
+        required=False,
+    )
+    setting = forms.MultipleChoiceField(choices=choices.Setting.as_choices(), required=False)
+    tiers_of_service = forms.MultipleChoiceField(choices=choices.TiersOfService.as_choices(), required=False)
+    tiers_of_evidence = forms.MultipleChoiceField(choices=choices.TiersOfEvidence.as_choices(), required=False)
+    service_categories = forms.MultipleChoiceField(choices=choices.CoreServices.as_choices(), required=False)
 
     class Meta:
         model = Program
