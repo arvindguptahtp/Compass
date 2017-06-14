@@ -1,11 +1,39 @@
 """
 Common choices
 
+This module uses Python's Enum class to provide sensible *coded* blocks,
+obviating the need to work with error prone string literals, and to do
+so in a way compatible with Django's expected `choices` value.
+
+The `Choice` class is used here to ensure that any enumerated type can
+be packaged as a list of tuples with strings.
+
+In order to make this work and reduce verbosity, the attribute names are
+shortened to what should be used in the database. It would be nicer to
+use something like::
+
+    class Gender(Enum):
+        male = SomeNamedTuple('m', 'Male')
+        female = SomeNamedTuple('f', 'Female')
+
+But this leads to more difficult to read code.
+
 """
+from enum import Enum
 from typing import Any
-from typing import Dict
 from typing import List
+from typing import Dict
 from typing import Tuple
+
+
+class Choice(Enum):
+
+    @classmethod
+    def as_choices(cls):
+        return [
+            (child.name, child.value)
+            for child in cls
+        ]
 
 
 def sorted_choices(choice_tuple: List[Tuple[Any, Any]]) -> List[Tuple[Any, Any]]:
@@ -13,69 +41,58 @@ def sorted_choices(choice_tuple: List[Tuple[Any, Any]]) -> List[Tuple[Any, Any]]
     return sorted(choice_tuple, key=lambda x: x[1])
 
 
-def inverted_choices(choice_tuple: List[Tuple[Any, Any]]) -> List[Tuple[Any, Any]]:
-    """Returns a list of the reversed tuples
-
-    This is expected to be useful where matching data for imports
-    """
-    return [
-        (i[1], i[0]) for i in choice_tuple
-    ]
-
-
-def populator(choice_tuple: List[Tuple[Any, Any]]) -> Dict[Any, Any]:
+def populator(choice_selections: Choice) -> Dict[str, str]:
     """Returns a dictionary of the tuples by inversion
 
     This is expected to be useful where matching data for imports
     """
     return {
-        i[1]: i[0] for i in choice_tuple
+        i.value: i.name for i in choice_selections
     }
 
 
-GRADES = [
-    ('ec', 'Early Childhood Education'),
-    ('el', 'Elementary'),
-    ('ms', 'Middle School'),
-    ('hs', 'High School'),
-    ('ps', 'Post-Secondary'),
-]
+class Grades(Choice):
+    ec = 'Early Childhood Education'
+    el = 'Elementary'
+    ms = 'Middle School'
+    hs = 'High School'
+    ps = 'Post-Secondary'
 
-GENDER = [
-    ('f', 'female'),
-    ('m', 'male'),
-]
 
-RACE = [
-    ('am', 'American Indian'),
-    ('as', 'Asian'),
-    ('bl', 'Black'),
-    ('hi', 'Hispanic'),
-    ('wh', 'White'),
-    ('2', 'Two or more races'),
-]
+class Gender(Choice):
+    f = 'female'
+    m = 'male'
 
-REGIONS = [
-    ('n', 'Nationwide'),
-    ('i', 'International'),
-]
 
-STUDENT_NEEDS = [
-    ('bi', 'Behavioral Issues'),
-    ('att', 'Attendance Issues/Chronically Absent'),
-    ('do', 'At risk of dropping out'),
-    ('phn', 'Physical Health Needs'),
-    ('sel', 'SEL Needs'),
-    ('mh', 'Mental Health Needs'),
-    ('ac', 'Academic Needs'),
-    ('hr', 'High Risk Behavior'),
-    ('pr', 'Pregnant/Parenting'),
-    ('ccr', 'College/Career Readiness'),
-    ('pfe', 'Parent/Family Engagement'),
-    ('ell', 'English Language Learners'),
-    ('hfy', 'Homesless/Foster Youth'),
-    ('juv', 'At risk of entering juvenile justice system'),
-]
+class Race(Choice):
+    am = 'American Indian'
+    asn = 'Asian'
+    bl = 'Black'
+    his = 'Hispanic'
+    wh = 'White'
+    two = 'Two or more races'
+
+
+class Regions(Choice):
+    n = 'Nationwide'
+    i = 'International'
+
+
+class StudentNeeds(Choice):
+    bi = 'Behavioral Issues'
+    att = 'Attendance Issues/Chronically Absent'
+    do = 'At risk of dropping out'
+    phn = 'Physical Health Needs'
+    sel = 'SEL Needs'
+    mh = 'Mental Health Needs'
+    ac = 'Academic Needs'
+    hr = 'High Risk Behavior'
+    pr = 'Pregnant/Parenting'
+    ccr = 'College/Career Readiness'
+    pfe = 'Parent/Family Engagement'
+    ell = 'English Language Learners'
+    hfy = 'Homeless/Foster Youth'
+    juv = 'At risk of entering juvenile justice system'
 
 
 STUDENT_CHARACTERISTICS = [

@@ -8,7 +8,7 @@ from network_search.affiliates.models import Affiliate
 
 class PartnerAdminForm(forms.ModelForm):
 
-    grade = forms.MultipleChoiceField(choices=choices.GRADES, required=False)
+    grade = forms.MultipleChoiceField(choices=choices.Grades.as_choices(), required=False)
     featured_network = forms.ModelMultipleChoiceField(queryset=Affiliate.objects.all(), required=False)
     setting = forms.MultipleChoiceField(choices=choices.SETTING, required=False)
     service_categories = forms.MultipleChoiceField(choices=choices.CORE_SERVICES, required=False)
@@ -31,10 +31,10 @@ class PartnerSearchForm(SearchForm):
     """
     Form class for searching partners
     """
-    grade = forms.MultipleChoiceField(choices=choices.GRADES, required=False)
-    gender = forms.MultipleChoiceField(choices=choices.GENDER, required=False)
+    grade = forms.MultipleChoiceField(choices=choices.Grades.as_choices(), required=False)
+    gender = forms.MultipleChoiceField(choices=choices.Gender.as_choices(), required=False)
     reach = forms.MultipleChoiceField(required=False)
-    need = forms.MultipleChoiceField(choices=choices.STUDENT_NEEDS, required=False)
+    need = forms.MultipleChoiceField(choices=choices.StudentNeeds.as_choices(), required=False)
     service_tiers = forms.MultipleChoiceField(choices=choices.TIERS_OF_SERVICE, required=False)
     setting = forms.MultipleChoiceField(choices=choices.SETTING, required=False)
     use_in_network = forms.BooleanField(required=False)

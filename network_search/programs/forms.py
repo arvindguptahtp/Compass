@@ -7,11 +7,11 @@ from network_search.programs.models import Program
 
 class ProgramAdminForm(forms.ModelForm):
 
-    grade = forms.MultipleChoiceField(choices=choices.GRADES, required=False)
-    gender = forms.MultipleChoiceField(choices=choices.GENDER, required=False)
-    race = forms.MultipleChoiceField(choices=choices.RACE, required=False)
-    region = forms.MultipleChoiceField(choices=choices.REGIONS, required=False)
-    student_need = forms.MultipleChoiceField(choices=choices.STUDENT_NEEDS, required=False)
+    grade = forms.MultipleChoiceField(choices=choices.Grades.as_choices(), required=False)
+    gender = forms.MultipleChoiceField(choices=choices.Gender.as_choices(), required=False)
+    race = forms.MultipleChoiceField(choices=choices.Race, required=False)
+    region = forms.MultipleChoiceField(choices=choices.Regions.as_choices(), required=False)
+    student_need = forms.MultipleChoiceField(choices=choices.StudentNeeds.as_choices(), required=False)
     student_characteristics = forms.MultipleChoiceField(choices=choices.STUDENT_CHARACTERISTICS, required=False)
     setting = forms.MultipleChoiceField(choices=choices.SETTING, required=False)
     tiers_of_service = forms.MultipleChoiceField(choices=choices.TIERS_OF_SERVICE, required=False)
