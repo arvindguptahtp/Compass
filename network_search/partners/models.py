@@ -12,11 +12,14 @@ class PartnerQueryset(ResourceQueryset):
 
         grades = kwargs.pop('grade', [])
         genders = kwargs.pop('gender', [])
+        needs = kwargs.pop('need', [])
 
         if grades:
             qs = qs.filter(grade__contains=grades)
         if genders:
             qs = qs.filter(gender__contains=genders)
+        if needs:
+            qs = qs.filter(student_need__contains=needs)
 
         return qs
 
