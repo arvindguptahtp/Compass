@@ -38,6 +38,10 @@ class PartnerSearchForm(SearchForm):
     service_tiers = forms.MultipleChoiceField(choices=choices.TiersOfService.as_choices(), required=False)
     setting = forms.MultipleChoiceField(choices=choices.Setting.as_choices(), required=False)
     use_in_network = forms.BooleanField(required=False)
-    service_categories = forms.MultipleChoiceField(required=False)
+    services = forms.MultipleChoiceField(
+        label="Service Categories",
+        choices=choices.CoreServices.as_choices(),
+        required=False,
+    )
     free_of_cost = forms.NullBooleanField(required=False)
     evidence_tiers = forms.MultipleChoiceField(choices=choices.TiersOfEvidence.as_choices(), required=False)

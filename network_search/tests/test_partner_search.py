@@ -8,6 +8,7 @@ from network_search.core.choices import Gender
 from network_search.core.choices import Grades
 from network_search.core.choices import Regions
 from network_search.core.choices import Setting
+from network_search.core.choices import CoreServices
 from network_search.core.choices import StudentNeeds
 from network_search.core.choices import TiersOfService
 from network_search.partners.forms import PartnerSearchForm
@@ -29,6 +30,7 @@ def girl_scouts():
         organizational_reach=[Regions.n.name],
         tiers_of_service=[TiersOfService.i.name],
         setting=[Setting.aft.name],
+        service_categories=[CoreServices.aa.name],
     )
 
 
@@ -42,6 +44,7 @@ def boy_scouts():
         organizational_reach=[Regions.i.name],
         tiers_of_service=[TiersOfService.ii.name],
         setting=[Setting.sch.name],
+        service_categories=[CoreServices.bi.name],
     )
 
 
@@ -55,6 +58,7 @@ def girls_and_boys_club():
         organizational_reach=Regions.all_names(),
         tiers_of_service=TiersOfService.all_names(),
         setting=Setting.all_names(),
+        service_categories=CoreServices.all_names(),
     )
 
 
@@ -174,5 +178,25 @@ def test_search_setting(empty_partner, girl_scouts, boy_scouts, girls_and_boys_c
     assert {girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
 
     form = PartnerSearchForm(data={'setting': []})
+    assert form.is_valid()
+    assert {empty_partner, girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
+
+
+@pytest.mark.django_db
+def test_search_service_categories(empty_partner, girl_scouts, boy_scouts, girls_and_boys_club):
+
+    form = PartnerSearchForm(data={"services": [CoreServices.aa.name]})
+    assert form.is_valid()
+    assert {girl_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+
+    form = PartnerSearchForm(data={"services": [CoreServices.bi.name]})
+    assert form.is_valid()
+    assert {boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+
+    form = PartnerSearchForm(data={"services": [CoreServices.aa.name, CoreServices.bi.name]})
+    assert form.is_valid()
+    assert {girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+
+    form = PartnerSearchForm(data={"services": []})
     assert form.is_valid()
     assert {empty_partner, girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
