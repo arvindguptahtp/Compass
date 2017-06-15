@@ -44,4 +44,8 @@ class PartnerSearchForm(SearchForm):
         required=False,
     )
     free_of_cost = forms.NullBooleanField(required=False)
-    evidence_tiers = forms.MultipleChoiceField(choices=choices.TiersOfEvidence.as_choices(), required=False)
+    evidence = forms.MultipleChoiceField(
+        label="Tiers of Evidence",
+        choices=choices.TiersOfEvidence.as_choices(),
+        required=False,
+    )

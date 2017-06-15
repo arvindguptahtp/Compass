@@ -17,6 +17,7 @@ class PartnerQueryset(ResourceQueryset):
         service_tiers = kwargs.pop('service_tiers', [])
         setting = kwargs.pop('setting', [])
         services = kwargs.pop('services', [])
+        evidence = kwargs.pop('evidence', [])
 
         if grades:
             qs = qs.filter(grade__contains=grades)
@@ -32,6 +33,8 @@ class PartnerQueryset(ResourceQueryset):
             qs = qs.filter(setting__contains=setting)
         if services:
             qs = qs.filter(service_categories__contains=services)
+        if evidence:
+            qs = qs.filter(tiers_of_evidence__contains=evidence)
 
         return qs
 
