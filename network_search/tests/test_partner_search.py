@@ -33,6 +33,7 @@ def girl_scouts():
         setting=[Setting.aft.name],
         service_categories=[CoreServices.aa.name],
         tiers_of_evidence=[TiersOfEvidence.t1.name],
+        is_cost_free=True,
     )
 
 
@@ -48,6 +49,7 @@ def boy_scouts():
         setting=[Setting.sch.name],
         service_categories=[CoreServices.bi.name],
         tiers_of_evidence=[TiersOfEvidence.t2.name],
+        is_cost_free=False,
     )
 
 
@@ -63,6 +65,7 @@ def girls_and_boys_club():
         setting=Setting.all_names(),
         service_categories=CoreServices.all_names(),
         tiers_of_evidence=TiersOfEvidence.all_names(),
+        is_cost_free=True,
     )
 
 
@@ -222,5 +225,21 @@ def test_search_evidence(empty_partner, girl_scouts, boy_scouts, girls_and_boys_
     assert {girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
 
     form = PartnerSearchForm(data={'evidence': []})
+    assert form.is_valid()
+    assert {empty_partner, girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
+
+
+@pytest.mark.django_db
+def test_search_cost(empty_partner, girl_scouts, boy_scouts, girls_and_boys_club):
+
+    form = PartnerSearchForm(data={'free_of_cost': True})
+    assert form.is_valid()
+    assert {girl_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+
+    form = PartnerSearchForm(data={'free_of_cost': False})
+    assert form.is_valid()
+    assert {boy_scouts, empty_partner} == set(Partner.partners.search(**form.cleaned_data))
+
+    form = PartnerSearchForm(data={'free_of_cost': None})
     assert form.is_valid()
     assert {empty_partner, girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa

@@ -18,6 +18,7 @@ class PartnerQueryset(ResourceQueryset):
         setting = kwargs.pop('setting', [])
         services = kwargs.pop('services', [])
         evidence = kwargs.pop('evidence', [])
+        cost_free = kwargs.pop('free_of_cost', None)
 
         if grades:
             qs = qs.filter(grade__contains=grades)
@@ -35,6 +36,9 @@ class PartnerQueryset(ResourceQueryset):
             qs = qs.filter(service_categories__contains=services)
         if evidence:
             qs = qs.filter(tiers_of_evidence__contains=evidence)
+
+        if cost_free is not None:
+            qs = qs.filter(is_cost_free=cost_free)
 
         return qs
 
