@@ -18,6 +18,14 @@ use something like::
 
 But this leads to more difficult to read code.
 
+Note that a "member" of an enum has two attributes:
+
+    - name
+    - value
+
+The `name` attribute refers to the accessible name of the attribute, and
+`value` refers to the string literal that is associated with it.
+
 """
 from enum import Enum
 from typing import Any
