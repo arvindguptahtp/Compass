@@ -14,6 +14,21 @@ from network_search.core.choices import TiersOfService
 from network_search.core.choices import TiersOfEvidence
 from network_search.partners.forms import PartnerSearchForm
 from network_search.partners.models import Partner
+from network_search.affiliates.models import Affiliate
+
+
+@pytest.fixture
+def base_affiliate():
+    yield Affiliate.affiliates.create(
+        name="Base Affiliate",
+        state="VA",
+        cis_id=8,
+        official_name="Base Affiliate",
+        address_street="100 Main St",
+        address_city="Anywhere",
+        address_state="VA",
+        address_postcode="22202",
+    )
 
 
 @pytest.fixture
@@ -241,5 +256,24 @@ def test_search_cost(empty_partner, girl_scouts, boy_scouts, girls_and_boys_club
     assert {boy_scouts, empty_partner} == set(Partner.partners.search(**form.cleaned_data))
 
     form = PartnerSearchForm(data={'free_of_cost': None})
+    assert form.is_valid()
+    assert {empty_partner, girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
+
+
+@pytest.mark.django_db
+def test_search_in_network(base_affiliate, empty_partner, girl_scouts, boy_scouts, girls_and_boys_club):
+
+    girl_scouts.network_use.add(base_affiliate)
+    girls_and_boys_club.network_use.add(base_affiliate)
+
+    form = PartnerSearchForm(data={'use_in_network': True})
+    assert form.is_valid()
+    assert {girl_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+
+    form = PartnerSearchForm(data={'use_in_network': False})
+    assert form.is_valid()
+    assert {boy_scouts, empty_partner} == set(Partner.partners.search(**form.cleaned_data))
+
+    form = PartnerSearchForm(data={'use_in_network': None})
     assert form.is_valid()
     assert {empty_partner, girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa

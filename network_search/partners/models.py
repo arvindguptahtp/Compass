@@ -19,6 +19,7 @@ class PartnerQueryset(ResourceQueryset):
         services = kwargs.pop('services', [])
         evidence = kwargs.pop('evidence', [])
         cost_free = kwargs.pop('free_of_cost', None)
+        use_in_network = kwargs.pop('use_in_network', None)
 
         if grades:
             qs = qs.filter(grade__contains=grades)
@@ -39,6 +40,11 @@ class PartnerQueryset(ResourceQueryset):
 
         if cost_free is not None:
             qs = qs.filter(is_cost_free=cost_free)
+
+        if use_in_network is True:
+            qs = qs.filter(network_use=True)
+        elif use_in_network is False:
+            qs = qs.exclude(network_use=True)
 
         return qs
 

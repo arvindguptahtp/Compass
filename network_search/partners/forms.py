@@ -37,7 +37,7 @@ class PartnerSearchForm(SearchForm):
     need = forms.MultipleChoiceField(choices=choices.StudentNeeds.as_choices(), required=False)
     service_tiers = forms.MultipleChoiceField(choices=choices.TiersOfService.as_choices(), required=False)
     setting = forms.MultipleChoiceField(choices=choices.Setting.as_choices(), required=False)
-    use_in_network = forms.BooleanField(required=False)
+    use_in_network = forms.NullBooleanField(required=False)
     services = forms.MultipleChoiceField(
         label="Service Categories",
         choices=choices.CoreServices.as_choices(),
