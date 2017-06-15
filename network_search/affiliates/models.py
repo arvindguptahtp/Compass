@@ -57,7 +57,7 @@ class Affiliate(BaseResource):
 
     # Descriptive organizational info
     state = models.CharField(max_length=2)
-    cis_id = models.IntegerField(name="Affiliate ID")
+    cis_id = models.IntegerField(verbose_name="Affiliate ID")
     official_name = models.CharField(max_length=200)
     address_street = models.CharField(max_length=200)
     address_city = models.CharField(max_length=200)
