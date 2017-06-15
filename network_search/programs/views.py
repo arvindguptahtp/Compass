@@ -1,6 +1,6 @@
+from easy_pdf.views import PDFTemplateResponseMixin
 from django.views.generic import DetailView
 
-from easy_pdf.views import PDFTemplateResponseMixin
 from network_search.core.views import SearchView
 from network_search.programs.forms import ProgramSearchForm
 from network_search.programs.models import Program

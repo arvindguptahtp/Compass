@@ -1,8 +1,7 @@
-from django.views.generic import FormView
-from django.core.exceptions import ImproperlyConfigured
-
 from pure_pagination import Paginator
 from pure_pagination import PageNotAnInteger
+from django.views.generic import FormView
+from django.core.exceptions import ImproperlyConfigured
 
 
 class SearchView(FormView):

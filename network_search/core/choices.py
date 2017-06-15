@@ -29,8 +29,8 @@ The `name` attribute refers to the accessible name of the attribute, and
 """
 from enum import Enum
 from typing import Any
-from typing import List
 from typing import Dict
+from typing import List
 from typing import Tuple
 
 

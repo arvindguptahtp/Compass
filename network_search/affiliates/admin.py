@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from network_search.affiliates.forms import AffiliateAdminForm
 from network_search.affiliates import models
+from network_search.affiliates.forms import AffiliateAdminForm
 
 
 @admin.register(models.Affiliate)

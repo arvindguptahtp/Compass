@@ -1,9 +1,8 @@
 from django.db import models
+from model_utils.models import TimeStampedModel
 from django.core.urlresolvers import reverse
 from django.contrib.postgres.search import SearchVector
 from django.contrib.postgres.search import SearchVectorField
-
-from model_utils.models import TimeStampedModel
 
 
 class Link(TimeStampedModel):

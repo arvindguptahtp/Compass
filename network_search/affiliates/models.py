@@ -3,8 +3,8 @@ Models for the affiliate directory and EOY data reports
 """
 
 from django.db import models
-
 from model_utils.models import TimeStampedModel
+
 from network_search.core.models import BaseResource
 from network_search.core.models import ResourceQueryset
 
