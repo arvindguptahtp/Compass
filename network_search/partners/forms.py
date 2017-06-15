@@ -9,11 +9,18 @@ from network_search.affiliates.models import Affiliate
 class PartnerAdminForm(forms.ModelForm):
 
     grade = forms.MultipleChoiceField(choices=choices.Grades.as_choices(), required=False)
+    gender = forms.MultipleChoiceField(
+        choices=choices.Gender.as_choices(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
     featured_network = forms.ModelMultipleChoiceField(queryset=Affiliate.objects.all(), required=False)
     setting = forms.MultipleChoiceField(choices=choices.Setting.as_choices(), required=False)
     service_categories = forms.MultipleChoiceField(choices=choices.CoreServices.as_choices(), required=False)
     tiers_of_service = forms.MultipleChoiceField(choices=choices.TiersOfService.as_choices(), required=False)
     tiers_of_evidence = forms.MultipleChoiceField(choices=choices.TiersOfEvidence.as_choices(), required=False)
+    organizational_reach = forms.MultipleChoiceField(choices=choices.Regions.as_choices(), required=False)
+    student_need = forms.MultipleChoiceField(choices=choices.StudentNeeds.as_choices(), required=False)
 
     class Meta:
         model = Partner
