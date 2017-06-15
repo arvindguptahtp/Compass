@@ -14,6 +14,7 @@ class PartnerQueryset(ResourceQueryset):
         genders = kwargs.pop('gender', [])
         needs = kwargs.pop('need', [])
         reach = kwargs.pop('reach', [])
+        service_tiers = kwargs.pop('service_tiers', [])
 
         if grades:
             qs = qs.filter(grade__contains=grades)
@@ -23,6 +24,8 @@ class PartnerQueryset(ResourceQueryset):
             qs = qs.filter(student_need__contains=needs)
         if reach:
             qs = qs.filter(organizational_reach__contains=reach)
+        if service_tiers:
+            qs = qs.filter(tiers_of_service__contains=service_tiers)
 
         return qs
 
