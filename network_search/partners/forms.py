@@ -33,7 +33,7 @@ class PartnerSearchForm(SearchForm):
     """
     grade = forms.MultipleChoiceField(choices=choices.Grades.as_choices(), required=False)
     gender = forms.MultipleChoiceField(choices=choices.Gender.as_choices(), required=False)
-    reach = forms.MultipleChoiceField(required=False)
+    reach = forms.MultipleChoiceField(choices=choices.Regions.as_choices(), required=False)
     need = forms.MultipleChoiceField(choices=choices.StudentNeeds.as_choices(), required=False)
     service_tiers = forms.MultipleChoiceField(choices=choices.TiersOfService.as_choices(), required=False)
     setting = forms.MultipleChoiceField(choices=choices.Setting.as_choices(), required=False)

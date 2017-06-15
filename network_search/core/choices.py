@@ -35,6 +35,10 @@ class Choice(Enum):
             for child in cls
         ]
 
+    @classmethod
+    def all_names(cls):
+        return [child.name for child in cls]
+
 
 def sorted_choices(choice_tuple: List[Tuple[Any, Any]]) -> List[Tuple[Any, Any]]:
     """Return a choice list sorted by name"""
