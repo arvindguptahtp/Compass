@@ -1,5 +1,6 @@
 from django import forms
 
+from network_search.affiliates.models import Affiliate
 from network_search.core import choices
 from network_search.core.forms import SearchForm
 from network_search.programs.models import Program
@@ -9,7 +10,7 @@ class ProgramAdminForm(forms.ModelForm):
 
     grade = forms.MultipleChoiceField(choices=choices.Grades.as_choices(), required=False)
     gender = forms.MultipleChoiceField(choices=choices.Gender.as_choices(), required=False)
-    race = forms.MultipleChoiceField(choices=choices.Race, required=False)
+    race = forms.MultipleChoiceField(choices=choices.Race.as_choices(), required=False)
     region = forms.MultipleChoiceField(choices=choices.Regions.as_choices(), required=False)
     student_need = forms.MultipleChoiceField(choices=choices.StudentNeeds.as_choices(), required=False)
     student_characteristics = forms.MultipleChoiceField(
@@ -27,7 +28,10 @@ class ProgramAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['featured_network'].queryset = self.instance.network_use.all()
+        if getattr(self.instance, 'pk'):
+            self.fields['featured_network'].queryset = self.instance.network_use.all()
+        else:
+            self.fields['featured_network'].queryset = Affiliate.affiliates.none()
 
 
 class ProgramSearchForm(SearchForm):
