@@ -22,57 +22,67 @@ class Program(BaseResource):
     grade = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     gender = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     race = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     race_other = models.CharField(max_length=100, blank=True, null=True)
     region = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     region_other = models.CharField(max_length=100, blank=True, null=True)
     student_need = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     student_characteristics = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     tiers_of_service = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     setting = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     tiers_of_evidence = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
     _study_details = models.TextField(name='study details', blank=True, null=True, help_text="Not for display")
 
     service_categories = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
+        null=True,
     )
 
-    assessment_available = models.BooleanField()
+    assessment_available = models.BooleanField(default=False)
     assessment_info = models.CharField(max_length=400, blank=True, null=True)
 
     national_partner = models.ForeignKey('partners.Partner', blank=True, related_name="program", null=True)
 
-    is_cost_free = models.BooleanField(blank=True)
+    is_cost_free = models.BooleanField(blank=True, default=False)
     cost_description = models.CharField(max_length=200, blank=True, null=True)
 
-    outcomes = models.TextField(blank=True)
+    outcomes = models.TextField(blank=True, null=True)
 
     study_weblink = models.URLField(blank=True, null=True)
 
