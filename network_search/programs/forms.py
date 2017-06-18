@@ -38,3 +38,37 @@ class ProgramSearchForm(SearchForm):
     """
     Form class for searching programs
     """
+    grade = forms.MultipleChoiceField(
+        choices=choices.Grades.as_choices(),
+        required=False,
+    )
+    gender = forms.MultipleChoiceField(
+        choices=choices.Gender.as_choices(),
+        required=False,
+    )
+    race = forms.MultipleChoiceField(
+        choices=choices.Race.as_choices(),
+        required=False,
+    )
+    need = forms.MultipleChoiceField(
+        choices=choices.StudentNeeds.as_choices(),
+        required=False,
+    )
+    service_tiers = forms.MultipleChoiceField(
+        choices=choices.TiersOfService.as_choices(),
+        required=False,
+    )
+    use_in_network = forms.NullBooleanField(
+        required=False,
+    )
+    services = forms.MultipleChoiceField(
+        label="Service Categories",
+        choices=choices.CoreServices.as_choices(),
+        required=False,
+    )
+    free_of_cost = forms.NullBooleanField(required=False)
+    evidence = forms.MultipleChoiceField(
+        label="Tiers of Evidence",
+        choices=choices.TiersOfEvidence.as_choices(),
+        required=False,
+    )
