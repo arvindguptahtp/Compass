@@ -266,6 +266,8 @@ def test_search_in_network(base_affiliate, empty_partner, girl_scouts, boy_scout
     girl_scouts.network_use.add(base_affiliate)
     girls_and_boys_club.network_use.add(base_affiliate)
 
+    assert Partner.partners.filter(network_use=True).exists()
+
     form = PartnerSearchForm(data={'use_in_network': True})
     assert form.is_valid()
     assert {girl_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
