@@ -2,25 +2,60 @@
 Models for the affiliate directory and EOY data reports
 """
 
+import logging
+
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
+from django.db.models import F
+from django.db.models import Sum
 from model_utils.models import TimeStampedModel
+from django.utils.functional import cached_property
+from django.contrib.postgres.fields import ArrayField
 
-
+from network_search.core import choices
 from network_search.core.models import BaseResource
 from network_search.core.models import ResourceQueryset
+
+logger = logging.getLogger(__name__)
+
+# Used to simplify and remove literals for fields in school data
+female_template = "students_female_{}"
+male_template = "students_male_{}"
+gender_templates = [female_template, male_template]
 
 
 class EOYQueryset(models.QuerySet):
     def current(self) -> models.Model:
         """Returns the latest published report year"""
-        return self.filter(is_active=True).order_by('-year').first()
+        return self.filter(is_active=True).order_by('-year_ends').first()
 
 
 class AffiliateQueryset(ResourceQueryset):
     def search(self, **kwargs) -> models.QuerySet:
         qs = super().search(**kwargs)
-        return qs
+
+        eoy = EndOfYear.years.current()
+        if eoy is None:
+            logger.error("Attempting to search affiliates without an active reporting year")
+            return qs
+
+        logger.debug("Searching affiliates using {}".format(eoy))
+        qs = qs.filter(affiliate_eoy_data__year=eoy)
+
+        genders = kwargs.pop('gender', [])
+        race = kwargs.pop('race', [])
+
+        if genders:
+            qs = qs.filter(
+                affiliate_eoy_data__search_gender__contains=genders,
+                affiliate_eoy_data__year=eoy,
+            )
+        if race:
+            qs = qs.filter(
+                affiliate_eoy_data__search_race__contains=race,
+                affiliate_eoy_data__year=eoy,
+            )
+
+        return qs.filter(affiliate_eoy_data__year=eoy).distinct()
 
 
 class EndOfYear(TimeStampedModel):
@@ -78,16 +113,40 @@ class Affiliate(BaseResource):
         verbose_name = "Affiliate"
         verbose_name_plural = "Affiliates"
 
+    def current_data(self):
+        return self.affiliate_eoy_data.filter(year=EndOfYear.years.current()).first()
+
 
 class AffiliateEOYData(TimeStampedModel):
     affiliate = models.ForeignKey('Affiliate', related_name='affiliate_eoy_data')
     year = models.ForeignKey('EndOfYear', related_name='affiliate_eoy_data')
 
-    school_districts = ArrayField(
+    districts = ArrayField(
         models.CharField(max_length=100, blank=True),
         blank=True,
         null=True,
         help_text="School district names should be separated by commas."
+    )
+
+    search_students_female = models.IntegerField(default=0, editable=False)
+    search_students_male = models.IntegerField(default=0, editable=False)
+    search_gender = ArrayField(
+        models.CharField(max_length=100, blank=True),
+        blank=True,
+        null=True,
+    )
+
+    search_students_american_indian = models.IntegerField(default=0, editable=False)
+    search_students_asian = models.IntegerField(default=0, editable=False)
+    search_students_black = models.IntegerField(default=0, editable=False)
+    search_students_hispanic = models.IntegerField(default=0, editable=False)
+    search_students_white = models.IntegerField(default=0, editable=False)
+    search_students_two_or_more = models.IntegerField(default=0, editable=False)
+    search_students_other = models.IntegerField(default=0, editable=False)
+    search_race = ArrayField(
+        models.CharField(max_length=100, blank=True),
+        blank=True,
+        null=True,
     )
 
     class Meta:
@@ -98,21 +157,89 @@ class AffiliateEOYData(TimeStampedModel):
     def __str__(self):
         return "{} ({})".format(self.affiliate.name, self.year)
 
+    @property
+    def school_districts_count(self):
+        return len(self.school_districts)
+
+    @cached_property
+    def school_districts(self):
+        return [i.strip() for i in self.districts.split(",")]
+
+    def calculate(self):
+        self.search_students_female = self.school_data.aggregate(
+            total=Sum(sum([F(field) for field in SchoolEOYData.female_fields]))
+        )['total']
+        self.search_students_male = self.school_data.aggregate(
+            total=Sum(sum([F(field) for field in SchoolEOYData.male_fields]))
+        )['total']
+
+        self.search_gender = [e for e in [
+            choices.Gender.f.name if self.search_students_female else None,
+            choices.Gender.m.name if self.search_students_male else None,
+        ] if e is not None]
+
+        self.search_students_american_indian = self.school_data.aggregate(
+            total=Sum(sum([F(field) for field in SchoolEOYData.american_indian_fields]))
+        )['total']
+        self.search_students_asian = self.school_data.aggregate(
+            total=Sum(sum([F(field) for field in SchoolEOYData.asian_fields]))
+        )['total']
+        self.search_students_black = self.school_data.aggregate(
+            total=Sum(sum([F(field) for field in SchoolEOYData.black_fields]))
+        )['total']
+        self.search_students_hispanic = self.school_data.aggregate(
+            total=Sum(sum([F(field) for field in SchoolEOYData.hispanic_fields]))
+        )['total']
+        self.search_students_white = self.school_data.aggregate(
+            total=Sum(sum([F(field) for field in SchoolEOYData.white_fields]))
+        )['total']
+        self.search_students_two_or_more = self.school_data.aggregate(
+            total=Sum(sum([F(field) for field in SchoolEOYData.two_or_more_races_fields]))
+        )['total']
+        self.search_students_other = self.school_data.aggregate(
+            total=Sum(sum([F(field) for field in SchoolEOYData.other_fields]))
+        )['total']
+
+        self.search_race = [e for e in [
+            choices.Race.am.name if self.search_students_american_indian else None,
+            choices.Race.asn.name if self.search_students_asian else None,
+            choices.Race.bl.name if self.search_students_black else None,
+            choices.Race.his.name if self.search_students_hispanic else None,
+            choices.Race.wh.name if self.search_students_white else None,
+            choices.Race.two.name if self.search_students_two_or_more else None,
+        ] if e is not None]
+
+        self.save()
+
 
 class SchoolEOYData(TimeStampedModel):
     """
     School and Student affiliate data
     """
 
+    female_fields = [
+        female_template.format(race)
+        for race in ['american_indian', 'asian', 'black', 'hispanic', 'white', 'two_or_more_races', 'other']
+    ]
+    male_fields = [
+        male_template.format(race)
+        for race in ['american_indian', 'asian', 'black', 'hispanic', 'white', 'two_or_more_races', 'other']
+    ]
+
+    american_indian_fields = [template.format(choices.Race.am.lower()) for template in gender_templates]
+    asian_fields = [template.format(choices.Race.asn.lower()) for template in gender_templates]
+    black_fields = [template.format(choices.Race.bl.lower()) for template in gender_templates]
+    hispanic_fields = [template.format(choices.Race.his.lower()) for template in gender_templates]
+    white_fields = [template.format(choices.Race.wh.lower()) for template in gender_templates]
+    two_or_more_races_fields = [template.format(choices.Race.two.lower()) for template in gender_templates]
+    other_fields = [template.format('other') for template in gender_templates]
+
     class Meta:
-        unique_together = ('affiliate', 'year')
         verbose_name = "School and Student EOY Data"
         verbose_name_plural = "School and Student EOY Data"
 
-    affiliate = models.ForeignKey('Affiliate', related_name='school_eoy_data')
-
-    year = models.ForeignKey('EndOfYear', related_name='school_eoy_data')
-    name = models.CharField(verbose_name="school name", max_length=200)
+    affiliate_data = models.ForeignKey('AffiliateEOYData', related_name='school_data')
+    name = models.CharField(max_length=400)
 
     cis_model_school = models.BooleanField(default=False)
 
@@ -170,4 +297,8 @@ class SchoolEOYData(TimeStampedModel):
     students_served_incarcerated_parent = models.IntegerField(default=0)
 
     def __str__(self):
-        return "{}, {} ({})".format(self.name, self.affiliate.name, self.year)
+        return "{}, {}".format(self.name, self.affiliate_data)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.affiliate_data.calculate()

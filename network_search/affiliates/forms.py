@@ -1,7 +1,7 @@
 from django import forms
 
-from network_search.affiliates import models
 from network_search.core import choices
+from network_search.affiliates import models
 from network_search.core.forms import SearchForm
 
 
@@ -28,3 +28,5 @@ class AffiliateSearchForm(SearchForm):
     """
     Form class for searching partners
     """
+    gender = forms.MultipleChoiceField(choices=choices.Gender.as_choices(), required=False)
+    race = forms.MultipleChoiceField(choices=choices.Race.as_choices(), required=False)

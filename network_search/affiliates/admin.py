@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from network_search.affiliates import models
 from network_search.affiliates import forms
+from network_search.affiliates import models
 
 
 @admin.register(models.Affiliate)
@@ -25,13 +25,13 @@ class AffiliateEOYAdmin(admin.ModelAdmin):
 
 @admin.register(models.SchoolEOYData)
 class SchoolEOYAdmin(admin.ModelAdmin):
-    list_display = ('name', 'affiliate', 'year')
-    search_fields = ('name', 'affiliate__name',)
-    raw_id_fields = ['affiliate']
+    # list_display = ('name', 'affiliate', 'year')
+    # search_fields = ('name', 'affiliate__name',)
+    raw_id_fields = ['affiliate_data']
     form = forms.SchoolAdminForm
     fieldsets = (
         (None, {
-            'fields': ('affiliate', 'year'),
+            'fields': ['affiliate_data'],
         }),
         ('School', {
             'fields': ('name', 'cis_model_school', 'service_categories', 'students_case_managed', 'students_total'),
