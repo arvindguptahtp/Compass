@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+    <style>
+        body {
+            font: 1em Arial, "Open Sans", sans-serif;
+        }
+        h1 {
+            font: 3em Arial, "Open Sans", sans-serif;
+        }
+    </style>
 </head>
 <body>
-<h1>{% block header %}{% endblock %}</h1>
+<h1>{% block header %}{{ object }}{% endblock %}</h1>
 <div>{% block content %}{% endblock %}</div>
 </body>
 </html>
