@@ -20,7 +20,8 @@ def process_data_upload(excel_upload_pk):
     # before the data was committed to the database... which may be the case! If this
     # is eagerly evaluated and the transaction is only fully committed after the response
     # is rendered (?) then the database could be queried for the data before it's even
-    # committed into the table.
+    # committed into the table. A better strategy would be to rely on Django's own
+    # `transaction.on_commit`.
     time.sleep(1)
 
     try:
