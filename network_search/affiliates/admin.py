@@ -4,6 +4,11 @@ from network_search.affiliates import forms
 from network_search.affiliates import models
 
 
+@admin.register(models.ExcelUpload)
+class AffiliateUploadAdmin(admin.ModelAdmin):
+    list_display = ['year', 'status', 'data_file']
+
+
 @admin.register(models.Affiliate)
 class AffiliateAdmin(admin.ModelAdmin):
     form = forms.AffiliateAdminForm

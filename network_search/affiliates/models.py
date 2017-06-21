@@ -13,6 +13,7 @@ from django.contrib.postgres.fields import ArrayField
 
 from network_search.core import choices
 from network_search.core.models import BaseResource
+from network_search.core.models import DataUpload
 from network_search.core.models import ResourceQueryset
 
 logger = logging.getLogger(__name__)
@@ -302,3 +303,17 @@ class SchoolEOYData(TimeStampedModel):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.affiliate_data.calculate()
+
+
+class ExcelUpload(DataUpload):
+    """
+    Concrete model for affiliate data uploads
+    """
+    year = models.ForeignKey('EndOfYear', related_name="excel_uploads")
+
+    def save(self, **kwargs):
+        created = not bool(getattr(self, 'pk'))
+        super().save(**kwargs)
+        if created:
+            from network_search.affiliates.tasks import process_data_upload
+            process_data_upload.delay(self.pk)

@@ -72,7 +72,16 @@ class DataUpload(TimeStampedModel):
     """
     Base model for
     """
-    result = models.CharField(max_length=10)
+    status = models.CharField(
+        max_length=10,
+        choices=[('p', 'Pending'), ('f', 'Failed'), ('s', 'Success')],
+        default='p',
+        editable=False,
+    )
+    data_file = models.FileField(null=True)
+
+    class Meta:
+        abstract = True
 
 
 class ResourceQueryset(models.QuerySet):
