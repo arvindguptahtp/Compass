@@ -5,8 +5,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
-admin.site.site_header = "CIS Network Resources"
-admin.site.site_title = "CIS Network Resources"
+admin.site.site_header = "CIS Search Tool"
+admin.site.site_title = "CIS Search Tool"
 
 urlpatterns = [
     url(settings.ADMIN_URL, admin.site.urls),
