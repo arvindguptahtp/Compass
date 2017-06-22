@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+
+
 {% if not form.is_valid %}
 
     <p>Search was not valid</p>
@@ -5,7 +9,7 @@
 {% endif %}
 
 <form action="." method="GET">
-{{ form }}
+{{ form.as_p }}
 </form>
 
 {% for partner in partners.object_list %}
@@ -17,3 +21,4 @@
     <p>No matching partners</p>
 
 {% endfor %}
+{% endblock %}

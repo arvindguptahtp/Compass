@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
 {% if not form.is_valid %}
 
     <p>Search was not valid</p>
@@ -17,3 +19,4 @@
     <p>No matching programs</p>
 
 {% endfor %}
+{% endblock %}
