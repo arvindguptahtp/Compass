@@ -13,6 +13,24 @@ services:
     environment:
       - POSTGRES_USER=network_search
 
+  redis:
+    image: redis:3.0
+
+  celeryworker:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile-dev
+    env_file: .env
+    depends_on:
+     - postgres
+     - redis
+    command: celery -A network_search.taskapp worker -l DEBUG
+    volumes:
+      - .:/app
+    environment:
+      - POSTGRES_USER=network_search
+      - USE_DOCKER=yes
+
   django:
     build:
       context: .
@@ -20,6 +38,7 @@ services:
     command: /start-dev.sh
     depends_on:
       - postgres
+      - redis
     environment:
       - POSTGRES_USER=network_search
       - USE_DOCKER=yes

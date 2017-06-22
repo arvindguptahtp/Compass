@@ -68,6 +68,27 @@ class BaseResource(TimeStampedModel):
         return reverse(self.url_name, kwargs={"pk": self.pk})
 
 
+class DataUpload(TimeStampedModel):
+    """
+    Base model for
+    """
+    PENDING = 'p'
+    FAILED = 'f'
+    COMPLETED = 'c'
+
+    status = models.CharField(
+        max_length=10,
+        choices=[(PENDING, 'Pending'), (FAILED, 'Failed'), (COMPLETED, 'Completed')],
+        default='p',
+        editable=False,
+    )
+    data_file = models.FileField(null=True)
+    message = models.TextField(null=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+
 class ResourceQueryset(models.QuerySet):
     """
     Common queryset interface
