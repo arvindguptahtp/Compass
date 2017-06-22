@@ -99,7 +99,7 @@ class Affiliate(BaseResource):
     official_name = models.CharField(max_length=200)
     address_street = models.CharField(max_length=200)
     address_city = models.CharField(max_length=200)
-    address_state = models.CharField(max_length=2)
+    address_state = models.CharField(max_length=30)
     address_postcode = models.CharField(max_length=10)
     shipping_address = models.CharField(max_length=400, null=True, blank=True)
     phone_number = models.CharField(max_length=30, null=True)
@@ -122,11 +122,11 @@ class AffiliateEOYData(TimeStampedModel):
     affiliate = models.ForeignKey('Affiliate', related_name='affiliate_eoy_data')
     year = models.ForeignKey('EndOfYear', related_name='affiliate_eoy_data')
 
-    districts = ArrayField(
-        models.CharField(max_length=100, blank=True),
+    districts = models.TextField(
+        max_length=100,
         blank=True,
         null=True,
-        help_text="School district names should be separated by commas."
+        help_text="School district names should be separated by commas.",
     )
 
     search_students_female = models.IntegerField(default=0, editable=False)
