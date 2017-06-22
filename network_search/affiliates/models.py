@@ -12,8 +12,8 @@ from django.utils.functional import cached_property
 from django.contrib.postgres.fields import ArrayField
 
 from network_search.core import choices
-from network_search.core.models import BaseResource
 from network_search.core.models import DataUpload
+from network_search.core.models import BaseResource
 from network_search.core.models import ResourceQueryset
 
 logger = logging.getLogger(__name__)

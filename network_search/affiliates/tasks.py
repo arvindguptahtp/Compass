@@ -2,8 +2,8 @@
 Task processing for upload processing
 """
 
-import logging
 import time
+import logging
 
 import pandas as pd
 from celery import shared_task
@@ -104,15 +104,12 @@ def process_data_upload(excel_upload_pk):
                         affiliate_data=affiliate_eoy_data,
                         name=school_row["School Name"],
                     )
-                except:
+                except BaseException:
                     logger.exception("COULD NOT READ OR CREATE SCHOOL")
                 else:
                     logger.info("{} {} school EOY data '{}'".format(
                         "Created" if created else "Found", data_upload.year, school))
 
-
     data_upload.status = data_upload.COMPLETED
     data_upload.message = '\n'.join(affiliate_messages)
     data_upload.save()
-
-
