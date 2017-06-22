@@ -217,9 +217,7 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptPasswordHasher',
 ]
 
-# PASSWORD VALIDATION
-# https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
-# ------------------------------------------------------------------------------
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -260,7 +258,7 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
 ########## CELERY
 INSTALLED_APPS += ['network_search.taskapp.celery.CeleryConfig']
-CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='redis://')
+CELERY_BROKER_URL = env('REDIS_URL', default='redis://')
 if CELERY_BROKER_URL == 'django://':
     CELERY_RESULT_BACKEND = 'redis://'
 else:
