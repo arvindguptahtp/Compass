@@ -76,6 +76,7 @@ class Grades(Choice):
     ms = 'Middle School'
     hs = 'High School'
     ps = 'Post-Secondary'
+    cm = 'Combined (any other K-12 combination)'
 
 
 class Gender(Choice):
@@ -163,3 +164,11 @@ class TiersOfEvidence(Choice):
     t3 = 'Promising evidence (High)'
     t4 = 'Promising evidence (low)'
     t5 = 'Demonstrates a rationale/Research-building'
+
+
+class ServiceProvision(Choice):
+    """Used for affiliate EOY data"""
+    s1 = 'Services Provided by both CIS and Another Organization'
+    s2 = 'No Services Delivered'
+    s3 = 'Provided by CIS Staff'
+    s4 = 'Brokered Services Delivered by Another Organization'

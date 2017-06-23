@@ -129,6 +129,20 @@ class AffiliateEOYData(TimeStampedModel):
         help_text="School district names should be separated by commas.",
     )
 
+    executive_director_name = models.CharField(null=True, max_length=200)
+    executive_director_email = models.EmailField(null=True, max_length=200)
+    program_lead_name = models.CharField(null=True, max_length=200)
+    program_lead_email = models.EmailField(null=True, max_length=200)
+
+    budget_total = models.IntegerField(default=0)
+
+    staff_fulltime_affiliate = models.IntegerField(default=0)
+    staff_parttime_affiliate = models.IntegerField(default=0)
+    staff_fulltime_non_affiliate = models.IntegerField(default=0)
+    staff_parttime_non_affiliate = models.IntegerField(default=0)
+    staff_fulltime_americorps = models.IntegerField(default=0)
+    staff_parttime_americorps = models.IntegerField(default=0)
+
     search_students_female = models.IntegerField(default=0, editable=False)
     search_students_male = models.IntegerField(default=0, editable=False)
     search_gender = ArrayField(
@@ -165,6 +179,15 @@ class AffiliateEOYData(TimeStampedModel):
     @cached_property
     def school_districts(self):
         return [i.strip() for i in self.districts.split(",")]
+
+    def full_time_staff(self):
+        return self.staff_fulltime_affiliate + self.staff_fulltime_non_affiliate
+
+    def part_time_staff(self):
+        return self.staff_parttime_affiliate + self.staff_parttime_non_affiliate
+
+    def americorps_staff(self):
+        return self.staff_parttime_americorps + self.staff_fulltime_americorps
 
     def calculate(self):
         self.search_students_female = self.school_data.aggregate(
@@ -242,13 +265,31 @@ class SchoolEOYData(TimeStampedModel):
     affiliate_data = models.ForeignKey('AffiliateEOYData', related_name='school_data')
     name = models.CharField(max_length=400)
 
+    site_type = models.CharField(max_length=100, blank=True, null=True, choices=choices.Grades.as_choices())
+    location = models.CharField(max_length=100, blank=True, null=True)
     cis_model_school = models.BooleanField(default=False)
+    student_enrollment = models.IntegerField(default=0)
 
-    service_categories = ArrayField(
-        models.CharField(max_length=100, blank=True),
-        blank=True,
-        null=True,
-    )
+    service_academic_assistance = models.CharField(
+        null=True, choices=choices.ServiceProvision.as_choices(), max_length=100)
+    service_basic_needs = models.CharField(
+        null=True, choices=choices.ServiceProvision.as_choices(), max_length=100)
+    service_behavior_intervention = models.CharField(
+        null=True, choices=choices.ServiceProvision.as_choices(), max_length=100)
+    service_college_career_prep = models.CharField(
+        null=True, choices=choices.ServiceProvision.as_choices(), max_length=100)
+    service_comm_service = models.CharField(
+        null=True, choices=choices.ServiceProvision.as_choices(), max_length=100)
+    service_enrichment = models.CharField(
+        null=True, choices=choices.ServiceProvision.as_choices(), max_length=100)
+    service_family_engagement = models.CharField(
+        null=True, choices=choices.ServiceProvision.as_choices(), max_length=100)
+    service_life_skills = models.CharField(
+        null=True, choices=choices.ServiceProvision.as_choices(), max_length=100)
+    service_physical_fitness_health = models.CharField(
+        null=True, choices=choices.ServiceProvision.as_choices(), max_length=100)
+    service_prof_mental_health = models.CharField(
+        null=True, choices=choices.ServiceProvision.as_choices(), max_length=100)
 
     students_case_managed = models.IntegerField(default=0)
     students_total = models.IntegerField(default=0)

@@ -112,7 +112,7 @@ class Partner(BaseResource):
 
     is_core_partner = models.BooleanField(blank=True, default=False)  # is this based on link from Program???
 
-    network_use = models.ManyToManyField('affiliates.Affiliate', related_name='partners', blank=True)
+    network_use = models.ManyToManyField('affiliates.Affiliate', related_name='partner_profiles', blank=True)
     featured_network = models.ManyToManyField('affiliates.Affiliate', related_name='featured_partners', blank=True)
 
     partners = PartnerQueryset.as_manager()
