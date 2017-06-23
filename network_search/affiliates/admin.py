@@ -6,7 +6,7 @@ from network_search.affiliates import models
 
 @admin.register(models.ExcelUpload)
 class AffiliateUploadAdmin(admin.ModelAdmin):
-    list_display = ['year', 'status', 'data_file']
+    list_display = ['year', 'status', 'created', 'data_file']
 
 
 @admin.register(models.Affiliate)
