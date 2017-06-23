@@ -8,16 +8,20 @@ from network_search.affiliates.models import Affiliate
 
 class PartnerAdminForm(forms.ModelForm):
 
-    grade = forms.MultipleChoiceField(choices=choices.Grades.as_choices(), required=False)
+    grade = forms.MultipleChoiceField(
+        choices=choices.PartnerGrades.as_choices(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
     gender = forms.MultipleChoiceField(
         choices=choices.Gender.as_choices(),
         required=False,
         widget=forms.CheckboxSelectMultiple,
     )
     featured_network = forms.ModelMultipleChoiceField(
-        queryset=Affiliate.objects.all(),
+        queryset=Affiliate.affiliates.all(),
         required=False,
-        widget=forms.CheckboxSelectMultiple,
+        label="Featured affiliates"
     )
     setting = forms.MultipleChoiceField(
         choices=choices.Setting.as_choices(),
@@ -66,7 +70,7 @@ class PartnerSearchForm(SearchForm):
     """
     Form class for searching partners
     """
-    grade = forms.MultipleChoiceField(choices=choices.Grades.as_choices(), required=False)
+    grade = forms.MultipleChoiceField(choices=choices.AffiliateGrades.as_choices(), required=False)
     gender = forms.MultipleChoiceField(choices=choices.Gender.as_choices(), required=False)
     reach = forms.MultipleChoiceField(choices=choices.Regions.as_choices(), required=False)
     need = forms.MultipleChoiceField(choices=choices.StudentNeeds.as_choices(), required=False)

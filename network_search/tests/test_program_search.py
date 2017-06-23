@@ -6,10 +6,10 @@ import pytest
 
 from network_search.core.choices import Race
 from network_search.core.choices import Gender
-from network_search.core.choices import Grades
 from network_search.core.choices import CoreServices
 from network_search.core.choices import StudentNeeds
 from network_search.core.choices import TiersOfService
+from network_search.core.choices import AffiliateGrades
 from network_search.core.choices import TiersOfEvidence
 from network_search.programs.forms import ProgramSearchForm
 from network_search.programs.models import Program
@@ -40,7 +40,7 @@ def gs_program():
     yield Program.programs.create(
         name="Girl Scouts",
         gender=[Gender.f.name],
-        grade=[Grades.el.name],
+        grade=[AffiliateGrades.el.name],
         race=[Race.am.name],
         student_need=[StudentNeeds.bi.name],
         tiers_of_service=[TiersOfService.i.name],
@@ -55,7 +55,7 @@ def bsa_program():
     yield Program.programs.create(
         name="Boy Scouts",
         gender=[Gender.m.name],
-        grade=[Grades.ms.name],
+        grade=[AffiliateGrades.ms.name],
         race=[Race.asn.name],
         student_need=[StudentNeeds.att.name],
         tiers_of_service=[TiersOfService.ii.name],
@@ -70,7 +70,7 @@ def girls_boys_club_program():
     yield Program.programs.create(
         name="Girls and Boys Club",
         gender=Gender.all_names(),
-        grade=Grades.all_names(),
+        grade=AffiliateGrades.all_names(),
         race=[Race.am.name, Race.asn.name],
         student_need=StudentNeeds.all_names(),
         tiers_of_service=TiersOfService.all_names(),
@@ -103,15 +103,15 @@ def test_search_gender(empty_program, gs_program, bsa_program, girls_boys_club_p
 @pytest.mark.django_db
 def test_search_grade(empty_program, gs_program, bsa_program, girls_boys_club_program):
 
-    form = ProgramSearchForm(data={'grade': [Grades.el.name]})
+    form = ProgramSearchForm(data={'grade': [AffiliateGrades.el.name]})
     assert form.is_valid()
     assert {gs_program, girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))
 
-    form = ProgramSearchForm(data={'grade': [Grades.ms.name]})
+    form = ProgramSearchForm(data={'grade': [AffiliateGrades.ms.name]})
     assert form.is_valid()
     assert {bsa_program, girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))
 
-    form = ProgramSearchForm(data={'grade': [Grades.el.name, Grades.ms.name]})
+    form = ProgramSearchForm(data={'grade': [AffiliateGrades.el.name, AffiliateGrades.ms.name]})
     assert form.is_valid()
     assert {girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))
 

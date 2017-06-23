@@ -74,13 +74,30 @@ def populator(choice_selections: Choice) -> Dict[str, str]:
     }
 
 
-class Grades(Choice):
+class AffiliateGrades(Choice):
     ec = 'Early Childhood Education'
     el = 'Elementary'
     ms = 'Middle School'
     hs = 'High School'
     ps = 'Post-Secondary'
     cm = 'Combined (any other K-12 combination)'
+
+
+class ProgramGrades(Choice):
+    ec = 'Early Childhood Education'
+    el = 'Elementary'
+    ms = 'Middle School'
+    hs = 'High School'
+    ps = 'Post-Secondary'
+
+
+class PartnerGrades(Choice):
+    ec = 'Early Childhood Education'
+    el = 'Elementary'
+    ms = 'Middle School'
+    hs = 'High School'
+    ps = 'Post-Secondary'
+    al = 'Alumni'
 
 
 class Gender(Choice):

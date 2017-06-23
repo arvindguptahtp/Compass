@@ -266,7 +266,7 @@ class SchoolEOYData(TimeStampedModel):
     affiliate_data = models.ForeignKey('AffiliateEOYData', related_name='school_data')
     name = models.CharField(max_length=400)
 
-    site_type = models.CharField(max_length=100, blank=True, null=True, choices=choices.Grades.as_choices())
+    site_type = models.CharField(max_length=100, blank=True, null=True, choices=choices.AffiliateGrades.as_choices())
     location = models.CharField(max_length=100, blank=True, null=True)
     location_model = models.CharField(max_length=100, null=True)
     student_enrollment = models.IntegerField(default=0)

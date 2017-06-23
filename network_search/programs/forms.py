@@ -9,7 +9,7 @@ from network_search.affiliates.models import Affiliate
 class ProgramAdminForm(forms.ModelForm):
 
     grade = forms.MultipleChoiceField(
-        choices=choices.Grades.as_choices(),
+        choices=choices.ProgramGrades.as_choices(),
         required=False,
         widget=forms.CheckboxSelectMultiple,
     )
@@ -68,6 +68,12 @@ class ProgramAdminForm(forms.ModelForm):
         label="Assessment available?",
     )
 
+    featured_network = forms.ModelMultipleChoiceField(
+        queryset=Affiliate.affiliates.all(),
+        required=False,
+        label="Featured affiliates"
+    )
+
     class Meta:
         model = Program
         exclude = ['search_content']
@@ -85,7 +91,7 @@ class ProgramSearchForm(SearchForm):
     Form class for searching programs
     """
     grade = forms.MultipleChoiceField(
-        choices=choices.Grades.as_choices(),
+        choices=choices.ProgramGrades.as_choices(),
         required=False,
     )
     gender = forms.MultipleChoiceField(
