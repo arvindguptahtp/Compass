@@ -51,6 +51,10 @@ class Choice(Enum):
     def all_values(cls):
         return [child.value for child in cls]
 
+    @classmethod
+    def reversed(cls):
+        return {i.value: i.name for i in cls}
+
     def lower(self):
         return self.value.replace(" ", "_").lower()
 

@@ -109,6 +109,7 @@ class Affiliate(BaseResource):
 
     affiliates = AffiliateQueryset.as_manager()
     objects = affiliates
+    default_manager = models.Manager()
 
     class Meta:
         verbose_name = "Affiliate"
@@ -267,7 +268,7 @@ class SchoolEOYData(TimeStampedModel):
 
     site_type = models.CharField(max_length=100, blank=True, null=True, choices=choices.Grades.as_choices())
     location = models.CharField(max_length=100, blank=True, null=True)
-    cis_model_school = models.BooleanField(default=False)
+    location_model = models.CharField(max_length=100, null=True)
     student_enrollment = models.IntegerField(default=0)
 
     service_academic_assistance = models.CharField(
@@ -316,12 +317,20 @@ class SchoolEOYData(TimeStampedModel):
     students_k_11_retained = models.IntegerField(default=0)
     students_k_11_dropped_out = models.IntegerField(default=0)
     students_k_11_transferred = models.IntegerField(default=0)
+    students_k_11_ged = models.IntegerField(default=0)
+    students_k_11_expelled = models.IntegerField(default=0)
+    students_k_11_incarcerated = models.IntegerField(default=0)
+    students_k_11_deceased = models.IntegerField(default=0)
     students_k_11_other = models.IntegerField(default=0)
     students_k_11_unknown = models.IntegerField(default=0)
     students_grade_12_graduated = models.IntegerField(default=0)
     students_grade_12_retained = models.IntegerField(default=0)
     students_grade_12_dropped_out = models.IntegerField(default=0)
     students_grade_12_transferred = models.IntegerField(default=0)
+    students_grade_12_ged = models.IntegerField(default=0)
+    students_grade_12_expelled = models.IntegerField(default=0)
+    students_grade_12_incarcerated = models.IntegerField(default=0)
+    students_grade_12_deceased = models.IntegerField(default=0)
     students_grade_12_other = models.IntegerField(default=0)
     students_grade_12_unknown = models.IntegerField(default=0)
 

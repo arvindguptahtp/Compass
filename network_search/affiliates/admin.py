@@ -31,7 +31,7 @@ class AffiliateEOYAdmin(admin.ModelAdmin):
 @admin.register(models.SchoolEOYData)
 class SchoolEOYAdmin(admin.ModelAdmin):
     # list_display = ('name', 'affiliate', 'year')
-    # search_fields = ('name', 'affiliate__name',)
+    search_fields = ['name', 'affiliate_data__affiliate__name']
     raw_id_fields = ['affiliate_data']
     form = forms.SchoolAdminForm
     fieldsets = (
@@ -39,7 +39,7 @@ class SchoolEOYAdmin(admin.ModelAdmin):
             'fields': ['affiliate_data'],
         }),
         ('School', {
-            'fields': ('name', 'cis_model_school', 'service_categories', 'students_case_managed', 'students_total'),
+            'fields': ('name', 'site_type', 'location', 'location_model', 'students_case_managed', 'students_total'),
         }),
         ('Students race and gender', {
             'fields': [
@@ -54,9 +54,16 @@ class SchoolEOYAdmin(admin.ModelAdmin):
         ('Student performance', {
             'fields': [
                 'students_k_11_promoted', 'students_k_11_retained', 'students_k_11_dropped_out',
-                'students_k_11_transferred', 'students_k_11_other', 'students_k_11_unknown',
+                'students_k_11_transferred', 'students_k_11_ged',
+                'students_k_11_expelled', 'students_k_11_incarcerated', 'students_k_11_deceased',
+                'students_k_11_other', 'students_k_11_unknown',
                 'students_grade_12_graduated', 'students_grade_12_retained', 'students_grade_12_dropped_out',
-                'students_grade_12_transferred', 'students_grade_12_other', 'students_grade_12_unknown'
+                'students_grade_12_transferred',
+                'students_grade_12_ged',
+                'students_grade_12_expelled',
+                'students_grade_12_incarcerated',
+                'students_grade_12_deceased',
+                'students_grade_12_other', 'students_grade_12_unknown'
             ]
         }),
         ('Students served', {
