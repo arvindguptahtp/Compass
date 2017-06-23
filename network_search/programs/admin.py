@@ -11,6 +11,7 @@ class AdditionalResourceInline(admin.TabularInline):
     model = AdditionalResource
     extra = 0
 
+
 class NationalDatabaseInline(admin.TabularInline):
     model = NationalDatabase
     extra = 0
