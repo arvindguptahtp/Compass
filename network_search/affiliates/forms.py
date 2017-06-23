@@ -1,8 +1,24 @@
 from django import forms
 
-from network_search.core import choices
 from network_search.affiliates import models
+from network_search.core import choices
 from network_search.core.forms import SearchForm
+
+try:
+    from s3direct.widgets import S3DirectWidget
+except ImportError:
+    widget = forms.FileInput()
+else:
+    wdiget = S3DirectWidget(dest='affiliate_imports')
+
+
+class ExcelUploadForm(forms.ModelForm):
+
+    data_file = forms.FileField(widget=widget)
+
+    class Meta:
+        fields = '__all__'
+        model = models.ExcelUpload
 
 
 class AffiliateAdminForm(forms.ModelForm):
