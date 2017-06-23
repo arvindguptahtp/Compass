@@ -119,6 +119,7 @@ class Program(BaseResource):
     outcomes = models.TextField(blank=True, null=True)
 
     study_weblink = models.URLField(blank=True, null=True)
+    program_weblink = models.URLField(blank=True, null=True)
 
     network_use = models.ManyToManyField('affiliates.Affiliate', related_name='programs', blank=True)
     featured_network = models.ManyToManyField(
@@ -134,6 +135,10 @@ class Program(BaseResource):
 
 class NationalDatabase(Link):
     program = models.ForeignKey('Program', related_name="national_databases")
+
+
+class AdditionalResource(Link):
+    program = models.ForeignKey('Program', related_name="additional_resources")
 
 
 class RelatedResource(Link):

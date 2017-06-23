@@ -4,30 +4,35 @@ from network_search.programs.forms import ProgramAdminForm
 from network_search.programs.models import Program
 from network_search.programs.models import RelatedResource
 from network_search.programs.models import NationalDatabase
+from network_search.programs.models import AdditionalResource
 
+
+class AdditionalResourceInline(admin.TabularInline):
+    model = AdditionalResource
+    extra = 0
 
 class NationalDatabaseInline(admin.TabularInline):
     model = NationalDatabase
-    extra = 1
+    extra = 0
 
 
 class RelatedResourceInline(admin.TabularInline):
     model = RelatedResource
-    extra = 1
+    extra = 0
 
 
 @admin.register(Program)
 class ProgramAdmin(admin.ModelAdmin):
     form = ProgramAdminForm
     filter_horizontal = ['network_use']
-    inlines = [NationalDatabaseInline, RelatedResourceInline]
+    inlines = [NationalDatabaseInline, RelatedResourceInline, AdditionalResourceInline]
 
     fieldsets = [
         (None, {
             'fields': ['name'],
         }),
         ('Program information', {
-            'fields': ['summary', 'description'],
+            'fields': ['summary', 'description', 'program_weblink'],
         }),
         ('Target population', {
             'fields': ['grade', 'gender', 'race', 'region',

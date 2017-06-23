@@ -8,19 +8,65 @@ from network_search.affiliates.models import Affiliate
 
 class ProgramAdminForm(forms.ModelForm):
 
-    grade = forms.MultipleChoiceField(choices=choices.Grades.as_choices(), required=False)
-    gender = forms.MultipleChoiceField(choices=choices.Gender.as_choices(), required=False)
-    race = forms.MultipleChoiceField(choices=choices.Race.as_choices(), required=False)
-    region = forms.MultipleChoiceField(choices=choices.Regions.as_choices(), required=False)
-    student_need = forms.MultipleChoiceField(choices=choices.StudentNeeds.as_choices(), required=False)
+    grade = forms.MultipleChoiceField(
+        choices=choices.Grades.as_choices(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+    gender = forms.MultipleChoiceField(
+        choices=choices.Gender.as_choices(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+    race = forms.MultipleChoiceField(
+        choices=choices.Race.as_choices(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+    region = forms.MultipleChoiceField(
+        choices=choices.Regions.as_choices(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+    student_need = forms.MultipleChoiceField(
+        choices=choices.StudentNeeds.as_choices(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
     student_characteristics = forms.MultipleChoiceField(
         choices=choices.StudentCharacteristics.as_choices(),
         required=False,
+        widget=forms.CheckboxSelectMultiple,
     )
-    setting = forms.MultipleChoiceField(choices=choices.Setting.as_choices(), required=False)
-    tiers_of_service = forms.MultipleChoiceField(choices=choices.TiersOfService.as_choices(), required=False)
-    tiers_of_evidence = forms.MultipleChoiceField(choices=choices.TiersOfEvidence.as_choices(), required=False)
-    service_categories = forms.MultipleChoiceField(choices=choices.CoreServices.as_choices(), required=False)
+    setting = forms.MultipleChoiceField(
+        choices=choices.Setting.as_choices(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+    tiers_of_service = forms.MultipleChoiceField(
+        choices=choices.TiersOfService.as_choices(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+    tiers_of_evidence = forms.MultipleChoiceField(
+        choices=choices.TiersOfEvidence.as_choices(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+    service_categories = forms.MultipleChoiceField(
+        choices=choices.CoreServices.as_choices(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+
+    is_cost_free = forms.BooleanField(
+        required=False,
+        label="Is cost free?",
+    )
+    assessment_available = forms.BooleanField(
+        required=False,
+        label="Assessment available?",
+    )
 
     class Meta:
         model = Program
