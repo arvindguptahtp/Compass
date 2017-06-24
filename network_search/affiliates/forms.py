@@ -9,7 +9,7 @@ try:
 except ImportError:
     widget = forms.FileInput()
 else:
-    wdiget = S3DirectWidget(dest='affiliate_imports')
+    widget = S3DirectWidget(dest='affiliate_imports')
 
 
 class ExcelUploadForm(forms.ModelForm):
