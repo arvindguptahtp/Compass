@@ -93,6 +93,18 @@ AWS_HEADERS = {
     'Cache-Control': bytes(control, encoding='latin-1')
 }
 
+
+S3DIRECT_DESTINATIONS = {
+    'affiliate_imports': {
+        'key': 'imports/affiliates',  # required
+        # OPTIONAL
+        'auth': lambda u: u.is_staff, # Default allow anybody to upload
+        'acl': 'private', # Defaults to 'public-read'
+        'content_disposition': 'attachment',  # Default no content disposition
+    }
+}
+
+
 # URL that handles the media served from MEDIA_ROOT, used for managing
 # stored files.
 MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME

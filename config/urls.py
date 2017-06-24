@@ -18,6 +18,12 @@ urlpatterns = [
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+
+if 's3direct' in settings.INSTALLED_APPS:
+    urlpatterns += [
+        url(r'^s3direct/', include('s3direct.urls')),
+    ]
+
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
     # these url in browser to see how these error pages look like.
