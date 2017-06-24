@@ -256,7 +256,6 @@ class AffiliateEOYData(TimeStampedModel):
     def total_students_frpl(self):
         return self._sum_child_fields('students_served_frpl')
 
-
     def calculate(self):
         self.search_students_female = self.school_data.aggregate(
             total=Sum(sum([F(field) for field in SchoolEOYData.female_fields]))

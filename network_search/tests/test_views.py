@@ -4,10 +4,10 @@ Tests for loading the views
 
 import pytest
 
-from network_search.affiliates.views import AffiliateSearchView
 from network_search.core.views import HomePage
 from network_search.partners.views import PartnerSearchView
 from network_search.programs.views import ProgramSearchView
+from network_search.affiliates.views import AffiliateSearchView
 
 non_detail_urls = [
     ('home', HomePage),

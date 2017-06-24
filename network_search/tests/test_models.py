@@ -60,7 +60,7 @@ def test_affiliate_eoy_aggregation_methods(current_eoy):
         students_served_gang=1,
         students_served_incarcerated_parent=1,
     )
-    school_data_2 = school_data_factory(
+    school_data_factory(
         affiliate=affiliate,
         year=current_eoy,
         students_served_frpl=2,
