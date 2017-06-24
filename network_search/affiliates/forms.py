@@ -46,3 +46,4 @@ class AffiliateSearchForm(SearchForm):
     """
     gender = forms.MultipleChoiceField(choices=choices.Gender.as_choices(), required=False)
     race = forms.MultipleChoiceField(choices=choices.Race.as_choices(), required=False)
+    served = forms.MultipleChoiceField(choices=choices.StudentCharacteristics.as_choices(), required=False)

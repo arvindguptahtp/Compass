@@ -44,6 +44,7 @@ class AffiliateQueryset(ResourceQueryset):
 
         genders = kwargs.pop('gender', [])
         race = kwargs.pop('race', [])
+        served = kwargs.pop('served', [])
 
         if genders:
             qs = qs.filter(
@@ -53,6 +54,11 @@ class AffiliateQueryset(ResourceQueryset):
         if race:
             qs = qs.filter(
                 affiliate_eoy_data__search_race__contains=race,
+                affiliate_eoy_data__year=eoy,
+            )
+        if served:
+            qs = qs.filter(
+                affiliate_eoy_data__search_served__contains=served,
                 affiliate_eoy_data__year=eoy,
             )
 
@@ -165,6 +171,13 @@ class AffiliateEOYData(TimeStampedModel):
         null=True,
     )
 
+    # Tracks when affiliates have a school that works with students meeting characteristic
+    search_served = ArrayField(
+        models.CharField(max_length=100, blank=True),
+        blank=True,
+        null=True,
+    )
+
     class Meta:
         unique_together = ('affiliate', 'year')
         verbose_name = "Affiliate EOY Data"
@@ -189,6 +202,60 @@ class AffiliateEOYData(TimeStampedModel):
 
     def americorps_staff(self):
         return self.staff_parttime_americorps + self.staff_fulltime_americorps
+
+    students_served_ell = models.IntegerField(default=0)
+    students_served_foster = models.IntegerField(default=0)
+    students_served_homeless = models.IntegerField(default=0)
+    students_served_lgbt = models.IntegerField(default=0)
+    students_served_pregnant_parenting = models.IntegerField(default=0)
+    students_served_special_education = models.IntegerField(default=0)
+    students_served_substance_abuse = models.IntegerField(default=0)
+    students_served_adjudicated_youth = models.IntegerField(default=0)
+    students_served_child_of_military = models.IntegerField(default=0)
+    students_served_gang = models.IntegerField(default=0)
+    students_served_incarcerated_parent = models.IntegerField(default=0)
+
+    def _sum_child_fields(self, *fields):
+        return self.school_data.aggregate(
+            total=Sum(sum([F(field) for field in fields]))
+        )['total']
+
+    def total_students_incarcerated_parent(self):
+        return self._sum_child_fields('students_served_incarcerated_parent')
+
+    def total_students_gang(self):
+        return self._sum_child_fields('students_served_gang')
+
+    def total_students_child_of_military(self):
+        return self._sum_child_fields('students_served_child_of_military')
+
+    def total_students_adjudicated_youth(self):
+        return self._sum_child_fields('students_served_adjudicated_youth')
+
+    def total_students_substance_abuse(self):
+        return self._sum_child_fields('students_served_substance_abuse')
+
+    def total_students_special_education(self):
+        return self._sum_child_fields('students_served_special_education')
+
+    def total_students_pregnant_parenting(self):
+        return self._sum_child_fields('students_served_pregnant_parenting')
+
+    def total_students_lgbt(self):
+        return self._sum_child_fields('students_served_lgbt')
+
+    def total_students_homeless(self):
+        return self._sum_child_fields('students_served_homeless')
+
+    def total_students_foster(self):
+        return self._sum_child_fields('students_served_foster')
+
+    def total_students_ell(self):
+        return self._sum_child_fields('students_served_ell')
+
+    def total_students_frpl(self):
+        return self._sum_child_fields('students_served_frpl')
+
 
     def calculate(self):
         self.search_students_female = self.school_data.aggregate(
@@ -232,6 +299,21 @@ class AffiliateEOYData(TimeStampedModel):
             choices.Race.his.name if self.search_students_hispanic else None,
             choices.Race.wh.name if self.search_students_white else None,
             choices.Race.two.name if self.search_students_two_or_more else None,
+        ] if e is not None]
+
+        self.search_served = [e for e in [
+            choices.StudentCharacteristics.frpl.name if self.total_students_frpl() else None,
+            choices.StudentCharacteristics.ay.name if self.total_students_adjudicated_youth() else None,
+            choices.StudentCharacteristics.mil.name if self.total_students_child_of_military() else None,
+            choices.StudentCharacteristics.ell.name if self.total_students_ell() else None,
+            choices.StudentCharacteristics.fos.name if self.total_students_foster() else None,
+            choices.StudentCharacteristics.gang.name if self.total_students_gang() else None,
+            choices.StudentCharacteristics.hl.name if self.total_students_homeless() else None,
+            choices.StudentCharacteristics.ip.name if self.total_students_incarcerated_parent() else None,
+            choices.StudentCharacteristics.lgbt.name if self.total_students_lgbt() else None,
+            choices.StudentCharacteristics.pp.name if self.total_students_pregnant_parenting() else None,
+            choices.StudentCharacteristics.se.name if self.total_students_special_education() else None,
+            choices.StudentCharacteristics.sa.name if self.total_students_substance_abuse() else None,
         ] if e is not None]
 
         self.save()

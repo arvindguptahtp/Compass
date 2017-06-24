@@ -9,14 +9,13 @@ import pytest
 
 from network_search.core.choices import Race
 from network_search.core.choices import Gender
+from network_search.core.choices import StudentCharacteristics
 from network_search.tests.fixtures import affiliate_factory
 from network_search.tests.fixtures import school_data_factory
 from network_search.affiliates.forms import AffiliateSearchForm
 from network_search.affiliates.models import Affiliate
 from network_search.affiliates.models import EndOfYear
 from network_search.affiliates.models import AffiliateEOYData
-
-# TODO should an affiliate show up if no data for the latest reporting year?
 
 
 @pytest.fixture
@@ -62,11 +61,13 @@ def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_
         base_affiliate, past_eoy,
         students_female_asian=1, students_female_black=4,
         students_male_asian=1, students_male_black=4,
+        students_served_frpl=12,
     )
     base_current_school_1 = school_data_factory(
         base_affiliate, current_eoy,
         students_female_asian=1, students_female_black=4,
         students_male_asian=1, students_male_black=4,
+        students_served_ell=1,
     )
 
     # This school has female and male students, black and asian in both years, white only in old year
@@ -91,6 +92,8 @@ def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_
         local_affiliate, current_eoy,
         students_female_asian=1, students_female_black=4,
         students_female_white=2, students_female_hispanic=3,
+        students_served_frpl=18,
+        students_served_ell=1,
     )
     local_old_school_2 = school_data_factory(
         local_affiliate, past_eoy,
@@ -170,3 +173,32 @@ def test_search_race(affiliate_universe):
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 2
+
+
+@pytest.mark.django_db
+def test_search_student_characteristics(affiliate_universe):
+    """"""
+    form = AffiliateSearchForm(data={'served': [StudentCharacteristics.gang.name]})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 0
+
+    form = AffiliateSearchForm(data={'served': [StudentCharacteristics.frpl.name]})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 1
+
+    form = AffiliateSearchForm(data={'served': [StudentCharacteristics.ell.name]})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 2
+
+    form = AffiliateSearchForm(data={'served': []})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 3
+
+
+@pytest.mark.django_db
+def test_search_services(affiliate_universe):
+    """"""
