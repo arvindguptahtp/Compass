@@ -44,6 +44,56 @@ class AffiliateSearchForm(SearchForm):
     """
     Form class for searching partners
     """
-    gender = forms.MultipleChoiceField(choices=choices.Gender.as_choices(), required=False)
-    race = forms.MultipleChoiceField(choices=choices.Race.as_choices(), required=False)
-    served = forms.MultipleChoiceField(choices=choices.StudentCharacteristics.as_choices(), required=False)
+    gender = forms.MultipleChoiceField(
+        choices=choices.Gender.as_choices(),
+        required=False,
+    )
+    race = forms.MultipleChoiceField(
+        choices=choices.Race.as_choices(),
+        required=False,
+    )
+    served = forms.MultipleChoiceField(
+        choices=choices.StudentCharacteristics.as_choices(),
+        required=False,
+    )
+
+    academic_assistance = forms.ChoiceField(
+        choices=choices.ServiceProvision.as_choices(),
+        required=False,
+    )
+    basic_needs = forms.ChoiceField(
+        choices=choices.ServiceProvision.as_choices(),
+        required=False,
+    )
+    behavior_intervention = forms.ChoiceField(
+        choices=choices.ServiceProvision.as_choices(),
+        required=False,
+    )
+    college_career_prep = forms.ChoiceField(
+        choices=choices.ServiceProvision.as_choices(),
+        required=False,
+    )
+    comm_service = forms.ChoiceField(
+        choices=choices.ServiceProvision.as_choices(),
+        required=False,
+    )
+    enrichment = forms.ChoiceField(
+        choices=choices.ServiceProvision.as_choices(),
+        required=False,
+    )
+    family_engagement = forms.ChoiceField(
+        choices=choices.ServiceProvision.as_choices(),
+        required=False,
+    )
+    life_skills = forms.ChoiceField(
+        choices=choices.ServiceProvision.as_choices(),
+        required=False,
+    )
+    physical_fitness_health = forms.ChoiceField(
+        choices=choices.ServiceProvision.as_choices(),
+        required=False,
+    )
+    prof_mental_health = forms.ChoiceField(
+        choices=choices.ServiceProvision.as_choices(),
+        required=False,
+    )

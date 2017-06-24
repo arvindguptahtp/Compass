@@ -10,6 +10,7 @@ import pytest
 from network_search.core.choices import Race
 from network_search.core.choices import Gender
 from network_search.core.choices import StudentCharacteristics
+from network_search.core.choices import ServiceProvision
 from network_search.tests.fixtures import affiliate_factory
 from network_search.tests.fixtures import school_data_factory
 from network_search.affiliates.forms import AffiliateSearchForm
@@ -75,11 +76,13 @@ def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_
         base_affiliate, past_eoy,
         students_female_asian=1, students_female_black=4, students_female_white=2,
         students_male_asian=1, students_male_black=4, students_male_white=2,
+        service_academic_assistance=ServiceProvision.s1.name,
     )
     base_current_school_2 = school_data_factory(
         base_affiliate, current_eoy,
         students_female_asian=1, students_female_black=4,
         students_male_asian=1, students_male_black=4,
+        service_basic_needs=ServiceProvision.s2.name,
     )
 
     # Local affiliate has no male students in current year
@@ -94,6 +97,7 @@ def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_
         students_female_white=2, students_female_hispanic=3,
         students_served_frpl=18,
         students_served_ell=1,
+        service_basic_needs=ServiceProvision.s3.name,
     )
     local_old_school_2 = school_data_factory(
         local_affiliate, past_eoy,
@@ -103,6 +107,7 @@ def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_
     local_current_school_2 = school_data_factory(
         local_affiliate, current_eoy,
         students_female_asian=1, students_female_black=4,
+        service_basic_needs=ServiceProvision.s2.name,
     )
 
     yield [
@@ -177,7 +182,7 @@ def test_search_race(affiliate_universe):
 
 @pytest.mark.django_db
 def test_search_student_characteristics(affiliate_universe):
-    """"""
+    """Yes/No based on whether school/student data includes any chosen students"""
     form = AffiliateSearchForm(data={'served': [StudentCharacteristics.gang.name]})
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
@@ -201,4 +206,18 @@ def test_search_student_characteristics(affiliate_universe):
 
 @pytest.mark.django_db
 def test_search_services(affiliate_universe):
-    """"""
+    """Filter based on whether any child school provides selected services as chosen"""
+    form = AffiliateSearchForm(data={'academic_assistance': ServiceProvision.s1.name})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 0
+
+    form = AffiliateSearchForm(data={'basic_needs': ServiceProvision.s2.name})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 2
+
+    form = AffiliateSearchForm(data={'basic_needs': ServiceProvision.s3.name})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 1

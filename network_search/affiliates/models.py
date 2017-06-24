@@ -32,7 +32,20 @@ class EOYQueryset(models.QuerySet):
 
 class AffiliateQueryset(ResourceQueryset):
     def search(self, **kwargs) -> models.QuerySet:
+        """
+        Returns a queryset based on a search form's cleaned data
+
+        The seemingly redundant filtering against the current EndOfYear reporting
+        year below ensures that each step excludes undesired data which otherwise
+        has been included.
+        """
         qs = super().search(**kwargs)
+
+        service_field_names = [
+            'academic_assistance', 'basic_needs', 'behavior_intervention',
+            'college_career_prep', 'comm_service', 'enrichment', 'family_engagement',
+            'life_skills', 'physical_fitness_health', 'prof_mental_health'
+        ]
 
         eoy = EndOfYear.years.current()
         if eoy is None:
@@ -61,6 +74,15 @@ class AffiliateQueryset(ResourceQueryset):
                 affiliate_eoy_data__search_served__contains=served,
                 affiliate_eoy_data__year=eoy,
             )
+
+        for service_name in service_field_names:
+            service_level = kwargs.pop(service_name, None)
+            if service_level:
+                filter_kwargs = {
+                    'affiliate_eoy_data__year': eoy,
+                    'affiliate_eoy_data__school_data__service_{}'.format(service_name): service_level,
+                }
+                qs = qs.filter(**filter_kwargs)
 
         return qs.filter(affiliate_eoy_data__year=eoy).distinct()
 
@@ -257,6 +279,9 @@ class AffiliateEOYData(TimeStampedModel):
         return self._sum_child_fields('students_served_frpl')
 
     def calculate(self):
+        """
+        Aggregates school data and sets numeric and choice fields on the instance
+        """
         self.search_students_female = self.school_data.aggregate(
             total=Sum(sum([F(field) for field in SchoolEOYData.female_fields]))
         )['total']
