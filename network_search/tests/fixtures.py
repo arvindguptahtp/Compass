@@ -43,6 +43,18 @@ def school_data_factory(affiliate, year, **kwargs):
         students_male_other=0,
         students_male_unknown=0,
         students_unknown_race_gender=0,
+        students_served_frpl=0,
+        students_served_ell=0,
+        students_served_foster=0,
+        students_served_homeless=0,
+        students_served_lgbt=0,
+        students_served_pregnant_parenting=0,
+        students_served_special_education=0,
+        students_served_substance_abuse=0,
+        students_served_adjudicated_youth=0,
+        students_served_child_of_military=0,
+        students_served_gang=0,
+        students_served_incarcerated_parent=0,
     )
     defaults.update(kwargs)
     affiliate_data, _ = AffiliateEOYData.objects.get_or_create(affiliate=affiliate, year=year)

@@ -44,21 +44,49 @@ def test_gender_data(current_eoy):
 @pytest.mark.django_db
 def test_affiliate_eoy_aggregation_methods(current_eoy):
     affiliate = affiliate_factory()
-    school_data = school_data_factory(
+    school_data_1 = school_data_factory(
         affiliate=affiliate,
         year=current_eoy,
+        students_served_frpl=1,
+        students_served_ell=1,
+        students_served_foster=1,
+        students_served_homeless=1,
+        students_served_lgbt=1,
+        students_served_pregnant_parenting=1,
+        students_served_special_education=1,
+        students_served_substance_abuse=1,
+        students_served_adjudicated_youth=1,
+        students_served_child_of_military=1,
+        students_served_gang=1,
+        students_served_incarcerated_parent=1,
     )
-    affiliate_data = AffiliateEOYData.objects.get(pk=school_data.affiliate_data.pk)
+    school_data_2 = school_data_factory(
+        affiliate=affiliate,
+        year=current_eoy,
+        students_served_frpl=2,
+        students_served_ell=2,
+        students_served_foster=2,
+        students_served_homeless=2,
+        students_served_lgbt=2,
+        students_served_pregnant_parenting=2,
+        students_served_special_education=2,
+        students_served_substance_abuse=2,
+        students_served_adjudicated_youth=2,
+        students_served_child_of_military=2,
+        students_served_gang=2,
+        students_served_incarcerated_parent=2,
+    )
+    affiliate_data = AffiliateEOYData.objects.get(pk=school_data_1.affiliate_data.pk)
 
-    assert 0 == affiliate_data.total_students_frpl()
-    assert 0 == affiliate_data.total_students_adjudicated_youth()
-    assert 0 == affiliate_data.total_students_child_of_military()
-    assert 0 == affiliate_data.total_students_ell()
-    assert 0 == affiliate_data.total_students_foster()
-    assert 0 == affiliate_data.total_students_gang()
-    assert 0 == affiliate_data.total_students_homeless()
-    assert 0 == affiliate_data.total_students_incarcerated_parent()
-    assert 0 == affiliate_data.total_students_lgbt()
-    assert 0 == affiliate_data.total_students_pregnant_parenting()
-    assert 0 == affiliate_data.total_students_special_education()
-    assert 0 == affiliate_data.total_students_substance_abuse()
+    assert 3 == affiliate_data.total_students_frpl()
+    assert 3 == affiliate_data.total_students_adjudicated_youth()
+    assert 3 == affiliate_data.total_students_child_of_military()
+    assert 3 == affiliate_data.total_students_ell()
+    assert 3 == affiliate_data.total_students_foster()
+    assert 3 == affiliate_data.total_students_gang()
+    assert 3 == affiliate_data.total_students_homeless()
+    assert 3 == affiliate_data.total_students_incarcerated_parent()
+    assert 3 == affiliate_data.total_students_lgbt()
+    assert 3 == affiliate_data.total_students_pregnant_parenting()
+    assert 3 == affiliate_data.total_students_special_education()
+    assert 3 == affiliate_data.total_students_substance_abuse()
