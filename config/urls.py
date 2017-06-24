@@ -10,7 +10,7 @@ admin.site.site_title = "CIS Search Tool"
 
 urlpatterns = [
     url(settings.ADMIN_URL, admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
+    url(r'', include('network_search.core.urls')),
     url(r'^protect/', include('simple_auth.urls')),
     url(r'^partners/', include('network_search.partners.urls')),
     url(r'^programs/', include('network_search.programs.urls')),

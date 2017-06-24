@@ -1,12 +1,18 @@
 from pure_pagination import Paginator
 from pure_pagination import PageNotAnInteger
 from django.views.generic import FormView
+from django.views.generic import TemplateView
 from django.core.exceptions import ImproperlyConfigured
+
+
+class HomePage(TemplateView):
+    """The home page view"""
+    template_name = "pages/home.html"
 
 
 class SearchView(FormView):
     """
-    List and search
+    List and search base view used by individual resources
 
     Attributes:
         queryset: the queryset to list and filter

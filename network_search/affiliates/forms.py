@@ -1,7 +1,7 @@
 from django import forms
 
-from network_search.affiliates import models
 from network_search.core import choices
+from network_search.affiliates import models
 from network_search.core.forms import SearchForm
 
 try:
