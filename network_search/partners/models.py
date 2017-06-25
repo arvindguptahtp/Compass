@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
+from network_search.core import choices
 from network_search.core.models import Link
 from network_search.core.models import BaseResource
 from network_search.core.models import ResourceQueryset

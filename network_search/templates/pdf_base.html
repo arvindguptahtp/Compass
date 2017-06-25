@@ -13,7 +13,9 @@
     </style>
 </head>
 <body>
-<h1>{% block header %}{{ object }}{% endblock %}</h1>
-<div>{% block content %}{% endblock %}</div>
+    <header>
+        <h1>{% block header %}{{ object }}{% endblock %}</h1>
+    </header>
+    <div>{% block content %}{% endblock %}</div>
 </body>
 </html>

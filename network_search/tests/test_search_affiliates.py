@@ -9,8 +9,8 @@ import pytest
 
 from network_search.core.choices import Race
 from network_search.core.choices import Gender
-from network_search.core.choices import StudentCharacteristics
 from network_search.core.choices import ServiceProvision
+from network_search.core.choices import StudentCharacteristics
 from network_search.tests.fixtures import affiliate_factory
 from network_search.tests.fixtures import school_data_factory
 from network_search.affiliates.forms import AffiliateSearchForm
