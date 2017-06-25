@@ -1,4 +1,4 @@
-.PHONY: build test psql clean help
+.PHONY: build test psql clean docs help
 
 ###################################
 ### Docker shortcuts
@@ -24,6 +24,10 @@ psql:  ## Runs a psql shell against the network_search database
 
 clean:  ## Removes extraneous files and build artifacts
 	find . -name "*.pyc" -delete
+
+docs:
+	$(MAKE) -C docs clean
+	$(MAKE) -C docs html
 
 help:
 	@perl -nle'print $& if m{^[a-zA-Z_-]+:.*?## .*$$}' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

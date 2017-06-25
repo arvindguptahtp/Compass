@@ -39,8 +39,10 @@ htmlcov
 *.mo
 *.pot
 
-# Pycharm
-.idea/*
+# Pycharm & other IDEs
+.idea
+.vscode
+
 
 # Provided default Pycharm Run/Debug Configurations should be tracked by git
 # In case of local modifications made by Pycharm, use update-index command
@@ -78,3 +80,5 @@ staticfiles/
 .ipynb_checkpoints
 
 local_data/
+
+_build

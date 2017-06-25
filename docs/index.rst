@@ -14,6 +14,8 @@ Contents:
    install
    deploy
    docker_ec2
+   models
+   choices
    tests
 
 
