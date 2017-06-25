@@ -43,3 +43,11 @@ def choice_display(name: str, choice_name: str) -> str:
         return name
 
     return choice_value.value
+
+
+@register.inclusion_tag('core/pdf_choices.html')
+def pdf_choices(options, choice):
+    return {
+        'options': options,
+        'choice': choice,
+    }

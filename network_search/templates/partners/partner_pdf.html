@@ -30,14 +30,12 @@
         <h3>Students served</h3>
 
         <p>Gender</p>
-        {% for gender in partner.gender %}
-            {{ gender|choice_display:"Gender" }}
-        {% endfor %}
-
+        {% pdf_choices partner.gender "Gender" %}
     </section>
 
     <section>
         <h3>Setting</h3>
+        {% pdf_choices partner.setting "Setting" %}
     </section>
 
     <section>

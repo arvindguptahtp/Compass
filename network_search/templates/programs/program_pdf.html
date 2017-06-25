@@ -1,2 +1,56 @@
 {% extends "pdf_base.html" %}
-{% block content %}{{ object }}{% endblock %}
+{% load choice_tags %}
+{% block content %}
+
+    <section>
+        <h3>Description</h3>
+        <p>{{ program.description }}</p>
+    </section>
+
+    <section>
+        <h3>Students served</h3>
+
+        <p>Gender</p>
+        {% pdf_choices program.gender "Gender" %}
+
+        <p>Grade</p>
+        {% pdf_choices program.grade "ProgramGrades" %}
+
+        <p>Race</p>
+        {% pdf_choices program.race "Race" %}
+
+    </section>
+
+    <section>
+        <h3>Setting</h3>
+        {% pdf_choices program.setting "Setting" %}
+    </section>
+
+    <section>
+        <h3>Service & Tiers of Service</h3>
+        {% pdf_choices program.tiers_of_service "TiersOfService" %}
+    </section>
+
+    <section>
+        <h3>Tiers of Evidence</h3>
+        {% pdf_choices program.tiers_of_evidence "TiersOfEvidence" %}
+    </section>
+
+
+    <section>
+        <h3>Use in network</h3>
+        {% if not program.network_use.exists %}
+            This program is not used by the Communities In School network.
+        {% else %}
+            <h3>Featured Affiliates</h3>
+            {% for affiliate in program.featured_network.all %}
+            {% endfor %}
+           {% for affiliate in program.network_use.all %}
+               <li><a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a></li>
+           {% endfor %}
+
+        {% endif %}
+    </section>
+
+
+{% endblock %}
