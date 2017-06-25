@@ -43,5 +43,3 @@ def choice_display(name: str, choice_name: str) -> str:
         return name
 
     return choice_value.value
-
-
