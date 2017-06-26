@@ -10,10 +10,10 @@
     "build": "webpack -p --progress --colors --env.production --env.init=vefa.yaml",
     "django-dev": "webpack --progress --colors --watch --env.django --env.init=vefa.django.yaml",
     "django-build": "webpack -p --progress --colors --env.django --env.production --env.init=vefa.django.yaml",
-    "postbuild": "yarn run razor",
-    "postdjango-build": "yarn run razor",
+    "postbuild": "node vefa/razor.js --config=vefa.yaml",
+    "postdjango-build": "node vefa/razor.js --config=vefa.django.yaml",
     "test": "karma start karma.config.js --progress --colors -p --init vefa.yaml",
-    "razor": "node vefa/razor.js"
+    "razor": "node vefa/razor.js --config=vefa.yaml"
   },
   "dependencies": {
     "autoprefixer": "^7.1.0",
