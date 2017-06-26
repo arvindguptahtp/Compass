@@ -5,7 +5,7 @@ publicPath: static/js/
 components: components
 entries:
     compile: ./compile.js
-    site: ./components/app.js
+    app: ./components/app.js
 
 # ---------------------------------------------------------------------
 # DATA
