@@ -1,0 +1,43 @@
+.hl--
+    &xy
+        +o-attr(breakpoints)
+            border: co.neutral.tint
+    
+    &xy0
+        +o-attr(breakpoints)
+            border-width: 0
+
+    // X Start values (Left)
+    &xStart
+        +o-attr(breakpoints)
+            border-left: co.neutral.base
+
+    &xEnd
+        +o-attr(breakpoints)
+            border-right: co.neutral.base
+
+    &yStart
+        +o-attr(breakpoints)
+            border-top: co.neutral.tint
+    
+    &yEnd
+        +o-attr(breakpoints)
+            border-bottom: co.neutral.tint
+
+
+.--
+    &bInherit
+        +o-attr(breakpoints)
+            border-color: inherit
+
+    &bCurrent
+        +o-attr(breakpoints)
+            border-color: currentColor
+
+    &bTint
+        +o-attr(breakpoints)
+            border-color: lighten(co.neutral.tint, 50%)
+    
+    &bShade
+        +o-attr(breakpoints)
+            border-color: co.neutral.shade            

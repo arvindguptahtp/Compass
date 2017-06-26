@@ -1,0 +1,29 @@
+.poster--
+    +o-attr(class)
+        position: relative
+        overflow: hidden
+        
+       
+        // &:not(:root:root) 
+        //     set-flex-size: fill
+    
+    &text
+        +o-eq(class)
+            overflow: visible
+    
+    &icon
+    &details
+        grid-template-columns: auto 1fr 1fr
+        grid-template-areas:
+            "a b b" \
+            "a c c"
+        grid-gap: 0 bvr(.25)
+
+        +over(standard)
+            grid-gap: 0 bvr(.5)
+
+
+
+.poster-icon
+    transform: translateY(2px)
+    line-height: 1

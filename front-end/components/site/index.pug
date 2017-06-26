@@ -1,0 +1,115 @@
+extends _abstract
+
+prepend preview
+    -
+        poster = new Vefa()
+            .mix({
+                element: {
+                    class: "thm--texture",
+                    "o-base": "ord--next",
+                    "o-extended": "gxi--b"
+                }
+            })
+            .data({
+                hed: `"${site.title}"`
+            })
+            
+
+
+block view
+    nav(
+        o-base="gx--i1--gxy0 dx--w100"
+        o-condensed="gx--i3--gxy0"
+    )
+        li.thm--affiliates-shift(
+            o-base="col--pStart"
+        )
+            a.tx--broadside--f1--100.rxn--tint10.fx--shift(
+                href=django ? url(routes["affiliates"].slug) : routes["affiliates"].proto_slug
+                o-base="row--pEnd--sEnd mod--balance pad--x50 pad--y100"
+                o-enhanced="pad--x100"
+                o-full="pad--xy200"
+            )
+                div(
+                    o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l"
+                    o-standard="row--pEnd--sEnd ico--base"
+                )
+                    include /icons/affiliates
+                    
+                    div(
+                        o-base="col--pEnd--sStart--xAuto"
+                    )
+                        span.tx--hed(
+                            o-condensed="tx--subhed"
+                        ) Search 
+                        span(
+                            o-condensed="tx--display"
+                        ) Affiliates
+        
+        li.thm--programs-shift.fx--shift(
+            o-base="col--pStart"
+        )
+            a.tx--broadside--f1--100.rxn--tint10.fx--shift(
+                href=django ? url(routes["programs"].slug) : routes["programs"].proto_slug
+                o-base="row--pEnd--sEnd mod--balance pad--x50 pad--y100"
+                o-enhanced="pad--x100"
+                o-full="pad--xy200"
+            )
+                
+                div(
+                    o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l"
+                    o-standard="row--pEnd--sEnd ico--base"
+                )
+                    include /icons/programs
+                    
+                    div(
+                        o-base="col--pEnd--sStart--xAuto"
+                    )
+                        span.tx--hed(
+                            o-condensed="tx--subhed"
+                        ) Search 
+                        span(
+                            o-condensed="tx--display"
+                        ) Programs
+
+        li.thm--partners-shift.fx--shift(
+            o-base="col--pStart"
+        )
+            a.tx--broadside--f1--100.rxn--tint10.fx--shift(
+                href=django ? url(routes["partners"].slug) : routes["partners"].proto_slug
+                o-base="row--pEnd--sEnd mod--balance pad--x50 pad--y100"
+                o-enhanced="pad--x100"
+                o-full="pad--xy200"
+            )
+                div(
+                    o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l"
+                    o-standard="row--pEnd--sEnd ico--base"
+                )
+                    include /icons/partners
+                    
+                    div(
+                        o-base="col--pEnd--sStart--xAuto"
+                    )
+                        span.tx--hed(
+                            o-condensed="tx--subhed"
+                        ) Search 
+                        span(
+                            o-condensed="tx--display"
+                        ) Partners
+
+    include /strata/strata
+        .copy.tx--maj--f1--100.co--pri(
+            o-base="rhy--yStart100"
+            o-enhanced="dx--w60 iso--xAuto"
+        )
+            :md
+                Starting a new local affiliate requires the presence of a Communities In Schools state office in the state where 
+                the community is located. The role of the state office is to provide introductions to community leaders to gauge 
+                their interest in building a local affiliate, identify a local liaison who will spearhead efforts to bring 
+                Communities In Schools to the community, and then work with the local liaison to plan the next steps for 
+                starting an affiliate. These steps include development of a local task force, assessment of community 
+                needs and assets, and creation of a work plan.
+
+                Communities In Schools state offices typically work with communities throughout each step of this process, 
+                offering assistance and ensuring that the new local affiliate follows the requirements outlined in the 
+                Communities In Schools Total Quality System standards.

@@ -1,0 +1,56 @@
+.rxn--
+    &affiliates
+        &:--all-states
+            background: rgba(co.affiliates, 100%)
+
+    &programs
+        &:--all-states
+            background: rgba(co.programs, 100%)
+
+    &partners
+        &:--all-states
+            background: rgba(co.partners, 100%)
+    
+    &ctrl-
+        +o-attr()
+            color: co.white
+
+            &[class*="fx--"]
+                &:--hover
+                    background: co.ctrl.rxn
+
+        &action
+            background: co.brand_1.base
+    
+
+        &impt
+            background: co.ctrl.base
+        
+            &:--active
+                background: co.brand_1.tint
+    
+
+        &neutral
+            +o-eq(breakpoints)
+                color: co.brand_1.base
+                background: lighten(co.brand_1.tint, 90%)
+
+                &[class*="fx--"]
+                    &:--hover
+                        color: co.white
+                        background: rgba(co.brand_1.tint, 100%)
+            
+                &:--active
+                    color: co.black
+                    background: rgba(co.brand_1.tint, 10%)
+        
+        &shade
+            background: rgba(co.black, 20%)
+            
+            &[class*="fx--"]
+                &:--hover
+                    color: co.white
+                    background: rgba(co.black, 40%)
+
+                &:--active
+                    background: rgba(co.black, 60%)

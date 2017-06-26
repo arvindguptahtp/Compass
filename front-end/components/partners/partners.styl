@@ -1,0 +1,35 @@
+.gx--result-partner
+    grid-template-areas:
+        "title      title           title" \
+        "network    service-tier    service-tier" \
+        "overview   overview        services"
+
+    grid-template-columns: max-content 1fr max-content
+    grid-gap: 1px
+    
+    +over(condensed)
+        grid-template-areas:
+            "title      title" \
+            "overview   service-tier" \
+            "overview   network" \
+            "overview   services"
+        grid-template-columns: 2fr 1fr
+        grid-template-rows: auto auto auto 1fr
+
+    +over(standard)
+        grid-template-areas:
+            "title      service-tier" \
+            "overview   network" \
+            "overview   services"
+        grid-template-columns: 2fr 1fr
+        grid-template-rows: auto auto 1fr
+
+    +over(extended)
+        grid-template-areas:
+            "title    network   service-tier" \
+            "overview services  services"
+        grid-template-columns: 4fr max-content 2fr
+        grid-gap: 3px
+    
+    +over(full)
+        grid-template-columns: 4fr max-content 1fr

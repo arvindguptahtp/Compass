@@ -1,0 +1,25 @@
+extends text
+
+block model
+    -
+        poster
+            .replace({
+                class: "poster--icon gx--poster",
+            })
+            .mix({
+                hdr: {
+                    "o-base": "gxi--b"
+                }
+            })
+
+
+
+prepend hdr
+    if page && page.data.icon
+        span.poster-icon.tx--broadside(
+            o-base="gxi--a"
+        )
+            case page.data.icon
+                when "partners": include /icons/partners
+                when "programs": include /icons/programs
+                when "affiliates": include /icons/affiliates

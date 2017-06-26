@@ -1,0 +1,104 @@
+.--
+    // Font Weight
+    &100
+        +o-attr()
+            font-weight: 100
+    
+    &300
+        +o-attr()
+            font-weight: 300
+    
+    &500
+        +o-attr()
+            font-weight: 500
+    
+    &700
+        +o-attr()
+            font-weight: 700
+    
+    &900
+        +o-attr()
+            font-weight: 900
+
+    &ls100
+        +o-attr()
+            letter-spacing: .08em
+    
+    
+    
+    // Font stack
+    &f1
+        +o-attr()
+            stack: header
+    &f2
+        +o-attr()
+            stack: copy
+    &f3
+        +o-attr()
+            stack: chrome
+    
+    
+    
+    // Text Transform
+    &tc0
+        +o-attr(breakpoints)
+            text-transform: unset
+
+    &tcC
+        +o-attr(breakpoints)
+            text-transform: capitalize
+    &tcU
+        +o-attr(breakpoints)
+            text-transform: uppercase
+
+    
+    
+    // text align
+    &taStart
+        +o-attr(breakpoints)
+            text-align: center
+
+    &taMiddle
+        +o-attr(breakpoints)
+            text-align: center
+    
+    &taEnd
+        +o-attr(breakpoints)
+            text-align: right
+
+    &taJust--sStart
+        +o-attr(breakpoints)
+            text-align: justify
+
+    &taJust--sMiddle
+        +o-attr(breakpoints)
+            text-align: justify
+            text-align-last: center
+
+    &taJust--sEnd
+        +o-attr(breakpoints)
+            text-align: justify
+            text-align-last: right
+    
+
+    
+    // Text Decoration
+    &td0
+        +o-attr(breakpoints)
+            text-decoration: unset
+
+    &tdU
+        +o-attr(breakpoints)
+            text-decoration: underline
+    
+
+    
+    //  Specials
+    &aa
+        +o-attr(breakpoints)
+            -webkit-font-smoothing: antialiased
+ 
+    &trnc
+        +o-attr(breakpoints)
+            truncate()
+    

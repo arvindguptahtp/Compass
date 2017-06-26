@@ -1,0 +1,232 @@
+title: Partners
+summary: >
+    Partnerships are a key part of the CIS model. More importantly, strong partnerships ensure that we are delivering our model with fidelity. For years CIS has been partnering with other organizations to help reach the millions of students across our nation. All partners you find during your search on this site have been vetted by the national office partnership and evaluation team. Not finding what you’re looking for or need help? Contact Ashlee Chapman at [chapmana@cisnet.org](mailto:chapmana@cisnet.org).
+
+fm_search:
+    -   name: Search
+        type: fieldset
+        fields:
+            -   name: search
+                label: Keywords
+                type: text
+
+    -   name: Demographics
+        type: fieldset
+        folded: true
+        fields:
+            -   name: grades
+                label: Grades
+                type: multi
+                mix:
+                    o-base: gx--i3
+
+            -   name: gender
+                label: Gender
+                type: multi
+            
+            -   name: student_needs
+                label: Student Needs
+                type: multi
+    
+    -   name: Partner Details
+        type: fieldset
+        folded: true
+        fields:
+            -   name: network_use
+                label: Use in Network
+                type: bool
+            
+            -   name: is_cost_free
+                label: Free of Cost
+                type: bool
+                
+            -   name: core_services
+                label: CIS Core Services
+                type: multi
+        
+            -   name: reach
+                label: Organizational Reach
+                type: multi
+                define:
+                    o-base: gx--i3
+        
+            -   name: setting
+                label: Setting
+                type: multi
+
+            -   name: service_tier
+                label: Tier of Service
+                type: multi
+
+            -   name: evidence_tier
+                label: Tier of Evidence
+                type: multi
+
+
+fixtures:
+    -   name: Share Our Strength
+        contact:
+            name: Brie Doyle
+            title: Manager, National Partnerships
+            email: Bdoyle@strength.org
+        slug: /partners/partners_detail
+        url: http://www.nokidhungry.org 
+        reach: 
+            - n 
+        service_tier: 
+            - 1
+        core_services:
+            - bn
+        mission: >
+            No child should grow up hungry in America, but one in six children struggles 
+            with hunger. Share Our Strength’s No Kid Hungry campaign is ending child 
+            hunger in America by ensuring all children get the healthy food they need, 
+            every day.
+        org_history: >
+            Vestibulum suscipit nulla quis orci. Mauris sollicitudin fermentum libero. Phasellus dolor. Donec 
+            quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Praesent blandit laoreet nibh.
+
+            Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Pellentesque dapibus hendrerit 
+            tortor. Aenean vulputate eleifend tellus. Pellentesque posuere. Sed fringilla mauris sit amet nibh.
+        overview: >
+            Through conversations with school leadership and review of school improvement plans, the CIS affiliate, site coordinator and their school support team work to align goals that best meet the needs of the students, avoiding duplication and overlap of supports. When site coordinators actually begin providing supports, they collaborate with community partners and businesses to recruit volunteers for tutoring programs, build up clothing closets with support from local businesses or connect struggling families with much-needed medical attention – just to name a few.
+        grades:
+            - ec
+            - el
+            - ms
+            - hs
+            - ps
+        gender:
+            - m
+            - f
+        student_needs:
+            - bi
+            - att
+            - ac
+            - hr
+            - pfe
+        setting:
+            - sch
+            - hf
+            - co
+            - sp
+        network_use: false
+        featured_network: CIS of Northern VA
+        free_cost: false
+        cost_desc: contact Ashlee Chapman @ chapmana@cisnet.org		
+        webinars:
+            - http://resources.communitiesinschools.org
+        presentations: 
+            - http://resources.communitiesinschools.org
+        core_member: true
+
+    -   name: iCouldBe
+        contact:
+            name: Kate Schrauth
+            title: Executive Director
+            email: Kate@icouldbe.org
+        slug: /partners/partners_detail
+        url: http://www.icouldbe.org
+        reach: 
+            - n
+        gender:
+            - m
+            - f
+        grades:
+            - ms
+            - hs
+        service_tier:
+            - 2
+            - 3
+        core_services:
+            - aa
+        mission: >
+            Provide at-risk middle and high school students with an online community of professional mentors, empowering teens 
+            to stay in school, plan for future careers, and achieve in life.	
+        org_history: >
+            Vestibulum suscipit nulla quis orci. Mauris sollicitudin fermentum libero. Phasellus dolor. Donec 
+            quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Praesent blandit laoreet nibh.
+
+            Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Pellentesque dapibus hendrerit 
+            tortor. Aenean vulputate eleifend tellus. Pellentesque posuere. Sed fringilla mauris sit amet nibh.
+        overview: >
+            E-Mentoring at iCouldBe is a journey that starts with students in public high schools across the US who select their 
+            own mentors, professionals working in careers that the students may want to pursue, and definitely want to learn more 
+            about. iCouldBe is embedded into existing classrooms, where one class period per week, students work on e-mentoring 
+            activities that focus on academic success strategies, career exploration, and post-secondary educational exploration 
+            and planning.
+        student_needs:
+            - bi
+            - att
+            - do
+            - ccr
+        setting:
+            - sch
+            - hf
+            - co
+        network_use: yes
+        featured_network: 
+            - CIS of Charlotte (Pilot)
+            - CIS of San Antonio (Pilot)
+        free_cost: yes
+        cost_desc: $300/student per year
+        evidence_tier: 
+            - 4
+        core_partner: true
+
+
+    -   name: Find Your Calling (EMSI)
+        contact:
+            name: Rob Sentz
+            title: CEO/Founder
+            email: rob@economicmodeling.com 
+        slug: /partners/partners_detail
+        url: http://www.findyourcalling.com/CIS
+        grades:
+            - ms
+            - hs
+            - al
+        gender:
+            - m
+            - f
+        reach: 
+            - n
+        service_tier:
+            - 1
+            - 2
+            - 3
+        core_services:
+            - ccp
+            - aa
+        student_need:
+            - ccr
+            - pfe
+        setting:
+            - sch
+            - hf
+            - co
+        mission: >
+            Find Your Calling helps answer the question, what do you want to do when you grow up? Our mission is to help you 
+            (and your parents and teachers) find fantastic careers and the education you need to achieve your goals. Find Your 
+            Calling does this through a simple but powerful combination of assessment and data. First, the assessment measures 
+            your interests, then you explore detailed data on matching occupations and colleges that offer relevant programs.
+        org_history: >
+            Vestibulum suscipit nulla quis orci. Mauris sollicitudin fermentum libero. Phasellus dolor. Donec 
+            quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Praesent blandit laoreet nibh.
+
+            Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Pellentesque dapibus hendrerit 
+            tortor. Aenean vulputate eleifend tellus. Pellentesque posuere. Sed fringilla mauris sit amet nibh.
+        overview: >
+            Find Your Calling is an online platform/resource that asks students a series of questions to determine their 
+            interests and then matches those interests to colleges, occupations or other avenues. This platform allows 
+            students to view jobs outside of their 'comfort zone' and explore local (and non local) colleges/universities 
+            at their finger tips.
+        network_use: yes
+        featured_network: CIS of Big Country
+        free_cost: false
+        cost_desc: null
+        evidence_tier: 
+            - 4
+        webinars: 
+            - http://resources.communitiesinschools.org
+        core_member: false

@@ -1,0 +1,61 @@
+mixin if(evl)
+    if shopify
+        != _tag( "if", evl)
+        block
+        != _endtag("if")
+    
+    else if evl
+        block
+
+mixin else()
+    if shopify
+        != _tag("else")
+        block
+
+mixin for(evl)
+    if shopify
+        != _tag( "for", evl)
+        block
+        != _endtag("for")
+    else if evl
+        block
+
+mixin load(expression)
+    if django
+        != _single( "load", `${ expression }` )
+
+
+mixin when(expression)
+    != _single( "when", `"${ expression }"` )
+
+//- ---------------------------------------------
+//- SHOPIFY
+//- ---------------------------------------------
+mixin layout(expression)
+    if shopify
+        != _single( "layout", `"${ expression }"` )
+
+mixin snippet(expression)
+    != _single( "include", `"${ expression }"` )
+
+mixin unless(expression)
+    != _tag( "unless", `"${ expression }"` )
+    block
+    != _endtag("unless")
+
+mixin case(expression)
+    != _tag( "case", `"${ expression }"` )
+    block
+    != _endtag("case")
+
+
+mixin assign(expression)
+    if shopify
+        != _single( "assign", `${ expression }` )
+
+
+mixin capture(expression)
+    if shopify
+        != _tag( "capture", `"${ expression }"` )
+        block
+        != _endtag("capture")

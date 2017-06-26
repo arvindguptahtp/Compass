@@ -1,0 +1,21 @@
+[v-cloak]
+    display: none !important
+    
+.vx--
+    &a11y
+        +o-eq(breakpoints)
+            position: absolute !important
+            left: -100vw
+            width: 0
+            clip: rect(0,0,0,0)
+            overflow: hidden
+
+    &hidden
+        +o-eq(breakpoints)
+            visibility: hidden
+            display: none
+
+    &shown
+        +o-eq(breakpoints)
+            visibility: visible
+            display: flex

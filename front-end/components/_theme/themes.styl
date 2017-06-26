@@ -1,0 +1,130 @@
+.thm--
+    // LIGJT
+    &light
+        +o-attr(breakpoints)
+            background: co.white
+            color: co.copy.base
+            border-color: rgba(co.brand_1.base, 12%)
+        
+        &-alt
+            background: co.hairline.shade
+
+
+
+    // DARK
+    &dark 
+        background: co.brand_1.base
+        color: co.white
+
+        .co--ctrl
+        .co--pri
+            color: currentColor
+
+        .co--pri[class*="fx--"]
+        .co--ctrl
+            &:hover
+            &.is-reacting
+                color: lighten(co.ctrl.base, 25%)
+            
+            &:active
+            &.is-active
+                color: lighten(co.brand_1.tint, 25%)
+
+        [class*="--bTint"]
+        [o-condensed*="--bTint"]
+        [o-standard*="--bTint"]
+        [o-enhanced*="--bTint"]
+            border-color: lighten(co.brand_1.tint, 25%)
+
+        .co--ico
+            color: rgba(co.white, 80%)
+
+            &:hover
+            &.is-reacting
+               color: lighten(co.brand_1.tint, 50%)         
+               
+            &:active
+            &.is-active
+                color: co.white
+                
+        .rxn--neutral
+            color: co.white
+
+
+    &another
+        background-color: co.brand_4.tint
+
+        .co--minor
+            color: co.brand_4.shade
+            
+            &:hover[class*="fx--"]
+                color: co.white
+
+    // TEXTURE
+    &texture
+        +o-attr(class)
+            color: co.bkg.base
+            background-color: co.brand_1.shade
+            background-repeat: no-repeat
+            background-size: cover
+            background-position: center
+           
+            .co--pri-tint
+                color: co.brand_1.tint
+                
+        +o-eq(class)
+            background-image: url(../res/tx.primary.png)
+            
+            +over(enhanced)
+                background-image: url(../res/tx.primary@2x.png)
+
+            .mtf--block-pri
+                background: co.brand_1.tint
+    
+        &-tint
+            +o-attr(class)
+                color: co.brand_1.base
+                background-color: co.white
+                background-image: url(../res/tx.light.png)
+                border: rgba(co.brand_1.base, 15%)
+                
+                .co--minor
+                    color: co.neutral.base
+
+                +over(enhanced)
+                    background-image: url(../res/tx.light@2x.png)
+    &inactive
+        +o-attr()
+            color: co.white
+            background: co.neutral.tint
+
+    &affiliates
+        +o-attr()
+            color: co.white
+            background-color: co.affiliates
+
+            [class*="--bShade"]
+                border-color: darken(co.affiliates, 25%)
+
+    &programs
+        +o-attr()
+            color: co.white
+            background-color: co.programs
+
+            [class*="--bShade"]
+                border-color: darken(co.programs, 75%)
+
+    &partners
+        +o-attr()
+            color: co.white
+            background-color: co.partners
+
+            [class*="--bShade"]
+                border-color: darken(co.partners, 25%)
+    
+    
+    &affiliates-shift
+    &programs-shift
+    &partners-shift
+        background-repeat: no-repeat
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 66%)

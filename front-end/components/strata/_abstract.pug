@@ -1,0 +1,20 @@
+include /_vefa
+
+- 
+    strata= strata || new Vefa()
+
+    strata.define({
+        class: "strata"
+    })
+
+block model
+- strata = strata.$freeze()
+
+
+block view
+    div(
+        class=strata.class
+    )&attributes(strata.element)
+        yield
+
+- strata = strata.$thaw()

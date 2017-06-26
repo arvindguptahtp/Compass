@@ -1,0 +1,58 @@
+:root
+    --on-opacity: 1
+
+.rxn--
+    &shade
+        _black = co.black ? co.black : #000
+
+        +o-attr(class)
+            +add-before()
+                position: absolute 0
+                background: _black
+                opacity: 0
+
+            &:--all-states,
+            :--follows-check &
+                input&
+                    background: rgba(_black, .5)
+                    background: "rgba(%s, 'var(--on-opacity, .5)')" % rgb(_black)
+        
+                &::before
+                    opacity: .5
+                    opacity: var(--on-opacity, .5)
+        
+        
+        for i in (1..19)
+            num = 5 * i
+            &{num}
+                +o-eq(class)
+                    --on-opacity: (num / 100)
+
+
+    &tint
+        _white = co.white ? co.white : #FFF
+
+        +o-attr(class)
+            &[input]
+                background: rgba(_white, 0)
+
+            +add-before()
+                position: absolute 0
+                background: _white
+                opacity: 0
+
+            &:--all-states,
+            :--follows-check &
+                &[input]
+                    background: rgba(_white, .5)
+                    // background: rgba(_white, var(--on-opacity, .5))
+
+                &::before
+                    opacity: .5
+                    opacity: var(--on-opacity, .5)
+
+        for i in (1..19)
+            num = 5 * i
+            &{num}
+                +o-eq(class)
+                    --on-opacity: (num / 100)

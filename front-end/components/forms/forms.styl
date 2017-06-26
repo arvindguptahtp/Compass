@@ -1,0 +1,26 @@
+.field-group--
+    +o-attr()
+        border-width: 1px 0 0 1px
+
+.field-label--multi
+.field-label--bool
+    border-width: 0 1px 1px 0
+
+.fm-field--bool
+    label::before
+        left: bvr(-.25)
+        right: bvr(-.25)
+        
+        +over(standard)
+            left: bvr(-.5)
+            right: bvr(-.5)
+
+    & + &
+        margin-top: 0
+
+
+.fm-fieldset-legend
+    &::before
+        +over(standard)
+            left: bvr(.5)
+            right: bvr(.5)

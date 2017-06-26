@@ -1,0 +1,34 @@
+.site-logo
+    width: 50vw
+    max-width: 120px
+
+    +over(condensed)
+        max-width: 160px
+
+    &--solo
+        max-width: 44px
+
+
+.colophon-brand
+    pointer-events: auto
+
+
+.colophon-nav
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr))
+    grid-gap: 0
+
+.colophon-nav-item
+    +over(standard)
+        &:first-child
+            border: 0
+
+
+
+
+.masthead-nav--actions
+    min-height: blh(2)
+
+.masthead-nav-ctrl
+    relative-font-size: 18px base, 32px full
+    line-height: 1
+    overflow: hidden

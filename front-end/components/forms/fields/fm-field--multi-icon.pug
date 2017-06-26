@@ -1,0 +1,26 @@
+extends fm-field--multi
+
+block icon
+    case icon_type
+        when "aa"
+            include /icons/academic-assistance
+        when "bn"
+            include /icons/basic-needs
+        when "bi"
+            include /icons/behavioral-interventions
+        when "ccp"
+            include /icons/college-and-career-prep
+        when "csl"
+            include /icons/service-learning
+        when "en"
+            include /icons/enrichment
+        when "fe"
+            include /icons/family-engagement
+        when "ls"
+            include /icons/life-skills
+        when "pmh"
+            include /icons/mental-health
+        when "pph"
+            include /icons/physical-health
+        default
+            = ""

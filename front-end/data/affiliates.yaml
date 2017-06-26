@@ -1,0 +1,86 @@
+title: Affiliates
+summary: >
+  The CIS affiliate brings the students to schools in their community. All across the US, 164 CIS affiliates help to serve students in 363 districts and 2,400 K-12 sites.
+
+
+fm_search:
+    -   name: Search
+        type: fieldset
+        fields:
+            -   name: search
+                label: Keywords
+                type: text
+
+    -   name: Demographics
+        type: fieldset
+        folded: true
+        fields:
+            -   name: gender
+                label: Students by Gender
+                type: multi
+
+            -   name: race
+                label: Students by Race/Ethnicity
+                type: multi
+            
+            -   name: student_characteristics
+                label: Student Characteristics
+                type: multi
+            
+            -   name: student_needs
+                label: Student Needs
+                type: multi
+
+    -   name: Associated Details
+        type: fieldset
+        folded: true
+        fields:
+            -   name: affiliate_performance
+                label: Affiliate Performance
+                type: single
+
+            -   name: core_services
+                label: CIS Core Services
+                type: multi
+
+            -   name: service_tier
+                label: Tier of Service
+                type: multi
+
+
+
+fixtures:
+    -   name: Communities In Schools of Juneau
+        slug: /affiliates/affiliates_detail
+        state: AK
+        location: Urban
+        total_students: 460
+        budget: 144,615
+
+    -   name: Communities In Schools of Greater Los Angeles
+        slug: /affiliates/affiliates_detail
+        state: CA
+        location: Urban
+        total_students: 160
+        budget: 1,354,000
+
+    -   name: Communities In Schools of Los Angeles
+        slug: /affiliates/affiliates_detail
+        state: CA
+        location: Urban
+        total_students: 12,000
+        budget: 3,334,736
+
+    -   name: Communities In Schools of Nations Capital
+        slug: /affiliates/affiliates_detail
+        state: DC
+        location: Urban
+        total_students: 3,201
+        budget: 1,111,600
+
+    -   name: Communities In Schools of Kent County
+        slug: /affiliates/affiliates_detail
+        state: DE
+        location: Rural
+        total_students: 5,450
+        budget: 358,000

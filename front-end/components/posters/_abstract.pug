@@ -1,0 +1,34 @@
+include /_vefa
+
+-
+    poster = poster || new Vefa()
+    
+    poster
+        .define({
+            class: "poster",
+            element: {
+                "o-base": "row--pStart--sBase mod--static pad--xStart50 pad--y100",
+                "o-condensed": "pad--y150",
+                "o-enhanced": "pad--xStart100 pad--y200"
+            },
+            hed: {
+                class: "tx--broadside--f1--tcU",
+            },
+        })
+
+block model
+
+- 
+    poster = poster.$freeze()
+
+
+block view
+    div(
+        class=poster.class
+    )&attributes(poster.element)
+        block hdr
+        block bd
+        block ftr
+
+
+- poster = poster.$thaw()

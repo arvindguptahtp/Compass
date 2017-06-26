@@ -1,0 +1,56 @@
+extends icon
+
+append model
+    -
+        poster
+            .replace({
+                class: "poster--details gx--poster",
+                ftr: {
+                    "o-base": "gxi--c"
+                }
+            })
+
+
+
+block ftr
+    if poster.data.contact
+        - contact = poster.data.contact
+
+        dl.contactinfo--inline.tx--f3--100.co--minor.hl--yStart--bTint(
+            o-base="gxi--c col--pStart pad--yStart25 iso--yStart25"
+            o-standard="row--pStart rhy--xStart25 tx--small iso--yStart0"
+            o-full="pos--abs"
+        )
+            if contact.title
+                dt.contactinfo-item--name(
+                    o-base="col--pStart--xAuto"
+                    o-standard="row--pStart--xAuto pad--xEnd25 hl--xEnd--bTint"
+                )
+                    span.tx--700.co--copy!= ` ${ v(contact.name) },&nbsp;`
+                    i= v(contact.title)
+            
+            if contact.email
+                dd(
+                    o-standard="pad--xEnd25 hl--xEnd--bTint"
+                )
+                    a.contactinfo-item--email.co--minor.fx--shift(
+                        href="mailto:#{ contact.email }"
+                        target="_top"
+                        
+                    )
+                        = v(contact.email)
+            
+            if contact.url
+                dd(
+                    o-standard="pad--xStart25 pad--xEdges0"
+                )
+                    a.contactinfo-item--url.co--minor.fx--shift(
+                        href=v(contact.url)
+                        target="_blank"
+                        o-base="row--pStart--sMiddle rhy--xStart10"
+                    ) 
+                        span Website
+                        include /icons/link-ext
+            
+
+        

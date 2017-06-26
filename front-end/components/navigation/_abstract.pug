@@ -1,0 +1,48 @@
+include /_vefa
+
+-
+    navigation = navigation || new Vefa()
+
+    navigation
+        .define({
+            element: {},
+            control: {},
+            data: {
+                url: "",
+                target: "",
+                label: "",
+                show: true 
+            }
+        })
+
+block model
+- navigation = navigation.$freeze()
+
+
+
+block view
+    -
+        active = (active_state) => {
+            if (django) return
+            
+            return (page && page.data.slug == navigation.data.url) ? "is-active" : "" 
+        }
+    
+    if navigation.data.show
+        li(
+            class=navigation.class
+        )&attributes(navigation.element)
+            a(
+                class=active("is-active")
+                href=navigation.data.url
+                target=navigation.data.target
+            )&attributes(navigation.control)
+                
+                block icon
+                    yield
+
+                block label
+                    span&attributes(navigation.label)
+                        != navigation.data.label
+
+- navigation = navigation.$thaw()

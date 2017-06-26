@@ -1,0 +1,48 @@
+org:
+    title: CIS.org
+    slug: https://www.communitiesinschools.org/
+    published: true
+    target: _top
+
+resources:
+    title: Resources
+    slug: https://resources.communitiesinschools.org
+    published: true
+    target: _blank
+
+terms:
+    title: Terms of Service
+    slug: https://www.communitiesinschools.org/terms/
+    published: true
+
+privacy:
+    title: Privacy Policy
+    slug: https://www.communitiesinschools.org/privacy-policy/
+    published: true
+
+contact:
+    title: Contact Us
+    slug: https://www.communitiesinschools.org/contact-us/
+    published: true
+
+
+partners:
+    title: Partners
+    slug: partner_list
+    proto_slug: /partners/partners_list
+    published: true
+    add_class: rxn--partners
+
+programs:
+    title: Programs
+    slug: program_list
+    proto_slug: /programs/programs_list
+    published: true
+    add_class: rxn--programs
+
+affiliates:
+    title: Affiliates
+    slug: affiliate_list
+    proto_slug: /affiliates/affiliates_list
+    published: true
+    add_class: rxn--affiliates

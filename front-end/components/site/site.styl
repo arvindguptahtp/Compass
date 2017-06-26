@@ -1,0 +1,94 @@
+// base containers
++html()
+    background: co.bkg.base
+    // relative-type: base    
+    get-type: base
+
++body()
+    color: co.copy.base
+    stack: copy
+
+main
+    order: 2
+    set-flex-size: fill
+
+    // +taller-than(768px)
+    //     min-height: 70vh
+
+
+.gx--ui
+    +o-eq(breakpoints)
+        grid-template-columns: 80px 2fr 2fr
+        grid-template-rows: auto 1fr auto
+        grid-template-areas: 
+            "a b b" \
+            "c d d" \
+            "e e e"
+
+.gx--search
+    // grid-template-columns: 1fr
+    grid-template-areas: 
+        "a" \
+        "b"
+    
+    +over(enhanced)
+        grid-template-columns: 20vw 1fr
+        grid-template-areas: "a b"
+
+
+.gx--detail-partner
+    grid-template-columns: 1fr
+    grid-template-areas: 
+        "a" \
+        "b" \
+        "c"
+    
+    +over(standard)
+        grid-template-columns: repeat(3, 1fr)
+        grid-template-areas: 
+            "b a a" \
+            "c c c"
+
+    +over(full)
+        grid-template-columns: repeat(5, 1fr)
+        grid-template-areas: 
+            "b a a a a" \
+            "b c c c c"
+
+
+.gxi--
+    &title
+        +o-attr(breakpoints)
+            grid-area: title
+    &overview
+        +o-attr(breakpoints)
+            grid-area: overview
+    &services
+        +o-attr(breakpoints)
+            grid-area: services
+    &network
+        +o-attr(breakpoints)
+            grid-area: network
+    &service-tier
+        +o-attr(breakpoints)
+            grid-area: service-tier
+    &ebr
+        +o-attr(breakpoints)
+            grid-area: ebr
+    &state
+        +o-attr(breakpoints)
+            grid-area: state
+    &location
+        +o-attr(breakpoints)
+            grid-area: location
+    &students
+        +o-attr(breakpoints)
+            grid-area: students
+    &budget
+        +o-attr(breakpoints)
+            grid-area: budget
+    
+
+.strata--detail
+    .detail-copy
+        grid-auto-rows: 1fr

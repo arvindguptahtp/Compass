@@ -1,0 +1,49 @@
+include /_vefa
+
+nav.masthead--nav.thm--dark(
+    role="navigation"
+    o-base="row--pStart pad--xStart50 ord--start z--masthead"
+    o-enhanced="pad--xStart100 pad--xEnd50"
+    o-full="gxi--c pad--xy0"
+)    
+    a.masthead-home(
+        href="/"
+        target="_top"
+        o-base="row--pMiddle--sMiddle--xAuto mod--fit pad--y25 iso--xEndAuto"
+        o-full="vx--hidden"
+    )   
+        picture
+            source(
+                srcset=static("res/logo.full.inverse.png.webp")
+                type="image/webp"
+            )
+            img.site-logo(
+                src=static("res/logo.full.inverse.png")
+            )
+    nav(
+        o-base="row--pStart--xAuto"
+        o-enhanced="hl--xEnd--bTint"
+        o-full="col--pStart hl--xy0 hl--yStart--bTint"
+    )
+        each instance in nav.primary
+            -
+                navigation = new Vefa()
+                    .replace({
+                        element: {
+                            class: "masthead-nav-item hl--xStart--bTint",
+                            "o-base": "col--pStart--xAuto mod--static",
+                            "o-full": "hl--xy0 hl--yEnd--bTint"
+                        },
+                        control: {
+                            class: `masthead-nav-ctrl tx--display--taMiddle--f1--100 ${ routes[instance].add_class } fx--shift`,
+                            "o-base": "row--pStart--sMiddle pad--xy50 ico--md",
+                        },
+                        label: {
+                            class: "vx--a11y"
+                        }
+                    })
+            include /navigation/nav-item--static
+                case instance
+                    when "partners": include /icons/partners
+                    when "programs": include /icons/programs
+                    when "affiliates": include /icons/affiliates

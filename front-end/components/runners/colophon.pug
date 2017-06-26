@@ -1,0 +1,88 @@
+footer.colophon.tx--chrome--f3.thm--dark(
+    role="contentinfo"
+    o-base="pad--x50 pad--y100 rhy--yStart100 ord--end"
+    o-standard="row--pGrid--sTop rhy--xStart100"
+    o-enhanced="pad--x100"
+    o-full="gxi--e pad--x50"
+)
+    a.colophon-brand(
+        href="https://communitiesinschools.orgr/"
+        target="_top"
+        o-base="mod--static pad--yEnd50 iso--yEnd50 z--masthead"
+    )   
+        picture
+            source(
+                data-srcset=static("res/logo.full.inverse.png.webp")
+                type="image/webp"
+            )
+            img.site-logo.lazyload(
+                data-src=static("res/logo.full.inverse.png")
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            )
+
+    .colophon-site(
+        o-base="mod--balance"
+        o-standard="col---pStart--sEnd"
+    )
+        nav.colophon-nav.hl--yEnd--bTint(
+            o-base="pad--yEnd50 iso--yEnd50 gx--colophon"
+            o-standard="row--pEnd--sMiddle--xAuto"
+        )
+            each instance in nav.colophon
+                -
+                    navigation = new Vefa()
+                        .replace({
+                            element: {
+                                class: "colophon-nav-item",
+                                "o-base": "row--pStart--sMiddle--xAuto",
+                                "o-standard": "pad--x50 pad--xEdges0 hl--xStart--bTint"
+                            },
+                            control: {
+                                class: "colophon-nav-ctrl co--ctrl fx--shift",
+                                "o-base": "mod--fill pad--y10",
+                                "o-condensed": "tx--taMiddle pad--y0"
+                            }
+                        })
+                include /navigation/nav-item--static
+
+        
+        - contact = site.org;
+        address.contactinfo--inline(
+            o-condensed="rhy--yStart25"
+        )
+            .contactinfo-group(
+                o-base="col--pStart"
+                o-condensed="row--pEnd"
+            )
+                h5.contactinfo-item--name
+                    = contact.name
+
+                    a(
+                        href="https://plus.google.com/113213116668578078182"
+                        rel="publisher"
+                    )   
+
+                .contactinfo-item--address(
+                    o-condensed="pad--xStart25 iso--xStart25 hl--xStart--bTint"
+                ).
+                    #{ contact.address.street_1 }, #{ contact.address.street_2 }
+                    #{ contact.address.city }, #{ contact.address.state } #{ contact.address.zip }
+        
+            .contactinfo-group(
+                o-base="col--pStart"
+                o-condensed="row--pEnd"
+            )
+                a.contactinfo-item--tel(
+                    href="tel:#{ contact.tel.href }"
+                    target="_top"
+                ).
+                    Tel:&nbsp;#{contact.tel.nice} (#{contact.tel.base})
+
+                a.contactinfo-item--email(
+                    href="mailto:#{ contact.email }"
+                    target="_top"
+                    o-condensed="pad--xStart25 iso--xStart25 hl--xStart--bTint"
+                ).
+                    E-mail:&nbsp;#{contact.email}
+
+                

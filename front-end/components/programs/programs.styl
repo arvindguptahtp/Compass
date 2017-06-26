@@ -1,0 +1,40 @@
+.gx--result-programs
+    grid-template-areas:
+        "title      title       title" \
+        "network    network     services" \
+        "overview   overview    services" \
+        "ebr        ebr         services"
+    grid-template-columns: max-content 1fr max-content
+    grid-gap: 1px
+    
+    +over(compressed)
+        grid-template-areas:
+            "title      title       network" \
+            "ebr        overview    overview" \
+            "services   services    services"
+        grid-template-columns: minmax(100px, 180px) 2fr minmax(0, max-content)
+        grid-template-rows: auto auto 1fr
+
+    +over(condensed)
+        grid-template-areas:
+            "title      title       network" \
+            "ebr        overview    overview" \
+            "ebr        services    services"
+        // grid-template-columns: 1fr 2fr max-content
+    //     grid-template-areas:
+    //         "title      service-tier" \
+    //         "overview   network" \
+    //         "overview   services"
+    //     grid-template-columns: 2fr 1fr
+    //     grid-template-rows: auto auto 1fr
+
+    +over(extended)
+        grid-template-areas:
+            "title      title  network" \
+            "overview   ebr    services"
+        grid-template-columns: 1fr minmax(100px, 180px) minmax(150px, 250px)
+        grid-gap: 3px
+    
+
+    .ico--ebr
+        sq: 100px

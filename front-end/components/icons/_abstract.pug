@@ -1,0 +1,38 @@
+include /_vefa
+
+-
+    icon = icon || new Vefa()
+        .define({
+            element: {
+                "o-base": "mod--static"
+            }
+        })
+    
+    icon.data({
+        title: false,
+        desc: false,
+        viewBox: '0 0 100 100',
+    })
+
+
+
+block model
+
+- icon = icon.$freeze()
+
+block view
+    svg.ico(
+        height="16"
+        width="16"
+        viewBox=icon.data.viewBox
+        aria-labelledby="title desc"
+    )&attributes(icon.element)
+        if icon.data.title 
+            title= icon.data.title
+        
+        if icon.data.desc
+            desc= icon.data.desc
+
+        block bd
+    
+- icon = icon.$thaw()

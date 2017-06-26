@@ -1,0 +1,145 @@
+# ==========================================================================
+# LAYOUTS / BREAKPOINTS
+base:
+    font_size: 16px
+    line_height: 24px
+    gutter: 24px
+    vertical_rhythm: 24px
+max_site_width: 1480px
+breakpoints:
+    base: 0px
+    compressed: 480px
+    condensed: 660px
+    standard: 768px
+    enhanced: 960px
+    extended: 1200px
+    full: 1600px
+
+
+# ==========================================================================
+# TYPE
+type_stacks:
+    header: Oswald impact
+    copy: the_serif
+    chrome: arial
+
+type:
+    broadside:
+        relative: 
+            lower: 32px 36px compressed
+            upper: 57.22px 66px enhanced
+    
+    display:
+        font-size: 31.738px
+        line-height: 36px
+    
+    hed:    
+        font-size: 25.391px
+        line-height: 32px
+
+    
+    subhed:
+        font-size: 20.313px
+        line-height: 28px
+    
+    maj:
+        font-size: 18.75px
+        # font-size: 16.25px
+        line-height: 24px
+
+    base:
+        font-size: 16px
+        line-height: 24px
+        # relative:
+        #     lower: 16px 24px standard   
+        #     upper: 20px 26px full
+    
+    small:
+        font-size: 13px
+        line-height: 20px
+    
+    caption:
+        font-size: 10.4px
+        line-height: 20px
+
+    chrome:
+        font-size: 12px
+        line-height: 20px
+
+
+
+# ==========================================================================
+# COLORS
+co:
+    white: &co_white "#FFF"
+    black: &co_black "#181411"
+    
+    neutral: 
+        base: &neutral_base "#808284"
+        tint: &neutral_tint "#A7A9AB"
+        shade: &co_neutral_shade "#58585B"
+
+    brand_1:
+        base: &brand_1_base "#00539E"
+        tint: &brand_1_tint "#4E8ABE"
+        shade: &brand_1_shade "#003D7D"
+        special: &brand_1_dark "#243867"
+        
+    brand_2:
+        base: &brand_2_base "#F68E1E"
+        tint: &brand_2_tint "#F89D31"
+        shade: &brand_2_shade "#BB8C0A"
+
+    brand_3:
+        base: &brand_3_base "#E21836"
+        tint: &brand_3_tint "#8B0E04"
+        shade: &brand_3_shade "#4B2332"
+        
+    brand_4:
+        base: &brand_4_base "#008751"
+        tint: &brand_4_tint "#BFB678"
+        shade: &brand_4_shade "#817C00"
+    
+    alt:
+        brand_1: &brand_1_alt "#489FDF"
+        brand_2: &brand_2_alt "#D9802E"
+        brand_3: &brand_3_alt "#FFCE00"
+        brand_4: &brand_4_alt "#78BE20"
+
+    bkg: 
+        base: *co_white
+        tint: "#FFF2E0"
+
+    copy: 
+        base: "#333333"
+        tint: "#808080"
+
+    hairline:
+        base: rgba(#808080, 50%)
+        tint: "#FCFCFC"
+        shade: "#F7F9F9"
+    
+    ctrl:
+        base: *brand_2_base
+        rxn: *neutral_base
+        active: -25%
+
+    ctrl--copy:
+        base: *neutral_tint
+        rxn: *brand_2_base
+        active: -50%
+    
+    affiliates: *brand_3_tint
+    partners: *brand_4_base
+    programs: *brand_3_shade
+
+
+# ==========================================================================
+# FX
+fx:
+    quick:
+        time: .25s
+        func: ease-in
+    medium:
+        time: .4s
+        func: ease-in

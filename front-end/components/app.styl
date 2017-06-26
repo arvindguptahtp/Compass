@@ -1,0 +1,58 @@
+// ==========================================================================
+// Load Yaml/JSON config
+//
+//
+config = json(app, { hash: true });
+co = config.co
+breakpoints = class base compressed condensed standard enhanced extended full
+
+webfont(file: "../res/fonts/theserifb-w5plain", name: 'the_serif', types: woff woff2)
+webfont(file: "../res/fonts/theserifb-w7bold", name: 'the_serif', types: woff woff2, bold: 700)
+
+
+// ==========================================================================
+// SITE-WIDE MIXINS
+//
+//
+@custom-selector :--all-states :hover\, .is-reacting\, :active\, .is-active;
+@custom-selector :--follows-check :checked +;
+@custom-selector :--hover :hover\, .is-reacting;
+@custom-selector :--active :focus\, :active\, .is-active;
+@custom-selector :--layers ::before\, ::after;
+
+@custom-selector :--middle-of-3 :nth-of-type(3n-1):not(:last-child);
+@custom-selector :--odd :nth-of-type(odd);
+@custom-selector :--even :nth-of-type(even);
+
+
+// ==========================================================================
+// Theme-specific VEFA F(CSS)
+//
+//
+
+@require "_theme/themes"
+@require "_theme/fx"
+@require "_theme/colors"
+@require "_theme/borders"
+@require "_theme/reactions"
+
+
+@require "_theme/type"
+// @require "_theme/glyphs"
+
+
+// ==========================================================================
+// Site/Theme-specific Atomic/OOCSS
+//
+//
+@require "copy/copy"
+@require "site/site"
+@require "runners/runners"
+@require "posters/posters"
+@require "icons/icons"
+@require "forms/forms"
+@require "cards/cards"
+
+@require "affiliates/affiliates"
+@require "programs/programs"
+@require "partners/partners"

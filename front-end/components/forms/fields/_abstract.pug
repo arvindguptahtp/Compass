@@ -1,0 +1,40 @@
+-
+    form_field = form_field || new Vefa()
+
+    if (field) {
+        form_field
+            .data(field)
+    }
+
+    form_field
+        .define({
+            element: {
+                "o-base": "col--pStart rhy--yStart10"
+            }
+        })
+
+
+block model
+- form_field = form_field.$freeze()
+
+
+
+block view
+    div(
+        class=form_field.class
+    )&attributes(form_field.element)
+        
+        block hdr
+            label(
+                for=v(`id_${ form_field.data.name }_${ index }`)
+            )&attributes(form_field.label)
+                = v(form_field.data.label)
+            
+        
+        block bd
+        
+        block ftr
+
+
+
+- form_field = form_field.$thaw()

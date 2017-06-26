@@ -1,0 +1,128 @@
+state:
+    AK: Alaska
+    CA: California
+    DC: Washington, DC
+    DE: Delaware
+
+grades:
+    ec: Early Childhood Education
+    el: Elementary
+    ms: Middle School
+    hs: High School
+    ps: Post-Secondary
+    al: Alumni
+
+gender:
+    f: Female
+    m: Male
+
+race:
+    am: American Indian
+    as: Asian
+    bl: Black
+    hi: Hispanic
+    wh: White
+    tw: Two or more races
+
+reach:
+    n: Nationwide
+    i: International
+    r: Regions
+
+student_needs:
+    bi: Behavioral Issues
+    att: Attendance Issues/Chronically Absent
+    do: At Risk of Dropping Out
+    phn: Physical Health Needs
+    sel: SEL Needs
+    mh: Mental Health Needs
+    ac: Academic Needs
+    hr: High Risk Behavior
+    pr: Pregnant/Parenting
+    ccr: College/Career Readiness
+    pfe: Parent/Family Engagement
+    ell: English Language Learners
+    hfy: Homesless/Foster Youth
+    juv: At Risk of Entering Juvenile Justice System
+
+student_type:
+    frpl: Eligible for FRPL
+    ay: Adjudicated Youth
+    mil: Child of Active Duty Military
+    ell: English Language Learners
+    fos: Foster Care/Group Home
+    gang: Gang Involvement
+    hl: Homeless
+    ip: Incarcerated Parent
+    lgbt: LGBT
+    pp: Pregnant/Parenting
+    se: Special Education
+    sa: Substance Abuse
+    na: Not Applicable
+
+service_tier:
+    1: Tier I
+    2: Tier II
+    3: Tier III
+
+setting:
+    sch: School
+    hf: Home/Family
+    co: Community
+    as: Afterschool
+    sp: Summer Program
+
+core_services:
+  aa: Academic Assistance
+  bn: Basic Needs
+  bi: Behavioral Interventions
+  ccp: College and Career Preparation
+  csl: Community and Service Learning
+  en: Enrichment
+  fe: Family Engagement
+  ls: Life Skills/Social Development
+  pmh: Professional Mental Health
+  pph: Professional Physical Health
+
+evidence_tier:
+    1: Strong evidence
+    2: Moderate evidence
+    3: Promising evidence (High)
+    4: Promising evidence (low)
+    5: Demonstrates a rationale/Research-building
+
+ebr:
+    1: Strong evidence
+    2: Moderate evidence
+    3: Promising evidence (High)
+    4: Promising evidence (low)
+    5: Demonstrates a rationale/Research-building
+    
+affiliate_performance:
+    1: K-11 Promoted
+    2: K-11 Retained
+    3: K-11 Dropped Out
+    4: K-11 Transferred
+    5: K-11 Other
+    6: K-11 Unknown
+    7: Grade 12 Graduated
+    8: Grade 12 Retained
+    9: Grade 12 Dropped Out
+    10: Grade 12 Transferred
+    11: Grade 12 Other
+    12: Grade 12 Unknown
+
+student_characteristics:
+    frpl: Eligible for FRPL
+    ay: Adjudicated Youth
+    mil: Child of Active Duty Military
+    ell: English Language Learners
+    fos: Foster Care/Group Home
+    gang: Gang Involvement
+    hl: Homeless
+    ip: Incarcerated Parent
+    lgbt: LGBT
+    pp: Pregnant/Parenting
+    se: Special Education
+    sa: Substance Abuse
+    na: Not Applicable

@@ -1,0 +1,35 @@
+extends _abstract
+
+block model
+    -
+        card
+            .define({
+                element: {
+                    "o-base": "pad--x50 pad--y25",
+                },
+                hdr: {},
+                hed: {
+                    class: "tx--subhed--f1"
+                },
+                bd: {}
+            })
+            .presets({
+                data: {
+                    hed: "Card Header",
+                    copy: "Some content"
+                }
+            })
+
+
+block view
+    section(
+        class=card.class
+    )&attributes(card.element)
+        header&attributes(card.hdr)
+            h2&attributes(card.hed)
+                != v(card.data.hed)
+        
+        .bd&attributes(card.bd)
+            if django
+            else
+                !=markdown(card.data.copy)

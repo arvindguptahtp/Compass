@@ -1,0 +1,27 @@
+.embed--
+    +o-attr(breakpoints)
+        position: relative
+        overflow: hidden
+        padding: 0
+        
+        &::after
+            content: ''
+            display: block1111111111
+            height: 0
+
+    &img
+        +o-eq(breakpoints)
+            > img
+                object-fit: cover
+
+//     :::16x9
+//         +o-eq(base)
+//             set_aspect_ratio: 16 9
+ 
+            
+.embed-item
+    +o-eq(breakpoints)
+        position: absolute 0
+        height: 100%
+        width: 100%
+        object-fit: cover

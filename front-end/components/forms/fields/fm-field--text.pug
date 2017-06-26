@@ -1,0 +1,17 @@
+extends _abstract
+
+block model
+    -
+        form_field
+            .define({
+                class: "fm-field--text",
+            })
+
+
+
+block bd
+    input(
+        type="text"
+        id=v(`id_${ form_field.data.name }_${ index }`)
+        name=v(form_field.data.name)
+    )&attributes(form_field.field)

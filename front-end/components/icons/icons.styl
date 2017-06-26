@@ -1,0 +1,86 @@
+.ico
+    sq: 1em
+    line-height: 1
+    overflow: hidden
+
+.ico--
+    &base
+        +o-attr(breakpoints)
+            > .ico
+                sq: 1em
+
+    &xs
+        +o-attr(breakpoints)
+            > .ico
+                sq: .75em
+
+    &s
+        +o-attr(breakpoints)
+            > .ico
+                sq: 1.5em
+
+    &md
+        +o-attr(breakpoints)
+            > .ico
+                sq: 1.75em
+
+    &l
+        +o-attr(breakpoints)
+            > .ico
+                sq: 2em
+
+    &xl
+        +o-attr(breakpoints)
+            > .ico
+                sq: 2.5em
+
+
+.ico--ebr
+    .st0,
+    .st1,
+    .st2,
+    .st3
+        fill: rgba(co.white, 25%)
+    
+    .st4
+        fill: rgba(co.white, 100%)
+
+    &.ico--fill4
+        .st0
+            fill: #00549E
+
+    &.ico--fill3
+        .st0
+            fill: #00549E
+
+        .st1
+            fill: #E31837
+
+    &.ico--fill2
+        .st0
+            fill: #00549E
+
+        .st1
+            fill: #E31837
+
+        .st2
+            fill:#F78E1E         
+
+    &.ico--fill1
+        .st0
+            fill: #00549E
+
+        .st1
+            fill: #E31837
+
+        .st2
+            fill:#F78E1E
+
+        .st3
+            fill: #008752
+
+
+// fill:#00549E
+// fill:#E31837
+// fill:#F78E1E
+// fill:#008752

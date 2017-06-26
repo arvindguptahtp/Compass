@@ -1,0 +1,25 @@
+init_flex(breakpoints)
+init_flex_flags(breakpoints)
+init_self_flags(breakpoints)
+
+
+// base compressed
+.mod--
+    :::static
+        +o-attr(breakpoints)
+            flex: none
+    
+    :::balance
+        +o-attr(breakpoints)
+            flex: 1 1 auto
+        
+    :::fit
+        +o-attr(breakpoints)
+            flex: initial //0 1 auto
+    
+    :::fill
+        +o-attr(breakpoints)
+            flex: 1 0 100%
+
+
+

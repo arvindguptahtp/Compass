@@ -1,0 +1,39 @@
+.pos--
+    &rel
+        +o-attr(breakpoints)
+            position: relative
+
+    &abs
+        +o-attr(breakpoints)
+            position: absolute
+            
+    &fix
+        +o-attr(breakpoints)
+            position: fixed
+            
+    &nil
+        +o-attr(breakpoints)
+            position: static
+            float: none
+    
+
+
+
+.ord--
+    &init
+        +o-eq(breakpoints)
+            order: -1
+            
+    &flow
+        +o-eq(breakpoints)
+            order: initial
+
+    &start
+        +o-eq(breakpoints)
+            order: 0
+    &next
+        +o-eq(breakpoints)
+            order: 1
+    &end
+        +o-eq(breakpoints)
+            order: 100

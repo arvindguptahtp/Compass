@@ -82,3 +82,4 @@ staticfiles/
 local_data/
 
 _build
+front-end/.json

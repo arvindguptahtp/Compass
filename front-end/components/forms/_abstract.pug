@@ -1,0 +1,59 @@
+include /_vefa
+
+-
+    form = form || new Vefa()
+    
+    form
+        .define({
+            class: "fm",
+            element: {
+                "o-base": "pad--y50 rhy--yStart100",
+                "o-enhanced": "pad--y100"
+            },
+            header: {
+                "o-base": "row--pGrid--sMiddle pad--x25",
+                "o-standard": "pad--x100"
+            },
+            footer: {
+                "o-base": "row--pEnd--sMiddle pad--x50",
+                "o-standard": "pad--x100"
+            }
+        })
+        .data({
+            submit: {
+                name: "submit",
+                label: "Submit"
+            }
+        })
+
+
+
+block model
+- form = form.$freeze()
+
+
+
+block view
+    form(
+        class=form.class
+    )&attributes(form.element)
+        block hdr
+            header.fm-hdr&attributes(form.header)
+                h1.fm-hed&attributes(form.hed)
+                    = form.data.title
+        
+        
+        block bd
+            if form.data.fieldsets
+                for fieldset, index in form.data.fieldsets
+                    include fields/fm-fieldset
+
+        
+        block ftr
+            footer&attributes(form.footer)
+                -
+                    ctrl = new Vefa()
+                        .data(form.data.submit)
+                include /controls/submit
+
+- form = form.$thaw()

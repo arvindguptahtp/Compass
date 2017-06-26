@@ -1,0 +1,40 @@
+include /_vefa
+
+-
+    ctrl = ctrl || new Vefa()
+    
+    ctrl
+        .define({
+            element: {
+                "o-base": "row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm",
+                "o-condensed": "rhy--xStart50",
+            },
+            data: {
+                url: false,
+                target: false,
+                label: false
+            }
+        })
+
+
+block model
+
+
+- ctrl = ctrl.$freeze()
+
+
+block view
+    a(
+        class=ctrl.class
+        href=v(ctrl.data.url)
+    )&attributes(ctrl.element)
+
+        block icon
+
+        block bd
+            span= v(ctrl.data.label)
+            
+            yield
+
+
+- ctrl = ctrl.$thaw()

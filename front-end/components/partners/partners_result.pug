@@ -1,0 +1,23 @@
+extends /results/_abstract
+
+block model
+    if item
+        - 
+            result
+                .instance({
+                    class: "gx--result-partner"
+                })
+                .data({
+                    title: item.name,
+                    slug: '/partners/parters_detail',
+                    overview: item.mission,
+                    services: item.core_services || false,
+                    network: item.network_use,
+                    service_tier: item.service_tier,
+                })
+
+            labels
+                .instance({
+                    network_yes: "Active in Network",
+                    network_no: "Inactive in Network"
+                })

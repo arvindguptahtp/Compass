@@ -1,0 +1,44 @@
+title: Student Support Generator
+
+project: 
+    name: Student Support Generator
+    url: https://communitiesinschools.org
+    code: cis–06
+
+
+org:
+    name: Communities In Schools
+    short_name: CIS
+    url: https://communitiesinschools.org
+    address:
+        street_1: 2345 Crystal Drive
+        street_2: Suite 700
+        city: Arlington
+        state: VA
+        zip: 22202
+    tel: 
+      href: 18002474543
+      base: 800-247-4543
+      nice: 800 CIS 4KIDS
+    tel_2: 
+    email: info@cisnet.org
+    logo:
+        base: logo-cis.png
+    contact:
+        name: Edsson Acevedo
+        email: AcevedoE@cisnet.orgcd ..
+
+
+author:
+    name: Wellfire Interactive
+    url: https://wellfire.co
+    contact:
+        name: Cobey Potter
+        email: cobey@wellfire.co
+        tel: 
+            href: 15717666306
+            base: (571) 766-6306
+
+
+copyright: 2017
+typekit: ntw0ooa

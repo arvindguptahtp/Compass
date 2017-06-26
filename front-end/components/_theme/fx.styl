@@ -1,0 +1,21 @@
+// ==========================================================================
+// Effects
+//
+// shared transitions/animations/transformations
+//
+//
+.fx--
+    +o-attr()
+        &
+        &::after
+        &::before
+            transition-property: none
+            transition-duration: config.fx.quick.time
+            transition-timing-function: config.fx.quick.func
+    
+    &shift
+        +o-eq(breakpoints)
+            &,
+            &::after,
+            &::before
+                transition-property: background, color, filter, opacity

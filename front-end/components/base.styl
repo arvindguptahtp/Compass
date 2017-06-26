@@ -1,0 +1,53 @@
+// ==========================================================================
+// Load Yaml/JSON config
+//
+//
+config = json(app, { hash: true });
+co = config.co
+breakpoints = class base compressed condensed standard enhanced extended full
+
+// ==========================================================================
+// SITE-WIDE MIXINS
+//
+//
+@custom-selector :--all-states :hover\, .is-reacting\, :focus\, :active\, .is-active;
+@custom-selector :--follows-check :checked +;
+@custom-selector :--hover :hover\, .is-reacting;
+@custom-selector :--active :focus\, :active\, .is-active;
+@custom-selector :--layers ::before\, ::after;
+
+@custom-selector :--middle-of-3 :nth-of-type(3n-1):not(:last-child);
+@custom-selector :--odd :nth-of-type(odd);
+@custom-selector :--even :nth-of-type(even);
+
+
+
+// ==========================================================================
+// Resets and Dev helpers
+//
+//
+reset()
+dev_tools()
+
+
+// ==========================================================================
+// Base VEFA F(CSS)
+//
+//
+@require "_base/flex"
+@require "_base/layout"
+@require "_base/matrices"
+
+@require "_base/rhythm"
+@require "_base/pad"
+@require "_base/iso"
+
+@require "_base/embeds"
+@require "_base/positions"
+@require "_base/z"
+
+@require "_base/viz"
+
+@require "_base/type"
+@require "_base/theme"
+@require "_base/reactions"

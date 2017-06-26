@@ -1,0 +1,93 @@
+extends /_abstract
+
+block model
+    -
+        form_fieldset = form_fieldset || new Vefa()
+            
+        if (fieldset) {
+            form_fieldset
+                .data(fieldset)
+        }
+
+        form_fieldset
+            .define({
+                legend: {
+                    class: "fm-fieldset-legend"
+                }
+            })
+
+
+
+
+block pre_view
+    - form_fieldset = form_fieldset.$freeze()
+
+
+
+block view
+    -   
+        let folded_attrs = {
+            is: "fold-unfold",
+            "init": form_fieldset.data.folded,
+            title: form_fieldset.data.name,
+            styles: "tx--subhed--f1--100 rxn--shade20 fx--shift"
+        }
+        
+        folded_attrs = (form_fieldset.data.folded)
+            ? folded_attrs
+            : {}
+        
+
+    fieldset.fm-fieldset(
+        o-base="iso--yStart25"
+    )&attributes(folded_attrs)
+
+        if form_fieldset.data.folded
+            span(slot="icon-open")
+                include /icons/menu
+            span(slot="icon-close")
+                include /icons/menu-close
+
+        
+        div(
+            slot="bd"
+            o-base="pad--x25 iso--yStart50 rhy--yStart100"
+            o-standard="pad--x100"
+        )&attributes(form_fieldset.bd)
+
+            if form_fieldset.data.fields
+                for field, inner_index in form_fieldset.data.fields
+                    -
+                        form_field = new Vefa()
+                            .mix(form.field)
+                            .data(field)
+                    
+                    case field.type
+                        when "text" 
+                            include /forms/fields/fm-field--text
+                        
+                        when "multi"
+                            if field.name == "core_services"
+                                include /forms/fields/fm-field--multi-icon
+                            
+                            else
+                                include /forms/fields/fm-field--multi
+
+                        when "single"
+                            include /forms/fields/fm-field--single
+                        
+                        when "bool"
+                            include /forms/fields/fm-field--bool
+                        
+                        default
+                            div
+
+
+    hr.hl--yStart--bShade(
+        o-base="iso--xAuto iso--yStart25 dx--w90"
+    )
+
+
+
+block post_view
+    - form_fieldset = form_fieldset.$thaw()

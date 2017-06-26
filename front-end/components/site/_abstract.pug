@@ -1,0 +1,128 @@
+include /_vefa
+
++load("static")
+
+-
+    page = new Vefa()
+    page.presets({
+        title: false,
+        icon: false
+    })
+
+//- override view oriented values
+block props
+
+
+- page = page.$freeze()
+
+doctype html
+html(langs="en-US")
+    head
+        meta(charset="utf-8")                
+        meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0, shrink-to-fit=no")
+        
+        title
+            = (page && page.data.title) ? `${ page.data.title } : ` : ""
+            = site.title
+        
+        block project_css
+            if prod
+                link(
+                    rel="stylesheet"
+                    href=static(`css/base.min.css`)
+                )
+
+                link(
+                    rel="stylesheet"
+                    href=static(`css/app.min.css`)
+                )
+            else
+                link(
+                    rel="stylesheet"
+                    href=static(`css/base.css`)
+                )
+                link(
+                    rel="stylesheet"
+                    href=static(`css/app.css`)
+                )
+            
+            link(
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css?family=Oswald:400,700,300"
+            )
+            
+            if site.supportIE9
+                <!--[if IE 9]>
+                link(
+                    rel="stylesheet"
+                    href=static(`css/app.ie9.css`)
+                )
+                <![endif]-->
+            
+            if site.supportIE8
+                <!--[if IE 8]>
+                link(
+                    rel="stylesheet"
+                    href=static(`css/app.ie8.css`)
+                )
+                <![endif]-->
+        
+
+        block head_js
+            script(src="https://cdn.jsdelivr.net/g/picturefill@3.0.3,lazysizes@3.0.0", async)
+            script document.createElement( "picture" ) 
+
+            if site.supportIE8
+                <!--[if IE 8]>
+                script(src="https://html5shiv.googlecode.com/svn/trunk/html5.js")
+                <![endif]-->
+        
+        include /meta/favicons
+        meta(name="apple-mobile-web-app-title" content=site.title)
+        meta(name="application-name" content=site.title)
+        meta(name="theme-color" content="#ffåffff")
+
+        block metatags
+
+        //- Disable automatic detection and formatting of possible phone numbers
+        meta(name="format-detection", content="telephone=no")
+
+    body(
+        o-base="col--pStart"
+        o-full="gx--ui"
+        dir="ltr" 
+        ontouchstart=""
+        onmouseover=""
+    )
+        block wrapper
+            block masthead
+                include /runners/masthead--logo-full
+
+            
+            block preview
+                include /posters/text
+
+            block main
+                main(
+                    o-base="col--pStart"
+                    o-extended="gxi--d"
+                )
+                    block view
+
+            block postview
+
+            block navigation
+                include /runners/masthead--nav
+
+            block colophon
+                include /runners/colophon
+
+        
+        block js
+            script(
+                src= prod
+                    ? "https://cdn.jsdelivr.net/vue/2.3.2/vue.min.js" 
+                    : "https://cdn.jsdelivr.net/vue/2.3.2/vue.js"
+            )
+            script(src=static("js/app.js"))

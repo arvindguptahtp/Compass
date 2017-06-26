@@ -1,0 +1,215 @@
+title: Programs
+summary: >
+  The CIS site coordinator works with volunteers, partners and the local community to provide students with the supports they need to succeed both inside and outside the classroom. We provide these supports in three different tiers. By differentiating our supports, we are able to serve most students in a school and also focus attention on targeted students that have significant needs.
+
+fm_search:
+    -   name: Search
+        type: fieldset
+        fields:
+            -   name: search
+                label: Keywords
+                type: text
+        
+    -   name: Demographics
+        type: fieldset
+        folded: true
+        fields:
+            -   name: grades
+                label: Grades
+                type: multi
+                mix:
+                    o-base: gx--i3
+
+            -   name: gender
+                label: Gender
+                type: multi
+            
+            -   name: race
+                label: Race
+                type: multi
+
+            -   name: student_needs
+                label: Student Needs
+                type: multi
+    
+    -   name: Program Details
+        type: fieldset
+        folded: true
+        fields:
+            -   name: network_use
+                label: Use in Network
+                type: bool
+
+            -   name: is_cost_free
+                label: Free of Cost
+                type: bool
+                
+            -   name: core_services
+                label: CIS Core Services
+                type: multi
+            
+            -   name: reach
+                label: Organizational Reach
+                type: multi
+                define:
+                    o-base: gx--i3
+
+            -   name: service_tier
+                label: Tier of Service
+                type: multi
+
+            -   name: evidence_tier
+                label: Tier of Evidence
+                type: multi
+
+
+fixtures:
+    -   name: XY-Zone
+        slug: /programs/programs_detail
+        summary: >
+            The XY-Zone supports and guides adolescent males as they journey into manhood.  It is a leadership development and peer support program that develops productive life skills in high school-age, at-risk males.	
+        description: >
+            XY Zone is a program for adolescent males that focus on the five Rs: respect, responsibility, relationships, role modeling, and reaching out. The program includes goal setting peer accountability and ongoing opportunities for participants to practice their SEL skills.
+        grade:
+            - ms
+            - hs
+        gender:
+            - m
+        race:
+            - am
+            - as
+            - bl
+            - hi
+            - wh
+            - tw
+        reach:
+            - n
+        student_needs:
+            - bi
+            - att
+            - do
+            - sel
+        student_characteristics:
+            - na
+        service_tier:
+            - 2
+        setting:
+            - sch
+            - co
+        network_use:  true
+        partner_org: false
+        core_services:
+            - bi
+            - csl
+            - en
+            - ls
+        free_cost: true
+        assessment: false
+        evidence_tier: 5
+
+    -   name: NFL Play 60
+        slug: /programs/programs_detail
+        summary: >
+            NFL PLAY 60 is the National Football League's campaign to encourage kids to be active for 60 minutes a day in order to help reverse the trend of childhood obesity. It is a collaboration between the NFL and American Heart Association.
+        description: >
+            Through lessons, videos, and interactive activities, NFL Play 60 Challenge encouarges students to get 60 minutes or more of physical activity. Resources can be implemented in-school, with a student's family etc. The resources are also academically aligned to National Physical Education Learning Standards, Next Generation Science Standards, and Common Core State Standards.
+        grade:
+            - ms
+            - hs
+        gender:
+            - m
+            - f
+        race:
+            - am
+            - as
+            - bl
+            - hi
+            - wh
+            - tw
+        reach:
+            - n
+        student_needs:
+            - bi
+            - att
+            - do
+            - sel
+        student_characteristics:
+            - na
+        service_tier:
+            - 1
+            - 2
+        setting:
+            - sch
+            - hf
+            - as
+        network_use: false
+        partner_org: false
+        core_services:
+            - bi
+            - csl
+            - en
+            - ls
+        free_cost: true
+        assessment: false
+        evidence_tier: 4
+
+    -   name: Why Try
+        slug: /programs/programs_detail
+        summary: >
+            The WhyTry Program is a resilience education curriculum that provides simple, hands-on solutions for dropout prevention, violence prevention, truancy reduction, and increased academic success.
+        description: >
+            Curriculum designed for K-12 that uses a multi-sensory approach using visual analogies, reinforced through customized hip hop music, video, learning activities, journal activities and other multimedia. Why Try teaches critical SEL principals and resiliency. The program is usually used with individual students and in small groups.  
+        grade:
+            - el
+            - ms
+            - hs
+        gender:
+            - m
+            - f
+        race:
+            - am
+            - as
+            - bl
+            - hi
+            - wh
+            - tw
+        reach:
+            - n
+        student_needs:
+            - bi
+            - att
+            - do
+            - sel
+        student_characteristics:
+            - frpl
+        service_tier:
+            - 1
+            - 2
+            - 3
+        setting:
+            - sch
+            - as
+        network_use:  true
+        affiliates:
+            - CIS of Mid-America at Iowa
+            - CIS of Mid-America at NE Kansas
+            - CIS of Mid-America at SE Kansas
+            - CIS of Mid-America at SW Kansas
+            - CIS of Ottawa
+            - CIS of Caldwell County
+            - CIS of Charlotte-Mecklenburg
+            - CIS of the Charleston Area
+            - CIS of Spokane
+        partner_org: false
+        core_services:
+            - bi
+            - ls
+        free_cost: false
+        cost_desc: >
+            Elementary and Secondary curriculums are bout $300 each, a full one-year online curriculum is $500.
+        assessment: false
+        outcomes:
+            - SEL
+            - Decreased absences
+            - Behavior
+        evidence_tier: 2

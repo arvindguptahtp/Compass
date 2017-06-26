@@ -1,0 +1,14 @@
+extends _abstract
+
+block model
+    -   
+        if (routes[instance]) {
+            let temp = routes[instance]
+            
+            navigation.data({
+                label: temp.title,
+                target: temp.target,
+                url: (django && temp.proto_slug) ? url(temp.slug) : temp.proto_slug,
+                show: temp.published
+            })
+        }

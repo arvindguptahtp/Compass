@@ -1,0 +1,18 @@
+extends _abstract
+
+block model
+    -
+        poster
+            .define({})
+            .replace({
+                class: "poster--text",
+            })
+
+
+block hdr
+    //- add django typogrify at some point
+    
+    header.hdr&attributes(poster.hdr)
+        h1.hdr-hed&attributes(poster.hed)
+            != v(poster.data.hed)
+                
