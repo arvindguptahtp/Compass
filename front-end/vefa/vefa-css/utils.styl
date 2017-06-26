@@ -1,0 +1,243 @@
+bvr(value=null)
+    multiplier = config.base.vertical_rhythm ? config.base.vertical_rhythm : config.base.line_height
+        
+    if value
+            return floor( multiplier * value )
+    else
+        return multiplier
+        
+
+o_sel(selector)
+    sel = "%s" % selector
+    sel = split(" ", sel)
+    sel_length = length(sel)
+    
+    if sel_length > 2
+        sel = slice(sel, 2, sel_length)
+
+    sel = join("", sel)
+    sel = replace("\'", "", sel)
+    sel = replace("\.", "", sel)
+    sel = replace(":", "", sel)
+    sel = replace(" ", "", sel)        
+    
+    return sel sel_length
+
+o-attr(types=class)
+    for type in types
+        sel = o_sel( selector() )[0]
+        sel_length = o_sel( selector() )[1]
+        
+        if (config.breakpoints[type])
+            if (config.breakpoints[type] == 0px)
+                /[o-{type}*={s("%s", sel)}]
+                    {block}
+            else
+                +over(type)
+                    /[o-{type}*={s("%s", sel)}]
+                        {block}
+        
+        else if (type == "class")
+            // sel = replace("'", "", sel)
+            // sel = replace('"', "", sel)
+            
+            if sel_length <= 2
+                /[{type}*={s("%s", sel)}]
+                    {block}
+            else
+                /^[2] [{type}*={s("%s", sel)}]
+                    {block}
+
+o-eq(types=class)
+    for type in types
+        sel = o_sel( selector() )[0]
+        sel_length = o_sel( selector() )[1]
+        
+        if (config.breakpoints[type])
+            if (config.breakpoints[type] == 0px)
+                /[o-{type}~={s("%s", sel)}]
+                    {block}
+            else
+                /[o-{type}~={s("%s", sel)}]
+                    +over(type)
+                        {block}
+        
+        else if (type == "class")
+            sel = replace("'", "", sel)
+            sel = replace('"', "", sel)
+            
+            if sel_length <= 2
+                /.{ sel }
+                    {block}
+            else
+                /^[2] .{ sel }
+                    
+                    {block}
+            
+o-add(types)
+    for type in types
+        sel = "%s" % pop(split(".", selector()))
+        sel = join("", sel)
+        
+        /^[1][o-{type}*={ sel }]
+            {block}
+
+
+u-attr(type, c=null)
+    +under(type)
+        if c
+            c = "%s" % c
+            [u-{type}*={ c }]
+                {block}
+        else
+            sel = "%s" % selector()
+            sel = join("", sel)
+            sel = replace("\.", "", sel)
+            /[u-{type}*={ sel }]
+                {block}
+
+class-partial(c=null)
+    if c
+        c = "%s" % c
+        [class*={ c }]
+            {block}
+    else
+        sel = "%s" % selector()
+        sel = join("", sel)
+        sel = replace("\.", "", sel)
+        /[class*={ sel }]
+            {block}
+
+class_partial(c=null)
+    if c
+        c = "%s" % c
+        [class*={ c }]
+            {block}
+    else
+        sel = "%s" % selector()
+        sel = join("", sel)
+        sel = replace("\.", "", sel)
+        /[class*={ sel }]
+            {block}
+
+
+// ==========================================================================
+// Percentage
+//
+//
+pct( numerator, denominator )
+    return unit( (numerator/denominator) * 100, "%")
+
+
+sqrt(x)
+    return math(x, 'sqrt')
+
+
+// / ==========================================================================
+// Gutter
+// General spacing if different from base line height
+//
+//
+gutter(value=null)
+    if value
+        return floor( config.base.gutter * value )
+    else
+        return floor( config.base.gutter )
+
+
+
+min-spacing(type, min_size, min_width=null)
+    if min_width
+        +under(min_width)
+            {type}: min_size
+    else
+        {type}: min_size
+
+max-spacing(type, max_size, max_width=null)
+    if max_width
+        +over(max_width)
+            {type}: max_size
+    else
+        {type}: max_size
+
+relative-spacing(type, min_size, max_size, min_width, max_width)
+    delta_size = unit(max_size - min_size, "")
+    delta_width = unit(max_width - min_width, "")
+
+    +between(min_width, max_width)
+        fallback = floor( ( min_size + max_size ) / 2 )
+        {type}: fallback
+        {type}: s("calc( %s + %s * (100vw - %s) / %s )", min_size, delta_size, min_width, delta_width  )
+
+
+
+// ==========================================================================
+// Layers
+//
+//
+_pseudo_layer()
+    content: ""
+    display: block
+    z-index: -1
+
+layers()
+    position: relative unless @position
+    z-index: 1 unless @z-index
+
+    &::before
+    &::after
+        _pseudo_layer()
+        if block
+            {block}
+
+add-before()
+    position: relative unless @position
+    z-index: 1 unless @z-index
+
+    &::before
+        _pseudo_layer()
+        {block}
+
+add-after()
+    position: relative unless @position
+    z-index: 1 unless @z-index
+
+    &::after
+        _pseudo_layer()
+        {block}
+
+// ==========================================================================
+// Dev Tools
+// helps for layout and alignment on vertical and horizontal grid does not
+// add to width and height; sits one pixel outside of actual width and height.
+// Additionally, a background is added based on the content box, enabling
+// visualization of element padding.
+//
+// @color - set color value for outline, defaults to red
+// @bkg - show helpful background, defaults to true
+//
+//
+o(color=red)
+    outline: 1px solid color
+
+bk(color=red)
+    o()
+    visibility: visible !important
+    background-color: rgba(color, 50%)
+    background-clip: content-box
+
+dev_tools(color=red, namespace=null)
+
+    .{namespace}bk
+        bk(color)
+
+    .{namespace}o
+        o(color)
+
+    .{namespace}lh-test
+        layers()
+
+        &::after
+            border-bottom: color
+            width: 1000%
+            position: absolute 0px auto auto 0px

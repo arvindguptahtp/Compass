@@ -1,0 +1,167 @@
+// Breakpoints
+// The following mixins take a block of code and place it into a corresponding
+// media query breakpoint. Based on Rupture: https://github.com/jenius/rupture
+//
+// Default breakpoints are in EMs based off of a base font size of 16px,
+// you can overload these
+//
+// bp_condensed: 37.5em, - 601px (max-width)
+// bp_extended: 56.25em - 901px (min-width)
+//
+//
+
+
+// ==========================================================================
+// Internet Explorer
+//
+// Breakpoint for serving styles to ie10/11
+//
+//
+ieEdge()
+    @supports (-ms-accelerator:true)
+        {block}
+
+// ie 11+
+ie11()
+    /_:-ms-fullscreen,
+    :root &
+        {block}
+
+ie10()
+    /_:-ms-input-placeholder,
+    :root &
+        {block}
+
+ie9()
+    @media screen\0 and (min-resolution: .001dpcm)
+    // @media screen and (min-width:0\0) and (min-resolution: .001dpcm)
+        {block}
+
+// ie 10/11/+
+ie()
+    // @media screen and (min-width:unquote("0\0"))
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+        {block}
+
+
+
+// ==========================================================================
+// Grid
+//
+// @rule for detecting grid functionality
+//
+//
+grid()
+    @supports (display: grid)
+        {block}
+
+no-grid()
+    @supports not (display: grid)
+        {block}
+
+// ==========================================================================
+// Retina
+//
+// Breakpoint for seriving styles to retina(-like) screens
+//
+//
+retina()
+    @media (min-resolution: 1.5dppx), (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (min-resolution: 144dpi)
+        {block}
+
+
+
+
+// ==========================================================================
+// Under defined size
+//
+// Breakpoint for seriving styles to screens under a certain screen size
+//
+//
+under( max )
+    // serve to 1px below this width
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    max = max - 1px
+    condition = 'only screen and (max-width: %s)' % max
+    @media condition
+        {block}
+
+under-landscape( max )
+    // serve to 1px below this width
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    max = max - 1px
+    condition = 'only screen and (max-width: %s) and (orientation: landscape)' % max
+    @media condition
+        {block}
+
+under-portrait( max )
+    // serve to 1px below this width
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    max = max - 1px
+    condition = 'only screen and (orientation: portrait) and (max-width: %s)' % max
+    @media condition
+        {block}
+
+shorter-than( max )
+    // serve to 1px below this height
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    max = max - 1px
+    condition = 'only screen and (max-height: %s)' % max
+    @media condition
+        {block}
+
+
+
+
+// ==========================================================================
+// Over defined size
+//
+// Breakpoint for seriving styles to screens over a certain screen size
+//
+//
+over( min )
+    // serve from above this width
+    min = config.breakpoints[min] if typeof(min) is 'ident'
+    condition = 'only screen and (min-width: %s)' % min
+    @media condition
+        {block}
+
+
+over-landscape( min )
+    // serve from above this width in landscape mode
+    min = config.breakpoints[min] if typeof(min) is 'ident'
+    condition = 'only screen and (orientation: landscape) and (min-width: %s)' % min
+    @media condition
+        {block}
+
+over-portrait( min )
+    // serve from above this width in portrait mode
+    min = config.breakpoints[min] if typeof(min) is 'ident'
+    condition = 'only screen and (orientation: portrait) and (min-width: %s)' % min
+    @media condition
+        {block}
+
+taller-than( max )
+    // serve from above this height
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    condition = 'only screen and (min-height: %s)' % max
+    @media condition
+        {block}
+
+
+
+
+// ==========================================================================
+// Between 2 defined sizes
+//
+// Breakpoint for seriving styles to screens between two limits
+//
+//
+inbetween( min, max )
+    // serve from above this width, to 1px below the next breakpoint
+    min = config.breakpoints[min] if typeof(min) is 'ident'
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    max = max - 1px
+    condition = 'only screen and (min-width: %s) and (max-width: %s)' % ( min max )
+    @media condition
+        {block}

@@ -1,0 +1,417 @@
+// Object Patterns
+
+// flex: flex-grow flex-shrink flex-basis
+// static: 0 0 auto
+// fit: 0 1 auto
+// balance: 1 1 auto
+flex_mods = {
+    static: 0 0 auto
+    fit: 0 1 0%
+    balance: 1 1 auto
+    fill: 1 0
+}
+
+set-flex-size(type)
+    type = join("", type)
+    // display: flex
+    flex: flex_mods[type]
+
+
+
+
+// ==========================================================================
+// Flex Rows & Columns
+//
+// Do not wrap by default
+//
+//
+init_flex(types="class")
+    
+    for type in types
+        if (type == "class" || config.breakpoints[type] == 0px)
+            
+            if (type != "class")
+                type = "o-%s" % type
+
+            [{type}*="row--"]
+            [{type}*="col--"]
+                display: flex
+                flex-wrap: nowrap
+                width: 100%
+
+            [{type}*="row--"]
+                flex-direction: row
+
+                > * + *
+                    margin-top: 0
+                    
+            [{type}*="col--"]
+                flex-direction: column
+
+            [{type}*="--xAuto"]
+                width: auto
+                
+            [{type}*="--yAuto"]
+                height: auto
+            
+            
+            [{type}*="--xRev"]
+                flex-direction: row-reverse
+
+            [{type}*="--yRev"]
+                flex-direction: column-reverse
+                
+        else
+            +over(type)    
+                type = "o-%s" % type
+                
+                [{type}*="row--"]
+                [{type}*="col--"]
+                    display: flex
+                    flex-wrap: nowrap
+                    width: 100%
+
+                [{type}*="row--"]
+                    flex-direction: row
+
+                    > * + *
+                        margin-top: 0
+                        
+                [{type}*="col--"]
+                    flex-direction: column
+
+                [{type}*="--xAuto"]
+                    width: auto
+                    
+                [{type}*="--yAuto"]
+                    height: auto
+                
+                [{type}*="--xRev"]
+                    flex-direction: row-reverse
+
+                [{type}*="--yRev"]
+                    flex-direction: column-reverse
+            
+
+
+
+
+// ==========================================================================
+// Flex flags that alter the layout of flex items
+//
+// override values in your project by supplying new values to the flex object
+//
+//
+flex_justify_content = {
+    Grid: space-between
+    Space: space-around
+    Start: flex-start
+    End: flex-end
+    Middle: center
+}
+
+flex_align = {
+    Auto: auto
+    Start: flex-start
+    End: flex-end
+    Middle: center
+    Full: stretch
+    Base: baseline
+}
+
+flex_flags = {
+    justify: Grid Space Start End Middle
+    align: Start End Middle Full Base
+    self: Auto Start End Middle Full Base
+}
+
+init_flex_flags(types="class", self=false)
+    
+    for type in types
+        if (type == "class" || config.breakpoints[type] == 0px)
+            
+            if (type != "class")
+                type = "o-%s" % type
+                
+            // Row Justify Content flags [class*="--p____"]
+            // along primary axis
+            for flag in flex_flags.justify
+                dec = '[%s*="--p%s"]' % (unquote(type) unquote(flag)) 
+                
+                {dec}
+                    justify-content: flex_justify_content[flag]
+                    
+            // Align Items flags [class*="--s____"]
+            // along the secondary axis
+            for flag in flex_flags.align
+                dec = '[%s*="--s%s"]' % (unquote(type) unquote(flag))
+                
+                {dec}
+                    align-items: flex_align[flag]
+                
+        else
+            +over(type)    
+                type = "o-%s" % type
+                
+                // / Row Justify Content flags [class*="--p____"]
+                // along primary axis
+                for flag in flex_flags.justify
+                    dec = '[%s*="--p%s"]' % (unquote(type) unquote(flag)) 
+                    
+                    {dec}
+                        justify-content: flex_justify_content[flag]
+                        
+                // Align Items flags [class*="--s____"]
+                // along the secondary axis
+                for flag in flex_flags.align
+                    dec = '[%s*="--s%s"]' % (unquote(type) unquote(flag))
+                    
+                    {dec}
+                        align-items: flex_align[flag]
+
+    
+
+init_self_flags(types="class")
+    for type in types
+        if (type == "class" || config.breakpoints[type] == 0px)
+            
+            if (type != "class")
+                type = "o-%s" % type
+                   
+            // Align Self flags [class*="--a____"]
+            for flag in flex_flags.self
+                dec = '[%s*="--a%s"]' % (unquote(type) unquote(flag))
+            
+                {dec}
+                    align-self: flex_align[flag]
+
+                
+        else
+            +over(type)    
+                type = "o-%s" % type
+                
+                        
+                // Align Self flags [class*="--a____"]
+                for flag in flex_flags.self
+                    dec = '[%s*="--a%s"]' % (unquote(type) unquote(flag))
+                
+                    {dec}
+                        align-self: flex_align[flag]
+
+    
+                
+
+
+
+
+// ==========================================================================
+// Flex Matrices
+//
+// Rows that wrap to form object grids
+//
+//
+init_matrices(types="class")
+
+    for type in types
+        if (type == "class" || config.breakpoints[type] == 0px)
+            
+            if (type != "class")
+                type = "o-%s" % type
+            
+            [{type}*="matrix--"]
+                display: flex
+                flex-flow: row wrap
+                width: 100%
+
+                // hide any empty matrix/grid
+                &:empty
+                    visibility: collapse
+                    margin: 0
+       
+        else
+            +over(type)    
+                type = "o-%s" % type
+                
+                [{type}*="matrix--"]
+                    display: flex
+                    flex-flow: row wrap
+                    width: 100%
+
+                    // hide any empty matrix/grid
+                    &:empty
+                        visibility: collapse
+                        margin: 0
+
+        
+
+
+        // mod-balance should fill the space available in its row
+        // when would this get used?
+        // > .mod-balance
+        //     width: auto
+        //     max-width: none
+        //     flex: auto
+
+
+
+// Percentage margin/paddings don't work due to flex-box specs,
+// so spacing/vertical needs to be supplied in pixels / rems / ems
+new-matrix(elements=1, spacing=null, vertical=-1)
+    // width per element per row, change to a percentage
+    element_width = (100 / elements)
+    element_width = unit(element_width, "%")
+    // 3 elements = 33.333%
+
+    // set up vertical spacing
+    // row_spacing = unit(spacing, "px") unless vertical
+    row_spacing = (vertical >= 0) ? vertical : spacing
+
+    // set up spacing between elements
+    // get total spacing between elements in a row
+    // iteration of spacing is 1 less than the number of elements in row
+    spacing_between_elements = (spacing / elements) * (elements - 1)
+    
+    
+    &:nth-of-type(n):nth-of-type(n)
+        width: s("calc( %s - %s )", element_width, spacing_between_elements)
+        margin: 0
+
+    &:nth-of-type(n):not(:nth-of-type(-n+{ elements }))
+        margin-top: row_spacing if row_spacing > 0
+
+    // first in row
+    &:nth-of-type({ elements }n+1):not(:only-child)
+        margin-right: 0
+    
+    // last in row
+    &:nth-of-type({ elements }n):not(:only-child)
+        margin-left: 0
+
+    // all but first on the row
+    &:nth-of-type(n):not(:nth-of-type({ elements }n+1))
+        margin-left: (spacing / 2)
+    
+    // all but last on the row
+    &:nth-of-type(n):not(:nth-of-type({ elements }n))
+        margin-right: (spacing / 2)
+    
+
+set_matrix(elements=1, spacing=null, vertical=null)
+    // width per element per row, change to a percentage
+    element_width = (100 / elements)
+    element_width = unit(element_width, "%")
+
+    // set up vertical spacing
+    column_spacing = unit(spacing, "px") unless vertical
+    column_spacing = spacing unless vertical
+    column_spacing = vertical if unit(vertical, "") >= 0
+
+    // set up spacing between elements
+    // get total spacing between elements in a row
+    // iteration of spacing is 1 less than the number of elements in row
+    spacing_between_elements = (spacing / elements) * (elements - 1)
+
+    width: s("calc( %s - %s )", element_width, ceil(spacing_between_elements))
+
+    &:nth-of-type(n) // clears out any RWD declarations on the matrix
+        margin-top: 0
+        
+    +after-first-of-type(elements)
+        margin-top: ceil(column_spacing)
+
+
+h-sep(elements=1)
+    elements = "%sn" % (elements > 1 ? elements : null )
+    
+    &:nth-of-type({elements})
+        height: 1px
+        width: 100%
+        {block}
+        
+v-sep(elements=1)
+    elements = "%sn" % (elements > 1 ? elements : null )
+    
+    &:nth-of-type({elements})
+        height: auto
+        width: 1px
+        {block}
+        
+set_matrix_orphans(elements=1, spacing=null, vertical=null)
+    unless elements < 3
+        element_width = (100 / elements)
+        element_width = unit(element_width, "%")
+
+        for _num_ in (3 .. elements)
+            // get missing elements outside of the current one
+            missing_elements = elements - _num_ + 1
+            // get new offset to push right
+            new_offset = element_width * missing_elements
+            // fix the space_between issues
+            lagging_space = (spacing / elements) * missing_elements
+
+            &:nth-child({elements}n + {_num_ - 1}):nth-last-child(1)
+                // push to the right the appropriate amount
+                // this will push the other elements in the row
+                // (aside from 1st element) into position
+                margin-right: s("calc( %s + %s )", unit(new_offset, "%"), lagging_space)
+
+
+
+
+// ==========================================================================
+// Aspect Ratios
+//
+// Use on elements that need to retain a specific aspect ratio but adapt to
+// width of container
+//
+//
+init_aspect_ratio(namespace=embed)
+    // new_namespace = set_namespace(namespace)
+
+    {namespace}
+        .--
+            +o-attr(class)
+                position: relative
+                overflow: hidden
+                padding: 0
+
+
+                &:not({s('[class~="%s--free"]', namespace)})::after
+                    content: ''
+                    display: block
+                    height: 0
+
+
+        .-item
+            +o-eq(class)
+                position: absolute 0
+                height: 100%
+                width: 100%
+                object-fit: cover
+
+
+//  width, height
+set_aspect_ratio(width, height)
+    &::after
+        padding-bottom: percentage( height / width )
+
+
+
+
+// ==========================================================================
+// Responsive background image object
+//
+//
+init_responsive_bkg( img, width, height )
+    background: url(img) no-repeat center center if img
+    background-repeat: no-repeat unless img
+    background-position: center center unless img
+    background-size: cover
+    height: 0
+    padding-bottom: pct(height, width)
+
+set_responsive_bkg(ratio, namespace="bkg")
+    namespace = set_namespace(namespace)
+
+    .{namespace}{ratio[0]}x{ratio[1]}
+        responsive_bkg_image(width=ratio[0], height=ratio[1])

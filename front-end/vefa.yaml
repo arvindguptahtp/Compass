@@ -1,0 +1,86 @@
+project: CIS-SSG
+src: ./
+build: _build
+publicPath: static/js/
+components: components
+entries:
+    compile: ./compile.js
+    app: ./components/app.js
+
+
+# ---------------------------------------------------------------------
+# DATA
+# ---------------------------------------------------------------------
+locals:
+    -   name: data
+        dir: data
+    -   name: app
+        dir: components
+        output: 
+            dir: .json
+
+
+# ---------------------------------------------------------------------
+# TEMPLATING
+# ---------------------------------------------------------------------
+templates:
+    context: ./components/
+    path: "[path][name]/index.html"
+    suppress:
+        - _shopify.pug
+        - _django.pug
+        - _vefa.pug
+        - _abstract.pug
+    emit:
+        - site/
+        - affiliates/
+        - partners/
+        - programs/
+    homepage: site/index
+    # bypass_export: true
+    # path: "[path][name]/index.html"
+    # flatten_one_level: 
+    #     - styleguide
+
+
+# ---------------------------------------------------------------------
+# STYLES
+# ---------------------------------------------------------------------
+styles:
+    context: ./components/
+    build: "/static/css/"
+    path: "static/css/[name].css"
+    emit:
+        - base.styl
+        - app.styl
+    define:
+        app: ../.json/app.json
+    browsers: 
+        - Chrome > 49
+        - Safari > 9.1
+        - Firefox > 50
+        - IE 11
+        - IE 10
+        - IE 9
+        - iOS 8
+
+
+# ---------------------------------------------------------------------
+# ASSETS
+# ---------------------------------------------------------------------
+assets:
+    io:
+        context: &asset_io_context ./res/
+        export: &asset_io_export static/res/[path][name].[ext]
+
+
+images:
+    io:
+        passSource: true
+        context: *asset_io_context
+        export: *asset_io_export
+
+webp:
+    io:
+        context: *asset_io_context
+        export: static/res/[path][name].[ext].webp

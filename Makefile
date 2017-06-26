@@ -31,3 +31,34 @@ docs:
 
 help:
 	@perl -nle'print $& if m{^[a-zA-Z_-]+:.*?## .*$$}' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+
+###################################
+### UI shortcuts
+ui = ./front-end/
+
+ui-deps: 
+	cd $(ui) && yarn install
+
+ui-update: ## Update UI Build Process dependencies
+	cd $(ui) && yarn upgrade-interactive
+
+ui-dev:
+	clear
+	cd $(ui) && yarn run django-dev
+
+ui-build:
+	clear
+	cd $(ui) && yarn run django-build
+
+proto-dev:
+	clear
+	cd $(ui) && yarn run dev
+
+proto-build:
+	clear
+	cd $(ui) && yarn run build
+
+razor:
+	clear
+	cd $(ui) && yarn run razor

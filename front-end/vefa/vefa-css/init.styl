@@ -1,0 +1,218 @@
+// Initializations
+// These stylus mixins & functions reset browser base HTML. Some devs like
+// normalize.css, but we've had great success with clearing it all out and see
+// no browser issues or slowness this way.
+//
+
+
+// ==========================================================================
+// HTML-init
+// Sets root font-size to 10px for use with REM styling. Sets viewport to
+// 100% height to force scrollbar so content doesn't bounce around
+//
+//
+html()
+    html
+        {block}
+        // set to 10px in ems
+        // font-size: 62.5% unless @font-size
+        height: 100% unless @height
+        // no harm no foul
+        text-size-adjust: 100% unless @text-size-adjust
+
+
+
+
+// ==========================================================================
+// Body-init
+//
+//
+body()
+    body
+        display: flex unless @display
+        flex-direction: column unless @flex-direction
+        min-height: 100vh unless @height or @min-height
+        {block}
+        // set_base() unless @font-size
+
+
+
+// ==========================================================================
+// Main-init
+//
+//
+main()
+    main
+        {block}
+        // ie10 doesn't understand that <main> is a block element, so flex expansion fails.
+        display: flex unless @display
+        set-flex-size: fill unless @flex
+        order: 2 unless @order
+        
+wrapper()
+    {block}
+    // ie10 doesn't understand that <main> is a block element, so flex expansion fails.
+    display: flex unless @display
+    set-flex-size: fill unless @flex
+    order: 2 unless @order
+
+
+// ==========================================================================
+// Element reset
+// Reset HTML elements to base empty values to set and opt-in at will.
+// Typical inline elements inherit values from parent element.
+// basic form setup / normalization
+//
+//
+reset(forms=true)
+    *
+        background-repeat: no-repeat
+        margin: 0
+        padding: 0
+        box-sizing: border-box
+        font-size: 100%
+        list-style: none
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+        font-weight: 400
+
+    a,
+    abbr,
+    cite,
+    mark,
+    time,
+    span,
+    button,
+    input,
+    select,
+    textarea
+        // font-size: inherit
+        // font-style: inherit
+        // font-weight: inherit
+        // font-variant: inherit
+        // font-family: inherit
+        // line-height: inherit
+        font: inherit
+        letter-spacing: inherit
+        text-align: inherit
+        text-transform: inherit
+        color: inherit
+
+    a
+        text-decoration: none
+        
+    a
+    button
+    label
+        cursor: pointer
+    
+    hr
+        border: 0
+    
+    img
+        display: block
+        width: 100%
+        max-width: 100%
+        border: 0
+
+        // might not be required if contained in right "block"
+        &[height]
+        &[width]
+        &.static
+            width: auto
+            max-width: none
+
+    picture
+        source
+        img
+            margin: 0
+
+    svg
+        display: block
+        fill: currentColor
+
+        a
+            fill: currentColor
+
+    span svg
+        display: inline-block
+        vertical-align: baseline
+
+
+    address
+        font-style: normal
+
+    if forms
+        form
+            :focus
+                outline: 0
+
+            ::-moz-focus-inner
+                padding: 0
+                border: 0
+
+        fieldset
+            border: 0
+
+        input,
+        select,
+        textarea,
+        button
+            margin: 0
+            vertical-align: middle
+            border: 0
+            border-radius: 0
+            cursor: pointer
+            text-decoration: none
+
+        button
+            width: auto
+            text-align: center
+            background: none
+            white-space: nowrap
+            -moz-appearance: none
+            -webkit-appearance: none
+            appearance: none
+            user-select: none
+
+        :hover
+        :focus
+        :active
+            text-decoration: none
+            outline: 0
+
+        [disabled]
+        :disabled
+        .is-disabled
+            cursor: default
+
+        [type="checkbox"]
+        [type="radio"]
+            // should probably default this to a flex box style... why border-radius?
+            position: static
+            width: auto
+            padding: 0
+            border: 0
+            border-radius: 0
+
+
+
+
+// ==========================================================================
+// Details reset
+//
+// default details is gross and we'll define our own elsewhere
+//
+//
+reset_details()
+    details
+        summary::-webkit-details-marker
+            display: none
+
+    summary
+        cursor: pointer

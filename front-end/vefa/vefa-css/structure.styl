@@ -1,0 +1,114 @@
+// ==========================================================================
+// Relative sizing
+//
+//
+relative-sizing(min_size, max_size, min_width, max_width)
+    delta_size = unit(max_size - min_size, "")
+    delta_width = unit(max_width - min_width, "")
+    s("calc( %s + %s * (100vw - %s) / %s )", min_size, delta_size, min_width, delta_width  )
+
+
+
+
+// ==========================================================================
+// Max Content Width
+//
+// Allows for centered content regions with full windowed backgrounds
+//
+//
+max-content-width(max_content, lower_bound=null)
+    // computed
+    computed_fence = max_content
+    computed_fence = computed_fence + lower_bound*2 if lower_bound
+
+    +over(computed_fence)
+        padding-left: 'calc( (100vw - %s)/2 )' % max_content
+        padding-right: @padding-left
+
+
+
+
+// ==========================================================================
+// Gridset (flex)
+//
+//
+calc-grid(columns, totalColumns, gutter=null)
+    gutter = '- %s' % gutter if gutter
+    perc = 100% * (columns / totalColumns)
+    column_dimension = 'calc(%s %s)' % (perc gutter) if gutter
+    column_dimension = perc unless gutter
+
+    if mixin
+        width: column_dimension
+    else
+        column_dimension
+
+
+calc-offset(columns, totalColumns, gutter=null)
+    dimension = calc-grid(columns, totalColumns, gutter)
+
+    if mixin
+        margin-left: dimension
+    else
+        dimension
+
+
+
+
+// ==========================================================================
+// Z-Index
+//
+// makes element shift its z-axis to a managed level
+// spares us from typing in random numbers or setting everything to 9999
+//
+//
+z_index = {
+    above: 100
+    stacked: 200
+    masthead: 300
+    nav: 400
+    overlay: 500
+    modal: 600
+}
+
+z-index(type, increase=0)
+    if typeof(type) == "unit"
+        z-index: type
+    else
+        type = join("", type)
+        z = z_index[type]
+        z = z + increase if increase
+
+        z-index: z
+
+
+// ==========================================================================
+// Square dimensions
+//
+//
+sq(arg)
+    height: arg
+    width: arg
+
+
+
+
+// ==========================================================================
+// Margin/Padding helpers
+//
+//
+padding-x(pad_value, pad_value_2=null)
+    padding-left: pad_value
+    padding-right: pad_value_2 ? pad_value_2 : pad_value
+
+padding-y(pad_value, pad_value_2=null)
+    padding-top: pad_value
+    padding-bottom: pad_value_2 ? pad_value_2 : pad_value
+
+margin-x(pad_value, pad_value_2=null)
+    margin-left: pad_value
+    margin-right: pad_value_2 ? pad_value_2 : pad_value
+
+margin-y(pad_value, pad_value_2=null)
+    margin-top: pad_value
+    margin-bottom: pad_value_2 ? pad_value_2 : pad_value

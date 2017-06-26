@@ -1,0 +1,107 @@
+// Effect Patterns
+
+// ==========================================================================
+// Backplate Visibility
+// Overload CSS backplate-visibility property to include needed browser prefixes
+//
+//
+backface(hide=false)
+    transform: translate3d(0,0,0) /* stops flickering */
+    backface-visibility: hidden if hide
+    backface-visibility: visible unless hide
+
+
+
+
+// ==========================================================================
+// Lighten background on hover
+// lighten background color with a transition on hover.
+// IE9+
+//
+// @amount (float) -
+//    give difference to lighten background color by. Defaults to 5%,
+//    no unit needed
+// @duration (float) -
+//    how long transition takes to complete. Defaults to .5 seconds. Transition
+//    is set to ease-in/ease-out, overload this individually if desired
+//
+//
+hover-lighten(amount = 5%, duration = .5s)
+    hover(background-color, duration)
+
+    &:hover
+        background: lighten(@background-color, unit(amount, "%") )
+
+
+// ==========================================================================
+// Darken background on hover
+// darken background color with a transition on hover.
+// IE9+
+//
+// @amount (float) -
+//    give difference to lighten background color by. Defaults to 5%,
+//    no unit needed
+// @duration (float) -
+//    how long transition takes to complete. Defaults to .5 seconds. Transition
+//    is set to ease-in/ease-out, overload this individually if desired
+//
+//
+hover-darken(amount = 5%, duration = .5s)
+    hover(background-color, duration)
+
+    &:hover
+        background: darken(@background-color, unit(amount, "%") )
+
+
+
+// // ==========================================================================
+// // Smooth state transitions
+// set_transition_declaration_list(change_list, time_declaration)
+//     delta = ""
+//     for value in change_list
+//         delta = delta + s("%s %s ease-in-out", value unit(time_declaration, "s"))
+//         delta = delta + ", " unless last(change_list) == value
+//     transition: s(delta)
+//
+//
+// set_transition_states(change = opacity, time_out = .5s, time_in = time_out, state_type=null)
+//     if time_out == time_in and state_type
+//         \,
+//         &:{state_type}
+//             set_transition_declaration_list(change, time_out)
+//
+//     else
+//         set_transition_declaration_list(change, time_out)
+//
+//         if state_type
+//             &:{state_type}
+//                 set_transition_declaration_list(change, time_in)
+//
+// // hover(change = opacity, time_out = .5s, time_in = time_out)
+// //     set_transition_states(change, time_out, time_in, state_type="hover")
+//
+//
+// // focus(change = opacity, time_out = .5s, time_in = time_out)
+//     // set_transition_states(change, time_out, time_in, state_type="focus")
+//
+// hover(decs)
+//     \,
+//     &:hover
+//         transition: decs
+//
+//     &:hover
+//         {block}
+//
+//
+// focus(decs)
+//     \,
+//     &:focus
+//         transition: decs
+//
+//     &:focus
+//         {block}
+//
+//
+//
+// active(change = opacity, time_out = .5s, time_in = time_out)
+//     set_transition_states(change, time_out, time_in, state_type="active")
