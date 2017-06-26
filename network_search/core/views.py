@@ -7,7 +7,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 class HomePage(TemplateView):
     """The home page view"""
-    template_name = "pages/home.html"
+    template_name = "site/index.html"
 
 
 class SearchView(FormView):
