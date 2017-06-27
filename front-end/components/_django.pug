@@ -25,6 +25,14 @@ mixin empty()
         != _single( "empty" )
         block
 
+
+mixin with(exp)
+    if django
+        != _tag( "with", exp)
+        block
+        != _endtag("with")
+
+
 mixin load(expression)
     if django
         != _single( "load", `${ expression }` )
