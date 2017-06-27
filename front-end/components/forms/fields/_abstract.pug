@@ -1,5 +1,11 @@
+include /_vefa
 -
     form_field = form_field || new Vefa()
+
+    if (form && form.field) {
+        form_field
+            .mix(form.field)
+    }
 
     if (field) {
         form_field
@@ -26,9 +32,9 @@ block view
         
         block hdr
             label(
-                for=v(`id_${ form_field.data.name }_${ index }`)
+                for=`id_${ form_field.data.name }_${ index }`
             )&attributes(form_field.label)
-                = v(form_field.data.label)
+                = form_field.data.label
             
         
         block bd

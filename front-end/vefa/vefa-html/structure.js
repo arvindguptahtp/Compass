@@ -2,7 +2,7 @@ module.exports = (locals) => {
 
     const _tag = (prop, expression="") => {
         if (expression) {
-            return `{% ${ prop } ${ expression } %}\r`
+            return `{% ${ prop } ${ expression } %}`
         }
 
         return `{% ${ prop } %}`
@@ -23,7 +23,7 @@ module.exports = (locals) => {
         let template = `{% ${ prop } %}`
 
         if (expression) {
-            template = `{% ${ prop } ${ expression } %}\r`
+            template = `{% ${ prop } ${ expression } %}`
         }
 
         return template
@@ -63,12 +63,15 @@ module.exports = (locals) => {
 
         url (slug) {
             if (locals.django) {
-                return _tag("url", `'${ slug }'`)
+                return _single("url", `'${ slug }'`)
+            }
+            else {
+                return slug
             }
         },
 
         if_else (if_val, else_val) {
-            if (local.django) {
+            if (locals.django) {
                 return `
                     ${ _tag("if", if_val) } 
                     ${ v(if_val) } 
@@ -83,7 +86,7 @@ module.exports = (locals) => {
         },
         
         class_switch (if_val, then_val) {
-            if (this.django) {
+            if (locals.django) {
                 return `${ _tag("if", if_val) } ${ then_val } ${ _endtag("if") }`
             }
             else {

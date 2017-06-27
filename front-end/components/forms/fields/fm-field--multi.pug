@@ -1,90 +1,49 @@
 extends _abstract
 
-
 block model
     -
         form_field
-            .mix({
-                class: "fm-field--multi",
-                group: {
-                    class: "field-group--multi hl--xy--bShade",
-                    "o-base": "gx--i1--gxy0",
-                    "o-standard": "gx--i1--gxy0",
+            .define({
+                class: "fm-field--radio",
+                container: {
+                    class: "rxn--shade20 fx--shift",
+                    "o-base": "row--pStart--sMiddle mod--balance pad--y25 rhy--xStart25",
                 },
+                label: {
+                    class: "field-label--bool",
+                    "o-base": "mod--balance"
+                }
             })
-        
-        field_name = form_field._instance.data.name
-    
-    
-    if ["grades", "gender"].includes(field_name)
-        - 
-            form_field
-                .replace({
-                    group: {
-                        "o-compressed": "gx--i2--gxy0",
-                        
-                    }
-                })
 
-    
-    if ["grades"].includes(field_name)
-        - 
-            form_field
-                .replace({
-                    group: {
-                        "o-condensed": "gx--i3--gxy0",
-                    }
-                })
-
-    
-    if ["service_tier", "reach", "setting"].includes(field_name)
-        - 
-            form_field
-                .replace({
-                    group: {
-                        "o-compressed": "gx--i3--gxy0",
-                        "o-standard": "gx--i3--gxy0",
-                    }
-                })
-    
-    
-    if ["student_needs", "core_services"].includes(field_name)
-        - 
-            form_field
-                .replace({
-                    group: {
-                        "o-condensed": "gx--i2--gxy0",
-                    }
-                })
 
 
 block hdr
     p&attributes(form_field.label)
-        = v(form_field.data.label)
-
+        = form_field.data.label
 
 
 block bd
     if choices[form_field.data.name]
-        div()&attributes(form_field.group)
-            
-            for choice, _index in choices[form_field.data.name]
-                input.vx--a11y(
-                    type="checkbox" 
-                    id=`id_${ form_field.data.name }_${ _index }`
-                    name=`${ form_field.data.name }`
-                )
+        div()
+            +for(`choice_value, choice_label in form.${form_field.data.name}.field.choices`)
+                -
+                    input_attrs = {
+                        type: "checkbox",
+                        id: `id_${ form_field.data.name }_${ v('forloop.counter') }`,
+                        name: form_field.data.name,
+                        value: v('choice_value')
+                    }
+                    
+                    _field_val = `form.${ form_field.data.name }.value`
                 
-                
-                - form_field.field.for = `id_${ form_field.data.name }_${ _index }`
+                label&attributes(form_field.container)
+                    +if(`choice_value|safe in ${ _field_val } or choice_value in ${ _field_val }`)
+                        input(checked=true)&attributes(input_attrs)
+                    
+                        +else()
+                            input&attributes(input_attrs)
 
-                label.field-label--multi&attributes(form_field.field)
-                    
-                    - icon_type = _index
-                    block icon
-                    
                     span(
                         o-base="mod--balance"
-                    )= choice
-                    
-    
+                    )&attributes(form_field.label)  
+                        = v('choice_label')

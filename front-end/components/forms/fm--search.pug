@@ -1,6 +1,6 @@
 extends _abstract
 
-block model
+append model
     -
         form
             .define({
@@ -43,8 +43,9 @@ block hdr
     header.fm-hdr&attributes(form.header)
         h1.fm-hed&attributes(form.hed)
             = form.data.title
-
-        - 
+        
+        
+        -   
             ctrl = new Vefa()
                 .data(form.data.submit)
                 .mix({

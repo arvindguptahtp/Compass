@@ -8,10 +8,10 @@ block model
             })
 
 
-
 block bd
     input(
         type="text"
-        id=v(`id_${ form_field.data.name }_${ index }`)
-        name=v(form_field.data.name)
+        id=`id_${ form_field.data.name }`
+        value=v(`form.${ form_field.data.name }.value`, "stringformat:'s'")
+        name=form_field.data.name
     )&attributes(form_field.field)

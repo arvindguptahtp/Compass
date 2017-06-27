@@ -3,22 +3,28 @@ extends _abstract
 
 block model
     -
-        ctrl.define({
-            element: {
-                class: "ctrl--action tx--chrome--f3--tcU rxn--ctrl-shade fx--shift",
-                "o-base": "row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25",
-                "o-condense": "rhy--xStart50",
-                "o-standard": "pad-y50 pad--x100"
-            }
-        })
+        ctrl
+            .define({
+                element: {
+                    class: "ctrl--action tx--chrome--f3--tcU rxn--ctrl-shade fx--shift",
+                    "o-base": "row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25",
+                    "o-condense": "rhy--xStart50",
+                    "o-standard": "pad-y50 pad--x100"
+                },
+                data: {
+                    name: "submit", 
+                    label: "Submit"
+                }
+            })
 
 
 
 block view
     button(
         type="submit"
-    )&attributes(ctrl.element)&attributes(ctrl.data)
+        name=ctrl.data.name
+    )&attributes(ctrl.element)
         
         block bd
-            span= v(ctrl.data.label)
+            span= ctrl.data.label
 

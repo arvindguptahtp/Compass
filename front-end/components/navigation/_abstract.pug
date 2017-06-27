@@ -8,10 +8,26 @@ include /_vefa
             element: {},
             control: {},
             data: {
-                url: "",
-                target: "",
-                label: "",
-                show: true 
+                slug: false,
+                url: false,
+                target: false,
+                label: false,
+                show: true,
+                active: "is-active"
+            },
+            get_absolute_url () {
+                if (this.data.url) {
+                    return this.data.url
+                } 
+                else {
+                    return url(this.data.slug)
+                }
+            },
+            get_active_state (active_state) {
+                let href = this.get_absolute_url()
+                return (active_state && href.includes(active_state.data.slug)) 
+                    ? this.data.active
+                    : "" 
             }
         })
 
@@ -19,24 +35,25 @@ block model
 - navigation = navigation.$freeze()
 
 
-
 block view
-    -
-        active = (active_state) => {
-            if (django) return
+    //- //- -
+    //- //-     active = (active_state) => {
+    //- //-         if (django) {
+    //- //-             return class_switch(`request.url == ${navigation.data.url}`, 'is-active')
+    //- //-         }
             
-            return (page && page.data.slug == navigation.data.url) ? "is-active" : "" 
-        }
-    
+    //- //-         return 
+    //- //-     }
+    //- //- (page && page.data.slug && page.slug == link.slug) ? "is-active" : false
     if navigation.data.show
         li(
             class=navigation.class
         )&attributes(navigation.element)
             a(
-                class=active("is-active")
-                href=navigation.data.url
+                class=navigation.get_active_state(page)
+                href=navigation.get_absolute_url()
                 target=navigation.data.target
-            )&attributes(navigation.control)
+            )&attributes(navigation.control)            
                 
                 block icon
                     yield

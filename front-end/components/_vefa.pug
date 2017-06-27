@@ -1,5 +1,10 @@
 include /_django
 
+- 
+    wrap_str = (str) => {
+        return `'${ str }'`
+    }
+
 mixin iter(num=1)
     - run = Array(num).fill(0)
     - index = 0

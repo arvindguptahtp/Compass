@@ -6,7 +6,8 @@ fm_search:
     -   name: Search
         type: fieldset
         fields:
-            -   name: search
+            q:  
+                name: q
                 label: Keywords
                 type: text
 
@@ -14,17 +15,20 @@ fm_search:
         type: fieldset
         folded: true
         fields:
-            -   name: grades
+            grade:
+                name: grade
                 label: Grades
                 type: multi
                 mix:
                     o-base: gx--i3
 
-            -   name: gender
+            gender:
+                name: gender
                 label: Gender
                 type: multi
             
-            -   name: student_needs
+            need:
+                name: need
                 label: Student Needs
                 type: multi
     
@@ -32,36 +36,42 @@ fm_search:
         type: fieldset
         folded: true
         fields:
-            -   name: network_use
+            use_in_network:
+                name: use_in_network
                 label: Use in Network
-                type: bool
+                type: single
             
-            -   name: is_cost_free
+            free_of_cost:
+                name: free_of_cost
                 label: Free of Cost
-                type: bool
-                
-            -   name: core_services
+                type: single
+
+            services:
+                name: services
                 label: CIS Core Services
-                type: multi
-        
-            -   name: reach
+                type: multi_block
+            
+            reach:
+                name: reach
                 label: Organizational Reach
                 type: multi
                 define:
                     o-base: gx--i3
-        
-            -   name: setting
+            
+            setting:
+                name: setting
                 label: Setting
                 type: multi
-
-            -   name: service_tier
-                label: Tier of Service
+            
+            service_tiers:
+                name: service_tiers
+                label: Tiers of Service
                 type: multi
 
-            -   name: evidence_tier
-                label: Tier of Evidence
+            evidence:
+                name: evidence
+                label: Tiers of Evidence
                 type: multi
-
 
 fixtures:
     -   name: Share Our Strength

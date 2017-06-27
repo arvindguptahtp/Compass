@@ -25,10 +25,19 @@ block bd
     label&attributes(form_field.container)
         input(
             type="checkbox"
-            id=v(`id_${ form_field.data.name }`)
-            name=v(form_field.data.name)
-            
+            id=`id_${ form_field.data.name }`
+            name=form_field.data.name
+            value=v(`form.${ form_field.data.name }.value`, "stringformat:'s'")
         )
 
         span&attributes(form_field.label)
-            = v(form_field.data.label)
+            = form_field.data.label
+
+//- 
+    {% if wrap_label %}
+        <label
+            {% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %}
+        >
+    {% endif %}
+    {% include "django/forms/widgets/input.html" %}
+    {% if wrap_label %} {{ widget.label }}</label>{% endif %}

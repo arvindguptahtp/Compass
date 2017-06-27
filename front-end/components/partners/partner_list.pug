@@ -1,0 +1,40 @@
+extends /site/list
+
+block props
+    - 
+        page.data({
+            title: wrap_str(partners.title),
+            slug: routes.partners.slug,
+            summary: partners.summary,
+            results_collection: partners.fixtures,
+            icon: "partners"
+        })
+
+
+prepend preview
+    -
+        poster = new Vefa()
+            .mix({
+                element: {
+                    class: "co--partners",
+                }
+            })
+
+
+block form
+    include /partners/components/fm--search-partner
+    
+
+
+block results
+    +for("partner in partners.object_list")
+        p: a(href=v('partner.get_absolute_url'))= v('partner')
+
+        //- {% empty %}
+        //- p No matching partners
+
+//-     //- div(
+//-     //-     o-base="rhy--yStart100"
+//-     //- )
+//-     //-     for item in page.data.results_collection
+//-     //-         include partner_result

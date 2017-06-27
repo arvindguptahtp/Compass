@@ -30,9 +30,10 @@ templates:
         - _abstract.pug
     emit:
         - site/index
+        - icons
         # - affiliates/
-        # - partners/
-        # - programs/
+        - partners/partner_list
+        - programs/program_list
     # bypass_export: true
     # flatten_one_level: 
     #     - styleguide

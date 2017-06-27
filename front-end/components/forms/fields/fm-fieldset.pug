@@ -2,23 +2,18 @@ extends /_abstract
 
 block model
     -
-        form_fieldset = form_fieldset || new Vefa()
-            
-        if (fieldset) {
-            form_fieldset
-                .data(fieldset)
-        }
-
-        form_fieldset
-            .define({
+        form_fieldset = new Vefa()
+            .instance({
                 legend: {
                     class: "fm-fieldset-legend"
                 }
             })
-
-
-
-
+        
+        if (fieldset) {
+            form_fieldset
+                .data(fieldset)
+        }
+    
 block pre_view
     - form_fieldset = form_fieldset.$freeze()
 
@@ -30,7 +25,8 @@ block view
             is: "fold-unfold",
             "init": form_fieldset.data.folded,
             title: form_fieldset.data.name,
-            styles: "tx--subhed--f1--100 rxn--shade20 fx--shift"
+            styles: "tx--subhed--f1--100 rxn--shade20 fx--shift",
+            "v-cloak": true
         }
         
         folded_attrs = (form_fieldset.data.folded)
@@ -57,21 +53,22 @@ block view
 
             if form_fieldset.data.fields
                 for field, inner_index in form_fieldset.data.fields
-                    -
-                        form_field = new Vefa()
-                            .mix(form.field)
-                            .data(field)
-                    
                     case field.type
                         when "text" 
                             include /forms/fields/fm-field--text
                         
                         when "multi"
-                            if field.name == "core_services"
+                            include /forms/fields/fm-field--multi
+                        
+                        when "multi_block"
+                            if field.name == "services"
                                 include /forms/fields/fm-field--multi-icon
                             
                             else
-                                include /forms/fields/fm-field--multi
+                                include /forms/fields/fm-field--multi-block
+
+                        when "single_block"
+                            include /forms/fields/fm-field--single-block
 
                         when "single"
                             include /forms/fields/fm-field--single

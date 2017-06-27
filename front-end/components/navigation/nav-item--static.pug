@@ -8,7 +8,8 @@ block model
             navigation.data({
                 label: temp.title,
                 target: temp.target,
-                url: (django && temp.proto_slug) ? url(temp.slug) : temp.proto_slug,
+                url: temp.url,
+                slug: temp.slug,
                 show: temp.published
             })
         }

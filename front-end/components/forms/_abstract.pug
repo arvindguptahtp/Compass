@@ -6,6 +6,8 @@ include /_vefa
     form
         .define({
             class: "fm",
+            action: ".",
+            method: "GET",
             element: {
                 "o-base": "pad--y50 rhy--yStart100",
                 "o-enhanced": "pad--y100"
@@ -27,7 +29,6 @@ include /_vefa
         })
 
 
-
 block model
 - form = form.$freeze()
 
@@ -35,6 +36,8 @@ block model
 
 block view
     form(
+        action=form.action
+        method=form.method
         class=form.class
     )&attributes(form.element)
         block hdr

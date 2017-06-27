@@ -1,5 +1,5 @@
 mixin if(evl)
-    if shopify
+    if shopify || django
         != _tag( "if", evl)
         block
         != _endtag("if")
@@ -8,12 +8,12 @@ mixin if(evl)
         block
 
 mixin else()
-    if shopify
+    if shopify || django
         != _tag("else")
         block
 
 mixin for(evl)
-    if shopify
+    if shopify || django
         != _tag( "for", evl)
         block
         != _endtag("for")
@@ -24,6 +24,15 @@ mixin load(expression)
     if django
         != _single( "load", `${ expression }` )
 
+mixin include(expression)
+    if django
+        != _single( "include", `'${ expression }.html'` )
+
+mixin dynamic_include(path, file_var)
+    if django
+        != _tag( "with", `template_name='${ path }'|add:${ file_var}|add:'.html'`)
+        != _single( "include", `''|add:template_name` )
+        != _endtag("with")
 
 mixin when(expression)
     != _single( "when", `"${ expression }"` )

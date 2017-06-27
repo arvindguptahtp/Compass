@@ -4,10 +4,10 @@ include /_vefa
 
 -
     page = new Vefa()
-    page.presets({
-        title: false,
-        icon: false
-    })
+        .define({
+            title: false,
+            icon: false
+        })
 
 //- override view oriented values
 block props
@@ -23,7 +23,7 @@ html(langs="en-US")
         meta(name="viewport", content="width=device-width, initial-scale=1.0, shrink-to-fit=no")
         
         title
-            = (page && page.data.title) ? `${ page.data.title } : ` : ""
+            = (page && page.data.title) ? `${ v(page.data.title) } : ` : ""
             = site.title
         
         block project_css

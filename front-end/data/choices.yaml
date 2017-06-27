@@ -4,13 +4,14 @@ state:
     DC: Washington, DC
     DE: Delaware
 
-grades:
+grade:
     ec: Early Childhood Education
     el: Elementary
     ms: Middle School
     hs: High School
     ps: Post-Secondary
-    al: Alumni
+    cm: Combined (any other K-12 combination)
+    # al: Alumni
 
 gender:
     f: Female
@@ -29,7 +30,7 @@ reach:
     i: International
     r: Regions
 
-student_needs:
+need:
     bi: Behavioral Issues
     att: Attendance Issues/Chronically Absent
     do: At Risk of Dropping Out
@@ -60,7 +61,7 @@ student_type:
     sa: Substance Abuse
     na: Not Applicable
 
-service_tier:
+service_tiers:
     1: Tier I
     2: Tier II
     3: Tier III
@@ -72,7 +73,7 @@ setting:
     as: Afterschool
     sp: Summer Program
 
-core_services:
+services:
   aa: Academic Assistance
   bn: Basic Needs
   bi: Behavioral Interventions
@@ -91,7 +92,17 @@ evidence_tier:
     4: Promising evidence (low)
     5: Demonstrates a rationale/Research-building
 
-ebr:
+use_in_network:
+    True: Active In Network
+    False: Inactive In Network
+    None: Unknown
+
+free_of_cost:
+    True: Free 
+    False: Costs Involved
+    None: Unknown
+
+evidence:
     1: Strong evidence
     2: Moderate evidence
     3: Promising evidence (High)
