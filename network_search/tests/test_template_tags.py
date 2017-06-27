@@ -3,6 +3,7 @@ from django import template
 
 from network_search.core import choices
 from network_search.core.templatetags import choice_tags
+from network_search.core.templatetags import network_search_tags
 
 
 def test_choice_display():
@@ -23,3 +24,11 @@ def test_bad_name():
 def test_choice_tag_template():
     tmpl = template.Template("{% load choice_tags %}{{ g|choice_display:'Gender' }}")
     assert tmpl.render(template.Context({"g": "f"})).strip() == "female"
+
+
+def test_us_state():
+    assert network_work_search.us_state("va") == "Virginia"
+    assert network_work_search.us_state("Va") == "Virginia"
+    assert network_work_search.us_state("VA") == "Virginia"
+    assert network_work_search.us_state("VX") == "VX"
+    assert network_work_search.us_state("vx") == "vx"
