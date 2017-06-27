@@ -453,6 +453,12 @@ class SchoolEOYData(TimeStampedModel):
     students_served_gang = models.IntegerField(default=0)
     students_served_incarcerated_parent = models.IntegerField(default=0)
 
+    partners = ArrayField(
+        models.CharField(max_length=100, blank=True),
+        blank=True,
+        null=True,
+    )
+
     def __str__(self):
         return "{}, {}".format(self.name, self.affiliate_data)
 

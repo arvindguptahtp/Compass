@@ -20,6 +20,40 @@ AFFILIATE_SHEET_NAME = 'Affiliate_Data'
 SCHOOL_SHEET_NAME = 'School_Data'
 STUDENT_SHEET_NAME = 'Student_Data'
 
+SCHOOL_PARTNERS = [
+    "4-H",
+    "AmeriCorps",
+    "BBBS",
+    "Boy Scouts",
+    "Boys & Girls Club",
+    "Caron Treatment Centers",
+    "Children's Aid Society",
+    "Citizen Schools",
+    "Community Schools",
+    "Feeding America",
+    "First Book",
+    "First Tee",
+    "GEAR UP",
+    "Girl Scouts",
+    "Goodwill",
+    "JAG",
+    "Jr Achieve",
+    "Natl. Urban League",
+    "Parents As Teachers",
+    "Points of Light",
+    "Reading is Fundamental",
+    "Sight for Students",
+    "TD",
+    "Talent Search",
+    "TFA",
+    "Upward Bound",
+    "Year Up",
+    "YMCA",
+    "YSA",
+]
+
+
+
 
 @shared_task
 def process_data_upload(excel_upload_pk):
@@ -117,9 +151,16 @@ def process_data_upload(excel_upload_pk):
                     if not created:
                         logger.info("Updating school data for {}".format(school))
                         try:
+                            partners = [
+                                partner_name for partner_name in SCHOOL_PARTNERS
+                                if school_row[partner_name] == 1
+                            ]
                             for attr, value in SchoolStudentEOYFields.defaults(school_row).items():
                                 logger.debug("Working on {}, {}".format(attr, value))
                                 setattr(school, attr, value)
+
+                            school.partners = partners
+
                         except BaseException as e:
                             logger.exception("COULD NOT UPDATE SCHOOL DATA: {}".format(e))
                         else:

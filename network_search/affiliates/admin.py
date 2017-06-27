@@ -1,5 +1,8 @@
 from django.contrib import admin
 
+from django.contrib import messages
+from django.core.exceptions import MultipleObjectsReturned
+from django.core.exceptions import ObjectDoesNotExist
 from network_search.affiliates import forms
 from network_search.affiliates import models
 
@@ -7,6 +10,22 @@ from network_search.affiliates import models
 @admin.register(models.ExcelUpload)
 class AffiliateUploadAdmin(admin.ModelAdmin):
     list_display = ['year', 'status', 'created', 'data_file']
+    actions = ['copy_import']
+
+    def copy_import(self, request, queryset):
+        try:
+            original = queryset.get()
+        except (MultipleObjectsReturned, ObjectDoesNotExist):
+            messages.error(request, "Select 1 and only 1 upload to copy")
+            return
+
+        models.ExcelUpload.objects.create(
+            year=original.year,
+            data_file=original.data_file
+        )
+        messages.success(request, "Starting new data import.")
+
+    copy_import.short_description = "Duplicate and rerun an import"
 
 
 @admin.register(models.Affiliate)
@@ -39,7 +58,8 @@ class SchoolEOYAdmin(admin.ModelAdmin):
             'fields': ['affiliate_data'],
         }),
         ('School', {
-            'fields': ('name', 'site_type', 'location', 'location_model', 'students_case_managed', 'students_total'),
+            'fields': ['name', 'site_type', 'location', 'location_model', 'students_case_managed', 'students_total',
+                       'partners'],
         }),
         ('Students race and gender', {
             'fields': [
