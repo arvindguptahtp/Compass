@@ -113,3 +113,18 @@ block view
                 Communities In Schools state offices typically work with communities throughout each step of this process, 
                 offering assistance and ensuring that the new local affiliate follows the requirements outlined in the 
                 Communities In Schools Total Quality System standards.
+        
+        footer.tx--maj--f1--100(
+            o-base="col--pStart--sMiddle rhy--yStart50 iso--yStart200"
+            o-enhanced="dx--w60 iso--xAuto"
+        )
+            p Please submit your feedback on our new tool.
+            
+            -
+                ctrl = new Vefa()
+                    .data({
+                        url: "'https://www.surveymonkey.com/r/9WVJVGV'",
+                        label: "Fill out our survey",
+                        target: "_blank"
+                    })
+            include /controls/action
