@@ -193,6 +193,8 @@ class AffiliateEOYData(TimeStampedModel):
         null=True,
     )
 
+    total_enrollment = models.IntegerField(default=0, editable=False)
+
     # Tracks when affiliates have a school that works with students meeting characteristic
     search_served = ArrayField(
         models.CharField(max_length=100, blank=True),
@@ -242,6 +244,9 @@ class AffiliateEOYData(TimeStampedModel):
             total=Sum(sum([F(field) for field in fields]))
         )['total']
 
+    def calculated_total_enrollment(self):
+        return self._sum_child_fields('student_enrollment')
+
     def total_students_incarcerated_parent(self):
         return self._sum_child_fields('students_served_incarcerated_parent')
 
@@ -278,10 +283,16 @@ class AffiliateEOYData(TimeStampedModel):
     def total_students_frpl(self):
         return self._sum_child_fields('students_served_frpl')
 
+    def total_students_served(self):
+        return self._sum_child_fields('students_total')
+
     def calculate(self):
         """
         Aggregates school data and sets numeric and choice fields on the instance
         """
+
+        self.total_enrollment = self._sum_child_fields('student_enrollment')
+
         self.search_students_female = self.school_data.aggregate(
             total=Sum(sum([F(field) for field in SchoolEOYData.female_fields]))
         )['total']

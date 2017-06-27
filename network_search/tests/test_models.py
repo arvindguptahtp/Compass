@@ -59,6 +59,7 @@ def test_affiliate_eoy_aggregation_methods(current_eoy):
         students_served_child_of_military=1,
         students_served_gang=1,
         students_served_incarcerated_parent=1,
+        students_total=340,
     )
     school_data_factory(
         affiliate=affiliate,
@@ -75,6 +76,7 @@ def test_affiliate_eoy_aggregation_methods(current_eoy):
         students_served_child_of_military=2,
         students_served_gang=2,
         students_served_incarcerated_parent=2,
+        students_total=200,
     )
     affiliate_data = AffiliateEOYData.objects.get(pk=school_data_1.affiliate_data.pk)
 
@@ -90,3 +92,5 @@ def test_affiliate_eoy_aggregation_methods(current_eoy):
     assert 3 == affiliate_data.total_students_pregnant_parenting()
     assert 3 == affiliate_data.total_students_special_education()
     assert 3 == affiliate_data.total_students_substance_abuse()
+
+    assert 540 == affiliate_data.total_students_served()
