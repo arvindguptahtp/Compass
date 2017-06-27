@@ -25,6 +25,7 @@ module.exports = class Vefa {
         this._instance = {
             data: {}
         }
+        this._data = {}
 
         this.define(obj)
 
@@ -85,7 +86,7 @@ module.exports = class Vefa {
     // helper function
     data (obj) {
         if (hasProps(obj)) {
-            this._instance.data = this.replace_with(this._instance.data, obj)
+            this._data = this.replace_with(this._data, obj)
         }
 
         return this
@@ -165,6 +166,8 @@ module.exports = class Vefa {
         factory = (obj.instance && hasProps(obj.instance))
             ? this.replace_with(factory, obj.instance)
             : this.replace_with(factory, this._instance)
+
+        factory.data = this.replace_with(factory.data, this._data)
         
         return factory
     }

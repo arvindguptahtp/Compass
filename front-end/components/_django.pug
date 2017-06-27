@@ -20,6 +20,11 @@ mixin for(evl)
     else if evl
         block
 
+mixin empty()
+    if shopify || django
+        != _single( "empty" )
+        block
+
 mixin load(expression)
     if django
         != _single( "load", `${ expression }` )

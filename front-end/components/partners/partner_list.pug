@@ -27,14 +27,20 @@ block form
 
 
 block results
-    +for("partner in partners.object_list")
-        p: a(href=v('partner.get_absolute_url'))= v('partner')
+    div(
+        o-base="rhy--yStart100"
+    )
+        if django
+            
+            +for("partner in partners.object_list")
+                include components/partner_result
 
-        //- {% empty %}
-        //- p No matching partners
+                +empty()
+                    p No matching partners
+        
+        else
+            for item in page.data.results_collection
+                include components/partner_result
 
-//-     //- div(
-//-     //-     o-base="rhy--yStart100"
-//-     //- )
-//-     //-     for item in page.data.results_collection
-//-     //-         include partner_result
+    
+        

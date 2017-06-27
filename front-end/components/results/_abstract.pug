@@ -1,7 +1,7 @@
 include /_vefa
 
 -
-    result =result || new Vefa()
+    result = result || new Vefa()
     
     result
         .define({
@@ -20,7 +20,9 @@ include /_vefa
             ebr: false,
         })
 
-    labels = new Vefa()
+    labels = labels || new Vefa()
+
+    labels
         .define({
             network_yes: true,
             network_no: false
@@ -30,7 +32,6 @@ include /_vefa
 block model
 - result = result.$freeze()
 - labels = labels.$freeze()
-
 
 block view
     dl(
@@ -43,7 +44,7 @@ block view
                     o-base="row--pStart"
                 )
                     a.co--pri.rxn--tint50.fx--shift(
-                        href=result.data.slug
+                        href=v(result.data.slug)
                         rel="noopener"
                         o-base="row--pStart--sMiddle mod--balance pad--x25 pad--y10 rhy--xStart"
                         o-standard="pad--x50"
@@ -62,19 +63,20 @@ block view
                             o-full="tx--base dx--w80"
                         )
                             if django
+                                = v(result.data.overview)
                             else
                                 != markdown(result.data.overview)
 
-                        footer(
-                            o-base="row--pStart"
-                        )
-                            -
-                                ctrl = new Vefa()
-                                    .data({
-                                        url: result.data.slug,
-                                        label: "View Profile"
-                                    })
-                            include /controls/action
+                        //- footer(
+                        //-     o-base="row--pStart"
+                        //- )
+                        //-     -
+                        //-         ctrl = new Vefa()
+                        //-             .data({
+                        //-                 url: result.data.slug,
+                        //-                 label: "View Profile"
+                        //-             })
+                        //-     include /controls/action
 
             
             if result.data.services
@@ -90,13 +92,20 @@ block view
 
                         ul.thm--shade50(
                             o-base="col--pStart--sStart mod--balance rhy--yStart10"
-                            o-condensed="row--pStart--sStart pad--xy25 rhy--xStart25 rhy--yStart0"
+                            o-condensed="matrix--pStart--sStart pad--xy25 rhy--xStart25 rhy--yStart0"
                             o-standard="rhy--xStart50"
                         )
-                            for icon_type in result.data.services
-                                li.co--pri.ico--xl(
-                                    o-base="pad--xy25"
-                                )
+                            if django
+                                +for(`icon_type in ${result.data.services}`)
+                                    - icon_type = 'icon_type'
+                                    
+                                    li.co--pri.ico--xl(
+                                        o-base="pad--xy25"
+                                    )
+                                        include /meta/service-icons
+
+                            else
+                                for icon_type in result.data.services
                                     include /meta/service-icons
                                 
             block result_network
@@ -105,49 +114,57 @@ block view
                     o-condensed="row--pMiddle--sMiddle pad--xy25"
                     o-enhanced="pad--xy50"
                 )
+
                     div(
-                        class=result.data.network ? "thm--partners" : "thm--inactive"
+                        class=class_switch(result.data.network, "thm--partners")
+                        class=class_switch(`not ${result.data.network}`, "thm--inactive")
                         o-base="row--pStart mod--balance"
                         o-condensed="row--pStart--xAuto mod--static"
                     )
                         span.thm--shade5.tx--small--f1--100--tcU(
                             o-base="mod--balance--aMiddle pad--y10 pad--x25"
-                        )        
-                            = result.data.network ? labels.network_yes : labels.network_no
+                        )     
+                            if django
+                                +if(result.data.network)
+                                    = labels.network_yes
+                                    +else()
+                                        = labels.network_no
+                            else
+                                = result.data.network ? labels.network_yes : labels.network_no
 
             
             
-            if result.data.ebr
-                block result_ebr
-                    dd.gxi--ebr.thm--dark
-                        div.thm--shade80(
-                            o-base="col--pStart rhy--yStart25"
-                            o-extended="rhy--yStart50"
-                        )
-                            h5.thm--tint10.tx--chrome--f1--100--tcU(
-                                o-base="pad--x25 pad--y10"
-                                o-condensed="pad--x50 pad--y25"
-                            ) Evidence Based Research:
+            //- if result.data.ebr
+            //-     block result_ebr
+            //-         dd.gxi--ebr.thm--dark
+            //-             div.thm--shade80(
+            //-                 o-base="col--pStart rhy--yStart25"
+            //-                 o-extended="rhy--yStart50"
+            //-             )
+            //-                 h5.thm--tint10.tx--chrome--f1--100--tcU(
+            //-                     o-base="pad--x25 pad--y10"
+            //-                     o-condensed="pad--x50 pad--y25"
+            //-                 ) Evidence Based Research:
                             
-                            div(
-                                o-base="row--pMiddle--sMiddle mod--balance"
-                            )
-                                -
-                                    icon
-                                        .mix({
-                                            element: {
-                                                class: `ico--fill${result.data.ebr}`,
-                                            }    
-                                        })    
-                                include /icons/cis
+            //-                 div(
+            //-                     o-base="row--pMiddle--sMiddle mod--balance"
+            //-                 )
+            //-                     -
+            //-                         icon
+            //-                             .mix({
+            //-                                 element: {
+            //-                                     class: `ico--fill${result.data.ebr}`,
+            //-                                 }    
+            //-                             })    
+            //-                     include /icons/cis
 
-                            small.thm--tint10.tx--caption--f1--100--tcU--ls100(
-                                o-base="pad--x25 pad--y10"
-                                o-condensed="pad--x50 pad--y25"
-                            )= choices.ebr[result.data.ebr]
+            //-                 small.thm--tint10.tx--caption--f1--100--tcU--ls100(
+            //-                     o-base="pad--x25 pad--y10"
+            //-                     o-condensed="pad--x50 pad--y25"
+            //-                 )= choices.ebr[result.data.ebr]
 
             
-            if result.data.service_tier
+            if result.data.service_tiers
                 block result_tier
                     dd.gxi--service-tier.thm--partners(
                         o-base="row--pStart pad--x25"
@@ -167,58 +184,65 @@ block view
                                     o-compressed="vx--hidden"
                                 ) Support Tiers:
                             
-                            for level in result.data.service_tier
-                                dd.tx--small--f1--tcU.thm--shade-nx(
-                                    o-base="mod--aMiddle pad--x50 pad--y25 iso--xStart10"
-                                )= level
+                            if django
+                                +for(`level in ${ result.data.service_tiers}`)
+                                    dd.tx--small--f1--tcU.thm--shade-nx(
+                                        o-base="mod--aMiddle pad--x50 pad--y25 iso--xStart10"
+                                    )= v('level')
+                            
+                            else
+                                for level in result.data.service_tiers
+                                    dd.tx--small--f1--tcU.thm--shade-nx(
+                                        o-base="mod--aMiddle pad--x50 pad--y25 iso--xStart10"
+                                    )= level
             
-            if result.data.state
-                block result_state
-                    dd.gxi--state.tx--base--f1--100.hl--xy--bTint(
-                        o-base="row--pStart--sMiddle pad--x25 pad--y10 rhy--xStart25"
-                        o-condensed="pad--x50"
-                    )
-                        span= choices.state[result.data.state]
-                        span= `(${result.data.location})`
+    //-         if result.data.state
+    //-             block result_state
+    //-                 dd.gxi--state.tx--base--f1--100.hl--xy--bTint(
+    //-                     o-base="row--pStart--sMiddle pad--x25 pad--y10 rhy--xStart25"
+    //-                     o-condensed="pad--x50"
+    //-                 )
+    //-                     span= choices.state[result.data.state]
+    //-                     span= `(${result.data.location})`
 
         
-            if result.data.students
-                block result_students
-                    dd.gxi--students.thm--dark(
-                        o-base="row--pStart"
-                    )
-                        dl.thm--shade25.tx--base--f1--100(
-                            o-base="row--pStart rhy--xStart25"
-                        )
-                            dt.thm--tint15(
-                                o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
-                                o-condensed="pad--x50"
-                            )
-                                = `Total Students: `
+    //-         if result.data.students
+    //-             block result_students
+    //-                 dd.gxi--students.thm--dark(
+    //-                     o-base="row--pStart"
+    //-                 )
+    //-                     dl.thm--shade25.tx--base--f1--100(
+    //-                         o-base="row--pStart rhy--xStart25"
+    //-                     )
+    //-                         dt.thm--tint15(
+    //-                             o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
+    //-                             o-condensed="pad--x50"
+    //-                         )
+    //-                             = `Total Students: `
                             
-                            dd.tx--400(
-                                o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
-                                o-condensed="pad--x50"
-                            )= result.data.students
+    //-                         dd.tx--400(
+    //-                             o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
+    //-                             o-condensed="pad--x50"
+    //-                         )= result.data.students
 
-            if result.data.budget
-                block result_budget
-                    dd.gxi--budget.thm--dark(
-                        o-base="row--pStart"
-                    )
-                        dl.thm--shade45.tx--base--f1--100(
-                            o-base="row--pStart rhy--xStart25"
-                        )
-                            dt.thm--tint15(
-                                o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
-                                o-condensed="pad--x50"
-                            )
-                                = `Total Budget: `
+    //-         if result.data.budget
+    //-             block result_budget
+    //-                 dd.gxi--budget.thm--dark(
+    //-                     o-base="row--pStart"
+    //-                 )
+    //-                     dl.thm--shade45.tx--base--f1--100(
+    //-                         o-base="row--pStart rhy--xStart25"
+    //-                     )
+    //-                         dt.thm--tint15(
+    //-                             o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
+    //-                             o-condensed="pad--x50"
+    //-                         )
+    //-                             = `Total Budget: `
                             
-                            dd.tx--400(
-                                o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
-                                o-condensed="pad--x50"
-                            )= result.data.budget
+    //-                         dd.tx--400(
+    //-                             o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
+    //-                             o-condensed="pad--x50"
+    //-                         )= result.data.budget
         
         
         

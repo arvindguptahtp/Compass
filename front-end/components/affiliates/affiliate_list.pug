@@ -26,8 +26,20 @@ block form
 
 
 block results
-//-     div(
-//-         o-base="rhy--yStart100"
-//-     )
-//-         for item in page.data.results_collection
-//-             include affiliates_result
+    div(
+        o-base="rhy--yStart100"
+    )
+        if django
+            
+            +for('affiliate in affiliates.object_list')
+                p django
+                include components/affiliate_result
+
+                +empty()
+                    p No matching affiliates
+        
+        else
+            for item in page.data.results_collection
+                include components/affiliate_result
+
+//- <li><a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a></li>
