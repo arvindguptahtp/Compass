@@ -32,3 +32,8 @@ def test_us_state():
     assert network_search_tags.us_state("VA") == "Virginia"
     assert network_search_tags.us_state("VX") == "VX"
     assert network_search_tags.us_state("vx") == "vx"
+
+
+def test_state_tag_template():
+    tmpl = template.Template("{% load network_search_tags %}{{ state|us_state }}")
+    assert tmpl.render(template.Context({"state": "va"})).strip() == "Virginia"
