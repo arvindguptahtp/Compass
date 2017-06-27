@@ -27,8 +27,8 @@ def test_choice_tag_template():
 
 
 def test_us_state():
-    assert network_work_search.us_state("va") == "Virginia"
-    assert network_work_search.us_state("Va") == "Virginia"
-    assert network_work_search.us_state("VA") == "Virginia"
-    assert network_work_search.us_state("VX") == "VX"
-    assert network_work_search.us_state("vx") == "vx"
+    assert network_search_tags.us_state("va") == "Virginia"
+    assert network_search_tags.us_state("Va") == "Virginia"
+    assert network_search_tags.us_state("VA") == "Virginia"
+    assert network_search_tags.us_state("VX") == "VX"
+    assert network_search_tags.us_state("vx") == "vx"

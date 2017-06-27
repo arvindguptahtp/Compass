@@ -20,4 +20,3 @@ def us_state(abbrev):
     except KeyError:
         logger.error("No state matches the abbreviation '{}'".format(abbrev))
         return abbrev
-
