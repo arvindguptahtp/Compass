@@ -53,8 +53,6 @@ SCHOOL_PARTNERS = [
 ]
 
 
-
-
 @shared_task
 def process_data_upload(excel_upload_pk):
 

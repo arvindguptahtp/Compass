@@ -3,7 +3,6 @@ Tests for loading the views
 """
 
 import pytest
-
 from django.core.urlresolvers import reverse
 
 from network_search.core.views import HomePage

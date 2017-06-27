@@ -1,8 +1,8 @@
 from django.contrib import admin
-
 from django.contrib import messages
-from django.core.exceptions import MultipleObjectsReturned
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import MultipleObjectsReturned
+
 from network_search.affiliates import forms
 from network_search.affiliates import models
 
