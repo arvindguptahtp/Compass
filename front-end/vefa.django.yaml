@@ -34,6 +34,7 @@ templates:
         - affiliates/affiliate_list
         - partners/partner_list
         - programs/program_list
+        - simple_auth/password_form
     # bypass_export: true
     # flatten_one_level: 
     #     - styleguide

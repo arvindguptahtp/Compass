@@ -85,6 +85,17 @@ module.exports = (locals) => {
             }
         },
         
+        attr_switch (if_val, then_val) {
+            if (locals.django) {
+                return `${ _tag("if", if_val) } ${ then_val } ${ _endtag("if") }`
+            }
+            else {
+                if (if_val) {
+                    return then_val
+                }
+            }
+        },
+
         class_switch (if_val, then_val) {
             if (locals.django) {
                 return `${ _tag("if", if_val) } ${ then_val } ${ _endtag("if") }`

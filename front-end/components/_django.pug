@@ -25,6 +25,20 @@ mixin empty()
         != _single( "empty" )
         block
 
+mixin super()
+  = v("block.super")
+
+
+mixin comment
+    if django
+        != _tag( "comment")
+        block
+        != _endtag("comment")
+
+
+mixin csrf
+  != _single("csrf_token")
+
 
 mixin with(exp)
     if django

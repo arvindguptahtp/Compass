@@ -16,9 +16,22 @@ include /_vefa
                 "o-base": "row--pGrid--sMiddle pad--x25",
                 "o-standard": "pad--x100"
             },
+            hed: {
+                class: 'tx--subhed--f1--100'
+            }, 
             footer: {
                 "o-base": "row--pEnd--sMiddle pad--x50",
                 "o-standard": "pad--x100"
+            },
+            field: {
+                label: {
+                    class: "tx--small--f3--900--tcU--aa",
+                },
+                field: {
+                    class: "tx--small--f3--ls100--aa rhy--xStart50 hl--xy--bShade thm--tint20 rxn--shade20 fx--shift ico--xl",
+                    "o-base": "row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25",
+                    "o-standard": "pad--y50"
+                }
             }
         })
         .data({
@@ -40,6 +53,9 @@ block view
         method=form.method
         class=form.class
     )&attributes(form.element)
+        
+        +csrf()
+        
         block hdr
             header.fm-hdr&attributes(form.header)
                 h1.fm-hed&attributes(form.hed)
