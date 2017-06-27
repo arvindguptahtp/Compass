@@ -218,7 +218,12 @@ block view
                         else
                             span= choices.state[result.data.state]
                         
-                        span= `(${ v(result.data.location) })`
+                        if django
+                            for choice, index in choices.location
+                                +if(`${ result.data.location } == '${ index }'`)
+                                    span= `(${choice})`
+                        else
+                            span= `(${ v(result.data.location) })`
 
         
             block result_students

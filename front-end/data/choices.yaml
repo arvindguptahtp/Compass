@@ -154,3 +154,7 @@ family_engagement: *provide
 life_skills: *provide
 physical_fitness_health: *provide
 prof_mental_health: *provide
+
+location:
+    Ur: Urban
+    R: Rural
