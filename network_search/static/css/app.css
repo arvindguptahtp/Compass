@@ -618,34 +618,34 @@ main {
 .ico--ebr .st4 {
   fill: #fff;
 }
-.ico--ebr.ico--fill4 .st0 {
+.ico--ebr.ico--fill-t4 .st0 {
   fill: #00549e;
 }
-.ico--ebr.ico--fill3 .st0 {
+.ico--ebr.ico--fill-t3 .st0 {
   fill: #00549e;
 }
-.ico--ebr.ico--fill3 .st1 {
+.ico--ebr.ico--fill-t3 .st1 {
   fill: #e31837;
 }
-.ico--ebr.ico--fill2 .st0 {
+.ico--ebr.ico--fill-t2 .st0 {
   fill: #00549e;
 }
-.ico--ebr.ico--fill2 .st1 {
+.ico--ebr.ico--fill-t2 .st1 {
   fill: #e31837;
 }
-.ico--ebr.ico--fill2 .st2 {
+.ico--ebr.ico--fill-t2 .st2 {
   fill: #f78e1e;
 }
-.ico--ebr.ico--fill1 .st0 {
+.ico--ebr.ico--fill-t1 .st0 {
   fill: #00549e;
 }
-.ico--ebr.ico--fill1 .st1 {
+.ico--ebr.ico--fill-t1 .st1 {
   fill: #e31837;
 }
-.ico--ebr.ico--fill1 .st2 {
+.ico--ebr.ico--fill-t1 .st2 {
   fill: #f78e1e;
 }
-.ico--ebr.ico--fill1 .st3 {
+.ico--ebr.ico--fill-t1 .st3 {
   fill: #008752;
 }
 [class*='field-group--'] {

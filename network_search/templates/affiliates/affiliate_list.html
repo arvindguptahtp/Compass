@@ -362,21 +362,31 @@
 
           </div>
           <hr class="thm--light-alt hl--yEnd" o-base="dx--w60 iso--xAuto">
-          <div o-base="rhy--yStart100">{% for affiliate in affiliates.object_list %}
-                        <p>django</p>
-                        <dl class="result" o-base="col--pStart mod--balance">
-                          <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="{{ affiliate.get_absolute_url() }}" rel="noopener" o-base="row--pStart--sMiddle mod--balance pad--x25 pad--y10 rhy--xStart" o-standard="pad--x50">
-                              <h4 class="tx--subhed--f1--100">{{ affiliate }}
+          <div o-base="rhy--yStart100">{% for affiliate in affiliates.object_list %}{% load humanize %}
+                        <dl class="gx--result-affiliate" o-base="col--pStart mod--balance">
+                          <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="affiliate.get_absolute_url" rel="noopener" o-base="row--pStart--sMiddle mod--balance pad--x50 pad--y10 rhy--xStart">
+                              <h4 class="tx--f1--100" o-enhanced="tx--subhed--f1--100">{{ affiliate }}
                               </h4></a></dt>
-                          <dd class="gxi--overview hl--xy--bTint" o-base="mod--balance pad--xy25 rhy--yStart50" o-standard="pad--xy50">
-                            <div class="bd copy tx--small--f2" o-full="tx--base dx--w80">{{ Result Overview }}
-                            </div>
+                          <dd class="gxi--profile"><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="{{ affiliate.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>View Profile</span></a>
                           </dd>
-                          <dd class="gxi--network thm--shade10" o-base="row--pStart" o-condensed="row--pMiddle--sMiddle pad--xy25" o-enhanced="pad--xy50">
-                            <div class="{% if %} thm--partners {% endif %} {% if not false %} thm--inactive {% endif %}" o-base="row--pStart mod--balance" o-condensed="row--pStart--xAuto mod--static"><span class="thm--shade5 tx--small--f1--100--tcU" o-base="mod--balance--aMiddle pad--y10 pad--x25">    {% if %}true{% else %}false{% endif %}</span></div>
+                          <dd class="gxi--state tx--base--f1--100 hl--xy--bTint" o-base="row--pStart--sMiddle pad--x25 pad--y10 rhy--xStart25" o-condensed="pad--x50"><span>{{ affiliate.state }}</span><span>({{ affiliate.affiliate_location }})</span>
+                          </dd>
+                          <dd class="gxi--students thm--dark" o-base="row--pStart">
+                            <dl class="thm--shade25 tx--base--f1--100" o-base="row--pStart rhy--xStart25">
+                              <dt class="thm--tint15" o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25" o-condensed="pad--x50">Total Students: 
+                              </dt>
+                              <dd class="tx--400" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25" o-condensed="pad--x50">{{ affiliate.current_data.students_total }}</dd>
+                            </dl>
+                          </dd>
+                          <dd class="gxi--budget thm--dark" o-base="row--pStart">
+                            <dl class="thm--shade45 tx--base--f1--100" o-base="row--pStart rhy--xStart25">
+                              <dt class="thm--tint15" o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25" o-condensed="pad--x50">Total Budget: 
+                              </dt>
+                              <dd class="tx--400" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25" o-condensed="pad--x50">{{ affiliate.current_data.budget_total }}</dd>
+                            </dl>
                           </dd>
                         </dl>{% empty %}
-                        <p>No matching affiliates</p>{% endfor %}
+                            <p>No matching affiliates</p>{% endfor %}
           </div>
         </div>
       </div>

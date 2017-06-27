@@ -53,8 +53,10 @@ block view
                         h4.tx--subhed--f1--100
                             = v(result.data.title)
             
-            if result.data.overview
-                block result_overview
+            
+            
+            block result_overview
+                if result.data.overview
                     dd.gxi--overview.hl--xy--bTint(
                         o-base="mod--balance pad--xy25 rhy--yStart50"
                         o-standard="pad--xy50"
@@ -67,16 +69,16 @@ block view
                             else
                                 != markdown(result.data.overview)
 
-                        //- footer(
-                        //-     o-base="row--pStart"
-                        //- )
-                        //-     -
-                        //-         ctrl = new Vefa()
-                        //-             .data({
-                        //-                 url: result.data.slug,
-                        //-                 label: "View Profile"
-                        //-             })
-                        //-     include /controls/action
+                        footer(
+                            o-base="row--pStart"
+                        )
+                            -
+                                ctrl = new Vefa()
+                                    .data({
+                                        url: result.data.slug,
+                                        label: "View Profile"
+                                    })
+                            include /controls/action
 
             
             if result.data.services
@@ -108,6 +110,8 @@ block view
                                 for icon_type in result.data.services
                                     include /meta/service-icons
                                 
+            
+            
             block result_network
                 dd.gxi--network.thm--shade10(
                     o-base="row--pStart"
@@ -132,36 +136,40 @@ block view
                             else
                                 = result.data.network ? labels.network_yes : labels.network_no
 
-            
-            
-            //- if result.data.ebr
-            //-     block result_ebr
-            //-         dd.gxi--ebr.thm--dark
-            //-             div.thm--shade80(
-            //-                 o-base="col--pStart rhy--yStart25"
-            //-                 o-extended="rhy--yStart50"
-            //-             )
-            //-                 h5.thm--tint10.tx--chrome--f1--100--tcU(
-            //-                     o-base="pad--x25 pad--y10"
-            //-                     o-condensed="pad--x50 pad--y25"
-            //-                 ) Evidence Based Research:
-                            
-            //-                 div(
-            //-                     o-base="row--pMiddle--sMiddle mod--balance"
-            //-                 )
-            //-                     -
-            //-                         icon
-            //-                             .mix({
-            //-                                 element: {
-            //-                                     class: `ico--fill${result.data.ebr}`,
-            //-                                 }    
-            //-                             })    
-            //-                     include /icons/cis
 
-            //-                 small.thm--tint10.tx--caption--f1--100--tcU--ls100(
-            //-                     o-base="pad--x25 pad--y10"
-            //-                     o-condensed="pad--x50 pad--y25"
-            //-                 )= choices.ebr[result.data.ebr]
+            block result_ebr                    
+                if result.data.ebr
+                    dd.gxi--ebr.thm--dark
+                        div.thm--shade80(
+                            o-base="col--pStart rhy--yStart25"
+                            o-extended="rhy--yStart50"
+                        )
+                            h5.thm--tint10.tx--chrome--f1--100--tcU(
+                                o-base="pad--x25 pad--y10"
+                                o-condensed="pad--x50 pad--y25"
+                            ) Evidence Based Research:
+                            
+                            div(
+                                o-base="row--pMiddle--sMiddle mod--balance"
+                            )
+                                -
+                                    icon = new Vefa()
+                                        .mix({
+                                            element: {
+                                                class: `ico--fill-${v(result.data.ebr)}`,
+                                            }    
+                                        })    
+                                include /icons/cis
+
+                            small.thm--tint10.tx--caption--f1--100--tcU--ls100(
+                                o-base="pad--x25 pad--y10"
+                                o-condensed="pad--x50 pad--y25"
+                            )
+                                if django
+                                    = v(`${ result.data.ebr }.as_choices`)
+                                
+                                else
+                                    = choices.ebr[result.data.ebr]
 
             
             if result.data.service_tiers
@@ -196,53 +204,57 @@ block view
                                         o-base="mod--aMiddle pad--x50 pad--y25 iso--xStart10"
                                     )= level
             
-    //-         if result.data.state
-    //-             block result_state
-    //-                 dd.gxi--state.tx--base--f1--100.hl--xy--bTint(
-    //-                     o-base="row--pStart--sMiddle pad--x25 pad--y10 rhy--xStart25"
-    //-                     o-condensed="pad--x50"
-    //-                 )
-    //-                     span= choices.state[result.data.state]
-    //-                     span= `(${result.data.location})`
+            block result_state
+                if result.data.state
+                    dd.gxi--state.tx--base--f1--100.hl--xy--bTint(
+                        o-base="row--pStart--sMiddle pad--x25 pad--y10 rhy--xStart25"
+                        o-condensed="pad--x50"
+                    )
+                        if django
+                            span= v(result.data.state)
+                        else
+                            span= choices.state[result.data.state]
+                        
+                        span= `(${ v(result.data.location) })`
 
         
-    //-         if result.data.students
-    //-             block result_students
-    //-                 dd.gxi--students.thm--dark(
-    //-                     o-base="row--pStart"
-    //-                 )
-    //-                     dl.thm--shade25.tx--base--f1--100(
-    //-                         o-base="row--pStart rhy--xStart25"
-    //-                     )
-    //-                         dt.thm--tint15(
-    //-                             o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
-    //-                             o-condensed="pad--x50"
-    //-                         )
-    //-                             = `Total Students: `
+            block result_students
+                if result.data.students
+                    dd.gxi--students.thm--dark(
+                        o-base="row--pStart"
+                    )
+                        dl.thm--shade25.tx--base--f1--100(
+                            o-base="row--pStart rhy--xStart25"
+                        )
+                            dt.thm--tint15(
+                                o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
+                                o-condensed="pad--x50"
+                            )
+                                = `Total Students: `
                             
-    //-                         dd.tx--400(
-    //-                             o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
-    //-                             o-condensed="pad--x50"
-    //-                         )= result.data.students
+                            dd.tx--400(
+                                o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
+                                o-condensed="pad--x50"
+                            )= v(result.data.students)
 
-    //-         if result.data.budget
-    //-             block result_budget
-    //-                 dd.gxi--budget.thm--dark(
-    //-                     o-base="row--pStart"
-    //-                 )
-    //-                     dl.thm--shade45.tx--base--f1--100(
-    //-                         o-base="row--pStart rhy--xStart25"
-    //-                     )
-    //-                         dt.thm--tint15(
-    //-                             o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
-    //-                             o-condensed="pad--x50"
-    //-                         )
-    //-                             = `Total Budget: `
+            block result_budget
+                if result.data.budget
+                    dd.gxi--budget.thm--dark(
+                        o-base="row--pStart"
+                    )
+                        dl.thm--shade45.tx--base--f1--100(
+                            o-base="row--pStart rhy--xStart25"
+                        )
+                            dt.thm--tint15(
+                                o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
+                                o-condensed="pad--x50"
+                            )
+                                = `Total Budget: `
                             
-    //-                         dd.tx--400(
-    //-                             o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
-    //-                             o-condensed="pad--x50"
-    //-                         )= result.data.budget
+                            dd.tx--400(
+                                o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
+                                o-condensed="pad--x50"
+                            )= v(result.data.budget)
         
         
         

@@ -1,45 +1,58 @@
-//- extends /results/_abstract
+extends /results/_abstract
 
-//- block model
-//-     if item
-//-         - 
-//-             result
-//-                 .instance({
-//-                     class: "gx--result-programs",
-//-                 })
-//-                 .data({
-//-                     title: item.name,
-//-                     slug: '/programs/programs_detail',
-//-                     overview: item.summary,
-//-                     services: item.core_services,
-//-                     network: item.network_use,
-//-                     service_tier: false,
-//-                     ebr: item.evidence_tier,
-//-                 })
+block model
+    if item
+        -
+            result
+                .data({
+                    title: item.name,
+                    slug: '/programs/programs_detail',
+                    overview: item.summary,
+                    services: item.core_services,
+                    network: item.network_use,
+                    service_tier: false,
+                    ebr: item.evidence_tier,
+                })
+    -
+        labels
+            .instance({
+                network_yes: "Used by CIS Network",
+                network_no: false
+            })
+        
+    if django
+        -
+            result
+                .data({
+                    title: 'program',
+                    slug: 'program.get_absolute_url',
+                    overview: 'program.summary',
+                    services: 'program.service_categories',
+                    ebr: 'program.tiers_of_evidence'
+                })
+                .instance({
+                    class: "gx--result-programs",
+                })
 
-//-             labels
-//-                 .instance({
-//-                     network_yes: "Used by CIS Network",
-//-                     network_no: false
-//-                 })
 
 
-//- block result_network
-//-     dd.gxi--network.thm--shade10(
-//-         o-base="row--pStart"
-//-         o-condensed="row--pMiddle--sMiddle pad--xy25"
-//-         o-enhanced="pad--xy50"
-//-     )
-//-         if result.data.network
-//-             div(
-//-                 class=result.data.network ? "thm--partners" : "thm--inactive"
-//-                 o-base="row--pStart mod--balance"
-//-                 o-condensed="row--pStart--xAuto mod--static"
-//-             )
-//-                 span.thm--shade5.tx--small--f1--100--tcU(
-//-                     o-base="mod--balance--aMiddle pad--y10 pad--x25"
-//-                 )        
-//-                     = result.data.network ? labels.network_yes : labels.network_no
+
+block result_network
+    dd.gxi--network.thm--shade10(
+        o-base="row--pStart"
+        o-condensed="row--pMiddle--sMiddle pad--xy25"
+        o-enhanced="pad--xy50"
+    )
+        if result.data.network
+            div(
+                class=result.data.network ? "thm--partners" : "thm--inactive"
+                o-base="row--pStart mod--balance"
+                o-condensed="row--pStart--xAuto mod--static"
+            )
+                span.thm--shade5.tx--small--f1--100--tcU(
+                    o-base="mod--balance--aMiddle pad--y10 pad--x25"
+                )        
+                    = result.data.network ? labels.network_yes : labels.network_no
 
 
 //- block result_services

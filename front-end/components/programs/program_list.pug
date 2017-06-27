@@ -25,8 +25,17 @@ block form
 
 
 block results
-//-     div(
-//-         o-base="rhy--yStart100"
-//-     )
-//-         for item in page.data.results_collection
-//-             include programs_result
+    div(
+        o-base="rhy--yStart100"
+    )
+        if django
+            
+            +for("program in programs.object_list")
+                include components/program_result
+
+                +empty()
+                    p No matching programs.
+        
+        else
+            for item in page.data.results_collection
+                include components/program_result
