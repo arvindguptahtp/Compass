@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>{{ 'Affiliates' }} : Student Support Generator
+    <title>{{ 'Affiliates' }} : CIS Search Tool
     </title>
     <link rel="stylesheet" href="{% static 'css/base.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
@@ -32,8 +32,8 @@
     <link rel="icon" type="image/png" href="{% static 'res/favicons/favicon-96x96.png' %}" sizes="96x96">
     <link rel="icon" type="image/png" href="{% static 'res/favicons/favicon-16x16.png' %}" sizes="16x16">
     <link rel="icon" type="image/png" href="{% static 'res/favicons/favicon-32x32.png' %}" sizes="32x32">
-    <meta name="apple-mobile-web-app-title" content="Student Support Generator">
-    <meta name="application-name" content="Student Support Generator">
+    <meta name="apple-mobile-web-app-title" content="CIS Search Tool">
+    <meta name="application-name" content="CIS Search Tool">
     <meta name="theme-color" content="#ffåffff">
     <meta name="format-detection" content="telephone=no">
   </head>
@@ -362,14 +362,14 @@
 
           </div>
           <hr class="thm--light-alt hl--yEnd" o-base="dx--w60 iso--xAuto">
-          <div o-base="rhy--yStart100">{% for affiliate in affiliates.object_list %}{% load humanize %}
+          <div o-base="rhy--yStart100">{% for affiliate in affiliates.object_list %}{% load humanize choice_tags %}
                         <dl class="gx--result-affiliate" o-base="col--pStart mod--balance">
                           <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="affiliate.get_absolute_url" rel="noopener" o-base="row--pStart--sMiddle mod--balance pad--x50 pad--y10 rhy--xStart">
                               <h4 class="tx--f1--100" o-enhanced="tx--subhed--f1--100">{{ affiliate }}
                               </h4></a></dt>
                           <dd class="gxi--profile"><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="{{ affiliate.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>View Profile</span></a>
                           </dd>
-                          <dd class="gxi--state tx--base--f1--100 hl--xy--bTint" o-base="row--pStart--sMiddle pad--x25 pad--y10 rhy--xStart25" o-condensed="pad--x50"><span>{{ affiliate.state }}</span><span>({{ affiliate.affiliate_location }})</span>
+                          <dd class="gxi--state tx--base--f1--100 hl--xy--bTint" o-base="row--pStart--sMiddle pad--x25 pad--y10 rhy--xStart25" o-condensed="pad--x50"><span>{{ affiliate.state }}</span>{% if affiliate.affiliate_location == 'Ur' %}<span>(Urban)</span>{% endif %}{% if affiliate.affiliate_location == 'R' %}<span>(Rural)</span>{% endif %}
                           </dd>
                           <dd class="gxi--students thm--dark" o-base="row--pStart">
                             <dl class="thm--shade25 tx--base--f1--100" o-base="row--pStart rhy--xStart25">
