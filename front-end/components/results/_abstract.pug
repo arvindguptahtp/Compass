@@ -1,5 +1,7 @@
 include /_vefa
 
++load('humanize')
+
 -
     result = result || new Vefa()
     
@@ -151,12 +153,12 @@ block view
                             
                             div(
                                 o-base="row--pMiddle--sMiddle mod--balance"
-                            )
+                            )   
                                 -
                                     icon = new Vefa()
                                         .mix({
                                             element: {
-                                                class: `ico--fill-${v(result.data.ebr)}`,
+                                                class: `ico--fill-${v(result.data.ebr, 'last')}`,
                                             }    
                                         })    
                                 include /icons/cis
@@ -166,10 +168,11 @@ block view
                                 o-condensed="pad--x50 pad--y25"
                             )
                                 if django
-                                    = v(`${ result.data.ebr }.as_choices`)
-                                
+                                    for choice, index in choices.evidence
+                                        +if(`${ result.data.ebr }|last == '${ index }'`)
+                                            = choice
                                 else
-                                    = choices.ebr[result.data.ebr]
+                                    = choices.evidence_tier[result.data.ebr]
 
             
             if result.data.service_tiers
@@ -254,7 +257,7 @@ block view
                             dd.tx--400(
                                 o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
                                 o-condensed="pad--x50"
-                            )= v(result.data.budget)
+                            )= `$${v(result.data.budget, 'intcomma')}`
         
         
         

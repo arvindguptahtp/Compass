@@ -362,7 +362,7 @@
 
           </div>
           <hr class="thm--light-alt hl--yEnd" o-base="dx--w60 iso--xAuto">
-          <div o-base="rhy--yStart100">{% for affiliate in affiliates.object_list %}
+          <div o-base="rhy--yStart100">{% for affiliate in affiliates.object_list %}{% load humanize %}
                         <dl class="gx--result-affiliate" o-base="col--pStart mod--balance">
                           <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="affiliate.get_absolute_url" rel="noopener" o-base="row--pStart--sMiddle mod--balance pad--x50 pad--y10 rhy--xStart">
                               <h4 class="tx--f1--100" o-enhanced="tx--subhed--f1--100">{{ affiliate }}
@@ -382,7 +382,7 @@
                             <dl class="thm--shade45 tx--base--f1--100" o-base="row--pStart rhy--xStart25">
                               <dt class="thm--tint15" o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25" o-condensed="pad--x50">Total Budget: 
                               </dt>
-                              <dd class="tx--400" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25" o-condensed="pad--x50">{{ affiliate.current_data.budget_total }}</dd>
+                              <dd class="tx--400" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25" o-condensed="pad--x50">${{ affiliate.current_data.budget_total|intcomma }}</dd>
                             </dl>
                           </dd>
                         </dl>{% empty %}

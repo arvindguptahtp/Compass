@@ -103,11 +103,11 @@ free_of_cost:
     None: Unknown
 
 evidence:
-    1: Strong evidence
-    2: Moderate evidence
-    3: Promising evidence (High)
-    4: Promising evidence (low)
-    5: Demonstrates a rationale/Research-building
+    t1: Strong evidence
+    t2: Moderate evidence
+    t3: Promising evidence (High)
+    t4: Promising evidence (low)
+    t5: Demonstrates a rationale/Research-building
     
 affiliate_performance:
     1: K-11 Promoted

@@ -227,7 +227,7 @@
 
           </div>
           <hr class="thm--light-alt hl--yEnd" o-base="dx--w60 iso--xAuto">
-          <div o-base="rhy--yStart100">{% for partner in partners.object_list %}
+          <div o-base="rhy--yStart100">{% for partner in partners.object_list %}{% load humanize %}
                         <dl class="gx--result-partner" o-base="col--pStart mod--balance">
                           <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="{{ partner.get_absolute_url }}" rel="noopener" o-base="row--pStart--sMiddle mod--balance pad--x25 pad--y10 rhy--xStart" o-standard="pad--x50">
                               <h4 class="tx--subhed--f1--100">{{ partner }}
