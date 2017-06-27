@@ -10,6 +10,13 @@ class AffiliateView(DetailView):
     queryset = Affiliate.affiliates.active()
     template_name = "affiliates/affiliate_detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'eoy_data': self.object.current_data(),
+        })
+        return context
+
 
 class AffiliatePDFView(PDFTemplateResponseMixin, AffiliateView):
     template_name = "affiliates/affiliate_pdf.html"

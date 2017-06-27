@@ -1,2 +1,61 @@
 {% extends "pdf_base.html" %}
-{% block content %}{{ object }}{% endblock %}
+{% load choice_tags %}
+
+{% block header %}
+{{ affiliate.name}} ({{affiliate.state }})
+{% endblock %}
+
+{% block content %}
+
+    <p>Reporting data from {{ eoy_data.year }}</p>
+
+    <section>
+        <h3>Location</h3>
+        <p>{{ affiliate.official_name}}<br/>
+        {{ affiliate.address_street }}<br/>
+        {{ affiliate.address_city }}, {{ affiliate.address_state }} {{ affiliate.address_postcode }}</p>
+
+        {% if affiliate.shipping_address %}
+            <p>Shipping address: {{ affiliate.shipping_address }}</p>
+        {% endif %}
+
+        {% if affiliate.phone_number %}<p>Phone: {{ affiliate.phone_number }}</p>{% endif %}
+        {% if affiliate.fax_number %}<p>Fax : {{ affiliate.fax_number }}</p>{% endif %}
+
+        <p><a href="{{ affiliate.website }}">Website</a></p>
+
+    </section>
+
+    <section>
+        <h3>Personnel</h3>
+        <p>Executive director: {{ affiliate.executive_director_name }},
+            <a href="mailto:{{ affiliate.executive_director_email }}">{{ affiliate.executive_director_email }}</a></p>
+        <p>Programming lead: {{ affiliate.program_lead_name }},
+            <a href="mailto:{{ affiliate.program_lead_email }}">{{ affiliate.program_lead_email }}</a></p>
+    </section>
+
+    <section>
+        <h3>Affiliate resources</h3>
+    </section>
+
+    <section>
+        <h3>Schools</h3>
+        {% for school in eoy_data.school_data.all %}
+            <li>{{ school.name }}</li>
+        {% endfor %}
+    </section>
+
+    <section>
+        <h3>Student service data</h3>
+    </section>
+
+    <section>
+        <h3>Service Categories</h3>
+    </section>
+
+    <section>
+        <h3>Partnerships</h3>
+    </section>
+
+
+{% endblock %}
