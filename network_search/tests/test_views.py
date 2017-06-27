@@ -4,6 +4,8 @@ Tests for loading the views
 
 import pytest
 
+from django.core.urlresolvers import reverse
+
 from network_search.core.views import HomePage
 from network_search.partners.views import PartnerSearchView
 from network_search.programs.views import ProgramSearchView
@@ -20,7 +22,7 @@ non_detail_urls = [
 @pytest.mark.django_db
 @pytest.mark.parametrize("url_name,view", non_detail_urls)
 def test_protected_access(url_name, view, client):
-    response = client.get(url_name)
+    response = client.get(reverse(url_name))
     assert response.status_code == 302
 
 
