@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% if not form.is_valid %}
+
+    <p>Search was not valid</p>
+
+{% endif %}
+
+<form action="." method="GET">
+{{ form }}
+</form>
+
+{% for program in programs.object_list %}
+
+    <li><a href="{{ program.get_absolute_url }}">{{ program }}</a></li>
+
+    {% empty %}
+
+    <p>No matching programs</p>
+
+{% endfor %}
+{% endblock %}

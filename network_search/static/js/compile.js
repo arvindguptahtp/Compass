@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "static/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,80 +71,81 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./_abstract.pug": 51,
-	"./_django.pug": 52,
-	"./_vefa.pug": 53,
-	"./affiliates/affiliates_detail.pug": 54,
-	"./affiliates/affiliates_list.pug": 55,
-	"./affiliates/affiliates_result.pug": 56,
-	"./cards/_abstract.pug": 57,
-	"./cards/affiliates.pug": 58,
-	"./cards/copy.pug": 59,
-	"./cards/partners.pug": 60,
-	"./cards/programs.pug": 61,
-	"./controls/_abstract.pug": 62,
-	"./controls/action.pug": 63,
-	"./controls/link.pug": 64,
-	"./controls/submit.pug": 65,
-	"./copy/_abstract.pug": 66,
-	"./forms/_abstract.pug": 67,
-	"./forms/fields/_abstract.pug": 68,
-	"./forms/fields/fm-field--bool.pug": 69,
-	"./forms/fields/fm-field--multi-block.pug": 70,
-	"./forms/fields/fm-field--multi-icon.pug": 71,
-	"./forms/fields/fm-field--multi.pug": 72,
-	"./forms/fields/fm-field--single-block.pug": 73,
-	"./forms/fields/fm-field--single.pug": 74,
-	"./forms/fields/fm-field--text.pug": 75,
-	"./forms/fields/fm-fieldset.pug": 76,
-	"./forms/fm--search.pug": 77,
-	"./icons/_abstract.pug": 78,
-	"./icons/aa.pug": 79,
-	"./icons/add.pug": 80,
-	"./icons/affiliates.pug": 81,
-	"./icons/bi.pug": 82,
-	"./icons/bn.pug": 83,
-	"./icons/ccp.pug": 84,
-	"./icons/ccr.pug": 85,
-	"./icons/cis.pug": 86,
-	"./icons/csl.pug": 87,
-	"./icons/en.pug": 88,
-	"./icons/fe.pug": 89,
-	"./icons/link-ext.pug": 90,
-	"./icons/ls.pug": 91,
-	"./icons/menu-close.pug": 92,
-	"./icons/menu.pug": 93,
-	"./icons/next.pug": 94,
-	"./icons/partners.pug": 95,
-	"./icons/pmh.pug": 96,
-	"./icons/pph.pug": 97,
-	"./icons/programs.pug": 98,
-	"./icons/remove.pug": 99,
-	"./meta/favicons.pug": 100,
-	"./meta/service-icons.pug": 101,
-	"./navigation/_abstract.pug": 102,
-	"./navigation/nav-item--static.pug": 103,
-	"./partners/components/fm--search-partner.pug": 104,
-	"./partners/partner_detail.pug": 105,
-	"./partners/partner_list.pug": 106,
-	"./partners/partner_result.pug": 107,
-	"./posters/_abstract.pug": 108,
-	"./posters/details.pug": 109,
-	"./posters/icon.pug": 110,
-	"./posters/text.pug": 111,
-	"./programs/program_detail.pug": 127,
-	"./programs/program_list.pug": 128,
-	"./programs/program_result.pug": 129,
-	"./results/_abstract.pug": 115,
-	"./runners/colophon.pug": 116,
-	"./runners/masthead--logo-full.pug": 117,
-	"./runners/masthead--nav.pug": 118,
-	"./site/_abstract.pug": 119,
-	"./site/detail.pug": 120,
-	"./site/index.pug": 121,
-	"./site/list.pug": 122,
-	"./strata/_abstract.pug": 123,
-	"./strata/strata.pug": 124
+	"./_abstract.pug": 50,
+	"./_django.pug": 51,
+	"./_vefa.pug": 52,
+	"./affiliates/affiliates_detail.pug": 53,
+	"./affiliates/affiliates_list.pug": 54,
+	"./affiliates/affiliates_result.pug": 55,
+	"./cards/_abstract.pug": 56,
+	"./cards/affiliates.pug": 57,
+	"./cards/copy.pug": 58,
+	"./cards/partners.pug": 59,
+	"./cards/programs.pug": 60,
+	"./controls/_abstract.pug": 61,
+	"./controls/action.pug": 62,
+	"./controls/link.pug": 63,
+	"./controls/submit.pug": 64,
+	"./copy/_abstract.pug": 65,
+	"./forms/_abstract.pug": 66,
+	"./forms/fields/_abstract.pug": 67,
+	"./forms/fields/fm-field--bool.pug": 68,
+	"./forms/fields/fm-field--multi-block.pug": 69,
+	"./forms/fields/fm-field--multi-icon.pug": 70,
+	"./forms/fields/fm-field--multi.pug": 71,
+	"./forms/fields/fm-field--single-block.pug": 72,
+	"./forms/fields/fm-field--single.pug": 73,
+	"./forms/fields/fm-field--text.pug": 74,
+	"./forms/fields/fm-fieldset.pug": 75,
+	"./forms/fm--search.pug": 76,
+	"./icons/_abstract.pug": 77,
+	"./icons/aa.pug": 78,
+	"./icons/add.pug": 79,
+	"./icons/affiliates.pug": 80,
+	"./icons/bi.pug": 81,
+	"./icons/bn.pug": 82,
+	"./icons/ccp.pug": 83,
+	"./icons/ccr.pug": 84,
+	"./icons/cis.pug": 85,
+	"./icons/csl.pug": 86,
+	"./icons/en.pug": 87,
+	"./icons/fe.pug": 88,
+	"./icons/link-ext.pug": 89,
+	"./icons/ls.pug": 90,
+	"./icons/menu-close.pug": 91,
+	"./icons/menu.pug": 92,
+	"./icons/next.pug": 93,
+	"./icons/partners.pug": 94,
+	"./icons/pmh.pug": 95,
+	"./icons/pph.pug": 96,
+	"./icons/programs.pug": 97,
+	"./icons/remove.pug": 98,
+	"./meta/favicons.pug": 99,
+	"./meta/service-icons.pug": 100,
+	"./navigation/_abstract.pug": 101,
+	"./navigation/nav-item--static.pug": 102,
+	"./partners/components/fm--search-partner.pug": 103,
+	"./partners/partner_detail.pug": 104,
+	"./partners/partner_list.pug": 105,
+	"./partners/partner_result.pug": 106,
+	"./posters/_abstract.pug": 107,
+	"./posters/details.pug": 108,
+	"./posters/icon.pug": 109,
+	"./posters/text.pug": 110,
+	"./programs/components/fm--search-program.pug": 126,
+	"./programs/program_detail.pug": 111,
+	"./programs/program_list.pug": 112,
+	"./programs/program_result.pug": 113,
+	"./results/_abstract.pug": 114,
+	"./runners/colophon.pug": 115,
+	"./runners/masthead--logo-full.pug": 116,
+	"./runners/masthead--nav.pug": 117,
+	"./site/_abstract.pug": 118,
+	"./site/detail.pug": 119,
+	"./site/index.pug": 120,
+	"./site/list.pug": 121,
+	"./strata/_abstract.pug": 122,
+	"./strata/strata.pug": 123
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -167,8 +168,8 @@ webpackContext.id = 0;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./app.styl": 49,
-	"./base.styl": 50
+	"./app.styl": 48,
+	"./base.styl": 49
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -188,52 +189,51 @@ webpackContext.id = 1;
 
 /***/ }),
 /* 2 */,
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./favicons/apple-touch-icon-114x114.png": 8,
-	"./favicons/apple-touch-icon-120x120.png": 9,
-	"./favicons/apple-touch-icon-144x144.png": 10,
-	"./favicons/apple-touch-icon-152x152.png": 11,
-	"./favicons/apple-touch-icon-180x180.png": 12,
-	"./favicons/apple-touch-icon-57x57.png": 13,
-	"./favicons/apple-touch-icon-60x60.png": 14,
-	"./favicons/apple-touch-icon-72x72.png": 15,
-	"./favicons/apple-touch-icon-76x76.png": 16,
-	"./favicons/apple-touch-icon-precomposed.png": 17,
-	"./favicons/apple-touch-icon.png": 18,
-	"./favicons/browserconfig.xml": 38,
-	"./favicons/favicon-160x160.png": 19,
-	"./favicons/favicon-16x16.png": 20,
-	"./favicons/favicon-192x192.png": 21,
-	"./favicons/favicon-32x32.png": 22,
-	"./favicons/favicon-96x96.png": 23,
-	"./favicons/favicon.ico": 39,
-	"./favicons/mstile-144x144.png": 24,
-	"./favicons/mstile-150x150.png": 25,
-	"./favicons/mstile-310x150.png": 26,
-	"./favicons/mstile-310x310.png": 27,
-	"./favicons/mstile-70x70.png": 28,
-	"./fonts/oswald-bold-webfont.woff": 40,
-	"./fonts/oswald-light-webfont.woff": 41,
-	"./fonts/oswald-regular-webfont.woff": 42,
-	"./fonts/theserifb-w3light.woff": 43,
-	"./fonts/theserifb-w3light.woff2": 44,
-	"./fonts/theserifb-w5plain.woff": 45,
-	"./fonts/theserifb-w5plain.woff2": 46,
-	"./fonts/theserifb-w7bold.woff": 47,
-	"./fonts/theserifb-w7bold.woff2": 48,
-	"./logo-cis.png": 29,
-	"./logo.full.inverse.png": 30,
-	"./logo.full.png": 31,
-	"./logo.solo.inverse.png": 32,
-	"./logo.solo.png": 33,
-	"./tx.light.png": 34,
-	"./tx.light@2x.png": 35,
-	"./tx.primary.png": 36,
-	"./tx.primary@2x.png": 37
+	"./favicons/apple-touch-icon-114x114.png": 7,
+	"./favicons/apple-touch-icon-120x120.png": 8,
+	"./favicons/apple-touch-icon-144x144.png": 9,
+	"./favicons/apple-touch-icon-152x152.png": 10,
+	"./favicons/apple-touch-icon-180x180.png": 11,
+	"./favicons/apple-touch-icon-57x57.png": 12,
+	"./favicons/apple-touch-icon-60x60.png": 13,
+	"./favicons/apple-touch-icon-72x72.png": 14,
+	"./favicons/apple-touch-icon-76x76.png": 15,
+	"./favicons/apple-touch-icon-precomposed.png": 16,
+	"./favicons/apple-touch-icon.png": 17,
+	"./favicons/browserconfig.xml": 37,
+	"./favicons/favicon-160x160.png": 18,
+	"./favicons/favicon-16x16.png": 19,
+	"./favicons/favicon-192x192.png": 20,
+	"./favicons/favicon-32x32.png": 21,
+	"./favicons/favicon-96x96.png": 22,
+	"./favicons/favicon.ico": 38,
+	"./favicons/mstile-144x144.png": 23,
+	"./favicons/mstile-150x150.png": 24,
+	"./favicons/mstile-310x150.png": 25,
+	"./favicons/mstile-310x310.png": 26,
+	"./favicons/mstile-70x70.png": 27,
+	"./fonts/oswald-bold-webfont.woff": 39,
+	"./fonts/oswald-light-webfont.woff": 40,
+	"./fonts/oswald-regular-webfont.woff": 41,
+	"./fonts/theserifb-w3light.woff": 42,
+	"./fonts/theserifb-w3light.woff2": 43,
+	"./fonts/theserifb-w5plain.woff": 44,
+	"./fonts/theserifb-w5plain.woff2": 45,
+	"./fonts/theserifb-w7bold.woff": 46,
+	"./fonts/theserifb-w7bold.woff2": 47,
+	"./logo-cis.png": 28,
+	"./logo.full.inverse.png": 29,
+	"./logo.full.png": 30,
+	"./logo.solo.inverse.png": 31,
+	"./logo.solo.png": 32,
+	"./tx.light.png": 33,
+	"./tx.light@2x.png": 34,
+	"./tx.primary.png": 35,
+	"./tx.primary@2x.png": 36
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -249,18 +249,24 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 4;
+webpackContext.id = 3;
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n__webpack_require__(0);\n\n__webpack_require__(1);\n\n__webpack_require__(4);//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2NvbXBpbGUuanM/MTVlNiJdLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cbnJlcXVpcmUuY29udGV4dCgnLi9jb21wb25lbnRzLycsIHRydWUsIC9cXC5wdWckLyk7XG5cbnJlcXVpcmUuY29udGV4dCgnLi9jb21wb25lbnRzLycsIGZhbHNlLCAvXFwuc3R5bCQvKTtcblxucmVxdWlyZS5jb250ZXh0KCcuL3JlcycpO1xuXG5cbi8vLy8vLy8vLy8vLy8vLy8vL1xuLy8gV0VCUEFDSyBGT09URVJcbi8vIC4vY29tcGlsZS5qc1xuLy8gbW9kdWxlIGlkID0gNVxuLy8gbW9kdWxlIGNodW5rcyA9IDAiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwic291cmNlUm9vdCI6IiJ9");
+eval("\n\n__webpack_require__(0);\n\n__webpack_require__(1);\n\n__webpack_require__(3);//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2NvbXBpbGUuanM/MTVlNiJdLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cbnJlcXVpcmUuY29udGV4dCgnLi9jb21wb25lbnRzLycsIHRydWUsIC9cXC5wdWckLyk7XG5cbnJlcXVpcmUuY29udGV4dCgnLi9jb21wb25lbnRzLycsIGZhbHNlLCAvXFwuc3R5bCQvKTtcblxucmVxdWlyZS5jb250ZXh0KCcuL3JlcycpO1xuXG5cbi8vLy8vLy8vLy8vLy8vLy8vL1xuLy8gV0VCUEFDSyBGT09URVJcbi8vIC4vY29tcGlsZS5qc1xuLy8gbW9kdWxlIGlkID0gNFxuLy8gbW9kdWxlIGNodW5rcyA9IDAiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwic291cmNlUm9vdCI6IiJ9");
 
 /***/ }),
+/* 5 */,
 /* 6 */,
-/* 7 */,
+/* 7 */
+/***/ (function(module, exports) {
+
+eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNy5qcyIsInNvdXJjZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
@@ -885,9 +891,24 @@ eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW
 eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTExLmpzIiwic291cmNlcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlUm9vdCI6IiJ9");
 
 /***/ }),
-/* 112 */,
-/* 113 */,
-/* 114 */,
+/* 112 */
+/***/ (function(module, exports) {
+
+eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTEyLmpzIiwic291cmNlcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports) {
+
+eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTEzLmpzIiwic291cmNlcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports) {
+
+eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTE0LmpzIiwic291cmNlcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
 /* 115 */
 /***/ (function(module, exports) {
 
@@ -942,30 +963,12 @@ eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW
 eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTIzLmpzIiwic291cmNlcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlUm9vdCI6IiJ9");
 
 /***/ }),
-/* 124 */
-/***/ (function(module, exports) {
-
-eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTI0LmpzIiwic291cmNlcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlUm9vdCI6IiJ9");
-
-/***/ }),
+/* 124 */,
 /* 125 */,
-/* 126 */,
-/* 127 */
+/* 126 */
 /***/ (function(module, exports) {
 
-eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTI3LmpzIiwic291cmNlcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlUm9vdCI6IiJ9");
-
-/***/ }),
-/* 128 */
-/***/ (function(module, exports) {
-
-eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTI4LmpzIiwic291cmNlcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlUm9vdCI6IiJ9");
-
-/***/ }),
-/* 129 */
-/***/ (function(module, exports) {
-
-eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTI5LmpzIiwic291cmNlcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlUm9vdCI6IiJ9");
+eval("//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTI2LmpzIiwic291cmNlcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlUm9vdCI6IiJ9");
 
 /***/ })
 /******/ ]);

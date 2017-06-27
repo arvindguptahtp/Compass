@@ -1,0 +1,17 @@
+extends /forms/fm--search
+
+append model
+    -
+        form
+            .instance({
+                class: 'fm--search-program',
+                element: {
+                    class: "thm--programs"
+                }
+            })
+            .data({
+                fieldsets: programs.fm_search
+            })
+
+
+prepend view

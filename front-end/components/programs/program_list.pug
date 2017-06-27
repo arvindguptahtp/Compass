@@ -1,0 +1,44 @@
+extends /site/list
+
+block props
+    - 
+        page.data({
+            title: wrap_str(programs.title),
+            slug: routes.programs.slug,
+            summary: programs.summary,
+            results_collection: programs.fixtures,
+            icon: "programs"
+        })
+
+prepend preview
+    -
+        poster = new Vefa()
+        poster.mix({
+            element: {
+                class: "co--programs",
+            }
+        })
+
+
+block form
+    include /programs/components/fm--search-program
+
+block results
+//- prepend form
+//-     - 
+//-         form = new Vefa()
+//-             .instance({
+//-                 element: {
+//-                     class: "thm--programs"
+//-                 }
+//-             })
+//-             .data({
+//-                fieldsets: programs.fm_search
+//-             })
+
+block results
+//-     div(
+//-         o-base="rhy--yStart100"
+//-     )
+//-         for item in page.data.results_collection
+//-             include programs_result
