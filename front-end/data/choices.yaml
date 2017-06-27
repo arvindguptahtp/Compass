@@ -123,7 +123,7 @@ affiliate_performance:
     11: Grade 12 Other
     12: Grade 12 Unknown
 
-student_characteristics:
+served:
     frpl: Eligible for FRPL
     ay: Adjudicated Youth
     mil: Child of Active Duty Military
@@ -137,3 +137,20 @@ student_characteristics:
     se: Special Education
     sa: Substance Abuse
     na: Not Applicable
+
+provide: &provide
+  s1: Services Provided by both CIS and Another Organization
+  s2: No Services Delivered
+  s3: Provided by CIS Staff
+  s4: Brokered Services Delivered by Another Organization
+
+academic_assistance: *provide
+basic_needs: *provide
+behavior_intervention: *provide
+college_career_prep: *provide
+comm_service: *provide
+enrichment: *provide
+family_engagement: *provide
+life_skills: *provide
+physical_fitness_health: *provide
+prof_mental_health: *provide

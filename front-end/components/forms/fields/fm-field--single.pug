@@ -23,6 +23,8 @@ block hdr
 
 
 block bd
+    //- =v('form.use_in_network.value')
+    //- =v('form.free_of_cost.value')
     if choices[form_field.data.name]
         div()
             for choice, _index in choices[form_field.data.name]
@@ -42,6 +44,7 @@ block bd
                     
                     +if(`form.${form_field.data.name}.value \=\= ${ val }`)
                         input(checked=true)&attributes(input_attrs)
+                        
                         +else()
                             input&attributes(input_attrs)
 

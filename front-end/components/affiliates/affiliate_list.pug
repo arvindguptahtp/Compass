@@ -1,0 +1,33 @@
+extends /site/list
+
+block props
+    - 
+        page.data({
+            title: wrap_str(affiliates.title),
+            slug: routes.affiliates.slug,
+            summary: affiliates.summary,
+            results_collection: affiliates.fixtures,
+            icon: "affiliates"
+        })
+
+prepend preview
+    -
+        poster = new Vefa()
+        poster.mix({
+            element: {
+                class: "co--affiliates",
+            }
+        })
+
+
+block form
+    include /affiliates/components/fm--search-affiliate
+
+
+
+block results
+//-     div(
+//-         o-base="rhy--yStart100"
+//-     )
+//-         for item in page.data.results_collection
+//-             include affiliates_result

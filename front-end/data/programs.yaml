@@ -54,7 +54,7 @@ fm_search:
             services:
                 name: services
                 label: CIS Core Services
-                type: multi_block
+                type: multi_icon
             
             service_tiers:
                 name: service_tiers

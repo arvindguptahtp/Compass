@@ -31,7 +31,7 @@ templates:
     emit:
         - site/index
         - icons
-        # - affiliates/
+        - affiliates/affiliate_list
         - partners/partner_list
         - programs/program_list
     # bypass_export: true

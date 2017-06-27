@@ -60,22 +60,22 @@ block view
                         when "multi"
                             include /forms/fields/fm-field--multi
                         
-                        when "multi_block"
-                            if field.name == "services"
-                                include /forms/fields/fm-field--multi-icon
-                            
-                            else
-                                include /forms/fields/fm-field--multi-block
-
-                        when "single_block"
-                            include /forms/fields/fm-field--single-block
-
                         when "single"
                             include /forms/fields/fm-field--single
                         
                         when "bool"
                             include /forms/fields/fm-field--bool
                         
+                        when "multi_icon"
+                            include /forms/fields/fm-field--multi-icon
+
+                        when "multi_block"
+                            include /forms/fields/fm-field--multi-block
+
+                        when "single_block"
+                            include /forms/fields/fm-field--single-block
+
+
                         default
                             div
 

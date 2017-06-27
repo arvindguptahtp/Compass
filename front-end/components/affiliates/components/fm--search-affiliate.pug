@@ -1,0 +1,17 @@
+extends /forms/fm--search
+
+append model
+    -
+        form
+            .instance({
+                class: 'fm--search-affiliate',
+                element: {
+                    class: "thm--affiliates"
+                }
+            })
+            .data({
+                fieldsets: affiliates.fm_search
+            })
+
+
+prepend view

@@ -186,32 +186,22 @@
                 </div>
               </div>
               <div class="fm-field--radio fm-field--multi" o-base="col--pStart rhy--yStart10">
-                <p class="field-label--bool tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa" o-base="mod--balance">Organizational Reach
-                </p>
-                <div>{% for choice_value, choice_label in form.reach.field.choices %}
-                                <label class="rxn--shade20 fx--shift" o-base="row--pStart--sMiddle mod--balance pad--y25 rhy--xStart25">{% if choice_value|safe in form.reach.value or choice_value in form.reach.value %}
-                                                <input checked type="checkbox" id="id_reach_{{ forloop.counter }}" name="reach" value="{{ choice_value }}">{% else %}
-                                                              <input type="checkbox" id="id_reach_{{ forloop.counter }}" name="reach" value="{{ choice_value }}">{% endif %}<span class="field-label--bool tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa" o-base="mod--balance"> {{ choice_label }}</span>
-                                </label>{% endfor %}
-                </div>
-              </div>
-              <div class="fm-field--radio fm-field--multi" o-base="col--pStart rhy--yStart10">
-                <p class="field-label--bool tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa" o-base="mod--balance">Tiers of Service
+                <p class="field-label--bool tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa" o-base="mod--balance">Tiers of Service
                 </p>
                 <div>{% for choice_value, choice_label in form.service_tiers.field.choices %}
                                 <label class="rxn--shade20 fx--shift" o-base="row--pStart--sMiddle mod--balance pad--y25 rhy--xStart25">{% if choice_value|safe in form.service_tiers.value or choice_value in form.service_tiers.value %}
                                                 <input checked type="checkbox" id="id_service_tiers_{{ forloop.counter }}" name="service_tiers" value="{{ choice_value }}">{% else %}
-                                                              <input type="checkbox" id="id_service_tiers_{{ forloop.counter }}" name="service_tiers" value="{{ choice_value }}">{% endif %}<span class="field-label--bool tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa" o-base="mod--balance"> {{ choice_label }}</span>
+                                                              <input type="checkbox" id="id_service_tiers_{{ forloop.counter }}" name="service_tiers" value="{{ choice_value }}">{% endif %}<span class="field-label--bool tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
                 </div>
               </div>
               <div class="fm-field--radio fm-field--multi" o-base="col--pStart rhy--yStart10">
-                <p class="field-label--bool tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa" o-base="mod--balance">Tiers of Evidence
+                <p class="field-label--bool tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa" o-base="mod--balance">Tiers of Evidence
                 </p>
                 <div>{% for choice_value, choice_label in form.evidence.field.choices %}
                                 <label class="rxn--shade20 fx--shift" o-base="row--pStart--sMiddle mod--balance pad--y25 rhy--xStart25">{% if choice_value|safe in form.evidence.value or choice_value in form.evidence.value %}
                                                 <input checked type="checkbox" id="id_evidence_{{ forloop.counter }}" name="evidence" value="{{ choice_value }}">{% else %}
-                                                              <input type="checkbox" id="id_evidence_{{ forloop.counter }}" name="evidence" value="{{ choice_value }}">{% endif %}<span class="field-label--bool tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa" o-base="mod--balance"> {{ choice_label }}</span>
+                                                              <input type="checkbox" id="id_evidence_{{ forloop.counter }}" name="evidence" value="{{ choice_value }}">{% endif %}<span class="field-label--bool tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa tx--small--f3--ls100--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
                 </div>
               </div>

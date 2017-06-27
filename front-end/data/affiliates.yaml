@@ -7,7 +7,8 @@ fm_search:
     -   name: Search
         type: fieldset
         fields:
-            -   name: search
+            q:
+                name: q
                 label: Keywords
                 type: text
 
@@ -15,37 +16,74 @@ fm_search:
         type: fieldset
         folded: true
         fields:
-            -   name: gender
+            gender:
+                name: gender
                 label: Students by Gender
                 type: multi
-
-            -   name: race
+            
+            race:
+                name: race
                 label: Students by Race/Ethnicity
                 type: multi
             
-            -   name: student_characteristics
+            served:
+                name: served
                 label: Student Characteristics
                 type: multi
-            
-            -   name: student_needs
-                label: Student Needs
-                type: multi
 
-    -   name: Associated Details
+    -   name: Affiliate Details
         type: fieldset
         folded: true
         fields:
-            -   name: affiliate_performance
-                label: Affiliate Performance
+            academic_assistance:
+                name: academic_assistance
+                label: Academic Assistance
                 type: single
-
-            -   name: core_services
-                label: CIS Core Services
-                type: multi
-
-            -   name: service_tier
-                label: Tier of Service
-                type: multi
+            
+            basic_needs:
+                name: basic_needs
+                label: Basic Needs
+                type: single
+            
+            behavior_intervention:
+                name: behavior_intervention
+                label: Behavior Intervention
+                type: single
+            
+            college_career_prep:
+                name: college_career_prep
+                label: College & Career Preparation
+                type: single
+            
+            comm_service:
+                name: comm_service
+                label: Community and Service Learning
+                type: single
+            
+            enrichment:
+                name: enrichment
+                label: Enrichment
+                type: single
+            
+            family_engagement:
+                name: family_engagement
+                label: Family Engagement
+                type: single
+            
+            life_skills:
+                name: life_skills
+                label: Life Skills
+                type: single
+            
+            physical_fitness_health:
+                name: physical_fitness_health
+                label: Professional Physical Health
+                type: single
+            
+            prof_mental_health:
+                name: prof_mental_health
+                label: Professional Mental Health
+                type: single
 
 
 

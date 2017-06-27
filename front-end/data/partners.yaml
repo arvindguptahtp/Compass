@@ -34,7 +34,7 @@ fm_search:
     
     -   name: Partner Details
         type: fieldset
-        folded: true
+        # folded: true
         fields:
             use_in_network:
                 name: use_in_network
@@ -49,7 +49,7 @@ fm_search:
             services:
                 name: services
                 label: CIS Core Services
-                type: multi_block
+                type: multi_icon
             
             reach:
                 name: reach
