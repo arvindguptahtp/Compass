@@ -13,7 +13,10 @@
 
 {% for affiliate in affiliates.object_list %}
 
-    <li><a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a></li>
+    <li>
+        <a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a>
+        <br/>{{ affiliate.current_data.districts }}
+    </li>
 
     {% empty %}
 
