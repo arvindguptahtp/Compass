@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{{ 'Partners' }} : Student Support Generator
     </title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:400,700,300">
     <script src="https://cdn.jsdelivr.net/g/picturefill@3.0.3,lazysizes@3.0.0" async></script>
     <script>document.createElement( "picture" ) </script>
@@ -227,7 +227,7 @@
 
           </div>
           <hr class="thm--light-alt hl--yEnd" o-base="dx--w60 iso--xAuto">
-          <div o-base="rhy--yStart100">{% for partner in partners.object_list %}{% load humanize %}
+          <div o-base="rhy--yStart100">{% for partner in partners.object_list %}
                         <dl class="gx--result-partner" o-base="col--pStart mod--balance">
                           <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="{{ partner.get_absolute_url }}" rel="noopener" o-base="row--pStart--sMiddle mod--balance pad--x25 pad--y10 rhy--xStart" o-standard="pad--x50">
                               <h4 class="tx--subhed--f1--100">{{ partner }}
@@ -312,7 +312,7 @@ Arlington, VA 22202
         </address>
       </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/vue/2.3.2/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue/2.3.2/vue.min.js"></script>
     <script src="{% static 'js/app.js' %}"></script>
   </body>
 </html>
