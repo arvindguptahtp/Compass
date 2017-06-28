@@ -3,12 +3,12 @@
 """
 import pytest
 
+from network_search.partners.models import Partner
+from network_search.programs.models import Program
 from network_search.affiliates.models import Affiliate
 from network_search.affiliates.models import EndOfYear
 from network_search.affiliates.models import SchoolEOYData
 from network_search.affiliates.models import AffiliateEOYData
-from network_search.partners.models import Partner
-from network_search.programs.models import Program
 
 
 def affiliate_factory(**kwargs):

@@ -5,17 +5,16 @@ Tests for loading the views
 import pytest
 from django.core.urlresolvers import reverse
 
-from network_search.affiliates.views import AffiliatePDFView
-from network_search.affiliates.views import AffiliateSearchView
-from network_search.affiliates.views import AffiliateView
 from network_search.core.views import HomePage
+from network_search.partners.views import PartnerView
 from network_search.partners.views import PartnerPDFView
 from network_search.partners.views import PartnerSearchView
-from network_search.partners.views import PartnerView
+from network_search.programs.views import ProgramView
 from network_search.programs.views import ProgramPDFView
 from network_search.programs.views import ProgramSearchView
-from network_search.programs.views import ProgramView
-
+from network_search.affiliates.views import AffiliateView
+from network_search.affiliates.views import AffiliatePDFView
+from network_search.affiliates.views import AffiliateSearchView
 
 non_detail_urls = [
     ('home', HomePage),
