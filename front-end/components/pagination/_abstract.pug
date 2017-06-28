@@ -80,7 +80,7 @@ block model
 - pagination = pagination.$freeze()
 
 block view
-    +if(pagination.pages())
+    +if(`${ pagination.pages() }|length > 1`)
         nav.pagination&attributes(pagination.element)
             +if(pagination.has_previous())
                 block prev_active

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{{ 'Affiliates' }} : CIS Search Tool
     </title>
-    <link rel="stylesheet" href="{% static 'css/base.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:400,700,300">
     <script src="https://cdn.jsdelivr.net/g/picturefill@3.0.3,lazysizes@3.0.0" async></script>
     <script>document.createElement( "picture" ) </script>
@@ -230,7 +230,7 @@
 
           </div>
           <hr class="thm--light-alt hl--yEnd" o-base="dx--w60 iso--xAuto">
-          <section o-base="rhy--yStart50">{% if affiliates.pages %}
+          <section o-base="rhy--yStart50">{% if affiliates.pages|length > 1 %}
                         <nav class="pagination tx--f1--aa" o-base="row--pStart--sMiddle">{% if affiliates.has_previous %}<a class="page-ctrl--prev ord--start thm--dark rxn--tint30 fx--shift" href="?{{ affiliates.previous_page_number.querystring }}" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs">
                                         <svg class="ico ico--ctrl-prev" height="16" width="16" viewBox="0 0 24 24" aria-labelledby="title desc" o-base="mod--static">
                                           <title>Previous Page icon</title>
@@ -281,7 +281,7 @@
                   </dd>
                 </dl>{% empty %}
                     <p>No matching affiliates</p>{% endfor %}
-            </div>{% if affiliates.pages %}
+            </div>{% if affiliates.pages|length > 1 %}
                         <nav class="pagination tx--f1--aa" o-base="row--pStart--sMiddle">{% if affiliates.has_previous %}<a class="page-ctrl--prev ord--start thm--dark rxn--tint30 fx--shift" href="?{{ affiliates.previous_page_number.querystring }}" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs">
                                         <svg class="ico ico--ctrl-prev" height="16" width="16" viewBox="0 0 24 24" aria-labelledby="title desc" o-base="mod--static">
                                           <title>Previous Page icon</title>
@@ -363,7 +363,7 @@ Arlington, VA 22202
         </address>
       </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/vue/2.3.2/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue/2.3.2/vue.js"></script>
     <script src="{% static 'js/app.js' %}"></script>
   </body>
 </html>
