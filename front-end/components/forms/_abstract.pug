@@ -62,8 +62,9 @@ block view
             header.fm-hdr&attributes(form.header)
                 h1.fm-hed&attributes(form.hed)
                     = form.data.title
-        
-        
+
+            include components/fm-errors
+
         block bd
             if form.data.fieldsets
                 for fieldset, index in form.data.fieldsets

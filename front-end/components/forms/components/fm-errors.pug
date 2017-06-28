@@ -1,0 +1,56 @@
+extends /_abstract
+
+block create
+    -
+        fm_errors = fm_errors || new Vefa()
+            .define({
+                element: {
+                    class: "thm--warning bk--encase",
+                    "o-base": "col--pStart",
+                    "o-standard": "pad--x100"
+                },
+                label: {
+                    class: "thm--shade50 rxn--shade25 fx--shift tx--small--f3--tcU",
+                    "o-base": "pad--x25 pad--y10"
+                },
+                group: {
+                    class: "thm--shade25 tx--small--f3",
+                    "o-base": "pad--x25 pad--y25"
+                },
+                item: {},
+                
+                data: {
+                    form: 'form'
+                }
+            })
+
+
+
+block mount
+    -
+        fm_errors = fm_errors.$freeze()
+
+
+
+block view
+    +if(`${ fm_errors.data.form }.errors`)
+        div.fm-errors&attributes(fm_errors.element)
+            
+            +for(`field in ${ fm_errors.data.form }`)    
+                +if('field.errors')
+                    label(
+                        for="id_"+v('field.name')
+                    )&attributes(fm_errors.label)
+                        = v('field.label')
+                    
+                    ul&attributes(fm_errors.group)
+                    
+                        +for('error in field.errors')
+                            li&attributes(fm_errors.item)= v('error')
+
+
+
+block teardown
+    -
+        fm_errors = fm_errors.$thaw()
+        fm_errors.$teardown()

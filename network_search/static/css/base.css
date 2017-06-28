@@ -455,6 +455,9 @@ button {
 [class*='--aa'] {
   -webkit-font-smoothing: antialiased;
 }
+.bk--encase {
+  background-clip: content-box;
+}
 .thm--shade5 {
   background-color: rgba(24, 20, 17, .05);
 }
@@ -533,6 +536,9 @@ input:checked + [class*='rxn--shade'] {
 }
 .rxn--shade20 {
   --on-opacity: 0.2;
+}
+.rxn--shade25 {
+  --on-opacity: 0.25;
 }
 .rxn--shade40 {
   --on-opacity: 0.4;

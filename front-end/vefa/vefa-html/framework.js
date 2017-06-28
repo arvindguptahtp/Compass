@@ -174,6 +174,7 @@ module.exports = class Vefa {
         let factory = {
         	$ghost: this,
           	$thaw () { return this.$ghost },
+            $teardown () { delete this },
             data: {},
             labels: {}
         }
@@ -201,5 +202,9 @@ module.exports = class Vefa {
         factory.labels = this.replace_with(factory.labels, this._labels)
         
         return factory
+    }
+
+    $teardown () {
+        delete this
     }
 }

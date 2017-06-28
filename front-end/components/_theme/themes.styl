@@ -2,18 +2,18 @@
     // LIGJT
     &light
         +o-attr(breakpoints)
-            background: co.white
+            background-color: co.white
             color: co.copy.base
             border-color: rgba(co.brand_1.base, 12%)
         
         &-alt
-            background: co.hairline.shade
+            background-color: co.hairline.shade
 
 
 
     // DARK
     &dark 
-        background: co.brand_1.base
+        background-color: co.brand_1.base
         color: co.white
 
         .co--ctrl
@@ -79,7 +79,7 @@
                 background-image: url(../res/tx.primary@2x.png)
 
             .mtf--block-pri
-                background: co.brand_1.tint
+                background-color: co.brand_1.tint
     
         &-tint
             +o-attr(class)
@@ -96,7 +96,7 @@
     &inactive
         +o-attr()
             color: co.white
-            background: co.neutral.tint
+            background-color: co.neutral.tint
 
     &affiliates
         +o-attr()
@@ -128,3 +128,6 @@
     &partners-shift
         background-repeat: no-repeat
         background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 66%)
+
+    &warning
+        background-color: co.alt.brand_3

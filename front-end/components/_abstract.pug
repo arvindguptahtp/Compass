@@ -1,6 +1,18 @@
 include _vefa
 
+//- build abstract
+block create
+
+//- introduce the instance
 block model
+
+//- $freeze the Vefa object
+block mount
 block pre_view
+
+//- template interactive
 block view
+
+//- $thaw / $teardown the Vefa object (destroy/delete)
+block teardown
 block post_view

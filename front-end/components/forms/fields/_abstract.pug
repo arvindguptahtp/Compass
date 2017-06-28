@@ -1,6 +1,6 @@
 include /_vefa
 -
-    form_field = new Vefa()
+    form_field = form_field || new Vefa()
 
     if (form && form.field) {
         form_field
@@ -39,4 +39,6 @@ block view
 
 
 
-- form_field = form_field.$thaw()
+-
+    form_field = form_field.$thaw()
+    form_field.$teardown()
