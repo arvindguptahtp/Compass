@@ -83,3 +83,5 @@ local_data/
 
 _build
 front-end/.json
+network_search/static/js/compile.js
+network_search/static/js/compile.js.map
