@@ -1,28 +1,28 @@
-//- extends _abstract
+extends _abstract
 
-//- block props
-//-     - 
-//-         page.data({
-//-             title: "Detail Template"
-//-         })
+block props
+    - 
+        page.data({
+            title: "Detail Template"
+        })
 
 
-//- block preview
-//-     -
-//-         poster = poster || new Vefa()
+block preview
+    -
+        poster = poster || new Vefa()
         
-//-         poster
-//-             .mix({
-//-                 element: {
-//-                     class: "thm--texture-tint",
-//-                     "o-base": "ord--next",
-//-                     "o-extended": "gxi--b"
-//-                 }
-//-             })
-//-             .data({
-//-                 hed: page.data.title
-//-             })
-//-     include /posters/details
+        poster
+            .mix({
+                element: {
+                    class: "thm--texture-tint",
+                    "o-base": "ord--next",
+                    "o-extended": "gxi--b"
+                }
+            })
+            .data({
+                hed: page.data.title
+            })
+    include /posters/details
 
 //- //- block view
 //- //-     //- .strata--search(

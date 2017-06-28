@@ -27,9 +27,10 @@ block view
     )&attributes(card.element)
         header&attributes(card.hdr)
             h2&attributes(card.hed)
-                != v(card.data.hed)
+                = card.data.hed
         
         .bd&attributes(card.bd)
             if django
+                != v(card.data.copy, "linebreaks")
             else
                 !=markdown(card.data.copy)
