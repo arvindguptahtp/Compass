@@ -7,44 +7,41 @@ block model
                 class: "fm--login",
                 action: url('simple_auth_password'),
                 method: "POST",
+                data: {
+                    title:  "Login"
+                }
+            })
+            .mix({
                 element: {
                     class: "thm--dark",
-                    "o-base": "pad--y50 rhy--yStart100 dx--w60 iso--xAuto",
-                    "o-enhanced": "pad--y100 dx--w40"
+                    "o-base": "dx--w90 iso--xAuto iso--y100",
+                    "o-compressed": "pad--x25",
+                    "o-condensed": "dx--w60",
+                    "o-standard": "pad--x0",
+                    "o-enhanced": "dx--w40"
                 },
-                header: {
-                    "o-base": "row--pGrid--sMiddle pad--x25",
-                    "o-standard": "pad--x100"
-                },
-                footer: {
-                    "o-base": "row--pEnd--sMiddle pad--x50",
-                    "o-standard": "pad--x100"
-                }
             })
+
+        ctrl
             .data({
-                submit: {
-                    name: "submit",
-                    label: "Enter"
-                }
+                label: "Enter"
             })
 
-
-block hdr
-    header.fm-hdr&attributes(form.header)
-        h1.fm-hed&attributes(form.hed) Log In
-            
 
 block bd
     - 
         form_field = new Vefa()
-            .mix({
-                element: {
-                    "o-base": "pad--x100"
+            .instance({
+                data: {
+                    label: "Password",
+                    name: "password",
+                    required: true
                 }
             })
-            .data({
-                label: "Password",
-                name: "password",
-                required: true
+            .mix({
+                element: {
+                    "o-base": "pad--x25",
+                    "o-standard": "pad--x100"
+                }
             })
     include /forms/fields/fm-field--password

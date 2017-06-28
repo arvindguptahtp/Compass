@@ -6,7 +6,7 @@
         _black = co.black ? co.black : #000
 
         +o-attr(class)
-            +add-before()
+            +add-after()
                 position: absolute 0
                 background: _black
                 opacity: 0
@@ -17,7 +17,7 @@
                     background: rgba(_black, .5)
                     background: "rgba(%s, 'var(--on-opacity, .5)')" % rgb(_black)
         
-                &::before
+                &::after
                     opacity: .5
                     opacity: var(--on-opacity, .5)
         
@@ -36,7 +36,7 @@
             &[input]
                 background: rgba(_white, 0)
 
-            +add-before()
+            +add-after()
                 position: absolute 0
                 background: _white
                 opacity: 0
@@ -47,7 +47,7 @@
                     background: rgba(_white, .5)
                     // background: rgba(_white, var(--on-opacity, .5))
 
-                &::before
+                &::after
                     opacity: .5
                     opacity: var(--on-opacity, .5)
 

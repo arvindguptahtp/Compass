@@ -1,6 +1,6 @@
 include /_vefa
 -
-    form_field = form_field || new Vefa()
+    form_field = new Vefa()
 
     if (form && form.field) {
         form_field
@@ -11,14 +11,6 @@ include /_vefa
         form_field
             .data(field)
     }
-
-    form_field
-        .define({
-            element: {
-                "o-base": "col--pStart rhy--yStart10"
-            }
-        })
-
 
 block model
 - form_field = form_field.$freeze()
@@ -39,6 +31,10 @@ block view
         
         block bd
         
+        block help_msg
+
+        block error_msg
+
         block ftr
 
 

@@ -1,43 +1,34 @@
-extends _abstract
+//- extends _abstract
 
-block model
-    -
-        form_field
-            .define({
-                class: "fm-field--bool",
-                container: {
-                    class: "rxn--shade20 fx--shift",
-                    "o-base": "row--pStart--sMiddle mod--balance pad--y25 rhy--xStart25",
-                },
-                label: {
-                    class: "field-label--bool",
-                    "o-base": "mod--balance"
-                }
-            })
-
-
-
-block hdr
+//- block model
+//-     -
+//-         form_field
+//-             .define({
+//-                 class: "fm-field--bool",
+//-                 container: {
+//-                     class: "rxn--shade20 fx--shift",
+//-                     "o-base": "row--pStart--sMiddle mod--balance pad--y25 rhy--xStart25",
+//-                 },
+//-                 label: {
+//-                     class: "field-label--bool",
+//-                     "o-base": "mod--balance"
+//-                 }
+//-             })
 
 
 
-block bd
-    label&attributes(form_field.container)
-        input(
-            type="checkbox"
-            id=`id_${ form_field.data.name }`
-            name=form_field.data.name
-            value=v(`form.${ form_field.data.name }.value`, "stringformat:'s'")
-        )
+//- block hdr
 
-        span&attributes(form_field.label)
-            = form_field.data.label
 
-//- 
-    {% if wrap_label %}
-        <label
-            {% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %}
-        >
-    {% endif %}
-    {% include "django/forms/widgets/input.html" %}
-    {% if wrap_label %} {{ widget.label }}</label>{% endif %}
+
+//- block bd
+//-     label&attributes(form_field.container)
+//-         input(
+//-             type="checkbox"
+//-             id=`id_${ form_field.data.name }`
+//-             name=form_field.data.name
+//-             value=v(`form.${ form_field.data.name }.value`, "stringformat:'s'")
+//-         )
+
+//-         span&attributes(form_field.label)
+//-             = form_field.data.label

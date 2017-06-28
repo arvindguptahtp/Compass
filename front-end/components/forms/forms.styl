@@ -1,30 +1,25 @@
-.field-group--
-    +o-attr()
-        border-width: 1px 0 0 1px
 
-.field-label--multi
-.field-label--bool
-    border-width: 0 1px 1px 0
-
-.fm-field--bool
 .fm-field--radio
-    label::before
+.fm-field--multi
+.fm-field--multi-block
+    label::after
         left: bvr(-.25)
         right: bvr(-.25)
         
         +over(standard)
             left: bvr(-.5)
             right: bvr(-.5)
+    
+    input
+        transform: translateY(2px)
 
+.fm-field--bool
     & + &
         margin-top: 0
 
-.fm-field--radio
-    input
-        transform: translateY(-2px)
 
 .fm-fieldset-legend
-    &::before
+    &::after
         +over(standard)
             left: bvr(.5)
             right: bvr(.5)

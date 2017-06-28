@@ -73,22 +73,13 @@
   color: #fff;
   background-color: #8b0e04;
 }
-[class*='thm--affiliates'] [class*="--bShade"] {
-  border-color: #680b03;
-}
 [class*='thm--programs'] {
   color: #fff;
   background-color: #4b2332;
 }
-[class*='thm--programs'] [class*="--bShade"] {
-  border-color: #13090c;
-}
 [class*='thm--partners'] {
   color: #fff;
   background-color: #008751;
-}
-[class*='thm--partners'] [class*="--bShade"] {
-  border-color: #00653d;
 }
 .thm--affiliates-shift,
 .thm--programs-shift,
@@ -140,23 +131,21 @@
 .co--minor.fx--shift.is-active {
   color: #181411;
 }
+hr {
+  height: 1px;
+  background-clip: content-box;
+}
 [class*='hl--xy'] {
   border: 1px solid #a7a9ab;
 }
 [class*='hl--xStart'] {
   border-left: 1px solid #808284;
 }
-[class*='hl--yStart'] {
-  border-top: 1px solid #a7a9ab;
-}
 [class*='hl--yEnd'] {
   border-bottom: 1px solid #a7a9ab;
 }
 [class*='--bTint'] {
   border-color: #d3d4d5;
-}
-[class*='--bShade'] {
-  border-color: #58585b;
 }
 .rxn--affiliates:hover,
 .rxn--affiliates.is-reacting,
@@ -397,25 +386,17 @@ main {
 .ico--ebr .st4 {
   fill: #fff;
 }
-[class*='field-group--'] {
-  border-width: 1px 0 0 1px;
-}
-.field-label--multi,
-.field-label--bool {
-  border-width: 0 1px 1px 0;
-}
-.fm-field--bool label::before,
-.fm-field--radio label::before {
+.fm-field--radio label::after,
+.fm-field--multi label::after,
+.fm-field--multi-block label::after {
   left: -6px;
   right: -6px;
 }
-.fm-field--bool + .fm-field--bool,
-.fm-field--radio + .fm-field--radio {
-  margin-top: 0;
-}
-.fm-field--radio input {
-  -webkit-transform: translateY(-2px);
-          transform: translateY(-2px);
+.fm-field--radio input,
+.fm-field--multi input,
+.fm-field--multi-block input {
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
 }
 [class*='page-ctrl'] {
   min-width: 2em;
@@ -561,8 +542,9 @@ main {
     height: 1em;
     width: 1em;
   }
-  .fm-field--bool label::before,
-  .fm-field--radio label::before {
+  .fm-field--radio label::after,
+  .fm-field--multi label::after,
+  .fm-field--multi-block label::after {
     left: -12px;
     right: -12px;
   }

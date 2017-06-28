@@ -3,47 +3,51 @@ extends _abstract
 block model
     -
         form_field
-            .define({
-                class: "fm-field--radio",
-                container: {
-                    class: "rxn--shade20 fx--shift",
-                    "o-base": "row--pStart--sMiddle mod--balance pad--y25 rhy--xStart25",
-                },
+            .instance({
+                class: "fm-field--multi",
+
                 label: {
-                    class: "field-label--bool",
                     "o-base": "mod--balance"
+                },
+                control: {
+                    class: "rxn--shade60 fx--shift",
+                    "o-base": "row--pStart--sStart mod--balance pad--y25 rhy--xStart25",
                 }
             })
 
 
 
 block hdr
-    p&attributes(form_field.label)
+    p.field-label--multi&attributes(form_field.label)
         = form_field.data.label
 
 
 block bd
     if choices[form_field.data.name]
-        div()
+        div&attributes(form_field.group)
+
             +for(`choice_value, choice_label in form.${form_field.data.name}.field.choices`)
                 -
                     input_attrs = {
                         type: "checkbox",
                         id: `id_${ form_field.data.name }_${ v('forloop.counter') }`,
+                        "o-base": "mod--static",
                         name: form_field.data.name,
                         value: v('choice_value')
                     }
                     
                     _field_val = `form.${ form_field.data.name }.value`
                 
-                label&attributes(form_field.container)
-                    +if(`choice_value|safe in ${ _field_val } or choice_value in ${ _field_val }`)
-                        input(checked=true)&attributes(input_attrs)
+                block input_ext
+                
+                label.field-label--multi&attributes(form_field.control)
+                    block input_int
+                        +if(`choice_value|safe in ${ _field_val } or choice_value in ${ _field_val }`)
+                            input(checked=true)&attributes(input_attrs)
                     
-                        +else()
-                            input&attributes(input_attrs)
-
-                    span(
-                        o-base="mod--balance"
-                    )&attributes(form_field.label)  
-                        = v('choice_label')
+                            +else()
+                                input&attributes(input_attrs)
+                    
+                    block label
+                        span&attributes(form_field.label)  
+                            = v('choice_label')

@@ -16,4 +16,4 @@ block bd
         value=attr_switch(`form.${ form_field.data.name }.value != None`, v(`form.${ form_field.data.name }.value`, "stringformat:'s'", "default_if_none:''"))
         name=form_field.data.name
         required=form_field.data.required || false
-    )&attributes(form_field.field)
+    )&attributes(form_field.control)

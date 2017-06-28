@@ -3,36 +3,52 @@ extends _abstract
 append model
     -
         form
-            .define({
+            .instance({
                 class: "fm--search",
                 element: {
                     class: "thm--dark",
                 },
-            })
-            .mix({
-                legend: {
-                    class: "tx--subhed--f1--100",
-                    "o-base": "row--pGrid--sMiddle mod--balance pad--x25 pad--y25 rhy--xStart25",
-                    "o-standard": "pad--x100"
-                },
-                field: {
-                    label: {
-                        class: "tx--small--f3--ls100--aa",
-                    },
-                    field: {
-                        class: "tx--small--f3--ls100--aa rhy--xStart50 hl--xy--bShade thm--tint20 rxn--shade20 fx--shift ico--xl",
-                        "o-base": "row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25",
-                        "o-standard": "pad--y50"
+                data: {
+                    title: "Search",
+                    submit: {
+                        
                     }
                 }
             })
-            .data({
-                title: "Search",
-                submit: {
-                    name: "search",
+
+        ctrl
+            .mix({
+                element: {
+                    "o-base": "vx--hidden",
+                    "o-compressed": "vx--shown"
+                }
+            })
+            .instance({
+                data: {
                     label: "Explore"
                 }
             })
+        //-     .mix({
+        //-         legend: {
+        //-             class: "tx--subhed--f1--100",
+        //-             "o-base": "row--pGrid--sMiddle mod--balance pad--x25 pad--y25 rhy--xStart25",
+        //-             "o-standard": "pad--x100"
+        //-         },
+        //-         field: {
+        //-             label: {
+        //-                 class: "tx--small--f3--ls100--aa",
+        //-             },
+        //-             field: {
+        //-                 class: "tx--small--f3--ls100--aa rhy--xStart50 hl--xy--bShade thm--tint20 rxn--shade20 fx--shift ico--xl",
+        //-                 "o-base": "row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25",
+        //-                 "o-standard": "pad--y50"
+        //-             }
+        //-         }
+        //-     })
+        //-     .data({
+        //-         title: "Search",
+        
+        //-     })
 
 
 
@@ -41,14 +57,4 @@ block hdr
         h1.fm-hed&attributes(form.hed)
             = form.data.title
         
-        
-        -   
-            ctrl = new Vefa()
-                .data(form.data.submit)
-                .mix({
-                    element: {
-                        "o-base": "vx--hidden",
-                        "o-compressed": "vx--shown"
-                    }
-                })
         include /controls/submit

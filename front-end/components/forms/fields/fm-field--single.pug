@@ -3,18 +3,18 @@ extends _abstract
 block model
     -
         form_field
-            .define({
+            .instance({
                 class: "fm-field--radio",
-                container: {
-                    class: "rxn--shade20 fx--shift",
-                    "o-base": "row--pStart--sMiddle mod--balance pad--y25 rhy--xStart25",
-                },
+
                 label: {
-                    class: "field-label--bool",
                     "o-base": "mod--balance"
+                },
+                
+                control: {
+                    class: "rxn--shade20 fx--shift",
+                    "o-base": "row--pStart--sStart mod--balance pad--y25 rhy--xStart25",
                 }
             })
-
 
 
 block hdr
@@ -23,30 +23,25 @@ block hdr
 
 
 block bd
-    //- =v('form.use_in_network.value')
-    //- =v('form.free_of_cost.value')
     if choices[form_field.data.name]
-        div()
-            for choice, _index in choices[form_field.data.name]
-                label&attributes(form_field.container)
-                    - 
-                        val = _index.toString()
-                        val = (val == 'true' || val == 'false')
-                            ? val.toString().charAt(0).toUpperCase()+_index.substring(1)
-                            : val
+        div&attributes(form_field.group)
+            
+            +for(`choice_value, choice_label in form.${form_field.data.name}.field.choices`)
+                -
+                    input_attrs = {
+                        type: "radio",
+                        id: `id_${ form_field.data.name }_${_index}`,
+                        "o-base": "mod--static",
+                        name: form_field.data.name,
+                        value: v('choice_value'),
+                    }
 
-                        input_attrs = {
-                            type: "radio",
-                            id: `id_${ form_field.data.name }_${_index}`,
-                            name: form_field.data.name,
-                            value: val,
-                        }
-                    
-                    +if(`form.${form_field.data.name}.value \=\= ${ val }`)
+                label&attributes(form_field.control)
+                    +ifequal(`form.${form_field.data.name}.value`, 'choice_value')
                         input(checked=true)&attributes(input_attrs)
                         
                         +else()
                             input&attributes(input_attrs)
 
-                    span&attributes(form_field.label)
-                        = choice
+                    span&attributes(form_field.label)  
+                        = v('choice_label')

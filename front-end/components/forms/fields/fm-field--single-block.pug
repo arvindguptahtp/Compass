@@ -1,41 +1,41 @@
-extends _abstract
+//- extends _abstract
 
 
-block model
-    -
-        form_field
-            .mix({
-                class: "fm-field--single",
-                group: {
-                    class: "field-group--single hl--xy--bShade",
-                    "o-base": "gx--i3--gxy0",
-                    "o-standard": "gx--i1--gxy0",
-                }
-            })
+//- block model
+//-     -
+//-         form_field
+//-             .mix({
+//-                 class: "fm-field--single",
+//-                 group: {
+//-                     class: "field-group--single hl--xy--bShade",
+//-                     "o-base": "gx--i3--gxy0",
+//-                     "o-standard": "gx--i1--gxy0",
+//-                 }
+//-             })
 
 
-block hdr
-    p&attributes(form_field.label)
-        = form_field.data.label
+//- block hdr
+//-     p&attributes(form_field.label)
+//-         = form_field.data.label
 
 
 
-block bd
-    if choices[form_field.data.name]
-        div()&attributes(form_field.group)
+//- block bd
+//-     if choices[form_field.data.name]
+//-         div()&attributes(form_field.group)
             
-            for choice, _index in choices[form_field.data.name]
-                input.vx--a11y(
-                    type="radio" 
-                    id=`id_${ form_field.data.name }_${ _index }`
-                    name=`${ form_field.data.name }`
-                )
+//-             for choice, _index in choices[form_field.data.name]
+//-                 input.vx--a11y(
+//-                     type="radio" 
+//-                     id=`id_${ form_field.data.name }_${ _index }`
+//-                     name=`${ form_field.data.name }`
+//-                 )
                 
-                label.field-label--multi.tx--chrome---f3(
-                    for=`id_${ form_field.data.name }_${ _index }`
-                )&attributes(form_field.field)
-                    //- include /icons/add
-                    span.tx--trnc(
-                        o-base="mod--balance"
-                    )= choice
-                    //- include /icons/remove
+//-                 label.field-label--multi.tx--chrome---f3(
+//-                     for=`id_${ form_field.data.name }_${ _index }`
+//-                 )&attributes(form_field.field)
+//-                     //- include /icons/add
+//-                     span.tx--trnc(
+//-                         o-base="mod--balance"
+//-                     )= choice
+//-                     //- include /icons/remove

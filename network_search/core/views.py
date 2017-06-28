@@ -54,7 +54,7 @@ class SearchView(FormView):
         except PageNotAnInteger:
             page = 1
 
-        p = Paginator(queryset, request=request, per_page=5)
+        p = Paginator(queryset, request=request, per_page=20)
         paged_queryset = p.page(page)
 
         return self.render_to_response(self.get_context_data(**{

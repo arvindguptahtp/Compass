@@ -19,8 +19,6 @@ fm_search:
                 name: grade
                 label: Grades
                 type: multi
-                mix:
-                    o-base: gx--i3
 
             gender:
                 name: gender
@@ -55,8 +53,6 @@ fm_search:
                 name: reach
                 label: Organizational Reach
                 type: multi
-                define:
-                    o-base: gx--i3
             
             setting:
                 name: setting

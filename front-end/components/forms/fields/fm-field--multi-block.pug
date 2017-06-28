@@ -1,100 +1,21 @@
-extends _abstract
+extends fm-field--multi
 
-
-block model
+append model
     -
         form_field
-            .mix({
-                class: "fm-field--multi",
-                group: {
-                    class: "field-group--multi hl--xy--bShade",
-                    "o-base": "gx--i1--gxy0",
-                    "o-standard": "gx--i1--gxy0",
-                },
+            .instance({
+                class: "fm-field--multi-block",
+
+                control: {
+                    "o-base": "row--pStart--sMiddle mod--balance pad--y25 rhy--xStart50 ico--xl"
+                }
             })
-        
-        field_name = form_field._instance.data.name
-    
-    
-    //- if ["grades", "gender"].includes(field_name)
-    //-     - 
-    //-         form_field
-    //-             .replace({
-    //-                 group: {
-    //-                     "o-compressed": "gx--i2--gxy0",
-                        
-    //-                 }
-    //-             })
 
-    
-    //- if ["grades"].includes(field_name)
-    //-     - 
-    //-         form_field
-    //-             .replace({
-    //-                 group: {
-    //-                     "o-condensed": "gx--i3--gxy0",
-    //-                 }
-    //-             })
+block input_ext
+    +if(`choice_value|safe in ${ _field_val } or choice_value in ${ _field_val }`)
+        input.vx--a11y(checked=true)&attributes(input_attrs)
 
-    
-    //- if ["service_tier", "reach", "setting"].includes(field_name)
-    //-     - 
-    //-         form_field
-    //-             .replace({
-    //-                 group: {
-    //-                     "o-compressed": "gx--i3--gxy0",
-    //-                     "o-standard": "gx--i3--gxy0",
-    //-                 }
-    //-             })
-    
-    
-    //- if ["student_needs", "services"].includes(field_name)
-    //-     - 
-    //-         form_field
-    //-             .replace({
-    //-                 group: {
-    //-                     "o-condensed": "gx--i2--gxy0",
-    //-                 }
-    //-             })
+        +else()
+            input.vx--a11y&attributes(input_attrs)
 
-
-block hdr
-    p&attributes(form_field.label)
-        = form_field.data.label
-
-
-
-block bd
-    if choices[form_field.data.name]
-        div()&attributes(form_field.group)
-            
-            +for(`choice_value, choice_label in form.${form_field.data.name}.field.choices`)
-                -
-                    input_attrs = {
-                        type: "checkbox",
-                        id: `id_${ form_field.data.name }_${ v('forloop.counter') }`,
-                        name: form_field.data.name,
-                        value: v('choice_value')
-                    }
-                    
-                    _field_val = `form.${ form_field.data.name }.value`
-
-                
-                +if(`choice_value|safe in ${ _field_val } or choice_value in ${ _field_val }`)
-                    input.vx--a11y(checked=true)&attributes(input_attrs)
-                    
-                    +else()
-                        input.vx--a11y&attributes(input_attrs)
-                
-                
-                label.field-label--multi(
-                    for=`id_${ form_field.data.name }_${ v('forloop.counter') }`
-                )&attributes(form_field.field)                    
-                    
-                    - icon_type = 'choice_value'
-                    block icon
-                
-                    span(
-                        o-base="mod--balance"
-                    )
-                        = v('choice_label')
+block input_int

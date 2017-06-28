@@ -12,6 +12,15 @@ mixin else()
         != _tag("else")
         block
 
+mixin ifequal(evl_1, evl_2)
+    if shopify || django
+        != _tag( "ifequal", `${ evl_1 } ${ evl_2 }`)
+        block
+        != _endtag("ifequal")
+    
+    else if evl_1 ==evl_2
+        block
+
 mixin for(evl)
     if shopify || django
         != _tag( "for", evl)

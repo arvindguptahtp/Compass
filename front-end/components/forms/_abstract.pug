@@ -8,9 +8,10 @@ include /_vefa
             class: "fm",
             action: ".",
             method: "GET",
+      
             element: {
                 "o-base": "pad--y50 rhy--yStart100",
-                "o-enhanced": "pad--y100"
+                "o-standard": "pad--y100"
             },
             header: {
                 "o-base": "row--pGrid--sMiddle pad--x25",
@@ -18,29 +19,33 @@ include /_vefa
             },
             hed: {
                 class: 'tx--subhed--f1--100'
-            }, 
+            },
             footer: {
-                "o-base": "row--pEnd--sMiddle pad--x50",
+                "o-base": "row--pEnd--sMiddle pad--x25",
                 "o-standard": "pad--x100"
             },
             field: {
+                group: {
+                    class: "thm--shade20",
+                    "o-base": "col--pStart--sStart pad--x50"
+                },
                 label: {
                     class: "tx--small--f3--900--tcU--aa",
                 },
-                field: {
-                    class: "tx--small--f3--ls100--aa rhy--xStart50 hl--xy--bShade thm--tint20 rxn--shade20 fx--shift ico--xl",
+                control: {
+                    class: "tx--small--f3--ls100 rhy--xStart50 thm--tint20 rxn--shade20 fx--shift ico--xl",
                     "o-base": "row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25",
-                    "o-standard": "pad--y50"
                 }
             }
         })
-        .data({
-            submit: {
+    
+    ctrl = new Vefa()
+        .instance({
+            data: {
                 name: "submit",
                 label: "Submit"
             }
         })
-
 
 block model
 - form = form.$freeze()
@@ -53,9 +58,6 @@ block view
         method=form.method
         class=form.class
     )&attributes(form.element)
-        
-        +csrf()
-        
         block hdr
             header.fm-hdr&attributes(form.header)
                 h1.fm-hed&attributes(form.hed)
@@ -70,9 +72,8 @@ block view
         
         block ftr
             footer&attributes(form.footer)
-                -
-                    ctrl = new Vefa()
-                        .data(form.data.submit)
                 include /controls/submit
+        
+        +csrf()
 
 - form = form.$thaw()

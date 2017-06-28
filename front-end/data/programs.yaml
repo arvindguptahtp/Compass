@@ -19,8 +19,6 @@ fm_search:
                 name: grade
                 label: Grades
                 type: multi
-                mix:
-                    o-base: gx--i3
             
             gender:
                 name: gender
@@ -39,7 +37,7 @@ fm_search:
     
     -   name: Program Details
         type: fieldset
-        folded: true
+        # folded: true
         fields:
             use_in_network:
                 name: use_in_network

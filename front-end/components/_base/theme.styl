@@ -6,18 +6,18 @@
             num = 5 * i
             &{num}
                 +o-eq(breakpoints)
-                    background: 'rgba(%s, %s%)' % (_black num)
+                    background-color: 'rgba(%s, %s%)' % (_black num)
 
         // get darker as objects stack to one another
         &-nx
             +o-eq(breakpoints)
-                background: rgba(_black, 20%)
+                background-color: rgba(_black, 20%)
             
                 &:nth-of-type(n + 2)
-                    background: rgba(_black, 40%)
+                    background-color: rgba(_black, 40%)
 
                 &:nth-of-type(n + 3)
-                    background: rgba(_black, 60%)
+                    background-color: rgba(_black, 60%)
 
     
     &tint
@@ -27,15 +27,15 @@
             num = 5 * i
             &{num}
                 +o-eq(breakpoints)
-                    background: 'rgba(%s, %s%)' % (_white num)
+                    background-color: 'rgba(%s, %s%)' % (_white num)
         
         // get lighter as objects stack to one another
         &-nx
             +o-eq(breakpoints)
-                background: rgba(_white, 20%)
+                background-color: rgba(_white, 20%)
             
                 &:nth-of-type(n + 2)
-                    background: rgba(_white, 40%)
+                    background-color: rgba(_white, 40%)
 
                 &:nth-of-type(n + 3)
-                    background: rgba(_white, 60%)
+                    background-color: rgba(_white, 60%)

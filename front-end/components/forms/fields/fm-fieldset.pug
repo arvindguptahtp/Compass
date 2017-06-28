@@ -3,7 +3,7 @@ extends /_abstract
 block model
     -
         form_fieldset = new Vefa()
-            .instance({
+            .define({
                 legend: {
                     class: "fm-fieldset-legend"
                 }
@@ -47,8 +47,8 @@ block view
         
         div(
             slot="bd"
-            o-base="pad--x25 iso--yStart50 rhy--yStart100"
-            o-standard="pad--x100"
+            o-base="pad--x25 iso--yStart50"
+            o-standard="pad--x100 rhy--yStart100"
         )&attributes(form_fieldset.bd)
 
             if form_fieldset.data.fields
@@ -63,25 +63,25 @@ block view
                         when "single"
                             include /forms/fields/fm-field--single
                         
-                        when "bool"
-                            include /forms/fields/fm-field--bool
+                        //- when "bool"
+                        //-     include /forms/fields/fm-field--bool
                         
                         when "multi_icon"
                             include /forms/fields/fm-field--multi-icon
 
-                        when "multi_block"
-                            include /forms/fields/fm-field--multi-block
+                        //- when "multi_block"
+                        //-     include /forms/fields/fm-field--multi-block
 
-                        when "single_block"
-                            include /forms/fields/fm-field--single-block
-
+                        //- when "single_block"
+                        //-     include /forms/fields/fm-field--single-block
 
                         default
                             div
 
 
-    hr.hl--yStart--bShade(
-        o-base="iso--xAuto iso--yStart25 dx--w90"
+    hr.thm--shade20(
+        o-base="pad--x25 iso--yStart25"
+        o-standard="pad--x100"
     )
 
 
