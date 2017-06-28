@@ -1,0 +1,11 @@
+include /_vefa
+
++load('static')
+
+script(src="https://cdn.jsdelivr.net/g/picturefill@3.0.3,lazysizes@3.0.0", async)
+script document.createElement( "picture" ) 
+
+if site.supportIE8
+    <!--[if IE 8]>
+    script(src="https://html5shiv.googlecode.com/svn/trunk/html5.js")
+    <![endif]-->

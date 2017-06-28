@@ -1,0 +1,10 @@
+include /_vefa
+
++load('static')
+
+script(
+    src= prod
+        ? "https://cdn.jsdelivr.net/vue/2.3.2/vue.min.js" 
+        : "https://cdn.jsdelivr.net/vue/2.3.2/vue.js"
+)
+script(src=static("js/app.js"))

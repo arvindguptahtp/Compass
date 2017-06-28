@@ -35,6 +35,9 @@ templates:
         - _vefa.pug
         - _abstract.pug
     emit:
+        - meta/css
+        - meta/head_js
+        - meta/footer_js
         - site/index
         - icons
         - affiliates/affiliate_list

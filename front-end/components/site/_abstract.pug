@@ -26,56 +26,11 @@ html(langs="en-US")
             = site.title
         
         block project_css
-            if prod
-                link(
-                    rel="stylesheet"
-                    href=static(`css/base.min.css`)
-                )
-
-                link(
-                    rel="stylesheet"
-                    href=static(`css/app.min.css`)
-                )
-            else
-                link(
-                    rel="stylesheet"
-                    href=static(`css/base.css`)
-                )
-                link(
-                    rel="stylesheet"
-                    href=static(`css/app.css`)
-                )
-            
-            link(
-                rel="stylesheet"
-                href="https://fonts.googleapis.com/css?family=Oswald:400,700,300"
-            )
-            
-            if site.supportIE9
-                <!--[if IE 9]>
-                link(
-                    rel="stylesheet"
-                    href=static(`css/app.ie9.css`)
-                )
-                <![endif]-->
-            
-            if site.supportIE8
-                <!--[if IE 8]>
-                link(
-                    rel="stylesheet"
-                    href=static(`css/app.ie8.css`)
-                )
-                <![endif]-->
+            +include('meta/css')
         
 
         block head_js
-            script(src="https://cdn.jsdelivr.net/g/picturefill@3.0.3,lazysizes@3.0.0", async)
-            script document.createElement( "picture" ) 
-
-            if site.supportIE8
-                <!--[if IE 8]>
-                script(src="https://html5shiv.googlecode.com/svn/trunk/html5.js")
-                <![endif]-->
+            +include('meta/head_js')
         
         include /meta/favicons
         meta(name="apple-mobile-web-app-title" content=site.title)
@@ -119,9 +74,4 @@ html(langs="en-US")
 
         
         block js
-            script(
-                src= prod
-                    ? "https://cdn.jsdelivr.net/vue/2.3.2/vue.min.js" 
-                    : "https://cdn.jsdelivr.net/vue/2.3.2/vue.js"
-            )
-            script(src=static("js/app.js"))
+            +include('meta/footer_js')

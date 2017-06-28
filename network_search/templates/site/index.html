@@ -5,12 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>CIS Search Tool
-    </title>
-    <link rel="stylesheet" href="{% static 'css/base.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:400,700,300">
-    <script src="https://cdn.jsdelivr.net/g/picturefill@3.0.3,lazysizes@3.0.0" async></script>
-    <script>document.createElement( "picture" ) </script>
+    </title>{% include 'meta/css.html' %}{% include 'meta/head_js.html' %}
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'res/favicons/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'res/favicons/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'res/favicons/favicon-16x16.png' %}">
@@ -136,8 +131,6 @@ Arlington, VA 22202
               </a><a class="contactinfo-item--email" href="mailto:#{ contact.email }" target="_top" o-condensed="pad--xStart25 iso--xStart25 hl--xStart--bTint">E-mail:&nbsp;info@cisnet.org</a></div>
         </address>
       </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/vue/2.3.2/vue.min.js"></script>
-    <script src="{% static 'js/app.js' %}"></script>
+    </footer>{% include 'meta/footer_js.html' %}
   </body>
 </html>
