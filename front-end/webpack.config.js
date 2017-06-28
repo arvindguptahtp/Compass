@@ -68,7 +68,7 @@ module.exports = (env) => {
         context: path.resolve(CFG.src),
         cache: !PROD,
         target: 'web',
-        devtool: 'inline-eval-cheap-source-map',
+        devtool: PROD ? '"source-map' : 'eval',
         resolve: {
             extensions: [".js", ".json", '.yaml', '.yml', '.vue', '.styl', '.pug'],
         },
