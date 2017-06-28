@@ -46,6 +46,18 @@ ui-deps:
 ui-update: ## Update UI Build Process dependencies
 	cd $(ui) && yarn upgrade-interactive
 
+ui-assets:
+	clear
+	cd $(ui) && yarn run assets
+
+vue-dev:
+	clear
+	cd $(ui) && yarn run vue-dev
+
+dev:
+	clear
+	cd $(ui) && yarn run template-dev
+
 ui-dev:
 	clear
 	cd $(ui) && yarn run django-dev

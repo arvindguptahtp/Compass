@@ -4,9 +4,13 @@ build: ../network_search
 publicPath: static/js/
 components: components
 entries:
-    compile: ./compile.js
-    app: ./components/app.js
-
+    vue:
+        app: ./components/app.js
+    templates:
+        compile: ./compile.js
+    all:
+        compile: ./compile-all.js
+        app: ./components/app.js
 # ---------------------------------------------------------------------
 # DATA
 # ---------------------------------------------------------------------
@@ -22,6 +26,8 @@ locals:
 # TEMPLATING
 # ---------------------------------------------------------------------
 templates:
+    entries:
+        compile: ./compile.js
     context: ./components/
     path: 'templates/[path][name].html'
     suppress:

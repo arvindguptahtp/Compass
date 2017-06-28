@@ -7,6 +7,7 @@ const fs = require('fs')
 
 // processor functionalities
 const webpack = require('webpack')
+const entries = require('webpack-entries')
 
 const locals_loader = require("./vefa/locals_loader")
 const notifier = require("webpack-notifier")
@@ -27,7 +28,9 @@ module.exports = (env) => {
     let CFG = env.init ? require(`${__dirname}/${env.init}`) : null
     let PROD = CFG.PROD = env.production ? true : false
     let DJANGO = CFG.DJANGO = env.django ? true : false
+    let TASKING = env.tasks ? env.tasks :  "all"
     
+
     let locals = {
         prod: PROD,
         django: DJANGO,
@@ -48,22 +51,63 @@ module.exports = (env) => {
         },
     }
 
+    let rule_set = (() => {
+        switch (TASKING) {
+            case "assets":
+                return [
+                    require('./vefa/rules.images')(CFG),
+                    require('./vefa/rules.assets')(CFG)
+                ]
+            break;
+            case "vue":
+                return [
+                    require('./vefa/rules.babel')(CFG),
+                    require('./vefa/rules.vue')(CFG, locals),
+                ]
+            break;
+            case "templates": 
+                return [
+                    require('./vefa/rules.styles')(CFG),
+                    require('./vefa/rules.django')(CFG, locals),
+                ]
+            break;
+            default:
+                return [
+                    require('./vefa/rules.babel')(CFG),
+                    require('./vefa/rules.vue')(CFG, locals),
+                    require('./vefa/rules.styles')(CFG),
+                    require('./vefa/rules.django')(CFG, locals),
+                    require('./vefa/rules.images')(CFG),
+                    require('./vefa/rules.assets')(CFG)
+                ]
+        }
+    })()
+    
+    let entry_files = (() => {
+        switch (TASKING) {
+            case "assets": 
+                return entries('./res/*/**.*')
+            break;
+            case "vue":
+                return entries(CFG.entries.vue, true)
+            break;
+            case "templates":
+                return entries(CFG.entries.templates, true)
+            break;
+            default:
+                return entries(CFG.entries.all, true)
+        }
+    })()
+
     let config = {
-        entry: CFG.entries,
+        entry: entry_files,
         output: {
             filename: `${CFG.publicPath}[name].js`,
             path: path.resolve(__dirname, CFG.build),
             publicPath: CFG.publicPath,
         },
         module: {
-            rules: [
-                require('./vefa/rules.babel')(CFG),
-                require('./vefa/rules.vue')(CFG, locals),
-                require('./vefa/rules.styles')(CFG),
-                require('./vefa/rules.django')(CFG, locals),
-                require('./vefa/rules.images')(CFG),
-                require('./vefa/rules.assets')(CFG)
-            ]
+            rules: rule_set 
         },
         context: path.resolve(CFG.src),
         cache: !PROD,

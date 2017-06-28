@@ -85,3 +85,5 @@ _build
 front-end/.json
 network_search/static/js/compile.js
 network_search/static/js/compile.js.map
+network_search/static/js/main.js
+network_search/static/js/main.js.map
