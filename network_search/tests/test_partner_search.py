@@ -4,22 +4,17 @@ Tests for searching partners
 
 import pytest
 
+from network_search.core.choices import AffiliateGrades
+from network_search.core.choices import CoreServices
 from network_search.core.choices import Gender
 from network_search.core.choices import Regions
 from network_search.core.choices import Setting
-from network_search.core.choices import CoreServices
 from network_search.core.choices import StudentNeeds
-from network_search.core.choices import TiersOfService
-from network_search.core.choices import AffiliateGrades
 from network_search.core.choices import TiersOfEvidence
+from network_search.core.choices import TiersOfService
 from network_search.partners.forms import PartnerSearchForm
-from network_search.tests.fixtures import affiliate_factory
 from network_search.partners.models import Partner
-
-
-@pytest.fixture
-def empty_partner():
-    yield Partner.partners.create(name="Empty")
+from network_search.tests.fixtures import affiliate_factory
 
 
 @pytest.fixture

@@ -4,16 +4,16 @@ Tests for searching programs
 
 import pytest
 
-from network_search.core.choices import Race
-from network_search.core.choices import Gender
-from network_search.core.choices import CoreServices
-from network_search.core.choices import StudentNeeds
-from network_search.core.choices import TiersOfService
+from network_search.affiliates.models import Affiliate
 from network_search.core.choices import AffiliateGrades
+from network_search.core.choices import CoreServices
+from network_search.core.choices import Gender
+from network_search.core.choices import Race
+from network_search.core.choices import StudentNeeds
 from network_search.core.choices import TiersOfEvidence
+from network_search.core.choices import TiersOfService
 from network_search.programs.forms import ProgramSearchForm
 from network_search.programs.models import Program
-from network_search.affiliates.models import Affiliate
 
 
 @pytest.fixture
@@ -28,11 +28,6 @@ def program_affiliate():
         address_state="VA",
         address_postcode="22202",
     )
-
-
-@pytest.fixture
-def empty_program():
-    yield Program.programs.create(name="Empty")
 
 
 @pytest.fixture

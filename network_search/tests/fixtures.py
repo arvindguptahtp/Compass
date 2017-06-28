@@ -7,6 +7,8 @@ from network_search.affiliates.models import Affiliate
 from network_search.affiliates.models import EndOfYear
 from network_search.affiliates.models import SchoolEOYData
 from network_search.affiliates.models import AffiliateEOYData
+from network_search.partners.models import Partner
+from network_search.programs.models import Program
 
 
 def affiliate_factory(**kwargs):
@@ -71,3 +73,24 @@ def current_eoy():
 @pytest.fixture
 def past_eoy():
     yield EndOfYear.objects.create(year_ends=2016, is_active=False)
+
+
+@pytest.fixture
+def empty_partner():
+    yield Partner.partners.create(name="Empty")
+
+
+@pytest.fixture
+def affiliate_data(current_eoy):
+    affiliate = affiliate_factory()
+    school = school_data_factory(affiliate, current_eoy)
+    yield {
+        "affiliate": affiliate,
+        "school": school,
+        "affiliate_data": school.affiliate_data,
+    }
+
+
+@pytest.fixture
+def empty_program():
+    yield Program.programs.create(name="Empty")

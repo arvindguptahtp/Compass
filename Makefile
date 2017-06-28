@@ -6,6 +6,9 @@
 run:  ## Runs the dev containers
 	docker-compose -f dev.yml up
 
+down:  ## Shut down dev containers
+	docker-compose -f dev.yml down
+
 build:  ## Builds all available containers
 	docker-compose -f dev.yml build
 
@@ -13,7 +16,7 @@ lint:  ## Run linting and static analysis
 	docker-compose -f dev.yml run django flake8 network_search
 
 test: clean  ## Runs tests in the Django container
-	docker-compose -f dev.yml run django pytest
+	docker-compose -f dev.yml run django pytest network_search
 	docker-compose -f dev.yml run django flake8 network_search
 
 format:
