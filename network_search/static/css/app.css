@@ -376,6 +376,10 @@ main {
   line-height: 1;
   overflow: hidden;
 }
+[o-base*='ico--xs'] > .ico {
+  height: 0.75em;
+  width: 0.75em;
+}
 [o-base*='ico--md'] > .ico {
   height: 1.75em;
   width: 1.75em;
@@ -412,6 +416,20 @@ main {
 .fm-field--radio input {
   -webkit-transform: translateY(-2px);
           transform: translateY(-2px);
+}
+[class*='page-ctrl'] {
+  min-width: 2em;
+  min-height: 2em;
+}
+[class*='page-ctrl'].is-disabled {
+  color: #003d7d;
+  background: #fff;
+  opacity: 0.5;
+}
+[class*='page-ctrl'].is-current {
+  color: #003d7d;
+  background: #fff;
+  border: 1px solid #003d7d;
 }
 .gx--result-affiliate {
   grid-template-areas: "title      title       title   title" "state      state       state   profile" "students   students    budget  budget";

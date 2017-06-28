@@ -2,9 +2,11 @@ extends _abstract
 
 block props
     - 
-        page.data({
-            title: "List Template"
+        page.define({
+            title: "List Template",
+            list_type: "programs"
         })
+
 
 
 block preview
@@ -46,7 +48,22 @@ block view
                     o-base="dx--w60 iso--xAuto"
                 )
             
-
             if page.data.results_collection
-                block results
-                
+                section(
+                    o-base="rhy--yStart50"
+                )
+                    -
+                        pagination = new Vefa()
+                            .data({
+                                obj: page.data.list_type
+                            })
+                    include /pagination/default
+                        
+                    block results
+                    
+                    -
+                        pagination = new Vefa()
+                            .data({
+                                obj: page.data.list_type
+                            })
+                    include /pagination/default

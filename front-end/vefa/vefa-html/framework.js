@@ -18,14 +18,18 @@ const runner = (base, extender, func) => {
 
 module.exports = class Vefa {
     constructor (obj = {}) {
+        this._mixin = {}
         this._abstract = {
             data: {}
         }
-        this._mixin = {}
         this._instance = {
             data: {}
         }
+        this._extend = {
+            data: {}
+        }
         this._data = {}
+        this._labels = {}
 
         this.define(obj)
 
@@ -78,6 +82,16 @@ module.exports = class Vefa {
         return this
     }
 
+    //- initialize the current instance
+    //- meant for the outermost layer, called before an include
+    extend (obj) {
+        if (hasProps(obj)) {
+            this._extend = this.replace_with(this._extend, obj)
+        }
+
+        return this
+    }
+
     // syntactic sugar as "create" after the abstract is linguistic error
     presets (obj) {
         this.define(obj)
@@ -87,6 +101,15 @@ module.exports = class Vefa {
     data (obj) {
         if (hasProps(obj)) {
             this._data = this.replace_with(this._data, obj)
+        }
+
+        return this
+    }
+
+    // helper function
+    labels (obj) {
+        if (hasProps(obj)) {
+            this._labels = this.replace_with(this._labels, obj)
         }
 
         return this
@@ -150,7 +173,9 @@ module.exports = class Vefa {
     $freeze (obj = this._abstract) {
         let factory = {
         	$ghost: this,
-          	$thaw () { return this.$ghost }
+          	$thaw () { return this.$ghost },
+            data: {},
+            labels: {}
         }
 
         if (!obj) { obj = {} }
@@ -167,7 +192,13 @@ module.exports = class Vefa {
             ? this.replace_with(factory, obj.instance)
             : this.replace_with(factory, this._instance)
 
+        //- overwrite properties
+        factory = (this._extend && hasProps(this._extend))
+            ? this.replace_with(factory, this._extend)
+            : factory
+
         factory.data = this.replace_with(factory.data, this._data)
+        factory.labels = this.replace_with(factory.labels, this._labels)
         
         return factory
     }
