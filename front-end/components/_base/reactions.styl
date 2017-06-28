@@ -4,55 +4,64 @@
 .rxn--
     &shade
         _black = co.black ? co.black : #000
-
+        
         +o-attr(class)
             +add-after()
                 position: absolute 0
-                background: _black
+                background-color: _black
                 opacity: 0
 
-            &:--all-states,
-            :--follows-check &
+            &:--all-states
                 input&
-                    background: rgba(_black, .5)
-                    background: "rgba(%s, 'var(--on-opacity, .5)')" % rgb(_black)
-        
+                    background-color: rgba(_black, .5)
+                    background-color: "rgba(%s, var(--on-opacity, .5))" % rgb(_black)
+            
+            &:--all-states
+            :--follows-check &
                 &::after
                     opacity: .5
                     opacity: var(--on-opacity, .5)
-        
-        
-        for i in (1..19)
-            num = 5 * i
+
+        for i in (1..4)
+            &{i}
+                +o-eq(class)
+                    --on-opacity: (i / 100)
+
+        for n in (1..19)
+            num = 5 * n
             &{num}
                 +o-eq(class)
                     --on-opacity: (num / 100)
-
-
+    
+    
+    
     &tint
         _white = co.white ? co.white : #FFF
 
         +o-attr(class)
-            &[input]
-                background: rgba(_white, 0)
-
             +add-after()
                 position: absolute 0
-                background: _white
+                background-color: _white
                 opacity: 0
-
+            
+            &:--all-states,
+                input&
+                    background-color: rgba(_white, .5)
+                    background-color: "rgba(%s, var(--on-opacity, .5))" % rgb(_white)
+            
             &:--all-states,
             :--follows-check &
-                &[input]
-                    background: rgba(_white, .5)
-                    // background: rgba(_white, var(--on-opacity, .5))
-
                 &::after
                     opacity: .5
                     opacity: var(--on-opacity, .5)
-
-        for i in (1..19)
-            num = 5 * i
+        
+        for i in (1..4)
+            &{i}
+                +o-eq(class)
+                    --on-opacity: (i / 100)
+                    
+        for n in (1..19)
+            num = 5 * n
             &{num}
                 +o-eq(class)
                     --on-opacity: (num / 100)

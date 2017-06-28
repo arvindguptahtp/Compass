@@ -30,8 +30,8 @@ module.exports = (config, locals) => {
                 loader: "vefa-html-loader",
                 options: {
                     locals: locals,
-                    pretty: config.PROD ? false : true,
-                    cached: true,
+                    pretty: true,
+                    cache: true,
                     filters: {
                         md ( block, opts ) {
                            return locals.markdown(block);

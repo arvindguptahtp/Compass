@@ -513,17 +513,16 @@ button {
   right: 0;
   bottom: 0;
   left: 0;
-  background: #181411;
+  background-color: #181411;
   opacity: 0;
 }
 input[class*='rxn--shade']:hover,
 input[class*='rxn--shade'].is-reacting,
 input[class*='rxn--shade']:focus,
 input[class*='rxn--shade']:active,
-input[class*='rxn--shade'].is-active,
-input:checked + [class*='rxn--shade'] {
-  background: rgba(24, 20, 17, .5);
-  background: rgba(24,20,17, 'var(--on-opacity, .5)');
+input[class*='rxn--shade'].is-active {
+  background-color: rgba(24, 20, 17, .5);
+  background-color: rgba(24,20,17, var(--on-opacity, .5));
 }
 [class*='rxn--shade']:hover::after,
 [class*='rxn--shade'].is-reacting::after,
@@ -559,16 +558,17 @@ input:checked + [class*='rxn--shade'] {
   right: 0;
   bottom: 0;
   left: 0;
-  background: #fff;
+  background-color: #fff;
   opacity: 0;
 }
-[class*='rxn--tint']:hover[input],
-[class*='rxn--tint'].is-reacting[input],
-[class*='rxn--tint']:focus[input],
-[class*='rxn--tint']:active[input],
-[class*='rxn--tint'].is-active[input],
-:checked + [class*='rxn--tint'][input] {
-  background: rgba(255, 255, 255, .5);
+[class*='rxn--tint']:hover,
+[class*='rxn--tint'].is-reacting,
+[class*='rxn--tint']:focus,
+[class*='rxn--tint']:active,
+[class*='rxn--tint'].is-active,
+input[class*='rxn--tint'] {
+  background-color: rgba(255, 255, 255, .5);
+  background-color: rgba(255,255,255, var(--on-opacity, .5));
 }
 [class*='rxn--tint']:hover::after,
 [class*='rxn--tint'].is-reacting::after,

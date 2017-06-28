@@ -40,7 +40,9 @@ block bd
                 
                 block input_ext
                 
-                label.field-label--multi&attributes(form_field.control)
+                label.field-label--multi(
+                    for=input_attrs.id
+                )&attributes(form_field.control)
                     block input_int
                         +if(`choice_value|safe in ${ _field_val } or choice_value in ${ _field_val }`)
                             input(checked=true)&attributes(input_attrs)
