@@ -95,4 +95,13 @@ class SchoolEOYAdmin(admin.ModelAdmin):
                 'students_served_gang', 'students_served_incarcerated_parent'
             ]
         }),
+        ('Services', {
+            'fields': [
+                'service_academic_assistance', 'service_basic_needs',
+                'service_behavior_intervention', 'service_college_career_prep',
+                'service_comm_service', 'service_enrichment',
+                'service_family_engagement', 'service_life_skills',
+                'service_physical_fitness_health', 'service_prof_mental_health',
+            ]
+        }),
     )
