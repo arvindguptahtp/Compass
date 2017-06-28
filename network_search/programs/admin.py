@@ -36,7 +36,7 @@ class ProgramAdmin(admin.ModelAdmin):
             'fields': ['summary', 'description', 'program_weblink'],
         }),
         ('Target population', {
-            'fields': ['grade', 'gender', 'race', 'region',
+            'fields': ['grade', 'gender', 'race', 'region', 'region_other',
                        'student_need', 'student_characteristics'],
         }),
         ('Program characteristics', {
