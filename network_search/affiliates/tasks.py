@@ -149,18 +149,21 @@ def process_data_upload(excel_upload_pk):
                     if not created:
                         logger.info("Updating school data for {}".format(school))
                         try:
-                            partners = [
-                                partner_name for partner_name in SCHOOL_PARTNERS
-                                if school_row[partner_name] == 1
-                            ]
                             for attr, value in SchoolStudentEOYFields.defaults(school_row).items():
                                 logger.debug("Working on {}, {}".format(attr, value))
                                 setattr(school, attr, value)
+                            try:
+                                partners = [
+                                    partner_name for partner_name in SCHOOL_PARTNERS
+                                    if school_row.get(partner_name, 0)
+                                ]
+                            except BaseException:
+                                logger.exception("Error reading partners from schools dataframe")
+                            else:
+                                school.partners = partners
 
-                            school.partners = partners
-
-                        except BaseException as e:
-                            logger.exception("COULD NOT UPDATE SCHOOL DATA: {}".format(e))
+                        except BaseException:
+                            logger.exception("COULD NOT UPDATE SCHOOL DATA")
                         else:
                             school.save()
 
