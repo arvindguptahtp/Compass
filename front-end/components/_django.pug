@@ -73,6 +73,9 @@ mixin dynamic_include(path, file_var)
 mixin when(expression)
     != _single( "when", `"${ expression }"` )
 
+mixin cycle(expression)
+    != _single( "cycle", `${ expression }` )
+
 //- ---------------------------------------------
 //- SHOPIFY
 //- ---------------------------------------------

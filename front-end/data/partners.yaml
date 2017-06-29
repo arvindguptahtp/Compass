@@ -37,12 +37,12 @@ fm_search:
             use_in_network:
                 name: use_in_network
                 label: Use in Network
-                type: single
+                type: single_null
             
             free_of_cost:
                 name: free_of_cost
                 label: Free of Cost
-                type: single
+                type: single_null
 
             services:
                 name: services

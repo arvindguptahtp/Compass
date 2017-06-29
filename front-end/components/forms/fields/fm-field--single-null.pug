@@ -1,0 +1,27 @@
+extends fm-field--single
+
+
+block bd
+    if choices[form_field.data.name]
+        div&attributes(form_field.group)
+            +for(`choice_value, choice_label in form.${form_field.data.name}.field.widget.choices`)
+                +cycle("None True False as value silent")
+                -
+                    input_attrs = {
+                        type: "radio",
+                        id: `id_${ form_field.data.name }_${_index}`,
+                        "o-base": "mod--static",
+                        name: form_field.data.name,
+                        value: v('choice_value'),
+                    }
+
+                label&attributes(form_field.control)
+                    +ifequal(`form.${form_field.data.name}.value`, 'value')
+                        input(checked=true)&attributes(input_attrs)
+                        
+                        +else()
+                            input&attributes(input_attrs)
+
+                    span&attributes(form_field.label)  
+                        = v('choice_label')
+                        
