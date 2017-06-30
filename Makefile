@@ -26,7 +26,9 @@ psql:  ## Runs a psql shell against the network_search database
 	docker-compose -f dev.yml run postgres psql -h postgres -U postgres -d network_search
 
 clean:  ## Removes extraneous files and build artifacts
-	find . -name "*.pyc" -delete
+	-@find . -name '*.pyc' -follow -print0 | xargs -0 rm -f &> /dev/null
+	-@find . -name '*.pyo' -follow -print0 | xargs -0 rm -f &> /dev/null
+	-@find . -name '__pycache__' -type d -follow -print0 | xargs -0 rm -rf &> /dev/null
 
 docs:
 	$(MAKE) -C docs clean
