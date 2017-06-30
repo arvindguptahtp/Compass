@@ -86,14 +86,14 @@ def process_data_upload(excel_upload_pk):
 
     affiliate_messages = []
 
-    affiliate_data = affiliates_workbook[AFFILIATE_SHEET_NAME]
+    affiliate_data = affiliates_workbook[AFFILIATE_SHEET_NAME].fillna(0)
     school_data = affiliates_workbook[SCHOOL_SHEET_NAME]
     student_data = affiliates_workbook[STUDENT_SHEET_NAME]
     school_student_data = school_data.merge(
         student_data,
         on=["Affiliate Name", "School Name"],
         suffixes=["", "_students"],
-    )
+    ).fillna(0)
 
     logger.debug("Iterating over dataframe...")
 
