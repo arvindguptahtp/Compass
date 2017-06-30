@@ -1,9 +1,9 @@
-from easy_pdf.views import PDFTemplateResponseMixin
 from django.views.generic import DetailView
 
-from network_search.core.views import SearchView
 from network_search.affiliates.forms import AffiliateSearchForm
 from network_search.affiliates.models import Affiliate
+from network_search.core.views import PDFMixin
+from network_search.core.views import SearchView
 
 
 class AffiliateView(DetailView):
@@ -18,7 +18,7 @@ class AffiliateView(DetailView):
         return context
 
 
-class AffiliatePDFView(PDFTemplateResponseMixin, AffiliateView):
+class AffiliatePDFView(PDFMixin, AffiliateView):
     template_name = "affiliates/affiliate_pdf.html"
 
 

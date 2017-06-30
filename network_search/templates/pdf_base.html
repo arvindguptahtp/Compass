@@ -1,25 +1,58 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <style>
+        section, header, footer {
+            display: block;
+            clear: both;
+        }
         body {
             font: 1em Arial, "Open Sans", sans-serif;
         }
+        h1,h2,h3 {
+            font-family: Oswald,Impact,Haettenschweiler,Arial Narrow Bold,sans-serif;
+        }
         h1 {
-            font: 2em Georgia, "Open Sans", sans-serif;
+            font-size: 2em;
+            font-weight: 400;
+            text-transform: uppercase;
         }
         header {
-            display: block;
             border-bottom: 1px solid #666;
+            margin-bottom: 5px;
+        }
+        footer {
+        }
+        footer div {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #666;
+        }
+        section {
+            width: 100%;
+            page-break-inside: avoid;
+        }
+        .col-2 {
+            width: 47%;
+            display: inline-block;
+            float:left;
+            margin-right: 15px;
         }
     </style>
 </head>
 <body>
     <header>
+        <img src="{% static 'res/logo.full.png' %}"/>
         <h1>{% block header %}{{ object }}{% endblock %}</h1>
     </header>
-    <div>{% block content %}{% endblock %}</div>
+    {% block content %}{% endblock %}
+    <footer>
+        <div>
+            Communities In Schools
+        </div>
+    </footer>
 </body>
 </html>

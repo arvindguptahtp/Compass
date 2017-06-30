@@ -1,4 +1,4 @@
 {% load choice_tags %}
 {% for option in options %}
-    <li>{{ option|choice_display:choice }}</li>
+    <li>{{ option|choice_display:choice|title }}</li>
 {% endfor %}

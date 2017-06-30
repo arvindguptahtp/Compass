@@ -3,95 +3,91 @@
 {% block content %}
 
     <section>
-        <h3>Contact information</h3>
-        <dl>
-            <dt>Contact name</dt>
-            <dd>{{ partner.contact_name }}</dd>
-            <dt>Contact title</dt>
-            <dd>{{ partner.contact_title }}</dd>
-            <dt>Contact email</dt>
-            <dd><a href="mailto:{{ partner.contact_email }}">{{ partner.contact_email }}</a></dd>
-            <dt>Website</dt>
-            <dd><a href="{{ partner.website }}">{{ parter.website }}</a></dd>
-        </dl>
+        {{ partner.contact_name }}, {{ partner.contact_title }}, <a href="mailto:{{ partner.contact_email }}">{{ partner.contact_email }}</a>,
+        <a href="{{ partner.website }}">{{ parter.website }}</a>
     </section>
 
     <section>
-        <h3>Mission</h3>
+        <h2>Mission</h2>
         <p>{{ partner.mission }}</p>
     </section>
 
     <section>
-        <h3>Overview</h3>
+        <h2>Overview</h2>
         <p>{{ partner.overview }}</p>
     </section>
 
     <section>
-        <h3>Students served</h3>
 
-        <p>Gender</p>
+        <h2>Partner Details</h2>
+
+        <div class="col-2">
+        <h3>Demographics</h3>
+
+        <h4>Grade Level</h4>
+        {% pdf_choices partner.grade "PartnerGrades" %}
+
+        <h4>Gender</h4>
         {% pdf_choices partner.gender "Gender" %}
-    </section>
 
-    <section>
-        <h3>Setting</h3>
-        {% pdf_choices partner.setting "Setting" %}
-    </section>
+        <h4>Service Tier</h4>
+        {% pdf_choices partner.tiers_of_service "TiersOfService" %}
 
-    <section>
-        <h3>Service & Tiers of Service</h3>
-    </section>
-
-    <section>
-        <h3>Tiers of Evidence</h3>
-    </section>
-
-    <section>
-        <h3>Cost</h3>
+        <h4>Free of Cost</h4>
         {% if partner.is_cost_free %}
-            <p>There are no costs associated with this partner.</p>
+            Yes
         {% else %}
-            <p>{{ cost_description }}</p>
+            No. {{ partner.cost_description }}
         {% endif %}
+        </div>
+
+        <div class="col-2">
+        <h3>Org Stats</h3>
+
+        <h4>Organizational Reach</h4>
+        {% pdf_choices partner.organizational_reach "Regions" %}
+
+        <h4>Setting</h4>
+        {% pdf_choices partner.setting "Setting" %}
+        </div>
+
     </section>
 
     <section>
-        <h3>Core Partnerships</h3>
-        <p>This organization is {% if not partner.is_core_partner %}not{% endif %} a core partner organization.</p>
+        <div class="col-2">
+            <h3>Student Needs</h3>
+            {% pdf_choices partner.student_need "StudentNeeds" %}
+        </div>
+
+        <div class="col-2">
+            <h3>CIS Service Categories</h3>
+            {% pdf_choices partner.service_categories "CoreServices" %}
+        </div>
     </section>
 
-    <section>
-        <h3>Use in network</h3>
-        {% if not partner.network_use.exists %}
-            This partner is not used by the Communities In School network.
-        {% else %}
-            <h3>Featured Affiliates</h3>
-            {% for affiliate in partner.featured_network.all %}
-            {% endfor %}
-           {% for affiliate in partner.network_use.all %}
-               <li><a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a></li>
-           {% endfor %}
 
+    {% if partners.webinars.exists or partner.presentations.exists %}
+        <section>
+            <div class="col-2">
+        <h2>Additional Partner Resources</h2>
+        {% if partner.webinars.exists %}
+                <h3>Webinars</h3>
+                {% for link in partner.webinars.all %}
+                    <li><a href="{{ link.url }}">{{ link.title}}</a></li>
+                {% endfor %}
+            </div>
         {% endif %}
-    </section>
 
-    {% if partner.webinars.exists %}
-        <section>
-            <h3>Webinars</h3>
-            {% for link in partner.webinars.all %}
-                <li><a href="{{ link.url }}">{{ link.title}}</a></li>
-            {% endfor %}
+        {% if partner.presentations.exists %}
+            <div class="col-2">
+                <h3>Presentations</h3>
+                {% for link in partner.presentations.all %}
+                    <li><a href="{{ link.url }}">{{ link.title}}</a></li>
+                {% endfor %}
+        {% endif %}
+            </div>
         </section>
-    {% endif %}
-
-    {% if partner.presentations.exists %}
-        <section>
-            <h3>Presentations</h3>
-            {% for link in partner.presentations.all %}
-                <li><a href="{{ link.url }}">{{ link.title}}</a></li>
-            {% endfor %}
-        </section>
-    {% endif %}
+    {% endif  %}
 
 
 
