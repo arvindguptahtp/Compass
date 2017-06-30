@@ -7,21 +7,16 @@ data for the current or most active reporting year.
 
 import pytest
 
-from network_search.core.choices import Race
+from network_search.affiliates.forms import AffiliateSearchForm
+from network_search.affiliates.models import Affiliate
+from network_search.affiliates.models import AffiliateEOYData
+from network_search.affiliates.models import EndOfYear
 from network_search.core.choices import Gender
+from network_search.core.choices import Race
 from network_search.core.choices import ServiceProvision
 from network_search.core.choices import StudentCharacteristics
 from network_search.tests.fixtures import affiliate_factory
 from network_search.tests.fixtures import school_data_factory
-from network_search.affiliates.forms import AffiliateSearchForm
-from network_search.affiliates.models import Affiliate
-from network_search.affiliates.models import EndOfYear
-from network_search.affiliates.models import AffiliateEOYData
-
-
-@pytest.fixture
-def base_affiliate():
-    yield affiliate_factory()
 
 
 @pytest.fixture

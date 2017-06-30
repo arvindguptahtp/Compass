@@ -1,5 +1,6 @@
 """
 Common choices
+==============
 
 This module uses Python's Enum class to provide sensible *coded* blocks,
 obviating the need to work with error prone string literals, and to do
@@ -7,6 +8,16 @@ so in a way compatible with Django's expected `choices` value.
 
 The `Choice` class is used here to ensure that any enumerated type can
 be packaged as a list of tuples with strings.
+
+Data specificity
+----------------
+
+The names and values here are critically specific - many of these choices,
+including names and/or values (see below) must provide a case-sensitive
+match for source data. **Changing these here may break data imports.**
+
+Explanation of format
+---------------------
 
 In order to make this work and reduce verbosity, the attribute names are
 shortened to what should be used in the database. It would be nicer to
@@ -193,3 +204,9 @@ class ServiceProvision(Choice):
     s2 = 'No Services Delivered'
     s3 = 'Provided by CIS Staff'
     s4 = 'Brokered Services Delivered by Another Organization'
+
+
+class AffiliateLocation(Choice):
+    Ur = 'Urban'
+    S = 'Suburban'
+    R = 'Rural'

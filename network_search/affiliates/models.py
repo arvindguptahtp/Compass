@@ -3,17 +3,18 @@ Models for the affiliate directory and EOY data reports
 """
 
 import logging
+from typing import Optional
 
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.db.models import F
 from django.db.models import Sum
-from model_utils.models import TimeStampedModel
 from django.utils.functional import cached_property
-from django.contrib.postgres.fields import ArrayField
+from model_utils.models import TimeStampedModel
 
 from network_search.core import choices
-from network_search.core.models import DataUpload
 from network_search.core.models import BaseResource
+from network_search.core.models import DataUpload
 from network_search.core.models import ResourceQueryset
 
 logger = logging.getLogger(__name__)
@@ -110,41 +111,6 @@ class EndOfYear(TimeStampedModel):
         if self.is_active:
             EndOfYear.years.exclude(pk=self.pk).update(is_active=False)
         super().save(**kwargs)
-
-
-class Affiliate(BaseResource):
-    """
-    Represents the steady data for an affiliates directory
-
-    All EOY data is related to this model
-    """
-    url_name = "affiliate_detail"
-    search_content_fields = ["name", "official_name"]
-
-    # Descriptive organizational info
-    state = models.CharField(max_length=2)
-    cis_id = models.IntegerField(verbose_name="Affiliate ID")
-    official_name = models.CharField(max_length=200)
-    address_street = models.CharField(max_length=200)
-    address_city = models.CharField(max_length=200)
-    address_state = models.CharField(max_length=30)
-    address_postcode = models.CharField(max_length=10)
-    shipping_address = models.CharField(max_length=400, null=True, blank=True)
-    phone_number = models.CharField(max_length=30, null=True)
-    fax_number = models.CharField(max_length=30, null=True, blank=True)
-    website = models.URLField(null=True, blank=True)
-    affiliate_location = models.CharField(max_length=3)
-
-    affiliates = AffiliateQueryset.as_manager()
-    objects = affiliates
-    default_manager = models.Manager()
-
-    class Meta:
-        verbose_name = "Affiliate"
-        verbose_name_plural = "Affiliates"
-
-    def current_data(self):
-        return self.affiliate_eoy_data.filter(year=EndOfYear.years.current()).first()
 
 
 class AffiliateEOYData(TimeStampedModel):
@@ -352,6 +318,47 @@ class AffiliateEOYData(TimeStampedModel):
         ] if e is not None]
 
         self.save()
+
+
+class Affiliate(BaseResource):
+    """
+    Represents the steady data for an affiliates directory
+
+    All EOY data is related to this model
+    """
+    url_name = "affiliate_detail"
+    search_content_fields = ["name", "official_name"]
+
+    # Descriptive organizational info
+    state = models.CharField(max_length=2)
+    cis_id = models.IntegerField(verbose_name="Affiliate ID")
+    official_name = models.CharField(max_length=200)
+    address_street = models.CharField(max_length=200)
+    address_city = models.CharField(max_length=200)
+    address_state = models.CharField(max_length=30)
+    address_postcode = models.CharField(max_length=10)
+    shipping_address = models.CharField(max_length=400, null=True, blank=True)
+    phone_number = models.CharField(max_length=30, null=True)
+    fax_number = models.CharField(max_length=30, null=True, blank=True)
+    website = models.URLField(null=True, blank=True)
+    affiliate_location = models.CharField(
+        max_length=3,
+        choices=choices.AffiliateLocation.as_choices(),
+    )
+
+    affiliates = AffiliateQueryset.as_manager()
+    objects = affiliates
+    default_manager = models.Manager()
+
+    class Meta:
+        verbose_name = "Affiliate"
+        verbose_name_plural = "Affiliates"
+
+    def current_data(self) -> Optional[AffiliateEOYData]:
+        """
+        Get the affiliate data for the latest published reporting year
+        """
+        return self.affiliate_eoy_data.filter(year=EndOfYear.years.current()).first()
 
 
 class SchoolEOYData(TimeStampedModel):

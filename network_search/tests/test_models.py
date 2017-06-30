@@ -3,10 +3,16 @@ Tests for
 """
 import pytest
 
+from network_search.affiliates.models import Affiliate
+from network_search.affiliates.models import AffiliateEOYData
 from network_search.core import choices
 from network_search.tests.fixtures import affiliate_factory
 from network_search.tests.fixtures import school_data_factory
-from network_search.affiliates.models import AffiliateEOYData
+
+
+def test_affiliate_location_display():
+    affiliate = Affiliate(affiliate_location='S')
+    assert affiliate.get_affiliate_location_display() == 'Suburban'
 
 
 def test_school_districts():

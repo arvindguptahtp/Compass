@@ -94,3 +94,8 @@ def affiliate_data(current_eoy):
 @pytest.fixture
 def empty_program():
     yield Program.programs.create(name="Empty")
+
+
+@pytest.fixture
+def base_affiliate():
+    yield affiliate_factory()
