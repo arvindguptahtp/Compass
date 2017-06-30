@@ -93,7 +93,10 @@ def process_data_upload(excel_upload_pk):
         student_data,
         on=["Affiliate Name", "School Name"],
         suffixes=["", "_students"],
-    ).fillna(0)
+    )
+
+    AffiliateEOYFields.fillna(affiliate_data)
+    SchoolStudentEOYFields.fillna(school_student_data)
 
     logger.debug("Iterating over dataframe...")
 
@@ -125,9 +128,10 @@ def process_data_upload(excel_upload_pk):
 
             if not created:
                 logger.info("Updating data for existing Affiliate EOY data '{}'".format(affiliate_eoy_data))
-                for attr, value in AffiliateEOYFields.defaults(row).items():
-                    setattr(affiliate_eoy_data, attr, value)
-                affiliate.save()
+                AffiliateEOYFields.safe_update(row, affiliate_eoy_data)
+                # for attr, value in AffiliateEOYFields.defaults(row).items():
+                #    setattr(affiliate_eoy_data, attr, value)
+                # affiliate.save()
 
             affiliate_schools = school_student_data.loc[school_student_data["Affiliate Name"] == affiliate.name]
 

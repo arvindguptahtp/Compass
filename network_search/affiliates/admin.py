@@ -19,10 +19,7 @@ class AffiliateUploadAdmin(admin.ModelAdmin):
             messages.error(request, "Select 1 and only 1 upload to copy")
             return
 
-        models.ExcelUpload.objects.create(
-            year=original.year,
-            data_file=original.data_file
-        )
+        original.copy()
         messages.success(request, "Starting new data import.")
 
     copy_import.short_description = "Duplicate and rerun an import"

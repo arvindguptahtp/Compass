@@ -547,3 +547,6 @@ class ExcelUpload(DataUpload):
         if created:
             from network_search.affiliates.tasks import process_data_upload
             process_data_upload.delay(self.pk)
+
+    def copy(self):
+        return ExcelUpload.objects.create(year=self.year, data_file=self.data_file)
