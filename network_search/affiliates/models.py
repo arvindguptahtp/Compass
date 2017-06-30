@@ -5,16 +5,16 @@ Models for the affiliate directory and EOY data reports
 import logging
 from typing import Optional
 
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.db.models import F
 from django.db.models import Sum
-from django.utils.functional import cached_property
 from model_utils.models import TimeStampedModel
+from django.utils.functional import cached_property
+from django.contrib.postgres.fields import ArrayField
 
 from network_search.core import choices
-from network_search.core.models import BaseResource
 from network_search.core.models import DataUpload
+from network_search.core.models import BaseResource
 from network_search.core.models import ResourceQueryset
 
 logger = logging.getLogger(__name__)
@@ -158,6 +158,56 @@ class AffiliateEOYData(TimeStampedModel):
         blank=True,
         null=True,
     )
+
+    funding_public_federal = models.IntegerField(default=0)
+    funding_public_state = models.IntegerField(default=0)
+    funding_public_city = models.IntegerField(default=0)
+    funding_public_school_district = models.IntegerField(default=0)
+
+    funding_private_corporate = models.IntegerField(default=0)
+    funding_private_foundation = models.IntegerField(default=0)
+    funding_private_board = models.IntegerField(default=0)
+    funding_private_individual = models.IntegerField(default=0)
+    funding_private_events = models.IntegerField(default=0)
+    funding_private_cis_national = models.IntegerField(default=0)
+    funding_private_cis_state_office = models.IntegerField(default=0)
+    funding_private_npo = models.IntegerField(default=0)
+    funding_private_other = models.IntegerField(default=0)
+
+    @cached_property
+    def funding_public(self) -> int:
+        return sum([
+            self.funding_public_federal,
+            self.funding_public_state,
+            self.funding_public_city,
+            self.funding_public_school_district,
+        ])
+
+    @cached_property
+    def funding_private(self) -> int:
+        return sum([
+            self.funding_private_corporate,
+            self.funding_private_foundation,
+            self.funding_private_board,
+            self.funding_private_individual,
+            self.funding_private_events,
+            self.funding_private_cis_national,
+            self.funding_private_cis_state_office,
+            self.funding_private_npo,
+            self.funding_private_other,
+        ])
+
+    @cached_property
+    def funding_total(self) -> int:
+        return self.funding_public + self.funding_private
+
+    @cached_property
+    def funding_percent_private(self) -> int:
+        return int(round(self.funding_private / self.funding_total, ndigits=0))
+
+    @cached_property
+    def funding_percent_public(self):
+        return int(round(self.funding_public / self.funding_total, ndigits=0))
 
     total_enrollment = models.IntegerField(default=0, editable=False)
 

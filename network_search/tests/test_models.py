@@ -1,13 +1,13 @@
 """
-Tests for
+Tests for application model methods
 """
 import pytest
 
-from network_search.affiliates.models import Affiliate
-from network_search.affiliates.models import AffiliateEOYData
 from network_search.core import choices
 from network_search.tests.fixtures import affiliate_factory
 from network_search.tests.fixtures import school_data_factory
+from network_search.affiliates.models import Affiliate
+from network_search.affiliates.models import AffiliateEOYData
 
 
 def test_affiliate_location_display():
@@ -19,6 +19,27 @@ def test_school_districts():
     affiliate = AffiliateEOYData(districts="City of Fun, Town of Boring, County of Learning")
     assert affiliate.school_districts_count == 3
     assert affiliate.school_districts == ["City of Fun", "Town of Boring", "County of Learning"]
+
+
+def test_affiliate_data_funding():
+    affiliate_data = AffiliateEOYData(
+        funding_public_federal=1000,
+        funding_public_state=1000,
+        funding_public_city=100,
+        funding_public_school_district=100,
+        funding_private_corporate=200,
+        funding_private_foundation=20,
+        funding_private_board=20,
+        funding_private_individual=20,
+        funding_private_events=20,
+        funding_private_cis_national=20,
+        funding_private_cis_state_office=20,
+        funding_private_npo=20,
+        funding_private_other=20,
+    )
+
+    assert affiliate_data.funding_public == 2200
+    assert affiliate_data.funding_private == 360
 
 
 @pytest.mark.django_db

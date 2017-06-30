@@ -26,6 +26,27 @@ def affiliate_factory(**kwargs):
     return Affiliate.affiliates.create(**defaults)
 
 
+def affiliate_data_factory(affiliate, year, **kwargs):
+    defaults = dict(
+        funding_public_federal=0,
+        funding_public_state=0,
+        funding_public_city=0,
+        funding_public_school_district=0,
+        funding_private_corporate=0,
+        funding_private_foundation=0,
+        funding_private_board=0,
+        funding_private_individual=0,
+        funding_private_events=0,
+        funding_private_cis_national=0,
+        funding_private_cis_state_office=0,
+        funding_private_npo=0,
+        funding_private_other=0,
+    )
+    defaults.update(kwargs)
+    affiliate_data, _ = AffiliateEOYData.objects.get_or_create(affiliate=affiliate, year=year)
+    return affiliate_data
+
+
 def school_data_factory(affiliate, year, **kwargs):
     defaults = dict(
         students_female_american_indian=0,

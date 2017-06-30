@@ -46,6 +46,33 @@ class AffiliateEOYAdmin(admin.ModelAdmin):
     search_fields = ('affiliate__name',)
     raw_id_fields = ['affiliate']
 
+    fieldsets = (
+        (None, {
+            'fields': ['affiliate', 'year'],
+        }),
+        ('Basic info', {
+            'fields': [
+                'districts', 'executive_director_name', 'executive_director_email',
+                'program_lead_name', 'program_lead_email',
+            ],
+        }),
+        ('Staffing', {
+            'fields': [
+                'staff_fulltime_affiliate', 'staff_parttime_affiliate', 'staff_fulltime_non_affiliate',
+                'staff_parttime_non_affiliate', 'staff_fulltime_americorps', 'staff_parttime_americorps',
+            ],
+        }),
+        ('Funding', {
+            'fields': [
+                'funding_public_federal', 'funding_public_state', 'funding_public_city',
+                'funding_public_school_district', 'funding_private_corporate', 'funding_private_foundation',
+                'funding_private_board', 'funding_private_individual', 'funding_private_events',
+                'funding_private_cis_national', 'funding_private_cis_state_office', 'funding_private_npo',
+                'funding_private_other',
+            ],
+        })
+    )
+
 
 @admin.register(models.SchoolEOYData)
 class SchoolEOYAdmin(admin.ModelAdmin):
@@ -84,7 +111,7 @@ class SchoolEOYAdmin(admin.ModelAdmin):
                 'students_grade_12_incarcerated',
                 'students_grade_12_deceased',
                 'students_grade_12_other', 'students_grade_12_unknown'
-            ]
+            ],
         }),
         ('Students served', {
             'fields': [
@@ -93,7 +120,7 @@ class SchoolEOYAdmin(admin.ModelAdmin):
                 'students_served_special_education', 'students_served_substance_abuse',
                 'students_served_adjudicated_youth', 'students_served_child_of_military',
                 'students_served_gang', 'students_served_incarcerated_parent'
-            ]
+            ],
         }),
         ('Services', {
             'fields': [
@@ -102,6 +129,6 @@ class SchoolEOYAdmin(admin.ModelAdmin):
                 'service_comm_service', 'service_enrichment',
                 'service_family_engagement', 'service_life_skills',
                 'service_physical_fitness_health', 'service_prof_mental_health',
-            ]
+            ],
         }),
     )

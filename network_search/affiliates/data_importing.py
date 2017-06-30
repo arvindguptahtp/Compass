@@ -1,5 +1,8 @@
 """
 Functionality specific to importing affiliate data
+
+These enumerated types map a model field name (the enum name) to
+the column name (the enum value) in the spreadsheet data source.
 """
 
 from network_search.core import choices
@@ -50,6 +53,20 @@ class AffiliateEOYFields(ImportingChoice):
     staff_parttime_non_affiliate = "PT Non-CIS pd affiliate staff"
     staff_fulltime_americorps = "FT AmeriCorps affiliate staff"
     staff_parttime_americorps = "PT AmeriCorps affiliate staff"
+
+    funding_public_federal = "Fed - TOTAL (auto)"
+    funding_public_state = "State - TOTAL (auto)"
+    funding_public_city = "City - TOTAL (auto)"
+    funding_public_school_district = "Sch Dis - TOTAL (auto)"
+    funding_private_corporate = "Corp - TOTAL (auto)"
+    funding_private_foundation = "Fdn - TOTAL (auto)"
+    funding_private_board = "Board - TOTAL (auto)"
+    funding_private_individual = "Indiv - TOTAL (auto)"
+    funding_private_events = "Events - TOTAL (auto)"
+    funding_private_cis_national = "CIS Natl - TOTAL (auto)"
+    funding_private_cis_state_office = "State Office - TOTAL (auto)"
+    funding_private_npo = "NPO - TOTAL (auto)"
+    funding_private_other = "Other - TOTAL (auto)"
 
 
 class SchoolStudentEOYFields(ImportingChoice):
