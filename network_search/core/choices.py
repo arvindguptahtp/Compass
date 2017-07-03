@@ -133,7 +133,7 @@ class Regions(Choice):
 class StudentNeeds(Choice):
     bi = 'Behavioral Issues'
     att = 'Attendance Issues/Chronically Absent'
-    do = 'At risk of dropping out'
+    do = 'At Risk of Dropping Out'
     phn = 'Physical Health Needs'
     sel = 'SEL Needs'
     mh = 'Mental Health Needs'
@@ -144,7 +144,7 @@ class StudentNeeds(Choice):
     pfe = 'Parent/Family Engagement'
     ell = 'English Language Learners'
     hfy = 'Homeless/Foster Youth'
-    juv = 'At risk of entering juvenile justice system'
+    juv = 'At Risk of Entering Juvenile Justice System'
 
 
 class StudentCharacteristics(Choice):
