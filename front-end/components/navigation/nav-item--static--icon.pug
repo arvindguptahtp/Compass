@@ -1,0 +1,10 @@
+extends nav-item--static
+
+append variant
+    -
+        vefa.define({ class: "nav-item--static--icon" })
+
+
+prepend label
+    svg.ico
+        use(href=`#ico--${instance}`)

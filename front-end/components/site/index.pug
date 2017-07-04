@@ -1,22 +1,34 @@
-extends _abstract
+extends /page_types/_abstract
 
-prepend preview
+block subclass
     -
-        poster = new Vefa()
-            .mix({
-                element: {
-                    class: "thm--texture",
-                    "o-base": "ord--next",
-                    "o-extended": "gxi--b"
-                }
-            })
-            .data({
-                hed: `"${site.title}"`
-            })
+        vefa.define({
+            class: "page--index",
+            data: {
+                title: "Welcome"
+            },
+        })
+    
+
+block premain
+    
+    include /posters/text
+        -
+            vefa
+                .data(
+                    { title: wrap_str(site.title) }
+                )
+                .mixin({
+                    element: {
+                        class: "thm--texture",
+                        "o-base": "ord--next",
+                        "o-extended": "gxi--b"
+                    }
+                })
             
 
 
-block view
+block content
     nav(
         o-base="gx--i1--gxy0 dx--w100"
         o-condensed="gx--i3--gxy0"
@@ -34,7 +46,9 @@ block view
                     o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l"
                     o-standard="row--pEnd--sEnd ico--base"
                 )
-                    include /icons/affiliates
+                    svg.ico
+                        use(href="#ico--affiliates")
+
                     
                     div(
                         o-base="col--pEnd--sStart--xAuto"
@@ -60,7 +74,9 @@ block view
                     o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l"
                     o-standard="row--pEnd--sEnd ico--base"
                 )
-                    include /icons/programs
+                    svg.ico
+                        use(href="#ico--programs")
+
                     
                     div(
                         o-base="col--pEnd--sStart--xAuto"
@@ -84,8 +100,9 @@ block view
                 div(
                     o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l"
                     o-standard="row--pEnd--sEnd ico--base"
-                )
-                    include /icons/partners
+                )   
+                    svg.ico
+                        use(href="#ico--partners")
                     
                     div(
                         o-base="col--pEnd--sStart--xAuto"
@@ -97,34 +114,35 @@ block view
                             o-condensed="tx--display"
                         ) Partners
 
+    
     include /strata/strata
-        .copy.tx--maj--f1--100.co--pri(
-            o-base="rhy--yStart100"
-            o-enhanced="dx--w60 iso--xAuto"
-        )
-            :md
-                Starting a new local affiliate requires the presence of a Communities In Schools state office in the state where 
-                the community is located. The role of the state office is to provide introductions to community leaders to gauge 
-                their interest in building a local affiliate, identify a local liaison who will spearhead efforts to bring 
-                Communities In Schools to the community, and then work with the local liaison to plan the next steps for 
-                starting an affiliate. These steps include development of a local task force, assessment of community 
-                needs and assets, and creation of a work plan.
+        mixin strata_view
+            .copy.tx--maj--f1--100.co--pri(
+                o-base="rhy--yStart100"
+                o-enhanced="dx--w60 iso--xAuto"
+            )
+                :md
+                    Starting a new local affiliate requires the presence of a Communities In Schools state office in the state where 
+                    the community is located. The role of the state office is to provide introductions to community leaders to gauge 
+                    their interest in building a local affiliate, identify a local liaison who will spearhead efforts to bring 
+                    Communities In Schools to the community, and then work with the local liaison to plan the next steps for 
+                    starting an affiliate. These steps include development of a local task force, assessment of community 
+                    needs and assets, and creation of a work plan.
 
-                Communities In Schools state offices typically work with communities throughout each step of this process, 
-                offering assistance and ensuring that the new local affiliate follows the requirements outlined in the 
-                Communities In Schools Total Quality System standards.
-        
-        footer.tx--maj--f1--100(
-            o-base="col--pStart--sMiddle rhy--yStart50 iso--yStart200"
-            o-enhanced="dx--w60 iso--xAuto"
-        )
-            p Please submit your feedback on our new tool.
+                    Communities In Schools state offices typically work with communities throughout each step of this process, 
+                    offering assistance and ensuring that the new local affiliate follows the requirements outlined in the 
+                    Communities In Schools Total Quality System standards.
             
-            -
-                ctrl = new Vefa()
-                    .data({
-                        url: "'https://www.surveymonkey.com/r/9WVJVGV'",
-                        label: "Fill out our survey",
-                        target: "_blank"
-                    })
-            include /controls/action
+            footer.tx--maj--f1--100(
+                o-base="col--pStart--sMiddle rhy--yStart50 iso--yStart200"
+                o-enhanced="dx--w60 iso--xAuto"
+            )
+                p Please submit your feedback on our new tool.
+                
+                include /controls/action
+                    -
+                        vefa.data({
+                            url: "'https://www.surveymonkey.com/r/9WVJVGV'",
+                            label: "Fill out our survey",
+                            target: "_blank"
+                        })

@@ -10,7 +10,7 @@ fm_search:
             q:
                 name: q
                 label: Keywords
-                type: text
+                widget: text
 
     -   name: Demographics
         type: fieldset
@@ -19,17 +19,17 @@ fm_search:
             gender:
                 name: gender
                 label: Students by Gender
-                type: multi
+                widget: multi
             
             race:
                 name: race
                 label: Students by Race/Ethnicity
-                type: multi
+                widget: multi
             
             served:
                 name: served
                 label: Student Characteristics
-                type: multi
+                widget: multi
 
     -   name: Affiliate Details
         type: fieldset
@@ -38,52 +38,52 @@ fm_search:
             academic_assistance:
                 name: academic_assistance
                 label: Academic Assistance
-                type: single
+                widget: single
             
             basic_needs:
                 name: basic_needs
                 label: Basic Needs
-                type: single
+                widget: single
             
             behavior_intervention:
                 name: behavior_intervention
                 label: Behavior Intervention
-                type: single
+                widget: single
             
             college_career_prep:
                 name: college_career_prep
                 label: College & Career Preparation
-                type: single
+                widget: single
             
             comm_service:
                 name: comm_service
                 label: Community and Service Learning
-                type: single
+                widget: single
             
             enrichment:
                 name: enrichment
                 label: Enrichment
-                type: single
+                widget: single
             
             family_engagement:
                 name: family_engagement
                 label: Family Engagement
-                type: single
+                widget: single
             
             life_skills:
                 name: life_skills
                 label: Life Skills
-                type: single
+                widget: single
             
             physical_fitness_health:
                 name: physical_fitness_health
                 label: Professional Physical Health
-                type: single
+                widget: single
             
             prof_mental_health:
                 name: prof_mental_health
                 label: Professional Mental Health
-                type: single
+                widget: single
 
 
 

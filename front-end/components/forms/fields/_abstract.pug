@@ -1,44 +1,82 @@
-include /_vefa
--
-    form_field = form_field || new Vefa()
+extends /_vefa
 
-    if (form && form.field) {
-        form_field
-            .mix(form.field)
-    }
+block init
+    //- element: {},
+    //- label: {},
+    //- inner_label: {},
+    //- required: {},
+    //- group: {},
+    //- control: {},
+    //- control_block: {},
+    //- help_msg: {},
+    //- error_msg: {},
 
-    if (field) {
-        form_field
-            .data(field)
-    }
+    -
+        vefa = new Vefa({
+            class: 'field',
+            data: {
+                name: "field",
+                label: "Label",
+                required: false,
+                placeholder: false,
+                index: false,
+            },
+            inject: ['form'],
+            computed: {
+                uid () {
+                    return (this.index)
+                        ? `id_${this.name}_${ v(this.index) }`
+                        : `id_${this.name}`
+                },
+                value () {
+                    return `${ this.form }.${ this.name }.value`
+                }
+            },
+            control: {
+                class: "tx--small--f3--ls100 rhy--xStart50 thm--tint20 rxn--shade60 fx--shift",
+                "o-base": "row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25",
+            }, 
+            control_label: {
+                class: "tx--small--f3--900--tcU--aa",
+            }
+        })
 
-block model
-- form_field = form_field.$freeze()
-
+        if(Vefa.has_bus("field")){
+            vefa.data(
+                Vefa.get_bus("field")
+            )
+        }
 
 
 block view
     div(
-        class=form_field.class
-    )&attributes(form_field.element)
+        class=field.class
+    )&attributes(field.element)
         
         block hdr
             label(
-                for=`id_${ form_field.data.name }_${ index }`
-            )&attributes(form_field.label)
-                = form_field.data.label
+                for=field.uid
+            )&attributes(field.control_label)
+                = field.label
             
         
         block bd
-        
-        block help_msg
+            //- this is a general text input
+            //- most subclass should overwrite this
+            //- however, text, password, number, etc won't need to
+            //- and therefore, will only have to subclass the abstract
+            input(
+                type=field.type
+                id=field.uid
+                name=field.name
+                placeholder=field.placeholder
+                value=attr_switch(`${ field.value } != None`, v(field.value, "stringformat:'s'", "default_if_none:''"))
+                required=field.required
+            )&attributes(field.control)
 
-        block error_msg
 
-        block ftr
+        //- block help_msg
 
+        //- block error_msg
 
-
--
-    form_field = form_field.$thaw()
-    form_field.$teardown()
+        //- block ftr

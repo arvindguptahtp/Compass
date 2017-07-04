@@ -1,30 +1,31 @@
 extends _abstract
 
-
-block model
+block subclass
     -
-        ctrl
+        vefa
             .define({
+                class: "ctrl--action-submit",
+                data: {
+                    name: "submit", 
+                    label: "Submit"
+                },
                 element: {
-                    class: "ctrl--action tx--chrome--f3--tcU rxn--ctrl-shade fx--shift",
+                    class: "tx--chrome--f3--tcU thm--tint5 rxn--shade40 fx--shift",
                     "o-base": "row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25",
                     "o-condense": "rhy--xStart50",
                     "o-standard": "pad-y50 pad--x100"
                 },
-                data: {
-                    name: "submit", 
-                    label: "Submit"
-                }
             })
 
 
 
 block view
     button(
+        class=ctrl.class
         type="submit"
-        name=ctrl.data.name
+        name=ctrl.name
     )&attributes(ctrl.element)
         
         block bd
-            span= ctrl.data.label
+            span= ctrl.label
 

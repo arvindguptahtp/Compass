@@ -1,17 +1,15 @@
 extends _abstract
 
-block model
+block instance
     -
-        icon
-            .define({
-                element: {
-                    class: "ico--partners",
-                }           
-            })
-            .data({
+        vefa.define({
+            class: "ico--partners",
+            data: {
                 title: "Partners Icon",
                 viewBox: "0 0 500 500" 
-            })
+            }
+        })
+
 
 block bd
     path(

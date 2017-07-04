@@ -1,9 +1,25 @@
-extends /results/_abstract
+extends /cards/result
 
-block model
-    if item
+block instance
+    -
+        vefa.define({
+            class: 'gx--result-affiliate',
+        })
+
+    if django
         -
-            result
+            vefa
+                .data({
+                    title: 'affiliate',
+                    slug: 'affiliate.get_absolute_url',
+                    state: 'affiliate.state',
+                    location: 'affiliate.affiliate_location',
+                    students: 'affiliate.current_data.calculated_total_enrollment',
+                    budget: 'affiliate.current_data.budget_total'
+                })
+    else
+        -
+            vefa
                 .data({
                     title: item.name,
                     slug: '/affiliates/affiliates_detail',
@@ -13,45 +29,32 @@ block model
                     students: item.total_students,
                     budget: item.budget
                 })
-    
-            
-    if django
-        -
-            result
-                .data({
-                    title: 'affiliate',
-                    slug: 'affiliate.get_absolute_url',
-                    state: 'affiliate.state',
-                    location: 'affiliate.affiliate_location',
-                    students: 'affiliate.current_data.calculated_total_enrollment',
-                    budget: 'affiliate.current_data.budget_total'
-                })
-                .instance({
-                    class: "gx--result-affiliate"
-                })
+
 
 block result_network
+
 
 block result_title
     dt.gxi--title.thm--shade10(
         o-base="row--pStart"
     )
         a.co--pri.rxn--tint50.fx--shift(
-            href=v(result.data.slug)
+            href=v(vefa.slug)
             rel="noopener"
             o-base="row--pStart--sMiddle mod--balance pad--x50 pad--y10 rhy--xStart"
         )
             h4.tx--f1--100(
                 o-enhanced="tx--subhed--f1--100"
             )
-                = v(result.data.title)
+                = v(vefa.title)
+
 
 block result_overview
     dd.gxi--profile
-        -
-            ctrl = new Vefa()
-                .data({
-                    url: result.data.slug,
+        include /controls/action
+            -
+                vefa.data({
+                    url: view.slug,
                     label: "View Profile"
                 })
-        include /controls/action
+        

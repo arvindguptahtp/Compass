@@ -1,19 +1,10 @@
 extends _abstract
 
-block model
+block component
     -
-        form_field
-            .define({
-                class: "fm-field--text",
+        vefa.define({
+            class: "fm-field--text",
+            data: {
                 type: 'text'
-            })
-
-
-block bd
-    input(
-        type=form_field.type
-        id=`id_${ form_field.data.name }`
-        value=attr_switch(`form.${ form_field.data.name }.value != None`, v(`form.${ form_field.data.name }.value`, "stringformat:'s'"))
-        name=form_field.data.name
-        required=form_field.data.required || false
-    )&attributes(form_field.control)
+            }
+        })

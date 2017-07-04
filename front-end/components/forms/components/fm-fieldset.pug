@@ -1,0 +1,80 @@
+extends /_vefa
+
+block component
+    -
+        vefa = new Vefa({
+            class: "fm-fieldset",
+            computed: {
+                folded_attrs() {
+                    return {
+                        is: "fold-unfold",
+                        "init": this.folded,
+                        title: this.name,
+                        styles: "tx--subhed--f1--100 rxn--shade20 fx--shift",
+                        "v-cloak": true
+                    }
+                }
+            },
+            legend: {
+                class: "fm-fieldset-legend"
+            }, 
+            bd: {
+                slot: "bd", 
+                "o-base": "pad--x25 iso--yStart50", 
+                "o-standard": "pad--x100 rhy--yStart100"
+            }
+        })
+
+
+block view
+    -
+        folded_attrs = (fmFieldset.folded)
+            ? fmFieldset.folded_attrs
+            : {}
+        
+    fieldset(
+        class=fmFieldset.class
+        o-base="iso--yStart25"
+    )&attributes(folded_attrs)
+
+        .fm-fieldset-bd&attributes(fmFieldset.bd)
+            if fmFieldset.fields
+                for fm_field in fmFieldset.fields
+                    - Vefa.set_bus("field", fm_field)
+                    
+                    case fm_field.widget
+                        when "text"
+                            include /forms/fields/fm-field--text
+                        
+                        when "multi"
+                            include /forms/fields/fm-field--multi
+                        
+                        when "single"
+                            include /forms/fields/fm-field--single
+                        
+                        when "single_null"
+                            include /forms/fields/fm-field--single-null
+                        
+                        //- //- when "bool"
+                        //- //-     include /forms/fields/fm-field--bool
+                        
+                        when "multi_icon"
+                            include /forms/fields/fm-field--multi-icon
+
+                        //- //- when "multi_block"
+                        //- //-     include /forms/fields/fm-field--multi-block
+
+                        //- //- when "single_block"
+                        //- //-     include /forms/fields/fm-field--single-block
+
+                        default
+                            include /forms/fields/fm-field--text
+                    
+                    - Vefa.remove_bus("field") 
+                    
+                    
+
+    hr.thm--shade30(
+        o-base="pad--x25 iso--yStart25"
+        o-standard="pad--x100"
+    )

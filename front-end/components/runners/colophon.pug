@@ -29,21 +29,24 @@ footer.colophon.tx--chrome--f3.thm--dark(
             o-standard="row--pEnd--sMiddle--xAuto"
         )
             each instance in nav.colophon
-                -
-                    navigation = new Vefa()
-                        .replace({
-                            element: {
-                                class: "colophon-nav-item",
-                                "o-base": "row--pStart--sMiddle--xAuto",
-                                "o-standard": "pad--x25 pad--xEdges0 hl--xStart--bTint"
-                            },
-                            control: {
-                                class: "colophon-nav-ctrl co--ctrl fx--shift",
-                                "o-base": "mod--fill pad--y10",
-                                "o-condensed": "tx--taMiddle pad--y0"
-                            }
-                        })
                 include /navigation/nav-item--static
+                    -
+                        vefa.define(
+                            "nav-item--static", 
+                            {
+                                element: {
+                                    class: "colophon-nav-item",
+                                    "o-base": "row--pStart--sMiddle--xAuto",
+                                    "o-standard": "pad--x25 pad--xEdges0 hl--xStart--bTint"
+                                },
+                                control: {
+                                    class: "colophon-nav-ctrl co--ctrl fx--shift",
+                                    "o-base": "mod--fill pad--y10",
+                                    "o-condensed": "tx--taMiddle pad--y0"
+                                }
+                            }   
+                        )
+                
 
         
         - contact = site.org;

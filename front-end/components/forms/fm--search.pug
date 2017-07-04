@@ -1,60 +1,32 @@
 extends _abstract
 
-append model
-    -
-        form
-            .instance({
-                class: "fm--search",
-                element: {
-                    class: "thm--dark",
-                },
-                data: {
-                    title: "Search",
-                    submit: {
-                        
-                    }
-                }
-            })
 
-        ctrl
-            .mix({
-                element: {
-                    "o-base": "vx--hidden",
-                    "o-compressed": "vx--shown"
-                }
-            })
-            .instance({
-                data: {
+block subclass
+    -
+        vefa.define({
+            name: "Search Form",
+            class: "fm--search",
+            data: {
+                title: "Search",
+                control: {
                     label: "Explore"
                 }
-            })
-        //-     .mix({
-        //-         legend: {
-        //-             class: "tx--subhed--f1--100",
-        //-             "o-base": "row--pGrid--sMiddle mod--balance pad--x25 pad--y25 rhy--xStart25",
-        //-             "o-standard": "pad--x100"
-        //-         },
-        //-         field: {
-        //-             label: {
-        //-                 class: "tx--small--f3--ls100--aa",
-        //-             },
-        //-             field: {
-        //-                 class: "tx--small--f3--ls100--aa rhy--xStart50 hl--xy--bShade thm--tint20 rxn--shade20 fx--shift ico--xl",
-        //-                 "o-base": "row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25",
-        //-                 "o-standard": "pad--y50"
-        //-             }
-        //-         }
-        //-     })
-        //-     .data({
-        //-         title: "Search",
-        
-        //-     })
-
+            },
+            element: {
+                class: "thm--dark",
+            },               
+        })
 
 
 block hdr
-    header.fm-hdr&attributes(form.header)
-        h1.fm-hed&attributes(form.hed)
-            = form.data.title
-        
+    header.fm-hdr&attributes(fm.header)
         include /controls/submit
+            -
+                vefa
+                    .data(fm.control)
+                    .mixin({
+                        element: {
+                            "o-base": "vx--hidden iso--xStartAuto",
+                            "o-compressed": "vx--shown"
+                        }
+                    })

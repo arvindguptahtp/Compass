@@ -1,20 +1,18 @@
-include /_vefa
+extends /_vefa
 
-- 
-    strata= strata || new Vefa()
-
-    strata.define({
-        class: "strata"
-    })
-
-block model
-- strata = strata.$freeze()
-
+block init
+    -
+        vefa = new Vefa({
+            class: "strata"
+        })
+    
+//- make sure that the yielded content doesnt go to the vefa abstract
+//- block instance
 
 block view
     div(
         class=strata.class
     )&attributes(strata.element)
-        yield
-
-- strata = strata.$thaw()
+        
+    if pug_mixins.strata_view
+        +strata_view()

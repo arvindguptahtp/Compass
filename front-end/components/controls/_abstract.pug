@@ -1,39 +1,33 @@
-include /_vefa
+extends /_vefa
 
--
-    ctrl = ctrl || new Vefa()
-    
-    ctrl
-        .define({
-            element: {
-                "o-base": "row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm",
-                "o-condensed": "rhy--xStart50",
-            },
+block init
+    -
+        vefa = new Vefa({
+            class: "ctrl",
             data: {
                 url: false,
                 target: false,
                 label: false
-            }
+            },
+            element: {
+                "o-base": "row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm",
+                "o-condensed": "rhy--xStart50",
+            },
         })
 
 
-block model
-- ctrl = ctrl.$freeze()
+//- block instance
+//-     yield
 
 
 block view
     a(
         class=ctrl.class
-        href=v(ctrl.data.url)
-        target=ctrl.data.target
+        href=v(ctrl.url)
+        target=ctrl.target
     )&attributes(ctrl.element)
 
-        block icon
+        //- block icon
 
         block bd
-            span= ctrl.data.label
-            
-            yield
-
-
-- ctrl = ctrl.$thaw()
+            span= ctrl.label

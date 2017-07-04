@@ -1,15 +1,10 @@
-include /_vefa
+extends /_vefa
 
--
-    card = card || new Vefa()
-
-    card
-        .define({
+block init
+    -
+        vefa = new Vefa({
             class: "card"
         })
-
-block model
-- card = card.$freeze()
 
 
 
@@ -17,5 +12,3 @@ block view
     block hdr
     block bd
     block ftr
-
-- card = card.$thaw()

@@ -1,24 +1,26 @@
-extends /site/list
+extends /page_types/list
 
-block props
-    - 
-        page.data({
-            title: wrap_str(programs.title),
+block instance
+    -
+        vefa.data({
+            title: programs.title,
             slug: routes.programs.slug,
             summary: programs.summary,
             results_collection: programs.fixtures,
+            poster_color: "co--programs",
             icon: "programs",
             list_type: "programs"
         })
 
-prepend preview
-    -
-        poster = new Vefa()
-        poster.mix({
-            element: {
-                class: "co--programs",
-            }
-        })
+
+block summary
+    :md
+        Evidence-based programming is a great resource for members of the CIS network family to effectively serve case-managed students and schools. This tool allows CIS practitioners and managers to search by:
+    
+        - Student demographics, characteristics, or needs of your students.
+        - Tier of service, if the program is being implemented in the network, program costs, and tier of evidence.
+        
+        Programs with a higher tier of evidence will be indicated by a fully-colored CIS logo in the search results.
 
 
 block form
@@ -26,17 +28,10 @@ block form
 
 
 block results
-    div(
-        o-base="rhy--yStart100"
-    )
-        if django
-            
-            +for("program in programs.object_list")
-                include components/program_result
-
-                +empty()
-                    p No matching programs.
+    if django
         
-        else
-            for item in page.data.results_collection
-                include components/program_result
+        +for("program in programs.object_list")
+            include components/card--result-program
+
+            +empty()
+                p No matching programs.

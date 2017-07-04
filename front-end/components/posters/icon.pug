@@ -1,25 +1,26 @@
 extends text
 
-block model
+
+block variant
     -
-        poster
-            .replace({
-                class: "poster--icon gx--poster",
+        vefa
+            .define({
+                class: "poster--icon",
             })
-            .mix({
+            .mixin({
+                element: {
+                    class: "gx--poster"
+                },
                 hdr: {
                     "o-base": "gxi--b"
                 }
             })
 
 
-
 prepend hdr
-    if page && page.data.icon
+    if poster.icon
         span.poster-icon.tx--broadside(
             o-base="gxi--a"
         )
-            case page.data.icon
-                when "partners": include /icons/partners
-                when "programs": include /icons/programs
-                when "affiliates": include /icons/affiliates
+            svg.ico
+                use(href=`#ico--${poster.icon}`)

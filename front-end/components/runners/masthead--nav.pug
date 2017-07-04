@@ -1,4 +1,4 @@
-include /_vefa
+include /_django
 
 nav.masthead--nav.thm--dark(
     role="navigation"
@@ -28,24 +28,25 @@ nav.masthead--nav.thm--dark(
             o-full="col--pStart hl--xy0 hl--yStart--bTint"
         )
             each instance in nav.primary
-                -
-                    navigation = new Vefa()
-                        .replace({
-                            element: {
-                                class: "masthead-nav-item hl--xStart--bTint",
-                                "o-base": "col--pStart--xAuto mod--static",
-                                "o-full": "hl--xy0 hl--yEnd--bTint"
-                            },
-                            control: {
-                                class: `masthead-nav-ctrl tx--display--taMiddle--f1--100 ${ routes[instance].add_class } fx--shift`,
-                                "o-base": "row--pStart--sMiddle pad--xy50 ico--md",
-                            },
-                            label: {
-                                class: "vx--a11y"
+                include /navigation/nav-item--static--icon
+                    -
+                        nav_item.define(
+                            "nav-item--static--icon",
+                            {
+                                data: {
+                                    route: item
+                                },
+                                element: {
+                                    class: "masthead-nav-item hl--xStart--bTint",
+                                    "o-base": "col--pStart--xAuto mod--static",
+                                    "o-full": "hl--xy0 hl--yEnd--bTint"
+                                },
+                                control: {
+                                    class: `masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift`,
+                                    "o-base": "row--pStart--sMiddle pad--xy50 ico--md",
+                                },
+                                label: {
+                                    class: "vx--a11y"
+                                }
                             }
-                        })
-                include /navigation/nav-item--static
-                    case instance
-                        when "partners": include /icons/partners
-                        when "programs": include /icons/programs
-                        when "affiliates": include /icons/affiliates
+                        )

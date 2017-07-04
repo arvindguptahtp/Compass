@@ -9,7 +9,7 @@ fm_search:
             q:  
                 name: q
                 label: Keywords
-                type: text
+                widget: text
 
     -   name: Demographics
         type: fieldset
@@ -18,56 +18,56 @@ fm_search:
             grade:
                 name: grade
                 label: Grades
-                type: multi
+                widget: multi
 
             gender:
                 name: gender
                 label: Gender
-                type: multi
+                widget: multi
             
             need:
                 name: need
                 label: Student Needs
-                type: multi
+                widget: multi
     
     -   name: Partner Details
         type: fieldset
-        # folded: true
+        folded: true
         fields:
             use_in_network:
                 name: use_in_network
                 label: Use in Network
-                type: single_null
+                widget: single_null
             
             free_of_cost:
                 name: free_of_cost
                 label: Free of Cost
-                type: single_null
+                widget: single_null
 
             services:
                 name: services
                 label: CIS Core Services
-                type: multi_icon
+                widget: multi_icon
             
             reach:
                 name: reach
                 label: Organizational Reach
-                type: multi
+                widget: multi
             
             setting:
                 name: setting
                 label: Setting
-                type: multi
+                widget: multi
             
             service_tiers:
                 name: service_tiers
                 label: Tiers of Service
-                type: multi
+                widget: multi
 
             evidence:
                 name: evidence
                 label: Tiers of Evidence
-                type: multi
+                widget: multi
 
 fixtures:
     -   name: Share Our Strength

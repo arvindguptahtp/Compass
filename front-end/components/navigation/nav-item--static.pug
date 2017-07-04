@@ -1,15 +1,17 @@
 extends _abstract
 
-block model
-    -   
-        if (routes[instance]) {
+block subclass
+    if routes[instance]
+        -
             let temp = routes[instance]
             
-            navigation.data({
-                label: temp.title,
-                target: temp.target,
-                url: temp.url,
-                slug: temp.slug,
-                show: temp.published
+            vefa.define({
+                class: "nav-item--static",
+                data: {
+                    text: temp.title,
+                    target: temp.target || false,
+                    url: temp.url,
+                    slug: temp.slug || false,
+                    show: temp.published
+                }
             })
-        }

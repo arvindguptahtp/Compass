@@ -16,6 +16,16 @@
                 this.fold = !this.fold
                 ev.target.blur()
             }
+        },
+        computed: {
+            menu_icon () {
+                if (this.fold) {
+                    return "#ico--menu"
+                }
+                else {
+                    return "#ico--menu-close"
+                }
+            }
         }
     }
 </script>
@@ -34,18 +44,12 @@ fieldset
         )
             span(v-text="title")
 
-            slot(
-                v-if="fold"
-                name="icon-open"
-            )
-            slot(
-                v-if="!fold"
-                name="icon-close"
-            )
+            svg.ico
+                use(:href="menu_icon")
     
-    slot(
-        name="bd"
-        v-if="!fold"
-    )
+    div(v-show="!fold")
+        slot(
+            name="bd"
+        )
 
 </template>

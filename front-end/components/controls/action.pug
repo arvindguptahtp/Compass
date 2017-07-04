@@ -1,12 +1,12 @@
 extends _abstract
 
-block model
+block subclass
     -
-        ctrl
-            .instance({
-                class: "ctrl--action"
+        vefa
+            .define({
+                class: "ctrl--action",
             })
-            .mix({
+            .mixin({
                 element: {
                     class: "tx--small--f1--100--tcU rxn--ctrl-impt fx--shift",
                     "o-base": "pad--y25 pad--x50"

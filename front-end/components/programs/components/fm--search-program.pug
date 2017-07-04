@@ -1,17 +1,13 @@
 extends /forms/fm--search
 
-append model
+block instance
     -
-        form
-            .instance({
-                class: 'fm--search-program',
-                element: {
-                    class: "thm--programs"
-                }
-            })
-            .data({
+        vefa.define({
+            class: 'fm--search-programs',
+            element: {
+                class: "thm--programs"
+            }, 
+            data: {
                 fieldsets: programs.fm_search
-            })
-
-
-prepend view
+            }
+        })

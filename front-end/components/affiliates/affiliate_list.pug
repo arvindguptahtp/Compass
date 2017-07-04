@@ -1,45 +1,29 @@
-extends /site/list
+extends /page_types/list
 
-block props
-    - 
-        page.data({
-            title: wrap_str(affiliates.title),
-            slug: routes.affiliates.slug,
-            summary: affiliates.summary,
-            results_collection: affiliates.fixtures,
-            icon: "affiliates",
-            list_type: "affiliates"
-        })
-
-prepend preview
+block instance
     -
-        poster = new Vefa()
-        poster.mix({
-            element: {
-                class: "co--affiliates",
-            }
-        })
+        vefa
+            .data({
+                title: affiliates.title,
+                slug: routes.affiliates.slug,
+                summary: affiliates.summary,
+                results_collection: affiliates.fixtures,
+                poster_color: "co--affiliates",
+                icon: "affiliates",                
+                list_type: "affiliates"
+            })
+
 
 
 block form
     include /affiliates/components/fm--search-affiliate
 
 
-
 block results
-    div(
-        o-base="rhy--yStart100"
-    )
-        if django
-            
-            +for('affiliate in affiliates.object_list')
-                include components/affiliate_result
-
-                +empty()
-                    p No matching affiliates
+    if django
         
-        else
-            for item in page.data.results_collection
-                include components/affiliate_result
+        +for('affiliate in affiliates.object_list')
+            include components/card--result-affiliate
 
-//- <li><a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a></li>
+            +empty()
+                p No matching affiliates

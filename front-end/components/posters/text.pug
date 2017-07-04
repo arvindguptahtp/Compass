@@ -1,18 +1,23 @@
 extends _abstract
 
-block model
+block subclass
     -
-        poster
-            .define({})
-            .replace({
+        vefa
+            .define({
                 class: "poster--text",
+                data: {
+                    title: wrap_str("Generic")
+                }
             })
+
+
+block instance
+    yield
 
 
 block hdr
     //- add django typogrify at some point
-    
     header.hdr&attributes(poster.hdr)
         h1.hdr-hed&attributes(poster.hed)
-            != v(poster.data.hed)
+            != v(poster.title)
                 

@@ -1,0 +1,54 @@
+extends /cards/result
+
+block instance
+    -
+        vefa.define({
+            class: 'gx--result-programs',
+        })
+        .data({
+            labels: {
+                network_yes: "Used by CIS Network",
+                network_no: false
+            }
+        })
+    
+    if django
+        -
+            vefa.data({
+                    title: 'program',
+                    slug: 'program.get_absolute_url',
+                    overview: 'program.summary',
+                    services: 'program.service_categories',
+                    ebr: 'program.tiers_of_evidence'
+                })    
+    
+    else
+        -
+             vefa.data({
+                title: item.name,
+                slug: '/programs/programs_detail',
+                overview: item.summary,
+                services: item.core_services,
+                network: item.network_use,
+                service_tiers: false,
+                ebr: item.evidence_tier,
+            })
+
+
+
+block result_network
+    dd.gxi--network.thm--shade10(
+        o-base="row--pStart"
+        o-condensed="row--pMiddle--sMiddle pad--xy25"
+        o-enhanced="pad--xy50"
+    )
+        if card.network
+            div(
+                class=card.network ? "thm--partners" : "thm--inactive"
+                o-base="row--pStart mod--balance"
+                o-condensed="row--pStart--xAuto mod--static"
+            )
+                span.thm--shade5.tx--small--f1--100--tcU(
+                    o-base="mod--balance--aMiddle pad--y10 pad--x25"
+                )        
+                    = card.network ? card.labels.network_yes :card.labels.network_no

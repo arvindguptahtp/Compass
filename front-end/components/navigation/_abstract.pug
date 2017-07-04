@@ -1,65 +1,59 @@
-include /_vefa
+extends /_vefa
 
--
-    navigation = navigation || new Vefa()
-
-    navigation
-        .define({
-            element: {},
-            control: {},
+block init
+    -
+        vefa = new Vefa({
+            class: "nav_item",
             data: {
                 slug: false,
                 url: false,
                 target: false,
-                label: false,
+                text: false,
                 show: true,
                 active: "is-active"
             },
-            get_absolute_url () {
-                if (this.data.url) {
-                    return this.data.url
-                } 
-                else {
-                    return url(this.data.slug)
-                }
+            methods: {
+                get_active_state (active_state) {
+                    let href = this.get_absolute_url()
+                    return (active_state && href.includes(active_state.slug)) 
+                        ? this.active
+                        : "" 
+                },
             },
-            get_active_state (active_state) {
-                let href = this.get_absolute_url()
-                return (active_state && href.includes(active_state.data.slug)) 
-                    ? this.data.active
-                    : "" 
+            computed: {
+                get_absolute_url () {
+                    if (this.url) {
+                        return this.url
+                    }
+                    else if (this.slug) {
+                        return url(this.slug)
+                    }
+                },
+                
             }
         })
-
-block model
-- navigation = navigation.$freeze()
+    
+    //- -
+    //-     active = (active_state) => {
+    //-         if (django) {
+    //-             return class_switch(`request.url == ${navigation.data.url}`, 'is-active')
+    //-         }
+            
+    //-         return 
+    //-     }
+    //- (page && page.data.slug && page.slug == link.slug) ? "is-active" : false
 
 
 block view
-    //- //- -
-    //- //-     active = (active_state) => {
-    //- //-         if (django) {
-    //- //-             return class_switch(`request.url == ${navigation.data.url}`, 'is-active')
-    //- //-         }
-            
-    //- //-         return 
-    //- //-     }
-    //- //- (page && page.data.slug && page.slug == link.slug) ? "is-active" : false
-    if navigation.data.show
+    if nav_item.show
         li(
-            class=navigation.class
-        )&attributes(navigation.element)
+            class=nav_item.class
+        )&attributes(nav_item.element)
             a(
-                class=navigation.get_active_state(page)
-                href=navigation.get_absolute_url()
-                target=navigation.data.target
-            )&attributes(navigation.control)            
+                href=nav_item.get_absolute_url
+                target=nav_item.target
+            )&attributes(nav_item.control)
                 
-                block icon
-                    yield
-
                 block label
-                    span&attributes(navigation.label)
-                        != navigation.data.label
-
-- navigation = navigation.$thaw()
+                    span&attributes(nav_item.label)
+                        != nav_item.text

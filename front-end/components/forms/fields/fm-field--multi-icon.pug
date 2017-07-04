@@ -1,30 +1,25 @@
-extends fm-field--multi-block
+extends fm-field--multi
 
-prepend label
-    if django
-        +dynamic_include(`icons/`, 'choice_value')
-    
-    //- else
-    //-     case icon_type
-    //-         when "aa"
-    //-             include /icons/aa
-    //-         when "bn"
-    //-             include /icons/bn
-    //-         when "bi"
-    //-             include /icons/bi
-    //-         when "ccp"
-    //-             include /icons/ccp
-    //-         when "csl"
-    //-             include /icons/csl
-    //-         when "en"
-    //-             include /icons/en
-    //-         when "fe"
-    //-             include /icons/fe
-    //-         when "ls"
-    //-             include /icons/ls
-    //-         when "pmh"
-    //-             include /icons/pmh
-    //-         when "pph"
-    //-             include /icons/pph
-    //-         default
-    //-             = ""
+block variant
+    -
+        vefa.define({
+            control: {
+                class: "tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl",
+                "o-base": "row--pStart--sMiddle pad--x50 pad--y25 rhy--xStart25",
+            }, 
+        })
+
+
+block input_ext
+    +if(field.validator)
+        input.vx--a11y(checked=true)&attributes(field.input_attrs)
+
+        +else()
+            input.vx--a11y&attributes(field.input_attrs)
+
+
+block input_int
+    svg.ico(
+        o-base="mod--static"
+    )
+        use(xlink:href=`#ico--${ v(`choice_value`) }`)

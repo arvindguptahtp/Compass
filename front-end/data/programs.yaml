@@ -1,6 +1,4 @@
 title: Programs
-summary: >
-  The CIS site coordinator works with volunteers, partners and the local community to provide students with the supports they need to succeed both inside and outside the classroom. We provide these supports in three different tiers. By differentiating our supports, we are able to serve most students in a school and also focus attention on targeted students that have significant needs.
 
 fm_search:
     -   name: Search
@@ -9,7 +7,7 @@ fm_search:
             q:
                 name: q
                 label: Keywords
-                type: text
+                widget: text
         
     -   name: Demographics
         type: fieldset
@@ -18,22 +16,22 @@ fm_search:
             grade:
                 name: grade
                 label: Grades
-                type: multi
+                widget: multi
             
             gender:
                 name: gender
                 label: Gender
-                type: multi
+                widget: multi
             
             race:
                 name: race
                 label: Race
-                type: multi
+                widget: multi
 
             need:
                 name: need
                 label: Student Needs
-                type: multi
+                widget: multi
     
     -   name: Program Details
         type: fieldset
@@ -41,28 +39,28 @@ fm_search:
         fields:
             use_in_network:
                 name: use_in_network
-                label: Use in Network
-                type: single
+                label: Used by CIS Network
+                widget: single_null
 
             free_of_cost:
                 name: free_of_cost
                 label: Free of Cost
-                type: single
+                widget: single_null
             
             services:
                 name: services
                 label: CIS Core Services
-                type: multi_icon
+                widget: multi_icon
             
             service_tiers:
                 name: service_tiers
                 label: Tiers of Service
-                type: multi
+                widget: multi
 
             evidence:
                 name: evidence
                 label: Tiers of Evidence
-                type: multi
+                widget: multi
 
 
 fixtures:

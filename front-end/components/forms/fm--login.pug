@@ -1,17 +1,21 @@
 extends _abstract
 
-block model
+block component
     -
-        form
-            .instance({
+        vefa
+            .define({
+                name: "Simple Auth Login Form",
                 class: "fm--login",
-                action: url('simple_auth_password'),
-                method: "POST",
                 data: {
-                    title:  "Login"
+                    action: url('simple_auth_password'),
+                    method: "POST",
+                    title:  "Login",
+                    control: {
+                        label: "Enter"
+                    }
                 }
             })
-            .mix({
+            .mixin({
                 element: {
                     class: "thm--dark",
                     "o-base": "dx--w90 iso--xAuto iso--y100",
@@ -22,26 +26,19 @@ block model
                 },
             })
 
-        ctrl
-            .data({
-                label: "Enter"
-            })
 
 
 block bd
-    -
-        form_field = new Vefa()
-            .instance({
-                data: {
-                    label: "Password",
-                    name: "password",
-                    required: true
-                }
+    include /forms/fields/fm-field--password
+        -
+            vefa.data({
+                name: 'password',
+                label: "Password",
+                required: true
             })
-            .mix({
+            .mixin({
                 element: {
                     "o-base": "pad--x25",
                     "o-standard": "pad--x100"
                 }
             })
-    include /forms/fields/fm-field--password

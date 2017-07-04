@@ -17,8 +17,7 @@ module.exports = (config, locals) => {
             Vefa
         }
     )
-
-    
+            
     return {
         test: /\.pug$/,
         use: [
@@ -29,7 +28,9 @@ module.exports = (config, locals) => {
             {
                 loader: "vefa-html-loader",
                 options: {
-                    locals: locals,
+                    context: config.templates.context || true,
+                    emit: config.templates.emit || false,
+                    locals,
                     pretty: true,
                     cache: true,
                     filters: {

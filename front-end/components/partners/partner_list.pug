@@ -1,25 +1,20 @@
-extends /site/list
+extends /page_types/list
 
-block props
-    - 
-        page.data({
-            title: wrap_str(partners.title),
-            slug: routes.partners.slug,
-            summary: partners.summary,
-            results_collection: partners.fixtures,
-            icon: "partners",
-            list_type: "partners"
-        })
-
-
-prepend preview
+block instance
     -
-        poster = new Vefa()
-            .mix({
-                element: {
-                    class: "co--partners",
-                }
-            })
+        vefa.define({
+            class: "list--partners",
+            data: {
+                title: partners.title,
+                slug: routes.partners.slug,
+                summary: partners.summary,
+                results_collection: partners.fixtures,
+                poster_color: "co--partners",
+                icon: "partners",
+                list_type: "partners",
+                
+            }
+        })
 
 
 block form
@@ -28,20 +23,10 @@ block form
 
 
 block results
-    div(
-        o-base="rhy--yStart100"
-    )
-        if django
-            
-            +for("partner in partners.object_list")
-                include components/partner_result
-
-                +empty()
-                    p No matching partners
+    if django
         
-        else
-            for item in page.data.results_collection
-                include components/partner_result
+        +for("partner in partners.object_list")
+            include components/card--result-partner
 
-    
-        
+            +empty()
+                p No matching partners

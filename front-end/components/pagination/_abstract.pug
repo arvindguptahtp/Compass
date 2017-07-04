@@ -1,4 +1,4 @@
-include /_vefa
+extends /_vefa
 //-------------------
 //- BLOCKS:
 //-     model
@@ -12,12 +12,40 @@ include /_vefa
 //-     page
 //-     spanner
 //-------------------   
+block init
+    -
+        vefa = new Vefa({
+            class: "pagination",
+            data: {
+                obj: 'abstract',
+                page: 'page',
+                labels: {
+                    prev: 'Previous',
+                    next: 'Next'
+                },
+            },
+            computed: {
+                has_previous () { return `${ this.obj }.has_previous` },
+                has_next () { return `${ this.obj }.has_next` },
+                pages () { return `${ this.obj }.pages` },
+                current () { return `${ this.page } == ${ this.obj }.number` },
+                page_loop () { return `${ this.page } in ${ this.obj }.pages` },
+                page_count () { return `${ this.pages }|length > 1` }, 
+                prev_q () {
+                    let query = `${ this.obj }.previous_page_number.querystring`
+                    return `?${ v( query ) }`
+                },
 
--
-    pagination = pagination || new Vefa()
+                next_q () {
+                    let query = `${ this.obj }.next_page_number.querystring`
+                    return `?${ v( query ) }`
+                },
 
-    pagination
-        .define({
+                page_q () {
+                    let query = `${ this.page }.querystring`
+                    return `?${ v(query) }`
+                }
+            },
             element: {
                 class: "tx--f1--aa",
                 "o-base": "row--pStart--sMiddle",
@@ -29,109 +57,74 @@ include /_vefa
                 class: "thm--dark rxn--tint30 fx--shift",
                 "o-base": "row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs"
             },
-
-            data: {
-                obj: 'abstract',
-                page: 'page'
-            },
-            
-            labels: {
-                prev: 'Previous',
-                next: 'Next'
-            },
-
-            has_previous () {
-                return `${ this.data.obj }.has_previous`
-            },
-
-            has_next () {
-                return `${ this.data.obj }.has_next`
-            },
-
-            prev_q () {
-                let query = `${ this.data.obj }.previous_page_number.querystring`
-                return `?${ v( query ) }`
-            },
-
-            next_q () {
-                let query = `${ this.data.obj }.next_page_number.querystring`
-                return `?${ v( query ) }`
-            },
-
-            page_q () {
-                let query = `${ this.data.page }.querystring`
-                return `?${ v(query) }`
-            },
-
-            pages () {
-                return `${ this.data.obj }.pages`
-            },
-
-            current () {
-                return `${ this.data.page } == ${ this.data.obj }.number`
-            },
-
-            page_loop () {
-                return `${ this.data.page } in ${ this.data.obj }.pages`
-            }
         })
 
-block model
-- pagination = pagination.$freeze()
+
+
+block instance
+    yield
+
+
 
 block view
-    +if(`${ pagination.pages() }|length > 1`)
-        nav.pagination&attributes(pagination.element)
-            +if(pagination.has_previous())
+    +if(pagination.page_count)
+        nav(
+            class=pagination.class
+        )&attributes(pagination.element)
+            
+            +if(pagination.has_previous)
                 block prev_active
                     a.page-ctrl--prev.ord--start(
-                        href=pagination.prev_q()
+                        href=pagination.prev_q
                     )&attributes(pagination.ctrl)
-                        include /icons/ctrl-prev
+                        svg.ico
+                            use(href=`#ico--ctrl-prev`)
                         span= pagination.labels.prev
                 
                 +else()
                     block prev_inactive
                         div.page-ctrl--prev.ord--start.is-disabled()&attributes(pagination.ctrl)
-                            include /icons/ctrl-prev
+                            svg.ico
+                                use(href=`#ico--ctrl-prev`)
                             span= pagination.labels.prev
             
             
-            +if(pagination.has_next())
+            +if(pagination.has_next)
                 block next_active
                     a.page-ctrl--next.ord--end(
-                        href=pagination.next_q()
+                        href=pagination.next_q
                     )&attributes(pagination.ctrl)
                         span= pagination.labels.next
-                        include /icons/ctrl-next
+                        svg.ico
+                            use(href=`#ico--ctrl-next`)
+
                 
                 +else()
                     block next_inactive
                         div.page-ctrl--next.ord--end.is-disabled()&attributes(pagination.ctrl)
                             span= pagination.labels.next
-                            include /icons/ctrl-next
+                            svg.ico
+                                use(href=`#ico--ctrl-next`)
+
             
-            +if(pagination.pages())
-                block pages
+            
+            +if(`${ vefa.obj }.pages`)
+                block page_loop
                     div&attributes(pagination.group)
-                        +for(pagination.page_loop())
-                            +if(pagination.data.page)
-                                +if(pagination.current())
+                        +for(pagination.page_loop)
+                            +if(pagination.page)
+                                +if(pagination.current)
                                     block current_active
                                         div.page-ctrl--current.is-current&attributes(pagination.ctrl)
-                                            span= v(pagination.data.page)
+                                            span= v(pagination.page)
                                     
                                     +else()
                                         block page
                                             a.page-ctrl(
-                                                href=pagination.page_q()
+                                                href=pagination.page_q
                                             )&attributes(pagination.ctrl)
-                                                span= v(pagination.data.page)
+                                                span= v(pagination.page)
                                 
                                 +else()
                                     block spanner
-                                        span.page-ctrl--pseudo() ...
-                
-            
-
-- pagination = pagination.$thaw()
+                                        span.page-ctrl--pseudo.is-current()&attributes(pagination.ctrl) ...

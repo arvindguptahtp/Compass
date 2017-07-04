@@ -1,9 +1,9 @@
 extends _abstract
 
-block model
+block subclass
     -
-        strata = strata
-            .replace({
+        strata
+            .define({
                 element: {
                     "o-base": "col--pStart pad--xy50 rhy--yStart100",
                     "o-enhanced": "pad--xy100"

@@ -1,0 +1,225 @@
+extends _abstract
+
+block subclass
+    -
+        vefa.define({
+            class: "card--result",
+            data: {
+                title: "'Result Title'",
+                overview: "Result Overview",
+                slug: false,
+                services: false,
+                network: false,
+                service_tier: false,
+                ebr: false,
+                labels: {
+                    network_yes: true,
+                    network_no: false
+                }
+            },
+            element: {
+                "o-base": "col--pStart mod--balance",
+            }
+        })
+
+block view
+    dl(
+        class=card.class
+    )&attributes(card.element)
+        block result_attributes
+            block result_title
+                dt.gxi--title.thm--shade10(
+                    o-base="row--pStart"
+                )
+                    a.co--pri.rxn--tint50.fx--shift(
+                        href=v(card.slug)
+                        rel="noopener"
+                        o-base="row--pStart--sMiddle mod--balance pad--x25 pad--y10 rhy--xStart"
+                        o-standard="pad--x50"
+
+                    )
+                        h4.tx--subhed--f1--100
+                            = v(card.title)
+            
+            if card.overview
+                block result_overview
+                    dd.gxi--overview.hl--xy--bTint(
+                        o-base="mod--balance pad--xy25 rhy--yStart50"
+                        o-standard="pad--xy50"
+                    )
+                        .bd.copy.tx--small--f2(
+                            o-full="tx--base dx--w80"
+                        )
+                            if django
+                                = v(card.overview)
+                            else
+                                != markdown(card.overview)
+
+                        footer(
+                            o-base="row--pStart"
+                        )
+                            include /controls/action
+                                -
+                                    vefa.data({
+                                        url: card.slug,
+                                        label: "View Profile"
+                                    })
+            
+            if card.services
+                block result_services
+                    dd.gxi--services.thm--dark(
+                        o-base="col--pStart"
+                    )
+                        article.card--coreservices(
+                            o-base="col--pStart mod--balance"
+                        )
+                            h5.card-hdr.thm--tint10.tx--small--f1--100--tcU(
+                                o-base="pad--x25 pad--y10 vx--hidden"
+                                o-condensed="pad--x50 pad--y25 vx--shown"
+                            ) Core Services
+
+                            ul.card-bd.gx--auto.thm--shade50(
+                                o-base="mod--balance"
+                                o-condensed="pad--xy25"
+                            )
+                                if django
+                                    +for(`icon_type in ${card.services}`)                       
+                                        li.co--pri.ico--xl(
+                                            o-base="mod--static pad--xy25"
+                                        )   
+                                            svg.ico
+                                                use(xlink:href=`#ico--${ v( `icon_type` ) }`)
+            
+            
+            block result_network
+                dd.gxi--network.thm--shade10(
+                    o-base="row--pStart"
+                    o-condensed="row--pMiddle--sMiddle pad--xy25"
+                    o-enhanced="pad--xy50"
+                )
+
+                    div(
+                        class=class_switch(card.network, "thm--partners")
+                        class=class_switch(`not ${card.network}`, "thm--inactive")
+                        o-base="row--pStart mod--balance"
+                        o-condensed="row--pStart--xAuto mod--static"
+                    )
+                        span.thm--shade5.tx--small--f1--100--tcU(
+                            o-base="mod--balance--aMiddle pad--y10 pad--x25"
+                        )     
+                            +if(card.network)
+                                = card.labels.network_yes
+                                +else()
+                                    = card.labels.network_no
+
+            if card.service_tiers
+                block result_tier
+                    dd.gxi--service-tier.thm--partners(
+                        o-base="row--pStart pad--x25"
+                        o-condensed="pad--x50"
+                    )
+                        dl(
+                            o-base="row--pStart mod--balance"
+                        )
+                            dt.tx--small--f1--100--tcU(
+                                o-base="mod--static--aMiddle iso--xEnd25"
+                            ) 
+                                span(
+                                    o-base="vx--hidden"
+                                    o-compressed="vx--shown"
+                                ) Tiers of Support
+                                span(
+                                    o-compressed="vx--hidden"
+                                ) Support Tiers
+                            
+                                +for(`level in ${ card.service_tiers}`)
+                                    dd.tx--small--f1--tcU.thm--shade-nx(
+                                        o-base="mod--aMiddle pad--x50 pad--y25 iso--xStart10"
+                                    )= v('level')
+            
+            if card.ebr
+                block result_ebr                    
+                    dd.gxi--ebr.thm--dark
+                        article.card--ebr.thm--shade80(
+                            o-base="col--pStart"
+                        )
+                            h5.thm--tint25.tx--small--f1--100--tcU--taMiddle(
+                                o-base="pad--x25 pad--y10"
+                                o-condensed="pad--x50 pad--y25"
+                            ) Tiers of Evidence
+                            
+                            footer.tx--f1--100--tcU--ls100--taMiddle(
+                                o-base="pad--x25 pad--y10"
+                                o-condensed="pad--x50 pad--y25"
+                            )
+                                if django
+                                    for choice, index in choices.evidence
+                                        +if(`${ card.ebr }|last == '${ index }'`)
+                                            = choice
+                                else
+                                    = choices.evidence_tier[card.ebr]
+
+                            div(
+                                o-base="row--pMiddle--sMiddle mod--balance pad--xy50"
+                            )
+                                svg.ico.ico--ebr
+                                    use(
+                                        xlink:href=`#ico--ebr-${v(card.ebr, 'last')}`
+                                    )
+
+
+                            
+
+            
+            
+            if card.state
+                block result_state 
+                    dd.gxi--state.tx--base--f1--100.hl--xy--bTint(
+                        o-base="row--pStart--sMiddle pad--x25 pad--y10 rhy--xStart25"
+                        o-condensed="pad--x50"
+                    )
+                        if django
+                            span= v(card.state, "us_state")
+                        
+                            for choice, index in choices.location
+                                +if(`${ card.location } == '${ index }'`)
+                                    span= `(${choice})`
+                        
+
+            if card.students
+                block result_students
+                    dd.gxi--students.thm--dark(
+                        o-base="row--pStart"
+                    )
+                        dl.thm--shade25.tx--base--f1--100(
+                            o-base="row--pStart rhy--xStart25"
+                        )
+                            dt.thm--tint15(
+                                o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
+                                o-condensed="pad--x50"
+                            )
+                                = `Total Students: `
+                            
+                            dd.tx--400(
+                                o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
+                                o-condensed="pad--x50"
+                            )= v(card.students, "default_if_none:'0'")
+
+            if card.budget
+                block result_budget
+                    dd.gxi--budget.thm--dark(
+                        o-base="row--pStart"
+                    )
+                        dl.thm--shade45.tx--base--f1--100(
+                            o-base="row--pStart rhy--xStart25"
+                        )
+                            dt.thm--tint15(
+                                o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
+                                o-condensed="pad--x50"
+                            )
+                                = `Total Budget: `
+                            
+                            dd.tx--400(
+                                o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
+                                o-condensed="pad--x50"
+                            )= `$${v(card.budget, 'intcomma')}`

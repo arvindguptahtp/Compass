@@ -12,9 +12,12 @@ require.context('./components/', true, /\.pug$/)
 // ---------------------------------------------------------------------
 // STYLES
 // ---------------------------------------------------------------------
-require.context('./components/', false, /\.styl$/)
+// require('./components/base.styl')
+require('./components/app.styl')
+// require.context('./components/', false, /\.styl$/)
 
 // ---------------------------------------------------------------------
 // ASSETS
 // ---------------------------------------------------------------------
+// called through its own make task
 // require.context('./res')

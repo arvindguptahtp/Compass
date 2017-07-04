@@ -1,17 +1,13 @@
 extends /forms/fm--search
 
-append model
+block instance
     -
-        form
-            .extend({
-                class: 'fm--search-affiliate',
-                element: {
-                    class: "thm--affiliates"
-                }
-            })
-            .data({
+        vefa.define({
+            class: 'fm--search-affiliate',
+            element: {
+                class: "thm--affiliates"
+            },
+            data: {
                 fieldsets: affiliates.fm_search
-            })
-
-
-prepend view
+            }
+        })

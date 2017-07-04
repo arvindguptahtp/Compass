@@ -1,6 +1,5 @@
 include /_django
-
-- 
+-
     wrap_str = (str) => {
         return `'${ str }'`
     }
@@ -11,3 +10,130 @@ mixin iter(num=1)
     while index < num
         block
         - index++
+
+
+//--------------------------------------------
+//- 
+//- INIT SCOPE
+//- instantiate a Vefa Component abstract
+//- 
+//- 
+//--------------------------------------------
+-
+    {
+        let vefa = { }
+
+block abstract
+block init
+
+-
+        Vefa.set_current(vefa)
+    }
+
+
+//--------------------------------------------
+//- 
+//- SUBCLASS SCOPE
+//- introduce a subclass
+//- 
+//- for continued subclassing:
+//-     append block subclass
+//- 
+//--------------------------------------------
+-
+    {
+        let vefa = Vefa.get_current()
+        if (vefa._view) {
+            eval(`${vefa._view.toString()} = vefa`)
+        }
+block subclass
+block component
+block variant
+
+-
+        Vefa.run_lifecycle(vefa, "on_subclass")
+        //- Vefa.$dump(vefa, "On Subclass")
+        Vefa.set_current(vefa)
+    }
+
+
+
+//--------------------------------------------
+//- 
+//- INSTANCE SCOPE
+//- introduce an instance
+//- 
+//- let includes yield extra data
+//- 
+//- 
+//--------------------------------------------
+-
+    {
+        let vefa = Vefa.get_current()
+
+block instance
+    yield
+
+-
+        Vefa.run_lifecycle(vefa, "on_instance")
+        //- Vefa.$dump(vefa, "On Instance")
+        Vefa.set_current(vefa)
+
+    }
+
+//--------------------------------------------
+//- 
+//- MOUNT SCOPE
+//- explicitly $weave the Vefa object
+//- 
+//- 
+//--------------------------------------------
+-
+    {
+        let vefa = Vefa.get_current()
+        Vefa.run_lifecycle(vefa, "before_mount")
+        //- Vefa.$inject(vefa)
+        Vefa.$weave(vefa)
+        Vefa.run_lifecycle(vefa, "on_mount")
+        //- Vefa.$dump(vefa, "On Mount")
+        Vefa.set_current(vefa)
+    }
+
+
+
+//--------------------------------------------
+//- 
+//- VIEW SCOPE
+//- template interactive
+//- 
+//-
+//--------------------------------------------
+-
+    {
+        let view= vefa = Vefa.get_current()
+        //- make the view variable into a local variable
+        if (vefa._view) {
+            eval(`${vefa._view.toString()} = vefa`)
+        }
+
+block view
+
+-
+        Vefa.set_current(vefa)
+    }
+
+
+
+//--------------------------------------------
+//- 
+//- TEARDOWN SCOPE
+//- $thaw / $teardown the Vefa object (destroy/delete)
+//- 
+//- 
+//--------------------------------------------
+-
+    {
+        let vefa = Vefa.get_current()
+        Vefa.run_lifecycle(vefa, "on_teardown")
+        Vefa.$unravel(vefa) 
+    }

@@ -1,0 +1,74 @@
+extends _abstract
+
+block subclass
+    -
+        vefa.define({
+            class: "page--list",
+            data: {
+                title: "List Template",
+                list_type: "programs"
+            },
+        })
+
+block premain
+    
+    include /posters/icon
+        -
+
+            poster
+                .data(
+                    { 
+                        title: `"${ page.title }"`,
+                        icon: page.icon
+                     }
+                    
+                )
+                .mixin({
+                    element: {
+                        class: `thm--texture-tint ${page.poster_color}`,
+                        "o-base": "ord--next",
+                        "o-extended": "gxi--b"
+                    }
+                })
+
+
+append view
+    +load('humanize choice_tags network_search_tags')
+
+block content
+    .strata--search.gx--search(
+        o-base="mod--balance"
+    )
+        block form
+            include /forms/fm--search
+        
+        div(
+            o-base="pad--x25 pad--y50 rhy--yStart100"
+            o-enhanced="pad--x100 pad--y100 rhy--yStart200"
+        )
+            .copy.tx--maj--f1--100.co--pri(
+                o-full="dx--w60 iso--xAuto rhy--yStart50"
+            )
+                block summary
+                if page.summary
+                    != markdown(page.summary)
+                
+            hr.thm--shade15(
+                o-base="dx--w60 iso--xAuto"
+            )
+            
+            if page.results_collection
+                section(
+                    o-base="rhy--yStart50"
+                )
+
+                    include /pagination/default
+                        - vefa.data({obj: page.list_type})
+                        
+                    div(
+                        o-base="rhy--yStart100"
+                    )
+                        block results
+                    
+                    include /pagination/default
+                        - vefa.data({obj: page.list_type})

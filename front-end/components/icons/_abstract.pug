@@ -1,38 +1,54 @@
-include /_vefa
+extends /_vefa
 
--
-    icon = icon || new Vefa()
-        .define({
+block init
+    -
+        vefa = new Vefa({
+            class: "ico",
             element: {
                 "o-base": "mod--static"
+            },
+            data: {
+                title: "", 
             }
         })
-    
-    icon.data({
-        title: false,
-        desc: false,
-        viewBox: '0 0 100 100',
-    })
+
+        icon_opts = Vefa.get_bus("icon")
+
+        if (icon_opts) {
+            vefa.data(icon_opts)
+        }
 
 
-
-block model
-
-- icon = icon.$freeze()
 
 block view
-    svg.ico(
-        height="16"
-        width="16"
-        viewBox=icon.data.viewBox
-        aria-labelledby="title desc"
-    )&attributes(icon.element)
-        if icon.data.title 
-            title= icon.data.title
-        
-        if icon.data.desc
-            desc= icon.data.desc
-
-        block bd
+    block defs
     
-- icon = icon.$thaw()
+    block element
+        if ico.use_as_symbol
+            symbol(
+                id=ico.class
+                viewBox=ico.viewBox
+            )
+                if ico.title 
+                    title= ico.title
+                
+                if ico.desc
+                    desc= ico.desc
+
+                block bd
+
+        else
+            svg.ico(
+                class=ico.class
+                height="16"
+                width="16"
+                viewBox=ico.viewBox
+                aria-labelledby="title desc"
+            )&attributes(ico.element)
+                if ico.title 
+                    title= ico.title
+                
+                if ico.desc
+                    desc= ico.desc
+
+                block bd

@@ -1,21 +1,17 @@
-extends fm-field--multi
+//- extends fm-field--multi
 
-append model
-    -
-        form_field
-            .instance({
-                class: "fm-field--multi-block",
+//- block variant
+//-     -
+//-         vefa.define({
+//-             class: 'fm-field--multi-block',
+//-         })
 
-                control: {
-                    "o-base": "row--pStart--sMiddle mod--balance pad--y25 rhy--xStart50 ico--xl"
-                }
-            })
+//- block input_ext
+//-     +if(vefa.validator)
+//-         input.vx--a11y(checked=true)&attributes(vefa.input_attrs)
 
-block input_ext
-    +if(`choice_value|safe in ${ _field_val } or choice_value in ${ _field_val }`)
-        input.vx--a11y(checked=true)&attributes(input_attrs)
+//-         +else()
+//-             input.vx--a11y&attributes(vefa.input_attrs)
 
-        +else()
-            input.vx--a11y&attributes(input_attrs)
 
-block input_int
+//- block input_int

@@ -1,10 +1,8 @@
-include /_vefa
+extends /_vefa
 
--
-    poster = poster || new Vefa()
-    
-    poster
-        .define({
+block init
+    -
+        vefa = new Vefa({
             class: "poster",
             element: {
                 "o-base": "row--pStart--sBase mod--static pad--xStart50 pad--y100",
@@ -16,10 +14,6 @@ include /_vefa
             },
         })
 
-block model
-
-- 
-    poster = poster.$freeze()
 
 
 block view
@@ -29,6 +23,3 @@ block view
         block hdr
         block bd
         block ftr
-
-
-- poster = poster.$thaw()

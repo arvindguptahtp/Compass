@@ -35,17 +35,16 @@ templates:
         - _vefa.pug
         - _abstract.pug
     emit:
-        - meta/css
-        - meta/head_js
-        - meta/footer_js
+        - includes/css
+        - includes/head_js
+        - includes/footer_js
         - site/index
-        - icons
         - affiliates/affiliate_list
-        - affiliates/affiliate_detail
+        # - affiliates/affiliate_detail
         - partners/partner_list
-        - partners/partner_detail
+        # - partners/partner_detail
         - programs/program_list
-        - programs/program_detail
+        # - programs/program_detail
         - simple_auth/password_form
     # bypass_export: true
     # flatten_one_level: 

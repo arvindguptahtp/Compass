@@ -1,14 +1,20 @@
-include /_vefa
+extends /_vefa
 
--
-    form = form || new Vefa()
-    
-    form
-        .define({
+block init
+    -
+        vefa = new Vefa({
             class: "fm",
-            action: ".",
-            method: "GET",
-      
+            data: {
+                action: ".",
+                method: "GET",
+                control: {
+                    name: "submit",
+                    label: "Submit"
+                }
+            },
+            provide: [
+                ['form', "form"],
+            ],
             element: {
                 "o-base": "pad--y50 rhy--yStart100",
                 "o-standard": "pad--y100"
@@ -24,57 +30,37 @@ include /_vefa
                 "o-base": "row--pEnd--sMiddle pad--x25",
                 "o-standard": "pad--x100"
             },
-            field: {
-                group: {
-                    class: "thm--shade20",
-                    "o-base": "col--pStart--sStart pad--x50"
-                },
-                label: {
-                    class: "tx--small--f3--900--tcU--aa",
-                },
-                control: {
-                    class: "tx--small--f3--ls100 rhy--xStart50 thm--tint20 rxn--shade20 fx--shift ico--xl",
-                    "o-base": "row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25",
-                }
-            }
         })
-    
-    ctrl = new Vefa()
-        .instance({
-            data: {
-                name: "submit",
-                label: "Submit"
-            }
-        })
-
-block model
-- form = form.$freeze()
 
 
 
 block view
     form(
-        action=form.action
-        method=form.method
-        class=form.class
-    )&attributes(form.element)
+        action=fm.action
+        method=fm.method
+        class=fm.class
+    )&attributes(fm.element)
         block hdr
-            header.fm-hdr&attributes(form.header)
-                h1.fm-hed&attributes(form.hed)
-                    = form.data.title
+            header.fm-hdr&attributes(fm.header)
+                h1.fm-hed&attributes(fm.hed)
+                    = fm.title
 
             include components/fm-errors
 
         block bd
-            if form.data.fieldsets
-                for fieldset, index in form.data.fieldsets
-                    include fields/fm-fieldset
+            if fm.fieldsets
+                for fieldset, index in fm.fieldsets
+                    include components/fm-fieldset
+                        -
+                            vefa.data(
+                                "fm-fieldset", 
+                                fieldset
+                            )
 
-        
         block ftr
-            footer&attributes(form.footer)
+            footer&attributes(fm.footer)
                 include /controls/submit
+                    - vefa.data(fm.control)
         
         +csrf()
 
-- form = form.$thaw()

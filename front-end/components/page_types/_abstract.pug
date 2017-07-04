@@ -1,0 +1,83 @@
+extends /_vefa
+
+block init
+    -
+        vefa = new Vefa({
+            class: "page",
+            data: {
+                title: false,
+                icon: false
+            },
+            computed: {
+                titlebar () {
+                    let title = (this.title)
+                        ? `${ v(wrap_str(this.title)) } : `
+                        : ""
+                    return `${title}${site.title}`
+                }
+            }
+        })
+
+
+
+block view
+    +load("static choice_tags humanize network_search_tags")
+    doctype html
+    html(langs="en-US")
+        head
+            meta(charset="utf-8")                
+            meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+            meta(name="viewport", content="width=device-width, initial-scale=1.0, shrink-to-fit=no")
+           
+        title= page.titlebar
+
+        block project_css
+            +include('includes/css')
+
+        block head_js
+            +include('includes/head_js')
+        
+        include /includes/favicons
+        meta(name="apple-mobile-web-app-title" content=site.title)
+        meta(name="application-name" content=site.title)
+        meta(name="theme-color" content="#ffåffff")
+
+        block metatags
+
+        //- Disable automatic detection and formatting of possible phone numbers
+        meta(name="format-detection", content="telephone=no")
+
+    body(
+        o-base="col--pStart"
+        o-full="gx--ui"
+        dir="ltr" 
+        ontouchstart=""
+        onmouseover=""
+    )
+        block wrapper
+            include /includes/icons
+
+            block masthead
+                include /runners/masthead--logo-full
+
+            
+            block premain
+                include /posters/text
+
+            main(
+                o-base="col--pStart"
+                o-extended="gxi--d"
+            )
+                block content
+
+            block postmain
+
+            block navigation
+                include /runners/masthead--nav
+
+            block colophon
+                include /runners/colophon
+
+        
+        block js
+            +include('includes/footer_js')
