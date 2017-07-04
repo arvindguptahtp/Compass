@@ -8,6 +8,11 @@ fm_search:
                 name: q
                 label: Keywords
                 widget: text
+
+            services:
+                name: services
+                label: CIS Core Services
+                widget: multi_icon
         
     -   name: Demographics
         type: fieldset
@@ -46,11 +51,6 @@ fm_search:
                 name: free_of_cost
                 label: Free of Cost
                 widget: single_null
-            
-            services:
-                name: services
-                label: CIS Core Services
-                widget: multi_icon
             
             service_tiers:
                 name: service_tiers
