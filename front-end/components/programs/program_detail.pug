@@ -1,0 +1,338 @@
+extends /page_types/detail
+
+block instance
+    -
+        vefa
+            .data({
+                title: 'program',
+                icon: "programs",
+                primary_color: "co--programs",
+
+                grouping: 'program',
+                overview: 'program.description',
+                website: 'program.program_weblink',
+                grade: 'program.grade',
+                gender: 'program.gender',
+                race: 'program.race',
+                race_other: 'program.race_other',
+                region: 'program.region',
+                region_other: 'program.region_other',
+                need: 'program.student_need',
+                characteristics: 'program.student_characteristics',
+                service_tier: 'program.tiers_of_service',
+                setting: 'program.setting',
+                ebr: 'program.tiers_of_evidence',
+                core_services: 'program.service_categories',
+                assessment: 'program.assessment_available',
+                assessment_info: 'program.assessment_info',
+                cost: 'program.is_cost_free',
+                cost_desc: 'program.cost_description',
+                outcomes: 'program.outcomes',
+                study_weblink: 'program.study_weblink',
+                network_use: 'program.network_use',
+                featured_network: 'program.featured_network',
+            })
+
+block premain
+    div.bk(
+        o-base="row--pStart"
+        o-extended="gxi--b"
+    )
+        //- include /posters/icon
+        //-     -
+        //-         poster
+        //-             .data({ 
+        //-                 title: page.title,
+        //-                 icon: page.icon
+        //-             })
+        //-             .mixin({
+        //-                 element: {
+        //-                     class: `thm--texture-tint ${page.primary_color}`,
+        //-                     "o-base": "ord--next",
+        //-                     "o-extended": "gxi--b"
+        //-                 }
+        //-             })
+        //- .thm--dark
+        //-     include /cards/ebr
+        //-         - vefa.data({ ebr: page.ebr })
+    //- prepend preview
+    //-     -
+    //-         poster = new Vefa()
+    //-             .mix({
+    //-                 element: {
+    //-                     class: "co--programs",
+    //-                 }
+    //-             })
+    //-             .data({
+    //-                 contact: {
+    //-                     url: page.data.website,
+    //-                 }
+    //-             })
+
+
+block content
+    .strata--detail.gx--detail-programs(
+        o-base="mod--balance"
+    )
+       
+        .gxi--b(
+            o-base="col--pStart pad--yEnd50 rhy--yStart50"
+            o-condensed="pad--x25 pad--y25"
+            o-extended="gx--i2--gxy25 rhy--yStart0"
+        )
+            include /cards/copy
+                -
+                    vefa
+                        .data({
+                            heading: "Program Description",
+                            copy: page.overview
+                        })
+                        .mixin({
+                            element: {
+                                class: "thm--shade25",
+                                "o-base": "mod--static pad--y50",
+                                "o-extended": "gxs--s2"
+                            },
+                            hed: {
+                                class: "co--programs"
+                            },
+                            bd: {
+                                class: "tx--maj"
+                            }
+                        })
+        
+            section.thm--dark(
+                o-base="col--pStart pad--yEnd100"
+                o-condensed="pad--yEnd0"
+            )
+                include /cards/data_map
+                    -
+                        vefa
+                            .data({
+                                header: "Program Information",
+                                map: [
+                                    ["Tiers of Service", page.get("tiers_of_service"), "TiersOfService"],
+                                    ["Program Region", page.get("region"), "Regions"],
+                                    ["Program Setting", page.get("setting"), "Setting"],
+                                    ["Program Outcomes", page.get("outcomes"), "Outcomes"],
+                                ], 
+                                as_text: ["Outcomes"],
+                            })
+                            .define({
+                                hdr: {
+                                    class: "thm--shade20",
+                                    "o-base": "mod--static pad--x50 pad--y25"
+                                },
+                                hed: {
+                                    class: "tx--maj--f1--100"
+                                },
+                                bd: {
+                                    "o-base": "mod--balance pad--xy25 rhy--yStart25"
+                                }
+                            })
+                        
+                    mixin card_list
+                        dt&attributes(card.key) Associated Fees
+                        +if(page.get("is_cost_free"))
+                            dt&attributes(card.value) Free of Cost
+                            +else()
+                                dt&attributes(card.value)
+                                    +if(page.get("cost_description"))
+                                        p= v(page.get("cost_description", "safe"))
+                        
+                        +if(page.get("assessment"))
+                            dt&attributes(card.key) Assessment Available
+                            dt&attributes(card.value)
+        
+            section.thm--dark(
+                o-base="col--pStart pad--yEnd100"
+                o-condensed="pad--yEnd0"
+            )
+                header.thm--shade20(
+                    o-base="mod--static pad--x50 pad--y25"
+                )
+                    h1.tx--maj--f1--100 CIS Core Services
+
+                ul.bd(
+                    o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+                    o-extended="gx--i2--gxy25 mod--static rhy--yStart0"
+                )
+                    +for(`item in ${page.core_services}`)
+                        li.tx--f2(
+                            o-base="row--pStart"
+                        )
+                            span.ico--l.thm--shade20(
+                                o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
+                            )
+                                svg.ico
+                                    use(href=`#ico--${ v("item") }`)
+                                
+
+                            div.thm--tint10(
+                                o-base="col--pMiddle--sStart mod--balance pad--x25 pad--y25"
+                            )
+                                span= v( 'item', "choice_display:'CoreServices'" )
+        
+        section.thm--programs.gxi--a(
+            o-standard="pad--yStart50"
+        )
+            include /cards/data_map
+                -
+                    vefa
+                        .data({
+                            header: "Student Demographics",
+                            map: [
+                                ["Grade Level", page.get("grade"), "PartnerGrades"],
+                                ["Gender", page.get("gender")],
+                                ["Race", page.get("race")],
+                                ["Student Need", page.get("student_need"), "StudentNeeds"],
+                                ["Student Characteristics", page.get("student_characteristics"), "StudentCharacteristics"]
+                            ]
+                        })
+
+        section.gxi--c.thm--light-alt.hl--yStart--bTint(
+            o-condensed="gx--i2--gxy25 pad--xy25"
+        )   
+
+            section(
+                o-base="col--pStart pad--yEnd100"
+                o-condensed="pad--yEnd0"
+            )
+                header.thm--shade20(
+                    o-base="mod--static pad--x50 pad--y25"
+                )
+                    h1.tx--maj--f1--100 Program Associations
+                
+                ul.bd
+                    +if(page.get("national_partner"))
+                        li
+                            a(
+                                href=v(`${ page.get("national_partner") }.get_absolute_url`)
+                                o-base="row--pGrid"
+                            )
+                                span= v(page.get("national_partner"))
+                                small National Partner
+                    +for("item in program.featured_network.all")
+                        li
+                            a(
+                                href=v('item.get_absolute_url')
+                                o-base="row--pGrid"
+                            )
+                                span= v('item')
+                                small Featured Network
+
+            section(
+                o-base="col--pStart pad--yEnd100"
+                o-condensed="pad--yEnd0"
+            )
+                header.thm--shade20(
+                    o-base="mod--static pad--x50 pad--y25"
+                )
+                    h1.tx--maj--f1--100 Additional Resources
+                ul.bd
+                    +for("item in program.national_databases.all")
+                        li
+                            a(
+                                href=v('item.url')
+                                o-base="row--pGrid"
+                            )
+                                span= v('item')
+                                small National Database
+                    
+                    +for("item in program.related_resources.all")
+                        li
+                            a(
+                                href=v('item.url')
+                                o-base="row--pGrid"
+                            )
+                                span= v('item')
+                                small Communities In Schools Resource
+
+                    +for("item in program.additional_resources.all")
+                        li
+                            a(
+                                href=v('item.url')
+                                o-base="row--pGrid"
+                            )= v('item')
+
+
+        
+//-         div.gxi--c.thm--light-alt.hl--yStart--bTint(
+//-             o-condensed="gx--i2--gxy25 pad--xy25"
+//-             o-standard="gx--i2--gxy50 pad--xy50"
+//-         )
+//-             +if(page.data.need)
+//-                 section.thm--dark(
+//-                     o-base="col--pStart pad--yEnd100"
+//-                     o-condensed="pad--yEnd0"
+//-                 )
+//-                     header.thm--shade20(
+//-                         o-base="pad--x50 pad--y25"
+//-                     )
+//-                         h1.tx--maj--f1--100 Student Needs
+
+                    
+//-                     ul.bd(
+//-                         o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+//-                         o-extended="gx--i2--gxy25 mod--static rhy--yStart0"
+//-                     )
+//-                         +for(`item in ${page.data.need}`)
+//-                             li.tx--small--f3(
+//-                                 o-base="row--pStart"
+//-                             )   
+//-                                 //- span.ico--l.thm--shade20(
+//-                                 //-     o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
+//-                                 //- )
+//-                                 //-     include /icons/ccr
+                                
+//-                                 div.thm--tint10(
+//-                                     o-base="col--pMiddle--sStart mod--balance pad--x25 pad--y25"
+//-                                 )
+//-                                     span= v( 'item', "choice_display:'StudentNeeds'" )
+            
+            
+
+      
+            
+//- //- //-         //-     section.thm--shade20(
+//- //- //-         //-         o-base="col--pStart pad--yEnd100"
+//- //- //-         //-         o-condensed="pad--yEnd0"
+//- //- //-         //-     )
+//- //- //-         //-         header.thm--programs(
+//- //- //-         //-             o-base="pad--x50 pad--y25"
+//- //- //-         //-         )
+//- //- //-         //-             h1.tx--maj--f1--100 Associated Affiliates
+                
+//- //- //-         //-         ul.bd(
+//- //- //-         //-             o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+//- //- //-         //-         )
+//- //- //-         //-             each item in profile.data.affiliates
+//- //- //-         //-                 li.thm--programs(
+//- //- //-         //-                     o-base="col--pStart"
+//- //- //-         //-                 )
+//- //- //-         //-                     a.tx--small--f3.thm--tint50.rxn--tint75.fx--shift(
+//- //- //-         //-                         href="/affiliates/affiliate_detail"
+//- //- //-         //-                         target="_blank"
+//- //- //-         //-                         o-base="row--pStart--sMiddle rhy--xStart25"
+//- //- //-         //-                     )
+//- //- //-         //-                         span.ico--l.thm--shade20(
+//- //- //-         //-                             o-base="col--pMiddle--sMiddle--xAuto mod--static pad--xy25"
+//- //- //-         //-                         )
+//- //- //-         //-                             include /icons/affiliates
+//- //- //-         //-                         span.co--programs.tx--900(
+//- //- //-         //-                             o-base="pad--xy25"
+//- //- //-         //-                         )= v(item)
+//- //- //-         //-                         span.thm--tint25.tx--caption--tcU(
+//- //- //-         //-                             o-base="pad--x25 pad--y10 iso--xStartAuto iso--xEnd25"
+//- //- //-         //-                         ).
+//- //- //-         //-                             Profile Available
+//- //- //-         //-         footer(
+//- //- //-         //-            o-base="row--pEnd--sMiddle"
+//- //- //-         //-         )
+//- //- //-         //-             -
+//- //- //-         //-                 ctrl = new Vefa()
+//- //- //-         //-                     .data({
+//- //- //-         //-                         name: "search",
+//- //- //-         //-                         label: "Full Affiliate List"
+//- //- //-         //-                     })
+//- //- //-         //-             include /controls/submit

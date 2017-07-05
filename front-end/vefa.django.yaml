@@ -44,7 +44,7 @@ templates:
         - partners/partner_list
         # - partners/partner_detail
         - programs/program_list
-        # - programs/program_detail
+        - programs/program_detail
         - simple_auth/password_form
     # bypass_export: true
     # flatten_one_level: 

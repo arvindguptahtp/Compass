@@ -134,6 +134,10 @@ block view
 -
     {
         let vefa = Vefa.get_current()
+
+block teardown
+
+-
         Vefa.run_lifecycle(vefa, "on_teardown")
         Vefa.$unravel(vefa) 
     }

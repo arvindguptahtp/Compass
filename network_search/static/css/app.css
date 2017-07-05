@@ -515,6 +515,24 @@ main {
 [o-base*='gxi--budget'] {
   grid-area: budget;
 }
+[class*='gxi--info'] {
+  grid-area: info;
+}
+[o-base*='gxi--info'] {
+  grid-area: info;
+}
+[class*='gxi--demographics'] {
+  grid-area: demographics;
+}
+[o-base*='gxi--demographics'] {
+  grid-area: demographics;
+}
+[class*='gxi--addtional'] {
+  grid-area: additional;
+}
+[o-base*='gxi--addtional'] {
+  grid-area: additional;
+}
 .strata--detail .detail-copy {
   grid-auto-rows: 1fr;
 }
@@ -669,11 +687,6 @@ main {
   -ms-grid-rows: (auto)[4];
       grid-template-rows: repeat(4, auto);
   grid-gap: 1px;
-}
-.gx--detail-programs {
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
-  grid-template-areas: "a" "b" "c";
 }
 .gx--result-programs {
   grid-template-areas: "title      title       title" "network    network     services" "overview   overview    services" "ebr        ebr         services";
@@ -835,6 +848,15 @@ main {
   [o-compressed*='gxi--budget'] {
     grid-area: budget;
   }
+  [o-compressed*='gxi--info'] {
+    grid-area: info;
+  }
+  [o-compressed*='gxi--demographics'] {
+    grid-area: demographics;
+  }
+  [o-compressed*='gxi--addtional'] {
+    grid-area: additional;
+  }
   [o-compressed*='ico--base'] > .ico {
     height: 1em;
     width: 1em;
@@ -993,6 +1015,15 @@ main {
   }
   [o-condensed*='gxi--budget'] {
     grid-area: budget;
+  }
+  [o-condensed*='gxi--info'] {
+    grid-area: info;
+  }
+  [o-condensed*='gxi--demographics'] {
+    grid-area: demographics;
+  }
+  [o-condensed*='gxi--addtional'] {
+    grid-area: additional;
   }
   .site-logo {
     max-width: 160px;
@@ -1164,6 +1195,15 @@ main {
   [o-standard*='gxi--budget'] {
     grid-area: budget;
   }
+  [o-standard*='gxi--info'] {
+    grid-area: info;
+  }
+  [o-standard*='gxi--demographics'] {
+    grid-area: demographics;
+  }
+  [o-standard*='gxi--addtional'] {
+    grid-area: additional;
+  }
   .colophon-nav-item:first-child {
     border: 0;
   }
@@ -1200,11 +1240,6 @@ main {
     right: 12px;
   }
   .gx--detail-affiliate {
-    -ms-grid-columns: (1fr)[3];
-        grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "b a a" "c c c";
-  }
-  .gx--detail-programs {
     -ms-grid-columns: (1fr)[3];
         grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "b a a" "c c c";
@@ -1364,6 +1399,15 @@ main {
   [o-enhanced*='gxi--budget'] {
     grid-area: budget;
   }
+  [o-enhanced*='gxi--info'] {
+    grid-area: info;
+  }
+  [o-enhanced*='gxi--demographics'] {
+    grid-area: demographics;
+  }
+  [o-enhanced*='gxi--addtional'] {
+    grid-area: additional;
+  }
   [o-enhanced*='ico--base'] > .ico {
     height: 1em;
     width: 1em;
@@ -1515,6 +1559,15 @@ main {
   }
   [o-extended*='gxi--budget'] {
     grid-area: budget;
+  }
+  [o-extended*='gxi--info'] {
+    grid-area: info;
+  }
+  [o-extended*='gxi--demographics'] {
+    grid-area: demographics;
+  }
+  [o-extended*='gxi--addtional'] {
+    grid-area: additional;
   }
   [o-extended*='ico--base'] > .ico {
     height: 1em;
@@ -1686,6 +1739,15 @@ main {
   [o-full*='gxi--budget'] {
     grid-area: budget;
   }
+  [o-full*='gxi--info'] {
+    grid-area: info;
+  }
+  [o-full*='gxi--demographics'] {
+    grid-area: demographics;
+  }
+  [o-full*='gxi--addtional'] {
+    grid-area: additional;
+  }
   .masthead-nav-ctrl {
     font-size: 32px;
   }
@@ -1719,9 +1781,11 @@ main {
     grid-template-areas: "a b" "c c";
   }
   .gx--detail-programs {
-    -ms-grid-columns: 2fr 5fr;
-        grid-template-columns: 2fr 5fr;
-    grid-template-areas: "b a" "b c";
+    -ms-grid-columns: minmax(250px, 500px) 5fr;
+        grid-template-columns: minmax(250px, 500px) 5fr;
+    -ms-grid-rows: auto 1fr;
+        grid-template-rows: auto 1fr;
+    grid-template-areas: "a b" "c c";
   }
   .gx--detail-partner {
     -ms-grid-columns: (1fr)[5];

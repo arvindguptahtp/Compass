@@ -1,0 +1,90 @@
+extends _abstract
+
+block subclass
+    -
+        vefa
+            .define({
+                class: "card--dl",
+                element: {},
+                hdr: {
+                    "o-base": "pad--x25 pad--y25",
+                    "o-condensed": "pad--x50"
+                },
+                hed: {
+                    class: "tx--subhed--f1--100--aa"
+                },
+                bd: {
+                    "o-base": "mod--balance pad--xy25 rhy--yStart25",
+                    "o-extended": "gx--i2--gxy10 mod--static rhy--yStart0"
+                },
+                key: {
+                    class: "thm--shade40 tx--small--f3--tcU",
+                    "o-base": "pad--xy25",
+                    "o-condensed": "pad--xy50"
+                },
+                value: {
+                    class: "thm--tint10 tx--small--f3",
+                    "o-base": "col--pStart--sStart pad--xy25",
+                    "o-condensed": "pad--xy50"
+                },
+                computed: {
+                },
+                on_mount () {
+                    if(this.map) {
+                        let map = new Map()
+                        this.map.forEach( (tuple) => {
+                            let arr = []
+                            if (tuple[2]) {
+                                arr.push(tuple[2])
+                            }
+                            else {
+                                arr.push(tuple[0])
+                            }
+                            arr.push(tuple[1])
+
+                            map.set(
+                                tuple[0], 
+                                arr
+                            )
+                        })
+                        this.map = map
+                    }
+                }
+            })
+
+
+
+block view
+    article(
+        class=card.class
+    )
+        block hdr
+            header.card-hdr&attributes(card.hdr)
+                h2.card-hed&attributes(card.hed)= card.header
+        
+        block bd
+            if card.map
+                dl.card-bd&attributes(card.bd)
+                    -
+                        card.map.forEach(
+                            (value, key) => {
+                    
+                    dt&attributes(card.key)= key
+                    dt&attributes(card.value)
+                        
+                        if card.as_text && card.as_text.includes(value[0])
+                            = v(value[1], "safe")
+                        
+                        else
+                            ul
+                                +for(`val in ${value[1]}`)
+                                    li= v("val", `choice_display:'${value[0]}'`, 'capfirst')
+                    
+                    - })
+                        
+                    if pug_mixins.card_list
+                        +card_list()
+
+block teardown
+    if pug_mixins.card_list
+        - pug_mixins.card_list = null

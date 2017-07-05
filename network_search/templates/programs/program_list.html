@@ -398,7 +398,8 @@
                             </ul>
                           </article>
                         </dd>
-                        <dd class="gxi--network thm--shade10" o-base="row--pStart" o-condensed="row--pMiddle--sMiddle pad--xy25" o-enhanced="pad--xy50">
+                        <dd class="gxi--network thm--shade10" o-base="row--pStart" o-condensed="row--pMiddle--sMiddle pad--xy25" o-enhanced="pad--xy50">  {% if program.network_use.count > 0 %}
+                                <div class="thm--partners" o-base="row--pStart mod--balance" o-condensed="row--pStart--xAuto mod--static"><span class="thm--shade5 tx--small--f1--100--tcU" o-base="mod--balance--aMiddle pad--y10 pad--x25">       Used by CIS Network</span></div>{% endif %}
                         </dd>
                         <dd class="gxi--ebr thm--dark">
                           <article class="card--ebr thm--shade80" o-base="col--pStart">

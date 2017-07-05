@@ -1,0 +1,38 @@
+extends _abstract
+
+block subclass
+    -
+        vefa.define({
+            class: "card--ebr",
+            
+        })
+
+
+block view
+    article.thm--shade80(
+        class=card.class
+        o-base="col--pStart"
+    )
+        h5.thm--tint25.tx--small--f1--100--tcU--taMiddle(
+            o-base="pad--x25 pad--y10"
+            o-condensed="pad--x50 pad--y25"
+        ) Tiers of Evidence
+        
+        footer.tx--f1--100--tcU--ls100--taMiddle(
+            o-base="pad--x25 pad--y10"
+            o-condensed="pad--x50 pad--y25"
+        )
+            if django
+                for choice, index in choices.evidence
+                    +if(`${ card.ebr }|last == '${ index }'`)
+                        = choice
+            else
+                = choices.evidence_tier[card.ebr]
+
+        div(
+            o-base="row--pMiddle--sMiddle mod--balance pad--xy50"
+        )
+            svg.ico.ico--ebr
+                use(
+                    xlink:href=`#ico--ebr-${v(card.ebr, 'last')}`
+                )

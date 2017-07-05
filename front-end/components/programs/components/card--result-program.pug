@@ -19,7 +19,9 @@ block instance
                     slug: 'program.get_absolute_url',
                     overview: 'program.summary',
                     services: 'program.service_categories',
-                    ebr: 'program.tiers_of_evidence'
+                    ebr: 'program.tiers_of_evidence',
+                    network: 'program.network_use',
+                    featured: 'program.featured_network',
                 })    
     
     else
@@ -41,8 +43,9 @@ block result_network
         o-base="row--pStart"
         o-condensed="row--pMiddle--sMiddle pad--xy25"
         o-enhanced="pad--xy50"
-    )
-        if card.network
+    )   
+
+        +if(`${ card.network }.count > 0`)
             div(
                 class=card.network ? "thm--partners" : "thm--inactive"
                 o-base="row--pStart mod--balance"
