@@ -100,7 +100,9 @@ block content
                         +else()
                             dt&attributes(card.value)
                                 +if(page.get("cost_description"))
-                                    p= v(page.get("cost_description", "safe"))
+                                    p(
+                                        style="word-break:word"
+                                    )= v(page.get("cost_description", "safe"))
                     
                     +if(page.get("assessment"))
                         dt&attributes(card.key) Assessment Available
@@ -189,114 +191,94 @@ block content
                         o-extended="gx--i2--gxy50 rhy--yStart0"
                     )
                         +for(`item in ${page.core_services}`)
-                            li.thm--programs.tx--f2(
+                            li.thm--tint70.co--programs(
                                 o-base="row--pStart"
                             )
-                                span.ico--l.thm--shade20(
+                                span.ico--xl.thm--programs(
                                     o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
                                 )
                                     svg.ico
                                         use(href=`#ico--${ v("item") }`)
                                     
 
-                                div.thm--tint10.tx--f3(
+                                div.tx--f3(
                                     o-base="col--pMiddle--sStart mod--balance pad--x25 pad--y25"
                                 )
                                     span= v( 'item', "choice_display:'CoreServices'" )
 
-
-                
-                article.card(
-                    o-base="col--pStart"
-                )
-                    header&attributes(card_style.hdr)
-                        h1&attributes(card_style.hed) Program Associations
-                    
-                    ul.bd(
-                        class="thm--shade15"
-                        o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+                +if(`${ page.get("national_partner") } or ${ page.get("featured_network") }`)
+                    article.card(
+                        o-base="col--pStart"
                     )
-                        +if(page.get("national_partner"))
-                            li.thm--programs.tx--f3
-                                a.rxn--tint10.fx--shift(
-                                    o-base="row--pStart"
-                                    href=v(`${ page.get("national_partner") }.get_absolute_url`)
-                                )
-                                    span.ico--l.thm--shade20(
-                                       o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
-                                    )
-                                        svg.ico
-                                            use(href=`#ico--partners`)
-                                    
-                                    span.thm--tint10(
-                                        o-base="row--pStart--sMiddle mod--balance pad--x25"
-                                    )= v(page.get("national_partner"))
-                                    
-                                    small.thm--tint10.tx--chrome--f3--tcU(
-                                        o-base="row--pStart--sMiddle pad--x25"
-                                    ) National&nbsp;Partner
-
+                        header&attributes(card_style.hdr)
+                            h1&attributes(card_style.hed) Program Associations
                         
-                        +for("item in program.featured_network.all")
-                            li.thm--programs.tx--f3
-                                a.rxn--tint10.fx--shift(
-                                    o-base="row--pStart"
-                                    href=v('item.get_absolute_url')
-                                )
-                                    span.ico--l.thm--shade20(
-                                       o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
+                        ul.bd(
+                            class="thm--shade15"
+                            o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+                        )
+                            +if(page.get("national_partner"))
+                                li.thm--tint70.tx--f3--900
+                                    a.co--programs.rxn--tint90.fx--shift(
+                                        o-base="row--pStart"
+                                        href=v(`${ page.get("national_partner") }.get_absolute_url`)
                                     )
-                                        svg.ico
-                                            use(href=`#ico--affiliates`)
-                                    
-                                    span.thm--tint10(
-                                        o-base="row--pStart--sMiddle mod--balance pad--x25"
-                                    )= v('item')
-                                    
-                                    small.thm--tint10.tx--chrome--f3--tcU(
-                                        o-base="row--pStart--sMiddle pad--x25"
-                                    ) Featured&nbsp;Network
+                                        span.ico--xl.thm--programs(
+                                            o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
+                                        )
+                                            svg.ico
+                                                use(href=`#ico--partners`)
+                                        
+                                        div(
+                                            o-base="row--pGrid--sMiddle--xAuto rhy--xStart25 pad--x25"
+                                        )
+                                            span.typ--trnc(
+                                                o-base="mod--balance"
+                                            )= v(page.get("national_partner"))
+                                        
+                                            small.tx--chrome--f3--100--tcU National&nbsp;Partner
+
+                            
+                            +for("item in program.featured_network.all")
+                                li.thm--tint70.tx--f3--900
+                                    a.co--programs.rxn--tint90.fx--shift(
+                                        o-base="row--pStart"
+                                        href=v('item.get_absolute_url')
+                                    )
+                                        span.ico--xl.thm--programs(
+                                            o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
+                                        )
+                                            svg.ico
+                                                use(href=`#ico--affiliates`)
+                                        div(
+                                            o-base="row--pGrid--sMiddle--xAuto rhy--xStart25 pad--x25"
+                                        )
+                                            span.typ--trnc(
+                                                o-base="mod--balance"
+                                            )= v('item')
+                                            
+                                            small.thm--tint10.tx--chrome--f3--100--tcU Featured&nbsp;Network
                 
-                article.card(
-                    o-base="col--pStart  mod--balance"
-                )
-                    header&attributes(card_style.hdr)
-                        h1&attributes(card_style.hed) Additional Resources
-                    
-                    ul.bd(
-                        class="thm--shade15"
-                        o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
-                    )
-                        +for("item in program.national_databases.all")
-                            li.thm--programs.tx--f3
-                                a.thm--tint15.rxn--shade10.fx--shift(
-                                    href=v('item.url')
-                                    o-base="row--pGrid--sMiddle pad--xy25"
-                                )
-                                    span
-                                        = v('item')
-                                        svg.ico
-                                            use(href=`#ico--link-ext`)
-                                    small.tx--chrome--f3--tcU National Database
-                        
-                        +for("item in program.related_resources.all")
-                            li.thm--programs.tx--f3
-                                a.thm--tint15.rxn--shade10.fx--shift(
-                                    href=v('item.url')
-                                    o-base="row--pGrid--sMiddle pad--xy25"
-                                )
-                                    span
-                                        = v('item')
-                                        svg.ico
-                                            use(href=`#ico--link-ext`)
-                                    small.tx--chrome--f3--tcU Resource
 
-                        +for("item in program.additional_resources.all")
-                            li.thm--programs.tx--f3
-                                a.thm--tint15.rxn--shade10.fx--shift(
-                                    href=v('item.url')
-                                    o-base="row--pStart--sMiddle pad--xy25"
-                                )
-                                    = v('item')
-                                    svg.ico
-                                        use(href=`#ico--link-ext`)
+                include /cards/link-list
+                    -
+                        vefa
+                            .data({
+                                header: "Additional Resources",
+                                links: [
+                                    [page.get("national_databases"), "external", "National Database"],
+                                    [page.get("related_resources"), "external", "Resource"],
+                                    [page.get("additional_resources"), "external"]
+                                ]
+                            })
+                            .mixin({
+                                element: {
+                                    "o-base": "mod--balance"
+                                }, 
+                                hdr: {
+                                    class: "thm--programs"
+                                },
+                                item_link: {
+                                    class: "co--programs"
+                                }
+                            })

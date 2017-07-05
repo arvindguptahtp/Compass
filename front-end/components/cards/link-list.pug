@@ -1,0 +1,82 @@
+extends _abstract
+
+block subclass
+    -
+        vefa
+            .define({
+                class: "card--list-links",
+                data: {
+                    header: "",
+                    links: []
+                }, 
+                element: {
+                    "o-base": "col--pStart"
+                },
+                hdr: {
+                    "o-base": "mod--static pad--x50 pad--y25"
+                },
+                hed: {
+                    class: "tx--maj--f1--100--aa"
+                },
+                bd: {
+                    class: "thm--shade15",
+                    "o-base": "mod--balance pad--xy25 rhy--yStart25",
+                },
+                list: {
+                    "o-base": "mod--balance rhy--yStart25",
+                },
+                item: {
+                    class: "thm--tint70 tx--f3--900",
+                },
+                item_link: {
+                    class: "rxn--tint90 fx--shift",
+                    "o-base": "row--pGrid--sMiddle pad--xy25"
+                },
+                on_mount () {
+                    if(this.links) {
+                        this.links = this.links.map( (dict) => {
+                            return {
+                                group: `item in ${ dict[0] }.all`,
+                                target: dict[1] || "false",
+                                tag: dict[2] || false
+                            }
+                        })
+                    }
+                }
+            })
+
+
+
+block view
+    article(
+        class=card.class
+    )&attributes(card.element)
+        
+        block hdr
+            header.card-hdr&attributes(card.hdr)
+                h2.card-hed&attributes(card.hed)= card.header
+
+        block bd
+            .card-bd&attributes(card.bd)
+                
+                if card.links
+                    ul&attributes(card.list)
+                        
+                        each group in card.links
+                            +for(group.group)
+                                li&attributes(card.item)
+                                    a(
+                                        href=v('item.url')
+                                        target= (group.target == "external") ? "_blank" : false 
+                                    )&attributes(card.item_link)
+                                        div(
+                                            o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
+                                        )
+                                            span= v('item')
+                                            
+                                            if group.target == "external"
+                                                svg.ico
+                                                    use(href=`#ico--link-ext`)
+                                        
+                                        if group.tag
+                                            small.tx--chrome--f3--100--tcU= group.tag

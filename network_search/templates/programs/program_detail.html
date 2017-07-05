@@ -252,7 +252,7 @@
                     <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Associated Fees</dt>{% if program.is_cost_free %}
                             <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">Free of Cost</dt>{% else %}
                                     <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{% if program.cost_description %}
-                                              <p>{{ program.cost_description }}</p>{% endif %}
+                                              <p style="word-break:word;">{{ program.cost_description }}</p>{% endif %}
                                     </dt>{% endif %}{% if program.assessment %}
                             <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Assessment Available</dt>
                             <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2"></dt>{% endif %}
@@ -311,47 +311,57 @@
               <h1 class="tx--maj--f1--100">CIS Core Services</h1>
             </header>
             <ul class="bd thm--shade15" o-base="mod--balance pad--x25 pad--y25 rhy--yStart25" o-extended="gx--i2--gxy50 rhy--yStart0">{% for item in program.service_categories %}
-                      <li class="thm--programs tx--f2" o-base="row--pStart"><span class="ico--l thm--shade20" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25">
+                      <li class="thm--tint70 co--programs" o-base="row--pStart"><span class="ico--xl thm--programs" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25">
                           <svg class="ico">
                             <use href="#ico--{{ item }}"></use>
                           </svg></span>
-                        <div class="thm--tint10 tx--f3" o-base="col--pMiddle--sStart mod--balance pad--x25 pad--y25"><span>{{ item|choice_display:'CoreServices' }}</span></div>
+                        <div class="tx--f3" o-base="col--pMiddle--sStart mod--balance pad--x25 pad--y25"><span>{{ item|choice_display:'CoreServices' }}</span></div>
                       </li>{% endfor %}
             </ul>
-          </article>
-          <article class="card" o-base="col--pStart">
-            <header class="thm--programs" o-base="mod--static pad--x50 pad--y25">
-              <h1 class="tx--maj--f1--100">Program Associations</h1>
+          </article>{% if program.national_partner or program.featured_network %}
+                  <article class="card" o-base="col--pStart">
+                    <header class="thm--programs" o-base="mod--static pad--x50 pad--y25">
+                      <h1 class="tx--maj--f1--100">Program Associations</h1>
+                    </header>
+                    <ul class="bd thm--shade15" o-base="mod--balance pad--x25 pad--y25 rhy--yStart25">{% if program.national_partner %}
+                              <li class="thm--tint70 tx--f3--900"><a class="co--programs rxn--tint90 fx--shift" o-base="row--pStart" href="{{ program.national_partner.get_absolute_url }}"><span class="ico--xl thm--programs" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25">
+                                    <svg class="ico">
+                                      <use href="#ico--partners"></use>
+                                    </svg></span>
+                                  <div o-base="row--pGrid--sMiddle--xAuto rhy--xStart25 pad--x25"><span class="typ--trnc" o-base="mod--balance">{{ program.national_partner }}</span><small class="tx--chrome--f3--100--tcU">National&nbsp;Partner</small></div></a></li>{% endif %}{% for item in program.featured_network.all %}
+                              <li class="thm--tint70 tx--f3--900"><a class="co--programs rxn--tint90 fx--shift" o-base="row--pStart" href="{{ item.get_absolute_url }}"><span class="ico--xl thm--programs" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25">
+                                    <svg class="ico">
+                                      <use href="#ico--affiliates"></use>
+                                    </svg></span>
+                                  <div o-base="row--pGrid--sMiddle--xAuto rhy--xStart25 pad--x25"><span class="typ--trnc" o-base="mod--balance">{{ item }}</span><small class="thm--tint10 tx--chrome--f3--100--tcU">Featured&nbsp;Network</small></div></a></li>{% endfor %}
+                    </ul>
+                  </article>{% endif %}
+          <article class="card--list-links" o-base="col--pStart mod--balance">
+            <header class="card-hdr thm--programs" o-base="mod--static pad--x50 pad--y25">
+              <h2 class="card-hed tx--maj--f1--100--aa">Additional Resources</h2>
             </header>
-            <ul class="bd thm--shade15" o-base="mod--balance pad--x25 pad--y25 rhy--yStart25">{% if program.national_partner %}
-                      <li class="thm--programs tx--f3"><a class="rxn--tint10 fx--shift" o-base="row--pStart" href="{{ program.national_partner.get_absolute_url }}"><span class="ico--l thm--shade20" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25">
-                            <svg class="ico">
-                              <use href="#ico--partners"></use>
-                            </svg></span><span class="thm--tint10" o-base="row--pStart--sMiddle mod--balance pad--x25">{{ program.national_partner }}</span><small class="thm--tint10 tx--chrome--f3--tcU" o-base="row--pStart--sMiddle pad--x25">National&nbsp;Partner</small></a></li>{% endif %}{% for item in program.featured_network.all %}
-                      <li class="thm--programs tx--f3"><a class="rxn--tint10 fx--shift" o-base="row--pStart" href="{{ item.get_absolute_url }}"><span class="ico--l thm--shade20" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25">
-                            <svg class="ico">
-                              <use href="#ico--affiliates"></use>
-                            </svg></span><span class="thm--tint10" o-base="row--pStart--sMiddle mod--balance pad--x25">{{ item }}</span><small class="thm--tint10 tx--chrome--f3--tcU" o-base="row--pStart--sMiddle pad--x25">Featured&nbsp;Network</small></a></li>{% endfor %}
-            </ul>
-          </article>
-          <article class="card" o-base="col--pStart  mod--balance">
-            <header class="thm--programs" o-base="mod--static pad--x50 pad--y25">
-              <h1 class="tx--maj--f1--100">Additional Resources</h1>
-            </header>
-            <ul class="bd thm--shade15" o-base="mod--balance pad--x25 pad--y25 rhy--yStart25">{% for item in program.national_databases.all %}
-                      <li class="thm--programs tx--f3"><a class="thm--tint15 rxn--shade10 fx--shift" href="{{ item.url }}" o-base="row--pGrid--sMiddle pad--xy25"><span>{{ item }}
-                            <svg class="ico">
-                              <use href="#ico--link-ext"></use>
-                            </svg></span><small class="tx--chrome--f3--tcU">National Database</small></a></li>{% endfor %}{% for item in program.related_resources.all %}
-                      <li class="thm--programs tx--f3"><a class="thm--tint15 rxn--shade10 fx--shift" href="{{ item.url }}" o-base="row--pGrid--sMiddle pad--xy25"><span>{{ item }}
-                            <svg class="ico">
-                              <use href="#ico--link-ext"></use>
-                            </svg></span><small class="tx--chrome--f3--tcU">Resource</small></a></li>{% endfor %}{% for item in program.additional_resources.all %}
-                      <li class="thm--programs tx--f3"><a class="thm--tint15 rxn--shade10 fx--shift" href="{{ item.url }}" o-base="row--pStart--sMiddle pad--xy25">{{ item }}
-                          <svg class="ico">
-                            <use href="#ico--link-ext"></use>
-                          </svg></a></li>{% endfor %}
-            </ul>
+            <div class="card-bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
+              <ul o-base="mod--balance rhy--yStart25">{% for item in program.national_databases.all %}
+                          <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--programs" href="{{ item.url }}" target="_blank" o-base="row--pGrid--sMiddle pad--xy25">
+                              <div o-base="row--pStart--sMiddle--xAuto rhy--xStart25"><span>{{ item }}</span>
+                                <svg class="ico">
+                                  <use href="#ico--link-ext"></use>
+                                </svg>
+                              </div><small class="tx--chrome--f3--100--tcU">National Database</small></a></li>{% endfor %}{% for item in program.related_resources.all %}
+                          <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--programs" href="{{ item.url }}" target="_blank" o-base="row--pGrid--sMiddle pad--xy25">
+                              <div o-base="row--pStart--sMiddle--xAuto rhy--xStart25"><span>{{ item }}</span>
+                                <svg class="ico">
+                                  <use href="#ico--link-ext"></use>
+                                </svg>
+                              </div><small class="tx--chrome--f3--100--tcU">Resource</small></a></li>{% endfor %}{% for item in program.additional_resources.all %}
+                          <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--programs" href="{{ item.url }}" target="_blank" o-base="row--pGrid--sMiddle pad--xy25">
+                              <div o-base="row--pStart--sMiddle--xAuto rhy--xStart25"><span>{{ item }}</span>
+                                <svg class="ico">
+                                  <use href="#ico--link-ext"></use>
+                                </svg>
+                              </div></a></li>{% endfor %}
+              </ul>
+            </div>
           </article>
         </section>
       </section>
