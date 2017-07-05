@@ -211,11 +211,19 @@
       <picture>
         <source srcset="{% static 'res/logo.solo.inverse.png.webp' %}" type="image/webp"><img class="site-logo--solo" src="{% static 'res/logo.solo.inverse.png' %}">
       </picture></a></header>
-  <div class="bk" o-base="row--pStart" o-extended="gxi--b"></div>
+  <div class="poster--icon gx--poster thm--texture-tint co--programs" o-base="row--pStart--sBase mod--static pad--xStart50 pad--y100 ord--next" o-condensed="pad--y150" o-enhanced="pad--xStart100 pad--y200" o-extended="gxi--b"><span class="poster-icon tx--broadside" o-base="gxi--a">
+      <svg class="ico">
+        <use href="#ico--programs"></use>
+      </svg></span>
+    <header class="hdr" o-base="gxi--b">
+      <h1 class="hdr-hed tx--broadside--f1--tcU">{{ program }}
+      </h1>
+    </header>
+  </div>
   <main o-base="col--pStart" o-extended="gxi--d">
     <div class="strata--detail gx--detail-programs" o-base="mod--balance">
       <div class="gxi--b" o-base="col--pStart pad--yEnd50 rhy--yStart50" o-condensed="pad--x25 pad--y25" o-extended="gx--i2--gxy25 rhy--yStart0">
-        <section class="card--copy thm--shade25" o-base="pad--x50 pad--y25 rhy--yStart50 mod--static pad--y50" o-extended="gxs--s2">
+        <section class="card--copy thm--shade5" o-base="pad--x50 pad--y25 rhy--yStart50 mod--static pad--y50" o-extended="gxs--s2">
           <header>
             <h2 class="tx--hed--f1--100 co--programs">Program Description
             </h2>
