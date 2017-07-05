@@ -116,25 +116,35 @@ block content
 
     
     include /strata/strata
+        -
+            vefa
+                .mixin({
+                    element: {
+                        "o-extended": "col--pMiddle--sMiddle mod--balance"
+                    }
+                })
+
         mixin strata_view
-            .copy.tx--maj--f1--100.co--pri(
+            .copy.tx--hed--f1--100.co--pri(
                 o-base="rhy--yStart100"
                 o-enhanced="dx--w60 iso--xAuto"
             )
                 :md
-                    Starting a new local affiliate requires the presence of a Communities In Schools state office in the state where 
-                    the community is located. The role of the state office is to provide introductions to community leaders to gauge 
-                    their interest in building a local affiliate, identify a local liaison who will spearhead efforts to bring 
-                    Communities In Schools to the community, and then work with the local liaison to plan the next steps for 
-                    starting an affiliate. These steps include development of a local task force, assessment of community 
-                    needs and assets, and creation of a work plan.
-
-                    Communities In Schools state offices typically work with communities throughout each step of this process, 
-                    offering assistance and ensuring that the new local affiliate follows the requirements outlined in the 
-                    Communities In Schools Total Quality System standards.
-            
+                    Welcome to the CIS Search Tool! This search tool is designed to help CIS staff (i.e. Program Directors, Site Coordinators) find and locate Affiliate offices around the national network, nationally-vetted partnerships, and nationally-vetted Evidence-Based programs that are being delivered with fidelity.
+ 
+                    To begin a search, click on any of the three labeled tabs: Affiliate, Programs, or Partners.
+    
+    include /strata/strata
+        -
+            vefa
+                .mixin({
+                    element: {
+                        class: "thm--light-alt hl--yStart--bTint"
+                    }
+                })
+        mixin strata_view
             footer.tx--maj--f1--100(
-                o-base="col--pStart--sMiddle rhy--yStart50 iso--yStart200"
+                o-base="col--pStart--sMiddle rhy--yStart50"
                 o-enhanced="dx--w60 iso--xAuto"
             )
                 p Please submit your feedback on our new tool.

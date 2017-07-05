@@ -14,5 +14,9 @@ block view
         class=strata.class
     )&attributes(strata.element)
         
+        if pug_mixins.strata_view
+            +strata_view()
+
+block teardown
     if pug_mixins.strata_view
-        +strata_view()
+        - delete pug_mixins.strata_view
