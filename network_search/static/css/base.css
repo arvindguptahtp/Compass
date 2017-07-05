@@ -512,6 +512,9 @@ button {
 .thm--tint25 {
   background-color: rgba(255, 255, 255, .25);
 }
+.thm--tint70 {
+  background-color: rgba(255, 255, 255, .7);
+}
 :root {
   --on-opacity: 1;
 }
@@ -547,6 +550,9 @@ input[class*='rxn--shade'].is-active {
 :checked + [class*='rxn--shade']::after {
   opacity: 0.5;
   opacity: var(--on-opacity, 0.5);
+}
+.rxn--shade10 {
+  --on-opacity: 0.1;
 }
 .rxn--shade25 {
   --on-opacity: 0.25;
@@ -745,6 +751,9 @@ input[class*='rxn--tint'] {
   }
   [o-condensed~='pad--xy50'] {
     padding: 12px;
+  }
+  [o-condensed~='pad--xy100'] {
+    padding: 24px;
   }
   [o-condensed~='iso--xStart25'] {
     margin-left: 6px;

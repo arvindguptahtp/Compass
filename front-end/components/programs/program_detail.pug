@@ -74,12 +74,69 @@ block content
     .strata--detail.gx--detail-programs(
         o-base="mod--balance"
     )
+        section.thm--programs.gxi--a(
+            o-standard="pad--yStart100 pad--x25"
+        )   
+            include /cards/data_map
+                -
+                    vefa
+                        .data({
+                            header: "Program Information",
+                            map: [
+                                ["Tiers of Service", page.get("tiers_of_service"), "TiersOfService"],
+                                ["Program Region", page.get("region"), "Regions"],
+                                ["Program Setting", page.get("setting"), "Setting"],
+                                ["Program Outcomes", page.get("outcomes"), "Outcomes"],
+                            ], 
+                            as_text: ["Outcomes"],
+                            impact_color: "co--programs",
+                            impact_theme: "thm--programs",
+                        })
+                    
+                mixin card_list
+                    dt&attributes(card.key) Associated Fees
+                    +if(page.get("is_cost_free"))
+                        dt&attributes(card.value) Free of Cost
+                        +else()
+                            dt&attributes(card.value)
+                                +if(page.get("cost_description"))
+                                    p= v(page.get("cost_description", "safe"))
+                    
+                    +if(page.get("assessment"))
+                        dt&attributes(card.key) Assessment Available
+                        dt&attributes(card.value)
        
-        .gxi--b(
+        section.gxi--b(
             o-base="col--pStart pad--yEnd50 rhy--yStart50"
-            o-condensed="pad--xy50"
-            o-extended="gx--i2--gxy50 rhy--yStart0"
+            o-condensed="pad--xy100"
+            o-extended="gx--i2--gxy100 rhy--yStart0"
         )
+            -
+                card_style = {
+                    hdr: {
+                        class: "thm--programs",
+                        "o-base": "mod--static pad--x50 pad--y25"
+                    },
+                    hed: {
+                        class: "tx--maj--f1--100"
+                    },
+                    bd: {
+                        class: "thm--shade15",
+                        "o-base": "mod--balance pad--xy25 rhy--yStart25",
+                        "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
+                    },
+                    key: {
+                        class: `thm--programs tx--small--f3--tcU`,
+                        "o-base": "pad--xy25",
+                        "o-condensed": "pad--xy50"
+                    },
+                    value: {
+                        class: `thm--tint70 co--programs tx--f3`,
+                        "o-base": "col--pStart--sStart pad--xy25",
+                        "o-condensed": "pad--xy50 gxs--s2"
+                    },
+                }
+
             include /cards/copy
                 -
                     vefa
@@ -100,11 +157,14 @@ block content
                                 class: "tx--maj"
                             }
                         })
+            
+            
             include /cards/data_map
                 -
                     vefa
                         .data({
                             header: "Student Demographics",
+                            style_type: "alt",
                             map: [
                                 ["Grade Level", page.get("grade"), "PartnerGrades"],
                                 ["Gender", page.get("gender")],
@@ -113,22 +173,23 @@ block content
                                 ["Student Characteristics", page.get("student_characteristics"), "StudentCharacteristics"]
                             ]
                         })
-            
+                        .mixin(card_style)
+
             section(
-                o-base="col--pStart pad--yEnd100"
-                o-condensed="pad--yEnd0"
+                o-base="col--pStart rhy--yStart100"
             )
-                .card(o-base="col--pStart")
-                    header.thm--shade20(
-                        o-base="mod--static pad--x50 pad--y25"
-                    )
-                        h1.tx--maj--f1--100 CIS Core Services
+
+                article.card(o-base="col--pStart")
+                    header&attributes(card_style.hdr)
+                        h1&attributes(card_style.hed) CIS Core Services
 
                     ul.bd(
+                        class="thm--shade15"
                         o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+                        o-extended="gx--i2--gxy50 rhy--yStart0"
                     )
                         +for(`item in ${page.core_services}`)
-                            li.tx--f2(
+                            li.thm--programs.tx--f2(
                                 o-base="row--pStart"
                             )
                                 span.ico--l.thm--shade20(
@@ -142,135 +203,100 @@ block content
                                     o-base="col--pMiddle--sStart mod--balance pad--x25 pad--y25"
                                 )
                                     span= v( 'item', "choice_display:'CoreServices'" )
+
+
                 
                 article.card(
                     o-base="col--pStart"
                 )
-                    header.thm--shade20(
-                        o-base="mod--static pad--x50 pad--y25"
-                    )
-                        h1.tx--maj--f1--100 Program Associations
+                    header&attributes(card_style.hdr)
+                        h1&attributes(card_style.hed) Program Associations
                     
-                    ul.bd
+                    ul.bd(
+                        class="thm--shade15"
+                        o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+                    )
                         +if(page.get("national_partner"))
-                            li
-                                a(
+                            li.thm--programs.tx--f3
+                                a.rxn--tint10.fx--shift(
+                                    o-base="row--pStart"
                                     href=v(`${ page.get("national_partner") }.get_absolute_url`)
-                                    o-base="row--pGrid"
                                 )
-                                    span= v(page.get("national_partner"))
-                                    small National Partner
+                                    span.ico--l.thm--shade20(
+                                       o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
+                                    )
+                                        svg.ico
+                                            use(href=`#ico--partners`)
+                                    
+                                    span.thm--tint10(
+                                        o-base="row--pStart--sMiddle mod--balance pad--x25"
+                                    )= v(page.get("national_partner"))
+                                    
+                                    small.thm--tint10.tx--chrome--f3--tcU(
+                                        o-base="row--pStart--sMiddle pad--x25"
+                                    ) National&nbsp;Partner
+
+                        
                         +for("item in program.featured_network.all")
-                            li
-                                a(
+                            li.thm--programs.tx--f3
+                                a.rxn--tint10.fx--shift(
+                                    o-base="row--pStart"
                                     href=v('item.get_absolute_url')
-                                    o-base="row--pGrid"
                                 )
-                                    span= v('item')
-                                    small Featured Network
+                                    span.ico--l.thm--shade20(
+                                       o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
+                                    )
+                                        svg.ico
+                                            use(href=`#ico--affiliates`)
+                                    
+                                    span.thm--tint10(
+                                        o-base="row--pStart--sMiddle mod--balance pad--x25"
+                                    )= v('item')
+                                    
+                                    small.thm--tint10.tx--chrome--f3--tcU(
+                                        o-base="row--pStart--sMiddle pad--x25"
+                                    ) Featured&nbsp;Network
                 
                 article.card(
-                    o-base="col--pStart"
+                    o-base="col--pStart  mod--balance"
                 )
-                    header.thm--shade20(
-                        o-base="mod--static pad--x50 pad--y25"
+                    header&attributes(card_style.hdr)
+                        h1&attributes(card_style.hed) Additional Resources
+                    
+                    ul.bd(
+                        class="thm--shade15"
+                        o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
                     )
-                        h1.tx--maj--f1--100 Additional Resources
-                    ul.bd
                         +for("item in program.national_databases.all")
-                            li
-                                a(
+                            li.thm--programs.tx--f3
+                                a.thm--tint15.rxn--shade10.fx--shift(
                                     href=v('item.url')
-                                    o-base="row--pGrid"
+                                    o-base="row--pGrid--sMiddle pad--xy25"
                                 )
-                                    span= v('item')
-                                    small National Database
+                                    span
+                                        = v('item')
+                                        svg.ico
+                                            use(href=`#ico--link-ext`)
+                                    small.tx--chrome--f3--tcU National Database
                         
                         +for("item in program.related_resources.all")
-                            li
-                                a(
+                            li.thm--programs.tx--f3
+                                a.thm--tint15.rxn--shade10.fx--shift(
                                     href=v('item.url')
-                                    o-base="row--pGrid"
+                                    o-base="row--pGrid--sMiddle pad--xy25"
                                 )
-                                    span= v('item')
-                                    small Communities In Schools Resource
+                                    span
+                                        = v('item')
+                                        svg.ico
+                                            use(href=`#ico--link-ext`)
+                                    small.tx--chrome--f3--tcU Resource
 
                         +for("item in program.additional_resources.all")
-                            li
-                                a(
+                            li.thm--programs.tx--f3
+                                a.thm--tint15.rxn--shade10.fx--shift(
                                     href=v('item.url')
-                                    o-base="row--pGrid"
-                                )= v('item')
-
-        section.thm--programs.gxi--a(
-            o-standard="pad--yStart100 pad--x25"
-        )   
-            include /cards/data_map
-                -
-                    vefa
-                        .data({
-                            header: "Program Information",
-                            map: [
-                                ["Tiers of Service", page.get("tiers_of_service"), "TiersOfService"],
-                                ["Program Region", page.get("region"), "Regions"],
-                                ["Program Setting", page.get("setting"), "Setting"],
-                                ["Program Outcomes", page.get("outcomes"), "Outcomes"],
-                            ], 
-                            as_text: ["Outcomes"],
-                        })
-                    
-                mixin card_list
-                    dt&attributes(card.key) Associated Fees
-                    +if(page.get("is_cost_free"))
-                        dt&attributes(card.value) Free of Cost
-                        +else()
-                            dt&attributes(card.value)
-                                +if(page.get("cost_description"))
-                                    p= v(page.get("cost_description", "safe"))
-                    
-                    +if(page.get("assessment"))
-                        dt&attributes(card.key) Assessment Available
-                        dt&attributes(card.value)
-            
-//- //- //-         //-     section.thm--shade20(
-//- //- //-         //-         o-base="col--pStart pad--yEnd100"
-//- //- //-         //-         o-condensed="pad--yEnd0"
-//- //- //-         //-     )
-//- //- //-         //-         header.thm--programs(
-//- //- //-         //-             o-base="pad--x50 pad--y25"
-//- //- //-         //-         )
-//- //- //-         //-             h1.tx--maj--f1--100 Associated Affiliates
-                
-//- //- //-         //-         ul.bd(
-//- //- //-         //-             o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
-//- //- //-         //-         )
-//- //- //-         //-             each item in profile.data.affiliates
-//- //- //-         //-                 li.thm--programs(
-//- //- //-         //-                     o-base="col--pStart"
-//- //- //-         //-                 )
-//- //- //-         //-                     a.tx--small--f3.thm--tint50.rxn--tint75.fx--shift(
-//- //- //-         //-                         href="/affiliates/affiliate_detail"
-//- //- //-         //-                         target="_blank"
-//- //- //-         //-                         o-base="row--pStart--sMiddle rhy--xStart25"
-//- //- //-         //-                     )
-//- //- //-         //-                         span.ico--l.thm--shade20(
-//- //- //-         //-                             o-base="col--pMiddle--sMiddle--xAuto mod--static pad--xy25"
-//- //- //-         //-                         )
-//- //- //-         //-                             include /icons/affiliates
-//- //- //-         //-                         span.co--programs.tx--900(
-//- //- //-         //-                             o-base="pad--xy25"
-//- //- //-         //-                         )= v(item)
-//- //- //-         //-                         span.thm--tint25.tx--caption--tcU(
-//- //- //-         //-                             o-base="pad--x25 pad--y10 iso--xStartAuto iso--xEnd25"
-//- //- //-         //-                         ).
-//- //- //-         //-                             Profile Available
-//- //- //-         //-         footer(
-//- //- //-         //-            o-base="row--pEnd--sMiddle"
-//- //- //-         //-         )
-//- //- //-         //-             -
-//- //- //-         //-                 ctrl = new Vefa()
-//- //- //-         //-                     .data({
-//- //- //-         //-                         name: "search",
-//- //- //-         //-                         label: "Full Affiliate List"
-//- //- //-         //-                     })
-//- //- //-         //-             include /controls/submit
+                                    o-base="row--pStart--sMiddle pad--xy25"
+                                )
+                                    = v('item')
+                                    svg.ico
+                                        use(href=`#ico--link-ext`)
