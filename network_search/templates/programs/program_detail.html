@@ -233,17 +233,17 @@
       </svg>
       <h1 class="poster-hed tx--broadside--f1--tcU" o-base="gxi--b">{{ program }}
       </h1>
-    </header>
+    </header>{% load choice_tags %}
     <article class="thm--dark card--ebr" o-base="col--pStart mod--balance pos--rel">
       <header class="card-hdr thm--shade80" o-base="ord--start">
         <h5 class="tx--small--f1--100--tcU--taMiddle thm--tint25" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tiers of Evidence</h5>
       </header>
       <div class="card-bd thm--shade80 ord--end" o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50">
         <svg class="ico ico--ebr">
-          <use xlink:href="#ico--ebr-{{ program.tiers_of_evidence|last }}"></use>
+          <use xlink:href="#ico--ebr-{{ program.evidence_base }}"></use>
         </svg>
       </div>
-      <footer class="card-ftr tx--f1--100--tcU--ls100--taMiddle thm--shade80 ord--next" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">{% if program.tiers_of_evidence|last == 't1' %}Strong evidence{% endif %}{% if program.tiers_of_evidence|last == 't2' %}Moderate evidence{% endif %}{% if program.tiers_of_evidence|last == 't3' %}Promising evidence (High){% endif %}{% if program.tiers_of_evidence|last == 't4' %}Promising evidence (low){% endif %}{% if program.tiers_of_evidence|last == 't5' %}Demonstrates a rationale/Research-building{% endif %}
+      <footer class="card-ftr tx--f1--100--tcU--ls100--taMiddle thm--shade80 ord--next" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">{{ program.evidence_base|choice_display:'TiersOfEvidence' }}
       </footer>
       <slideover class="ord--end">
         <svg class="ico--s ico--info" slot="activate">

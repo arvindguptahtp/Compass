@@ -413,18 +413,18 @@
                             </dd>{% endif %}
                         <dd class="gxi--network thm--shade10" o-base="row--pStart" o-condensed="row--pMiddle--sMiddle pad--xy25" o-enhanced="pad--xy50">  {% if program.network_use.count > 0 %}
                               <div class="thm--partners" o-base="row--pStart mod--balance" o-condensed="row--pStart--xAuto mod--static"><span class="thm--shade5 tx--small--f1--100--tcU" o-base="mod--balance--aMiddle pad--y10 pad--x25">       Used by CIS Network</span></div>{% endif %}
-                        </dd>{% if program.tiers_of_evidence %}
-                            <dd class="gxi--ebr thm--dark">
+                        </dd>{% if program.evidence_base %}
+                            <dd class="gxi--ebr thm--dark">{% load choice_tags %}
                               <article class="thm--dark card--ebr" o-base="col--pStart mod--balance pos--rel">
                                 <header class="card-hdr thm--shade80" o-base="ord--start">
                                   <h5 class="tx--small--f1--100--tcU--taMiddle thm--tint25" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tiers of Evidence</h5>
                                 </header>
                                 <div class="card-bd thm--shade80 ord--end" o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50">
                                   <svg class="ico ico--ebr">
-                                    <use xlink:href="#ico--ebr-{{ program.tiers_of_evidence|last }}"></use>
+                                    <use xlink:href="#ico--ebr-{{ program.evidence_base }}"></use>
                                   </svg>
                                 </div>
-                                <footer class="card-ftr tx--f1--100--tcU--ls100--taMiddle thm--shade80 ord--next" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">{% if program.tiers_of_evidence|last == 't1' %}Strong evidence{% endif %}{% if program.tiers_of_evidence|last == 't2' %}Moderate evidence{% endif %}{% if program.tiers_of_evidence|last == 't3' %}Promising evidence (High){% endif %}{% if program.tiers_of_evidence|last == 't4' %}Promising evidence (low){% endif %}{% if program.tiers_of_evidence|last == 't5' %}Demonstrates a rationale/Research-building{% endif %}
+                                <footer class="card-ftr tx--f1--100--tcU--ls100--taMiddle thm--shade80 ord--next" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">{{ program.evidence_base|choice_display:'TiersOfEvidence' }}
                                 </footer>
                                 <slideover class="ord--end">
                                   <svg class="ico--s ico--info" slot="activate">

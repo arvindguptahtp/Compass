@@ -18,6 +18,8 @@ block subclass
 
 
 block view
+    +load("choice_tags")
+    
     article.thm--dark(
         class=card.class
         o-base="col--pStart mod--balance pos--rel"
@@ -35,7 +37,7 @@ block view
         )
             svg.ico.ico--ebr
                 use(
-                    xlink:href=`#ico--ebr-${v(card.ebr, 'last')}`
+                    xlink:href=`#ico--ebr-${v(card.ebr)}`
                 )
 
         footer.card-ftr.tx--f1--100--tcU--ls100--taMiddle.thm--shade80.ord--next(
@@ -43,9 +45,7 @@ block view
             o-condensed="pad--x50 pad--y25"
         )
             if django
-                for choice, index in choices.evidence
-                    +if(`${ card.ebr }|last == '${ index }'`)
-                        = choice
+                = v(card.ebr, "choice_display:'TiersOfEvidence'")
             else
                 = choices.evidence_tier[card.ebr]
         
