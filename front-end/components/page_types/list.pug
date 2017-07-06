@@ -8,6 +8,11 @@ block subclass
                 title: "List Template",
                 list_type: "programs"
             },
+            methods: {
+                get (key) {
+                    return `${ this.list_type }.${ key }`
+                }
+            },
         })
 
 block premain
@@ -58,7 +63,7 @@ block content
             )
             
             if page.results_collection
-                section(
+                section.search-river(
                     o-base="rhy--yStart50"
                 )
 

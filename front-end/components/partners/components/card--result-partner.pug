@@ -1,35 +1,35 @@
-extends /cards/result
+//- extends /cards/result
 
-block instance
-    -
-        vefa.define({
-            class: 'gx--result-partner',
-        })
-        .data({
-            labels: {
-                network_yes: "Active in Network",
-                network_no: "Inactive in Network"
-            }
-        })
+//- block instance
+//-     -
+//-         vefa.define({
+//-             class: 'gx--result-partner',
+//-         })
+//-         .data({
+//-             labels: {
+//-                 network_yes: "Active in Network",
+//-                 network_no: "Inactive in Network"
+//-             }
+//-         })
 
-    if django
-        -
-            vefa.data({
-                title: 'partner',
-                slug: 'partner.get_absolute_url',
-                overview: 'partner.mission',
-                network: 'partner.use_in_network',
-                service_tiers: 'partner.tiers_of_service',
-                services: 'partner.service_categories'
-            })      
+//-     if django
+//-         -
+//-             vefa.data({
+//-                 title: 'partner',
+//-                 slug: 'partner.get_absolute_url',
+//-                 overview: 'partner.mission',
+//-                 network: 'partner.use_in_network',
+//-                 service_tiers: 'partner.tiers_of_service',
+//-                 services: 'partner.service_categories'
+//-             })      
     
-    else
-        -
-            vefa.data({
-                title: item.name,
-                slug: '/partners/parters_detail',
-                overview: item.mission,
-                services: item.core_services || false,
-                network: item.network_use,
-                service_tiers: item.service_tier,
-            })
+//-     else
+//-         -
+//-             vefa.data({
+//-                 title: item.name,
+//-                 slug: '/partners/parters_detail',
+//-                 overview: item.mission,
+//-                 services: item.core_services || false,
+//-                 network: item.network_use,
+//-                 service_tiers: item.service_tier,
+//-             })

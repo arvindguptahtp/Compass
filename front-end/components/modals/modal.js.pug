@@ -1,0 +1,28 @@
+aside.modal(
+    @click.prevent="toggleModal"
+    v-if="loaded"
+    o-base="ord--init z--modal"
+    o-standard="col--pMiddle--sMiddle pos--fix"
+)   
+    button(
+        @click.prevent="toggleModal"
+    )
+        slot(name="activate")
+
+    .takeover-modal.embed--modal(
+        @click.stop=""
+        o-base="row--pGrid"
+        o-standard="iso--xA"
+    )           
+        button.ctrl--modal-close.typ--f1--cU--aa.rxn--ctrl-impt.fx--shift(
+            @click.prevent="toggleModal"
+            type="button"
+            o-base="row--pMiddle--sMiddle--xAuto mod--aStart pad--x75 pad--y50 rhy--xStart25 pos--abs z--modal"
+            o-condensed="rhy--xStart50"
+        ) 
+            svg.ico
+                use(href="#ico--close")
+
+        block content
+            slot(name="content")
+        

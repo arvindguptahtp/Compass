@@ -4,6 +4,10 @@ include /_django
         return `'${ str }'`
     }
 
+    String.prototype.as_v = function () {
+        return v(this)
+    }
+
 mixin iter(num=1)
     - run = Array(num).fill(0)
     - index = 0

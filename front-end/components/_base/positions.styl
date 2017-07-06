@@ -6,7 +6,12 @@
     &abs
         +o-attr(breakpoints)
             position: absolute
-            
+        &--xy
+            +o-attr(breakpoints)
+                top: 0
+                bottom: 0
+                right: 0
+                left: 0
     &fix
         +o-attr(breakpoints)
             position: fixed
@@ -16,6 +21,7 @@
             position: static
             float: none
     
+
 
 
 

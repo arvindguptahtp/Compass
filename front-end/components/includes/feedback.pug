@@ -1,0 +1,27 @@
+include /strata/strata
+    -
+        vefa
+            .define({
+                element: {
+                    "o-enhanced": "pad--xy50"
+                }
+            })
+            .mixin({
+                element: {
+                    class: "thm--light-alt hl--yStart--bTint"
+                }
+            })
+    mixin strata_view
+        footer.tx--maj--f1--100(
+            o-base="row--pEnd--sMiddle rhy--xStart50"
+        )
+            p Please submit your feedback on our new tool:
+            
+            include /controls/action
+                -
+                    vefa.data({
+                        //- url: "'https://www.surveymonkey.com/r/9WVJVGV'",
+                        url: "'https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link'",
+                        label: "Fill out our survey",
+                        target: "_blank"
+                    })

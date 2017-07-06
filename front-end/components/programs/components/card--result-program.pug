@@ -6,6 +6,7 @@ block instance
             class: 'gx--result-programs',
         })
         .data({
+            key: "program",
             labels: {
                 network_yes: "Used by CIS Network",
                 network_no: false
@@ -15,13 +16,11 @@ block instance
     if django
         -
             vefa.data({
-                    title: 'program',
-                    slug: 'program.get_absolute_url',
-                    overview: 'program.summary',
-                    services: 'program.service_categories',
-                    ebr: 'program.tiers_of_evidence',
-                    network: 'program.network_use',
-                    featured: 'program.featured_network',
+                    slug: 'get_absolute_url',
+                    overview: 'summary',
+                    services: 'service_categories',
+                    ebr: 'tiers_of_evidence',
+                    network: 'network_use',
                 })    
     
     else
@@ -45,13 +44,13 @@ block result_network
         o-enhanced="pad--xy50"
     )   
 
-        +if(`${ card.network }.count > 0`)
+        +if(`${ card.g('network') }.count > 0`)
             div(
-                class=card.network ? "thm--partners" : "thm--inactive"
+                class=card.g('network') ? "thm--partners" : "thm--inactive"
                 o-base="row--pStart mod--balance"
                 o-condensed="row--pStart--xAuto mod--static"
             )
                 span.thm--shade5.tx--small--f1--100--tcU(
                     o-base="mod--balance--aMiddle pad--y10 pad--x25"
                 )        
-                    = card.network ? card.labels.network_yes :card.labels.network_no
+                    = card.g('network') ? card.labels.network_yes :card.labels.network_no

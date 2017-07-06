@@ -1,0 +1,21 @@
+.slideover
+    button.ctrl--open(
+        type="button"
+        @click="toggleModal"
+        v-show="!show"
+    )
+        slot(name="activate")
+    
+    transition(name="slide-up")
+        .thm--shade90.pos--abs--xy(
+            o-base="col--pMiddle--sMiddle pad--xy50"
+            v-show="show"
+        )
+            button.ctrl--close(
+                type="button"
+                @click="toggleModal"
+            )
+                svg.ico--s.ico--close
+                    use(href="#ico--close")
+            
+            slot(name="content")

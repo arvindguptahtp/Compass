@@ -4,21 +4,41 @@ block subclass
     -
         vefa.define({
             class: "card--ebr",
-            
+            data: {
+                ebr: ""
+            }
         })
+
+        if (Vefa.has_bus("ebr")) {
+            vefa.data({
+                "ebr": Vefa.get_bus("ebr")
+            })
+        }
+
 
 
 block view
     article.thm--shade80(
         class=card.class
-        o-base="col--pStart"
+        o-base="col--pStart pos--rel"
     )
-        h5.thm--tint25.tx--small--f1--100--tcU--taMiddle(
-            o-base="pad--x25 pad--y10"
-            o-condensed="pad--x50 pad--y25"
-        ) Tiers of Evidence
+        header.thm--tint25(
+            o-base="ord--start"
+        )
+            h5.tx--small--f1--100--tcU--taMiddle(
+                o-base="pad--x25 pad--y10"
+                o-condensed="pad--x50 pad--y25"
+            ) Tiers of Evidence
         
-        footer.tx--f1--100--tcU--ls100--taMiddle(
+        div.ord--end(
+            o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50"
+        )
+            svg.ico.ico--ebr
+                use(
+                    xlink:href=`#ico--ebr-${v(card.ebr, 'last')}`
+                )
+
+        footer.tx--f1--100--tcU--ls100--taMiddle.ord--next(
             o-base="pad--x25 pad--y10"
             o-condensed="pad--x50 pad--y25"
         )
@@ -28,11 +48,68 @@ block view
                         = choice
             else
                 = choices.evidence_tier[card.ebr]
+        
+        slideover.ord--end
+        
+            svg.ico--s.ico--info(
+                slot="activate"
+            )
+                use(href="#ico--info")
 
-        div(
-            o-base="row--pMiddle--sMiddle mod--balance pad--xy50"
-        )
-            svg.ico.ico--ebr
-                use(
-                    xlink:href=`#ico--ebr-${v(card.ebr, 'last')}`
-                )
+            .bd(
+                v-cloak
+                slot="content"
+                o-base="col--pMiddle--sMiddle rhy--yStart50"
+            )
+                h6.tx--maj--f1--100--taMiddle How do we determine our Tiers&nbsp;of&nbsp;Evidence?
+                include /controls/download
+                    -
+                        vefa.data({
+                            label: "Download PDF",
+                            file: static("/res/Determining_Evidence-Base_Cheat_Sheet.pdf"),
+                            name: "Determining Evidence-Base Cheat Sheet"
+                        })
+                                //- ""
+        //- .thm--shade90.ord--end.pos--abs--xy(
+        //-     o-base="col--pMiddle--sMiddle pad--xy50 rhy--yStart50"
+        //- )
+        //-     svg.ico.ico--close(
+        //-         o-base="pos--abs"
+        //-     )
+        //-         use(href="#ico--close")
+            
+        
+
+        //- //- modal
+        
+
+        
+        
+
+
+//- article.card--ebr.thm--shade80(
+//-     o-base="col--pStart"
+//- )
+//-     h5.thm--tint25.tx--small--f1--100--tcU--taMiddle(
+//-         o-base="pad--x25 pad--y10"
+//-         o-condensed="pad--x50 pad--y25"
+//-     ) Tiers of Evidence
+    
+//-     footer.tx--f1--100--tcU--ls100--taMiddle(
+//-         o-base="pad--x25 pad--y10"
+//-         o-condensed="pad--x50 pad--y25"
+//-     )
+//-         if django
+//-             for choice, index in choices.evidence
+//-                 +if(`${ card.ebr }|last == '${ index }'`)
+//-                     = choice
+//-         else
+//-             = choices.evidence_tier[card.ebr]
+
+//-     div(
+//-         o-base="row--pMiddle--sMiddle mod--balance pad--xy50"
+//-     )
+//-         svg.ico.ico--ebr
+//-             use(
+//-                 xlink:href=`#ico--ebr-${v(card.ebr, 'last')}`
+//-             )

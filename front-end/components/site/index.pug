@@ -133,26 +133,3 @@ block content
                     Welcome to the CIS Search Tool! This search tool is designed to help CIS staff (i.e. Program Directors, Site Coordinators) find and locate Affiliate offices around the national network, nationally-vetted partnerships, and nationally-vetted Evidence-Based programs that are being delivered with fidelity.
  
                     To begin a search, click on any of the three labeled tabs: Affiliate, Programs, or Partners.
-    
-    include /strata/strata
-        -
-            vefa
-                .mixin({
-                    element: {
-                        class: "thm--light-alt hl--yStart--bTint"
-                    }
-                })
-        mixin strata_view
-            footer.tx--maj--f1--100(
-                o-base="col--pStart--sMiddle rhy--yStart50"
-                o-enhanced="dx--w60 iso--xAuto"
-            )
-                p Please submit your feedback on our new tool.
-                
-                include /controls/action
-                    -
-                        vefa.data({
-                            url: "'https://www.surveymonkey.com/r/9WVJVGV'",
-                            label: "Fill out our survey",
-                            target: "_blank"
-                        })

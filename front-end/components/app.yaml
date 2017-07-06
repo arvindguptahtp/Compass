@@ -99,6 +99,7 @@ co:
         base: &brand_4_base "#008751"
         tint: &brand_4_tint "#BFB678"
         shade: &brand_4_shade "#817C00"
+        special: "#3d735c"
     
     alt:
         brand_1: &brand_1_alt "#489FDF"
