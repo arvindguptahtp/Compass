@@ -14,6 +14,7 @@ class AffiliateView(DetailView):
         context = super().get_context_data(**kwargs)
         context.update({
             'eoy_data': self.object.current_data(),
+            'org_type': 'Affiliate',
         })
         return context
 

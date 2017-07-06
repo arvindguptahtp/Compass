@@ -10,6 +10,13 @@ class PartnerView(DetailView):
     queryset = Partner.partners.active()
     template_name = "partners/partner_detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'org_type': 'Partner',
+        })
+        return context
+
 
 class PartnerPDFView(PDFMixin, PartnerView):
     template_name = "partners/partner_pdf.html"

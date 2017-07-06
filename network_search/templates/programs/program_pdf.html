@@ -8,32 +8,35 @@
     </section>
 
     <section>
-        <h3>Students served</h3>
+        <div class="col-2">
+        <h3>Student Demographics</h3>
 
-        <p>Gender</p>
+        <h4>Gender</h4>
         {% pdf_choices program.gender "Gender" %}
 
-        <p>Grade</p>
+        <h4>Grade</h4>
         {% pdf_choices program.grade "ProgramGrades" %}
 
-        <p>Race</p>
+        <h4>Race</h4>
         {% pdf_choices program.race "Race" %}
 
-    </section>
+        </div>
 
-    <section>
-        <h3>Setting</h3>
+
+        <div class="col-2">
+        <h3>Program Information</h3>
+
+            <h4>Setting</h4>
         {% pdf_choices program.setting "Setting" %}
-    </section>
 
-    <section>
-        <h3>Service & Tiers of Service</h3>
+        <h4>Service & Tiers of Service</h4>
         {% pdf_choices program.tiers_of_service "TiersOfService" %}
-    </section>
 
-    <section>
-        <h3>Tiers of Evidence</h3>
-        {% pdf_choices program.tiers_of_evidence "TiersOfEvidence" %}
+            <h4>Tiers of Evidence</h4>
+            {% pdf_choices program.tiers_of_evidence "TiersOfEvidence" %}
+
+        </div>
+
     </section>
 
 
