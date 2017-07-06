@@ -1053,8 +1053,8 @@ input[class*='rxn--tint'] {
   [o-extended*='gxi--d'] {
     grid-area: d;
   }
-  [o-extended*='gxi--f'] {
-    grid-area: f;
+  [o-extended*='gxi--e'] {
+    grid-area: e;
   }
   [o-extended*='gxs--s2'] {
     grid-area: span 1/span 2;
@@ -1127,6 +1127,9 @@ input[class*='rxn--tint'] {
   }
   [o-full*='gxi--e'] {
     grid-area: e;
+  }
+  [o-full*='gxi--f'] {
+    grid-area: f;
   }
   [o-full~='rhy--yStart50'] > * + * {
     margin-top: 12px;
