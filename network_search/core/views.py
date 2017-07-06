@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 from easy_pdf.views import PDFTemplateResponseMixin
 from pure_pagination import PageNotAnInteger
 from pure_pagination import Paginator
+from django.conf import settings
 
 
 class HomePage(TemplateView):
@@ -13,11 +14,14 @@ class HomePage(TemplateView):
 
 class PDFMixin(PDFTemplateResponseMixin):
     def get_base_url(self):
-        return "{}://{}:{}".format(
-            self.request.scheme,
-            self.request.META['SERVER_NAME'],
-            self.request.META['SERVER_PORT'],
-        )
+        try:
+            return settings.PDF_IMAGE_ROOT
+        except AttributeError:
+            return "{}://{}:{}".format(
+                self.request.scheme,
+                self.request.META['SERVER_NAME'],
+                self.request.META['SERVER_PORT'],
+            )
 
 
 class SearchView(FormView):
