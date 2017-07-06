@@ -100,6 +100,7 @@ class Program(BaseResource):
         blank=True,
         null=True,
     )
+
     _study_details = models.TextField(name='study details', blank=True, null=True, help_text="Not for display")
 
     service_categories = ArrayField(
@@ -131,6 +132,14 @@ class Program(BaseResource):
 
     programs = ProgramQueryset.as_manager()
     objects = programs
+
+    def evidence_base(self):
+        """Returns either the last evidence choice or ''
+        """
+        try:
+            return self.tiers_of_evidence[-1]
+        except TypeError:
+            return ''
 
 
 class NationalDatabase(Link):
