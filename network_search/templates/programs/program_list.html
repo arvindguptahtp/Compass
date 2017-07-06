@@ -226,15 +226,13 @@
       <picture>
         <source srcset="{% static 'res/logo.solo.inverse.png.webp' %}" type="image/webp"><img class="site-logo--solo" src="{% static 'res/logo.solo.inverse.png' %}">
       </picture></a></header>
-  <div class="poster--icon gx--poster thm--texture-tint co--programs" o-base="row--pStart--sBase mod--static pad--xStart50 pad--y100 ord--next" o-condensed="pad--y150" o-enhanced="pad--xStart100 pad--y200" o-extended="gxi--b"><span class="poster-icon tx--broadside" o-base="gxi--a">
-      <svg class="ico">
-        <use href="#ico--programs"></use>
-      </svg></span>
-    <header class="hdr" o-base="gxi--b">
-      <h1 class="hdr-hed tx--broadside--f1--tcU">{{ "Programs" }}
-      </h1>
-    </header>
-  </div>
+  <header class="poster--icon row--pStart--sMiddle gx--poster tx--broadside thm--texture-tint co--programs" o-base="pad--xStart50 pad--y100 ord--next" o-condensed="pad--y150" o-enhanced="pad--xStart100 pad--y200" o-extended="gxi--b">
+    <svg class="ico poster-icon" o-base="gxi--a">
+      <use href="#ico--programs"></use>
+    </svg>
+    <h1 class="poster-hed tx--broadside--f1--tcU" o-base="gxi--b">{{ "Programs" }}
+    </h1>
+  </header>
   <main o-base="col--pStart" o-extended="gxi--d">
     <div class="strata--search gx--search" o-base="mod--balance">
       <form class="fm--search-programs thm--programs" action="." method="GET" o-base="pad--y50 rhy--yStart100" o-standard="pad--y100">
@@ -417,16 +415,16 @@
                               <div class="thm--partners" o-base="row--pStart mod--balance" o-condensed="row--pStart--xAuto mod--static"><span class="thm--shade5 tx--small--f1--100--tcU" o-base="mod--balance--aMiddle pad--y10 pad--x25">       Used by CIS Network</span></div>{% endif %}
                         </dd>{% if program.tiers_of_evidence %}
                             <dd class="gxi--ebr thm--dark">
-                              <article class="thm--shade80 card--ebr" o-base="col--pStart pos--rel">
-                                <header class="thm--tint25" o-base="ord--start">
-                                  <h5 class="tx--small--f1--100--tcU--taMiddle" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tiers of Evidence</h5>
+                              <article class="thm--dark card--ebr" o-base="col--pStart mod--balance pos--rel">
+                                <header class="card-hdr thm--shade80" o-base="ord--start">
+                                  <h5 class="tx--small--f1--100--tcU--taMiddle thm--tint25" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tiers of Evidence</h5>
                                 </header>
-                                <div class="ord--end" o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50">
+                                <div class="card-bd thm--shade80 ord--end" o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50">
                                   <svg class="ico ico--ebr">
                                     <use xlink:href="#ico--ebr-{{ program.tiers_of_evidence|last }}"></use>
                                   </svg>
                                 </div>
-                                <footer class="tx--f1--100--tcU--ls100--taMiddle ord--next" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">{% if program.tiers_of_evidence|last == 't1' %}Strong evidence{% endif %}{% if program.tiers_of_evidence|last == 't2' %}Moderate evidence{% endif %}{% if program.tiers_of_evidence|last == 't3' %}Promising evidence (High){% endif %}{% if program.tiers_of_evidence|last == 't4' %}Promising evidence (low){% endif %}{% if program.tiers_of_evidence|last == 't5' %}Demonstrates a rationale/Research-building{% endif %}
+                                <footer class="card-ftr tx--f1--100--tcU--ls100--taMiddle thm--shade80 ord--next" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">{% if program.tiers_of_evidence|last == 't1' %}Strong evidence{% endif %}{% if program.tiers_of_evidence|last == 't2' %}Moderate evidence{% endif %}{% if program.tiers_of_evidence|last == 't3' %}Promising evidence (High){% endif %}{% if program.tiers_of_evidence|last == 't4' %}Promising evidence (low){% endif %}{% if program.tiers_of_evidence|last == 't5' %}Demonstrates a rationale/Research-building{% endif %}
                                 </footer>
                                 <slideover class="ord--end">
                                   <svg class="ico--s ico--info" slot="activate">

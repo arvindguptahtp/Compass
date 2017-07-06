@@ -36,6 +36,7 @@ block subclass
                     if(this.links) {
                         this.links = this.links.map( (dict) => {
                             return {
+                                single: dict[0],
                                 group: `item in ${ dict[0] }.all`,
                                 target: dict[1] || "false",
                                 tag: dict[2] || false
@@ -80,3 +81,22 @@ block view
                                         
                                         if group.tag
                                             small.tx--chrome--f3--100--tcU= group.tag
+                                +empty()
+                                    +if(group.single)
+                                        li&attributes(card.item)
+                                            a(
+                                                href=v('group.single.url')
+                                                target= (group.target == "external") ? "_blank" : false 
+                                            )&attributes(card.item_link)
+                                                div(
+                                                    o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
+                                                )
+                                                    span= v('group.single')
+                                                    
+                                                    if group.target == "external"
+                                                        svg.ico
+                                                            use(href=`#ico--link-ext`)
+                                                
+                                                if group.tag
+                                                    small.tx--chrome--f3--100--tcU= group.tag
+

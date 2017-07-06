@@ -115,6 +115,24 @@ button {
   border: 0;
   border-radius: 0;
 }
+[class*="row--"],
+[class*="col--"] {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  width: 100%;
+}
+[class*="row--"] {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+[class*="row--"] > * + * {
+  margin-top: 0;
+}
 [o-base*="row--"],
 [o-base*="col--"] {
   display: -webkit-box;
@@ -141,6 +159,16 @@ button {
 }
 [o-base*="--xAuto"] {
   width: auto;
+}
+[class*="--pStart"] {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+[class*="--sMiddle"] {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 [o-base*="--pGrid"] {
   -webkit-box-pack: justify;
@@ -991,11 +1019,25 @@ input[class*='rxn--tint'] {
         flex-wrap: nowrap;
     width: 100%;
   }
+  [o-extended*="row--"] {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  [o-extended*="row--"] > * + * {
+    margin-top: 0;
+  }
   [o-extended*="col--"] {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+  [o-extended*="--pStart"] {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
   [o-extended*="--pMiddle"] {
     -webkit-box-pack: center;

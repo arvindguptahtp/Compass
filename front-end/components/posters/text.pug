@@ -9,15 +9,8 @@ block subclass
                     title: wrap_str("Generic")
                 }
             })
-
-
-block instance
-    yield
-
-
-block hdr
-    //- add django typogrify at some point
-    header.hdr&attributes(poster.hdr)
-        h1.hdr-hed&attributes(poster.hed)
-            != v(poster.title)
-                
+            .mixin({
+                element: {
+                    "o-base": "row--pStart--sMiddle"
+                }
+            })

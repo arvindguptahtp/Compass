@@ -18,19 +18,19 @@ block subclass
 
 
 block view
-    article.thm--shade80(
+    article.thm--dark(
         class=card.class
-        o-base="col--pStart pos--rel"
+        o-base="col--pStart mod--balance pos--rel"
     )
-        header.thm--tint25(
+        header.card-hdr.thm--shade80(
             o-base="ord--start"
         )
-            h5.tx--small--f1--100--tcU--taMiddle(
+            h5.tx--small--f1--100--tcU--taMiddle.thm--tint25(
                 o-base="pad--x25 pad--y10"
                 o-condensed="pad--x50 pad--y25"
             ) Tiers of Evidence
         
-        div.ord--end(
+        .card-bd.thm--shade80.ord--end(
             o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50"
         )
             svg.ico.ico--ebr
@@ -38,7 +38,7 @@ block view
                     xlink:href=`#ico--ebr-${v(card.ebr, 'last')}`
                 )
 
-        footer.tx--f1--100--tcU--ls100--taMiddle.ord--next(
+        footer.card-ftr.tx--f1--100--tcU--ls100--taMiddle.thm--shade80.ord--next(
             o-base="pad--x25 pad--y10"
             o-condensed="pad--x50 pad--y25"
         )

@@ -1,4 +1,4 @@
-extends text
+extends _abstract
 
 
 block variant
@@ -9,18 +9,16 @@ block variant
             })
             .mixin({
                 element: {
-                    class: "gx--poster"
+                    class: "row--pStart--sMiddle gx--poster tx--broadside"
                 },
-                hdr: {
+                hed: {
                     "o-base": "gxi--b"
                 }
             })
 
 
-prepend hdr
-    if poster.icon
-        span.poster-icon.tx--broadside(
-            o-base="gxi--a"
-        )
-            svg.ico
-                use(href=`#ico--${poster.icon}`)
+prepend bd
+    svg.ico.poster-icon(
+        o-base="gxi--a"
+    )
+        use(href=`#ico--${poster.icon}`)

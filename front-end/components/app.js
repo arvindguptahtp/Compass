@@ -19,3 +19,11 @@ new Vue({
         Slideover
     },
 })
+
+new Vue({
+    el: '.detail-hdr',
+    components: {
+        Slideover
+    },
+})
+

@@ -33,41 +33,27 @@ block instance
                 featured_network: 'program.featured_network',
             })
 
-//- block premain
-    div.bk(
-        o-base="row--pStart"
-        o-extended="gxi--b"
+block premain
+    div.detail-hdr(
+        o-extended="row--pStart gxi--b"
     )
-        //- include /posters/icon
-        //-     -
-        //-         poster
-        //-             .data({ 
-        //-                 title: page.title,
-        //-                 icon: page.icon
-        //-             })
-        //-             .mixin({
-        //-                 element: {
-        //-                     class: `thm--texture-tint ${page.primary_color}`,
-        //-                     "o-base": "ord--next",
-        //-                     "o-extended": "gxi--b"
-        //-                 }
-        //-             })
-        //- .thm--dark
-        //-     include /cards/ebr
-        //-         - vefa.data({ ebr: page.ebr })
-    //- prepend preview
-    //-     -
-    //-         poster = new Vefa()
-    //-             .mix({
-    //-                 element: {
-    //-                     class: "co--programs",
-    //-                 }
-    //-             })
-    //-             .data({
-    //-                 contact: {
-    //-                     url: page.data.website,
-    //-                 }
-    //-             })
+        include /posters/icon
+            -
+                vefa
+                    .data(
+                        { 
+                            title: page.title,
+                            icon: page.icon
+                        }
+                    )
+                    .mixin({
+                        element: {
+                            class: `thm--texture-tint ${page.primary_color}`,
+
+                        }
+                    })
+        include /cards/ebr
+            - vefa.data({ ebr: page.ebr })
 
 
 block content
@@ -259,7 +245,6 @@ block content
                                             
                                             small.thm--tint10.tx--chrome--f3--100--tcU Featured&nbsp;Network
                 
-
                 include /cards/link-list
                     -
                         vefa

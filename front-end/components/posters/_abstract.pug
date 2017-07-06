@@ -5,7 +5,7 @@ block init
         vefa = new Vefa({
             class: "poster",
             element: {
-                "o-base": "row--pStart--sBase mod--static pad--xStart50 pad--y100",
+                "o-base": "pad--xStart50 pad--y100",
                 "o-condensed": "pad--y150",
                 "o-enhanced": "pad--xStart100 pad--y200"
             },
@@ -14,12 +14,15 @@ block init
             },
         })
 
-
+//- row--pStart--sBase mod--static
 
 block view
-    div(
+    header(
         class=poster.class
     )&attributes(poster.element)
-        block hdr
+        
         block bd
+            h1.poster-hed&attributes(poster.hed)
+                != v(poster.title)
+        
         block ftr
