@@ -39,7 +39,7 @@ def choice_display(name: str, choice_name: str) -> str:
 
     choice_value = getattr(choice, name, None)
     if choice_value is None:
-        logger.error("No name '{}' in '{}'.".format(name, choice_name))
+        logger.warning("No name '{}' in '{}'.".format(name, choice_name))
         return name
 
     return choice_value.value
