@@ -32,22 +32,27 @@ block view
                 o-condensed="pad--x50 pad--y25"
             ) Tiers of Evidence
         
-        .card-bd.thm--shade80.ord--end(
-            o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50"
-        )
-            svg.ico.ico--ebr
-                use(
-                    xlink:href=`#ico--ebr-${v(card.ebr)}`
-                )
+        +if(`${ card.ebr } != ''`)
+            .card-bd.thm--shade80.ord--end(
+                o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50"
+            )
+                svg.ico.ico--ebr
+                    use(
+                        xlink:href=`#ico--ebr-${v(card.ebr)}`
+                    )
 
-        footer.card-ftr.tx--f1--100--tcU--ls100--taMiddle.thm--shade80.ord--next(
-            o-base="pad--x25 pad--y10"
-            o-condensed="pad--x50 pad--y25"
-        )
-            if django
+            footer.card-ftr.tx--f1--100--tcU--ls100--taMiddle.thm--shade80.ord--next(
+                o-base="pad--x25 pad--y10"
+                o-condensed="pad--x50 pad--y25"
+            )
                 = v(card.ebr, "choice_display:'TiersOfEvidence'")
-            else
-                = choices.evidence_tier[card.ebr]
+            
+            +else()
+                .card-bd.thm--shade80.ord--end(
+                    o-base="col--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50"
+                )
+                    h5.tx--display--f1 N/A
+                    p.tx--chrome--f3 Not yet graded.
         
         slideover.ord--end
         

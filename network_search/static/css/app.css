@@ -283,9 +283,6 @@ hr {
 .copy a:hover {
   color: #f68e1e;
 }
-.copy li {
-  list-style: circle inside;
-}
 html {
   background: #fff;
   font-size: 1rem;
@@ -332,9 +329,6 @@ main {
 }
 [class*='gxi--service-tier'] {
   grid-area: service-tier;
-}
-[class*='gxi--ebr'] {
-  grid-area: ebr;
 }
 .strata--detail .detail-copy {
   grid-auto-rows: 1fr;
@@ -473,12 +467,6 @@ svg[class*='ico--xl'],
       grid-template-columns: 1fr;
   grid-template-areas: "a" "b" "c";
 }
-.gx--result-programs {
-  grid-template-areas: "title      title       title" "network    network     services" "overview   overview    services" "ebr        ebr         services";
-  -ms-grid-columns: max-content 1fr max-content;
-      grid-template-columns: max-content 1fr max-content;
-  grid-gap: 1px;
-}
 .gx--result-partner {
   grid-template-areas: "title      title           title" "network    service-tier    service-tier" "overview   overview        services";
   -ms-grid-columns: max-content 1fr max-content;
@@ -509,13 +497,6 @@ svg[class*='ico--xl'],
     line-height: 51px;
     line-height: calc( 6.25vw + 6px);
   }
-  .gx--result-programs {
-    grid-template-areas: "title      title       network" "ebr        overview    overview" "services   services    services";
-    -ms-grid-columns: minmax(100px, 180px) 2fr minmax(0, max-content);
-        grid-template-columns: minmax(100px, 180px) 2fr minmax(0, max-content);
-    -ms-grid-rows: auto auto 1fr;
-        grid-template-rows: auto auto 1fr;
-  }
 }
 @media only screen and (min-width: 660px) {
   [o-condensed*='hl--xStart'] {
@@ -545,9 +526,6 @@ svg[class*='ico--xl'],
   }
   .site-logo {
     max-width: 160px;
-  }
-  .gx--result-programs {
-    grid-template-areas: "title      title       network" "ebr        overview    overview" "ebr        services    services";
   }
   .gx--result-partner {
     grid-template-areas: "title      title" "overview   service-tier" "overview   network" "overview   services";
@@ -652,12 +630,6 @@ svg[class*='ico--xl'],
   [o-extended~='rxn--ctrl-neutral'].is-active {
     color: #181411;
     background: rgba(78, 138, 190, .1);
-  }
-  .gx--result-programs {
-    grid-template-areas: "title      title  network" "overview   ebr    services";
-    -ms-grid-columns: 1fr minmax(100px, 180px) minmax(150px, 250px);
-        grid-template-columns: 1fr minmax(100px, 180px) minmax(150px, 250px);
-    grid-gap: 3px;
   }
   .gx--result-partner {
     grid-template-areas: "title      title           network" "overview   service-tier    services";

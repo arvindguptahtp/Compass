@@ -420,14 +420,18 @@
                               <article class="thm--dark card--ebr" o-base="col--pStart mod--balance pos--rel">
                                 <header class="card-hdr thm--shade80" o-base="ord--start">
                                   <h5 class="tx--small--f1--100--tcU--taMiddle thm--tint25" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tiers of Evidence</h5>
-                                </header>
-                                <div class="card-bd thm--shade80 ord--end" o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50">
-                                  <svg class="ico ico--ebr">
-                                    <use xlink:href="#ico--ebr-{{ program.evidence_base }}"></use>
-                                  </svg>
-                                </div>
-                                <footer class="card-ftr tx--f1--100--tcU--ls100--taMiddle thm--shade80 ord--next" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">{{ program.evidence_base|choice_display:'TiersOfEvidence' }}
-                                </footer>
+                                </header>{% if program.evidence_base != '' %}
+                                  <div class="card-bd thm--shade80 ord--end" o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50">
+                                    <svg class="ico ico--ebr">
+                                      <use xlink:href="#ico--ebr-{{ program.evidence_base }}"></use>
+                                    </svg>
+                                  </div>
+                                  <footer class="card-ftr tx--f1--100--tcU--ls100--taMiddle thm--shade80 ord--next" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">{{ program.evidence_base|choice_display:'TiersOfEvidence' }}
+                                  </footer>{% else %}
+                                    <div class="card-bd thm--shade80 ord--end" o-base="col--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50">
+                                      <h5 class="tx--display--f1">N/A</h5>
+                                      <p class="tx--chrome--f3">Not yet graded.</p>
+                                    </div>{% endif %}
                                 <slideover class="ord--end">
                                   <svg class="ico--s ico--info" slot="activate">
                                     <use href="#ico--info"></use>
