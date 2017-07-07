@@ -12,6 +12,7 @@ block instance
 
                 ebr: 'evidence_base',
                 services: 'service_categories',
+                featured: 'featured_network'
             })
 //-         page.data({
 //-             title: 'partner',
@@ -195,18 +196,20 @@ block content
                                 },
                             })
                 
-                
                 include /cards/link-list
                     -
                         vefa
                             .data({
-                                heading: "Additional Resources",
+                                heading: "Partner Associations",
                                 links: [
                                     //- ["Test Link", "http://communities.org", "external_link"],
-                                    ["Webinar", page.webinars.io(), "external_link"],
-                                    ["Presentation", page.presentations.io(), "external_link"]
+                                    ["National Program", page.program.io()],
+                                    ["Featured Network", page.featured.io()],
                                 ], 
-                                as_group: ["Webinar", "Presentation"]
+                                as_internal: ["National Program", "Featured Network"],
+                                as_group: ["National Program", "Featured Network"],
+                                impact_theme: page.impact_theme,
+                                impact_color: page.impact_color,
                             })
                             .mixin({
                                 hdr: {
@@ -215,12 +218,36 @@ block content
                                 bd: {
                                     class: "thm--shade15"
                                 },
-                                item_link: {
-                                    class: page.impact_color
-                                },
-                                external_link: {
+                                link: {
                                     class: page.impact_color
                                 }
+                            })
+
+                include /cards/link-list
+                    -
+                        vefa
+                            .data({
+                                heading: "Additional Resources",
+                                links: [
+                                    ["Test Link", "http://communities.org"],
+                                    ["Webinar", page.webinars.io()],
+                                    ["Presentation", page.presentations.io()]
+                                ], 
+                                as_external: ["Test Link", "Webinar", "Presentation"],
+                                as_group: ["Webinar", "Presentation"],
+                                impact_theme: page.impact_theme,
+                                impact_color: page.impact_color,
+                            })
+                            .mixin({
+                                hdr: {
+                                    class: page.impact_theme
+                                },
+                                bd: {
+                                    class: "thm--shade15"
+                                },
+                                link: {
+                                    class: page.impact_color
+                                },
                             })
 
 //- block view

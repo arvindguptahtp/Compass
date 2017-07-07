@@ -11,6 +11,8 @@ block subclass
                         ["label", "data_member", "style"]
                     ],
                     as_group: [],
+                    as_internal: [],
+                    as_external: []
                 }, 
                 list: {
                     "o-base": "mod--balance rhy--yStart25",
@@ -18,7 +20,7 @@ block subclass
                 item: {
                     class: "thm--tint70 tx--f3--900",
                 },
-                item_link: {
+                link: {
                     class: "rxn--tint90 fx--shift",
                     "o-base": "row--pGrid--sMiddle pad--xy25"
                 },
@@ -37,8 +39,9 @@ block subclass
                                 return {
                                     group: `item in ${ dict[1] }.all`,
                                     tag: dict[0],
-                                    external: (dict[2] && dict[2] == "external_link"),
-                                    style: (dict[2]) ? dict[2] : "item_link"
+                                    internal: (this.as_internal.includes(dict[0])),
+                                    external: (this.as_external.includes(dict[0])),
+                                    style: (dict[2]) ? dict[2] : "link"
                                 }
                             }
                             else {
@@ -47,8 +50,9 @@ block subclass
                                     single: true,
                                     label: dict[0],
                                     url: dict[1],
-                                    external: (dict[2] && dict[2] == "external_link"),
-                                    style: (dict[2]) ? dict[2] : "item_link"
+                                    internal: (this.as_internal.includes(dict[0])),
+                                    external: (this.as_external.includes(dict[0])),
+                                    style: (dict[2]) ? dict[2] : "link"
                                 }
                             }
                         })
@@ -72,7 +76,7 @@ block content
                         target= (entry.external) ? "_blank" : false 
                         rel= (entry.external) ? "noopener" : false 
                     )&attributes(card[entry.style])
-                        span= entry.label
+                        span.tx--trnc= entry.label
 
                         if entry.external
                             svg.ico
@@ -81,14 +85,14 @@ block content
                 +for(entry.group)
                     li&attributes(card.item)
                         a(
-                            href=v('item.url')
+                            href=(entry.internal) ? v('item.get_absolute_url') : v('item.url')
                             target= (entry.external) ? "_blank" : false 
                             rel= (entry.external) ? "noopener" : false 
                         )&attributes(card[entry.style])
-                            div(
-                                o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
+                            div.tx--trnc(
+                                o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"
                             )
-                                span= v('item')
+                                span.tx--trnc= v('item')
 
                                 if entry.external
                                     svg.ico
@@ -96,24 +100,5 @@ block content
                             
                             if entry.tag
                                 small.tx--chrome--f3--100--tcU(
-                                    o-base="iso--xStartAuto"
+                                    o-base="mod--static iso--xStartAuto"
                                 )= entry.tag
-//-                 +empty()
-//-                     +if(group.single)
-//-                         li&attributes(card.item)
-//-                             a(
-//-                                 href=v('group.single.url')
-//-                                 target= (group.target == "external") ? "_blank" : false 
-//-                             )&attributes(card.item_link)
-//-                                 div(
-//-                                     o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
-//-                                 )
-//-                                     span= v('group.single')
-                                    
-//-                                     if group.target == "external"
-//-                                         svg.ico
-//-                                             use(href=`#ico--link-ext`)
-                                
-//-                                 if group.tag
-//-                                     small.tx--chrome--f3--100--tcU= group.tag
-
