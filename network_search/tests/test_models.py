@@ -10,6 +10,11 @@ from network_search.affiliates.models import Affiliate
 from network_search.affiliates.models import AffiliateEOYData
 
 
+@pytest.mark.django_db
+def test_partner_evidence(empty_partner):
+    assert empty_partner.evidence_base == ''
+
+
 def test_affiliate_location_display():
     affiliate = Affiliate(affiliate_location='S')
     assert affiliate.get_affiliate_location_display() == 'Suburban'

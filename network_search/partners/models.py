@@ -123,7 +123,7 @@ class Partner(BaseResource):
         """
         try:
             return self.tiers_of_evidence[-1]
-        except TypeError:
+        except (IndexError, TypeError):
             return ''
 
 
