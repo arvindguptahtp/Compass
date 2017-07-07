@@ -4,11 +4,13 @@ block init
     -
         vefa = new Vefa({
             class: "card",
+            data: {
+                exists: "True",
+                impact_theme: (page && page.impact_theme) ? page.impact_theme : "",
+                impact_color: (page && page.impact_color) ? page.impact_color : "",
+            },
             element: {
                 "o-base": "col--pStart"
-            },
-            data: {
-                exists: "True"
             },
             hdr: {
                 "o-base": "mod--static pad--x50 pad--y25"

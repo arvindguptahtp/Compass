@@ -28,6 +28,21 @@ block subclass
                 label: {
                     class: "tx--f3",
                     "o-base": "col--pMiddle--sStart mod--balance pad--xy25"
+                },
+                on_mount () {
+                    if (!this.style) {
+                        this.mixin({
+                            hdr: {
+                                class: this.impact_theme
+                            },
+                            bd: {
+                                class: "thm--shade15"
+                            },
+                            icon: {
+                                class: this.impact_theme
+                            },
+                        })
+                    }
                 }
             })
 

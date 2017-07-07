@@ -184,18 +184,7 @@ block content
                                 heading: "CIS Core Services",
                                 services: page.services.io()
                             })
-                            .mixin({
-                                hdr: {
-                                    class: page.impact_theme
-                                },
-                                bd: {
-                                    class: "thm--shade15"
-                                },
-                                icon: {
-                                    class: page.impact_theme
-                                },
-                            })
-                
+                            
                 include /cards/link-list
                     -
                         vefa
@@ -208,19 +197,6 @@ block content
                                 ], 
                                 as_internal: ["National Program", "Featured Network"],
                                 as_group: ["National Program", "Featured Network"],
-                                impact_theme: page.impact_theme,
-                                impact_color: page.impact_color,
-                            })
-                            .mixin({
-                                hdr: {
-                                    class: page.impact_theme
-                                },
-                                bd: {
-                                    class: "thm--shade15"
-                                },
-                                link: {
-                                    class: page.impact_color
-                                }
                             })
 
                 include /cards/link-list
@@ -235,19 +211,6 @@ block content
                                 ], 
                                 as_external: ["Test Link", "Webinar", "Presentation"],
                                 as_group: ["Webinar", "Presentation"],
-                                impact_theme: page.impact_theme,
-                                impact_color: page.impact_color,
-                            })
-                            .mixin({
-                                hdr: {
-                                    class: page.impact_theme
-                                },
-                                bd: {
-                                    class: "thm--shade15"
-                                },
-                                link: {
-                                    class: page.impact_color
-                                },
                             })
 
 //- block view

@@ -260,6 +260,163 @@
     </article>
   </div>
   <main o-base="col--pStart" o-extended="gxi--d">
+    <div class="strata--detail gx--profile" o-base="mod--balance">
+      <section class="gxi--a thm--programs" o-standard="pad--yStart100 pad--x25">  {% if True %}
+                <article class="card--list-data" o-base="col--pStart iso--yStart25">
+                  <header o-base="pad--x25 pad--y25" o-condensed="pad--x50">
+                    <h1 class="tx--subhed--f1--100--aa">Program Information</h1>
+                  </header>
+                  <div class="bd" o-base="">
+                    <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Tiers of Service</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                        <ul>{% for val in program.tiers_of_service %}
+                                  <li>{{ val|choice_display:'TiersOfService'|capfirst }}
+                                  </li>{% endfor %}
+                        </ul>
+                      </dd>
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Region</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                        <ul>{% for val in program.region %}
+                                  <li>{{ val|choice_display:'Regions'|capfirst }}
+                                  </li>{% endfor %}
+                        </ul>
+                      </dd>
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Setting</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                        <ul>{% for val in program.setting %}
+                                  <li>{{ val|choice_display:'Setting'|capfirst }}
+                                  </li>{% endfor %}
+                        </ul>
+                      </dd>
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Outcomes</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{{ program.outcomes|safe }}
+                      </dd>
+                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Associated Fees</dt>{% if program.is_cost_free %}
+                                      <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">Free of Cost</dt>{% else %}
+                                              <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{% if program.cost_description %}
+                                                        <p style="word-break:word;">{{ program.cost_description|safe }}</p>{% endif %}
+                                              </dt>{% endif %}{% if grouping.assessment %}
+                                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Assessment Available</dt>
+                                      <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2"></dt>{% endif %}
+                    </dl>
+                  </div>
+                </article>{% endif %}
+      </section>
+      <section class="gxi--b" o-base="col--pStart pad--yEnd50 rhy--yStart50" o-condensed="pad--xy100" o-extended="gx--i2--gxy100 rhy--yStart0">
+        <article class="copy--card-lede thm--shade5" o-base="mod--static pad--xy50 rhy--yStart50" o-extended="gxs--s2">
+          <header>
+            <h2 class="tx--hed--f1--100 co--programs">Program Description
+            </h2>
+          </header>
+          <div class="bd tx--maj">{{ program.description|linebreaks }}
+          </div>
+        </article>{% if True %}
+                <article class="card--list-data" o-base="col--pStart">
+                  <header class="thm--programs" o-base="mod--static pad--x50 pad--y25">
+                    <h1 class="tx--maj--f1--100--aa">Student Demographics</h1>
+                  </header>
+                  <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
+                    <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">
+                      <dt class="thm--programs tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Grade Level</dt>
+                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                        <ul>{% for val in program.grade %}
+                                  <li>{{ val|choice_display:'PartnerGrades'|capfirst }}
+                                  </li>{% endfor %}
+                        </ul>
+                      </dd>
+                      <dt class="thm--programs tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Gender</dt>
+                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                        <ul>{% for val in program.gender %}
+                                  <li>{{ val|choice_display:'Gender'|capfirst }}
+                                  </li>{% endfor %}
+                        </ul>
+                      </dd>
+                      <dt class="thm--programs tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Race</dt>
+                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                        <ul>{% for val in program.race %}
+                                  <li>{{ val|choice_display:'Race'|capfirst }}
+                                  </li>{% endfor %}
+                        </ul>
+                      </dd>
+                      <dt class="thm--programs tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Student Need</dt>
+                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                        <ul>{% for val in program.student_need %}
+                                  <li>{{ val|choice_display:'StudentNeeds'|capfirst }}
+                                  </li>{% endfor %}
+                        </ul>
+                      </dd>
+                      <dt class="thm--programs tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Student Characteristics</dt>
+                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                        <ul>{% for val in program.student_characteristics %}
+                                  <li>{{ val|choice_display:'StudentCharacteristics'|capfirst }}
+                                  </li>{% endfor %}
+                        </ul>
+                      </dd>
+                    </dl>
+                  </div>
+                </article>{% endif %}
+        <section o-base="col--pStart rhy--yStart100">{% if True %}
+                    <article class="card--coreservices" o-base="col--pStart">
+                      <header class="thm--programs" o-base="mod--static pad--x50 pad--y25">
+                        <h1 class="tx--maj--f1--100--aa">CIS Core Services</h1>
+                      </header>
+                      <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
+                        <ul o-base="mod--balance rhy--yStart25" o-extended="gx--i2--gxy10 rhy--yStart0">{% for item in program.service_categories %}
+                                    <li class="thm--tint70" o-base="row--pStart">
+                                      <svg class="ico ico--xl thm--programs" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--xy25">
+                                        <use href="#ico--{{ item }}"></use>
+                                      </svg>
+                                      <div class="tx--f3" o-base="col--pMiddle--sStart mod--balance pad--xy25"><span>{{ item|choice_display:'CoreServices' }}</span></div>
+                                    </li>{% endfor %}
+                        </ul>
+                      </div>
+                    </article>{% endif %}{% if program.national_partner.count > 0 or program.featured_network.count > 0 %}
+                    <article class="card--list-links" o-base="col--pStart">
+                      <header class="thm--programs" o-base="mod--static pad--x50 pad--y25">
+                        <h1 class="tx--maj--f1--100--aa">Program Associations</h1>
+                      </header>
+                      <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
+                        <ul o-base="mod--balance rhy--yStart25">{% for item in program.national_partner.all %}
+                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="row--pGrid--sMiddle pad--xy25">
+                                        <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
+                                        </div><small class="tx--chrome--f3--100--tcU" o-base="mod--static iso--xStartAuto">National Partner</small></a></li>{% endfor %}{% for item in program.featured_network.all %}
+                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="row--pGrid--sMiddle pad--xy25">
+                                        <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
+                                        </div><small class="tx--chrome--f3--100--tcU" o-base="mod--static iso--xStartAuto">Featured Network</small></a></li>{% endfor %}
+                        </ul>
+                      </div>
+                    </article>{% endif %}{% if program.national_databases.count > 0 or program.related_resources.count > 0 or program.additional_resources.count > 0 %}
+                    <article class="card--list-links" o-base="col--pStart">
+                      <header class="thm--programs" o-base="mod--static pad--x50 pad--y25">
+                        <h1 class="tx--maj--f1--100--aa">Additional Resources</h1>
+                      </header>
+                      <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
+                        <ul o-base="mod--balance rhy--yStart25">{% for item in program.national_databases.all %}
+                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--programs" href="{{ item.url }}" target="_blank" rel="noopener" o-base="row--pGrid--sMiddle pad--xy25">
+                                        <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
+                                          <svg class="ico">
+                                            <use href="#ico--link-ext"></use>
+                                          </svg>
+                                        </div><small class="tx--chrome--f3--100--tcU" o-base="mod--static iso--xStartAuto">National Database</small></a></li>{% endfor %}{% for item in program.related_resources.all %}
+                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--programs" href="{{ item.url }}" target="_blank" rel="noopener" o-base="row--pGrid--sMiddle pad--xy25">
+                                        <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
+                                          <svg class="ico">
+                                            <use href="#ico--link-ext"></use>
+                                          </svg>
+                                        </div><small class="tx--chrome--f3--100--tcU" o-base="mod--static iso--xStartAuto">Resource</small></a></li>{% endfor %}{% for item in program.additional_resources.all %}
+                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--programs" href="{{ item.url }}" target="_blank" rel="noopener" o-base="row--pGrid--sMiddle pad--xy25">
+                                        <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
+                                          <svg class="ico">
+                                            <use href="#ico--link-ext"></use>
+                                          </svg>
+                                        </div></a></li>{% endfor %}
+                        </ul>
+                      </div>
+                    </article>{% endif %}
+        </section>
+      </section>
+    </div>
   </main>
   <aside o-extended="gxi--e">
     <div class="strata thm--light-alt hl--yStart--bTint" o-base="col--pStart pad--xy50 rhy--yStart100" o-enhanced="pad--xy50">

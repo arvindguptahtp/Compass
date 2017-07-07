@@ -12,7 +12,7 @@ block subclass
                     ],
                     as_group: [],
                     as_internal: [],
-                    as_external: []
+                    as_external: [],
                 }, 
                 list: {
                     "o-base": "mod--balance rhy--yStart25",
@@ -59,6 +59,20 @@ block subclass
 
                         exists_arr = exists_arr.map( item => `${ item }.count > 0` )
                         this.exists = exists_arr.join(" or ")
+                        
+                        if (!this.style) {
+                            this.mixin({
+                                hdr: {
+                                    class: this.impact_theme
+                                },
+                                bd: {
+                                    class: "thm--shade15"
+                                },
+                                link: {
+                                    class: this.impact_color
+                                }
+                            })
+                        }
                     }
                 }
             })

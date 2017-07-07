@@ -4,34 +4,31 @@ block instance
     -
         vefa
             .data({
+                key: 'program',
                 title: 'program',
                 icon: "programs",
                 primary_color: "co--programs",
+                impact_theme: "thm--programs",
+                impact_color: "co--programs",
 
-                key: 'program',
-                grouping: 'program',
-                overview: 'program.description',
-                website: 'program.program_weblink',
-                grade: 'program.grade',
-                gender: 'program.gender',
-                race: 'program.race',
-                race_other: 'program.race_other',
-                region: 'program.region',
-                region_other: 'program.region_other',
-                need: 'program.student_need',
-                characteristics: 'program.student_characteristics',
-                service_tier: 'program.tiers_of_service',
-                setting: 'program.setting',
-                ebr: 'program.evidence_base',
-                core_services: 'program.service_categories',
+                overview: 'description',
+                services: 'service_categories',
+                featured: 'featured_network',
+                ebr: 'evidence_base',
+                need: 'student_need',
+                character: 'student_characteristics',
                 assessment: 'program.assessment_available',
                 assessment_info: 'program.assessment_info',
                 cost: 'program.is_cost_free',
                 cost_desc: 'program.cost_description',
-                outcomes: 'program.outcomes',
+                
+                website: 'program.program_weblink',
+                //- race_other: 'program.race_other',
+                region_other: 'program.region_other',
+                
                 study_weblink: 'program.study_weblink',
                 network_use: 'program.network_use',
-                featured_network: 'program.featured_network',
+                
             })
 
 block premain
@@ -49,223 +46,181 @@ block premain
                     )
                     .mixin({
                         element: {
-                            class: `thm--texture-tint ${page.primary_color}`,
+                            class: `thm--texture-tint ${page.impact_color}`,
 
                         }
                     })
         
         include /cards/ebr
-            - vefa.data({ ebr: page.ebr })
+            - vefa.data({ ebr: page.ebr.io() })
 
 
-//- block content
-    .strata--detail.gx--detail-programs(
+block content
+    .strata--detail.gx--profile(
         o-base="mod--balance"
     )
-        section.thm--programs.gxi--a(
+        section.gxi--a(
+            class=page.impact_theme
             o-standard="pad--yStart100 pad--x25"
         )   
-            include /cards/data_map
+            include /cards/data-list
                 -
                     vefa
                         .data({
-                            header: "Program Information",
+                            heading: "Program Information",
                             map: [
-                                ["Tiers of Service", page.get("tiers_of_service"), "TiersOfService"],
-                                ["Program Region", page.get("region"), "Regions"],
-                                ["Program Setting", page.get("setting"), "Setting"],
-                                ["Program Outcomes", page.get("outcomes"), "Outcomes"],
-                            ], 
+                                ["Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
+                                ["Region", page.region.io(), "Regions"],
+                                ["Setting", page.setting.io(), "Setting"],
+                                ["Outcomes", page.outcomes.io()],
+                            ],
                             as_text: ["Outcomes"],
-                            impact_color: "co--programs",
-                            impact_theme: "thm--programs",
+                            style: "alternate"
                         })
-                    
+                        .define({
+                            element: {
+                                "o-base": "col--pStart iso--yStart25"
+                            },
+                            hdr: {
+                                "o-base": "pad--x25 pad--y25",
+                                "o-condensed": "pad--x50"
+                            },
+                            hed: {
+                                class: "tx--subhed--f1--100--aa"
+                            },
+                            bd: {
+                                "o-base": ""
+                            },
+                            list: {
+                                "o-base": "mod--balance rhy--yStart25",
+                                "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
+                            },
+                            data_key: {
+                                class: "thm--shade40 tx--small--f3--tcU",
+                                "o-base": "pad--xy25",
+                                "o-condensed": "pad--xy50"
+                            },
+                            data_value: {
+                                class: "thm--tint10 tx--f3",
+                                "o-base": "col--pStart--sStart pad--xy25",
+                                "o-condensed": "pad--xy50 gxs--s2"
+                            },
+                        })
+
                 mixin card_list
-                    dt&attributes(card.key) Associated Fees
-                    +if(page.get("is_cost_free"))
-                        dt&attributes(card.value) Free of Cost
+                    dt&attributes(card.data_key) Associated Fees
+                    +if(page.is_cost_free.io())
+                        dt&attributes(card.data_value) Free of Cost
                         +else()
-                            dt&attributes(card.value)
-                                +if(page.get("cost_description"))
+                            dt&attributes(card.data_value)
+                                +if(page.cost_description.io())
                                     p(
                                         style="word-break:word"
-                                    )= v(page.get("cost_description", "safe"))
+                                    )= page.cost_description.tag("safe")
                     
                     +if(page.get("assessment"))
-                        dt&attributes(card.key) Assessment Available
-                        dt&attributes(card.value)
+                        dt&attributes(card.data_key) Assessment Available
+                        dt&attributes(card.data_value)
        
+        
         section.gxi--b(
             o-base="col--pStart pad--yEnd50 rhy--yStart50"
             o-condensed="pad--xy100"
             o-extended="gx--i2--gxy100 rhy--yStart0"
         )
-            -
-                card_style = {
-                    hdr: {
-                        class: "thm--programs",
-                        "o-base": "mod--static pad--x50 pad--y25"
-                    },
-                    hed: {
-                        class: "tx--maj--f1--100"
-                    },
-                    bd: {
-                        class: "thm--shade15",
-                        "o-base": "mod--balance pad--xy25 rhy--yStart25",
-                        "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
-                    },
-                    key: {
-                        class: `thm--programs tx--small--f3--tcU`,
-                        "o-base": "pad--xy25",
-                        "o-condensed": "pad--xy50"
-                    },
-                    value: {
-                        class: `thm--tint70 co--programs tx--f3`,
-                        "o-base": "col--pStart--sStart pad--xy25",
-                        "o-condensed": "pad--xy50 gxs--s2"
-                    },
-                }
+            //- -
+            //-     card_style = {
+            //-         hdr: {
+            //-             class: "thm--programs",
+            //-             "o-base": "mod--static pad--x50 pad--y25"
+            //-         },
+            //-         hed: {
+            //-             class: "tx--maj--f1--100"
+            //-         },
+            //-         bd: {
+            //-             class: "thm--shade15",
+            //-             "o-base": "mod--balance pad--xy25 rhy--yStart25",
+            //-             "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
+            //-         },
+            //-         key: {
+            //-             class: `thm--programs tx--small--f3--tcU`,
+            //-             "o-base": "pad--xy25",
+            //-             "o-condensed": "pad--xy50"
+            //-         },
+            //-         value: {
+            //-             class: `thm--tint70 co--programs tx--f3`,
+            //-             "o-base": "col--pStart--sStart pad--xy25",
+            //-             "o-condensed": "pad--xy50 gxs--s2"
+            //-         },
+            //-     }
 
-            include /cards/copy
+            include /copy/card-lede
                 -
                     vefa
                         .data({
                             heading: "Program Description",
-                            copy: page.overview
+                            copy: page.overview.io()
                         })
                         .mixin({
                             element: {
                                 class: "thm--shade5",
-                                "o-base": "mod--static pad--y50",
                                 "o-extended": "gxs--s2"
                             },
                             hed: {
-                                class: "co--programs"
-                            },
-                            bd: {
-                                class: "tx--maj"
+                                class: page.impact_color
                             }
                         })
-            
-            
-            include /cards/data_map
+
+            include /cards/data-list
                 -
                     vefa
                         .data({
-                            header: "Student Demographics",
-                            style_type: "alt",
+                            heading: "Student Demographics",
                             map: [
-                                ["Grade Level", page.get("grade"), "PartnerGrades"],
-                                ["Gender", page.get("gender")],
-                                ["Race", page.get("race")],
-                                ["Student Need", page.get("student_need"), "StudentNeeds"],
-                                ["Student Characteristics", page.get("student_characteristics"), "StudentCharacteristics"]
+                                ["Grade Level", page.grade.io(), "PartnerGrades"],
+                                ["Gender", page.gender.io(), "Gender"],
+                                ["Race", page.race.io(), "Race"],
+                                ["Student Need", page.need.io(), "StudentNeeds"],
+                                ["Student Characteristics", page.character.io(), "StudentCharacteristics"]
                             ]
+
                         })
-                        .mixin(card_style)
 
             section(
                 o-base="col--pStart rhy--yStart100"
             )
-
-                article.card(o-base="col--pStart")
-                    header&attributes(card_style.hdr)
-                        h1&attributes(card_style.hed) CIS Core Services
-
-                    ul.bd(
-                        class="thm--shade15"
-                        o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
-                        o-extended="gx--i2--gxy50 rhy--yStart0"
-                    )
-                        +for(`item in ${page.core_services}`)
-                            li.thm--tint70.co--programs(
-                                o-base="row--pStart"
-                            )
-                                span.ico--xl.thm--programs(
-                                    o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
-                                )
-                                    svg.ico
-                                        use(href=`#ico--${ v("item") }`)
-                                    
-
-                                div.tx--f3(
-                                    o-base="col--pMiddle--sStart mod--balance pad--x25 pad--y25"
-                                )
-                                    span= v( 'item', "choice_display:'CoreServices'" )
-
-                +if(`${ page.get("national_partner") } or ${ page.get("featured_network") }`)
-                    article.card(
-                        o-base="col--pStart"
-                    )
-                        header&attributes(card_style.hdr)
-                            h1&attributes(card_style.hed) Program Associations
-                        
-                        ul.bd(
-                            class="thm--shade15"
-                            o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
-                        )
-                            +if(page.get("national_partner"))
-                                li.thm--tint70.tx--f3--900
-                                    a.co--programs.rxn--tint90.fx--shift(
-                                        o-base="row--pStart"
-                                        href=v(`${ page.get("national_partner") }.get_absolute_url`)
-                                    )
-                                        span.ico--xl.thm--programs(
-                                            o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
-                                        )
-                                            svg.ico
-                                                use(href=`#ico--partners`)
-                                        
-                                        div(
-                                            o-base="row--pGrid--sMiddle--xAuto rhy--xStart25 pad--x25"
-                                        )
-                                            span.typ--trnc(
-                                                o-base="mod--balance"
-                                            )= v(page.get("national_partner"))
-                                        
-                                            small.tx--chrome--f3--100--tcU National&nbsp;Partner
-
-                            
-                            +for("item in program.featured_network.all")
-                                li.thm--tint70.tx--f3--900
-                                    a.co--programs.rxn--tint90.fx--shift(
-                                        o-base="row--pStart"
-                                        href=v('item.get_absolute_url')
-                                    )
-                                        span.ico--xl.thm--programs(
-                                            o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
-                                        )
-                                            svg.ico
-                                                use(href=`#ico--affiliates`)
-                                        div(
-                                            o-base="row--pGrid--sMiddle--xAuto rhy--xStart25 pad--x25"
-                                        )
-                                            span.typ--trnc(
-                                                o-base="mod--balance"
-                                            )= v('item')
-                                            
-                                            small.thm--tint10.tx--chrome--f3--100--tcU Featured&nbsp;Network
+                include /cards/core-services
+                    -
+                        vefa
+                            .data({
+                                heading: "CIS Core Services",
+                                services: page.services.io()
+                            })
                 
                 include /cards/link-list
                     -
                         vefa
                             .data({
-                                header: "Additional Resources",
+                                heading: "Program Associations",
                                 links: [
-                                    [page.get("national_databases"), "external", "National Database"],
-                                    [page.get("related_resources"), "external", "Resource"],
-                                    [page.get("additional_resources"), "external"]
-                                ]
+                                    //- ["Test Link", "http://communities.org", "external_link"],
+                                    ["National Partner", page.national_partner.io()],
+                                    ["Featured Network", page.featured.io()],
+                                ], 
+                                as_internal: ["National Partner", "Featured Network"],
+                                as_group: ["National Partner", "Featured Network"],
                             })
-                            .mixin({
-                                element: {
-                                    "o-base": "mod--balance"
-                                }, 
-                                hdr: {
-                                    class: "thm--programs"
-                                },
-                                item_link: {
-                                    class: "co--programs"
-                                }
+
+                include /cards/link-list
+                    -
+                        vefa
+                            .data({
+                                heading: "Additional Resources",
+                                links: [
+                                    ["National Database", page.national_databases.io()],
+                                    ["Resource", page.related_resources.io()],
+                                    ["", page.additional_resources.io()],
+                                ], 
+                                as_external: ["National Database", "Resource", ""],
+                                as_group: ["National Database", "Resource", ""],
                             })

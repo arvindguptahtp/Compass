@@ -1,0 +1,87 @@
+extends _abstract
+
+block subclass
+    -
+        vefa
+            .define({
+                class: "card--list-data",
+                data: {
+                    heading: "",
+                    map: [
+                        ["label", "data_member", "category"]
+                    ],
+                    as_heading: [],
+                    as_text: []
+                }, 
+                list: {
+                    "o-base": "mod--balance rhy--yStart25",
+                    "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
+                },
+                item: {
+                    class: "thm--tint70 tx--f3--900",
+                },
+                data_key: {
+                    class: `thm--programs tx--small--f3--tcU`,
+                    "o-base": "pad--xy25",
+                    "o-condensed": "pad--xy50"
+                },
+                data_value: {
+                    class: `thm--tint70 co--programs tx--f3`,
+                    "o-base": "col--pStart pad--xy25",
+                    "o-condensed": "pad--xy50 gxs--s2"
+                },
+
+                on_mount () {
+                    if (this.map) {
+                        this.map = this.map.map( (dict) => {
+                            return {
+                                label: dict[0],
+                                text: (this.as_text.includes(dict[0])),
+                                value: dict[1],
+                                iterator: `val in ${ dict[1] }`,
+                                category: (dict[2]) ? dict[2] : false
+                            }
+                        })
+                    }
+                    if (!this.style) {
+                        this.mixin({
+                            hdr: {
+                                class: this.impact_theme
+                            },
+                            bd: {
+                                class: "thm--shade15"
+                            },
+                            link: {
+                                class: this.impact_color
+                            }
+                        })
+                    }
+                }
+            })
+
+
+block content
+    dl.card-list&attributes(card.list)
+        for item in card.map
+            dt&attributes(card.data_key)= item.label
+            dd&attributes(card.data_value)
+                if item.text
+                    = v(item.value, "safe")
+                
+                else
+                    ul
+                        +for(item.iterator)
+                            li&attributes(card.data_value_item)
+                                if item.category
+                                    = v("val", `choice_display:'${item.category}'`, 'capfirst')  
+                                else
+                                    = v("val", 'capfirst')
+
+
+        if pug_mixins.card_list
+            +card_list()
+
+
+block teardown
+    if pug_mixins.card_list
+        - pug_mixins.card_list = null
