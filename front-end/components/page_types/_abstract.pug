@@ -4,16 +4,30 @@ block init
     -
         vefa = new Vefa({
             class: "page",
+            _title_type: 'static_titlebar',
             data: {
                 title: false,
-                icon: false
+                icon: false,
+            },
+            methods: {
+                data_titlebar () {
+                    let title = (this.title.tag)
+                        ? `${ this.title.tag() } : `
+                        : ""
+                        
+                    return `${title}${site.title}`
+                },
+                static_titlebar () {
+                    let title = (this.title)
+                        ? `${ this.title } : `
+                        : ""
+                        
+                    return `${title}${site.title}`
+                },
             },
             computed: {
-                titlebar () {
-                    let title = (this.title)
-                        ? `${ v(wrap_str(this.title)) } : `
-                        : ""
-                    return `${title}${site.title}`
+                titlebar (type = this._title_type) {
+                    return this[type]()
                 }
             }
         })

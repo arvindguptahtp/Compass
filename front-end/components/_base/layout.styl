@@ -54,30 +54,29 @@
         +grid()
             display: grid
             grid-gap: 0
-            grid-template-rows: auto    
-            // grid-auto-rows: 1fr
-    
+            grid-template-rows: max-content    
+
     &i1
         +o-attr(breakpoints)
-            grid-gap: 1px
             grid-template-columns: 1fr
 
     &i2
         +o-attr(breakpoints)
-            grid-gap: 1px
             grid-template-columns: repeat(2, 1fr)
 
     &i3
         +o-attr(breakpoints)
-            grid-gap: 1px
             grid-template-columns: repeat(3, 1fr)
     
     &i4
         +o-attr(breakpoints)
-            grid-gap: 1px
             grid-template-columns: repeat(4, 1fr)
 
 .--
+    &gxy
+        +o-attr(breakpoints)
+            grid-gap: 1px
+
     &gxy0
         +o-attr(breakpoints)
             grid-gap: 0
@@ -89,20 +88,22 @@
         +o-attr(breakpoints)
             grid-gap: bvr(.25)
 
-    &gxy25
-        +o-attr(breakpoints)
-            grid-gap: bvr(.25)
     &gxy50
         +o-attr(breakpoints)
             grid-gap: bvr(.5)
+
     &gxy100
         +o-attr(breakpoints)
             grid-gap: bvr(1)
+    
+    &gxy150
+        +o-attr(breakpoints)
+            grid-gap: bvr(1.5)
 
-.sgx--
-    +o-attr(breakpoints)
-        +grid()
-            display: subgrid
+    &gxy200
+        +o-attr(breakpoints)
+            grid-gap: bvr(2)
+
     
 // Generalized Grid Items
 // -------------------------------------------------------------          
@@ -137,7 +138,15 @@
             grid-area: g
 
 
-.gxs--    
+.gxs--
     &s2
         +o-attr(breakpoints)
             grid-area: span 1 / span 2
+    
+    &s3
+        +o-attr(breakpoints)
+            grid-area: span 1 / span 3
+    
+    &s4
+        +o-attr(breakpoints)
+            grid-area: span 1 / span 4

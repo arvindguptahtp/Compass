@@ -19,15 +19,11 @@ block premain
     
     include /posters/icon
         -
-
             poster
-                .data(
-                    { 
-                        title: `"${ page.title }"`,
-                        icon: page.icon
-                     }
-                    
-                )
+                .data({ 
+                    title: page.title,
+                    icon: page.icon
+                })
                 .mixin({
                     element: {
                         class: `thm--texture-tint ${page.poster_color}`,

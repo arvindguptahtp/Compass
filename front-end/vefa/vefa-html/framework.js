@@ -535,33 +535,36 @@ class Vefa {
         if (isObject(vefa) && vefa instanceof Vefa) {
             assign_$inject(vefa)
             assign_$data(vefa)
+
+            if (vefa.key) {
+                let key = vefa.key
+                let parent = vefa
+
+                String.prototype.io = function () {
+                    if (key == this) return this
+
+                    return (parent[this])
+                        ? `${key}.${parent[this]}`
+                        : `${key}.${this}`
+                }
+
+                String.prototype.tag = function ( filters ) {
+                    let val = (key == this)
+                        ? this
+                        : this.io()
+
+                    return (filters)
+                        ? django_tag(val, filters)
+                        : django_tag(val)
+                }
+            }
+
             assign_$methods(vefa)
             assign_$options(vefa)
             assign_$computed(vefa)
         }
         
-        if (vefa.key) {
-            let key = vefa.key
-            let parent = vefa
-
-            String.prototype.io = function () {
-                if (key == this) return this
-
-                return (parent[this])
-                    ? `${key}.${parent[this]}`
-                    : `${key}.${this}`
-            }
-
-            String.prototype.tag = function ( filters ) {
-                let val = (key == this)
-                    ? this
-                    : this.io()
-
-                return (filters)
-                    ? django_tag(val, filters)
-                    : django_tag(val)
-            }
-        }
+        
     }
 
     static $proxy_back (vefa) {

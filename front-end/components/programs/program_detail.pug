@@ -8,6 +8,7 @@ block instance
                 icon: "programs",
                 primary_color: "co--programs",
 
+                key: 'program',
                 grouping: 'program',
                 overview: 'program.description',
                 website: 'program.program_weblink',
@@ -42,7 +43,7 @@ block premain
                 vefa
                     .data(
                         { 
-                            title: page.title,
+                            title: page.title.tag(),
                             icon: page.icon
                         }
                     )
@@ -52,6 +53,7 @@ block premain
 
                         }
                     })
+        
         include /cards/ebr
             - vefa.data({ ebr: page.ebr })
 
