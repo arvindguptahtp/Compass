@@ -60,6 +60,17 @@ const log = {
     }
 }
 
+const django_tag = (prop, ...filters) => {
+    
+    const template_filters = (filters) => {
+        let filter_list = [""]
+        filter_list.push(...filters)
+        filter_list = filter_list.join("|")
+        return filter_list
+    }
+
+    return `{{ ${ prop }${ template_filters(filters) } }}`
+}
 
 const assign_$inject = function (vefa_obj) {
     if (vefa_obj.$inject) {
@@ -518,6 +529,7 @@ class Vefa {
         }
     }
     static $inject () {}
+    
     static $weave (vefa) {
         // do something with inject
         if (isObject(vefa) && vefa instanceof Vefa) {
@@ -528,6 +540,28 @@ class Vefa {
             assign_$computed(vefa)
         }
         
+        if (vefa.key) {
+            let key = vefa.key
+            let parent = vefa
+
+            String.prototype.io = function () {
+                if (key == this) return this
+
+                return (parent[this])
+                    ? `${key}.${parent[this]}`
+                    : `${key}.${this}`
+            }
+
+            String.prototype.tag = function ( filters ) {
+                let val = (key == this)
+                    ? this
+                    : this.io()
+
+                return (filters)
+                    ? django_tag(val, filters)
+                    : django_tag(val)
+            }
+        }
     }
 
     static $proxy_back (vefa) {

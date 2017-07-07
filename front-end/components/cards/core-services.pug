@@ -1,0 +1,45 @@
+extends _abstract
+
+block subclass
+    -
+        vefa
+            .define({
+                class: "card--coreservices",
+                data: {
+                    services: "service_categories"
+                },
+                computed: {
+                    icons () {
+                        return `item in ${this.services}`
+                    }
+                },
+                icon_list: {
+                    "o-base": "mod--balance rhy--yStart25",
+                    "o-extended": "gx--i2--gxy10 rhy--yStart0"
+                },
+                list_item: {
+                    class: "thm--tint70",
+                    "o-base": "row--pStart"
+                },
+                icon: {
+                    class: "ico--xl",
+                    "o-base": "col--pMiddle--sMiddle--xAuto mod--static pad--xy25"
+                },
+                label: {
+                    class: "tx--f3",
+                    "o-base": "col--pMiddle--sStart mod--balance pad--xy25"
+                }
+            })
+
+
+block content
+    ul&attributes(card.icon_list)
+        
+        +for(card.icons)
+            li&attributes(card.list_item)
+
+                svg.ico&attributes(card.icon)
+                    use(href=`#ico--${ v("item") }`)
+                    
+                div&attributes(card.label)
+                    span= v( 'item', "choice_display:'CoreServices'" )

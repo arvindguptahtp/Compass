@@ -42,7 +42,7 @@ templates:
         - affiliates/affiliate_list
         # - affiliates/affiliate_detail
         - partners/partner_list
-        # - partners/partner_detail
+        - partners/partner_detail
         - programs/program_list
         - programs/program_detail
         - simple_auth/password_form

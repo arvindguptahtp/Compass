@@ -1,0 +1,497 @@
+extends /page_types/detail
+
+block instance
+    -
+        vefa
+            .data({
+                key: 'partner',
+                title: 'partner',
+                icon: "partners",
+                impact_theme: "thm--partners",
+                impact_color: "co--partners",
+
+                ebr: 'evidence_base',
+                services: 'service_categories',
+            })
+//-         page.data({
+//-             title: 'partner',
+//-             icon: "partners",
+//-             mission: 'partner.mission',
+//-             overview: 'partner.overview',
+//-             cost: 'partner.is_cost_free',
+//-             cost_desc: 'partner.cost_description',
+//-             grade: 'partner.grade',
+//-             gender: 'partner.gender',
+//-             reach: 'partner.organizational_reach',
+//-             need: 'partner.student_need',
+//-             setting: 'partner.setting',
+//-             service_tier: 'partner.tiers_of_service',
+//-             ebr: 'partner.tiers_of_evidence',
+//-             core_services: 'partner.service_categories',
+//-             core_partner: 'partner.is_core_partner',
+//-             network_use: 'partner.network_use',
+//-             featured: 'partner.feature_network'
+//-         })
+
+block premain
+    div.detail-hdr(
+        o-extended="row--pStart gxi--b"
+    )
+        include /posters/icon
+            -
+                vefa
+                    .data(
+                        { 
+                            title: page.title,
+                            icon: page.icon
+                        }
+                    )
+                    .mixin({
+                        element: {
+                            class: `thm--texture-tint ${page.impact_color}`,
+
+                        }
+                    })
+
+        include /cards/ebr
+            - vefa.data({ ebr: page.ebr.io() })
+
+//-             .data({
+//-                 contact: {
+//-                     org: 'partner',
+//-                     name: 'partner.contact_name',
+//-                     title: 'partner.contact_title',
+//-                     email: 'partner.contact_email',
+//-                     url: 'partner.website',
+//-                 }
+//-             })
+
+
+block content
+    .strata--detail.gx--profile(
+        o-base="mod--balance"
+    )
+        section.gxi--a(
+            class=page.impact_theme
+            o-standard="pad--yStart100 pad--x25"
+        )
+            //- include /cards/data_map
+            //-     -
+            //-         vefa
+            //-             .data({
+            //-                 header: "Partner Details",
+            //-                 impact_color: page.impact_color,
+            //-                 impact_theme: page.impact_theme,
+            //-                 map: [
+            //-                     ["Name", page.contact_name.io()],
+            //-                     ["Title", page.contact_title.io()],
+            //-                     ["Email", page.contact_email.io()],
+            //-                     ["Website", page.website.io()]
+            //-                 ],
+            //-                 as_text: ["Name", "Title", "Email", "Website"]
+            //-             })
+
+
+        section.gxi--b(
+            o-base="col--pStart pad--yEnd50 rhy--yStart50"
+            o-condensed="pad--xy100"
+            o-extended="gx--i2--gxy100 rhy--yStart0"
+        )   
+            -
+                card_style = {
+                    hdr: {
+                        class: page.impact_theme,
+                        "o-base": "mod--static pad--x50 pad--y25"
+                    },
+                    hed: {
+                        class: "tx--maj--f1--100"
+                    },
+                    bd: {
+                        class: "thm--shade15",
+                        "o-base": "mod--balance pad--xy25 rhy--yStart25",
+                        "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
+                    },
+                    key: {
+                        class: `${ page.impact_theme } tx--small--f3--tcU`,
+                        "o-base": "pad--xy25",
+                        "o-condensed": "pad--xy50"
+                    },
+                    value: {
+                        class: `thm--tint70 ${page.impact_color} tx--f3`,
+                        "o-base": "col--pStart--sStart pad--xy25",
+                        "o-condensed": "pad--xy50 gxs--s2"
+                    },
+                }
+            include /copy/card-lede
+                -
+                        vefa
+                            .data({
+                                heading: "Mission",
+                                copy: page.mission.io()
+                            })
+                            .mixin({
+                                element: {
+                                    "o-extended": "gxs--s2"
+                                },
+                                hed: {
+                                    class: page.impact_color
+                                }
+                            })
+                
+            
+            div(
+                o-base="col--pStart rhy--yStart100"
+            )
+                include /copy/card
+                    -
+                        vefa
+                            .data({
+                                heading: "Overview",
+                                copy: page.overview.io()
+                            })
+                            .mixin({
+                                element: {
+                                    class: "thm--shade5",
+                                    "o-extended": "gxs--s2"
+                                },
+                                hed: {
+                                    class: page.impact_color
+                                }
+                            })
+                //- include /cards/data_map
+                    -
+                        vefa
+                            .data({
+                                header: "Student Demographics",
+                                style_type: "alt",
+                                //- map: [
+                                //-     ["Grade Level", page.grade.io(), "PartnerGrades"],
+                                //-     ["Gender", page.gender.io()],
+                                //-     ["Student Need", page.student_need.io(), "StudentNeeds"],
+                                //- ]
+                            })
+                            .mixin(card_style)
+
+            
+            section(
+                o-base="col--pStart rhy--yStart100"
+            )
+                include /cards/core-services
+                    -
+                        vefa
+                            .data({
+                                heading: "CIS Core Services",
+                                services: page.services.io()
+                            })
+                            .mixin({
+                                hdr: {
+                                    class: page.impact_theme
+                                },
+                                bd: {
+                                    class: "thm--shade15"
+                                },
+                                icon: {
+                                    class: page.impact_theme
+                                },
+                            })
+                
+                
+                include /cards/link-list
+                    -
+                        vefa
+                            .data({
+                                heading: "Additional Resources",
+                                links: [
+                                    //- ["Test Link", "http://communities.org", "external_link"],
+                                    ["Webinar", page.webinars.io(), "external_link"],
+                                    ["Presentation", page.presentations.io(), "external_link"]
+                                ], 
+                                as_group: ["Webinar", "Presentation"]
+                            })
+                            .mixin({
+                                hdr: {
+                                    class: page.impact_theme
+                                },
+                                bd: {
+                                    class: "thm--shade15"
+                                },
+                                item_link: {
+                                    class: page.impact_color
+                                },
+                                external_link: {
+                                    class: page.impact_color
+                                }
+                            })
+
+//- block view
+//-     .strata--detail.gx--detail-partner(
+//-         o-base="mod--balance"
+//-     )
+       
+//-         .detail-copy.copy(
+//-             o-base="gxi--a pad--yEnd50 rhy--yStart50"
+//-             o-condensed="pad--x25 pad--y50 pad--yStart25"
+//-             o-extended="pad--yEnd200"
+//-         )
+//-             -
+//-                 card = new Vefa()
+//-                     .data({
+//-                         hed: "Mission",
+//-                         copy: page.data.mission
+//-                     })
+//-                     .mix({
+//-                         element: {
+//-                             class: "thm--light-alt",
+//-                             "o-base": "pad--y50",
+//-                             "o-extended": "gxi--s2",
+//-                             "o-full": "dx--w80"
+//-                         },
+//-                         hed: {
+//-                             class: "co--partners"
+//-                         },
+//-                         bd: {
+//-                             class: "tx--maj"
+//-                         }
+//-                     })
+//-             include /cards/copy
+
+//-             -
+//-                 card = new Vefa()
+//-                     .data({
+//-                         hed: "Overview",
+//-                         copy: page.data.overview
+//-                     })
+//-                     .mix({
+//-                         hed: {
+//-                             class: "co--minor"
+//-                         },
+//-                     })
+//-             include /cards/copy
+        
+//-         section.thm--partners(
+//-             o-base="gxi--b pad--x25 pad--yEnd100 hy--yStart"
+//-             o-condensed="pad--yEnd25"
+//-             o-standard="pad--xy50"
+//-             o-enhanced="pad--x50"
+//-         )
+//-             //- pad--y50
+//-             header.tx--subhed--f1--100--aa(
+//-                 o-base="pad--x25 pad--y25"
+//-                 o-condensed="pad--x50"
+//-             )
+//-                 //- pad--yEnd50 iso--yEnd25
+//-                 h2 Partner Details
+
+//-             mixin dd_stat(title, dict, e_num)
+//-                 +if(page.data[dict])
+//-                     dt.thm--shade40.tx--small--f3--tcU(
+//-                         o-base="pad--xy25"
+//-                         o-condensed="pad--xy50"
+//-                     )= title
+//-                     dd.thm--shade20.tx--small--f3(
+//-                         o-base="col--pStart--sStart pad--xy25"
+//-                         o-condensed="pad--xy50"
+//-                     )
+//-                         ul(
+//-                             o-base="rhy--yStart25"
+//-                         )
+//-                             +for(`item in ${page.data[dict]}`)
+//-                                 li= v('item', `choice_display:'${e_num}'`, 'capfirst')
+            
+            
+//-             h3.tx--small--f3--900--aa.thm--shade60(
+//-                 o-base="pad--xy25 iso--yEnd"
+//-                 o-condensed="pad--x50"
+//-             ) Demographics
+//-             dl(
+//-                 o-base="gx--i2 iso--yEnd"
+//-                 o-standard="gx--i1"
+//-                 o-enhanced="gx--i2"
+//-             )
+//-                 +dd_stat("Grade Level", "grade", "PartnerGrades")
+//-                 +dd_stat("Gender", "gender", "Gender")
+//-                 +dd_stat("Service Tier", "service_tier", "TiersOfService")
+//-                 dt.thm--shade40.tx--small--f3--tcU(
+//-                     o-base="pad--xy50"
+//-                 ) Free of Cost
+//-                 dd.thm--shade20.tx--small--f3(
+//-                     o-base="col--pMiddle--sStart"
+//-                 )
+//-                     h5(
+//-                         o-base="pad--xy50"
+//-                     )
+//-                         +if(page.data.cost)
+//-                             = "Free"
+                            
+//-                             +else()
+//-                                 = "Fees Involved"
+                    
+//-                     p.thm--shade10.tx--small--f3(
+//-                         o-base="pad--xy50"
+//-                     )= v(page.data.cost_desc)
+
+            
+//-             h3.tx--small--f3--900--aa.thm--shade60(
+//-                 o-base="pad--xy25 iso--yEnd"
+//-                 o-condensed="pad--x50"
+//-             ) Org Stats
+//-             dl(
+//-                 o-base="gx--i2 iso--yEnd"
+//-                 o-standard="gx--i1"
+//-                 o-enhanced="gx--i2"
+//-             )
+//-                 +dd_stat("Organizational Reach", "reach", "Regions")
+//-                 +dd_stat("Setting", "setting", "Setting")
+                
+            
+//-             //- h3.tx--small--f3--900--aa.thm--shade60(
+//-             //-     o-base="pad--xy25 iso--yEnd"
+//-             //-     o-condensed="pad--x50"
+//-             //- ) Community in Schools Stats
+//-             //- dl(
+//-             //-     o-base="gx--i2"
+//-             //-     o-standard="gx--i1"
+//-             //-     o-enhanced="gx--i2"
+//-             //- )   
+//-             //-     +dd_stat("EBR", "evidence_tier")
+//-             //-     dt.thm--shade40.tx--small--f3--tcU(
+//-             //-         o-base="pad--xy25"
+//-             //-         o-condensed="pad--xy50"
+//-             //-     ) Use in Network
+//-             //-     dd.thm--shade20.tx--small--f3(
+//-             //-         o-base="col--pStart--sStart pad--xy25"
+//-             //-         o-condensed="pad--xy50"
+//-             //-     )
+//-             //-         = profile.data.network_use ? "In Network" : "Not in Network"
+//-             //-     dt.thm--shade40.tx--small--f3--tcU(
+//-             //-         o-base="pad--xy25 gxi--s2"
+//-             //-         o-condensed="pad--xy50"
+//-             //-     ) National Partner
+//-             //-     dd.thm--shade20.tx--small--f3(
+//-             //-         o-base="col--pStart--sStart pad--xy25 gxi--s2"
+//-             //-         o-condensed="pad--xy50"
+//-             //-     )
+//-             //-         = profile.data.featured_network ? profile.data.featured_network : nulls
+                
+                
+//-         div.gxi--c.thm--light-alt.hl--yStart--bTint(
+//-             o-condensed="gx--i2--gxy25 pad--xy25"
+//-             o-standard="gx--i2--gxy50 pad--xy50"
+//-         )
+//-             +if(page.data.need)
+//-                 section.thm--dark(
+//-                     o-base="col--pStart pad--yEnd100"
+//-                     o-condensed="pad--yEnd0"
+//-                 )
+//-                     header.thm--shade20(
+//-                         o-base="pad--x50 pad--y25"
+//-                     )
+//-                         h1.tx--maj--f1--100 Student Needs
+
+                    
+//-                     ul.bd(
+//-                         o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+//-                         o-extended="gx--i2--gxy25 mod--static rhy--yStart0"
+//-                     )
+//-                         +for(`item in ${page.data.need}`)
+//-                             li.tx--small--f3(
+//-                                 o-base="row--pStart"
+//-                             )   
+//-                                 //- span.ico--l.thm--shade20(
+//-                                 //-     o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
+//-                                 //- )
+//-                                 //-     include /icons/ccr
+                                
+//-                                 div.thm--tint10(
+//-                                     o-base="col--pMiddle--sStart mod--balance pad--x25 pad--y25"
+//-                                 )
+//-                                     span= v( 'item', "choice_display:'StudentNeeds'" )
+            
+            
+//-             +if(page.data.core_services)
+//-                 section.thm--dark(
+//-                     o-base="col--pStart pad--yEnd100"
+//-                     o-condensed="pad--yEnd0"
+//-                 )
+//-                     header.thm--shade20(
+//-                         o-base="mod--static pad--x50 pad--y25"
+//-                     )
+//-                         h1.tx--maj--f1--100 CIS Service Categories
+
+//-                     ul.bd(
+//-                         o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+//-                         o-extended="gx--i2--gxy25 mod--static rhy--yStart0"
+//-                     )
+//-                         +for(`item in ${page.data.core_services}`)
+//-                             li.tx--small--f3(
+//-                                 o-base="row--pStart"
+//-                             )
+//-                                 span.ico--l.thm--shade20(
+//-                                     o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y25"
+//-                                 )
+//-                                     - icon_type = 'item'
+//-                                     include /meta/service-icons
+                                    
+
+//-                                 div.thm--tint10(
+//-                                     o-base="col--pMiddle--sStart mod--balance pad--x25 pad--y25"
+//-                                 )
+//-                                     span= v( 'item', "choice_display:'CoreServices'" )
+                        
+
+            
+//-             //- +if(profile.data.webinars)
+//-             //-     section.thm--shade20(
+//-             //-         o-base="col--pStart pad--yEnd100"
+//-             //-         o-condensed="pad--yEnd0"
+//-             //-     )
+//-             //-         header.thm--affiliates(
+//-             //-             o-base="pad--x50 pad--y25"
+//-             //-         )
+//-             //-             h1.tx--maj--f1--100 Webinars
+    
+//-             //-         ul.bd(
+//-             //-             o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+//-             //-         )
+//-             //-             each item in profile.data.webinars
+//-             //-                 li(
+//-             //-                     o-base="col--pStart"
+//-             //-                 )
+//-             //-                     a.tx--small--f3.co--minor.rxn--tint20.fx--shift(
+//-             //-                         href=v(item)
+//-             //-                         target="_blank"
+//-             //-                         o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25"
+//-             //-                     )
+//-             //-                         span.co--copy= v(item)
+//-             //-                         span.ico--base(
+//-             //-                             o-base="pad--yStart25"
+//-             //-                         )
+//-             //-                             include /icons/link-ext
+            
+//-             //- +if(profile.data.presentations)
+//-             //-     section.thm--shade20(
+//-             //-         o-base="col--pStart pad--yEnd100"
+//-             //-         o-condensed="pad--yEnd0"
+//-             //-     )
+//-             //-         header.thm--affiliates(
+//-             //-             o-base="pad--x50 pad--y25"
+//-             //-         )
+//-             //-             h1.tx--maj--f1--100 Presentations
+                    
+//-             //-         ul.bd(
+//-             //-             o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+//-             //-         )
+//-             //-             each item in profile.data.presentations
+//-             //-                 li(
+//-             //-                     o-base="col--pStart"
+//-             //-                 )
+//-             //-                     a.tx--small--f3.co--minor.rxn--tint20.fx--shift(
+//-             //-                         href=v(item)
+//-             //-                         target="_blank"
+//-             //-                         o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25"
+//-             //-                     )
+//-             //-                         span.co--copy= v(item)
+//-             //-                         span.ico--base(
+//-             //-                             o-base="pad--yStart25"
+//-             //-                         )
+//-             //-                             include /icons/link-ext

@@ -1,0 +1,29 @@
+extends /_vefa
+
+block init
+    -
+        vefa = new Vefa({
+            class: "copy",
+            data: {
+                heading: "Card Header",
+                copy: "Some content"
+            }
+        })
+
+
+
+block view
+    article(
+        class=copy.class
+    )&attributes(copy.element)
+        block hdr
+            if copy.heading
+                header&attributes(copy.hdr)
+                    h2&attributes(copy.hed)
+                        = copy.heading
+
+        block bd
+            .bd&attributes(copy.bd)
+                != v(copy.copy, "linebreaks")
+
+        block ftr

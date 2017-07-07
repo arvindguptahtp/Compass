@@ -404,10 +404,12 @@
                           <footer o-base="row--pStart"><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="{{ partner.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>View Profile</span></a>
                           </footer>
                         </dd>{% endif %}
-                        <dd class="gxi--services thm--dark" o-base="col--pStart">
-                          <article class="card--coreservices" o-base="col--pStart mod--balance">
-                            <h5 class="card-hdr thm--tint10 tx--small--f1--100--tcU--taMiddle" o-base="pad--x25 pad--y10 vx--hidden" o-condensed="pad--x50 pad--y25 vx--shown">CIS Core Services</h5>
-                            <ul class="card-bd gx--auto thm--shade50" o-base="mod--balance" o-condensed="pad--xy25">{% for icon_type in partner.service_categories %}
+                        <dd class="gxi--services" o-base="col--pStart">
+                          <article class="card--coreservices thm--dark" o-base="col--pStart mod--balance">
+                            <header class="card-hdr thm--tint10" o-base="ord--start">
+                              <h5 class="tx--small--f1--100--tcU--taMiddle" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">CIS Core Services</h5>
+                            </header>
+                            <ul class="card-bd gx--auto thm--shade50" o-base="mod--balance" o-condensed="pad--xy25" style="align-content: center;">{% for icon_type in partner.service_categories %}
                                   <li class="co--pri ico--xl" o-base="mod--static pad--xy25">  
                                     <svg class="ico">
                                       <use xlink:href="#ico--{{ icon_type }}"></use>

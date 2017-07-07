@@ -37,30 +37,6 @@ block subclass
             element: {
                 "o-base": "col--pStart mod--balance",
             },
-            on_mount () {
-                if (this.key) {
-                    let key = this.key
-                    let parent = this
-
-                    String.prototype.io = function () {
-                        if (key == this) return this
-
-                        return (parent[this])
-                            ? `${key}.${parent[this]}`
-                            : `${key}.${this}`
-                    }
-
-                    String.prototype.tag = function ( filters ) {
-                        let val = (key == this)
-                            ? this
-                            : this.io()
-
-                        return (filters)
-                            ? v(val, filters)
-                            : v(val)
-                    }
-                }
-            }
         })
 
 block view
@@ -69,8 +45,6 @@ block view
     dl(
         class=card.class
     )&attributes(card.element)
-            - console.log(card.slug.io())
-            - console.log(card.slug.tag())
             block result_title
                 dt.gxi--title.thm--shade10(
                     o-base="row--pStart"
@@ -107,20 +81,24 @@ block view
             
 
             block result_services
-                dd.gxi--services.thm--dark(
+                dd.gxi--services(
                     o-base="col--pStart"
                 )
-                    article.card--coreservices(
+                    article.card--coreservices.thm--dark(
                         o-base="col--pStart mod--balance"
                     )
-                        h5.card-hdr.thm--tint10.tx--small--f1--100--tcU--taMiddle(
-                            o-base="pad--x25 pad--y10 vx--hidden"
-                            o-condensed="pad--x50 pad--y25 vx--shown"
-                        ) CIS Core Services
+                        header.card-hdr.thm--tint10(
+                            o-base="ord--start"
+                        )
+                            h5.tx--small--f1--100--tcU--taMiddle(
+                                o-base="pad--x25 pad--y10"
+                                o-condensed="pad--x50 pad--y25"
+                            ) CIS Core Services
 
                         ul.card-bd.gx--auto.thm--shade50(
                             o-base="mod--balance"
                             o-condensed="pad--xy25"
+                            style="align-content: center"
                         )
                             if django
                                 +for(`icon_type in ${ card.services.io() }`)
@@ -157,9 +135,6 @@ block view
                             ]
                         
                         for level, index in tiers
-                            //- +for(`level in ${ card.service_tiers.io() }`)
-                            //- p= card.service_tiers.io()
-                            //- p= card.service_tiers.tag()
                             li.tx--subhed--f1--tcU--aa.embed--auto(
                                 style=attr_switch(`'${ level[0] }' not in ${ card.service_tiers.io() }`, "filter: opacity(.15) saturate(10%)")
                                 class=level[1]

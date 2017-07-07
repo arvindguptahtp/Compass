@@ -118,6 +118,13 @@ class Partner(BaseResource):
     partners = PartnerQueryset.as_manager()
     objects = partners
 
+    def evidence_base(self):
+        """Returns either the last evidence choice or ''
+        """
+        try:
+            return self.tiers_of_evidence[-1]
+        except TypeError:
+            return ''
 
 class WebinarLink(Link):
     partner = models.ForeignKey('Partner', related_name='webinars')

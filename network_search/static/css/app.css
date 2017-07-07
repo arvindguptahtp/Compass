@@ -479,11 +479,6 @@ svg[class*='ico--xl'],
       grid-template-columns: max-content 1fr max-content;
   grid-gap: 1px;
 }
-.gx--detail-partner {
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
-  grid-template-areas: "a" "b" "c";
-}
 .gx--result-partner {
   grid-template-areas: "title      title           title" "network    service-tier    service-tier" "overview   overview        services";
   -ms-grid-columns: max-content 1fr max-content;
@@ -604,11 +599,6 @@ svg[class*='ico--xl'],
         grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "b a a" "c c c";
   }
-  .gx--detail-partner {
-    -ms-grid-columns: (1fr)[3];
-        grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "b a a" "c c c";
-  }
   .gx--result-partner {
     grid-template-areas: "title      service-tier" "overview   network" "overview   services";
     -ms-grid-columns: 2fr 1fr;
@@ -714,6 +704,13 @@ svg[class*='ico--xl'],
         grid-template-rows: auto 1fr auto;
     grid-template-areas: "a b b" "c d d" "c e e" "f f f";
   }
+  .gx--profile {
+    -ms-grid-columns: minmax(250px, 500px) 5fr;
+        grid-template-columns: minmax(250px, 500px) 5fr;
+    -ms-grid-rows: auto 1fr;
+        grid-template-rows: auto 1fr;
+    grid-template-areas: "a b" "c c";
+  }
   .masthead-nav-ctrl {
     font-size: 32px;
   }
@@ -721,17 +718,5 @@ svg[class*='ico--xl'],
     -ms-grid-columns: 1fr 2fr;
         grid-template-columns: 1fr 2fr;
     grid-template-areas: "a b" "c c";
-  }
-  .gx--detail-programs {
-    -ms-grid-columns: minmax(250px, 500px) 5fr;
-        grid-template-columns: minmax(250px, 500px) 5fr;
-    -ms-grid-rows: auto 1fr;
-        grid-template-rows: auto 1fr;
-    grid-template-areas: "a b" "c c";
-  }
-  .gx--detail-partner {
-    -ms-grid-columns: (1fr)[5];
-        grid-template-columns: repeat(5, 1fr);
-    grid-template-areas: "b a a a a" "b c c c c";
   }
 }

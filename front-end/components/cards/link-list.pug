@@ -6,22 +6,12 @@ block subclass
             .define({
                 class: "card--list-links",
                 data: {
-                    header: "",
-                    links: []
+                    heading: "",
+                    links: [
+                        ["label", "data_member", "style"]
+                    ],
+                    as_group: [],
                 }, 
-                element: {
-                    "o-base": "col--pStart"
-                },
-                hdr: {
-                    "o-base": "mod--static pad--x50 pad--y25"
-                },
-                hed: {
-                    class: "tx--maj--f1--100--aa"
-                },
-                bd: {
-                    class: "thm--shade15",
-                    "o-base": "mod--balance pad--xy25 rhy--yStart25",
-                },
                 list: {
                     "o-base": "mod--balance rhy--yStart25",
                 },
@@ -32,71 +22,98 @@ block subclass
                     class: "rxn--tint90 fx--shift",
                     "o-base": "row--pGrid--sMiddle pad--xy25"
                 },
+                external_link: {
+                    class: "rxn--tint90 fx--shift",
+                    "o-base": "row--pStart--sMiddle pad--xy25 rhy--xStart25"
+                },
                 on_mount () {
                     if(this.links) {
+                        let exists_arr = []
+                        
                         this.links = this.links.map( (dict) => {
-                            return {
-                                single: dict[0],
-                                group: `item in ${ dict[0] }.all`,
-                                target: dict[1] || "false",
-                                tag: dict[2] || false
+                            if (this.as_group.includes(dict[0])) {
+                                //- "group" link from db
+                                exists_arr.push(dict[1])
+                                return {
+                                    group: `item in ${ dict[1] }.all`,
+                                    tag: dict[0],
+                                    external: (dict[2] && dict[2] == "external_link"),
+                                    style: (dict[2]) ? dict[2] : "item_link"
+                                }
+                            }
+                            else {
+                                //- "manual" link
+                                return {
+                                    single: true,
+                                    label: dict[0],
+                                    url: dict[1],
+                                    external: (dict[2] && dict[2] == "external_link"),
+                                    style: (dict[2]) ? dict[2] : "item_link"
+                                }
                             }
                         })
+
+                        exists_arr = exists_arr.map( item => `${ item }.count > 0` )
+                        this.exists = exists_arr.join(" or ")
                     }
                 }
             })
 
 
 
-block view
-    article(
-        class=card.class
-    )&attributes(card.element)
-        
-        block hdr
-            header.card-hdr&attributes(card.hdr)
-                h2.card-hed&attributes(card.hed)= card.header
+block content
+    ul&attributes(card.list)
+        each entry in card.links
+            if entry.single
+                //- manual link
+                li&attributes(card.item)
+                    a(
+                        href=entry.url
+                        target= (entry.external) ? "_blank" : false 
+                        rel= (entry.external) ? "noopener" : false 
+                    )&attributes(card[entry.style])
+                        span= entry.label
 
-        block bd
-            .card-bd&attributes(card.bd)
-                
-                if card.links
-                    ul&attributes(card.list)
-                        
-                        each group in card.links
-                            +for(group.group)
-                                li&attributes(card.item)
-                                    a(
-                                        href=v('item.url')
-                                        target= (group.target == "external") ? "_blank" : false 
-                                    )&attributes(card.item_link)
-                                        div(
-                                            o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
-                                        )
-                                            span= v('item')
-                                            
-                                            if group.target == "external"
-                                                svg.ico
-                                                    use(href=`#ico--link-ext`)
-                                        
-                                        if group.tag
-                                            small.tx--chrome--f3--100--tcU= group.tag
-                                +empty()
-                                    +if(group.single)
-                                        li&attributes(card.item)
-                                            a(
-                                                href=v('group.single.url')
-                                                target= (group.target == "external") ? "_blank" : false 
-                                            )&attributes(card.item_link)
-                                                div(
-                                                    o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
-                                                )
-                                                    span= v('group.single')
-                                                    
-                                                    if group.target == "external"
-                                                        svg.ico
-                                                            use(href=`#ico--link-ext`)
-                                                
-                                                if group.tag
-                                                    small.tx--chrome--f3--100--tcU= group.tag
+                        if entry.external
+                            svg.ico
+                                use(href=`#ico--link-ext`)
+            if entry.group
+                +for(entry.group)
+                    li&attributes(card.item)
+                        a(
+                            href=v('item.url')
+                            target= (entry.external) ? "_blank" : false 
+                            rel= (entry.external) ? "noopener" : false 
+                        )&attributes(card[entry.style])
+                            div(
+                                o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
+                            )
+                                span= v('item')
+
+                                if entry.external
+                                    svg.ico
+                                        use(href=`#ico--link-ext`)
+                            
+                            if entry.tag
+                                small.tx--chrome--f3--100--tcU(
+                                    o-base="iso--xStartAuto"
+                                )= entry.tag
+//-                 +empty()
+//-                     +if(group.single)
+//-                         li&attributes(card.item)
+//-                             a(
+//-                                 href=v('group.single.url')
+//-                                 target= (group.target == "external") ? "_blank" : false 
+//-                             )&attributes(card.item_link)
+//-                                 div(
+//-                                     o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
+//-                                 )
+//-                                     span= v('group.single')
+                                    
+//-                                     if group.target == "external"
+//-                                         svg.ico
+//-                                             use(href=`#ico--link-ext`)
+                                
+//-                                 if group.tag
+//-                                     small.tx--chrome--f3--100--tcU= group.tag
 

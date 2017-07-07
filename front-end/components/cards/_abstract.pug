@@ -3,12 +3,38 @@ extends /_vefa
 block init
     -
         vefa = new Vefa({
-            class: "card"
+            class: "card",
+            element: {
+                "o-base": "col--pStart"
+            },
+            data: {
+                exists: "True"
+            },
+            hdr: {
+                "o-base": "mod--static pad--x50 pad--y25"
+            },
+            hed: {
+                class: "tx--maj--f1--100--aa"
+            },
+            bd: {
+                "o-base": "mod--balance pad--xy25 rhy--yStart25"
+            }
         })
 
 
 
 block view
-    block hdr
-    block bd
-    block ftr
+    +if(card.exists)
+        article(
+            class=card.class
+        )&attributes(card.element)
+            
+            block hdr
+                header&attributes(card.hdr)
+                    h1&attributes(card.hed)= card.heading
+            
+            block bd
+                .bd&attributes(card.bd)
+                    block content
+            
+            block ftr

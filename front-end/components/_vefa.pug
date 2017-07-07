@@ -116,21 +116,21 @@ block instance
     {
         let view = vefa = Vefa.get_current()
         //- make the view variable into a local variable
-        if (vefa._view) {
-            eval(`${vefa._view.toString()} = vefa`)
-        }
-        let handler = {
-            get: function(target, name) {
-                return name in target 
-                    ? target[name]
-                    : name
-            }
-        }
+        if (vefa._view) eval(`${vefa._view.toString()} = vefa`)
+        
         let proxy = function () {
-            view = new Proxy(Vefa.get_current(), handler)
-            if (vefa._view) {
-                eval(`${vefa._view.toString()} = view`)
-            }
+            vefa = new Proxy(
+                Vefa.get_current(),
+                {
+                    get: function(target, name) {
+                        return name in target 
+                            ? target[name]
+                            : name
+                    }
+                }
+            )
+            
+            if (vefa._view) eval(`${vefa._view.toString()} = vefa`)
         }
         
         
