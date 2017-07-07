@@ -1,35 +1,52 @@
-//- extends /cards/result
+extends /cards/result
 
-//- block instance
-//-     -
-//-         vefa.define({
-//-             class: 'gx--result-partner',
-//-         })
-//-         .data({
-//-             labels: {
-//-                 network_yes: "Active in Network",
-//-                 network_no: "Inactive in Network"
-//-             }
-//-         })
+block instance
+    -
+        vefa.define({
+            class: 'card--result-partner',
+            data: {
+                key: 'partner',
+                labels: {
+                    network_yes: 'Active in Network',
+                    network_no: 'Inactive in Network'
+                }
+            },
+            element: {
+                class: 'gx--result-partner'
+            },
+        })
 
-//-     if django
-//-         -
-//-             vefa.data({
-//-                 title: 'partner',
-//-                 slug: 'partner.get_absolute_url',
-//-                 overview: 'partner.mission',
-//-                 network: 'partner.use_in_network',
-//-                 service_tiers: 'partner.tiers_of_service',
-//-                 services: 'partner.service_categories'
-//-             })      
-    
-//-     else
-//-         -
-//-             vefa.data({
-//-                 title: item.name,
-//-                 slug: '/partners/parters_detail',
-//-                 overview: item.mission,
-//-                 services: item.core_services || false,
-//-                 network: item.network_use,
-//-                 service_tiers: item.service_tier,
-//-             })
+    if django
+        -
+            vefa.data({
+                title: 'partner',
+                slug: 'get_absolute_url',
+                overview: 'mission',
+                network: 'use_in_network',
+                service_tiers: 'tiers_of_service',
+                services: 'service_categories'
+            })      
+
+
+
+block result_ebr
+
+block result_network
+    dd.gxi--network.thm--shade10(
+        o-base="row--pStart"
+        o-condensed="row--pMiddle--sMiddle pad--xy25"
+        o-enhanced="pad--xy50"
+    )
+        div(
+            class=class_switch(card.network.io(), "thm--partners")
+            class=class_switch(`not ${ card.network.io() }`, "thm--inactive")
+            o-base="row--pStart mod--balance"
+            o-condensed="row--pStart--xAuto mod--static"
+        )
+            span.thm--shade5.tx--small--f1--100--tcU(
+                o-base="mod--balance--aMiddle pad--y10 pad--x25"
+            )     
+                +if(card.network.io())
+                    = card.labels.network_yes
+                    +else()
+                        = card.labels.network_no

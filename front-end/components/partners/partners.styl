@@ -45,10 +45,10 @@
 
     +over(extended)
         grid-template-areas:
-            "title    network   service-tier" \
-            "overview services  services"
-        grid-template-columns: 4fr max-content 2fr
+            "title      title           network" \
+            "overview   service-tier    services"
+        grid-template-columns: 1fr minmax(100px, 220px) minmax(150px, 250px)
         grid-gap: 3px
     
-    +over(full)
-        grid-template-columns: 4fr max-content 1fr
+    // +over(full)
+    //     grid-template-columns: 4fr max-content 1fr

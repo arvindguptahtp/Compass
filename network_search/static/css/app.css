@@ -56,6 +56,9 @@
   background-size: cover;
   background-position: center;
 }
+.thm--texture {
+  background-image: url("../res/tx.primary.png");
+}
 [class*='thm--texture-tint'] {
   color: #00539e;
   background-color: #fff;
@@ -80,6 +83,27 @@
 [class*='thm--partners'] {
   color: #fff;
   background-color: #008751;
+}
+.thm--primary {
+  background-color: #00539e;
+  color: #fff;
+}
+.thm--secondary {
+  background-color: #e21836;
+  color: #fff;
+}
+.thm--tertiary {
+  background-color: #008751;
+  color: #fff;
+}
+.thm--affiliates-shift,
+.thm--programs-shift,
+.thm--partners-shift {
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, 0) 66%);
+}
+.thm--warning {
+  background-color: #ffce00;
 }
 [class*='fx--'],
 [class*='fx--']::after,
@@ -140,6 +164,9 @@ hr {
 }
 [class*='hl--xStart'] {
   border-left: 1px solid #808284;
+}
+[class*='hl--xEnd'] {
+  border-right: 1px solid #808284;
 }
 [class*='hl--yStart'] {
   border-top: 1px solid #a7a9ab;
@@ -303,6 +330,9 @@ main {
 [class*='gxi--network'] {
   grid-area: network;
 }
+[class*='gxi--service-tier'] {
+  grid-area: service-tier;
+}
 [class*='gxi--ebr'] {
   grid-area: ebr;
 }
@@ -332,6 +362,9 @@ main {
 [class*='poster--'] {
   position: relative;
   overflow: hidden;
+}
+.poster--text {
+  overflow: visible;
 }
 .poster--icon,
 .poster--details {
@@ -377,6 +410,11 @@ svg[o-base*='ico--md'],
 }
 svg[class*='ico--l'],
 [class*='ico--l'] > .ico {
+  height: 2em;
+  width: 2em;
+}
+svg[o-base*='ico--l'],
+[o-base*='ico--l'] > .ico {
   height: 2em;
   width: 2em;
 }
@@ -446,6 +484,12 @@ svg[class*='ico--xl'],
       grid-template-columns: 1fr;
   grid-template-areas: "a" "b" "c";
 }
+.gx--result-partner {
+  grid-template-areas: "title      title           title" "network    service-tier    service-tier" "overview   overview        services";
+  -ms-grid-columns: max-content 1fr max-content;
+      grid-template-columns: max-content 1fr max-content;
+  grid-gap: 1px;
+}
 @media only screen and (min-width: 0px) {
   .masthead-nav-ctrl {
     font-size: 25px;
@@ -496,11 +540,26 @@ svg[class*='ico--xl'],
     color: #181411;
     background: rgba(78, 138, 190, .1);
   }
+  [o-condensed*='tx--display'] {
+    font-size: 1.984rem;
+    line-height: 1.134286974604575;
+  }
+  [o-condensed*='tx--subhed'] {
+    font-size: 1.27rem;
+    line-height: 1.378427607935805;
+  }
   .site-logo {
     max-width: 160px;
   }
   .gx--result-programs {
     grid-template-areas: "title      title       network" "ebr        overview    overview" "ebr        services    services";
+  }
+  .gx--result-partner {
+    grid-template-areas: "title      title" "overview   service-tier" "overview   network" "overview   services";
+    -ms-grid-columns: 2fr 1fr;
+        grid-template-columns: 2fr 1fr;
+    -ms-grid-rows: auto auto auto 1fr;
+        grid-template-rows: auto auto auto 1fr;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -535,6 +594,11 @@ svg[class*='ico--xl'],
   .poster--details {
     grid-gap: 0 12px;
   }
+  svg[o-standard*='ico--base'],
+  [o-standard*='ico--base'] > .ico {
+    height: 1em;
+    width: 1em;
+  }
   .gx--detail-affiliate {
     -ms-grid-columns: (1fr)[3];
         grid-template-columns: repeat(3, 1fr);
@@ -545,8 +609,18 @@ svg[class*='ico--xl'],
         grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "b a a" "c c c";
   }
+  .gx--result-partner {
+    grid-template-areas: "title      service-tier" "overview   network" "overview   services";
+    -ms-grid-columns: 2fr 1fr;
+        grid-template-columns: 2fr 1fr;
+    -ms-grid-rows: auto auto 1fr;
+        grid-template-rows: auto auto 1fr;
+  }
 }
 @media only screen and (min-width: 960px) {
+  .thm--texture {
+    background-image: url("../res/tx.primary@2x.png");
+  }
   [class*='thm--texture-tint'] {
     background-image: url("../res/tx.light@2x.png");
   }
@@ -593,6 +667,12 @@ svg[class*='ico--xl'],
     grid-template-areas: "title      title  network" "overview   ebr    services";
     -ms-grid-columns: 1fr minmax(100px, 180px) minmax(150px, 250px);
         grid-template-columns: 1fr minmax(100px, 180px) minmax(150px, 250px);
+    grid-gap: 3px;
+  }
+  .gx--result-partner {
+    grid-template-areas: "title      title           network" "overview   service-tier    services";
+    -ms-grid-columns: 1fr minmax(100px, 220px) minmax(150px, 250px);
+        grid-template-columns: 1fr minmax(100px, 220px) minmax(150px, 250px);
     grid-gap: 3px;
   }
 }

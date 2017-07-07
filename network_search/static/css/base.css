@@ -275,8 +275,16 @@ button {
   -ms-grid-columns: (1fr)[2];
       grid-template-columns: repeat(2, 1fr);
 }
+[o-base*='gx--i3'] {
+  grid-gap: 1px;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
 [o-base*='--gxy0'] {
   grid-gap: 0;
+}
+[o-base*='--gxy25'] {
+  grid-gap: 6px;
 }
 @supports ((display: -ms-grid) or (display: grid)) {
 }
@@ -366,12 +374,18 @@ button {
 [o-base~='pad--xy50'] {
   padding: 12px;
 }
+[o-base~='pad--xy100'] {
+  padding: 24px;
+}
 [o-base~='iso--xAuto'] {
   margin-left: auto;
   margin-right: auto;
 }
 [o-base~='iso--xStartAuto'] {
   margin-left: auto;
+}
+[o-base~='iso--xStart10'] {
+  margin-left: 2px;
 }
 [o-base~='iso--xEndAuto'] {
   margin-right: auto;
@@ -394,6 +408,28 @@ button {
 }
 [o-base~='iso--yEnd50'] {
   margin-bottom: 12px;
+}
+[class*='embed--'] {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+[class*='embed--']::after {
+  content: '';
+  display: block;
+  height: 0;
+  padding-bottom: 100%;
+}
+.embed-item {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 [o-base*='pos--rel'] {
   position: relative;

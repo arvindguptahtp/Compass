@@ -16,25 +16,16 @@ block instance
     if django
         -
             vefa.data({
-                    slug: 'get_absolute_url',
-                    overview: 'summary',
-                    services: 'service_categories',
-                    ebr: 'evidence_base',
-                    network: 'network_use',
-                })    
-    
-    else
-        -
-             vefa.data({
-                title: item.name,
-                slug: '/programs/programs_detail',
-                overview: item.summary,
-                services: item.core_services,
-                network: item.network_use,
-                service_tiers: false,
-                ebr: item.evidence_tier,
+                title: "program",
+                slug: 'get_absolute_url',
+                overview: 'summary',
+                services: 'service_categories',
+                ebr: 'evidence_base',
+                network: 'network_use',
             })
 
+
+block result_tier
 
 
 block result_network

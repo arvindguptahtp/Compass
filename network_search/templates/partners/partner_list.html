@@ -393,8 +393,44 @@
                                                                 <div class="page-ctrl--current is-current thm--dark rxn--tint30 fx--shift" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs"><span>{{ page }}</span></div>{% else %}<a class="page-ctrl thm--dark rxn--tint30 fx--shift" href="?{{ page.querystring }}" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs"><span>{{ page }}</span></a>{% endif %}{% else %}<span class="page-ctrl--pseudo is-current thm--dark rxn--tint30 fx--shift" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs">...</span>{% endif %}{% endfor %}
                                 </div>{% endif %}
                     </nav>{% endif %}
-          <div o-base="rhy--yStart100">{% for partner in partners.object_list %}{% empty %}
-                                <p>No matching partners</p>{% endfor %}
+          <div o-base="rhy--yStart100">{% for partner in partners.object_list %}
+                      <dl class="card--result-partner gx--result-partner" o-base="col--pStart mod--balance">
+                        <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="{{ partner.get_absolute_url }}" o-base="row--pStart--sMiddle mod--balance pad--x25 pad--y10 rhy--xStart" o-standard="pad--x50">
+                            <h4 class="tx--subhed--f1--100">{{ partner }}
+                            </h4></a></dt>{% if partner.mission %}
+                        <dd class="gxi--overview hl--xy--bTint" o-base="mod--balance pad--xy25 rhy--yStart50" o-standard="pad--xy50">
+                          <div class="bd copy tx--small--f2" o-full="tx--base">{{ partner.mission }}
+                          </div>
+                          <footer o-base="row--pStart"><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="{{ partner.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>View Profile</span></a>
+                          </footer>
+                        </dd>{% endif %}
+                        <dd class="gxi--services thm--dark" o-base="col--pStart">
+                          <article class="card--coreservices" o-base="col--pStart mod--balance">
+                            <h5 class="card-hdr thm--tint10 tx--small--f1--100--tcU--taMiddle" o-base="pad--x25 pad--y10 vx--hidden" o-condensed="pad--x50 pad--y25 vx--shown">CIS Core Services</h5>
+                            <ul class="card-bd gx--auto thm--shade50" o-base="mod--balance" o-condensed="pad--xy25">{% for icon_type in partner.service_categories %}
+                                  <li class="co--pri ico--xl" o-base="mod--static pad--xy25">  
+                                    <svg class="ico">
+                                      <use xlink:href="#ico--{{ icon_type }}"></use>
+                                    </svg>
+                                  </li>{% endfor %}
+                            </ul>
+                          </article>
+                        </dd>
+                        <dd class="gxi--network thm--shade10" o-base="row--pStart" o-condensed="row--pMiddle--sMiddle pad--xy25" o-enhanced="pad--xy50">
+                          <div class="{% if partner.use_in_network %} thm--partners {% endif %} {% if not partner.use_in_network %} thm--inactive {% endif %}" o-base="row--pStart mod--balance" o-condensed="row--pStart--xAuto mod--static"><span class="thm--shade5 tx--small--f1--100--tcU" o-base="mod--balance--aMiddle pad--y10 pad--x25">    {% if partner.use_in_network %}Active in Network{% else %}Inactive in Network{% endif %}</span></div>
+                        </dd>
+                        <dd class="gxi--service-tier" o-base="col--pStart mod--balance">
+                          <header class="card-hdr thm--partners" o-base="ord--start">
+                            <h5 class="tx--small--f1--100--tcU--taMiddle thm--shade25" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tiers of Support</h5>
+                          </header>
+                          <ul class="card-bd thm--shade5 ord--end hl--xStart--bTint hl--xEnd hl--yEnd" o-base="gx--i3--gxy25 row--pMiddle--sMiddle mod--balance pad--xy100">  
+                            <li class="tx--subhed--f1--tcU--aa embed--auto thm--primary" style="{% if 'i' not in partner.tiers_of_service %} filter: opacity(.15) saturate(10%) {% endif %};" o-base="mod--aMiddle pad--x50 pad--y25 iso--xStart10"><span class="embed-item thm--texture-tint" style="mix-blend-mode: luminosity;" o-base="col--pMiddle--sMiddle">i</span></li>
+                            <li class="tx--subhed--f1--tcU--aa embed--auto thm--secondary" style="{% if 'ii' not in partner.tiers_of_service %} filter: opacity(.15) saturate(10%) {% endif %};" o-base="mod--aMiddle pad--x50 pad--y25 iso--xStart10"><span class="embed-item thm--texture-tint" style="mix-blend-mode: luminosity;" o-base="col--pMiddle--sMiddle">ii</span></li>
+                            <li class="tx--subhed--f1--tcU--aa embed--auto thm--tertiary" style="{% if 'iii' not in partner.tiers_of_service %} filter: opacity(.15) saturate(10%) {% endif %};" o-base="mod--aMiddle pad--x50 pad--y25 iso--xStart10"><span class="embed-item thm--texture-tint" style="mix-blend-mode: luminosity;" o-base="col--pMiddle--sMiddle">iii</span></li>
+                          </ul>{% resetcycle %}
+                        </dd>
+                      </dl>{% empty %}
+                          <p>No matching partners</p>{% endfor %}
           </div>{% if partners.pages|length > 1 %}
                     <nav class="pagination tx--f1--aa" o-base="row--pStart--sMiddle">{% if partners.has_previous %}<a class="page-ctrl--prev ord--start thm--dark rxn--tint30 fx--shift" href="?{{ partners.previous_page_number.querystring }}" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs">
                                   <svg class="ico">
