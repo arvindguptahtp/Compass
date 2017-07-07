@@ -126,6 +126,7 @@ class Partner(BaseResource):
         except TypeError:
             return ''
 
+
 class WebinarLink(Link):
     partner = models.ForeignKey('Partner', related_name='webinars')
 
