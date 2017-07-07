@@ -379,10 +379,10 @@
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
                         <ul o-base="mod--balance rhy--yStart25">{% for item in partner.program.all %}
-                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="row--pGrid--sMiddle pad--xy25">
+                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
                                         <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
                                         </div><small class="tx--chrome--f3--100--tcU" o-base="mod--static iso--xStartAuto">National Program</small></a></li>{% endfor %}{% for item in partner.featured_network.all %}
-                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="row--pGrid--sMiddle pad--xy25">
+                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
                                         <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
                                         </div><small class="tx--chrome--f3--100--tcU" o-base="mod--static iso--xStartAuto">Featured Network</small></a></li>{% endfor %}
                         </ul>
@@ -393,18 +393,14 @@
                         <h1 class="tx--maj--f1--100--aa">Additional Resources</h1>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <ul o-base="mod--balance rhy--yStart25">
-                          <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="http://communities.org" target="_blank" rel="noopener" o-base="row--pGrid--sMiddle pad--xy25"><span class="tx--trnc">Test Link</span>
-                              <svg class="ico">
-                                <use href="#ico--link-ext"></use>
-                              </svg></a></li>{% for item in partner.webinars.all %}
-                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener" o-base="row--pGrid--sMiddle pad--xy25">
+                        <ul o-base="mod--balance rhy--yStart25">{% for item in partner.webinars.all %}
+                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
                                         <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
                                           <svg class="ico">
                                             <use href="#ico--link-ext"></use>
                                           </svg>
                                         </div><small class="tx--chrome--f3--100--tcU" o-base="mod--static iso--xStartAuto">Webinar</small></a></li>{% endfor %}{% for item in partner.presentations.all %}
-                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener" o-base="row--pGrid--sMiddle pad--xy25">
+                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
                                         <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
                                           <svg class="ico">
                                             <use href="#ico--link-ext"></use>
