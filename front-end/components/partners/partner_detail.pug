@@ -76,21 +76,80 @@ block content
             class=page.impact_theme
             o-standard="pad--yStart100 pad--x25"
         )
-            //- include /cards/data_map
-            //-     -
-            //-         vefa
-            //-             .data({
-            //-                 header: "Partner Details",
-            //-                 impact_color: page.impact_color,
-            //-                 impact_theme: page.impact_theme,
-            //-                 map: [
-            //-                     ["Name", page.contact_name.io()],
-            //-                     ["Title", page.contact_title.io()],
-            //-                     ["Email", page.contact_email.io()],
-            //-                     ["Website", page.website.io()]
-            //-                 ],
-            //-                 as_text: ["Name", "Title", "Email", "Website"]
-            //-             })
+            include /cards/data-list
+                -
+                    vefa.
+                        data({
+                            heading: "Partner Information",
+                            map: [
+                                ["Points of Contact"],
+                                ["Contact", "card_contact"],
+                                ["Organizational Information"],
+                                ["Core Partner", page.is_core_partner.io()],
+                                ["Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
+                                ["Organizational Reach", page.organizational_reach.io(), "Regions"],
+                                ["Setting", page.setting.io(), "Setting"],
+                            ],
+                            as_heading: ["Points of Contact", "Organizational Information"],
+                            as_text: ["Name", "Title", "Email", "Website", "Core Partner"],
+                            as_mixin: ["Contact"],
+                            style: "alternate"
+                        })
+                        .define({
+                            element: {
+                                "o-base": "col--pStart iso--yStart25"
+                            },
+                            hdr: {
+                                "o-base": "pad--x25 pad--y25",
+                                "o-condensed": "pad--x50"
+                            },
+                            hed: {
+                                class: "tx--subhed--f1--100--aa"
+                            },
+                            bd: {
+                                "o-base": ""
+                            },
+                            list: {
+                                "o-base": "mod--balance rhy--yStart25",
+                                "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
+                            },
+                            data_key: {
+                                class: "thm--shade40 tx--small--f3--tcU",
+                                "o-base": "pad--xy25",
+                                "o-condensed": "pad--x50"
+                            },
+                            data_value: {
+                                class: "thm--tint10 tx--f3",
+                                "o-base": "col--pStart--sStart pad--xy25",
+                                "o-condensed": "pad--x50 gxs--s2"
+                            },
+                        })
+                mixin card_contact
+                    dt&attributes(card.data_key)
+                        = page.contact_title.tag()
+                    dt&attributes(card.data_value)
+                        p= page.contact_name.tag()
+                        a.tx--tdU.fx--shift(
+                            href=`mailto:${page.contact_email.tag()}`
+                        )
+                            = page.contact_email.tag()
+                        a.tx--tdU.fx--shift(
+                            href=`${page.website.tag()}`
+                            target="_blank"
+                            rel="noopener"
+                        ) Website
+
+                mixin card_list
+                    dt&attributes(card.data_key) Associated Fees
+                    +if(page.is_cost_free.io())
+                        dt&attributes(card.data_value) Free of Cost
+                        +else()
+                            dt&attributes(card.data_value)
+                                +if(page.cost_description.io())
+                                    p(
+                                        style="word-break:word"
+                                    )= page.cost_description.tag("safe")
+
 
 
         section.gxi--b(
@@ -159,19 +218,18 @@ block content
                                     class: page.impact_color
                                 }
                             })
-                //- include /cards/data_map
+                
+                include /cards/data-list
                     -
                         vefa
                             .data({
-                                header: "Student Demographics",
-                                style_type: "alt",
-                                //- map: [
-                                //-     ["Grade Level", page.grade.io(), "PartnerGrades"],
-                                //-     ["Gender", page.gender.io()],
-                                //-     ["Student Need", page.student_need.io(), "StudentNeeds"],
-                                //- ]
+                                heading: "Student Demographics",
+                                map: [
+                                    ["Grade Level", page.grade.io(), "PartnerGrades"],
+                                    ["Gender", page.gender.io(), 'Gender'],
+                                    ["Student Need", page.student_need.io(), "StudentNeeds"],
+                                ]
                             })
-                            .mixin(card_style)
 
             
             section(

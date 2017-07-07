@@ -261,7 +261,53 @@
   </div>
   <main o-base="col--pStart" o-extended="gxi--d">
     <div class="strata--detail gx--profile" o-base="mod--balance">
-      <section class="gxi--a thm--partners" o-standard="pad--yStart100 pad--x25"></section>
+      <section class="gxi--a thm--partners" o-standard="pad--yStart100 pad--x25">{% if True %}
+                <article class="card--list-data" o-base="col--pStart iso--yStart25">
+                  <header o-base="pad--x25 pad--y25" o-condensed="pad--x50">
+                    <h1 class="tx--subhed--f1--100--aa">Partner Information</h1>
+                  </header>
+                  <div class="bd" o-base="">
+                    <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">
+                      <dt class="thm--shade50 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Points of Contact</dt>
+                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">{{ partner.contact_title }}
+                              </dt>
+                              <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                                <p>{{ partner.contact_name }}</p><a class="tx--tdU fx--shift" href="mailto:{{ partner.contact_email }}">{{ partner.contact_email }}</a><a class="tx--tdU fx--shift" href="{{ partner.website }}" target="_blank" rel="noopener">Website</a>
+                              </dt>
+                      <dt class="thm--shade50 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Organizational Information</dt>
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Core Partner</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ partner.is_core_partner|safe }}
+                      </dd>
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Tiers of Service</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                        <ul>{% for val in partner.tiers_of_service %}
+                                  <li>{{ val|choice_display:'TiersOfService'|capfirst }}
+                                  </li>{% endfor %}
+                        </ul>
+                      </dd>
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Organizational Reach</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                        <ul>{% for val in partner.organizational_reach %}
+                                  <li>{{ val|choice_display:'Regions'|capfirst }}
+                                  </li>{% endfor %}
+                        </ul>
+                      </dd>
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Setting</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                        <ul>{% for val in partner.setting %}
+                                  <li>{{ val|choice_display:'Setting'|capfirst }}
+                                  </li>{% endfor %}
+                        </ul>
+                      </dd>
+                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Associated Fees</dt>{% if partner.is_cost_free %}
+                                      <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">Free of Cost</dt>{% else %}
+                                              <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">{% if partner.cost_description %}
+                                                        <p style="word-break:word;">{{ partner.cost_description|safe }}</p>{% endif %}
+                                              </dt>{% endif %}
+                    </dl>
+                  </div>
+                </article>{% endif %}
+      </section>
       <section class="gxi--b" o-base="col--pStart pad--yEnd50 rhy--yStart50" o-condensed="pad--xy100" o-extended="gx--i2--gxy100 rhy--yStart0">  
         <article class="copy--card-lede" o-base="mod--static pad--xy50 rhy--yStart50" o-extended="gxs--s2">
           <header>
@@ -279,7 +325,37 @@
             </header>
             <div class="bd">{{ partner.overview|linebreaks }}
             </div>
-          </article>
+          </article>{% if True %}
+                    <article class="card--list-data" o-base="col--pStart">
+                      <header class="thm--partners" o-base="mod--static pad--x50 pad--y25">
+                        <h1 class="tx--maj--f1--100--aa">Student Demographics</h1>
+                      </header>
+                      <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
+                        <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">
+                          <dt class="tx--small--f3--tcU thm--partners" o-base="pad--xy25" o-condensed="pad--x50">Grade Level</dt>
+                          <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                            <ul>{% for val in partner.grade %}
+                                        <li>{{ val|choice_display:'PartnerGrades'|capfirst }}
+                                        </li>{% endfor %}
+                            </ul>
+                          </dd>
+                          <dt class="tx--small--f3--tcU thm--partners" o-base="pad--xy25" o-condensed="pad--x50">Gender</dt>
+                          <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                            <ul>{% for val in partner.gender %}
+                                        <li>{{ val|choice_display:'Gender'|capfirst }}
+                                        </li>{% endfor %}
+                            </ul>
+                          </dd>
+                          <dt class="tx--small--f3--tcU thm--partners" o-base="pad--xy25" o-condensed="pad--x50">Student Need</dt>
+                          <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                            <ul>{% for val in partner.student_need %}
+                                        <li>{{ val|choice_display:'StudentNeeds'|capfirst }}
+                                        </li>{% endfor %}
+                            </ul>
+                          </dd>
+                        </dl>
+                      </div>
+                    </article>{% endif %}
         </div>
         <section o-base="col--pStart rhy--yStart100">{% if True %}
                     <article class="card--coreservices" o-base="col--pStart">

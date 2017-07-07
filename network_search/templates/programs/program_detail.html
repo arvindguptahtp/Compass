@@ -318,36 +318,36 @@
                   </header>
                   <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
                     <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">
-                      <dt class="thm--programs tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Grade Level</dt>
-                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                      <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Grade Level</dt>
+                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.grade %}
-                                  <li>{{ val|choice_display:'PartnerGrades'|capfirst }}
+                                  <li>{{ val|choice_display:'ProgramGrades'|capfirst }}
                                   </li>{% endfor %}
                         </ul>
                       </dd>
-                      <dt class="thm--programs tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Gender</dt>
-                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                      <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Gender</dt>
+                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.gender %}
                                   <li>{{ val|choice_display:'Gender'|capfirst }}
                                   </li>{% endfor %}
                         </ul>
                       </dd>
-                      <dt class="thm--programs tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Race</dt>
-                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                      <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Race</dt>
+                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.race %}
                                   <li>{{ val|choice_display:'Race'|capfirst }}
                                   </li>{% endfor %}
                         </ul>
                       </dd>
-                      <dt class="thm--programs tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Student Need</dt>
-                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                      <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Student Need</dt>
+                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.student_need %}
                                   <li>{{ val|choice_display:'StudentNeeds'|capfirst }}
                                   </li>{% endfor %}
                         </ul>
                       </dd>
-                      <dt class="thm--programs tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Student Characteristics</dt>
-                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
+                      <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Student Characteristics</dt>
+                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.student_characteristics %}
                                   <li>{{ val|choice_display:'StudentCharacteristics'|capfirst }}
                                   </li>{% endfor %}

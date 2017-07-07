@@ -520,6 +520,9 @@ button {
 [class*='--taMiddle'] {
   text-align: center;
 }
+[class*='--tdU'] {
+  text-decoration: underline;
+}
 [class*='--aa'] {
   -webkit-font-smoothing: antialiased;
 }
@@ -756,6 +759,9 @@ input[class*='rxn--tint'] {
   }
   [o-condensed*='gxs--s2'] {
     grid-area: span 1/span 2;
+  }
+  [o-condensed*='gxs--s3'] {
+    grid-area: span 1/span 3;
   }
   [o-condensed~='rhy--yStart25'] > * + * {
     margin-top: 6px;
@@ -1100,6 +1106,9 @@ input[class*='rxn--tint'] {
   }
   [o-extended~='rhy--yStart0'] > * + * {
     margin-top: 0;
+  }
+  [o-extended~='iso--yStart50'] {
+    margin-top: 12px;
   }
   [o-extended~='vx--hidden'] {
     visibility: hidden;

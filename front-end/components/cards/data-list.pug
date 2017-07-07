@@ -11,7 +11,8 @@ block subclass
                         ["label", "data_member", "category"]
                     ],
                     as_heading: [],
-                    as_text: []
+                    as_text: [],
+                    as_mixin: []
                 }, 
                 list: {
                     "o-base": "mod--balance rhy--yStart25",
@@ -20,15 +21,21 @@ block subclass
                 item: {
                     class: "thm--tint70 tx--f3--900",
                 },
-                data_key: {
-                    class: `thm--programs tx--small--f3--tcU`,
+                data_hed: {
+                    class: `thm--shade50 tx--small--f3--tcU`,
                     "o-base": "pad--xy25",
-                    "o-condensed": "pad--xy50"
+                    "o-condensed": "pad--x50 gxs--s3",
+                    "o-extended": "iso--yStart50"
+                },
+                data_key: {
+                    class: `tx--small--f3--tcU`,
+                    "o-base": "pad--xy25",
+                    "o-condensed": "pad--x50"
                 },
                 data_value: {
                     class: `thm--tint70 co--programs tx--f3`,
                     "o-base": "col--pStart pad--xy25",
-                    "o-condensed": "pad--xy50 gxs--s2"
+                    "o-condensed": "pad--x50 gxs--s2"
                 },
 
                 on_mount () {
@@ -37,6 +44,8 @@ block subclass
                             return {
                                 label: dict[0],
                                 text: (this.as_text.includes(dict[0])),
+                                heading: (this.as_heading.includes(dict[0])),
+                                mixin: (this.as_mixin.includes(dict[0])),
                                 value: dict[1],
                                 iterator: `val in ${ dict[1] }`,
                                 category: (dict[2]) ? dict[2] : false
@@ -51,6 +60,9 @@ block subclass
                             bd: {
                                 class: "thm--shade15"
                             },
+                            data_key: {
+                                class: this.impact_theme
+                            },
                             link: {
                                 class: this.impact_color
                             }
@@ -63,19 +75,25 @@ block subclass
 block content
     dl.card-list&attributes(card.list)
         for item in card.map
-            dt&attributes(card.data_key)= item.label
-            dd&attributes(card.data_value)
-                if item.text
-                    = v(item.value, "safe")
-                
-                else
-                    ul
-                        +for(item.iterator)
-                            li&attributes(card.data_value_item)
-                                if item.category
-                                    = v("val", `choice_display:'${item.category}'`, 'capfirst')  
-                                else
-                                    = v("val", 'capfirst')
+            if item.heading
+                dt&attributes(card.data_hed)= item.label
+            
+            else if item.mixin
+                +#{item.value}
+
+            else
+                dt&attributes(card.data_key)= item.label
+                dd&attributes(card.data_value)
+                    if item.text
+                        = v(item.value, "safe")
+                    else
+                        ul
+                            +for(item.iterator)
+                                li&attributes(card.data_value_item)
+                                    if item.category
+                                        = v("val", `choice_display:'${item.category}'`, 'capfirst')  
+                                    else
+                                        = v("val", 'capfirst')
 
 
         if pug_mixins.card_list
