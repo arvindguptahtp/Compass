@@ -38,9 +38,9 @@ templates:
         - includes/css
         - includes/head_js
         - includes/footer_js
-        - site/index
+        - pages/index
         - affiliates/affiliate_list
-        # - affiliates/affiliate_detail
+        - affiliates/affiliate_detail
         - partners/partner_list
         - partners/partner_detail
         - programs/program_list

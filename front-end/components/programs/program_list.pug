@@ -1,15 +1,17 @@
-extends /page_types/list
+extends /site/list
 
 block instance
     -
         vefa.data({
             title: programs.title,
-            slug: routes.programs.slug,
-            summary: programs.summary,
-            results_collection: programs.fixtures,
-            poster_color: "co--programs",
+            impact_color: "co--programs",
+            impact_theme: "thm--programs",
             icon: "programs",
-            list_type: "programs"
+            content_type: "programs",
+
+            slug: routes.programs.slug,
+            results_collection: programs.fixtures,
+            
         })
 
 
@@ -28,10 +30,8 @@ block form
 
 
 block results
-    if django
-        
-        +for("program in programs.object_list")
-            include components/card--result-program
+    +for("program in programs.object_list")
+        include components/card--result-program
 
-            +empty()
-                p No matching programs.
+        +empty()
+            p No matching programs.

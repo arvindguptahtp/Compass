@@ -29,7 +29,27 @@ block instance
 
 
 
-block result_ebr
+block result_overview
+    dd.gxi--overview.hl--xy--bTint(
+        o-base="mod--balance pad--xy25 rhy--yStart50"
+        o-standard="pad--xy50"
+    )
+        +if(card.overview.io())
+            .bd.copy.tx--small--f2(
+                o-full="tx--base"
+            )
+                = card.overview.tag()
+        
+        footer(
+            o-base="row--pStart"
+        )
+            include /controls/action
+                -
+                    vefa.data({
+                        url: card.slug.io(),
+                        label: "View Profile"
+                    })
+
 
 block result_network
     dd.gxi--network.thm--shade10(
@@ -50,3 +70,67 @@ block result_network
                     = card.labels.network_yes
                     +else()
                         = card.labels.network_no
+
+
+block result_tier
+    dd.gxi--service-tier(
+        o-base="col--pStart mod--balance"
+    )
+        header.card-hdr.thm--partners(
+            o-base="ord--start"
+        )
+            h5.tx--small--f1--100--tcU--taMiddle.thm--shade25(
+                o-base="pad--x25 pad--y10"
+                o-condensed="pad--x50 pad--y25"
+            ) Tiers of Support
+            
+        ul.card-bd.thm--shade5.ord--end.hl--xStart--bTint.hl--xEnd.hl--yEnd(
+            o-base="gx--i3--gxy25--gsMiddle row--pMiddle--sMiddle mod--balance pad--xy100"
+        )   
+            -
+                let tiers = [
+                    ['i', "thm--primary"],
+                    ['ii', "thm--secondary"],
+                    ['iii', "thm--tertiary"]
+                ]
+            
+            for level, index in tiers
+                li.tx--subhed--f1--tcU--aa.embed--auto(
+                    style=attr_switch(`'${ level[0] }' not in ${ card.service_tiers.io() }`, "filter: opacity(.15) saturate(10%)")
+                    class=level[1]
+                    o-base="mod--aMiddle pad--x50 pad--y25 iso--xStart10"
+                )
+                    span.embed-item.thm--texture-tint(
+                        style="mix-blend-mode: luminosity"
+                        o-base="col--pMiddle--sMiddle"
+                    )
+                        = level[0]
+
+
+block result_services
+    dd.gxi--services(
+        o-base="col--pStart"
+    )
+        article.card--coreservices.thm--dark(
+            o-base="col--pStart mod--balance"
+        )
+            header.card-hdr.thm--tint10(
+                o-base="ord--start"
+            )
+                h5.tx--small--f1--100--tcU--taMiddle(
+                    o-base="pad--x25 pad--y10"
+                    o-condensed="pad--x50 pad--y25"
+                ) CIS Core Services
+
+            ul.card-bd.gx--auto.thm--shade50(
+                o-base="mod--balance"
+                o-condensed="pad--xy25"
+                style="align-content: center"
+            )
+                if django
+                    +for(`icon_type in ${ card.services.io() }`)
+                        li.co--pri.ico--xl(
+                            o-base="mod--static pad--xy25"
+                        )   
+                            svg.ico
+                                use(xlink:href=`#ico--${ v( `icon_type` ) }`)

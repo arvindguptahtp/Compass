@@ -9,9 +9,9 @@ block subclass
             }
         })
 
-        if (Vefa.has_bus("ebr")) {
+        if ( bus.$data.ebr ) {
             vefa.data({
-                "ebr": Vefa.get_bus("ebr")
+                "ebr": bus.$data.ebr
             })
         }
 

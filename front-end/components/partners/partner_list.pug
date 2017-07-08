@@ -1,4 +1,4 @@
-extends /page_types/list
+extends /site/list
 
 block instance
     -
@@ -6,11 +6,14 @@ block instance
             class: "list--partners",
             data: {
                 title: partners.title,
+                impact_color: "co--partners",
+                impact_theme: "thm--partners",
+                icon: "partners",
+                content_type: "partners",
+                
                 slug: routes.partners.slug,
                 summary: partners.summary,
                 results_collection: partners.fixtures,
-                poster_color: "co--partners",
-                icon: "partners",
                 list_type: "partners",
                 
             }
@@ -23,8 +26,6 @@ block form
 
 
 block results
-    if django
-        
         +for("partner in partners.object_list")
             include components/card--result-partner
 

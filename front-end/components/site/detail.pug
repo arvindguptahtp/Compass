@@ -20,15 +20,11 @@ block subclass
 block premain
     include /posters/icon
         -
-
             poster
-                .data(
-                    { 
-                        title: page.title,
-                        icon: page.icon
-                     }
-                    
-                )
+                .data({ 
+                    title: page.title,
+                    icon: page.icon
+                })
                 .mixin({
                     element: {
                         class: `thm--texture-tint ${page.primary_color}`,
@@ -52,3 +48,33 @@ block premain
 
 prepend view
     - proxy()
+
+
+block content
+    .strata--detail.gx--profile(
+        o-base="mod--balance"
+    )
+    
+        section.gxi--a(
+            class=page.impact_theme
+            o-standard="pad--yStart100 pad--x25"
+        )
+            block detail_a
+
+        
+        
+        section.gxi--b(
+            o-base="col--pStart pad--yEnd50 rhy--yStart50"
+            o-condensed="pad--xy100"
+            o-extended="gx--i2--gxy100 rhy--yStart0"
+        )   
+            block detail_b
+
+
+
+        aside.gxi--c
+            include /includes/feedback
+
+
+
+block postmain

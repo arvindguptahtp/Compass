@@ -4,9 +4,7 @@ include /_django
         return `'${ str }'`
     }
 
-    String.prototype.as_v = function () {
-        return v(this)
-    }
+    bus = bus || new Vefa({ class: "bus" })
 
 mixin iter(num=1)
     - run = Array(num).fill(0)
@@ -15,7 +13,7 @@ mixin iter(num=1)
         block
         - index++
 
-
+    
 //--------------------------------------------
 //- 
 //- INIT SCOPE
@@ -132,7 +130,6 @@ block instance
             
             if (vefa._view) eval(`${vefa._view.toString()} = vefa`)
         }
-        
         
 
 

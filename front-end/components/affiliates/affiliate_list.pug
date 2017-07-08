@@ -1,16 +1,18 @@
-extends /page_types/list
+extends /site/list
 
 block instance
     -
         vefa
             .data({
                 title: affiliates.title,
+                impact_color: "co--affiliates",
+                impact_theme: "thm--affiliates",
+                icon: "affiliates",
+                content_type: "affiliates",
+
                 slug: routes.affiliates.slug,
                 summary: affiliates.summary,
-                results_collection: affiliates.fixtures,
-                poster_color: "co--affiliates",
-                icon: "affiliates",                
-                list_type: "affiliates"
+                results_collection: affiliates.fixtures,     
             })
 
 
@@ -20,10 +22,8 @@ block form
 
 
 block results
-    if django
-        
-        +for('affiliate in affiliates.object_list')
-            include components/card--result-affiliate
+    +for('affiliate in affiliates.object_list')
+        include /affiliates/components/card--result-affiliate
 
-            +empty()
-                p No matching affiliates
+        +empty()
+            p No matching affiliates

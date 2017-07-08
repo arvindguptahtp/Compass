@@ -1,0 +1,233 @@
+extends /site/detail
+
+block instance
+    -
+        page.data({
+            key: 'affiliate',
+            title: 'affiliate',
+            icon: "affiliates",
+            impact_theme: "thm--affiliates",
+            impact_color: "co--affiliates",
+            
+            
+            location: 'affiliate_location',
+            //- overview: 'partner.overview',
+            //- cost: 'partner.is_cost_free',
+            //- cost_desc: 'partner.cost_description',
+            //- grade: 'partner.grade',
+            //- gender: 'partner.gender',
+            //- reach: 'partner.organizational_reach',
+            //- need: 'partner.student_need',
+            //- setting: 'partner.setting',
+            //- service_tier: 'partner.tiers_of_service',
+            //- ebr: 'partner.tiers_of_evidence',
+            //- core_services: 'partner.service_categories',
+            //- core_partner: 'partner.is_core_partner',
+            //- network_use: 'partner.network_use',
+            //- featured: 'partner.feature_network'
+        })
+
+
+block premain
+    include /posters/icon
+        -
+            vefa.data({ 
+                    title: page.title.tag(),
+                    icon: page.icon
+            })
+            .mixin({
+                element: {
+                    class: `thm--texture-tint ${page.impact_color}`,
+                    "o-extended": "gxi--b"
+                }
+            })
+
+
+
+block detail_a
+    include /cards/data-list
+        -
+            vefa
+                .data({
+                    heading: "Affiliate Details",
+                    map: [
+                        ["Affiliate Resources"],
+                        ["School Districts"],
+                    ],
+                    as_heading: ["Affiliate Resources", "School Districts"],
+                    style: "alternate"
+                })
+                .define({
+                    element: {
+                        "o-base": "col--pStart iso--yStart25"
+                    },
+                    hdr: {
+                        "o-base": "pad--x25 pad--y25",
+                        "o-condensed": "pad--x50"
+                    },
+                    hed: {
+                        class: "tx--subhed--f1--100--aa"
+                    },
+                    bd: {
+                        "o-base": ""
+                    },
+                    list: {
+                        "o-base": "mod--balance rhy--yStart25",
+                        "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
+                    },
+                    data_key: {
+                        class: "thm--shade40 tx--small--f3--tcU",
+                        "o-base": "pad--xy25",
+                        "o-condensed": "pad--xy50"
+                    },
+                    data_value: {
+                        class: "thm--tint10 tx--f3",
+                        "o-base": "col--pStart--sStart pad--xy25",
+                        "o-condensed": "pad--xy50 gxs--s2"
+                    },
+                })
+
+
+//- block view
+//-     .strata--detail.gx--detail-affiliate(
+//-         o-base="mod--balance"
+//-     )
+       
+//-         section.thm--affiliates.gxi--a(
+//-             o-base="pad--x25 pad--yEnd100 hy--yStart"
+//-             o-condensed="pad--yEnd25"
+//-             o-standard="pad--xy50"
+//-             o-enhanced="pad--x50"
+//-         )
+//-             header.tx--subhed--f1--100--aa(
+//-                 o-base="pad--x25 pad--y25"
+//-                 o-condensed="pad--x50"
+//-             )
+//-                 h2 Affiliate Details
+            
+//-             h3.tx--small--f3--900--aa.thm--shade60(
+//-                 o-base="pad--xy25 iso--yEnd"
+//-                 o-condensed="pad--x50"
+//-             ) Affiliate Resources
+//-             dl(
+//-                 o-base="iso--yEnd"
+//-             )
+//-                 dt.thm--shade40.tx--small--f3--tcU(
+//-                     o-base="pad--xy25"
+//-                 ) Executive Director
+//-                 dd.thm--shade20.tx--small--f3(
+//-                     o-base="col--pStart--sStart pad--xy25"
+//-                 )
+//-                     p= v('affiliate.current_data.executive_director_name')
+//-                     a(
+//-                         href=`mailto:${v('affiliate.current_data.executive_director_email')}`
+//-                     )
+//-                         = v('affiliate.current_data.executive_director_email')
+
+//-                 dt.thm--shade40.tx--small--f3--tcU(
+//-                     o-base="pad--xy25"
+//-                 ) Program Lead
+//-                 dd.thm--shade20.tx--small--f3(
+//-                     o-base="col--pStart--sStart pad--xy25"
+//-                 )
+//-                     p= v('affiliate.current_data.program_lead_name')
+//-                     a.fx--shift(
+//-                         href=`mailto:${v('affiliate.current_data.program_lead_email')}`
+//-                     )
+//-                         = v('affiliate.current_data.program_lead_email')
+
+//-             h3.tx--small--f3--900--aa.thm--shade60(
+//-                 o-base="pad--xy25 iso--yEnd"
+//-                 o-condensed="pad--x50"
+//-             ) School Districts
+//-             dl(
+//-                 o-base="gx--i2 iso--yEnd"
+//-                 o-standard="gx--i1"
+//-                 o-enhanced="gx--i2"
+//-             )
+        
+//-         .detail-copy.gxi--b(
+//-             o-base="pad--yEnd50 rhy--yStart50"
+//-             o-condensed="pad--x50 pad--y50"
+//-             o-extended="gx--i2--gxy100 rhy--yStart0"
+//-         )
+//-             section.thm--dark(
+//-                 o-base="col--pStart pad--yEnd100"
+//-                 o-condensed="pad--yEnd0"
+//-             )
+//-                 header.thm--shade20(
+//-                     o-base="pad--x50 pad--y25"
+//-                 )
+//-                     h1.tx--maj--f1--100 Students Served
+
+//-             section.thm--dark(
+//-                 o-base="col--pStart pad--yEnd100"
+//-                 o-condensed="pad--yEnd0"
+//-             )
+//-                 header.thm--shade20(
+//-                     o-base="pad--x50 pad--y25"
+//-                 )
+//-                     h1.tx--maj--f1--100 Service Categories
+
+
+//-         div.gxi--c.thm--light-alt.hl--yStart--bTint(
+//-             o-condensed="pad--xy25"
+//-             o-standard="pad--xy50"
+//-         )
+//-             section.thm--dark(
+//-                 o-base="col--pStart pad--yEnd100"
+//-                 o-condensed="pad--yEnd0"
+//-             )
+//-                 header.thm--shade20(
+//-                     o-base="pad--x50 pad--y25"
+//-                 )
+//-                     h1.tx--maj--f1--100 Affiliate Partners
+                
+//- //-                 ul.bd(
+//- //-                     o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+//- //-                     o-extended="gx--i2--gxy25 mod--static rhy--yStart0"
+//- //-                 )
+            
+            
+//- //-             section.thm--dark(
+//- //-                 o-base="col--pStart pad--yEnd100"
+//- //-                 o-condensed="pad--yEnd0"
+//- //-             )
+//- //-                 header.thm--shade20(
+//- //-                     o-base="mod--static pad--x50 pad--y25"
+//- //-                 )
+//- //-                     h1.tx--maj--f1--100 TBD
+
+//- //-                 ul.bd(
+//- //-                     o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+//- //-                     o-extended="gx--i2--gxy25 mod--static rhy--yStart0"
+//- //-                 )                    
+
+            
+//- //-             section.thm--shade20(
+//- //-                 o-base="col--pStart pad--yEnd100"
+//- //-                 o-condensed="pad--yEnd0"
+//- //-             )
+//- //-                 header.thm--affiliates(
+//- //-                     o-base="pad--x50 pad--y25"
+//- //-                 )
+//- //-                     h1.tx--maj--f1--100 TBD
+
+//- //-                 ul.bd(
+//- //-                     o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+//- //-                 )
+                
+            
+            
+//- //-             section.thm--shade20(
+//- //-                 o-base="col--pStart pad--yEnd100"
+//- //-                 o-condensed="pad--yEnd0"
+//- //-             )
+//- //-                 header.thm--affiliates(
+//- //-                     o-base="pad--x50 pad--y25"
+//- //-                 )
+//- //-                     h1.tx--maj--f1--100 TBD
+                
+//- //-                 ul.bd(
+//- //-                     o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
+//- //-                 )

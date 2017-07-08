@@ -29,13 +29,18 @@ main
 
 .gx--search
     // grid-template-columns: 1fr
+    
     grid-template-areas: 
         "a" \
         "b"
     
+
     +over(enhanced)
         grid-template-columns: 20vw 1fr
-        grid-template-areas: "a b"
+        grid-template-rows: auto max-content
+        grid-template-areas: 
+            "a b" \
+            "a c"
 
 
 .gx--profile
@@ -53,10 +58,10 @@ main
 
     +over(full)
         grid-template-columns: minmax(250px, 500px) 5fr
-        grid-template-rows: auto 1fr
+        grid-template-rows: auto max-content
         grid-template-areas: 
             "a b" \
-            "c c"
+            "a c"
 
 
 

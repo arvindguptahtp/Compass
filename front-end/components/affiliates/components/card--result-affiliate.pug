@@ -1,60 +1,91 @@
-//- extends /cards/result
+extends /cards/result
 
-//- block instance
-//-     -
-//-         vefa.define({
-//-             class: 'gx--result-affiliate',
-//-         })
+block instance
+    -
+        vefa.define({
+            class: 'card--result-partner',
+            data: {
+                key: 'affiliate',
+                labels: {
+                    network_yes: 'Active in Network',
+                    network_no: 'Inactive in Network'
+                }
+            },
+            element: {
+                class: 'gx--result-affiliate',
+            }
+            
+        })
 
-//-     if django
-//-         -
-//-             vefa
-//-                 .data({
-//-                     title: 'affiliate',
-//-                     slug: 'affiliate.get_absolute_url',
-//-                     state: 'affiliate.state',
-//-                     location: 'affiliate.affiliate_location',
-//-                     students: 'affiliate.current_data.calculated_total_enrollment',
-//-                     budget: 'affiliate.current_data.budget_total'
-//-                 })
-//-     else
-//-         -
-//-             vefa
-//-                 .data({
-//-                     title: item.name,
-//-                     slug: '/affiliates/affiliates_detail',
-//-                     overview: true,
-//-                     state: item.state,
-//-                     location: item.location,
-//-                     students: item.total_students,
-//-                     budget: item.budget
-//-                 })
+    if django
+        -
+            vefa
+                .data({
+                    title: 'affiliate',
+                    slug: 'get_absolute_url',
+                    location: 'affiliate_location',
+                    students: 'current_data.calculated_total_enrollment',
+                    budget: 'current_data.budget_total'
+                })
 
 
-//- block result_network
+
+block result_overview
+    dd.gxi--profile
+        include /controls/action
+            -
+                vefa.data({
+                    url: card.slug.io(),
+                    label: "View Profile"
+                })
 
 
-//- block result_title
-//-     dt.gxi--title.thm--shade10(
-//-         o-base="row--pStart"
-//-     )
-//-         a.co--pri.rxn--tint50.fx--shift(
-//-             href=v(vefa.slug)
-//-             rel="noopener"
-//-             o-base="row--pStart--sMiddle mod--balance pad--x50 pad--y10 rhy--xStart"
-//-         )
-//-             h4.tx--f1--100(
-//-                 o-enhanced="tx--subhed--f1--100"
-//-             )
-//-                 = v(vefa.title)
+block result_state
+    +if(card.state.io())
+        dd.gxi--state.tx--base--f1--100.hl--xy--bTint(
+            o-base="row--pStart--sMiddle pad--x25 pad--y10 rhy--xStart25"
+            o-condensed="pad--x50"
+        )
+            span= card.state.tag("us_state")
+
+            for choice, index in choices.location
+                +if(`${ card.location.io() } == '${ index }'`)
+                    span= `(${choice})`
 
 
-//- block result_overview
-//-     dd.gxi--profile
-//-         include /controls/action
-//-             -
-//-                 vefa.data({
-//-                     url: view.slug,
-//-                     label: "View Profile"
-//-                 })
-        
+block result_students
+    dd.gxi--students.thm--dark(
+        o-base="row--pStart"
+    )
+        dl.thm--shade25.tx--base--f1--100(
+            o-base="row--pStart rhy--xStart25"
+        )
+            dt.thm--tint15(
+                o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
+                o-condensed="pad--x50"
+            )
+                = `Total Students: `
+            
+            dd.tx--400(
+                o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
+                o-condensed="pad--x50"
+            )= card.students.tag("default_if_none:'0'")
+
+
+block result_budget
+    dd.gxi--budget.thm--dark(
+        o-base="row--pStart"
+    )
+        dl.thm--shade45.tx--base--f1--100(
+            o-base="row--pStart rhy--xStart25"
+        )
+            dt.thm--tint15(
+                o-base="row--pStart--sMiddle--xAuto mod--static pad--xy25"
+                o-condensed="pad--x50"
+            )
+                = `Total Budget: `
+            
+            dd.tx--400(
+                o-base="row--pMiddle--sMiddle--xAuto mod--static pad--xy25"
+                o-condensed="pad--x50"
+            )= `$${ card.budget.tag('intcomma') }`

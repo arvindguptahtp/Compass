@@ -9,7 +9,7 @@ from django.conf import settings
 
 class HomePage(TemplateView):
     """The home page view"""
-    template_name = "site/index.html"
+    template_name = "pages/index.html"
 
 
 class PDFMixin(PDFTemplateResponseMixin):

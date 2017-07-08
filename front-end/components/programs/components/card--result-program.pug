@@ -25,7 +25,32 @@ block instance
             })
 
 
-block result_tier
+block result_overview
+    dd.gxi--overview.hl--xy--bTint(
+        o-base="mod--balance pad--xy25 rhy--yStart50"
+        o-standard="pad--xy50"
+    )
+        +if(card.overview.io())
+            .bd.copy.tx--small--f2(
+                o-full="tx--base"
+            )
+                = card.overview.tag()
+        
+        footer(
+            o-base="row--pStart"
+        )
+            include /controls/action
+                -
+                    vefa.data({
+                        url: card.slug.io(),
+                        label: "View Profile"
+                    })
+
+
+block result_ebr                    
+    dd.gxi--ebr.thm--dark
+        - bus.data({ ebr: card.ebr.io() })
+        include /cards/ebr
 
 
 block result_network
@@ -35,13 +60,42 @@ block result_network
         o-enhanced="pad--xy50"
     )   
 
-        +if(`${ card.g('network') }.count > 0`)
+        +if(`${ card.network.io() }.count > 0`)
             div(
-                class=card.g('network') ? "thm--partners" : "thm--inactive"
+                class="thm--partners"
                 o-base="row--pStart mod--balance"
                 o-condensed="row--pStart--xAuto mod--static"
             )
                 span.thm--shade5.tx--small--f1--100--tcU(
                     o-base="mod--balance--aMiddle pad--y10 pad--x25"
                 )        
-                    = card.g('network') ? card.labels.network_yes :card.labels.network_no
+                    = card.labels.network_yes
+
+
+block result_services
+    dd.gxi--services(
+        o-base="col--pStart"
+    )
+        article.card--coreservices.thm--dark(
+            o-base="col--pStart mod--balance"
+        )
+            header.card-hdr.thm--tint10(
+                o-base="ord--start"
+            )
+                h5.tx--small--f1--100--tcU--taMiddle(
+                    o-base="pad--x25 pad--y10"
+                    o-condensed="pad--x50 pad--y25"
+                ) CIS Core Services
+
+            ul.card-bd.gx--auto.thm--shade50(
+                o-base="mod--balance"
+                o-condensed="pad--xy25"
+                style="align-content: center"
+            )
+                if django
+                    +for(`icon_type in ${ card.services.io() }`)
+                        li.co--pri.ico--xl(
+                            o-base="mod--static pad--xy25"
+                        )   
+                            svg.ico
+                                use(xlink:href=`#ico--${ v( `icon_type` ) }`)

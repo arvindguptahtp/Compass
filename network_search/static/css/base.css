@@ -55,10 +55,6 @@ svg {
   display: block;
   fill: currentColor;
 }
-span svg {
-  display: inline-block;
-  vertical-align: baseline;
-}
 address {
   font-style: normal;
 }
@@ -269,10 +265,6 @@ button {
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
 }
-[o-base*='gx--i2'] {
-  -ms-grid-columns: (minmax(0, 1fr))[2];
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-}
 [o-base*='gx--i3'] {
   -ms-grid-columns: (minmax(0, 1fr))[3];
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -285,6 +277,10 @@ button {
 }
 [o-base*='--gxy25'] {
   grid-gap: 6px;
+}
+[o-base*='--gsMiddle'] {
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 [class*='gxi--a'] {
   grid-area: a;
@@ -299,9 +295,6 @@ button {
   grid-area: b;
 }
 [class*='gxi--c'] {
-  grid-area: c;
-}
-[o-base*='gxi--c'] {
   grid-area: c;
 }
 [class*='gxi--e'] {
@@ -355,14 +348,8 @@ button {
   padding-top: 24px;
   padding-bottom: 24px;
 }
-[o-base~='pad--yStart25'] {
-  padding-top: 6px;
-}
 [o-base~='pad--yEnd50'] {
   padding-bottom: 12px;
-}
-[o-base~='pad--yEnd100'] {
-  padding-bottom: 24px;
 }
 [o-base~='pad--xy25'] {
   padding: 6px;
@@ -557,6 +544,9 @@ button {
 .thm--shade40 {
   background-color: rgba(24, 20, 17, .4);
 }
+.thm--shade45 {
+  background-color: rgba(24, 20, 17, .45);
+}
 .thm--shade50 {
   background-color: rgba(24, 20, 17, .5);
 }
@@ -568,6 +558,9 @@ button {
 }
 .thm--tint10 {
   background-color: rgba(255, 255, 255, .1);
+}
+.thm--tint15 {
+  background-color: rgba(255, 255, 255, .15);
 }
 .thm--tint20 {
   background-color: rgba(255, 255, 255, .2);
@@ -781,19 +774,9 @@ input[class*='rxn--tint'] {
     padding-top: 6px;
     padding-bottom: 6px;
   }
-  [o-condensed~='pad--y50'] {
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
   [o-condensed~='pad--y150'] {
     padding-top: 36px;
     padding-bottom: 36px;
-  }
-  [o-condensed~='pad--yEnd0'] {
-    padding-bottom: 0;
-  }
-  [o-condensed~='pad--yEnd25'] {
-    padding-bottom: 6px;
   }
   [o-condensed~='pad--xy25'] {
     padding: 6px;
@@ -875,20 +858,6 @@ input[class*='rxn--tint'] {
             align-items: center;
   }
   @supports ((display: -ms-grid) or (display: grid)) {
-    [o-standard*='gx--'] {
-      display: -ms-grid;
-      display: grid;
-      grid-gap: 0;
-      -ms-grid-rows: max-content;
-          grid-template-rows: max-content;
-    }
-  }
-  [o-standard*='gx--i1'] {
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
-  }
-  [o-standard~='rhy--xStart25'] > * + * {
-    margin-left: 6px;
   }
   [o-standard~='rhy--xStart100'] > * + * {
     margin-left: 24px;
@@ -912,9 +881,6 @@ input[class*='rxn--tint'] {
     padding-left: 24px;
     padding-right: 24px;
   }
-  [o-standard~='pad--xEnd25'] {
-    padding-right: 6px;
-  }
   [o-standard~='pad--y100'] {
     padding-top: 24px;
     padding-bottom: 24px;
@@ -930,9 +896,6 @@ input[class*='rxn--tint'] {
   }
   [o-standard~='pad--xEdges0']:last-child {
     padding-right: 0;
-  }
-  [o-standard~='iso--yStart0'] {
-    margin-top: 0;
   }
   [o-standard~='vx--hidden'] {
     visibility: hidden;
@@ -958,24 +921,9 @@ input[class*='rxn--tint'] {
     width: 60%;
   }
   @supports ((display: -ms-grid) or (display: grid)) {
-    [o-enhanced*='gx--'] {
-      display: -ms-grid;
-      display: grid;
-      grid-gap: 0;
-      -ms-grid-rows: max-content;
-          grid-template-rows: max-content;
-    }
-  }
-  [o-enhanced*='gx--i2'] {
-    -ms-grid-columns: (minmax(0, 1fr))[2];
-        grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   [o-enhanced~='rhy--yStart200'] > * + * {
     margin-top: 48px;
-  }
-  [o-enhanced~='pad--x50'] {
-    padding-left: 12px;
-    padding-right: 12px;
   }
   [o-enhanced~='pad--x100'] {
     padding-left: 24px;
@@ -1164,9 +1112,6 @@ input[class*='rxn--tint'] {
   [o-full*='gxi--c'] {
     grid-area: c;
   }
-  [o-full*='gxi--e'] {
-    grid-area: e;
-  }
   [o-full*='gxi--f'] {
     grid-area: f;
   }
@@ -1186,9 +1131,6 @@ input[class*='rxn--tint'] {
   [o-full~='iso--xAuto'] {
     margin-left: auto;
     margin-right: auto;
-  }
-  [o-full*='pos--abs'] {
-    position: absolute;
   }
   [o-full~='vx--hidden'] {
     visibility: hidden;

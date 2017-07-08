@@ -261,7 +261,7 @@
   </div>
   <main o-base="col--pStart" o-extended="gxi--d">
     <div class="strata--detail gx--profile" o-base="mod--balance">
-      <section class="gxi--a thm--programs" o-standard="pad--yStart100 pad--x25">  {% if True %}
+      <section class="gxi--a thm--programs" o-standard="pad--yStart100 pad--x25">{% if True %}
                 <article class="card--list-data" o-base="col--pStart iso--yStart25">
                   <header o-base="pad--x25 pad--y25" o-condensed="pad--x50">
                     <h1 class="tx--subhed--f1--100--aa">Program Information</h1>
@@ -303,8 +303,8 @@
                   </div>
                 </article>{% endif %}
       </section>
-      <section class="gxi--b" o-base="col--pStart pad--yEnd50 rhy--yStart50" o-condensed="pad--xy100" o-extended="gx--i2--gxy100 rhy--yStart0">
-        <article class="copy--card-lede thm--shade5" o-base="mod--static pad--xy50 rhy--yStart50" o-extended="gxs--s2">
+      <section class="gxi--b" o-base="col--pStart pad--yEnd50 rhy--yStart50" o-condensed="pad--xy100" o-extended="gx--i2--gxy100 rhy--yStart0">  
+        <article class="copy--card-lede" o-base="mod--static pad--xy50 rhy--yStart50" o-extended="gxs--s2">
           <header>
             <h2 class="tx--hed--f1--100 co--programs">Program Description
             </h2>
@@ -416,15 +416,15 @@
                     </article>{% endif %}
         </section>
       </section>
+      <aside class="gxi--c">
+        <div class="strata thm--light-alt hl--yStart--bTint" o-base="col--pStart pad--xy50 rhy--yStart100" o-enhanced="pad--xy50">
+                  <footer class="tx--maj--f1--100" o-base="row--pEnd--sMiddle rhy--xStart50">
+                    <p>Please submit your feedback on our new tool:</p><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="{{ 'https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link' }}" target="_blank" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>Fill out our survey</span></a>
+                  </footer>
+        </div>
+      </aside>
     </div>
   </main>
-  <aside o-extended="gxi--e">
-    <div class="strata thm--light-alt hl--yStart--bTint" o-base="col--pStart pad--xy50 rhy--yStart100" o-enhanced="pad--xy50">
-          <footer class="tx--maj--f1--100" o-base="row--pEnd--sMiddle rhy--xStart50">
-            <p>Please submit your feedback on our new tool:</p><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="{{ 'https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link' }}" target="_blank" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>Fill out our survey</span></a>
-          </footer>
-    </div>
-  </aside>
   <nav class="masthead--nav thm--dark" role="navigation" o-base="row--pStart pad--xStart50 ord--start z--masthead" o-enhanced="pad--xStart100 pad--xEnd50" o-full="gxi--c pad--xy0">   <a class="masthead-home" href="/" target="_top" o-base="row--pMiddle--sMiddle--xAuto mod--fit pad--y25 iso--xEndAuto" o-full="vx--hidden">  
       <picture>
         <source srcset="{% static 'res/logo.full.inverse.png.webp' %}" type="image/webp"><img class="site-logo" src="{% static 'res/logo.full.inverse.png' %}">
