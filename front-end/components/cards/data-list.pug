@@ -62,7 +62,15 @@ block subclass
                                         category: (dict[3]) ? dict[3] : false
                                     })
                                 break;
-                            
+                                
+                                case "yesno":
+                                    return Object.assign(value, {
+                                        value: dict[2],
+                                        yes: (dict[3]) ? dict[3] : "yes",
+                                        no: (dict[4]) ? dict[4] : "no",
+                                    })
+                                break;
+
                                 case "link":
                                     return Object.assign(value, {
                                         value: dict[2],
@@ -131,6 +139,14 @@ block content
                                 = `$${ v(item.value, "intcomma") }`
                             else
                                 = item.display
+
+                when "yesno"
+                    dt&attributes(card.data_key)= item.label
+                    dd&attributes(card.data_value)
+                        +if(item.value)
+                            = item.yes
+                            +else()
+                                = item.no
                 
                 when "link"
                     +if(item.value)
@@ -142,7 +158,7 @@ block content
                                 rel="noopener"
                                 o-base="row--pStart--sMiddle rhy--xStart25"
                             )
-                                span= item.link_label
+                                span.tx--trnc= item.link_label
                                 svg.ico
                                     use(href=`#ico--link-ext`)
                 

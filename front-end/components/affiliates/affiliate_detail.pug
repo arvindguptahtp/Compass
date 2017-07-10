@@ -14,43 +14,6 @@ block instance
             director_email: 'current_data.executive_director_email',
             lead_name: 'current_data.program_lead_name',
             lead_email: 'current_data.program_lead_email',
-            budget: 'current_data.budget_total',
-            funding_public_federal: 'current_data.funding_public_federal',
-            funding_public_state: 'current_data.funding_public_state',
-            funding_public_city: 'current_data.funding_public_city',
-            funding_public_school_district: 'current_data.funding_public_school_district',
-            funding_private_corporate: 'current_data.funding_private_corporate',
-            funding_private_foundation: 'current_data.funding_private_foundation',
-            funding_private_board: 'current_data.funding_private_board',
-            funding_private_individual: 'current_data.funding_private_individual',
-            funding_private_events: 'current_data.funding_private_events',
-            funding_private_cis_national: 'current_data.funding_private_cis_national',
-            funding_private_cis_state_office: 'current_data.funding_private_cis_state_office',
-            funding_private_npo: 'current_data.funding_private_npo',
-            funding_private_other: 'current_data.funding_private_other',
-            funding_private_corporate: 'current_data.funding_private_corporate',
-            funding_private_foundation: 'current_data.funding_private_foundation',
-            funding_private_board: 'current_data.funding_private_board',
-            funding_private_individual: 'current_data.funding_private_individual',
-            funding_private_events: 'current_data.funding_private_events',
-            funding_private_cis_national: 'current_data.funding_private_cis_national',
-            funding_private_cis_state_office: 'current_data.funding_private_cis_state_office',
-            funding_private_npo: 'current_data.funding_private_npo',
-            funding_private_other: 'current_data.funding_private_other',
-            //- overview: 'partner.overview',
-            //- cost: 'partner.is_cost_free',
-            //- cost_desc: 'partner.cost_description',
-            //- grade: 'partner.grade',
-            //- gender: 'partner.gender',
-            //- reach: 'partner.organizational_reach',
-            //- need: 'partner.student_need',
-            //- setting: 'partner.setting',
-            //- service_tier: 'partner.tiers_of_service',
-            //- ebr: 'partner.tiers_of_evidence',
-            //- core_services: 'partner.service_categories',
-            //- core_partner: 'partner.is_core_partner',
-            //- network_use: 'partner.network_use',
-            //- featured: 'partner.feature_network'
         })
 
 
@@ -71,6 +34,40 @@ block premain
 
 
 block detail_a
+    - 
+        card_alt = {
+            element: {
+                "o-base": "col--pStart"
+            },
+            hdr: {
+                "o-base": "pad--x25 pad--yEnd25",
+                "o-condensed": "pad--x50"
+            },
+            hed: {
+                class: "tx--subhed--f1--100--aa"
+            },
+            bd: {
+                "o-base": ""
+            },
+            list: {
+                "o-base": "mod--balance rhy--yStart25",
+                "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
+            },
+            data_hed: {
+                class: `thm--shade60 tx--small--f3--900--aa`,
+            },
+            data_key: {
+                class: "thm--shade40 tx--small--f3--tcU",
+                "o-base": "pad--xy25",
+                "o-condensed": "pad--xy50"
+            },
+            data_value: {
+                class: "thm--tint10 tx--f3",
+                "o-base": "col--pStart--sStart pad--xy25",
+                "o-condensed": "pad--xy50 gxs--s2"
+            },
+        }
+
     include /cards/data-list
         -
             vefa
@@ -85,55 +82,10 @@ block detail_a
                         ["text", "Phone Number", page.phone_number.io()],
                         ["text", "Fax Number", page.fax_number.io()],
                         ["link", "Website", page.website.io(), page.title.tag()],                            
-                        ["heading", "Staffing"],
-                        ["text", "Full-time", page['current_data.full_time_staff'].io()],
-                        ["text", "Part-time", page['current_data.part_time_staff'].io()],
-                        ["heading", "CIS Services"],
-                        ['text', 'Academic Assistance'],
-                        ['text', 'Basic Needs'],
-                        ['text', 'Behavior Intervention'],
-                        ['text', 'College/Career Prep'],
-                        ['text', 'Community Service'],
-                        ['text', 'Enrichment'],
-                        ['text', 'Family Engagement'],
-                        ['text', 'Life Skills/Social Development'],
-                        ['text', 'Professional Mental Health'],
-                        ['text', 'Professional Phytisal Health'],
                     ],
                     style: "alternate"
                 })
-                .define({
-                    element: {
-                        "o-base": "col--pStart iso--yStart25"
-                    },
-                    hdr: {
-                        "o-base": "pad--x25 pad--y25",
-                        "o-condensed": "pad--x50"
-                    },
-                    hed: {
-                        class: "tx--subhed--f1--100--aa"
-                    },
-                    bd: {
-                        "o-base": ""
-                    },
-                    list: {
-                        "o-base": "mod--balance rhy--yStart25",
-                        "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
-                    },
-                    data_hed: {
-                        class: `thm--shade60 tx--small--f3--900--aa`,
-                    },
-                    data_key: {
-                        class: "thm--shade40 tx--small--f3--tcU",
-                        "o-base": "pad--xy25",
-                        "o-condensed": "pad--xy50"
-                    },
-                    data_value: {
-                        class: "thm--tint10 tx--f3",
-                        "o-base": "col--pStart--sStart pad--xy25",
-                        "o-condensed": "pad--xy50 gxs--s2"
-                    },
-                })
+                .define(card_alt)
 
         mixin card_contact
             ul
@@ -158,6 +110,34 @@ block detail_a
                     )
                         = page.lead_email.tag()
 
+    
+    include /cards/data-list 
+        -
+            vefa
+                .data({
+                    heading: "CIS Services",
+                    map: [
+                        ['text', 'Academic Assistance'],
+                        ['text', 'Basic Needs'],
+                        ['text', 'Behavior Intervention'],
+                        ['text', 'College/Career Prep'],
+                        ['text', 'Community Service'],
+                        ['text', 'Enrichment'],
+                        ['text', 'Family Engagement'],
+                        ['text', 'Life Skills/Social Development'],
+                        ['text', 'Professional Mental Health'],
+                        ['text', 'Professional Phytisal Health'],                         
+                    ],
+                    style: "alternate"
+                })
+                .define(card_alt)
+                .mixin({
+                    element: {
+                        "o-condensed": "iso--yStart100"
+                    }
+                })
+
+                        
 
 
 block detail_b
@@ -238,14 +218,22 @@ block detail_b
                         map: [
                             ["text", "School District(s)",],
                             ["text", "Total Enrollment", 'eoy_data.total_enrollment'],
-                            ['heading', "Eastern Greenbrier Middle School (Example)"],
-                            ["text", "Location", 'True', "Rural"],
-                            ["text", "Location Model", 'True', "CIS Model School"],
-                            ["text", "Number of Case-managed Students", 'True', "117"],
-                            ["text", "Total Students Reached", 'True', "721"],
+                            ["text", "Number of Case-managed Students", 'True', ' '],
+                            ["text", "Total Students Reached", 'True', ' '],
+                            ["heading", "Affiliate Staffing"],
+                            ["text", "Full-time", page['current_data.full_time_staff'].io()],
+                            ["text", "Part-time", page['current_data.part_time_staff'].io()],
+                            ["text", "Americorps", page['current_data.americorps_staff'].io()],
                         ]
                     })
-       
+                    .define({
+                        data_key: {
+                            "o-condensed": "pad--x50 gxs--s2"
+                        },
+                        data_value: {
+                            "o-condensed": "pad--x50"
+                        }
+                    })
 
         include /cards/data-list
             -
@@ -267,27 +255,35 @@ block detail_b
                         ]
                     })
 
+        +if('eoy_data.total_students_served > 0')
+            include /cards/data-list
+                -
+                    vefa
+                        .data({
+                            heading: "Demographics of Students Served",
+                            map: [
+                                ['yesno', 'FRPL Eligible Students Served', 'eoy_data.total_students_frpl > 0'],
+                                ['yesno', 'ELL Students Served', 'eoy_data.total_students_ell > 0'],
+                                ['yesno', 'Foster Care/Group Home', 'eoy_data.total_students_foster > 0'],
+                                ['yesno', 'Homeless Youth', 'eoy_data.total_students_homeless > 0'],
+                                ['yesno', 'LGBT', 'eoy_data.total_students_lgbt > 0'],
+                                ['yesno', 'Pregnant/Parenting', 'eoy_data.total_students_pregnant_parenting > 0'],
+                                ['yesno', 'Special Education', 'eoy_data.total_students_special_education > 0'],
+                                ['yesno', 'Substance Abuse', 'eoy_data.total_students_substance_abuse > 0'],
+                                ['yesno', 'Adjudicated Youth', 'eoy_data.total_students_adjudicated_youth > 0'],
+                                ['yesno', 'Child of Military', 'eoy_data.total_students_child_of_military > 0'],
+                                ['yesno', 'Gang Involvement', 'eoy_data.total_students_gang > 0'],
+                                ['yesno', 'Incarcerated Parent', 'eoy_data.total_students_incarcerated_parent > 0'],
+                            ]
+                        })
+                        .define({
+                            data_key: {
+                                "o-condensed": "pad--x50 gxs--s2"
+                            },
+                            data_value: {
+                                "o-condensed": "pad--x50"
+                            }
+                        })
 
-        include /cards/data-list
-            -
-                vefa
-                    .data({
-                        heading: "Demographics of Students Served",
-                        map: [
-                            ['text', 'FRPL Eligible Students Served', 'eoy_data.total_students_frpl'],
-                            ['text', 'ELL Students Served', 'eoy_data.total_students_ell'],
-                            ['text', 'Foster Care/Group Home', 'eoy_data.total_students_foster'],
-                            ['text', 'Homeless Youth', 'eoy_data.total_students_homeless'],
-                            ['text', 'LGBT', 'eoy_data.total_students_lgbt'],
-                            ['text', 'Pregnant/Parenting', 'eoy_data.total_students_pregnant_parenting'],
-                            ['text', 'Special Education', 'eoy_data.total_students_special_education'],
-                            ['text', 'Substance Abuse', 'eoy_data.total_students_substance_abuse'],
-                            ['text', 'Adjudicated Youth', 'eoy_data.total_students_adjudicated_youth'],
-                            ['text', 'Child of Military', 'eoy_data.total_students_child_of_military'],
-                            ['text', 'Gang Involvement', 'eoy_data.total_students_gang'],
-                            ['text', 'Incarcerated Parent', 'eoy_data.total_students_incarcerated_parent'],
-                        ]
-                    })
-
+            
         
-    
