@@ -52,16 +52,17 @@ block detail_a
                     heading: "Partner Information",
                     map: [
                         ["Points of Contact"],
-                        ["Contact", "card_contact"],
+                        [page.contact_title.tag(), "card_contact"],
                         ["Organizational Information"],
                         ["Core Partner", page.is_core_partner.io()],
                         ["Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
                         ["Organizational Reach", page.organizational_reach.io(), "Regions"],
                         ["Setting", page.setting.io(), "Setting"],
+                        ["Associated Fees", "card_fees"]
                     ],
                     as_heading: ["Points of Contact", "Organizational Information"],
                     as_text: ["Name", "Title", "Email", "Website", "Core Partner"],
-                    as_mixin: ["Contact"],
+                    as_mixin: [page.contact_title.tag(), "Associated Fees"],
                     style: "alternate"
                 })
                 .define({
@@ -95,30 +96,25 @@ block detail_a
                 })
         
         mixin card_contact
-            dt&attributes(card.data_key)
-                = page.contact_title.tag()
-            dt&attributes(card.data_value)
-                p= page.contact_name.tag()
-                a.tx--tdU.fx--shift(
-                    href=`mailto:${page.contact_email.tag()}`
-                )
-                    = page.contact_email.tag()
-                a.tx--tdU.fx--shift(
-                    href=`${page.website.tag()}`
-                    target="_blank"
-                    rel="noopener"
-                ) Website
+            p= page.contact_name.tag()
+            a.tx--tdU.fx--shift(
+                href=`mailto:${page.contact_email.tag()}`
+            )
+                = page.contact_email.tag()
+            a.tx--tdU.fx--shift(
+                href=`${page.website.tag()}`
+                target="_blank"
+                rel="noopener"
+            ) Website
 
-        mixin card_list
-            dt&attributes(card.data_key) Associated Fees
+        mixin card_fees
             +if(page.is_cost_free.io())
-                dt&attributes(card.data_value) Free of Cost
+                p Free of Cost
                 +else()
-                    dt&attributes(card.data_value)
-                        +if(page.cost_description.io())
-                            p(
-                                style="word-break:word"
-                            )= page.cost_description.tag("safe")
+                    +if(page.cost_description.io())
+                        p(
+                            style="word-break:word"
+                        )= page.cost_description.tag("safe")
 
 
 

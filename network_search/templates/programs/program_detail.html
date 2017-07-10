@@ -292,13 +292,17 @@
                       <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Outcomes</dt>
                       <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{{ program.outcomes|safe }}
                       </dd>
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Associated Fees</dt>{% if program.is_cost_free %}
-                                      <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">Free of Cost</dt>{% else %}
-                                              <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{% if program.cost_description %}
-                                                        <p style="word-break:word;">{{ program.cost_description|safe }}</p>{% endif %}
-                                              </dt>{% endif %}{% if grouping.assessment %}
-                                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Assessment Available</dt>
-                                      <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2"></dt>{% endif %}
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Associated Fees</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{% if program.is_cost_free %}
+                                        <p>Free of Cost</p>{% else %}{% if program.cost_description %}
+                                                        <p style="word-break:word;">{{ program.cost_description|safe }}</p>{% endif %}{% endif %}
+                      </dd>
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Assessment</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{% if program.assessment_available %}
+                                        <p>Assessment Available</p>{% if program.assessment_info %}
+                                                <p>{{ program.assessment_info }}</p>{% endif %}{% else %}
+                                                <p>N/A</p>{% endif %}
+                      </dd>
                     </dl>
                   </div>
                 </article>{% endif %}

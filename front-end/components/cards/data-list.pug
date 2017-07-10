@@ -79,7 +79,9 @@ block content
                 dt&attributes(card.data_hed)= item.label
             
             else if item.mixin
-                +#{item.value}
+                dt&attributes(card.data_key)= item.label
+                dd&attributes(card.data_value)
+                    +#{item.value}
 
             else
                 dt&attributes(card.data_key)= item.label

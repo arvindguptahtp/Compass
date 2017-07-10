@@ -62,8 +62,11 @@ block detail_a
                         ["Region", page.region.io(), "Regions"],
                         ["Setting", page.setting.io(), "Setting"],
                         ["Outcomes", page.outcomes.io()],
+                        ["Associated Fees", "card_fees"],
+                        ["Assessment", "card_assessment"]
                     ],
                     as_text: ["Outcomes"],
+                    as_mixin: ["Associated Fees", "Assessment"],
                     style: "alternate"
                 })
                 .define({
@@ -96,21 +99,22 @@ block detail_a
                     },
                 })
 
-        mixin card_list
-            dt&attributes(card.data_key) Associated Fees
+        mixin card_fees
             +if(page.is_cost_free.io())
-                dt&attributes(card.data_value) Free of Cost
+                p Free of Cost
                 +else()
-                    dt&attributes(card.data_value)
-                        +if(page.cost_description.io())
-                            p(
-                                style="word-break:word"
-                            )= page.cost_description.tag("safe")
-            
-            +if(page.get("assessment"))
-                dt&attributes(card.data_key) Assessment Available
-                dt&attributes(card.data_value)
-
+                    +if(page.cost_description.io())
+                        p(
+                            style="word-break:word"
+                        )= page.cost_description.tag("safe")
+        
+        mixin card_assessment
+            +if(page.assessment_available.io())
+                p Assessment Available
+                +if(page.assessment_info.io())
+                    p= page.assessment_info.tag()
+                +else()
+                    p N/A
 
 
 block detail_b

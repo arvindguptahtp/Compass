@@ -269,11 +269,10 @@
                   <div class="bd" o-base="">
                     <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">
                       <dt class="thm--shade60 tx--small--f3--900--aa" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Points of Contact</dt>
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">{{ partner.contact_title }}
-                              </dt>
-                              <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">{{ partner.contact_title }}</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                                 <p>{{ partner.contact_name }}</p><a class="tx--tdU fx--shift" href="mailto:{{ partner.contact_email }}">{{ partner.contact_email }}</a><a class="tx--tdU fx--shift" href="{{ partner.website }}" target="_blank" rel="noopener">Website</a>
-                              </dt>
+                      </dd>
                       <dt class="thm--shade60 tx--small--f3--900--aa" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Organizational Information</dt>
                       <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Core Partner</dt>
                       <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ partner.is_core_partner|safe }}
@@ -299,11 +298,11 @@
                                   </li>{% endfor %}
                         </ul>
                       </dd>
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Associated Fees</dt>{% if partner.is_cost_free %}
-                                      <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">Free of Cost</dt>{% else %}
-                                              <dt class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">{% if partner.cost_description %}
-                                                        <p style="word-break:word;">{{ partner.cost_description|safe }}</p>{% endif %}
-                                              </dt>{% endif %}
+                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Associated Fees</dt>
+                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">{% if partner.is_cost_free %}
+                                        <p>Free of Cost</p>{% else %}{% if partner.cost_description %}
+                                                        <p style="word-break:word;">{{ partner.cost_description|safe }}</p>{% endif %}{% endif %}
+                      </dd>
                     </dl>
                   </div>
                 </article>{% endif %}

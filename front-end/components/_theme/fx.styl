@@ -19,3 +19,17 @@
             &::after,
             &::before
                 transition-property: background, color, filter, opacity
+
+
+.fx--slide
+    +o-attr()
+        transition-property: opacity, transform
+
+.fx--slide-up-leave-active
+    transition-duration: config.fx.medium.time
+    transition-timing-function: cubic-bezier(1.0, 0.5, 0.8, 1.0)
+
+.fx--slide-up-enter
+.fx--slide-up-leave-to
+  transform: translateY(3em)
+  opacity: 0
