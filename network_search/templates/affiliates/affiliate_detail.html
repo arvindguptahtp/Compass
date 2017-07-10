@@ -464,27 +464,23 @@
                         <h1 class="tx--maj--f1--100--aa">School District Details</h1>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">School District(s)</dt>
-                          <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                            <ul>{% for val in eoy_data.school_districts %}
-                                        <li>{{ val|capfirst }}
-                                        </li>{% endfor %}
-                            </ul>
-                          </dd>{% if eoy_data.school_districts %}
+                        <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if True %}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">School District(s)</dt>
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                                    </dd>{% endif %}{% if True %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Total Enrollment</dt>
                                     <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">Needs to be able to output
                                     </dd>{% endif %}{% if True %}
-                                    <dt class="thm--shade5 hl--xy--bCurrent tx--small--f3--900--aa co--affiliates" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Eastern Greenbrier Middle School (Example)</dt>{% endif %}{% if eoy_data.school_districts %}
+                                    <dt class="thm--shade5 hl--xy--bCurrent tx--small--f3--900--aa co--affiliates" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Eastern Greenbrier Middle School (Example)</dt>{% endif %}{% if True %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Location</dt>
                                     <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">Rural
-                                    </dd>{% endif %}{% if eoy_data.school_districts %}
+                                    </dd>{% endif %}{% if True %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Location Model</dt>
                                     <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">CIS Model School
-                                    </dd>{% endif %}{% if eoy_data.school_districts %}
+                                    </dd>{% endif %}{% if True %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Number of Case-managed Students</dt>
                                     <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">117
-                                    </dd>{% endif %}{% if eoy_data.school_districts %}
+                                    </dd>{% endif %}{% if True %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Total Students Reached</dt>
                                     <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">721
                                     </dd>{% endif %}
