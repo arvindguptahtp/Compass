@@ -58,15 +58,13 @@ block detail_a
                 .data({
                     heading: "Program Information",
                     map: [
-                        ["Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
-                        ["Region", page.region.io(), "Regions"],
-                        ["Setting", page.setting.io(), "Setting"],
-                        ["Outcomes", page.outcomes.io()],
-                        ["Associated Fees", "card_fees"],
-                        ["Assessment", "card_assessment"]
+                        ["iterator", "Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
+                        ["iterator","Region", page.region.io(), "Regions"],
+                        ["iterator","Setting", page.setting.io(), "Setting"],
+                        ["text", "Outcomes", page.outcomes.io()],
+                        ["mixin", "Associated Fees", "card_fees"],
+                        ["mixin", "Assessment", "card_assessment"]
                     ],
-                    as_text: ["Outcomes"],
-                    as_mixin: ["Associated Fees", "Assessment"],
                     style: "alternate"
                 })
                 .define({
@@ -141,11 +139,11 @@ block detail_b
                 .data({
                     heading: "Student Demographics",
                     map: [
-                        ["Grade Level", page.grade.io(), "ProgramGrades"],
-                        ["Gender", page.gender.io(), "Gender"],
-                        ["Race", page.race.io(), "Race"],
-                        ["Student Need", page.need.io(), "StudentNeeds"],
-                        ["Student Characteristics", page.character.io(), "StudentCharacteristics"]
+                        ["iterator", "Grade Level", page.grade.io(), "ProgramGrades"],
+                        ["iterator", "Gender", page.gender.io(), "Gender"],
+                        ["iterator", "Race", page.race.io(), "Race"],
+                        ["iterator", "Student Need", page.need.io(), "StudentNeeds"],
+                        ["iterator", "Student Characteristics", page.character.io(), "StudentCharacteristics"]
                     ]
                 })
 

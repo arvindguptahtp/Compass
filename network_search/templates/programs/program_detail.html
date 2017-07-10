@@ -288,10 +288,10 @@
                                   <li>{{ val|choice_display:'Setting'|capfirst }}
                                   </li>{% endfor %}
                         </ul>
-                      </dd>
-                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Outcomes</dt>
-                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{{ program.outcomes|safe }}
-                      </dd>
+                      </dd>{% if program.outcomes %}
+                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Outcomes</dt>
+                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{{ program.outcomes|safe }}
+                              </dd>{% endif %}
                       <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Associated Fees</dt>
                       <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{% if program.is_cost_free %}
                                         <p>Free of Cost</p>{% else %}{% if program.cost_description %}
@@ -323,35 +323,35 @@
                   <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
                     <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">
                       <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Grade Level</dt>
-                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                      <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.grade %}
                                   <li>{{ val|choice_display:'ProgramGrades'|capfirst }}
                                   </li>{% endfor %}
                         </ul>
                       </dd>
                       <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Gender</dt>
-                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                      <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.gender %}
                                   <li>{{ val|choice_display:'Gender'|capfirst }}
                                   </li>{% endfor %}
                         </ul>
                       </dd>
                       <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Race</dt>
-                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                      <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.race %}
                                   <li>{{ val|choice_display:'Race'|capfirst }}
                                   </li>{% endfor %}
                         </ul>
                       </dd>
                       <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Student Need</dt>
-                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                      <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.student_need %}
                                   <li>{{ val|choice_display:'StudentNeeds'|capfirst }}
                                   </li>{% endfor %}
                         </ul>
                       </dd>
                       <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Student Characteristics</dt>
-                      <dd class="thm--tint70 co--programs tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                      <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.student_characteristics %}
                                   <li>{{ val|choice_display:'StudentCharacteristics'|capfirst }}
                                   </li>{% endfor %}

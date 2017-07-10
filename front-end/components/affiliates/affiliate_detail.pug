@@ -9,8 +9,34 @@ block instance
             impact_theme: "thm--affiliates",
             impact_color: "co--affiliates",
             
-            
             location: 'affiliate_location',
+            director_name: 'current_data.executive_director_name',
+            director_email: 'current_data.executive_director_email',
+            lead_name: 'current_data.program_lead_name',
+            lead_email: 'current_data.program_lead_email',
+            budget: 'current_data.budget_total',
+            funding_public_federal: 'current_data.funding_public_federal',
+            funding_public_state: 'current_data.funding_public_state',
+            funding_public_city: 'current_data.funding_public_city',
+            funding_public_school_district: 'current_data.funding_public_school_district',
+            funding_private_corporate: 'current_data.funding_private_corporate',
+            funding_private_foundation: 'current_data.funding_private_foundation',
+            funding_private_board: 'current_data.funding_private_board',
+            funding_private_individual: 'current_data.funding_private_individual',
+            funding_private_events: 'current_data.funding_private_events',
+            funding_private_cis_national: 'current_data.funding_private_cis_national',
+            funding_private_cis_state_office: 'current_data.funding_private_cis_state_office',
+            funding_private_npo: 'current_data.funding_private_npo',
+            funding_private_other: 'current_data.funding_private_other',
+            funding_private_corporate: 'current_data.funding_private_corporate',
+            funding_private_foundation: 'current_data.funding_private_foundation',
+            funding_private_board: 'current_data.funding_private_board',
+            funding_private_individual: 'current_data.funding_private_individual',
+            funding_private_events: 'current_data.funding_private_events',
+            funding_private_cis_national: 'current_data.funding_private_cis_national',
+            funding_private_cis_state_office: 'current_data.funding_private_cis_state_office',
+            funding_private_npo: 'current_data.funding_private_npo',
+            funding_private_other: 'current_data.funding_private_other',
             //- overview: 'partner.overview',
             //- cost: 'partner.is_cost_free',
             //- cost_desc: 'partner.cost_description',
@@ -51,10 +77,29 @@ block detail_a
                 .data({
                     heading: "Affiliate Details",
                     map: [
-                        ["Affiliate Resources"],
-                        ["School Districts"],
+                        ["mixin", "Executive Director", "card_exec"],
+                        ["mixin", "Program Lead", "card_lead"],
+                        ["text", "Affiliate ID", page.cis_id.io()],
+                        ["text", "Location", page.location.io(), page.location.tag("choice_display:'AffiliateLocation'", 'capfirst')],
+                        ["mixin", "Address", "card_contact"],
+                        ["text", "Phone Number", page.phone_number.io()],
+                        ["text", "Fax Number", page.fax_number.io()],
+                        ["link", "Website", page.website.io(), page.title.tag()],                            
+                        ["heading", "Staffing"],
+                        ["text", "Full-time", page['current_data.full_time_staff'].io()],
+                        ["text", "Part-time", page['current_data.part_time_staff'].io()],
+                        ["heading", "CIS Services"],
+                        ['text', 'Academic Assistance'],
+                        ['text', 'Basic Needs'],
+                        ['text', 'Behavior Intervention'],
+                        ['text', 'College/Career Prep'],
+                        ['text', 'Community Service'],
+                        ['text', 'Enrichment'],
+                        ['text', 'Family Engagement'],
+                        ['text', 'Life Skills/Social Development'],
+                        ['text', 'Professional Mental Health'],
+                        ['text', 'Professional Phytisal Health'],
                     ],
-                    as_heading: ["Affiliate Resources", "School Districts"],
                     style: "alternate"
                 })
                 .define({
@@ -75,6 +120,9 @@ block detail_a
                         "o-base": "mod--balance rhy--yStart25",
                         "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
                     },
+                    data_hed: {
+                        class: `thm--shade60 tx--small--f3--900--aa`,
+                    },
                     data_key: {
                         class: "thm--shade40 tx--small--f3--tcU",
                         "o-base": "pad--xy25",
@@ -87,147 +135,160 @@ block detail_a
                     },
                 })
 
-
-//- block view
-//-     .strata--detail.gx--detail-affiliate(
-//-         o-base="mod--balance"
-//-     )
-       
-//-         section.thm--affiliates.gxi--a(
-//-             o-base="pad--x25 pad--yEnd100 hy--yStart"
-//-             o-condensed="pad--yEnd25"
-//-             o-standard="pad--xy50"
-//-             o-enhanced="pad--x50"
-//-         )
-//-             header.tx--subhed--f1--100--aa(
-//-                 o-base="pad--x25 pad--y25"
-//-                 o-condensed="pad--x50"
-//-             )
-//-                 h2 Affiliate Details
-            
-//-             h3.tx--small--f3--900--aa.thm--shade60(
-//-                 o-base="pad--xy25 iso--yEnd"
-//-                 o-condensed="pad--x50"
-//-             ) Affiliate Resources
-//-             dl(
-//-                 o-base="iso--yEnd"
-//-             )
-//-                 dt.thm--shade40.tx--small--f3--tcU(
-//-                     o-base="pad--xy25"
-//-                 ) Executive Director
-//-                 dd.thm--shade20.tx--small--f3(
-//-                     o-base="col--pStart--sStart pad--xy25"
-//-                 )
-//-                     p= v('affiliate.current_data.executive_director_name')
-//-                     a(
-//-                         href=`mailto:${v('affiliate.current_data.executive_director_email')}`
-//-                     )
-//-                         = v('affiliate.current_data.executive_director_email')
-
-//-                 dt.thm--shade40.tx--small--f3--tcU(
-//-                     o-base="pad--xy25"
-//-                 ) Program Lead
-//-                 dd.thm--shade20.tx--small--f3(
-//-                     o-base="col--pStart--sStart pad--xy25"
-//-                 )
-//-                     p= v('affiliate.current_data.program_lead_name')
-//-                     a.fx--shift(
-//-                         href=`mailto:${v('affiliate.current_data.program_lead_email')}`
-//-                     )
-//-                         = v('affiliate.current_data.program_lead_email')
-
-//-             h3.tx--small--f3--900--aa.thm--shade60(
-//-                 o-base="pad--xy25 iso--yEnd"
-//-                 o-condensed="pad--x50"
-//-             ) School Districts
-//-             dl(
-//-                 o-base="gx--i2 iso--yEnd"
-//-                 o-standard="gx--i1"
-//-                 o-enhanced="gx--i2"
-//-             )
+        mixin card_contact
+            ul
+                li= page.address_street.tag()
+                li= `${ page.address_city.tag() }, ${ page.address_state.tag() } ${ page.address_postcode.tag() }`
         
-//-         .detail-copy.gxi--b(
-//-             o-base="pad--yEnd50 rhy--yStart50"
-//-             o-condensed="pad--x50 pad--y50"
-//-             o-extended="gx--i2--gxy100 rhy--yStart0"
-//-         )
-//-             section.thm--dark(
-//-                 o-base="col--pStart pad--yEnd100"
-//-                 o-condensed="pad--yEnd0"
-//-             )
-//-                 header.thm--shade20(
-//-                     o-base="pad--x50 pad--y25"
-//-                 )
-//-                     h1.tx--maj--f1--100 Students Served
-
-//-             section.thm--dark(
-//-                 o-base="col--pStart pad--yEnd100"
-//-                 o-condensed="pad--yEnd0"
-//-             )
-//-                 header.thm--shade20(
-//-                     o-base="pad--x50 pad--y25"
-//-                 )
-//-                     h1.tx--maj--f1--100 Service Categories
+        mixin card_exec
+            ul
+                li= page.director_name.tag()
+                li
+                    a.tx--tdU.fx--shift(
+                        href=`mailto:${ page.director_email.tag() }`
+                    )
+                        = page.director_email.tag()
+        
+        mixin card_lead
+            ul
+                li= page.lead_name.tag()
+                li
+                    a.tx--tdU.fx--shift(
+                        href=`mailto:${ page.lead_email.tag() }`
+                    )
+                        = page.lead_email.tag()
 
 
-//-         div.gxi--c.thm--light-alt.hl--yStart--bTint(
-//-             o-condensed="pad--xy25"
-//-             o-standard="pad--xy50"
-//-         )
-//-             section.thm--dark(
-//-                 o-base="col--pStart pad--yEnd100"
-//-                 o-condensed="pad--yEnd0"
-//-             )
-//-                 header.thm--shade20(
-//-                     o-base="pad--x50 pad--y25"
-//-                 )
-//-                     h1.tx--maj--f1--100 Affiliate Partners
-                
-//- //-                 ul.bd(
-//- //-                     o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
-//- //-                     o-extended="gx--i2--gxy25 mod--static rhy--yStart0"
-//- //-                 )
-            
-            
-//- //-             section.thm--dark(
-//- //-                 o-base="col--pStart pad--yEnd100"
-//- //-                 o-condensed="pad--yEnd0"
-//- //-             )
-//- //-                 header.thm--shade20(
-//- //-                     o-base="mod--static pad--x50 pad--y25"
-//- //-                 )
-//- //-                     h1.tx--maj--f1--100 TBD
 
-//- //-                 ul.bd(
-//- //-                     o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
-//- //-                     o-extended="gx--i2--gxy25 mod--static rhy--yStart0"
-//- //-                 )                    
+block detail_b
+    div(
+        o-base="col--pStart rhy--yStart100"
+    )
+        include /cards/data-list
+            -
+                vefa
+                    .data({
+                        heading: "Affiliate Resources",
+                        map: [
+                            ["money", "Annual Budget", 'eoy_data.budget_total'],
+                            ['money', 'Total Funding', 'eoy_data.funding_total '],
+                            ['money', 'Total Public Funding', 'eoy_data.funding_public'],
+                            ['money', 'Total Private Funding', 'eoy_data.funding_private'],
+                            //- ['text', 'Percent of Public Funding', page['current_data.funding_percent_public'].io(), `${ page['current_data.funding_percent_public'].tag() }%`],
+                            //- ['text', 'Percent of Private Funding', page['current_data.funding_percent_private'].io(), `${ page['current_data.funding_percent_private'].tag() }%`],
 
-            
-//- //-             section.thm--shade20(
-//- //-                 o-base="col--pStart pad--yEnd100"
-//- //-                 o-condensed="pad--yEnd0"
-//- //-             )
-//- //-                 header.thm--affiliates(
-//- //-                     o-base="pad--x50 pad--y25"
-//- //-                 )
-//- //-                     h1.tx--maj--f1--100 TBD
+                            ["heading", "Public Funding", 'eoy_data.funding_public'],
+                            ['money', 'Federal', 'eoy_data.funding_public_federal'],
+                            ['money', 'State', 'eoy_data.funding_public_state'],
+                            ['money', 'City', 'eoy_data.funding_public_city'],
+                            ['money', 'School District', 'eoy_data.funding_public_school_district'],
+                            
+                            ["heading", "Private Funding", 'eoy_data.funding_private'],
+                            ['money', 'Corporate', 'eoy_data.funding_private_corporate'],
+                            ['money', 'Foundation', 'eoy_data.funding_private_foundation'],
+                            ['money', 'Board', 'eoy_data.funding_private_board'],
+                            ['money', 'Individual', 'eoy_data.funding_private_individual'],
+                            ['money', 'Events', 'eoy_data.funding_private_events'],
+                            ['money', 'CIS National', 'eoy_data.funding_private_cis_national'],
+                            ['money', 'CIS State Office', 'eoy_data.funding_private_cis_state_office'],
+                            ['money', 'NPO', 'eoy_data.funding_private_npo'],
+                            ['money', 'Other', 'eoy_data.funding_private_other'],
+                        ]
+                    })
+        
+        include /cards/data-list
+            -
+                vefa
+                    .data({
+                        heading: "Affiliate Performance",
+                        map: [
+                            ['heading', 'Students in Grades K—11'],
+                            ['text', 'Promoted'],
+                            ['text', 'Retained'],
+                            ['text', 'Dropped Out'],
+                            ['text', 'Transferred'],
+                            ['text', 'GED'],
+                            ['text', 'Expelled'],
+                            ['text', 'Incarcerated'],
+                            ['text', 'Deceased'],
+                            ['text', 'Other'],
+                            ['text', 'Unknown'],
+                            ['heading', 'Students in Grade 12'],
+                            ['text', 'Promoted'],
+                            ['text', 'Retained'],
+                            ['text', 'Dropped Out'],
+                            ['text', 'Transferred'],
+                            ['text', 'GED'],
+                            ['text', 'Expelled'],
+                            ['text', 'Incarcerated'],
+                            ['text', 'Deceased'],
+                            ['text', 'Other'],
+                            ['text', 'Unknown'],
+                        ]
+                    })
 
-//- //-                 ul.bd(
-//- //-                     o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
-//- //-                 )
-                
-            
-            
-//- //-             section.thm--shade20(
-//- //-                 o-base="col--pStart pad--yEnd100"
-//- //-                 o-condensed="pad--yEnd0"
-//- //-             )
-//- //-                 header.thm--affiliates(
-//- //-                     o-base="pad--x50 pad--y25"
-//- //-                 )
-//- //-                     h1.tx--maj--f1--100 TBD
-                
-//- //-                 ul.bd(
-//- //-                     o-base="mod--balance pad--x25 pad--y25 rhy--yStart25"
-//- //-                 )
+        
+    div(
+        o-base="col--pStart rhy--yStart100"
+    )  
+        include /cards/data-list
+            -
+                vefa
+                    .data({
+                        heading: "School District Details",
+                        map: [
+                            ["iterator", "School District(s)", 'eoy_data.school_districts'],
+                            ["text", "Total Enrollment", 'eoy_data.school_districts', 'Needs to be able to output'],
+                            ['heading', "Eastern Greenbrier Middle School (Example)"],
+                            ["text", "Location", 'eoy_data.school_districts', "Rural"],
+                            ["text", "Location Model", 'eoy_data.school_districts', "CIS Model School"],
+                            ["text", "Number of Case-managed Students", 'eoy_data.school_districts', "117"],
+                            ["text", "Total Students Reached", 'eoy_data.school_districts', "721"],
+                        ]
+                    })
+       
+
+        include /cards/data-list
+            -
+                vefa
+                    .data({
+                        heading: "By Race and Gender",
+                        map: [
+                            ['heading', 'Students By Race/ Ethnicity', 'eoy_data.search_race'],
+                            ['text', 'American Indian', 'eoy_data.search_students_american_indian'],
+                            ['text', 'Asian', 'eoy_data.search_students_asian'],
+                            ['text', 'Black', 'eoy_data.search_students_black'],
+                            ['text', 'Hispanic', 'eoy_data.search_students_hispanic'],
+                            ['text', 'White', 'eoy_data.search_students_white'],
+                            ['text', 'Two or More', 'eoy_data.search_students_two_or_more'],
+                            ['text', 'Other', 'eoy_data.search_students_other'],
+                            ['heading', 'Students By Gender', 'eoy_data.search_gender'],
+                            ['text', 'Male', 'eoy_data.search_students_male'],
+                            ['text', 'Female', 'eoy_data.search_students_female']
+                        ]
+                    })
+
+
+        include /cards/data-list
+            -
+                vefa
+                    .data({
+                        heading: "Demographics of Students Served",
+                        map: [
+                            ['text', 'FRPL Eligible Students Served'],
+                            ['text', 'ELL Students Served'],
+                            ['text', 'Foster Care/Group Home'],
+                            ['text', 'Homeless Youth'],
+                            ['text', 'LGBT'],
+                            ['text', 'Pregnant/Parenting'],
+                            ['text', 'Special Education'],
+                            ['text', 'Substance Abuse'],
+                            ['text', 'Adjudicated Youth'],
+                            ['text', 'Child of Military'],
+                            ['text', 'Gang Involvement'],
+                            ['text', 'Incarcerated Parent'],
+                        ]
+                    })
+
+        
+    

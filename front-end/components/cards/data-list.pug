@@ -10,9 +10,6 @@ block subclass
                     map: [
                         ["label", "data_member", "category"]
                     ],
-                    as_heading: [],
-                    as_text: [],
-                    as_mixin: []
                 }, 
                 list: {
                     "o-base": "mod--balance rhy--yStart25",
@@ -22,7 +19,7 @@ block subclass
                     class: "thm--tint70 tx--f3--900",
                 },
                 data_hed: {
-                    class: `thm--shade60 tx--small--f3--900--aa`,
+                    class: `thm--shade5 hl--xy--bCurrent tx--small--f3--900--aa`,
                     "o-base": "pad--xy25 iso--yEnd",
                     "o-condensed": "pad--x50 gxs--s3",
                     "o-extended": "iso--yStart50"
@@ -33,7 +30,7 @@ block subclass
                     "o-condensed": "pad--x50"
                 },
                 data_value: {
-                    class: `thm--tint70 co--programs tx--f3`,
+                    class: `thm--tint70 tx--f3`,
                     "o-base": "col--pStart pad--xy25",
                     "o-condensed": "pad--x50 gxs--s2"
                 },
@@ -41,14 +38,45 @@ block subclass
                 on_mount () {
                     if (this.map) {
                         this.map = this.map.map( (dict) => {
-                            return {
-                                label: dict[0],
-                                text: (this.as_text.includes(dict[0])),
-                                heading: (this.as_heading.includes(dict[0])),
-                                mixin: (this.as_mixin.includes(dict[0])),
-                                value: dict[1],
-                                iterator: `val in ${ dict[1] }`,
-                                category: (dict[2]) ? dict[2] : false
+                            let value = {
+                                type: dict[0],
+                                label: dict[1]
+                            }
+                            
+                            switch(dict[0]) {
+                                case "heading":
+                                    return Object.assign(value, {
+                                        show: (dict[2]) ? dict[2] : 'True'
+                                    })
+                                break;
+                                
+                                case "mixin":
+                                    return Object.assign(value, {
+                                        mixin: dict[2]
+                                    })
+                                break;
+                            
+                                case "iterator":
+                                    return Object.assign(value, {
+                                        iterator: `val in ${ dict[2] }`,
+                                        category: (dict[3]) ? dict[3] : false
+                                    })
+                                break;
+                            
+                                case "link":
+                                    return Object.assign(value, {
+                                        value: dict[2],
+                                        link_label: (dict[3]) ? dict[3] : dict[2]
+                                    })
+                                break;
+                            
+                                default:
+                                    return Object.assign(value, {
+                                        value: (dict[2]) ? dict[2] : 'True',
+                                        display: (dict[3]) ? dict[3] : dict[2]
+                                    })
+
+                                break;
                             }
                         })
                     }
@@ -63,6 +91,9 @@ block subclass
                             data_key: {
                                 class: this.impact_theme
                             },
+                            data_hed: {
+                                class: this.impact_color
+                            },
                             link: {
                                 class: this.impact_color
                             }
@@ -75,20 +106,49 @@ block subclass
 block content
     dl.card-list&attributes(card.list)
         for item in card.map
-            if item.heading
-                dt&attributes(card.data_hed)= item.label
-            
-            else if item.mixin
-                dt&attributes(card.data_key)= item.label
-                dd&attributes(card.data_value)
-                    +#{item.value}
-
-            else
-                dt&attributes(card.data_key)= item.label
-                dd&attributes(card.data_value)
-                    if item.text
-                        = v(item.value, "safe")
-                    else
+            case item.type
+                when "heading"
+                    +if(item.show)
+                        dt&attributes(card.data_hed)= item.label
+                when "mixin"
+                    dt&attributes(card.data_key)= item.label
+                    dd&attributes(card.data_value)
+                        +#{item.mixin}
+                when "text"
+                    +if(item.value)
+                        dt&attributes(card.data_key)= item.label
+                        dd&attributes(card.data_value)
+                            if item.value == item.display
+                                = v(item.value, "safe")
+                            else
+                                = item.display
+                
+                when "money"
+                    +if(item.value)
+                        dt&attributes(card.data_key)= item.label
+                        dd&attributes(card.data_value)
+                            if item.value == item.display
+                                = `$${ v(item.value, "intcomma") }`
+                            else
+                                = item.display
+                
+                when "link"
+                    +if(item.value)
+                        dt&attributes(card.data_key)= item.label
+                        dd&attributes(card.data_value)
+                            a.tx--tdU.fx--shift(
+                                href=item.value.tag()
+                                target="_blank"
+                                rel="noopener"
+                                o-base="row--pStart--sMiddle rhy--xStart25"
+                            )
+                                span= item.link_label
+                                svg.ico
+                                    use(href=`#ico--link-ext`)
+                
+                when "iterator"
+                    dt&attributes(card.data_key)= item.label
+                    dd&attributes(card.data_value)
                         ul
                             +for(item.iterator)
                                 li&attributes(card.data_value_item)
@@ -98,10 +158,4 @@ block content
                                         = v("val", 'capfirst')
 
 
-        if pug_mixins.card_list
-            +card_list()
-
-
 block teardown
-    if pug_mixins.card_list
-        - pug_mixins.card_list = null

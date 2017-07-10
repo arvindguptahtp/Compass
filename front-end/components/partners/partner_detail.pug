@@ -51,18 +51,15 @@ block detail_a
                 data({
                     heading: "Partner Information",
                     map: [
-                        ["Points of Contact"],
-                        [page.contact_title.tag(), "card_contact"],
-                        ["Organizational Information"],
-                        ["Core Partner", page.is_core_partner.io()],
-                        ["Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
-                        ["Organizational Reach", page.organizational_reach.io(), "Regions"],
-                        ["Setting", page.setting.io(), "Setting"],
-                        ["Associated Fees", "card_fees"]
+                        ["heading", "Points of Contact"],
+                        ["mixin", page.contact_title.tag(), "card_contact"],
+                        ["heading", "Organizational Information"],
+                        ["text", "Core Partner", page.is_core_partner.io()],
+                        ["iterator", "Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
+                        ["iterator", "Organizational Reach", page.organizational_reach.io(), "Regions"],
+                        ["iterator", "Setting", page.setting.io(), "Setting"],
+                        ["mixin", "Associated Fees", "card_fees"]
                     ],
-                    as_heading: ["Points of Contact", "Organizational Information"],
-                    as_text: ["Name", "Title", "Email", "Website", "Core Partner"],
-                    as_mixin: [page.contact_title.tag(), "Associated Fees"],
                     style: "alternate"
                 })
                 .define({
@@ -163,9 +160,9 @@ block detail_b
                     .data({
                         heading: "Student Demographics",
                         map: [
-                            ["Grade Level", page.grade.io(), "PartnerGrades"],
-                            ["Gender", page.gender.io(), 'Gender'],
-                            ["Student Need", page.student_need.io(), "StudentNeeds"],
+                            ["iterator", "Grade Level", page.grade.io(), "PartnerGrades"],
+                            ["iterator", "Gender", page.gender.io(), 'Gender'],
+                            ["iterator", "Student Need", page.student_need.io(), "StudentNeeds"],
                         ]
                     })
 
