@@ -18,12 +18,15 @@ block component
             .mixin({
                 element: {
                     class: "thm--dark",
-                    "o-base": "dx--w90 iso--xAuto iso--y100",
-                    "o-compressed": "pad--x25",
+                    "o-base": "dx--w90 iso--xAuto iso--y100 rhy--yStart25",
                     "o-condensed": "dx--w60",
-                    "o-standard": "pad--x0",
-                    "o-enhanced": "dx--w40"
+                    "o-standard": "pad--x0 rhy--yStart50",
+                    "o-full": "dx--w40"
                 },
+                footer: {
+                    "o-base": "iso--yStart50",
+                    "o-standard": "iso--yStart100"
+                }
             })
 
 
@@ -40,5 +43,8 @@ block bd
                 element: {
                     "o-base": "pad--x25",
                     "o-standard": "pad--x100"
+                },
+                control: {
+                    autofocus: true
                 }
             })

@@ -20,6 +20,9 @@
             &::before
                 transition-property: background, color, filter, opacity
 
+    // &z-up
+    //     +o-eq(breakpoints)
+    //         box-shadow: 0 1px 4px 2px bl(35%)
 
 .fx--slide
     +o-attr()
@@ -33,3 +36,6 @@
 .fx--slide-up-leave-to
   transform: translateY(3em)
   opacity: 0
+
+
+

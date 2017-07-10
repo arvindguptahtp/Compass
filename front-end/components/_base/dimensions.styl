@@ -1,0 +1,25 @@
+// Dimensions
+// -------------------------------------------------------------
+.dx--
+    &xFull
+        +o-eq(breakpoints)
+            max-content-width: config.max_site_width, bvr(2)
+    
+    for i in (1..20)
+        num = 5 * i
+        &w{num}
+            +o-eq(breakpoints)
+                max-width: '%svw' % num
+                width: '%s%' % num    
+
+        if num == 30
+            &w33
+                +o-eq(breakpoints)
+                    max-width: 33vw
+                    width: 33%
+
+        if num == 65
+            &w66
+                +o-eq(breakpoints)
+                    max-width: 66vw
+                    width: 66%

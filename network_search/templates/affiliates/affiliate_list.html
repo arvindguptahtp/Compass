@@ -233,10 +233,10 @@
     <h1 class="poster-hed tx--broadside--f1--tcU" o-base="gxi--b">Affiliates
     </h1>
   </header>
-  <main o-base="col--pStart" o-extended="gxi--d">
+  <main o-base="col--pStart ord--next" o-extended="gxi--d">
     <div class="strata--search gx--search" o-base="mod--balance">
       <div class="gxi--a thm--affiliates" o-base="col--pStart mod--balance">
-        <form class="fm--search-affiliate" action="." method="GET" o-base="pad--y50 rhy--yStart100" o-standard="pad--y100">
+        <form class="fm--search-affiliate fx--z-up" action="." method="GET" o-base="pad--x25 pad--y50" o-standard="pad--y100">
           <header class="fm-hdr" o-base="row--pGrid--sMiddle pad--x25" o-standard="pad--x100">
             <button class="ctrl--action-submit tx--chrome--f3--tcU thm--tint20 rxn--shade60 fx--shift" type="submit" name="submit" o-base="row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25 vx--hidden iso--xStartAuto" o-condensed="rhy--xStart50" o-condense="rhy--xStart50" o-standard="pad-y50 pad--x100" o-compressed="vx--shown"><span>Explore</span></button>
           </header>
@@ -245,7 +245,7 @@
               <div class="fm-field--text">
                 <label class="tx--small--f3--900--tcU--aa" for="id_q">Keywords
                 </label>
-                <input class="tx--small--f3--ls100 rhy--xStart50 thm--tint20 rxn--shade60 fx--shift" type="text" id="id_q" name="q" value="{% if form.q.value != None %} {{ form.q.value|stringformat:'s'|default_if_none:'' }} {% endif %}" o-base="row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25">
+                <input class="tx--f3--ls100 rhy--xStart50 thm--tint20 rxn--shade60 fx--shift" type="text" id="id_q" name="q" value="{% if form.q.value != None %} {{ form.q.value|stringformat:'s'|default_if_none:'' }} {% endif %}" o-base="row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">
               </div>
             </div>
           </fieldset>
@@ -256,7 +256,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Students by Gender
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.gender.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_gender_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% if choice_value|safe in form.gender.value or choice_value in form.gender.value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_gender_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% if choice_value|safe in form.gender.value or choice_value in form.gender.value %}
                                                 <input checked type="checkbox" id="id_gender_{{ forloop.counter }}" name="gender" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="checkbox" id="id_gender_{{ forloop.counter }}" name="gender" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -266,7 +266,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Students by Race/Ethnicity
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.race.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_race_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% if choice_value|safe in form.race.value or choice_value in form.race.value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_race_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% if choice_value|safe in form.race.value or choice_value in form.race.value %}
                                                 <input checked type="checkbox" id="id_race_{{ forloop.counter }}" name="race" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="checkbox" id="id_race_{{ forloop.counter }}" name="race" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -276,7 +276,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Student Characteristics
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.served.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_served_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% if choice_value|safe in form.served.value or choice_value in form.served.value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_served_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% if choice_value|safe in form.served.value or choice_value in form.served.value %}
                                                 <input checked type="checkbox" id="id_served_{{ forloop.counter }}" name="served" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="checkbox" id="id_served_{{ forloop.counter }}" name="served" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -291,7 +291,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Academic Assistance
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.academic_assistance.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_academic_assistance_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% ifequal form.academic_assistance.value choice_value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_academic_assistance_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.academic_assistance.value choice_value %}
                                                 <input checked type="radio" id="id_academic_assistance_{{ forloop.counter }}" name="academic_assistance" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_academic_assistance_{{ forloop.counter }}" name="academic_assistance" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -301,7 +301,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Basic Needs
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.basic_needs.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_basic_needs_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% ifequal form.basic_needs.value choice_value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_basic_needs_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.basic_needs.value choice_value %}
                                                 <input checked type="radio" id="id_basic_needs_{{ forloop.counter }}" name="basic_needs" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_basic_needs_{{ forloop.counter }}" name="basic_needs" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -311,7 +311,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Behavior Intervention
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.behavior_intervention.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_behavior_intervention_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% ifequal form.behavior_intervention.value choice_value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_behavior_intervention_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.behavior_intervention.value choice_value %}
                                                 <input checked type="radio" id="id_behavior_intervention_{{ forloop.counter }}" name="behavior_intervention" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_behavior_intervention_{{ forloop.counter }}" name="behavior_intervention" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -321,7 +321,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">College &amp; Career Preparation
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.college_career_prep.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_college_career_prep_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% ifequal form.college_career_prep.value choice_value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_college_career_prep_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.college_career_prep.value choice_value %}
                                                 <input checked type="radio" id="id_college_career_prep_{{ forloop.counter }}" name="college_career_prep" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_college_career_prep_{{ forloop.counter }}" name="college_career_prep" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -331,7 +331,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Community and Service Learning
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.comm_service.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_comm_service_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% ifequal form.comm_service.value choice_value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_comm_service_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.comm_service.value choice_value %}
                                                 <input checked type="radio" id="id_comm_service_{{ forloop.counter }}" name="comm_service" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_comm_service_{{ forloop.counter }}" name="comm_service" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -341,7 +341,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Enrichment
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.enrichment.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_enrichment_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% ifequal form.enrichment.value choice_value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_enrichment_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.enrichment.value choice_value %}
                                                 <input checked type="radio" id="id_enrichment_{{ forloop.counter }}" name="enrichment" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_enrichment_{{ forloop.counter }}" name="enrichment" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -351,7 +351,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Family Engagement
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.family_engagement.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_family_engagement_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% ifequal form.family_engagement.value choice_value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_family_engagement_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.family_engagement.value choice_value %}
                                                 <input checked type="radio" id="id_family_engagement_{{ forloop.counter }}" name="family_engagement" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_family_engagement_{{ forloop.counter }}" name="family_engagement" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -361,7 +361,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Life Skills
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.life_skills.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_life_skills_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% ifequal form.life_skills.value choice_value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_life_skills_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.life_skills.value choice_value %}
                                                 <input checked type="radio" id="id_life_skills_{{ forloop.counter }}" name="life_skills" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_life_skills_{{ forloop.counter }}" name="life_skills" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -371,7 +371,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Professional Physical Health
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.physical_fitness_health.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_physical_fitness_health_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% ifequal form.physical_fitness_health.value choice_value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_physical_fitness_health_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.physical_fitness_health.value choice_value %}
                                                 <input checked type="radio" id="id_physical_fitness_health_{{ forloop.counter }}" name="physical_fitness_health" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_physical_fitness_health_{{ forloop.counter }}" name="physical_fitness_health" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -381,7 +381,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Professional Mental Health
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.prof_mental_health.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_prof_mental_health_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25">{% ifequal form.prof_mental_health.value choice_value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_prof_mental_health_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.prof_mental_health.value choice_value %}
                                                 <input checked type="radio" id="id_prof_mental_health_{{ forloop.counter }}" name="prof_mental_health" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_prof_mental_health_{{ forloop.counter }}" name="prof_mental_health" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -472,10 +472,10 @@
         </section>
       </div>
       <aside class="gxi--c">
-        <div class="strata thm--light-alt hl--yStart--bTint" o-base="col--pStart pad--xy50 rhy--yStart100" o-enhanced="pad--xy50">
-                  <footer class="tx--maj--f1--100" o-base="row--pEnd--sMiddle rhy--xStart50">
+        <div class="strata thm--light-alt hl--yStart--bTint" o-base="col--pStart pad--xy50 rhy--yStart100" o-enhanced="pad--xy100">
+                  <aside class="tx--maj--f1--100" o-base="col--pMiddle--sMiddle rhy--yStart25" o-condensed="row--pEnd--sMiddle rhy--xStart50">
                     <p>Please submit your feedback on our new tool:</p><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="{{ 'https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link' }}" target="_blank" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>Fill out our survey</span></a>
-                  </footer>
+                  </aside>
         </div>
       </aside>
     </div>
@@ -499,7 +499,7 @@
           </svg><span class="vx--a11y">Partners</span></a></li>
     </nav>
   </nav>
-  <footer class="colophon tx--chrome--f3 thm--dark" role="contentinfo" o-base="pad--x50 pad--y100 rhy--yStart100 ord--end" o-standard="row--pGrid--sTop rhy--xStart100" o-enhanced="pad--x100" o-full="gxi--f pad--x50"><a class="colophon-brand" href="https://communitiesinschools.orgr/" target="_top" o-base="mod--static pad--yEnd50 iso--yEnd50 z--masthead">  
+  <footer class="colophon tx--chrome--f3 thm--dark" role="contentinfo" o-base="pad--x50 pad--y100 rhy--yStart100 ord--end" o-standard="row--pGrid--sTop rhy--xStart100" o-enhanced="pad--x100" o-full="gxi--f pad--y200"><a class="colophon-brand" href="https://communitiesinschools.orgr/" target="_top" o-base="mod--static pad--yEnd50 iso--yEnd50 z--masthead">  
       <picture>
         <source data-srcset="{% static 'res/logo.full.inverse.png.webp' %}" type="image/webp"><img class="site-logo lazyload" data-src="{% static 'res/logo.full.inverse.png' %}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
       </picture></a>

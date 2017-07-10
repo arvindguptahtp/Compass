@@ -3,7 +3,7 @@ include /strata/strata
         vefa
             .define({
                 element: {
-                    "o-enhanced": "pad--xy50"
+                    "o-enhanced": "pad--xy100"
                 }
             })
             .mixin({
@@ -11,9 +11,11 @@ include /strata/strata
                     class: "thm--light-alt hl--yStart--bTint"
                 }
             })
+    
     mixin strata_view
-        footer.tx--maj--f1--100(
-            o-base="row--pEnd--sMiddle rhy--xStart50"
+        aside.tx--maj--f1--100(
+            o-base="col--pMiddle--sMiddle rhy--yStart25"
+            o-condensed="row--pEnd--sMiddle rhy--xStart50"
         )
             p Please submit your feedback on our new tool:
             

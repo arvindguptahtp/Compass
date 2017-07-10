@@ -79,13 +79,14 @@ block view
                 include /posters/text
 
             main(
-                o-base="col--pStart"
+                o-base="col--pStart ord--next"
                 o-extended="gxi--d"
             )
                 block content
 
             block postmain
-                aside(
+                div(
+                    o-base="ord--next"
                     o-extended="gxi--e"
                 )
                     include /includes/feedback
