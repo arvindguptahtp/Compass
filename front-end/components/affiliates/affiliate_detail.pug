@@ -171,7 +171,6 @@ block detail_b
                         heading: "Affiliate Resources",
                         map: [
                             ["money", "Annual Budget", 'eoy_data.budget_total'],
-                            ['money', 'Total Funding', 'eoy_data.funding_total '],
                             ['money', 'Total Public Funding', 'eoy_data.funding_public'],
                             ['money', 'Total Private Funding', 'eoy_data.funding_private'],
                             //- ['text', 'Percent of Public Funding', page['current_data.funding_percent_public'].io(), `${ page['current_data.funding_percent_public'].tag() }%`],
@@ -238,7 +237,7 @@ block detail_b
                         heading: "School District Details",
                         map: [
                             ["text", "School District(s)",],
-                            ["text", "Total Enrollment", 'True', 'Needs to be able to output'],
+                            ["text", "Total Enrollment", 'eoy_data.total_enrollment'],
                             ['heading', "Eastern Greenbrier Middle School (Example)"],
                             ["text", "Location", 'True', "Rural"],
                             ["text", "Location Model", 'True', "CIS Model School"],
@@ -275,18 +274,18 @@ block detail_b
                     .data({
                         heading: "Demographics of Students Served",
                         map: [
-                            ['text', 'FRPL Eligible Students Served'],
-                            ['text', 'ELL Students Served'],
-                            ['text', 'Foster Care/Group Home'],
-                            ['text', 'Homeless Youth'],
-                            ['text', 'LGBT'],
-                            ['text', 'Pregnant/Parenting'],
-                            ['text', 'Special Education'],
-                            ['text', 'Substance Abuse'],
-                            ['text', 'Adjudicated Youth'],
-                            ['text', 'Child of Military'],
-                            ['text', 'Gang Involvement'],
-                            ['text', 'Incarcerated Parent'],
+                            ['text', 'FRPL Eligible Students Served', 'eoy_data.total_students_frpl'],
+                            ['text', 'ELL Students Served', 'eoy_data.total_students_ell'],
+                            ['text', 'Foster Care/Group Home', 'eoy_data.total_students_foster'],
+                            ['text', 'Homeless Youth', 'eoy_data.total_students_homeless'],
+                            ['text', 'LGBT', 'eoy_data.total_students_lgbt'],
+                            ['text', 'Pregnant/Parenting', 'eoy_data.total_students_pregnant_parenting'],
+                            ['text', 'Special Education', 'eoy_data.total_students_special_education'],
+                            ['text', 'Substance Abuse', 'eoy_data.total_students_substance_abuse'],
+                            ['text', 'Adjudicated Youth', 'eoy_data.total_students_adjudicated_youth'],
+                            ['text', 'Child of Military', 'eoy_data.total_students_child_of_military'],
+                            ['text', 'Gang Involvement', 'eoy_data.total_students_gang'],
+                            ['text', 'Incarcerated Parent', 'eoy_data.total_students_incarcerated_parent'],
                         ]
                     })
 
