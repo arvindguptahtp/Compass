@@ -121,3 +121,46 @@ See detailed `cookiecutter-django Docker documentation`_.
 .. _`cookiecutter-django Docker documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html
 
 
+Front-end
+^^^^^^^^^
+
+All front-end code is developed in the `front-end` directory. However, commands are run from the 
+general Makefile at project root. Various development commands are broken out in the Makefile to 
+speed up development compilation time. In general, look at the Makefile for all the 
+various commands.
+
+Before commit and deployment:
+
+    make ui-build
+
+This command compiles all needed template files, JavaScript, and CSS. It minifies the 
+Javascript and CSS files and run the CSS files through CSS Razor, which removes all non-used
+style declarations. This keeps the JS and CSS lean and fast for transmission and browser rendering.
+
+
+Initial development session:
+
+    make ui-dev
+
+Ui-dev rebuilds the whole asset chain and watches all development files. The compilation/render 
+is slow as the CSS libraries are sizeable. As `make ui-build` minifies and razors the asset files, 
+this command is needed to activate all available style declarations and JS code. Use this command
+if you are doing some small quick development updates or to start a longer development session.
+
+Continued development session:
+
+    make dev
+
+Dev watches and compiles only the template files and the `app.styl` specific Stylus CSS (therefore, any code
+not within the `_base` directory). Results in quicker development compilation cycles. Run `make ui-dev` once, 
+`Ctrl-C` the process after initial build is complete, and then run `make dev`.
+
+Javascript development:
+
+    make vue-dev
+
+Vue-dev centers on `.vue` and `.js` files only. This frees up compilation cycles as the watcher is only looking at the files
+specifically included. All JS development should happen under this Make command.
+
+
+** Always remember to run `make ui-build` before an expected deployment. **
