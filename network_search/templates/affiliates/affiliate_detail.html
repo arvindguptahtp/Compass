@@ -531,43 +531,43 @@
                         <h1 class="tx--maj--f1--100--aa">Demographics of Students Served</h1>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">
+                        <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.total_students_frpl > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">FRPL Eligible Students Served</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_frpl > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}{% if eoy_data.total_students_ell > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">ELL Students Served</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_ell > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}{% if eoy_data.total_students_foster > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Foster Care/Group Home</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_foster > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}{% if eoy_data.total_students_homeless > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Homeless Youth</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_homeless > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}{% if eoy_data.total_students_lgbt > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">LGBT</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_lgbt > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}{% if eoy_data.total_students_pregnant_parenting > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Pregnant/Parenting</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_pregnant_parenting > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}{% if eoy_data.total_students_special_education > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Special Education</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_special_education > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}{% if eoy_data.total_students_substance_abuse > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Substance Abuse</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_substance_abuse > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}{% if eoy_data.total_students_adjudicated_youth > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Adjudicated Youth</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_adjudicated_youth > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}{% if eoy_data.total_students_child_of_military > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Child of Military</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_child_of_military > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}{% if eoy_data.total_students_gang > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Gang Involvement</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_gang > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}{% if eoy_data.total_students_incarcerated_parent > 0 %}
                           <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Incarcerated Parent</dt>
                           <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_incarcerated_parent > 0 %}yes{% else %}no{% endif %}
-                          </dd>
+                          </dd>{% endif %}
                         </dl>
                       </div>
                     </article>{% endif %}{% endif %}

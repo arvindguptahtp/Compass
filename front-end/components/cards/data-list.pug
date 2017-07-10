@@ -141,12 +141,13 @@ block content
                                 = item.display
 
                 when "yesno"
-                    dt&attributes(card.data_key)= item.label
-                    dd&attributes(card.data_value)
-                        +if(item.value)
-                            = item.yes
-                            +else()
-                                = item.no
+                    +if(item.value)
+                        dt&attributes(card.data_key)= item.label
+                        dd&attributes(card.data_value)
+                            +if(item.value)
+                                = item.yes
+                                +else()
+                                    = item.no
                 
                 when "link"
                     +if(item.value)
