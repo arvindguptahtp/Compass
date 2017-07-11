@@ -3,7 +3,8 @@
 {% block content %}
 
     <section>
-        {{ partner.contact_name }}, {{ partner.contact_title }}, <a href="mailto:{{ partner.contact_email }}">{{ partner.contact_email }}</a>
+        {{ partner.contact_name }}, {{ partner.contact_title }}, <a
+            href="mailto:{{ partner.contact_email }}">{{ partner.contact_email }}</a>
         <br/>
         <a href="{{ partner.website }}">{{ parter.website }}</a>
     </section>
@@ -23,33 +24,33 @@
         <h2>Partner Details</h2>
 
         <div class="col-2">
-        <h3>Demographics</h3>
+            <h3>Demographics</h3>
 
-        <h4>Grade Level</h4>
-        {% pdf_choices partner.grade "PartnerGrades" %}
+            <h4>Grade Level</h4>
+            {% pdf_choices partner.grade "PartnerGrades" %}
 
-        <h4>Gender</h4>
-        {% pdf_choices partner.gender "Gender" %}
+            <h4>Gender</h4>
+            {% pdf_choices partner.gender "Gender" %}
 
-        <h4>Service Tier</h4>
-        {% pdf_choices partner.tiers_of_service "TiersOfService" %}
+            <h4>Service Tier</h4>
+            {% pdf_choices partner.tiers_of_service "TiersOfService" %}
 
-        <h4>Free of Cost</h4>
-        {% if partner.is_cost_free %}
-            Yes
-        {% else %}
-            No. {{ partner.cost_description }}
-        {% endif %}
+            <h4>Free of Cost</h4>
+            {% if partner.is_cost_free %}
+                Yes
+            {% else %}
+                No. {{ partner.cost_description }}
+            {% endif %}
         </div>
 
         <div class="col-2">
-        <h3>Org Stats</h3>
+            <h3>Org Stats</h3>
 
-        <h4>Organizational Reach</h4>
-        {% pdf_choices partner.organizational_reach "Regions" %}
+            <h4>Organizational Reach</h4>
+            {% pdf_choices partner.organizational_reach "Regions" %}
 
-        <h4>Setting</h4>
-        {% pdf_choices partner.setting "Setting" %}
+            <h4>Setting</h4>
+            {% pdf_choices partner.setting "Setting" %}
         </div>
 
     </section>
@@ -70,25 +71,25 @@
     {% if partners.webinars.exists or partner.presentations.exists %}
         <section>
             <div class="col-2">
-        <h2>Additional Partner Resources</h2>
-        {% if partner.webinars.exists %}
-                <h3>Webinars</h3>
-                {% for link in partner.webinars.all %}
-                    <li><a href="{{ link.url }}">{{ link.title}}</a></li>
-                {% endfor %}
-            </div>
-        {% endif %}
+                <h2>Additional Partner Resources</h2>
+                {% if partner.webinars.exists %}
+                    <h3>Webinars</h3>
+                    {% for link in partner.webinars.all %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                    </div>
+                {% endif %}
 
-        {% if partner.presentations.exists %}
-            <div class="col-2">
+            {% if partner.presentations.exists %}
+                <div class="col-2">
                 <h3>Presentations</h3>
                 {% for link in partner.presentations.all %}
-                    <li><a href="{{ link.url }}">{{ link.title}}</a></li>
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
                 {% endfor %}
-        {% endif %}
+            {% endif %}
             </div>
         </section>
-    {% endif  %}
+    {% endif %}
 
 
 

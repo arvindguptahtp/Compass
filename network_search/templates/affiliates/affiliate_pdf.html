@@ -1,8 +1,8 @@
 {% extends "pdf_base.html" %}
-{% load choice_tags %}
+{% load humanize choice_tags %}
 
 {% block header %}
-{{ affiliate.name}} ({{affiliate.state }})
+    {{ affiliate.name }} ({{ affiliate.state }})
 {% endblock %}
 
 {% block content %}
@@ -10,33 +10,191 @@
     <p>Reporting data from {{ eoy_data.year }}</p>
 
     <section>
-        <h3>Location</h3>
-        <p>{{ affiliate.official_name}}<br/>
-        {{ affiliate.address_street }}<br/>
-        {{ affiliate.address_city }}, {{ affiliate.address_state }} {{ affiliate.address_postcode }}</p>
+        <h2>Details</h2>
+        <table>
+            <tr>
+                <th>Executive Director</th>
+                <td>
+                    {{ eoy_data.executive_director_name }},
+                    <a href="mailto:{{ eoy_data.executive_director_email }}">{{ eoy_data.executive_director_email }}</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Programming Lead</th>
+                <td>
+                    {{ eoy_data.program_lead_name }},
+                    <a href="mailto:{{ eoy_data.program_lead_email }}">{{ eoy_data.program_lead_email }}</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Affiliate ID</th>
+                <td>{{ affiliate.cis_id }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ affiliate.location }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>
+                    {{ affiliate.address_street }},
+                    {{ affiliate.address_city }}, {{ affiliate.address_state }} {{ affiliate.address_postcode }}
+                </td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ affiliate.phone_number }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ affiliate.fax_number }}</td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td>{{ affiliate.website }}</td>
+            </tr>
 
-        {% if affiliate.shipping_address %}
-            <p>Shipping address: {{ affiliate.shipping_address }}</p>
-        {% endif %}
+        </table>
 
-        {% if affiliate.phone_number %}<p>Phone: {{ affiliate.phone_number }}</p>{% endif %}
-        {% if affiliate.fax_number %}<p>Fax : {{ affiliate.fax_number }}</p>{% endif %}
+    </section>
 
-        <p><a href="{{ affiliate.website }}">Website</a></p>
 
+    <section>
+        <div class="col-2">
+            <h3>Staffing</h3>
+            <table>
+                <tr>
+                    <th>Full-time</th>
+                    <td>{{ eoy_data.full_time_staff }}</td>
+                </tr>
+                <tr>
+                    <th>Part-time</th>
+                    <td>{{ eoy_data.part_time_staff }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-2">
+            <h3>Affiliate Resources</h3>
+            <table>
+                <tr>
+                    <th>Annual budget</th>
+                    <td>{{ eoy_data.funding_total|intcomma }}</td>
+                </tr>
+                <tr>
+                    <th>Total funding</th>
+                    <td>{{ eoy_data.funding_total|intcomma }}</td>
+                </tr>
+                <tr>
+                    <th>Total public funding</th>
+                    <td>{{ eoy_data.funding_public|intcomma }}</td>
+                </tr>
+                <tr>
+                    <th>Total private funding</th>
+                    <td>{{ eoy_data.funding_private|intcomma }}</td>
+                </tr>
+            </table>
+        </div>
     </section>
 
     <section>
-        <h3>Personnel</h3>
-        <p>Executive director: {{ affiliate.executive_director_name }},
-            <a href="mailto:{{ affiliate.executive_director_email }}">{{ affiliate.executive_director_email }}</a></p>
-        <p>Programming lead: {{ affiliate.program_lead_name }},
-            <a href="mailto:{{ affiliate.program_lead_email }}">{{ affiliate.program_lead_email }}</a></p>
+        <h3>Affiliate performance</h3>
+
+        <div class="col-2">
+            <h4>Grade 11</h4>
+            <table>
+                <tr>
+                    <th>Promoted</th>
+                    <td>{{ eoy_data.students_k_11_promoted }}</td>
+                </tr>
+                <tr>
+                    <th>Retained</th>
+                    <td>{{ eoy_data.students_k_11_retained }}</td>
+                </tr>
+                <tr>
+                    <th>Dropped out</th>
+                    <td>{{ eoy_data.students_k_11_dropped_out }}</td>
+                </tr>
+                <tr>
+                    <th>Transferred</th>
+                    <td>{{ eoy_data.students_k_11_transferred }}</td>
+                </tr>
+                <tr>
+                    <th>GED</th>
+                    <td>{{ eoy_data.students_k_11_ged }}</td>
+                </tr>
+                <tr>
+                    <th>Expelled</th>
+                    <td>{{ eoy_data.students_k_11_expelled }}</td>
+                </tr>
+                <tr>
+                    <th>Incarcerated</th>
+                    <td>{{ eoy_data.students_k_11_incarcerated }}</td>
+                </tr>
+                <tr>
+                    <th>Deceased</th>
+                    <td>{{ eoy_data.students_k_11_deceased }}</td>
+                </tr>
+                <tr>
+                    <th>Other</th>
+                    <td>{{ eoy_data.students_k_11_other }}</td>
+                </tr>
+                <tr>
+                    <th>Unknown</th>
+                    <td>{{ eoy_data.students_k_11_unknown }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-2">
+            <h4>Grade 12</h4>
+            <table>
+                <tr>
+                    <th>Graduated</th>
+                    <td>{{ eoy_data.students_grade_12_graduated }}</td>
+                </tr>
+                <tr>
+                    <th>Retained</th>
+                    <td>{{ eoy_data.students_grade_12_retained }}</td>
+                </tr>
+                <tr>
+                    <th>Dropped out</th>
+                    <td>{{ eoy_data.students_grade_12_dropped_out }}</td>
+                </tr>
+                <tr>
+                    <th>Transferred</th>
+                    <td>{{ eoy_data.students_grade_12_transferred }}</td>
+                </tr>
+                <tr>
+                    <th>GED</th>
+                    <td>{{ eoy_data.students_grade_12_ged }}</td>
+                </tr>
+                <tr>
+                    <th>Expelled</th>
+                    <td>{{ eoy_data.students_grade_12_expelled }}</td>
+                </tr>
+                <tr>
+                    <th>Incarcerated</th>
+                    <td>{{ eoy_data.students_grade_12_incarcerated }}</td>
+                </tr>
+                <tr>
+                    <th>Deceased</th>
+                    <td>{{ eoy_data.students_grade_12_deceased }}</td>
+                </tr>
+                <tr>
+                    <th>Other</th>
+                    <td>{{ eoy_data.students_grade_12_other }}</td>
+                </tr>
+                <tr>
+                    <th>Unknown</th>
+                    <td>{{ eoy_data.students_grade_12_unknown }}</td>
+                </tr>
+            </table>
+        </div>
+
     </section>
 
-    <section>
-        <h3>Affiliate resources</h3>
-    </section>
+
 
     <section>
         <h3>Schools</h3>
@@ -45,17 +203,6 @@
         {% endfor %}
     </section>
 
-    <section>
-        <h3>Student service data</h3>
-    </section>
-
-    <section>
-        <h3>Service Categories</h3>
-    </section>
-
-    <section>
-        <h3>Partnerships</h3>
-    </section>
 
 
 {% endblock %}

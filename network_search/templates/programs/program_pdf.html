@@ -9,28 +9,28 @@
 
     <section>
         <div class="col-2">
-        <h3>Student Demographics</h3>
+            <h3>Student Demographics</h3>
 
-        <h4>Gender</h4>
-        {% pdf_choices program.gender "Gender" %}
+            <h4>Gender</h4>
+            {% pdf_choices program.gender "Gender" %}
 
-        <h4>Grade</h4>
-        {% pdf_choices program.grade "ProgramGrades" %}
+            <h4>Grade</h4>
+            {% pdf_choices program.grade "ProgramGrades" %}
 
-        <h4>Race</h4>
-        {% pdf_choices program.race "Race" %}
+            <h4>Race</h4>
+            {% pdf_choices program.race "Race" %}
 
         </div>
 
 
         <div class="col-2">
-        <h3>Program Information</h3>
+            <h3>Program Information</h3>
 
             <h4>Setting</h4>
-        {% pdf_choices program.setting "Setting" %}
+            {% pdf_choices program.setting "Setting" %}
 
-        <h4>Service & Tiers of Service</h4>
-        {% pdf_choices program.tiers_of_service "TiersOfService" %}
+            <h4>Service & Tiers of Service</h4>
+            {% pdf_choices program.tiers_of_service "TiersOfService" %}
 
             <h4>Tiers of Evidence</h4>
             {% pdf_choices program.tiers_of_evidence "TiersOfEvidence" %}
@@ -48,9 +48,9 @@
             <h3>Featured Affiliates</h3>
             {% for affiliate in program.featured_network.all %}
             {% endfor %}
-           {% for affiliate in program.network_use.all %}
-               <li><a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a></li>
-           {% endfor %}
+            {% for affiliate in program.network_use.all %}
+                <li><a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a></li>
+            {% endfor %}
 
         {% endif %}
     </section>

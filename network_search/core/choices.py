@@ -112,8 +112,8 @@ class PartnerGrades(Choice):
 
 
 class Gender(Choice):
-    f = 'female'
-    m = 'male'
+    f = 'Female'
+    m = 'Male'
 
 
 class Race(Choice):

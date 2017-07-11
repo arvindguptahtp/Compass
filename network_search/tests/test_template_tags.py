@@ -23,7 +23,7 @@ def test_bad_name():
 
 def test_choice_tag_template():
     tmpl = template.Template("{% load choice_tags %}{{ g|choice_display:'Gender' }}")
-    assert tmpl.render(template.Context({"g": "f"})).strip() == "female"
+    assert tmpl.render(template.Context({"g": "f"})).strip() == "Female"
 
 
 def test_us_state():

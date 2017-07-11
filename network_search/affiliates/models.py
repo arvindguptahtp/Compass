@@ -302,6 +302,66 @@ class AffiliateEOYData(TimeStampedModel):
     def total_students_served(self):
         return self._sum_child_fields('students_total')
 
+    def students_k_11_promoted(self):
+        return self._sum_child_fields('students_k_11_promoted')
+
+    def students_k_11_retained(self):
+        return self._sum_child_fields('students_k_11_retained')
+
+    def students_k_11_dropped_out(self):
+        return self._sum_child_fields('students_k_11_dropped_out')
+
+    def students_k_11_transferred(self):
+        return self._sum_child_fields('students_k_11_transferred')
+
+    def students_k_11_ged(self):
+        return self._sum_child_fields('students_k_11_ged')
+
+    def students_k_11_expelled(self):
+        return self._sum_child_fields('students_k_11_expelled')
+
+    def students_k_11_incarcerated(self):
+        return self._sum_child_fields('students_k_11_incarcerated')
+
+    def students_k_11_deceased(self):
+        return self._sum_child_fields('students_k_11_deceased')
+
+    def students_k_11_other(self):
+        return self._sum_child_fields('students_k_11_other')
+
+    def students_k_11_unknown(self):
+        return self._sum_child_fields('students_k_11_unknown')
+
+    def students_grade_12_graduated(self):
+        return self._sum_child_fields('students_grade_12_graduated')
+
+    def students_grade_12_retained(self):
+        return self._sum_child_fields('students_grade_12_retained')
+
+    def students_grade_12_dropped_out(self):
+        return self._sum_child_fields('students_grade_12_dropped_out')
+
+    def students_grade_12_transferred(self):
+        return self._sum_child_fields('students_grade_12_transferred')
+
+    def students_grade_12_ged(self):
+        return self._sum_child_fields('students_grade_12_ged')
+
+    def students_grade_12_expelled(self):
+        return self._sum_child_fields('students_grade_12_expelled')
+
+    def students_grade_12_incarcerated(self):
+        return self._sum_child_fields('students_grade_12_incarcerated')
+
+    def students_grade_12_deceased(self):
+        return self._sum_child_fields('students_grade_12_deceased')
+
+    def students_grade_12_other(self):
+        return self._sum_child_fields('students_grade_12_other')
+
+    def students_grade_12_unknown(self):
+        return self._sum_child_fields('students_grade_12_unknown')
+
     def calculate(self):
         """
         Aggregates school data and sets numeric and choice fields on the instance
