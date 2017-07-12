@@ -92,9 +92,6 @@
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .35)), color-stop(66%, rgba(0, 0, 0, 0)));
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, 0) 66%);
 }
-.thm--warning {
-  background-color: #ffce00;
-}
 [class*='fx--'],
 [class*='fx--']::after,
 [class*='fx--']::before {
@@ -366,9 +363,6 @@ svg[class*='ico--xl'],
 [class*='ico--xl'] > .ico {
   height: 2.5em;
   width: 2.5em;
-}
-.fm--login {
-  max-width: 600px;
 }
 .fm-field--single label::after,
 .fm-field--multi label::after {
