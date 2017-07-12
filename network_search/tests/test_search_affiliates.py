@@ -147,6 +147,7 @@ def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_
         students_female_asian=1, students_female_black=4,
         students_male_asian=1, students_male_black=4,
         service_basic_needs=ServiceProvision.s2.name,
+        students_grade_11=1,
     )
 
     # Local affiliate has no male students in current year
@@ -176,7 +177,7 @@ def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_
         local_affiliate, current_eoy,
         students_female_asian=1, students_female_black=4,
         service_basic_needs=ServiceProvision.s2.name,
-        students_grade_prek=1,
+        students_grade_k=1,
     )
 
     yield [
@@ -357,17 +358,17 @@ def test_search_staff(affiliate_universe):
 @pytest.mark.django_db
 def test_search_grade(affiliate_universe):
     """Filter based on whether any child school provides selected services as chosen"""
-    form = AffiliateSearchForm(data={'grade': GradeLevel.el.name})
+    form = AffiliateSearchForm(data={'grades': [GradeLevel.el.name]})
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 1
 
-    form = AffiliateSearchForm(data={'grade': GradeLevel.ms.name})
+    form = AffiliateSearchForm(data={'grades': [GradeLevel.ms.name]})
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 2
 
-    form = AffiliateSearchForm(data={'grade': GradeLevel.hs.name})
+    form = AffiliateSearchForm(data={'grades': [GradeLevel.hs.name]})
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 1

@@ -54,6 +54,28 @@ class AffiliateQueryset(ResourceQueryset):
             'staff_pt': ['staff_parttime_affiliate', 'staff_parttime_non_affiliate'],
             'staff_ac': ['staff_parttime_americorps', 'staff_fulltime_americorps'],
         }
+        grade_fields = {
+            choices.GradeLevel.el.name: [
+                'students_grade_prek',
+                'students_grade_k',
+                'students_grade_1',
+                'students_grade_2',
+                'students_grade_3',
+                'students_grade_4',
+                'students_grade_5',
+            ],
+            choices.GradeLevel.ms.name: [
+                'students_grade_6',
+                'students_grade_7',
+                'students_grade_8',
+            ],
+            choices.GradeLevel.hs.name: [
+                'students_grade_9',
+                'students_grade_10',
+                'students_grade_11',
+                'students_grade_12',
+            ],
+        }
 
         eoy = EndOfYear.years.current()
         if eoy is None:
@@ -68,7 +90,7 @@ class AffiliateQueryset(ResourceQueryset):
         served = kwargs.pop('served', [])
         location = kwargs.pop('location', None)
         budget = kwargs.pop('budget', None)
-        grade = kwargs.pop('grade', None)
+        grades = kwargs.pop('grades', [])
 
         if location:
             qs = qs.filter(affiliate_location=location)
@@ -90,22 +112,6 @@ class AffiliateQueryset(ResourceQueryset):
                 affiliate_eoy_data__year=eoy,
             )
 
-        if grade == choices.GradeLevel.el.name:
-            qs = qs.filter(
-                affiliate_eoy_data__search_students_el__gt=0,
-                affiliate_eoy_data__year=eoy,
-            )
-        elif grade == choices.GradeLevel.ms.name:
-            qs = qs.filter(
-                affiliate_eoy_data__search_students_ms__gt=0,
-                affiliate_eoy_data__year=eoy,
-            )
-        elif grade == choices.GradeLevel.hs.name:
-            qs = qs.filter(
-                affiliate_eoy_data__search_students_hs__gt=0,
-                affiliate_eoy_data__year=eoy,
-            )
-
         if genders:
             qs = qs.filter(
                 affiliate_eoy_data__search_gender__contains=genders,
@@ -122,11 +128,22 @@ class AffiliateQueryset(ResourceQueryset):
                 affiliate_eoy_data__year=eoy,
             )
 
+        for grade in grades:
+            db_fields = grade_fields[grade]
+            qs = qs.filter(
+                affiliate_eoy_data__year=eoy,
+            ).annotate(
+                grade_level=sum([F('affiliate_eoy_data__school_data__{}'.format(field)) for field in db_fields])
+            ).filter(
+                grade_level__gt=0,
+            )
+
         for staffing_name, db_fields in staff_fields.items():
             staffing_level = kwargs.pop(staffing_name, None)
             if staffing_level:
                 qs = qs.annotate(
-                    has_staff=sum([F("affiliate_eoy_data__{}".format(field)) for field in db_fields])).filter(
+                    has_staff=sum([F("affiliate_eoy_data__{}".format(field)) for field in db_fields])
+                ).filter(
                     has_staff__gt=0,
                     affiliate_eoy_data__year=eoy,
                 )
@@ -200,10 +217,6 @@ class AffiliateEOYData(TimeStampedModel):
         blank=True,
         null=True,
     )
-
-    search_students_el = models.IntegerField(default=0, editable=False)
-    search_students_ms = models.IntegerField(default=0, editable=False)
-    search_students_hs = models.IntegerField(default=0, editable=False)
 
     search_students_american_indian = models.IntegerField(default=0, editable=False)
     search_students_asian = models.IntegerField(default=0, editable=False)
@@ -486,27 +499,6 @@ class AffiliateEOYData(TimeStampedModel):
             choices.StudentCharacteristics.sa.name if self.total_students_substance_abuse() else None,
         ] if e is not None]
 
-        self.search_students_el = self._sum_child_fields(
-            'students_grade_prek',
-            'students_grade_k',
-            'students_grade_1',
-            'students_grade_2',
-            'students_grade_3',
-            'students_grade_4',
-            'students_grade_5',
-        )
-        self.search_students_ms = self._sum_child_fields(
-            'students_grade_6',
-            'students_grade_7',
-            'students_grade_8',
-        )
-        self.search_students_hs = self._sum_child_fields(
-            'students_grade_9',
-            'students_grade_10',
-            'students_grade_11',
-            'students_grade_12',
-        )
-
         self.save()
 
 
@@ -572,10 +564,6 @@ class SchoolEOYData(TimeStampedModel):
     white_fields = [template.format(choices.Race.wh.lower()) for template in gender_templates]
     two_or_more_races_fields = [template.format(choices.Race.two.lower()) for template in gender_templates]
     other_fields = [template.format('other') for template in gender_templates]
-
-    class Meta:
-        verbose_name = "School and Student EOY Data"
-        verbose_name_plural = "School and Student EOY Data"
 
     affiliate_data = models.ForeignKey('AffiliateEOYData', related_name='school_data')
     name = models.CharField(max_length=400)
@@ -681,6 +669,10 @@ class SchoolEOYData(TimeStampedModel):
         blank=True,
         null=True,
     )
+
+    class Meta:
+        verbose_name = "School and Student EOY Data"
+        verbose_name_plural = "School and Student EOY Data"
 
     def __str__(self):
         return "{}, {}".format(self.name, self.affiliate_data)

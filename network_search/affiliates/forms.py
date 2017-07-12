@@ -3,7 +3,6 @@ from django import forms
 from network_search.core import choices
 from network_search.affiliates import models
 from network_search.core.forms import SearchForm
-from network_search.core.choices import BudgetLevel
 
 try:
     from s3direct.widgets import S3DirectWidget
@@ -62,7 +61,11 @@ class AffiliateSearchForm(SearchForm):
         required=False,
     )
     budget = forms.ChoiceField(
-        choices=BudgetLevel.as_choices(),
+        choices=choices.BudgetLevel.as_choices(),
+        required=False,
+    )
+    grades = forms.MultipleChoiceField(
+        choices=choices.GradeLevel.as_choices(),
         required=False,
     )
 
