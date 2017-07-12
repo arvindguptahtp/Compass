@@ -68,7 +68,7 @@ html: ## Build only HTML templates (with data)
 	clear
 	cd $(ui) && yarn run template-build
 
-build:  ## Build front-end for pre-deployment, minimizes JS, minimizes and razors CSS
+build-ui:  ## Build front-end for pre-deployment, minimizes JS, minimizes and razors CSS
 	clear
 	cd $(ui) && yarn run django-build
 
