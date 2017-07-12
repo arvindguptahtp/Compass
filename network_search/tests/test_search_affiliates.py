@@ -7,18 +7,19 @@ data for the current or most active reporting year.
 
 import pytest
 
-from network_search.core.choices import Race
-from network_search.core.choices import Gender
-from network_search.core.choices import BudgetLevel
-from network_search.core.choices import ServiceProvision
+from network_search.affiliates.forms import AffiliateSearchForm
+from network_search.affiliates.models import Affiliate
+from network_search.affiliates.models import AffiliateEOYData
+from network_search.affiliates.models import EndOfYear
 from network_search.core.choices import AffiliateLocation
+from network_search.core.choices import BudgetLevel
+from network_search.core.choices import Gender
+from network_search.core.choices import GradeLevel
+from network_search.core.choices import Race
+from network_search.core.choices import ServiceProvision
 from network_search.core.choices import StudentCharacteristics
 from network_search.tests.fixtures import affiliate_factory
 from network_search.tests.fixtures import school_data_factory
-from network_search.affiliates.forms import AffiliateSearchForm
-from network_search.affiliates.models import Affiliate
-from network_search.affiliates.models import EndOfYear
-from network_search.affiliates.models import AffiliateEOYData
 
 
 @pytest.fixture
@@ -131,6 +132,7 @@ def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_
         students_female_asian=1, students_female_black=4,
         students_male_asian=1, students_male_black=4,
         students_served_ell=1,
+        students_grade_7=1,
     )
 
     # This school has female and male students, black and asian in both years, white only in old year
@@ -152,6 +154,7 @@ def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_
         local_affiliate, past_eoy,
         students_female_asian=1, students_female_black=4,
         students_male_asian=1, students_male_black=4,
+        students_grade_7=1,
     )
     local_current_school_1 = school_data_factory(
         local_affiliate, current_eoy,
@@ -160,6 +163,9 @@ def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_
         students_served_frpl=18,
         students_served_ell=1,
         service_basic_needs=ServiceProvision.s3.name,
+        students_grade_6=1,
+        students_grade_7=1,
+        students_grade_8=1,
     )
     local_old_school_2 = school_data_factory(
         local_affiliate, past_eoy,
@@ -170,6 +176,7 @@ def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_
         local_affiliate, current_eoy,
         students_female_asian=1, students_female_black=4,
         service_basic_needs=ServiceProvision.s2.name,
+        students_grade_prek=1,
     )
 
     yield [
@@ -345,3 +352,22 @@ def test_search_staff(affiliate_universe):
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 2
+
+
+@pytest.mark.django_db
+def test_search_grade(affiliate_universe):
+    """Filter based on whether any child school provides selected services as chosen"""
+    form = AffiliateSearchForm(data={'grade': GradeLevel.el.name})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 1
+
+    form = AffiliateSearchForm(data={'grade': GradeLevel.ms.name})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 2
+
+    form = AffiliateSearchForm(data={'grade': GradeLevel.hs.name})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 1

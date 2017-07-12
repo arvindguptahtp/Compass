@@ -217,3 +217,9 @@ class BudgetLevel(Choice):
     zero_five = "0-500k"
     five_one = "500k-1M"
     one = "1M+"
+
+
+class GradeLevel(Choice):
+    el = "Elementary (Pre-K - 5)"
+    ms = "Middle School (6 - 8)"
+    hs = "High School (9 -12)"

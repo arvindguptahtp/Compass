@@ -1,5 +1,7 @@
 """
 Models for the affiliate directory and EOY data reports
+
+Fields namespaced with `search_` are aggregate fields.
 """
 
 import logging
@@ -66,6 +68,7 @@ class AffiliateQueryset(ResourceQueryset):
         served = kwargs.pop('served', [])
         location = kwargs.pop('location', None)
         budget = kwargs.pop('budget', None)
+        grade = kwargs.pop('grade', None)
 
         if location:
             qs = qs.filter(affiliate_location=location)
@@ -84,6 +87,22 @@ class AffiliateQueryset(ResourceQueryset):
         elif budget == choices.BudgetLevel.one.name:
             qs = qs.filter(
                 affiliate_eoy_data__budget_total__gt=1000000,
+                affiliate_eoy_data__year=eoy,
+            )
+
+        if grade == choices.GradeLevel.el.name:
+            qs = qs.filter(
+                affiliate_eoy_data__search_students_el__gt=0,
+                affiliate_eoy_data__year=eoy,
+            )
+        elif grade == choices.GradeLevel.ms.name:
+            qs = qs.filter(
+                affiliate_eoy_data__search_students_ms__gt=0,
+                affiliate_eoy_data__year=eoy,
+            )
+        elif grade == choices.GradeLevel.hs.name:
+            qs = qs.filter(
+                affiliate_eoy_data__search_students_hs__gt=0,
                 affiliate_eoy_data__year=eoy,
             )
 
@@ -181,6 +200,10 @@ class AffiliateEOYData(TimeStampedModel):
         blank=True,
         null=True,
     )
+
+    search_students_el = models.IntegerField(default=0, editable=False)
+    search_students_ms = models.IntegerField(default=0, editable=False)
+    search_students_hs = models.IntegerField(default=0, editable=False)
 
     search_students_american_indian = models.IntegerField(default=0, editable=False)
     search_students_asian = models.IntegerField(default=0, editable=False)
@@ -462,6 +485,27 @@ class AffiliateEOYData(TimeStampedModel):
             choices.StudentCharacteristics.se.name if self.total_students_special_education() else None,
             choices.StudentCharacteristics.sa.name if self.total_students_substance_abuse() else None,
         ] if e is not None]
+
+        self.search_students_el = self._sum_child_fields(
+            'students_grade_prek',
+            'students_grade_k',
+            'students_grade_1',
+            'students_grade_2',
+            'students_grade_3',
+            'students_grade_4',
+            'students_grade_5',
+        )
+        self.search_students_ms = self._sum_child_fields(
+            'students_grade_6',
+            'students_grade_7',
+            'students_grade_8',
+        )
+        self.search_students_hs = self._sum_child_fields(
+            'students_grade_9',
+            'students_grade_10',
+            'students_grade_11',
+            'students_grade_12',
+        )
 
         self.save()
 
