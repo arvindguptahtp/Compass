@@ -50,9 +50,9 @@ class AffiliateQueryset(ResourceQueryset):
             'life_skills', 'physical_fitness_health', 'prof_mental_health'
         ]
         staff_fields = {
-            'staff_ft': ['staff_fulltime_affiliate', 'staff_fulltime_non_affiliate'],
-            'staff_pt': ['staff_parttime_affiliate', 'staff_parttime_non_affiliate'],
-            'staff_ac': ['staff_parttime_americorps', 'staff_fulltime_americorps'],
+            'ft': ['staff_fulltime_affiliate', 'staff_fulltime_non_affiliate'],
+            'pt': ['staff_parttime_affiliate', 'staff_parttime_non_affiliate'],
+            'ac': ['staff_parttime_americorps', 'staff_fulltime_americorps'],
         }
         grade_fields = {
             choices.GradeLevel.el.name: [
@@ -91,6 +91,7 @@ class AffiliateQueryset(ResourceQueryset):
         location = kwargs.pop('location', None)
         budget = kwargs.pop('budget', None)
         grades = kwargs.pop('grades', [])
+        staff = kwargs.pop('staff', [])
 
         if location:
             qs = qs.filter(affiliate_location=location)
@@ -138,15 +139,14 @@ class AffiliateQueryset(ResourceQueryset):
                 grade_level__gt=0,
             )
 
-        for staffing_name, db_fields in staff_fields.items():
-            staffing_level = kwargs.pop(staffing_name, None)
-            if staffing_level:
-                qs = qs.annotate(
-                    has_staff=sum([F("affiliate_eoy_data__{}".format(field)) for field in db_fields])
-                ).filter(
-                    has_staff__gt=0,
-                    affiliate_eoy_data__year=eoy,
-                )
+        for staff_level in staff:
+            db_fields = staff_fields[staff_level]
+            qs = qs.annotate(
+                has_staff=sum([F("affiliate_eoy_data__{}".format(field)) for field in db_fields])
+            ).filter(
+                has_staff__gt=0,
+                affiliate_eoy_data__year=eoy,
+            )
 
         for service_name in service_field_names:
             service_level = kwargs.pop(service_name, None)

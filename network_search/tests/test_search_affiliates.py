@@ -334,22 +334,22 @@ def test_search_budget(affiliate_universe):
 @pytest.mark.django_db
 def test_search_staff(affiliate_universe):
     """Filter based on whether any child school provides selected services as chosen"""
-    form = AffiliateSearchForm(data={'staff_pt': True})
+    form = AffiliateSearchForm(data={'staff': ['pt']})
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 1
 
-    form = AffiliateSearchForm(data={'staff_ft': True})
+    form = AffiliateSearchForm(data={'staff': ['ft']})
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 3
 
-    form = AffiliateSearchForm(data={'staff_ac': True})
+    form = AffiliateSearchForm(data={'staff': ['ac']})
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 2
 
-    form = AffiliateSearchForm(data={'staff_ft': True, 'staff_ac': True})
+    form = AffiliateSearchForm(data={'staff': ['ft', 'ac']})
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 2

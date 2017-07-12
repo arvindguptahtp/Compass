@@ -223,3 +223,9 @@ class GradeLevel(Choice):
     el = "Elementary (Pre-K - 5)"
     ms = "Middle School (6 - 8)"
     hs = "High School (9 -12)"
+
+
+class Staff(Choice):
+    ft = "Full Time"
+    pt = "Part Time"
+    ac = "Americorps"

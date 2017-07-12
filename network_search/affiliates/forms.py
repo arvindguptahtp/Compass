@@ -111,7 +111,7 @@ class AffiliateSearchForm(SearchForm):
         required=False,
     )
 
-    # Staffing search
-    staff_pt = forms.BooleanField(required=False)
-    staff_ft = forms.BooleanField(required=False)
-    staff_ac = forms.BooleanField(required=False)
+    staff = forms.MultipleChoiceField(
+        choices=choices.Staff.as_choices(),
+        required=False
+    )
