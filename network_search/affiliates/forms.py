@@ -1,7 +1,8 @@
 from django import forms
 
-from network_search.core import choices
 from network_search.affiliates import models
+from network_search.core import choices
+from network_search.core.choices import BudgetLevel
 from network_search.core.forms import SearchForm
 
 try:
@@ -64,6 +65,10 @@ class AffiliateSearchForm(SearchForm):
     )
     location = forms.ChoiceField(
         choices=choices.AffiliateLocation.as_choices(),
+        required=False,
+    )
+    budget = forms.ChoiceField(
+        choices=BudgetLevel.as_choices(),
         required=False,
     )
 

@@ -210,3 +210,10 @@ class AffiliateLocation(Choice):
     Ur = 'Urban'
     S = 'Suburban'
     R = 'Rural'
+
+
+class BudgetLevel(Choice):
+    """For search affiliates by budget"""
+    zero_five = "0-500k"
+    five_one = "500k-1M"
+    one = "1M+"

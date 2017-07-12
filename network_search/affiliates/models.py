@@ -60,9 +60,27 @@ class AffiliateQueryset(ResourceQueryset):
         race = kwargs.pop('race', [])
         served = kwargs.pop('served', [])
         location = kwargs.pop('location', None)
+        budget = kwargs.pop('budget', None)
 
         if location:
             qs = qs.filter(affiliate_location=location)
+
+        if budget == choices.BudgetLevel.zero_five.name:
+            qs = qs.filter(
+                affiliate_eoy_data__budget_total__lte=500000,
+                affiliate_eoy_data__year=eoy,
+            )
+        elif budget == choices.BudgetLevel.five_one.name:
+            qs = qs.filter(
+                affiliate_eoy_data__budget_total__gt=500000,
+                affiliate_eoy_data__budget_total__lte=1000000,
+                affiliate_eoy_data__year=eoy,
+            )
+        elif budget == choices.BudgetLevel.one.name:
+            qs = qs.filter(
+                affiliate_eoy_data__budget_total__gt=1000000,
+                affiliate_eoy_data__year=eoy,
+            )
 
         if genders:
             qs = qs.filter(
