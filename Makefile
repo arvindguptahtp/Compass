@@ -56,6 +56,10 @@ vue-dev:  ## Build vue components
 	clear
 	cd $(ui) && yarn run vue-dev
 
+html-build:
+	clear
+	cd $(ui) && yarn run template-build
+
 ui-dev:  ## Use for quick front-end development, only processes css and html
 	clear
 	cd $(ui) && yarn run django-dev

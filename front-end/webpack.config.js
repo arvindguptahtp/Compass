@@ -65,6 +65,10 @@ module.exports = (env) => {
                     require('./vefa/rules.vue')(CFG, locals),
                 ]
             break;
+            case "html": 
+                return [
+                    require('./vefa/rules.django')(CFG, locals),
+                ]
             case "dev": 
                 return [
                     require('./vefa/rules.babel')(CFG),
@@ -92,12 +96,14 @@ module.exports = (env) => {
             break;
             case "vue":
                 return entries(CFG.entries.vue, true)
+            case "html":
+                return entries('./components/*/**.pug')
             break;
             case "dev":
                 return entries(CFG.entries.dev_all, true)
             break;
             default:
-                return entries(CFG.entries.all, true)
+                return entries(CFG.entries.build_all, true)
         }
     })()
 

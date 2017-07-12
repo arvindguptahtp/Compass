@@ -106,11 +106,12 @@ webp:
 # ENTRIES
 # ---------------------------------------------------------------------
 entries:
+    vue: *js_files
     build: &build_files
         compile: ./vefa/compile-scripts/build.js
     dev: &dev_files
         compile: ./vefa/compile-scripts/compile.js
     dev_all: 
         << : [*js_files, *dev_files]
-    all:
+    build_all:
         << : [*js_files, *build_files]
