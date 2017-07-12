@@ -42,40 +42,40 @@ help:
 ### UI shortcuts
 ui = ./front-end/
 
-ui-deps: 
+ui-deps:  ## Install UI scaffolding dependneices
 	cd $(ui) && yarn install
 
-ui-update: ## Update UI Build Process dependencies
+ui-update: ## Update UI build process dependencies
 	cd $(ui) && yarn upgrade-interactive
 
-ui-assets:
+ui-assets:  ## ???????
 	clear
 	cd $(ui) && yarn run assets
 
-vue-dev:
+vue-dev:  ## Build vue components
 	clear
 	cd $(ui) && yarn run vue-dev
 
-dev:
+dev:  ## ?????
 	clear
 	cd $(ui) && yarn run template-dev
 
-ui-dev:
+ui-dev:  ## ????
 	clear
 	cd $(ui) && yarn run django-dev
 
-ui-build:
+ui-build:  ## ????
 	clear
 	cd $(ui) && yarn run django-build
 
-proto-dev:
+proto-dev:  ## ????
 	clear
 	cd $(ui) && yarn run dev
 
-proto-build:
+proto-build:  ## ????
 	clear
 	cd $(ui) && yarn run build
 
-razor:
+razor:  ## ????
 	clear
 	cd $(ui) && yarn run razor
