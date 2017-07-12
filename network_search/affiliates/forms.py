@@ -12,6 +12,12 @@ else:
     widget = S3DirectWidget(dest='affiliate_imports')
 
 
+class GradeLevel(choices.Choice):
+    el = "Elementary (Pre-K - 5)"
+    ms = "Middle School (6 - 8)"
+    hs = "High School (9 -12)"
+
+
 class ExcelUploadForm(forms.ModelForm):
 
     data_file = forms.FileField(widget=widget)
@@ -54,6 +60,10 @@ class AffiliateSearchForm(SearchForm):
     )
     served = forms.MultipleChoiceField(
         choices=choices.StudentCharacteristics.as_choices(),
+        required=False,
+    )
+    location = forms.ChoiceField(
+        choices=choices.AffiliateLocation.as_choices(),
         required=False,
     )
 

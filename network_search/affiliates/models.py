@@ -59,6 +59,10 @@ class AffiliateQueryset(ResourceQueryset):
         genders = kwargs.pop('gender', [])
         race = kwargs.pop('race', [])
         served = kwargs.pop('served', [])
+        location = kwargs.pop('location', None)
+
+        if location:
+            qs = qs.filter(affiliate_location=location)
 
         if genders:
             qs = qs.filter(

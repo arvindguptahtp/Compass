@@ -10,6 +10,7 @@ import pytest
 from network_search.core.choices import Race
 from network_search.core.choices import Gender
 from network_search.core.choices import ServiceProvision
+from network_search.core.choices import AffiliateLocation
 from network_search.core.choices import StudentCharacteristics
 from network_search.tests.fixtures import affiliate_factory
 from network_search.tests.fixtures import school_data_factory
@@ -21,12 +22,12 @@ from network_search.affiliates.models import AffiliateEOYData
 
 @pytest.fixture
 def local_affiliate():
-    yield affiliate_factory(name="Local Affiliate", state="VA")
+    yield affiliate_factory(name="Local Affiliate", state="VA", affiliate_location=AffiliateLocation.R.name)
 
 
 @pytest.fixture
 def acme_affiliate():
-    yield affiliate_factory(name="Acme", state="TX")
+    yield affiliate_factory(name="Acme", state="TX", affiliate_location=AffiliateLocation.S.name)
 
 
 @pytest.fixture
@@ -213,6 +214,25 @@ def test_search_services(affiliate_universe):
     assert results.count() == 2
 
     form = AffiliateSearchForm(data={'basic_needs': ServiceProvision.s3.name})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 1
+
+
+@pytest.mark.django_db
+def test_search_location(affiliate_universe):
+    """Filter based on whether any child school provides selected services as chosen"""
+    form = AffiliateSearchForm(data={'location': AffiliateLocation.Ur.name})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 0
+
+    form = AffiliateSearchForm(data={'location': AffiliateLocation.R.name})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 1
+
+    form = AffiliateSearchForm(data={'location': AffiliateLocation.S.name})
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 1
