@@ -25,6 +25,10 @@ contact:
     url: https://www.communitiesinschools.org/contact-us/
     published: true
 
+admin:
+    title: Admin
+    url: "{% url 'admin:index' %}"
+    published: true
 
 partners:
     title: Partners
