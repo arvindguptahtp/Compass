@@ -6,18 +6,15 @@
 // ---------------------------------------------------------------------
 // TEMPLATING
 // ---------------------------------------------------------------------
-require.context('./components/', true, /\.pug$/)
+require.context('../../components/', true, /\.pug$/)
 
 
 // ---------------------------------------------------------------------
 // STYLES
 // ---------------------------------------------------------------------
-// require('./components/base.styl')
-require('./components/app.styl')
-// require.context('./components/', false, /\.styl$/)
+require.context('../.../components/', false, /\.styl$/)
 
 // ---------------------------------------------------------------------
 // ASSETS
 // ---------------------------------------------------------------------
-// called through its own make task
-// require.context('./res')
+require.context('../../res')

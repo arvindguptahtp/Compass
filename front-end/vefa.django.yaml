@@ -1,16 +1,13 @@
+# ---------------------------------------------------------------------
+# PROJECT
+# ---------------------------------------------------------------------
 project: CIS-Network-Search
 src: ./
 build: ../network_search
 publicPath: static/js/
 components: components
-entries:
-    vue:
-        app: ./components/app.js
-    templates:
-        compile: ./compile.js
-    all:
-        compile: ./compile-all.js
-        app: ./components/app.js
+
+
 # ---------------------------------------------------------------------
 # DATA
 # ---------------------------------------------------------------------
@@ -21,6 +18,16 @@ locals:
         dir: components
         output: 
             dir: .json
+
+
+
+# ---------------------------------------------------------------------
+# VUE / JS
+# ---------------------------------------------------------------------
+javascript:
+    files: &js_files
+        app: ./components/app.js
+
 
 # ---------------------------------------------------------------------
 # TEMPLATING
@@ -93,3 +100,17 @@ webp:
     io:
         context: *asset_io_context
         export: static/res/[path][name].[ext].webp
+
+
+# ---------------------------------------------------------------------
+# ENTRIES
+# ---------------------------------------------------------------------
+entries:
+    build: &build_files
+        compile: ./vefa/compile-scripts/build.js
+    dev: &dev_files
+        compile: ./vefa/compile-scripts/compile.js
+    dev_all: 
+        << : [*js_files, *dev_files]
+    all:
+        << : [*js_files, *build_files]

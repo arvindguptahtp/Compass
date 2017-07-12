@@ -48,7 +48,7 @@ ui-deps:  ## Install UI scaffolding dependneices
 ui-update: ## Update UI build process dependencies
 	cd $(ui) && yarn upgrade-interactive
 
-ui-assets:  ## ???????
+ui-assets:  ## Compress any front-end related assets. (Slow as files may be large)
 	clear
 	cd $(ui) && yarn run assets
 
@@ -56,26 +56,14 @@ vue-dev:  ## Build vue components
 	clear
 	cd $(ui) && yarn run vue-dev
 
-dev:  ## ?????
-	clear
-	cd $(ui) && yarn run template-dev
-
-ui-dev:  ## ????
+ui-dev:  ## Use for quick front-end development, only processes css and html
 	clear
 	cd $(ui) && yarn run django-dev
 
-ui-build:  ## ????
+ui-build:  ## Build front-end for pre-deployment, minimizes JS, minimizes and razors CSS
 	clear
 	cd $(ui) && yarn run django-build
 
-proto-dev:  ## ????
-	clear
-	cd $(ui) && yarn run dev
-
-proto-build:  ## ????
-	clear
-	cd $(ui) && yarn run build
-
-razor:  ## ????
+razor:  ## Removes unused site CSS from files, generally used for testing
 	clear
 	cd $(ui) && yarn run razor

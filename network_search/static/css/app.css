@@ -135,6 +135,7 @@
 .thm--programs-shift,
 .thm--partners-shift {
   background-repeat: no-repeat;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .35)), color-stop(66%, rgba(0, 0, 0, 0)));
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, 0) 66%);
 }
 .thm--warning {
@@ -143,13 +144,17 @@
 [class*='fx--'],
 [class*='fx--']::after,
 [class*='fx--']::before {
+  -webkit-transition-property: none;
   transition-property: none;
-  transition-duration: 0.25s;
-  transition-timing-function: ease-in;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease-in;
+          transition-timing-function: ease-in;
 }
 .fx--shift,
 .fx--shift::after,
 .fx--shift::before {
+  -webkit-transition-property: background, color, opacity, -webkit-filter;
   transition-property: background, color, opacity, -webkit-filter;
   transition-property: background, color, filter, opacity;
   transition-property: background, color, filter, opacity, -webkit-filter;
@@ -157,18 +162,22 @@
 [o-base~='fx--shift'],
 [o-base~='fx--shift']::after,
 [o-base~='fx--shift']::before {
+  -webkit-transition-property: background, color, opacity, -webkit-filter;
   transition-property: background, color, opacity, -webkit-filter;
   transition-property: background, color, filter, opacity;
   transition-property: background, color, filter, opacity, -webkit-filter;
 }
 [class*='fx--slide'] {
+  -webkit-transition-property: opacity, -webkit-transform;
   transition-property: opacity, -webkit-transform;
   transition-property: opacity, transform;
   transition-property: opacity, transform, -webkit-transform;
 }
 .fx--slide-up-leave-active {
-  transition-duration: 0.4s;
-  transition-timing-function: cubic-bezier(1, 0.5, 0.8, 1);
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+  -webkit-transition-timing-function: cubic-bezier(1, 0.5, 0.8, 1);
+          transition-timing-function: cubic-bezier(1, 0.5, 0.8, 1);
 }
 .fx--slide-up-enter,
 .fx--slide-up-leave-to {
@@ -429,8 +438,11 @@ hr {
 .copy a {
   text-decoration: underline;
   font-weight: 400;
-  transition-duration: 0.25s;
-  transition-timing-function: ease-in;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease-in;
+          transition-timing-function: ease-in;
+  -webkit-transition-property: color;
   transition-property: color;
 }
 .copy a:hover {
@@ -445,6 +457,7 @@ html {
   line-height: 1.5;
   height: 100%;
   -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
           text-size-adjust: 100%;
 }
@@ -469,17 +482,13 @@ main {
           flex: 1 0;
 }
 .gx--ui {
-  -ms-grid-columns: 80px 2fr 2fr;
-      grid-template-columns: 80px 2fr 2fr;
-  -ms-grid-rows: auto 1fr auto;
-      grid-template-rows: auto 1fr auto;
+  grid-template-columns: 80px 2fr 2fr;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas: "a b b" "c d d" "c e e" "f f f";
 }
 [o-base~='gx--ui'] {
-  -ms-grid-columns: 80px 2fr 2fr;
-      grid-template-columns: 80px 2fr 2fr;
-  -ms-grid-rows: auto 1fr auto;
-      grid-template-rows: auto 1fr auto;
+  grid-template-columns: 80px 2fr 2fr;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas: "a b b" "c d d" "c e e" "f f f";
 }
 .gx--search {
@@ -577,8 +586,7 @@ main {
   pointer-events: auto;
 }
 .colophon-nav {
-  -ms-grid-columns: (minmax(125px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
   grid-gap: 0;
 }
 .masthead-nav--actions {
@@ -598,8 +606,7 @@ main {
 }
 .poster--icon,
 .poster--details {
-  -ms-grid-columns: auto 1fr 1fr;
-      grid-template-columns: auto 1fr 1fr;
+  grid-template-columns: auto 1fr 1fr;
   grid-template-areas: "a b b" "a c c";
   grid-gap: 0 6px;
 }
@@ -700,10 +707,8 @@ svg[o-base*='ico--xl'],
   margin-top: 0;
 }
 .card--coreservices .gx--auto {
-  -ms-grid-columns: (minmax(52px, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
-  -ms-grid-rows: (minmax(52px, 1fr))[auto-fill];
-      grid-template-rows: repeat(auto-fill, minmax(52px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(52px, 1fr));
   grid-gap: 3px;
 }
 .card--ebr {
@@ -742,39 +747,36 @@ svg[o-base*='ico--xl'],
   border: 1px solid #003d7d;
 }
 .gx--detail-affiliate {
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
   grid-template-areas: "a" "b" "c";
 }
 .gx--result-affiliate {
   grid-template-areas: "title      title       title   title" "state      state       state   profile" "students   students    budget  budget";
-  -ms-grid-columns: (1fr)[3] max-content;
-      grid-template-columns: repeat(3, 1fr) max-content;
-  -ms-grid-rows: (auto)[4];
-      grid-template-rows: repeat(4, auto);
+  grid-template-columns: repeat(3, 1fr) -webkit-max-content;
+  grid-template-columns: repeat(3, 1fr) max-content;
+  grid-template-rows: repeat(4, auto);
   grid-gap: 1px;
 }
 .gx--result-programs {
   grid-template-areas: "title      title       title" "network    network     services" "overview   overview    services" "ebr        ebr         services";
-  -ms-grid-columns: max-content 1fr max-content;
-      grid-template-columns: max-content 1fr max-content;
+  grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
+  grid-template-columns: max-content 1fr max-content;
   grid-gap: 1px;
 }
 .gx--detail-partner {
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
   grid-template-areas: "a" "b" "c";
 }
 .gx--result-partner {
   grid-template-areas: "title      title           title" "network    service-tier    service-tier" "overview   overview        services";
-  -ms-grid-columns: max-content 1fr max-content;
-      grid-template-columns: max-content 1fr max-content;
+  grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
+  grid-template-columns: max-content 1fr max-content;
   grid-gap: 1px;
 }
 @media only screen and (min-width: 0px) {
   .masthead-nav-ctrl {
     font-size: 25px;
-    font-size: calc( 0.875vw + 18px);
+    font-size: calc(0.875vw + 18px);
   }
 }
 @media only screen and (min-width: 480px) {
@@ -786,6 +788,7 @@ svg[o-base*='ico--xl'],
   [o-compressed~='fx--shift'],
   [o-compressed~='fx--shift']::after,
   [o-compressed~='fx--shift']::before {
+    -webkit-transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, filter, opacity;
     transition-property: background, color, filter, opacity, -webkit-filter;
@@ -837,9 +840,9 @@ svg[o-base*='ico--xl'],
   }
   [class*='tx--broadside'] {
     font-size: 44px;
-    font-size: calc( 5.254vw + 6.78px);
+    font-size: calc(5.254vw + 6.78px);
     line-height: 51px;
-    line-height: calc( 6.25vw + 6px);
+    line-height: calc(6.25vw + 6px);
   }
   [o-compressed*='tx--display'] {
     font-size: 1.984rem;
@@ -874,10 +877,8 @@ svg[o-base*='ico--xl'],
     line-height: 1.666666666666667;
   }
   [o-compressed~='gx--ui'] {
-    -ms-grid-columns: 80px 2fr 2fr;
-        grid-template-columns: 80px 2fr 2fr;
-    -ms-grid-rows: auto 1fr auto;
-        grid-template-rows: auto 1fr auto;
+    grid-template-columns: 80px 2fr 2fr;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: "a b b" "c d d" "c e e" "f f f";
   }
   [o-compressed*='gxi--title'] {
@@ -951,10 +952,9 @@ svg[o-base*='ico--xl'],
   }
   .gx--result-programs {
     grid-template-areas: "title      title       network" "ebr        overview    overview" "services   services    services";
-    -ms-grid-columns: minmax(100px, 180px) 2fr minmax(0, max-content);
-        grid-template-columns: minmax(100px, 180px) 2fr minmax(0, max-content);
-    -ms-grid-rows: auto auto 1fr;
-        grid-template-rows: auto auto 1fr;
+    grid-template-columns: minmax(100px, 180px) 2fr minmax(0, -webkit-max-content);
+    grid-template-columns: minmax(100px, 180px) 2fr minmax(0, max-content);
+    grid-template-rows: auto auto 1fr;
   }
 }
 @media only screen and (min-width: 660px) {
@@ -966,6 +966,7 @@ svg[o-base*='ico--xl'],
   [o-condensed~='fx--shift'],
   [o-condensed~='fx--shift']::after,
   [o-condensed~='fx--shift']::before {
+    -webkit-transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, filter, opacity;
     transition-property: background, color, filter, opacity, -webkit-filter;
@@ -1048,10 +1049,8 @@ svg[o-base*='ico--xl'],
     line-height: 1.666666666666667;
   }
   [o-condensed~='gx--ui'] {
-    -ms-grid-columns: 80px 2fr 2fr;
-        grid-template-columns: 80px 2fr 2fr;
-    -ms-grid-rows: auto 1fr auto;
-        grid-template-rows: auto 1fr auto;
+    grid-template-columns: 80px 2fr 2fr;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: "a b b" "c d d" "c e e" "f f f";
   }
   [o-condensed*='gxi--title'] {
@@ -1128,18 +1127,15 @@ svg[o-base*='ico--xl'],
   }
   .gx--result-affiliate {
     grid-template-areas: "title title title title profile" "state students students budget budget";
-    -ms-grid-columns: (1fr)[5];
-        grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
   .gx--result-programs {
     grid-template-areas: "title      title       network" "ebr        overview    overview" "ebr        services    services";
   }
   .gx--result-partner {
     grid-template-areas: "title      title" "overview   service-tier" "overview   network" "overview   services";
-    -ms-grid-columns: 2fr 1fr;
-        grid-template-columns: 2fr 1fr;
-    -ms-grid-rows: auto auto auto 1fr;
-        grid-template-rows: auto auto auto 1fr;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto auto 1fr;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -1151,6 +1147,7 @@ svg[o-base*='ico--xl'],
   [o-standard~='fx--shift'],
   [o-standard~='fx--shift']::after,
   [o-standard~='fx--shift']::before {
+    -webkit-transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, filter, opacity;
     transition-property: background, color, filter, opacity, -webkit-filter;
@@ -1233,10 +1230,8 @@ svg[o-base*='ico--xl'],
     line-height: 1.666666666666667;
   }
   [o-standard~='gx--ui'] {
-    -ms-grid-columns: 80px 2fr 2fr;
-        grid-template-columns: 80px 2fr 2fr;
-    -ms-grid-rows: auto 1fr auto;
-        grid-template-rows: auto 1fr auto;
+    grid-template-columns: 80px 2fr 2fr;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: "a b b" "c d d" "c e e" "f f f";
   }
   [o-standard*='gxi--title'] {
@@ -1320,21 +1315,17 @@ svg[o-base*='ico--xl'],
     right: 12px;
   }
   .gx--detail-affiliate {
-    -ms-grid-columns: (1fr)[3];
-        grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "b a a" "c c c";
   }
   .gx--detail-partner {
-    -ms-grid-columns: (1fr)[3];
-        grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "b a a" "c c c";
   }
   .gx--result-partner {
     grid-template-areas: "title      service-tier" "overview   network" "overview   services";
-    -ms-grid-columns: 2fr 1fr;
-        grid-template-columns: 2fr 1fr;
-    -ms-grid-rows: auto auto 1fr;
-        grid-template-rows: auto auto 1fr;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto 1fr;
   }
 }
 @media only screen and (min-width: 960px) {
@@ -1352,6 +1343,7 @@ svg[o-base*='ico--xl'],
   [o-enhanced~='fx--shift'],
   [o-enhanced~='fx--shift']::after,
   [o-enhanced~='fx--shift']::before {
+    -webkit-transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, filter, opacity;
     transition-property: background, color, filter, opacity, -webkit-filter;
@@ -1438,17 +1430,14 @@ svg[o-base*='ico--xl'],
     line-height: 1.666666666666667;
   }
   [o-enhanced~='gx--ui'] {
-    -ms-grid-columns: 80px 2fr 2fr;
-        grid-template-columns: 80px 2fr 2fr;
-    -ms-grid-rows: auto 1fr auto;
-        grid-template-rows: auto 1fr auto;
+    grid-template-columns: 80px 2fr 2fr;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: "a b b" "c d d" "c e e" "f f f";
   }
   .gx--search {
-    -ms-grid-columns: 20vw 1fr;
-        grid-template-columns: 20vw 1fr;
-    -ms-grid-rows: auto max-content;
-        grid-template-rows: auto max-content;
+    grid-template-columns: 20vw 1fr;
+    grid-template-rows: auto -webkit-max-content;
+    grid-template-rows: auto max-content;
     grid-template-areas: "a b" "a c";
   }
   [o-enhanced*='gxi--title'] {
@@ -1530,6 +1519,7 @@ svg[o-base*='ico--xl'],
   [o-extended~='fx--shift'],
   [o-extended~='fx--shift']::after,
   [o-extended~='fx--shift']::before {
+    -webkit-transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, filter, opacity;
     transition-property: background, color, filter, opacity, -webkit-filter;
@@ -1612,10 +1602,8 @@ svg[o-base*='ico--xl'],
     line-height: 1.666666666666667;
   }
   [o-extended~='gx--ui'] {
-    -ms-grid-columns: 80px 2fr 2fr;
-        grid-template-columns: 80px 2fr 2fr;
-    -ms-grid-rows: auto 1fr auto;
-        grid-template-rows: auto 1fr auto;
+    grid-template-columns: 80px 2fr 2fr;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: "a b b" "c d d" "c e e" "f f f";
   }
   [o-extended*='gxi--title'] {
@@ -1689,20 +1677,17 @@ svg[o-base*='ico--xl'],
   }
   .gx--result-affiliate {
     grid-template-areas: "title title title title profile" "state state state students budget";
-    -ms-grid-columns: (1fr)[5];
-        grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 3px;
   }
   .gx--result-programs {
     grid-template-areas: "title      title  network" "overview   ebr    services";
-    -ms-grid-columns: 1fr minmax(100px, 180px) minmax(150px, 250px);
-        grid-template-columns: 1fr minmax(100px, 180px) minmax(150px, 250px);
+    grid-template-columns: 1fr minmax(100px, 180px) minmax(150px, 250px);
     grid-gap: 3px;
   }
   .gx--result-partner {
     grid-template-areas: "title      title           network" "overview   service-tier    services";
-    -ms-grid-columns: 1fr minmax(100px, 220px) minmax(150px, 250px);
-        grid-template-columns: 1fr minmax(100px, 220px) minmax(150px, 250px);
+    grid-template-columns: 1fr minmax(100px, 220px) minmax(150px, 250px);
     grid-gap: 3px;
   }
 }
@@ -1715,6 +1700,7 @@ svg[o-base*='ico--xl'],
   [o-full~='fx--shift'],
   [o-full~='fx--shift']::after,
   [o-full~='fx--shift']::before {
+    -webkit-transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, opacity, -webkit-filter;
     transition-property: background, color, filter, opacity;
     transition-property: background, color, filter, opacity, -webkit-filter;
@@ -1797,17 +1783,14 @@ svg[o-base*='ico--xl'],
     line-height: 1.666666666666667;
   }
   [o-full~='gx--ui'] {
-    -ms-grid-columns: 80px 2fr 2fr;
-        grid-template-columns: 80px 2fr 2fr;
-    -ms-grid-rows: auto 1fr auto;
-        grid-template-rows: auto 1fr auto;
+    grid-template-columns: 80px 2fr 2fr;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: "a b b" "c d d" "c e e" "f f f";
   }
   .gx--profile {
-    -ms-grid-columns: minmax(250px, 500px) 5fr;
-        grid-template-columns: minmax(250px, 500px) 5fr;
-    -ms-grid-rows: auto max-content;
-        grid-template-rows: auto max-content;
+    grid-template-columns: minmax(250px, 500px) 5fr;
+    grid-template-rows: auto -webkit-max-content;
+    grid-template-rows: auto max-content;
     grid-template-areas: "a b" "a c";
   }
   [o-full*='gxi--title'] {
@@ -1883,13 +1866,11 @@ svg[o-base*='ico--xl'],
     width: 2.5em;
   }
   .gx--detail-affiliate {
-    -ms-grid-columns: 1fr 2fr;
-        grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-areas: "a b" "c c";
   }
   .gx--detail-partner {
-    -ms-grid-columns: (1fr)[5];
-        grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-areas: "b a a a a" "b c c c c";
   }
 }
