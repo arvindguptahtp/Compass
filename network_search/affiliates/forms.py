@@ -1,9 +1,9 @@
 from django import forms
 
-from network_search.affiliates import models
 from network_search.core import choices
-from network_search.core.choices import BudgetLevel
+from network_search.affiliates import models
 from network_search.core.forms import SearchForm
+from network_search.core.choices import BudgetLevel
 
 try:
     from s3direct.widgets import S3DirectWidget
@@ -72,6 +72,7 @@ class AffiliateSearchForm(SearchForm):
         required=False,
     )
 
+    # Service provision search
     academic_assistance = forms.ChoiceField(
         choices=choices.ServiceProvision.as_choices(),
         required=False,
@@ -112,3 +113,8 @@ class AffiliateSearchForm(SearchForm):
         choices=choices.ServiceProvision.as_choices(),
         required=False,
     )
+
+    # Staffing search
+    staff_pt = forms.BooleanField(required=False)
+    staff_ft = forms.BooleanField(required=False)
+    staff_ac = forms.BooleanField(required=False)

@@ -9,8 +9,8 @@ import pytest
 
 from network_search.core.choices import Race
 from network_search.core.choices import Gender
-from network_search.core.choices import ServiceProvision
 from network_search.core.choices import BudgetLevel
+from network_search.core.choices import ServiceProvision
 from network_search.core.choices import AffiliateLocation
 from network_search.core.choices import StudentCharacteristics
 from network_search.tests.fixtures import affiliate_factory
@@ -44,21 +44,80 @@ def past_eoy():
 @pytest.fixture
 def affiliate_universe(base_affiliate, local_affiliate, acme_affiliate, current_eoy, past_eoy):
 
-    base_affiliate_old_data, _ = AffiliateEOYData.objects.get_or_create(year=past_eoy, affiliate=base_affiliate,
-                                                                        defaults={'budget_total': 500000})
-    base_affiliate_current_data, _ = AffiliateEOYData.objects.get_or_create(year=current_eoy, affiliate=base_affiliate,
-                                                                            defaults={'budget_total': 500000})
+    base_affiliate_old_data, _ = AffiliateEOYData.objects.get_or_create(
+        year=past_eoy,
+        affiliate=base_affiliate,
+        defaults={
+            'budget_total': 500000,
+            'staff_fulltime_affiliate': 0,
+            'staff_parttime_affiliate': 0,
+            'staff_fulltime_non_affiliate': 0,
+            'staff_parttime_non_affiliate': 0,
+            'staff_fulltime_americorps': 0,
+            'staff_parttime_americorps': 0,
+        })
+    base_affiliate_current_data, _ = AffiliateEOYData.objects.get_or_create(
+        year=current_eoy,
+        affiliate=base_affiliate,
+        defaults={
+            'budget_total': 500000,
+            'staff_fulltime_affiliate': 0,
+            'staff_parttime_affiliate': 0,
+            'staff_fulltime_non_affiliate': 1,
+            'staff_parttime_non_affiliate': 0,
+            'staff_fulltime_americorps': 0,
+            'staff_parttime_americorps': 1,
+        })
 
-    local_affiliate_old_data, _ = AffiliateEOYData.objects.get_or_create(year=past_eoy, affiliate=local_affiliate,
-                                                                         defaults={'budget_total': 500001})
+    local_affiliate_old_data, _ = AffiliateEOYData.objects.get_or_create(
+        year=past_eoy,
+        affiliate=local_affiliate,
+        defaults={
+            'budget_total': 500001,
+            'staff_fulltime_affiliate': 0,
+            'staff_parttime_affiliate': 0,
+            'staff_fulltime_non_affiliate': 1,
+            'staff_parttime_non_affiliate': 0,
+            'staff_fulltime_americorps': 0,
+            'staff_parttime_americorps': 1,
+        })
     local_affiliate_current_data, _ = AffiliateEOYData.objects.get_or_create(
-        year=current_eoy, affiliate=local_affiliate,
-        defaults={'budget_total': 499999})
+        year=current_eoy,
+        affiliate=local_affiliate,
+        defaults={
+            'budget_total': 499999,
+            'staff_fulltime_affiliate': 2,
+            'staff_parttime_affiliate': 0,
+            'staff_fulltime_non_affiliate': 1,
+            'staff_parttime_non_affiliate': 0,
+            'staff_fulltime_americorps': 0,
+            'staff_parttime_americorps': 0,
+        })
 
-    acme_affiliate_old_data, _ = AffiliateEOYData.objects.get_or_create(year=past_eoy, affiliate=acme_affiliate,
-                                                                        defaults={'budget_total': 599999})
-    acme_affiliate_current_data, _ = AffiliateEOYData.objects.get_or_create(year=current_eoy, affiliate=acme_affiliate,
-                                                                            defaults={'budget_total': 1000001})
+    acme_affiliate_old_data, _ = AffiliateEOYData.objects.get_or_create(
+        year=past_eoy,
+        affiliate=acme_affiliate,
+        defaults={
+            'budget_total': 599999,
+            'staff_fulltime_affiliate': 0,
+            'staff_parttime_affiliate': 1,
+            'staff_fulltime_non_affiliate': 0,
+            'staff_parttime_non_affiliate': 0,
+            'staff_fulltime_americorps': 7,
+            'staff_parttime_americorps': 8,
+        })
+    acme_affiliate_current_data, _ = AffiliateEOYData.objects.get_or_create(
+        year=current_eoy,
+        affiliate=acme_affiliate,
+        defaults={
+            'budget_total': 1000001,
+            'staff_fulltime_affiliate': 8,
+            'staff_parttime_affiliate': 1,
+            'staff_fulltime_non_affiliate': 1,
+            'staff_parttime_non_affiliate': 0,
+            'staff_fulltime_americorps': 0,
+            'staff_parttime_americorps': 8,
+        })
 
     # This school has female and male students, black and asian in both years
     base_old_school_1 = school_data_factory(
@@ -262,3 +321,27 @@ def test_search_budget(affiliate_universe):
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 1
+
+
+@pytest.mark.django_db
+def test_search_staff(affiliate_universe):
+    """Filter based on whether any child school provides selected services as chosen"""
+    form = AffiliateSearchForm(data={'staff_pt': True})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 1
+
+    form = AffiliateSearchForm(data={'staff_ft': True})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 3
+
+    form = AffiliateSearchForm(data={'staff_ac': True})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 2
+
+    form = AffiliateSearchForm(data={'staff_ft': True, 'staff_ac': True})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 2

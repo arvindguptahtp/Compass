@@ -47,6 +47,11 @@ class AffiliateQueryset(ResourceQueryset):
             'college_career_prep', 'comm_service', 'enrichment', 'family_engagement',
             'life_skills', 'physical_fitness_health', 'prof_mental_health'
         ]
+        staff_fields = {
+            'staff_ft': ['staff_fulltime_affiliate', 'staff_fulltime_non_affiliate'],
+            'staff_pt': ['staff_parttime_affiliate', 'staff_parttime_non_affiliate'],
+            'staff_ac': ['staff_parttime_americorps', 'staff_fulltime_americorps'],
+        }
 
         eoy = EndOfYear.years.current()
         if eoy is None:
@@ -97,6 +102,15 @@ class AffiliateQueryset(ResourceQueryset):
                 affiliate_eoy_data__search_served__contains=served,
                 affiliate_eoy_data__year=eoy,
             )
+
+        for staffing_name, db_fields in staff_fields.items():
+            staffing_level = kwargs.pop(staffing_name, None)
+            if staffing_level:
+                qs = qs.annotate(
+                    has_staff=sum([F("affiliate_eoy_data__{}".format(field)) for field in db_fields])).filter(
+                    has_staff__gt=0,
+                    affiliate_eoy_data__year=eoy,
+                )
 
         for service_name in service_field_names:
             service_level = kwargs.pop(service_name, None)

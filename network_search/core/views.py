@@ -1,10 +1,10 @@
-from django.core.exceptions import ImproperlyConfigured
+from django.conf import settings
+from easy_pdf.views import PDFTemplateResponseMixin
+from pure_pagination import Paginator
+from pure_pagination import PageNotAnInteger
 from django.views.generic import FormView
 from django.views.generic import TemplateView
-from easy_pdf.views import PDFTemplateResponseMixin
-from pure_pagination import PageNotAnInteger
-from pure_pagination import Paginator
-from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 
 
 class HomePage(TemplateView):
