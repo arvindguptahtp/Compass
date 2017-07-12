@@ -120,6 +120,7 @@ class SchoolEOYAdmin(admin.ModelAdmin):
             ],
         }),
         ('Students by grade', {
+            'description': "1 or 0 for whether the affiliate serves students in this grade",
             'fields': [
                 'students_grade_prek',
                 'students_grade_k',
