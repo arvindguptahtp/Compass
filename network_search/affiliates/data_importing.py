@@ -12,6 +12,9 @@ from collections import namedtuple
 
 import pandas as pd
 
+# A MappingType associates both the column name from the spreadsheet and
+# the expected Python type with the model (database) field name. The type
+# is used to fill empty fields.
 MappingType = namedtuple('MappingType', ['column_name', 'type'])
 
 logger = logging.getLogger(__name__)
