@@ -119,6 +119,24 @@ class SchoolEOYAdmin(admin.ModelAdmin):
                 'students_served_gang', 'students_served_incarcerated_parent'
             ],
         }),
+        ('Students by grade', {
+            'fields': [
+                'students_grade_prek',
+                'students_grade_k',
+                'students_grade_1',
+                'students_grade_2',
+                'students_grade_3',
+                'students_grade_4',
+                'students_grade_5',
+                'students_grade_6',
+                'students_grade_7',
+                'students_grade_8',
+                'students_grade_9',
+                'students_grade_10',
+                'students_grade_11',
+                'students_grade_12',
+            ],
+        }),
         ('Services', {
             'fields': [
                 'service_academic_assistance', 'service_basic_needs',
@@ -129,3 +147,6 @@ class SchoolEOYAdmin(admin.ModelAdmin):
             ],
         }),
     )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related()
