@@ -282,45 +282,6 @@
                                   </svg></a></dd>{% endif %}
                     </dl>
                   </div>
-                </article>{% endif %}{% if True %}
-                <article class="card--list-data" o-base="col--pStart" o-condensed="iso--yStart100">
-                  <header o-base="pad--x25 pad--yEnd25" o-condensed="pad--x50">
-                    <h1 class="tx--subhed--f1--100--aa">CIS Services</h1>
-                  </header>
-                  <div class="bd" o-base="">
-                    <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Academic Assistance</dt>
-                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
-                              </dd>{% endif %}{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Basic Needs</dt>
-                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
-                              </dd>{% endif %}{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Behavior Intervention</dt>
-                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
-                              </dd>{% endif %}{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">College/Career Prep</dt>
-                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
-                              </dd>{% endif %}{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Community Service</dt>
-                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
-                              </dd>{% endif %}{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Enrichment</dt>
-                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
-                              </dd>{% endif %}{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Family Engagement</dt>
-                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
-                              </dd>{% endif %}{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Life Skills/Social Development</dt>
-                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
-                              </dd>{% endif %}{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Professional Mental Health</dt>
-                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
-                              </dd>{% endif %}{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Professional Phytisal Health</dt>
-                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">
-                              </dd>{% endif %}
-                    </dl>
-                  </div>
                 </article>{% endif %}
       </section>
       <section class="gxi--b" o-base="col--pStart pad--yEnd50 rhy--yStart50" o-condensed="pad--xy100" o-extended="gx--i2--gxy100 rhy--yStart0">  
@@ -389,68 +350,68 @@
                         <h1 class="tx--maj--f1--100--aa">Affiliate Performance</h1>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if True %}
-                                    <dt class="thm--shade5 hl--xy--bCurrent tx--small--f3--900--aa co--affiliates" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Students in Grades K—11</dt>{% endif %}{% if True %}
+                        <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.students_k_11_promoted %}
+                                    <dt class="thm--shade5 hl--xy--bCurrent tx--small--f3--900--aa co--affiliates" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Students in Grades K—11</dt>{% endif %}{% if eoy_data.students_k_11_promoted %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Promoted</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_promoted|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_k_11_retained %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Retained</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_retained|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_k_11_dropped_out %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Dropped Out</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_dropped_out|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_k_11_transferred %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Transferred</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_transferred|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_k_11_ged %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">GED</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_ged|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_k_11_expelled %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Expelled</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_expelled|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_k_11_incarcerated %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Incarcerated</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_incarcerated|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_k_11_deceased %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Deceased</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_deceased|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_k_11_other %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Other</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_other|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_k_11_unknown %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Unknown</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
-                                    <dt class="thm--shade5 hl--xy--bCurrent tx--small--f3--900--aa co--affiliates" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Students in Grade 12</dt>{% endif %}{% if True %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Promoted</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_unknown|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_grade_12_graduated %}
+                                    <dt class="thm--shade5 hl--xy--bCurrent tx--small--f3--900--aa co--affiliates" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Students in Grade 12</dt>{% endif %}{% if eoy_data.students_grade_12_graduated %}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Graduated</dt>
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_graduated|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_grade_12_retained %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Retained</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_retained|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_grade_12_dropped_out %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Dropped Out</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_dropped_out|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_grade_12_transferred %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Transferred</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_transferred|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_grade_12_ged %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">GED</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_ged|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_grade_12_expelled %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Expelled</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_expelled|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_grade_12_incarcerated %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Incarcerated</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_incarcerated|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_grade_12_deceased %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Deceased</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_deceased|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_grade_12_other %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Other</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                    </dd>{% endif %}{% if True %}
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_other|safe }}
+                                    </dd>{% endif %}{% if eoy_data.students_grade_12_unknown %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Unknown</dt>
-                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                                    <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_unknown|safe }}
                                     </dd>{% endif %}
                         </dl>
                       </div>

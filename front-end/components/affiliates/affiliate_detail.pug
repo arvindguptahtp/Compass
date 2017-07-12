@@ -111,7 +111,7 @@ block detail_a
                         = page.lead_email.tag()
 
     
-    include /cards/data-list 
+    //- include /cards/data-list 
         -
             vefa
                 .data({
@@ -181,28 +181,29 @@ block detail_b
                     .data({
                         heading: "Affiliate Performance",
                         map: [
-                            ['heading', 'Students in Grades K—11'],
-                            ['text', 'Promoted'],
-                            ['text', 'Retained'],
-                            ['text', 'Dropped Out'],
-                            ['text', 'Transferred'],
-                            ['text', 'GED'],
-                            ['text', 'Expelled'],
-                            ['text', 'Incarcerated'],
-                            ['text', 'Deceased'],
-                            ['text', 'Other'],
-                            ['text', 'Unknown'],
-                            ['heading', 'Students in Grade 12'],
-                            ['text', 'Promoted'],
-                            ['text', 'Retained'],
-                            ['text', 'Dropped Out'],
-                            ['text', 'Transferred'],
-                            ['text', 'GED'],
-                            ['text', 'Expelled'],
-                            ['text', 'Incarcerated'],
-                            ['text', 'Deceased'],
-                            ['text', 'Other'],
-                            ['text', 'Unknown'],
+                            ['heading', 'Students in Grades K—11', 'eoy_data.students_k_11_promoted'],
+                            ['text', 'Promoted', 'eoy_data.students_k_11_promoted'],
+                            ['text', 'Retained', 'eoy_data.students_k_11_retained'],
+                            ['text', 'Dropped Out', 'eoy_data.students_k_11_dropped_out'],
+                            ['text', 'Transferred', 'eoy_data.students_k_11_transferred'],
+                            ['text', 'GED', 'eoy_data.students_k_11_ged'],
+                            ['text', 'Expelled', 'eoy_data.students_k_11_expelled'],
+                            ['text', 'Incarcerated', 'eoy_data.students_k_11_incarcerated'],
+                            ['text', 'Deceased', 'eoy_data.students_k_11_deceased'],
+                            ['text', 'Other', 'eoy_data.students_k_11_other'],
+                            ['text', 'Unknown', 'eoy_data.students_k_11_unknown'],
+                            
+                            ['heading', 'Students in Grade 12', 'eoy_data.students_grade_12_graduated'],
+                            ['text', 'Graduated', 'eoy_data.students_grade_12_graduated'],
+                            ['text', 'Retained', 'eoy_data.students_grade_12_retained'],
+                            ['text', 'Dropped Out', 'eoy_data.students_grade_12_dropped_out'],
+                            ['text', 'Transferred', 'eoy_data.students_grade_12_transferred'],
+                            ['text', 'GED', 'eoy_data.students_grade_12_ged'],
+                            ['text', 'Expelled', 'eoy_data.students_grade_12_expelled'],
+                            ['text', 'Incarcerated', 'eoy_data.students_grade_12_incarcerated'],
+                            ['text', 'Deceased', 'eoy_data.students_grade_12_deceased'],
+                            ['text', 'Other', 'eoy_data.students_grade_12_other'],
+                            ['text', 'Unknown', 'eoy_data.students_grade_12_unknown'],
                         ]
                     })
 

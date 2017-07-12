@@ -92,6 +92,9 @@
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .35)), color-stop(66%, rgba(0, 0, 0, 0)));
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, 0) 66%);
 }
+.thm--warning {
+  background-color: #ffce00;
+}
 [class*='fx--'],
 [class*='fx--']::after,
 [class*='fx--']::before {
@@ -219,9 +222,6 @@ hr {
 .copy a:hover {
   color: #f68e1e;
 }
-.copy li {
-  list-style: circle inside;
-}
 html {
   background: #fff;
   font-size: 1rem;
@@ -270,9 +270,6 @@ main {
 [class*='gxi--service-tier'] {
   grid-area: service-tier;
 }
-[class*='gxi--ebr'] {
-  grid-area: ebr;
-}
 [class*='gxi--state'] {
   grid-area: state;
 }
@@ -293,7 +290,7 @@ main {
   pointer-events: auto;
 }
 .colophon-nav {
-  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
   grid-gap: 0;
 }
 .masthead-nav-ctrl {
@@ -364,6 +361,9 @@ svg[class*='ico--xl'],
   height: 2.5em;
   width: 2.5em;
 }
+.fm--login {
+  max-width: 600px;
+}
 .fm-field--single label::after,
 .fm-field--multi label::after {
   left: 0;
@@ -411,12 +411,6 @@ svg[class*='ico--xl'],
   grid-template-rows: repeat(4, auto);
   grid-gap: 1px;
 }
-.gx--result-programs {
-  grid-template-areas: "title      title       title" "network    network     services" "overview   overview    services" "ebr        ebr         services";
-  grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
-  grid-template-columns: max-content 1fr max-content;
-  grid-gap: 1px;
-}
 .gx--result-partner {
   grid-template-areas: "title      title           title" "network    service-tier    service-tier" "overview   overview        services";
   grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
@@ -435,12 +429,6 @@ svg[class*='ico--xl'],
     font-size: calc(5.254vw + 6.78px);
     line-height: 51px;
     line-height: calc(6.25vw + 6px);
-  }
-  .gx--result-programs {
-    grid-template-areas: "title      title       network" "ebr        overview    overview" "services   services    services";
-    grid-template-columns: minmax(100px, 180px) 2fr minmax(0, -webkit-max-content);
-    grid-template-columns: minmax(100px, 180px) 2fr minmax(0, max-content);
-    grid-template-rows: auto auto 1fr;
   }
 }
 @media only screen and (min-width: 660px) {
@@ -464,9 +452,6 @@ svg[class*='ico--xl'],
   .gx--result-affiliate {
     grid-template-areas: "title title title title profile" "state students students budget budget";
     grid-template-columns: repeat(5, 1fr);
-  }
-  .gx--result-programs {
-    grid-template-areas: "title      title       network" "ebr        overview    overview" "ebr        services    services";
   }
   .gx--result-partner {
     grid-template-areas: "title      title" "overview   service-tier" "overview   network" "overview   services";
@@ -531,11 +516,6 @@ svg[class*='ico--xl'],
   .gx--result-affiliate {
     grid-template-areas: "title title title title profile" "state state state students budget";
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: 3px;
-  }
-  .gx--result-programs {
-    grid-template-areas: "title      title  network" "overview   ebr    services";
-    grid-template-columns: 1fr minmax(100px, 180px) minmax(150px, 250px);
     grid-gap: 3px;
   }
   .gx--result-partner {

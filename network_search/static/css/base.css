@@ -761,9 +761,6 @@ input[class*='rxn--tint'] {
   [o-condensed~='iso--xStart25'] {
     margin-left: 6px;
   }
-  [o-condensed~='iso--yStart100'] {
-    margin-top: 24px;
-  }
   [o-condensed*='--taMiddle'] {
     text-align: center;
   }
