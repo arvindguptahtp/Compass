@@ -68,5 +68,7 @@ block bd
                                 +else()
                                     input&attributes(field.input_attrs)
 
-                        span&attributes(field.control_label)  
+                        span(
+                            o-base="mod--balance"
+                        )
                             = v(field.choice.label)
