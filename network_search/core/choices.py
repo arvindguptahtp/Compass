@@ -144,7 +144,7 @@ class StudentNeeds(Choice):
     pfe = 'Parent/Family Engagement'
     ell = 'English Language Learners'
     hfy = 'Homeless/Foster Youth'
-    juv = 'At Risk of Entering Juvenile Justice System'
+    juv = 'At Risk of Entering the Juvenile Justice System'
 
 
 class StudentCharacteristics(Choice):

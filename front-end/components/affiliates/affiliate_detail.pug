@@ -153,25 +153,6 @@ block detail_b
                             ["money", "Annual Budget", 'eoy_data.budget_total'],
                             ['money', 'Total Public Funding', 'eoy_data.funding_public'],
                             ['money', 'Total Private Funding', 'eoy_data.funding_private'],
-                            //- ['text', 'Percent of Public Funding', page['current_data.funding_percent_public'].io(), `${ page['current_data.funding_percent_public'].tag() }%`],
-                            //- ['text', 'Percent of Private Funding', page['current_data.funding_percent_private'].io(), `${ page['current_data.funding_percent_private'].tag() }%`],
-
-                            ["heading", "Public Funding", 'eoy_data.funding_public'],
-                            ['money', 'Federal', 'eoy_data.funding_public_federal'],
-                            ['money', 'State', 'eoy_data.funding_public_state'],
-                            ['money', 'City', 'eoy_data.funding_public_city'],
-                            ['money', 'School District', 'eoy_data.funding_public_school_district'],
-                            
-                            ["heading", "Private Funding", 'eoy_data.funding_private'],
-                            ['money', 'Corporate', 'eoy_data.funding_private_corporate'],
-                            ['money', 'Foundation', 'eoy_data.funding_private_foundation'],
-                            ['money', 'Board', 'eoy_data.funding_private_board'],
-                            ['money', 'Individual', 'eoy_data.funding_private_individual'],
-                            ['money', 'Events', 'eoy_data.funding_private_events'],
-                            ['money', 'CIS National', 'eoy_data.funding_private_cis_national'],
-                            ['money', 'CIS State Office', 'eoy_data.funding_private_cis_state_office'],
-                            ['money', 'NPO', 'eoy_data.funding_private_npo'],
-                            ['money', 'Other', 'eoy_data.funding_private_other'],
                         ]
                     })
         
@@ -179,7 +160,7 @@ block detail_b
             -
                 vefa
                     .data({
-                        heading: "Affiliate Performance",
+                        heading: "Affiliate Case Management Performance",
                         map: [
                             ['heading', 'Students in Grades K—11', 'eoy_data.students_k_11_promoted'],
                             ['text', 'Promoted', 'eoy_data.students_k_11_promoted'],
@@ -261,7 +242,7 @@ block detail_b
                 -
                     vefa
                         .data({
-                            heading: "Demographics of Students Served",
+                            heading: "Unique Student Characteristics",
                             map: [
                                 ['yesno', 'FRPL Eligible Students Served', 'eoy_data.total_students_frpl > 0'],
                                 ['yesno', 'ELL Students Served', 'eoy_data.total_students_ell > 0'],
