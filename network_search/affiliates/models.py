@@ -304,7 +304,10 @@ class AffiliateEOYData(TimeStampedModel):
 
     @cached_property
     def school_districts(self):
-        return [i.strip() for i in self.districts.split(",")]
+        try:
+            return [i.strip() for i in self.districts.split(",")]
+        except AttributeError:
+            return ""
 
     def full_time_staff(self):
         return self.staff_fulltime_affiliate + self.staff_fulltime_non_affiliate
