@@ -9,6 +9,7 @@ let config = yaml.safeLoad( fs.readFileSync(`${__dirname}/../${ yargs.config }`,
 
 let files = config.styles.emit.forEach( (file) => {
     let file_expect = `./${ config.build }${ config.styles.build }${file.replace("styl", "css")}`
+    let file_mid = `./${ config.build }${ config.styles.build }${file.replace("styl", "mid.css")}`
     let file_min = `./${ config.build }${ config.styles.build }${file.replace("styl", "min.css")}`
     
     console.log(`Razoring: ${file_expect}`)
@@ -17,7 +18,7 @@ let files = config.styles.emit.forEach( (file) => {
         html: [`./${ config.build }/**/*.html`],
         css: file_expect,
         ignore: [],
-        outputFile: file_expect,
+        outputFile: file_mid,
         stdout: true,
         report: true,
     })
@@ -32,9 +33,9 @@ let files = config.styles.emit.forEach( (file) => {
                     autoprefixer: false, 
                 })
             )
-            .process(css, { from: file_expect, to: file_min })
+            .process(css, { from: file_mid, to: file_min })
             .then(result => {
-                fs.writeFile(file_min, result.css);
+                fs.writeFile(file_min, result.css)
             })
     })
             

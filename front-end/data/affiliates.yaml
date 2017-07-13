@@ -28,7 +28,7 @@ fm_search:
             
             served:
                 name: served
-                label: Student Characteristics
+                label: Unique Student Characteristics
                 widget: multi
 
     -   name: Affiliate Details

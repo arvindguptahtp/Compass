@@ -291,18 +291,18 @@
                       </dd>{% if program.outcomes %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Outcomes</dt>
                               <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{{ program.outcomes|safe }}
+                              </dd>{% endif %}{% if True %}
+                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Associated Fees</dt>
+                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{% if program.is_cost_free %}
+                                                <p>Free of Cost</p>{% else %}{% if program.cost_description %}
+                                                                <p style="word-break:word;">{{ program.cost_description|safe }}</p>{% endif %}{% endif %}
+                              </dd>{% endif %}{% if True %}
+                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Assessment</dt>
+                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{% if program.assessment_available %}
+                                                <p>Assessment Available</p>{% if program.assessment_info %}
+                                                        <p>{{ program.assessment_info }}</p>{% endif %}{% else %}
+                                                        <p>N/A</p>{% endif %}
                               </dd>{% endif %}
-                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Associated Fees</dt>
-                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{% if program.is_cost_free %}
-                                        <p>Free of Cost</p>{% else %}{% if program.cost_description %}
-                                                        <p style="word-break:word;">{{ program.cost_description|safe }}</p>{% endif %}{% endif %}
-                      </dd>
-                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--xy50">Assessment</dt>
-                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--xy50 gxs--s2">{% if program.assessment_available %}
-                                        <p>Assessment Available</p>{% if program.assessment_info %}
-                                                <p>{{ program.assessment_info }}</p>{% endif %}{% else %}
-                                                <p>N/A</p>{% endif %}
-                      </dd>
                     </dl>
                   </div>
                 </article>{% endif %}

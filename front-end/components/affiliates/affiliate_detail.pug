@@ -198,10 +198,10 @@ block detail_b
                     .data({
                         heading: "School District Details",
                         map: [
-                            ["text", "School District(s)",],
-                            ["text", "Total Enrollment", 'eoy_data.total_enrollment'],
-                            ["text", "Number of Case-managed Students", 'True', ' '],
-                            ["text", "Total Students Reached", 'True', ' '],
+                            ["iterator", "School District(s)", 'eoy_data.school_districts'],
+                            ["text", "Total Enrollment", 'eoy_data.calculated_total_enrollment'],
+                            ["text", "Number of Case-managed Students", 'eoy_data.calculated_total_case_managed'],
+                            ["text", "Total Students Reached", 'eoy_data.calculated_total_students_reached'],
                             ["heading", "Affiliate Staffing"],
                             ["text", "Full-time", page['current_data.full_time_staff'].io()],
                             ["text", "Part-time", page['current_data.part_time_staff'].io()],

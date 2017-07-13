@@ -56,10 +56,6 @@ assets:  ## Compress any front-end related assets. (Slow as files may be large)
 	clear
 	cd $(ui) && yarn run assets
 
-razor:  ## Removes unused site CSS from files, generally used for testing
-	clear
-	cd $(ui) && yarn run razor
-
 vue:  ## Build vue components
 	clear
 	cd $(ui) && yarn run vue-dev

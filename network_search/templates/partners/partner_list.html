@@ -245,7 +245,7 @@
               <div class="fm-field--text">
                 <label class="tx--small--f3--900--tcU--aa" for="id_q">Keywords
                 </label>
-                <input class="tx--f3--ls100 rhy--xStart50 thm--tint20 rxn--shade60 fx--shift" type="text" id="id_q" name="q" value="{% if form.q.value != None %} {{ form.q.value|stringformat:'s'|default_if_none:'' }} {% endif %}" o-base="row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">
+                <input class="tx--f3--ls100 rhy--xStart50 thm--tint20 rxn--shade60 fx--shift" type="text" id="id_q" name="q" value="{% if form.q.value != None %} {{ form.q.value|stringformat:'s'|default_if_none:'' }} {% endif %}" o-base="row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">
               </div>
               <div class="fm-field--single">
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">CIS Core Services
@@ -253,10 +253,10 @@
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.services.field.choices %}{% if choice_value|safe in form.services.value or choice_value in form.services.value %}
                                               <input class="vx--a11y" checked type="checkbox" id="id_services_{{ forloop.counter }}" name="services" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                             <input class="vx--a11y" type="checkbox" id="id_services_{{ forloop.counter }}" name="services" value="{{ choice_value }}" o-base="mod--static">{% endif %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_services_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sMiddle pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_services_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sMiddle pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">
                                   <svg class="ico" o-base="mod--static">
                                     <use xlink:href="#ico--{{ choice_value }}"></use>
-                                  </svg><span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
+                                  </svg><span o-base="mod--balance">{{ choice_label }}</span>
                                 </label>{% endfor %}
                 </div>
               </div>
@@ -269,9 +269,9 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Grades
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.grade.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_grade_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% if choice_value|safe in form.grade.value or choice_value in form.grade.value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_grade_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">{% if choice_value|safe in form.grade.value or choice_value in form.grade.value %}
                                                 <input checked type="checkbox" id="id_grade_{{ forloop.counter }}" name="grade" value="{{ choice_value }}" o-base="mod--static">{% else %}
-                                                              <input type="checkbox" id="id_grade_{{ forloop.counter }}" name="grade" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
+                                                              <input type="checkbox" id="id_grade_{{ forloop.counter }}" name="grade" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span o-base="mod--balance">{{ choice_label }}</span>
                                 </label>{% endfor %}
                 </div>
               </div>
@@ -279,9 +279,9 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Gender
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.gender.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_gender_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% if choice_value|safe in form.gender.value or choice_value in form.gender.value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_gender_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">{% if choice_value|safe in form.gender.value or choice_value in form.gender.value %}
                                                 <input checked type="checkbox" id="id_gender_{{ forloop.counter }}" name="gender" value="{{ choice_value }}" o-base="mod--static">{% else %}
-                                                              <input type="checkbox" id="id_gender_{{ forloop.counter }}" name="gender" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
+                                                              <input type="checkbox" id="id_gender_{{ forloop.counter }}" name="gender" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span o-base="mod--balance">{{ choice_label }}</span>
                                 </label>{% endfor %}
                 </div>
               </div>
@@ -289,9 +289,9 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Student Needs
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.need.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_need_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% if choice_value|safe in form.need.value or choice_value in form.need.value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_need_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">{% if choice_value|safe in form.need.value or choice_value in form.need.value %}
                                                 <input checked type="checkbox" id="id_need_{{ forloop.counter }}" name="need" value="{{ choice_value }}" o-base="mod--static">{% else %}
-                                                              <input type="checkbox" id="id_need_{{ forloop.counter }}" name="need" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
+                                                              <input type="checkbox" id="id_need_{{ forloop.counter }}" name="need" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span o-base="mod--balance">{{ choice_label }}</span>
                                 </label>{% endfor %}
                 </div>
               </div>
@@ -304,7 +304,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Use in Network
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.use_in_network.field.widget.choices %}{% cycle None True False as value silent %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_use_in_network_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.use_in_network.value value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_use_in_network_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">{% ifequal form.use_in_network.value value %}
                                                 <input checked type="radio" id="id_use_in_network_{{ forloop.counter }}" name="use_in_network" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_use_in_network_{{ forloop.counter }}" name="use_in_network" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -314,7 +314,7 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Free of Cost
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.free_of_cost.field.widget.choices %}{% cycle None True False as value silent %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_free_of_cost_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% ifequal form.free_of_cost.value value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_free_of_cost_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">{% ifequal form.free_of_cost.value value %}
                                                 <input checked type="radio" id="id_free_of_cost_{{ forloop.counter }}" name="free_of_cost" value="{{ choice_value }}" o-base="mod--static">{% else %}
                                                               <input type="radio" id="id_free_of_cost_{{ forloop.counter }}" name="free_of_cost" value="{{ choice_value }}" o-base="mod--static">{% endifequal %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
                                 </label>{% endfor %}
@@ -324,9 +324,9 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Organizational Reach
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.reach.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_reach_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% if choice_value|safe in form.reach.value or choice_value in form.reach.value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_reach_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">{% if choice_value|safe in form.reach.value or choice_value in form.reach.value %}
                                                 <input checked type="checkbox" id="id_reach_{{ forloop.counter }}" name="reach" value="{{ choice_value }}" o-base="mod--static">{% else %}
-                                                              <input type="checkbox" id="id_reach_{{ forloop.counter }}" name="reach" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
+                                                              <input type="checkbox" id="id_reach_{{ forloop.counter }}" name="reach" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span o-base="mod--balance">{{ choice_label }}</span>
                                 </label>{% endfor %}
                 </div>
               </div>
@@ -334,9 +334,9 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Setting
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.setting.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_setting_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% if choice_value|safe in form.setting.value or choice_value in form.setting.value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_setting_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">{% if choice_value|safe in form.setting.value or choice_value in form.setting.value %}
                                                 <input checked type="checkbox" id="id_setting_{{ forloop.counter }}" name="setting" value="{{ choice_value }}" o-base="mod--static">{% else %}
-                                                              <input type="checkbox" id="id_setting_{{ forloop.counter }}" name="setting" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
+                                                              <input type="checkbox" id="id_setting_{{ forloop.counter }}" name="setting" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span o-base="mod--balance">{{ choice_label }}</span>
                                 </label>{% endfor %}
                 </div>
               </div>
@@ -344,9 +344,9 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Tiers of Service
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.service_tiers.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_service_tiers_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% if choice_value|safe in form.service_tiers.value or choice_value in form.service_tiers.value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_service_tiers_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">{% if choice_value|safe in form.service_tiers.value or choice_value in form.service_tiers.value %}
                                                 <input checked type="checkbox" id="id_service_tiers_{{ forloop.counter }}" name="service_tiers" value="{{ choice_value }}" o-base="mod--static">{% else %}
-                                                              <input type="checkbox" id="id_service_tiers_{{ forloop.counter }}" name="service_tiers" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
+                                                              <input type="checkbox" id="id_service_tiers_{{ forloop.counter }}" name="service_tiers" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span o-base="mod--balance">{{ choice_label }}</span>
                                 </label>{% endfor %}
                 </div>
               </div>
@@ -354,9 +354,9 @@
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Tiers of Evidence
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.evidence.field.choices %}
-                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_evidence_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--ls100">{% if choice_value|safe in form.evidence.value or choice_value in form.evidence.value %}
+                                <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_evidence_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">{% if choice_value|safe in form.evidence.value or choice_value in form.evidence.value %}
                                                 <input checked type="checkbox" id="id_evidence_{{ forloop.counter }}" name="evidence" value="{{ choice_value }}" o-base="mod--static">{% else %}
-                                                              <input type="checkbox" id="id_evidence_{{ forloop.counter }}" name="evidence" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span class="tx--small--f3--900--tcU--aa" o-base="mod--balance"> {{ choice_label }}</span>
+                                                              <input type="checkbox" id="id_evidence_{{ forloop.counter }}" name="evidence" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span o-base="mod--balance">{{ choice_label }}</span>
                                 </label>{% endfor %}
                 </div>
               </div>

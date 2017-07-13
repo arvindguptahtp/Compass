@@ -17,8 +17,7 @@
     "django-build": "webpack -p --progress --colors --env.django --env.production --env.init=vefa.django.yaml",
     "postbuild": "node vefa/razor.js --config=vefa.yaml",
     "postdjango-build": "node vefa/razor.js --config=vefa.django.yaml",
-    "test": "karma start karma.config.js --progress --colors -p --init vefa.yaml",
-    "razor": "node vefa/razor.js --config=vefa.yaml"
+    "test": "karma start karma.config.js --progress --colors -p --init vefa.yaml"
   },
   "dependencies": {
     "autoprefixer": "^7.1.2",

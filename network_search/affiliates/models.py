@@ -309,6 +309,12 @@ class AffiliateEOYData(TimeStampedModel):
         except AttributeError:
             return ""
 
+    def calculated_total_case_managed(self):
+        return self._sum_child_fields('students_case_managed')
+
+    def calculated_total_students_reached(self):
+        return self._sum_child_fields('students_total')
+
     def full_time_staff(self):
         return self.staff_fulltime_affiliate + self.staff_fulltime_non_affiliate
 

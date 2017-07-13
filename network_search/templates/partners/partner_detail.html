@@ -268,11 +268,11 @@
                   </header>
                   <div class="bd" o-base="">
                     <dl class="card-list" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if True %}
-                              <dt class="thm--shade5 hl--xy--bCurrent tx--small--f3--900--aa" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Points of Contact</dt>{% endif %}
-                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">{{ partner.contact_title }}</dt>
-                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">
-                                <p>{{ partner.contact_name }}</p><a class="tx--tdU fx--shift" href="mailto:{{ partner.contact_email }}">{{ partner.contact_email }}</a><a class="tx--tdU fx--shift" href="{{ partner.website }}" target="_blank" rel="noopener">Website</a>
-                      </dd>{% if True %}
+                              <dt class="thm--shade5 hl--xy--bCurrent tx--small--f3--900--aa" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Points of Contact</dt>{% endif %}{% if True %}
+                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">{{ partner.contact_title }}</dt>
+                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                                        <p>{{ partner.contact_name }}</p><a class="tx--tdU fx--shift" href="mailto:{{ partner.contact_email }}">{{ partner.contact_email }}</a><a class="tx--tdU fx--shift" href="{{ partner.website }}" target="_blank" rel="noopener">Website</a>
+                              </dd>{% endif %}{% if True %}
                               <dt class="thm--shade5 hl--xy--bCurrent tx--small--f3--900--aa" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3" o-extended="iso--yStart50">Organizational Information</dt>{% endif %}{% if partner.is_core_partner %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Core Partner</dt>
                               <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ partner.is_core_partner|safe }}
@@ -297,12 +297,12 @@
                                   <li>{{ val|choice_display:'Setting'|capfirst }}
                                   </li>{% endfor %}
                         </ul>
-                      </dd>
-                      <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Associated Fees</dt>
-                      <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">{% if partner.is_cost_free %}
-                                        <p>Free of Cost</p>{% else %}{% if partner.cost_description %}
-                                                        <p style="word-break:word;">{{ partner.cost_description|safe }}</p>{% endif %}{% endif %}
-                      </dd>
+                      </dd>{% if True %}
+                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Associated Fees</dt>
+                              <dd class="thm--tint10 tx--f3" o-base="col--pStart--sStart pad--xy25" o-condensed="pad--x50 gxs--s2">{% if partner.is_cost_free %}
+                                                <p>Free of Cost</p>{% else %}{% if partner.cost_description %}
+                                                                <p style="word-break:word;">{{ partner.cost_description|safe }}</p>{% endif %}{% endif %}
+                              </dd>{% endif %}
                     </dl>
                   </div>
                 </article>{% endif %}
