@@ -5,7 +5,13 @@ include /_django
 script(src="https://cdn.jsdelivr.net/g/picturefill@3.0.3,lazysizes@3.0.0", async)
 script document.createElement( "picture" ) 
 
+script(
+    src="//use.typekit.net/lzm0oqa.js"
+    onload="try{Typekit.load();}catch(e){}"
+)
 if site.supportIE8
     <!--[if IE 8]>
     script(src="https://html5shiv.googlecode.com/svn/trunk/html5.js")
     <![endif]-->
+
+

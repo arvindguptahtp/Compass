@@ -20,8 +20,8 @@ breakpoints:
 # TYPE
 type_stacks:
     header: Oswald impact
-    copy: the_serif
-    chrome: arial
+    copy: acumin-pro-condensed, arial
+    chrome: acumin-pro-condensed, arial
 
 type:
     broadside:
@@ -55,16 +55,17 @@ type:
         #     upper: 20px 26px full
     
     small:
-        font-size: 13px
+        font-size: 15px
         line-height: 24px
     
-    caption:
-        font-size: 10.4px
-        line-height: 20px
-
     chrome:
-        font-size: 12px
-        line-height: 20px
+        font-size: 14px
+        line-height: 24px
+
+    caption:
+        font-size: 13px
+        line-height: 16px
+
 
 
 

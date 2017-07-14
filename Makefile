@@ -48,10 +48,6 @@ ui-deps:  ## Install UI scaffolding dependneices
 ui-update: ## Update UI build process dependencies
 	cd $(ui) && yarn upgrade-interactive
 
-ui-dev:  ## Use for quick front-end development, only processes css, js, html
-	clear
-	cd $(ui) && yarn run django-dev
-
 assets:  ## Compress any front-end related assets. (Slow as files may be large)
 	clear
 	cd $(ui) && yarn run assets
@@ -64,7 +60,11 @@ html: ## Build only HTML templates (with data)
 	clear
 	cd $(ui) && yarn run template-build
 
-build-ui:  ## Build front-end for pre-deployment, minimizes JS, minimizes and razors CSS
+ui-dev:  ## Use for quick front-end development, only processes css, js, html
+	clear
+	cd $(ui) && yarn run django-dev
+
+ui-build:  ## Build front-end for pre-deployment, minimizes JS, minimizes and razors CSS
 	clear
 	cd $(ui) && yarn run django-build
 

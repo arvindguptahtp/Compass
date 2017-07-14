@@ -367,7 +367,7 @@
                                       <svg class="ico ico--xl thm--partners" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--xy25">
                                         <use href="#ico--{{ item }}"></use>
                                       </svg>
-                                      <div class="tx--f3" o-base="col--pMiddle--sStart mod--balance pad--xy25"><span>{{ item|choice_display:'CoreServices' }}</span></div>
+                                      <div class="tx--small--f2" o-base="col--pMiddle--sStart mod--balance pad--xy25"><span>{{ item|choice_display:'CoreServices' }}</span></div>
                                     </li>{% endfor %}
                         </ul>
                       </div>
@@ -378,12 +378,12 @@
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
                         <ul o-base="mod--balance rhy--yStart25">{% for item in partner.program.all %}
-                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
+                                    <li class="thm--tint70 tx--small--f2"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
                                         <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
-                                        </div><small class="tx--chrome--f3--100--tcU" o-base="mod--static iso--xStartAuto">National Program</small></a></li>{% endfor %}{% for item in partner.featured_network.all %}
-                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
+                                        </div><small class="tx--caption--f3--100--tcU" o-base="mod--static iso--xStartAuto">National Program</small></a></li>{% endfor %}{% for item in partner.featured_network.all %}
+                                    <li class="thm--tint70 tx--small--f2"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
                                         <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
-                                        </div><small class="tx--chrome--f3--100--tcU" o-base="mod--static iso--xStartAuto">Featured Network</small></a></li>{% endfor %}
+                                        </div><small class="tx--caption--f3--100--tcU" o-base="mod--static iso--xStartAuto">Featured Network</small></a></li>{% endfor %}
                         </ul>
                       </div>
                     </article>{% endif %}{% if partner.webinars.count > 0 or partner.presentations.count > 0 %}
@@ -393,18 +393,18 @@
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
                         <ul o-base="mod--balance rhy--yStart25">{% for item in partner.webinars.all %}
-                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
+                                    <li class="thm--tint70 tx--small--f2"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
                                         <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
                                           <svg class="ico">
                                             <use href="#ico--link-ext"></use>
                                           </svg>
-                                        </div><small class="tx--chrome--f3--100--tcU" o-base="mod--static iso--xStartAuto">Webinar</small></a></li>{% endfor %}{% for item in partner.presentations.all %}
-                                    <li class="thm--tint70 tx--f3--900"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
+                                        </div><small class="tx--caption--f3--100--tcU" o-base="mod--static iso--xStartAuto">Webinar</small></a></li>{% endfor %}{% for item in partner.presentations.all %}
+                                    <li class="thm--tint70 tx--small--f2"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener" o-base="row--pStart--sMiddle pad--xy25 rhy--xStart25">
                                         <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
                                           <svg class="ico">
                                             <use href="#ico--link-ext"></use>
                                           </svg>
-                                        </div><small class="tx--chrome--f3--100--tcU" o-base="mod--static iso--xStartAuto">Presentation</small></a></li>{% endfor %}
+                                        </div><small class="tx--caption--f3--100--tcU" o-base="mod--static iso--xStartAuto">Presentation</small></a></li>{% endfor %}
                         </ul>
                       </div>
                     </article>{% endif %}
@@ -438,7 +438,7 @@
           </svg><span class="vx--a11y">Partners</span></a></li>
     </nav>
   </nav>
-  <footer class="colophon tx--chrome--f3 thm--dark" role="contentinfo" o-base="pad--x50 pad--y100 rhy--yStart100 ord--end" o-standard="row--pGrid--sTop rhy--xStart100" o-enhanced="pad--x100" o-full="gxi--f pad--y200"><a class="colophon-brand" href="https://communitiesinschools.orgr/" target="_top" o-base="mod--static pad--yEnd50 iso--yEnd50 z--masthead">  
+  <footer class="colophon tx--f3--100 thm--dark" role="contentinfo" o-base="pad--x50 pad--y100 rhy--yStart100 ord--end" o-standard="row--pGrid--sTop rhy--xStart100" o-enhanced="pad--x100" o-full="gxi--f pad--y200"><a class="colophon-brand" href="https://communitiesinschools.orgr/" target="_top" o-base="mod--static pad--yEnd50 iso--yEnd50 z--masthead">  
       <picture>
         <source data-srcset="{% static 'res/logo.full.inverse.png.webp' %}" type="image/webp"><img class="site-logo lazyload" data-src="{% static 'res/logo.full.inverse.png' %}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
       </picture></a>

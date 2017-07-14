@@ -1,42 +1,15 @@
 .--
     // Font Weight
-    &100
-        +o-attr()
-            font-weight: 100
+    for i in (1..9)
+        num = i * 100
+        &{num}
+            +o-attr(breakpoints)
+                font-weight: num
     
-    &300
-        +o-attr()
-            font-weight: 300
-    
-    &500
-        +o-attr()
-            font-weight: 500
-    
-    &700
-        +o-attr()
-            font-weight: 700
-    
-    &900
-        +o-attr()
-            font-weight: 900
-
     &ls100
-        +o-attr()
+        +o-attr(breakpoints)
             letter-spacing: .08em
-    
-    
-    
-    // Font stack
-    &f1
-        +o-attr()
-            stack: header
-    &f2
-        +o-attr()
-            stack: copy
-    &f3
-        +o-attr()
-            stack: chrome
-    
+       
     
     
     // Text Transform
