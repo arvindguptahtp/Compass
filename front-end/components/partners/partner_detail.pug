@@ -51,9 +51,7 @@ block detail_a
                 data({
                     heading: "Partner Information",
                     map: [
-                        ["heading", "Points of Contact"],
-                        ["mixin", page.contact_title.tag(), "card_contact"],
-                        ["heading", "Organizational Information"],
+                        ["mixin", "Representative", "card_contact"],
                         ["text", "Core Partner", page.is_core_partner.io()],
                         ["iterator", "Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
                         ["iterator", "Organizational Reach", page.organizational_reach.io(), "Regions"],
@@ -94,6 +92,7 @@ block detail_a
         
         mixin card_contact
             p= page.contact_name.tag()
+            p: i= page.contact_title.tag()
             a.tx--tdU.fx--shift(
                 href=`mailto:${page.contact_email.tag()}`
             )
@@ -113,30 +112,72 @@ block detail_a
                             style="word-break:word"
                         )= page.cost_description.tag("safe")
 
+        
+    include /cards/data-list
+        -
+            vefa
+                .data({
+                    heading: "Student Demographics",
+                    map: [
+                        ["iterator", "Grade Level", page.grade.io(), "PartnerGrades"],
+                        ["iterator", "Gender", page.gender.io(), 'Gender'],
+                    ],
+                    style: "alternate"
+                })
+                .define({
+                    element: {
+                        "o-base": "col--pStart iso--yStart25"
+                    },
+                    hdr: {
+                        "o-base": "pad--x25 pad--y25",
+                        "o-condensed": "pad--x50"
+                    },
+                    hed: {
+                        class: "tx--subhed--f1--100--aa"
+                    },
+                    bd: {
+                        "o-base": ""
+                    },
+                    list: {
+                        "o-base": "mod--balance rhy--yStart25",
+                        "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
+                    },
+                    data_key: {
+                        class: "thm--shade40 tx--small--f3--tcU",
+                        "o-base": "pad--xy25",
+                        "o-condensed": "pad--x50"
+                    },
+                    data_value: {
+                        class: "thm--tint10 tx--f3",
+                        "o-base": "col--pStart--sStart pad--xy25",
+                        "o-condensed": "pad--x50 gxs--s2"
+                    },
+                })
+
 
 
 
 block detail_b
-    include /copy/card-lede
-        -
-                vefa
-                    .data({
-                        heading: "Mission",
-                        copy: page.mission.io()
-                    })
-                    .mixin({
-                        element: {
-                            "o-extended": "gxs--s2"
-                        },
-                        hed: {
-                            class: page.impact_color
-                        }
-                    })
-
-
     div(
         o-base="col--pStart rhy--yStart100"
     )
+        include /copy/card
+            -
+                    vefa
+                        .data({
+                            heading: "Mission",
+                            copy: page.mission.io()
+                        })
+                        .mixin({
+                            element: {
+                                class: "thm--shade5",
+                                "o-extended": "gxs--s2"
+                            },
+                            hed: {
+                                class: page.impact_color
+                            }
+                        })
+
         include /copy/card
             -
                 vefa
@@ -154,17 +195,7 @@ block detail_b
                         }
                     })
         
-        include /cards/data-list
-            -
-                vefa
-                    .data({
-                        heading: "Student Demographics",
-                        map: [
-                            ["iterator", "Grade Level", page.grade.io(), "PartnerGrades"],
-                            ["iterator", "Gender", page.gender.io(), 'Gender'],
-                            ["iterator", "Student Need", page.student_need.io(), "StudentNeeds"],
-                        ]
-                    })
+        
 
         
     div(
@@ -174,7 +205,7 @@ block detail_b
             -
                 vefa
                     .data({
-                        heading: "CIS Core Services",
+                        heading: "CIS Core Service Categories",
                         services: page.services.io()
                     })
                     

@@ -236,7 +236,7 @@
     </header>{% load choice_tags %}
     <article class="thm--dark card--ebr" o-base="col--pStart mod--balance pos--rel">
       <header class="card-hdr thm--shade80" o-base="ord--start">
-        <h5 class="tx--small--f1--100--tcU--taMiddle thm--tint25" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tiers of Evidence</h5>
+        <h5 class="tx--small--f1--100--tcU--taMiddle thm--tint25" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tier of Evidence</h5>
       </header>{% if program.evidence_base != '' %}
           <div class="card-bd thm--shade80 ord--end" o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50">
             <svg class="ico ico--ebr">
@@ -343,14 +343,14 @@
                                   </li>{% endfor %}
                         </ul>
                       </dd>
-                      <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Student Need</dt>
+                      <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Targeted Student Needs</dt>
                       <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.student_need %}
                                   <li>{{ val|choice_display:'StudentNeeds'|capfirst }}
                                   </li>{% endfor %}
                         </ul>
                       </dd>
-                      <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Student Characteristics</dt>
+                      <dt class="tx--small--f3--tcU thm--programs" o-base="pad--xy25" o-condensed="pad--x50">Unique Student Characteristics</dt>
                       <dd class="thm--tint70 tx--f3" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
                         <ul>{% for val in program.student_characteristics %}
                                   <li>{{ val|choice_display:'StudentCharacteristics'|capfirst }}

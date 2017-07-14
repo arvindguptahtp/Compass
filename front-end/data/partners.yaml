@@ -13,7 +13,7 @@ fm_search:
 
             services:
                 name: services
-                label: CIS Core Services
+                label: CIS Core Service Categories
                 widget: multi_icon
 
     -   name: Demographics

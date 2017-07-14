@@ -31,7 +31,7 @@ fm_search:
                 label: Unique Student Characteristics
                 widget: multi
 
-    -   name: Affiliate Details
+    -   name: CIS Model Implementation
         type: fieldset
         folded: true
         fields:

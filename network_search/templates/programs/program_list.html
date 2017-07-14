@@ -296,7 +296,7 @@
                 </div>
               </div>
               <div class="fm-field--single">
-                <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Student Needs
+                <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Targeted Student Needs
                 </p>
                 <div class="thm--shade20" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.need.field.choices %}
                                 <label class="tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl" for="id_need_{{ forloop.counter }}" v-check="true" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small--f3--tc0">{% if choice_value|safe in form.need.value or choice_value in form.need.value %}
@@ -421,7 +421,7 @@
                         <dd class="gxi--ebr thm--dark">{% load choice_tags %}
                           <article class="thm--dark card--ebr" o-base="col--pStart mod--balance pos--rel">
                             <header class="card-hdr thm--shade80" o-base="ord--start">
-                              <h5 class="tx--small--f1--100--tcU--taMiddle thm--tint25" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tiers of Evidence</h5>
+                              <h5 class="tx--small--f1--100--tcU--taMiddle thm--tint25" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tier of Evidence</h5>
                             </header>{% if program.evidence_base != '' %}
                                 <div class="card-bd thm--shade80 ord--end" o-base="row--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50">
                                   <svg class="ico ico--ebr">
