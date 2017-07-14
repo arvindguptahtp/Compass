@@ -8,7 +8,10 @@ block subclass
                 data: {
                     heading: "",
                     links: [
-                        ["label", "data_member", "style"]
+                        ["label", "data_member", "style"],
+                        ["type", "data_member / test_member", "tag", "rel"],
+                        ["group", "data_member / test_member", "tag", "rel"],
+                        ["mixin", "mixin name", "test_member"],
                     ],
                     as_group: [],
                     as_internal: [],
@@ -28,52 +31,93 @@ block subclass
                     class: "rxn--tint90 fx--shift",
                     "o-base": "row--pStart--sMiddle pad--xy25 rhy--xStart25"
                 },
-                on_mount () {
-                    if(this.links) {
-                        let exists_arr = []
-                        
-                        this.links = this.links.map( (dict) => {
-                            if (this.as_group.includes(dict[0])) {
-                                //- "group" link from db
-                                exists_arr.push(dict[1])
-                                return {
-                                    group: `item in ${ dict[1] }.all`,
-                                    tag: dict[0],
-                                    internal: (this.as_internal.includes(dict[0])),
-                                    external: (this.as_external.includes(dict[0])),
-                                    style: (dict[2]) ? dict[2] : "link"
+                methods: {
+                    data_mapper () {
+                        if(this.links) {
+                            let exists_arr = []
+                            let exists_override = false
+                            
+                            this.links = this.links.map( (dict) => {
+                                let value = {
+                                    type: dict[0]
                                 }
-                            }
-                            else {
-                                //- "manual" link
-                                return {
-                                    single: true,
-                                    label: dict[0],
-                                    url: dict[1],
-                                    internal: (this.as_internal.includes(dict[0])),
-                                    external: (this.as_external.includes(dict[0])),
-                                    style: (dict[2]) ? dict[2] : "link"
-                                }
-                            }
-                        })
 
-                        exists_arr = exists_arr.map( item => `${ item }.count > 0` )
-                        this.exists = exists_arr.join(" or ")
-                        
-                        if (!this.style) {
-                            this.mixin({
-                                hdr: {
-                                    class: this.impact_theme
-                                },
-                                bd: {
-                                    class: "thm--shade15"
-                                },
-                                link: {
-                                    class: this.impact_color
+                                switch(dict[0]) {
+                                    case "group":
+                                        exists_arr.push( `${ dict[1] }.count > 0`)
+
+                                        return Object.assign(value, {
+                                            group: `item in ${ dict[1] }.all`,
+                                            test: dict[1],
+                                            tag: (dict[2]),
+                                            external: (dict[3] == "external") ? true : false,
+                                            item_test: (dict[4]) ? `item ${dict[4]}.all` : "True"
+                                        })
+                                    break;
+
+                                    case "single":
+                                        exists_arr.push(dict[1])
+
+                                        return Object.assign(value, {
+                                            label: dict[1],
+                                            url: `${dict[1]}.get_absolute_url`,
+                                            test: dict[1],
+                                            tag: (dict[2]),
+                                            external: (dict[3] == "external") ? true : false,
+                                        })
+                                    break;
+                                    
+                                    case "mixin":
+                                        if (dict[3]) exists_arr.push(dict[3])
+
+                                        return Object.assign(value, {
+                                            mixin: dict[1], 
+                                            test: (dict[3]) ? dict[3] : 'True',
+                                            external: (dict[3] == "external") ? true : false,
+                                        })
+                                    break;
+
+                                    case "link":
+                                        exists_override = true
+                                        
+                                        return Object.assign(value, {
+                                            label: dict[1], 
+                                            url: dict[2],
+                                            tag: (dict[3]),
+                                            test: "True",
+                                            external: (dict[4] == "external") ? true : false,
+                                        })
+                                    break;
+
+                                    default: 
+                                        return Object.assign(value, {
+                                            test: "False"
+                                        })
+                                    break;
+
                                 }
                             })
+
+                            this.exists = exists_arr.join(" or ")
+                            
+                            if (exists_override) this.exists = "True"
                         }
                     }
+                },
+                on_mount () {
+                    this.data_mapper()
+                        
+                    this.mixin({
+                        hdr: {
+                            class: this.impact_theme
+                        },
+                        bd: {
+                            class: "thm--shade15"
+                        },
+                        link: {
+                            class: this.impact_color
+                        }
+                    })
                 }
             })
 
@@ -81,38 +125,65 @@ block subclass
 
 block content
     ul&attributes(card.list)
-        each entry in card.links
-            if entry.single
-                //- manual link
-                li&attributes(card.item)
-                    a(
-                        href=entry.url
-                        target= (entry.external) ? "_blank" : false 
-                        rel= (entry.external) ? "noopener" : false 
-                    )&attributes(card[entry.style])
-                        span.tx--trnc= entry.label
-
-                        if entry.external
-                            svg.ico
-                                use(href=`#ico--link-ext`)
-            if entry.group
-                +for(entry.group)
-                    li&attributes(card.item)
-                        a(
-                            href=(entry.internal) ? v('item.get_absolute_url') : v('item.url')
-                            target= (entry.external) ? "_blank" : false 
-                            rel= (entry.external) ? "noopener" : false 
-                        )&attributes(card[entry.style])
-                            div.tx--trnc(
-                                o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"
-                            )
-                                span.tx--trnc= v('item')
+        for entry in card.links
+            +if(entry.test)
+                case entry.type
+                    when "link"
+                        li&attributes(card.item)
+                            a(
+                                href=entry.url
+                                target= (entry.external) ? "_blank" : false 
+                                rel= (entry.external) ? "noopener" : false 
+                            )&attributes(card.link)
+                                span.tx--trnc= entry.label
 
                                 if entry.external
                                     svg.ico
                                         use(href=`#ico--link-ext`)
-                            
-                            if entry.tag
-                                small.tx--caption--f3--100--tcU(
-                                    o-base="mod--static iso--xStartAuto"
-                                )= entry.tag
+
+                                if entry.tag
+                                    small.tx--caption--f3--100--tcU(
+                                        o-base="mod--static iso--xStartAuto"
+                                    )= entry.tag
+                    
+                    when "single"
+                        li&attributes(card.item)
+                            a(
+                                href=v(entry.url)
+                                target= (entry.external) ? "_blank" : false 
+                                rel= (entry.external) ? "noopener" : false 
+                            )&attributes(card.link)
+                                span.tx--trnc= v(entry.label)
+
+                                if entry.external
+                                    svg.ico
+                                        use(href=`#ico--link-ext`)
+
+                                if entry.tag
+                                    small.tx--caption--f3--100--tcU(
+                                        o-base="mod--static iso--xStartAuto"
+                                    )= entry.tag
+
+
+                    when "group"
+                        +for(entry.group)
+                            +if(entry.item_test)
+                                li&attributes(card.item)
+                                    a(
+                                        href=(entry.external) ? v('item.url') : v('item.get_absolute_url')
+                                        target= (entry.external) ? "_blank" : false 
+                                        rel= (entry.external) ? "noopener" : false 
+                                    )&attributes(card.link)
+                                        div.tx--trnc(
+                                            o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"
+                                        )
+                                            span.tx--trnc= v('item')
+
+                                            if entry.external
+                                                svg.ico
+                                                    use(href=`#ico--link-ext`)
+                                
+                                        if entry.tag
+                                            small.tx--caption--f3--100--tcU(
+                                                o-base="mod--static iso--xStartAuto"
+                                            )= entry.tag

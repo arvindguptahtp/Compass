@@ -34,58 +34,55 @@ block premain
 
 
 block detail_a
-    - 
-        card_alt = {
-            element: {
-                "o-base": "col--pStart"
-            },
-            hdr: {
-                "o-base": "pad--x25 pad--yEnd25",
-                "o-condensed": "pad--x50"
-            },
-            hed: {
-                class: "tx--subhed--f1--100--aa"
-            },
-            bd: {
-                "o-base": ""
-            },
-            list: {
-                "o-base": "mod--balance rhy--yStart25",
-                "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
-            },
-            data_hed: {
-                class: `thm--shade60 tx--small--f3--900--aa`,
-            },
-            data_key: {
-                class: "thm--shade40 tx--small--f3--tcU",
-                "o-base": "pad--xy25",
-                "o-condensed": "pad--xy50"
-            },
-            data_value: {
-                class: "thm--tint10 tx--f3",
-                "o-base": "col--pStart--sStart pad--xy25",
-                "o-condensed": "pad--xy50 gxs--s2"
-            },
-        }
+    //- - 
+    //-     card_alt = {
+    //-         element: {
+    //-             "o-base": "col--pStart"
+    //-         },
+    //-         hdr: {
+    //-             "o-base": "pad--x25 pad--yEnd25",
+    //-             "o-condensed": "pad--x50"
+    //-         },
+    //-         hed: {
+    //-             class: "tx--subhed--f1--100--aa"
+    //-         },
+    //-         bd: {
+    //-             "o-base": ""
+    //-         },
+    //-         list: {
+    //-             "o-base": "mod--balance rhy--yStart25",
+    //-             "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
+    //-         },
+    //-         data_hed: {
+    //-             class: `thm--shade60 tx--small--f3--900--aa`,
+    //-         },
+    //-         data_key: {
+    //-             class: "thm--shade40 tx--small--f3--tcU",
+    //-             "o-base": "pad--xy25",
+    //-             "o-condensed": "pad--xy50"
+    //-         },
+    //-         data_value: {
+    //-             class: "thm--tint10 tx--f3",
+    //-             "o-base": "col--pStart--sStart pad--xy25",
+    //-             "o-condensed": "pad--xy50 gxs--s2"
+    //-         },
+    //-     }
 
-    include /cards/data-list
+    include /cards/data-list--inverse
         -
             vefa
                 .data({
-                    heading: "Affiliate Details",
+                    heading: `Affiliate <small class="tx--small--t2--400">#${page.cis_id.tag()}</small>`,
                     map: [
                         ["mixin", "Executive Director", "card_exec"],
                         ["mixin", "Program Lead", "card_lead"],
-                        ["text", "Affiliate ID", page.cis_id.io()],
                         ["text", "Location", page.location.io(), page.location.tag("choice_display:'AffiliateLocation'", 'capfirst')],
                         ["mixin", "Address", "card_contact"],
                         ["text", "Phone Number", page.phone_number.io()],
                         ["text", "Fax Number", page.fax_number.io()],
-                        ["link", "Website", page.website.io(), page.title.tag()],                            
+                        ["link", "Website", page.website.io(), page.title.tag()]                     
                     ],
-                    style: "alternate"
                 })
-                .define(card_alt)
 
         mixin card_contact
             ul
@@ -110,35 +107,6 @@ block detail_a
                     )
                         = page.lead_email.tag()
 
-    
-    //- include /cards/data-list 
-        -
-            vefa
-                .data({
-                    heading: "CIS Services",
-                    map: [
-                        ['text', 'Academic Assistance'],
-                        ['text', 'Basic Needs'],
-                        ['text', 'Behavior Intervention'],
-                        ['text', 'College/Career Prep'],
-                        ['text', 'Community Service'],
-                        ['text', 'Enrichment'],
-                        ['text', 'Family Engagement'],
-                        ['text', 'Life Skills/Social Development'],
-                        ['text', 'Professional Mental Health'],
-                        ['text', 'Professional Phytisal Health'],                         
-                    ],
-                    style: "alternate"
-                })
-                .define(card_alt)
-                .mixin({
-                    element: {
-                        "o-condensed": "iso--yStart100"
-                    }
-                })
-
-                        
-
 
 block detail_b
     div(
@@ -154,6 +122,11 @@ block detail_b
                             ['money', 'Total Public Funding', 'eoy_data.funding_public'],
                             ['money', 'Total Private Funding', 'eoy_data.funding_private'],
                         ]
+                    })
+                    .mixin({
+                        element: {
+                            class: "vx--z100"
+                        }
                     })
         
         include /cards/data-list
@@ -187,6 +160,11 @@ block detail_b
                             ['text', 'Unknown', 'eoy_data.students_grade_12_unknown'],
                         ]
                     })
+                    .mixin({
+                        element: {
+                            class: "vx--z100"
+                        }
+                    })
 
         
     div(
@@ -198,14 +176,14 @@ block detail_b
                     .data({
                         heading: "School District Details",
                         map: [
-                            ["iterator", "School District(s)", 'eoy_data.school_districts'],
+                            ["group", "School District(s)", 'eoy_data.school_districts'],
                             ["text", "Total Enrollment", 'eoy_data.calculated_total_enrollment'],
                             ["text", "Number of Case-managed Students", 'eoy_data.calculated_total_case_managed'],
                             ["text", "Total Students Reached", 'eoy_data.calculated_total_students_reached'],
                             ["heading", "Affiliate Staffing"],
-                            ["text", "Full-time", page['current_data.full_time_staff'].io()],
-                            ["text", "Part-time", page['current_data.part_time_staff'].io()],
-                            ["text", "Americorps", page['current_data.americorps_staff'].io()],
+                            ["text", "Full-time", 'eoy_data.full_time_staff'],
+                            ["text", "Part-time", 'eoy_data.part_time_staff'],
+                            ["text", "Americorps", 'eoy_data.americorps_staff'],
                         ]
                     })
                     .define({
@@ -214,6 +192,11 @@ block detail_b
                         },
                         data_value: {
                             "o-condensed": "pad--x50"
+                        }
+                    })
+                    .mixin({
+                        element: {
+                            class: "vx--z100"
                         }
                     })
 
@@ -235,6 +218,11 @@ block detail_b
                             ['text', 'Male', 'eoy_data.search_students_male'],
                             ['text', 'Female', 'eoy_data.search_students_female']
                         ]
+                    })
+                    .mixin({
+                        element: {
+                            class: "vx--z100"
+                        }
                     })
 
         +if('eoy_data.total_students_served > 0')
@@ -264,6 +252,11 @@ block detail_b
                             },
                             data_value: {
                                 "o-condensed": "pad--x50"
+                            }
+                        })
+                        .mixin({
+                            element: {
+                                class: "vx--z100"
                             }
                         })
 

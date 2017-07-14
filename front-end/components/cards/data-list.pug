@@ -8,10 +8,16 @@ block subclass
                 data: {
                     heading: "",
                     map: [
-                        ["label", "data_member", "category"]
+                        ["type", "label", "data_member", "category"],
+                        ["heading", "Header Label", "test_member"],
+                        ["mixin", "Mixin Label", "mixin_name", "test_member"],
+                        ["group", "Group Label", "data_member / test_statement", "category"],
+                        ["bool", "Boolean Label", "data_member", "yes_value", "no_value"],
+                        ["link", "Link Label", "data_member", "display_value"],
+                        ["text", "Text Label", "data_member / test_statement", "display_value"],
                     ],
                 }, 
-                list: {
+                grid: {
                     "o-base": "mod--balance rhy--yStart25",
                     "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
                 },
@@ -19,10 +25,9 @@ block subclass
                     class: "thm--tint70 tx--f3--900",
                 },
                 data_hed: {
-                    class: `thm--shade5 hl--xy--bCurrent tx--small--f3--900--aa`,
+                    class: `tx--f3--600 co--copy`,
                     "o-base": "pad--xy25 iso--yEnd",
                     "o-condensed": "pad--x50 gxs--s3",
-                    "o-extended": "iso--yStart50"
                 },
                 data_key: {
                     class: `tx--small--f3--tcU`,
@@ -30,151 +35,151 @@ block subclass
                     "o-condensed": "pad--x50"
                 },
                 data_value: {
-                    class: `thm--tint70 tx--f3`,
+                    class: `thm--tint70 tx--f2--100`,
                     "o-base": "col--pStart pad--xy25",
                     "o-condensed": "pad--x50 gxs--s2"
                 },
+                methods: {
+                    data_mapper () {
+                        if (this.map) {
+                            this.map = this.map.map( (dict) => {
+                                let value = {
+                                    type: dict[0],
+                                    label: dict[1]
+                                }
+                                
+                                switch(dict[0]) {
+                                    case "heading":
+                                        return Object.assign(value, {
+                                            test: (dict[2]) ? dict[2] : 'True'
+                                        })
+                                    break;
+                                    
+                                    case "mixin":
+                                        return Object.assign(value, {
+                                            mixin: dict[2], 
+                                            test: (dict[3]) ? dict[3] : 'True'
+                                        })
+                                    break;
+                                
+                                    case "group":
+                                        return Object.assign(value, {
+                                            group: `val in ${ dict[2] }`,
+                                            test: dict[2],
+                                            category: (dict[3]) ? dict[3] : false
+                                        })
+                                    break;
+                                    
+                                    case "yesno":
+                                        return Object.assign(value, {
+                                            value: dict[2],
+                                            test: dict[2],
+                                            yes: (dict[3]) ? dict[3] : "yes",
+                                            no: (dict[4]) ? dict[4] : "no",
+                                        })
+                                    break;
 
+                                    case "link":
+                                        return Object.assign(value, {
+                                            value: dict[2],
+                                            test: dict[2]  ? dict[2] : 'True',
+                                            link_label: (dict[3]) ? dict[3] : dict[2]
+                                        })
+                                    break;
+                                
+                                    default:
+                                        return Object.assign(value, {
+                                            value: (dict[2]) ? dict[2] : 'True',
+                                            test: dict[2]  ? dict[2] : 'True',
+                                            display: (dict[3]) ? dict[3] : dict[2]
+                                        })
+
+                                    break;
+                                }
+                            })
+                        }
+                    }
+                },
                 on_mount () {
-                    if (this.map) {
-                        this.map = this.map.map( (dict) => {
-                            let value = {
-                                type: dict[0],
-                                label: dict[1]
-                            }
-                            
-                            switch(dict[0]) {
-                                case "heading":
-                                    return Object.assign(value, {
-                                        show: (dict[2]) ? dict[2] : 'True'
-                                    })
-                                break;
-                                
-                                case "mixin":
-                                    return Object.assign(value, {
-                                        mixin: dict[2], 
-                                        test: (dict[3]) ? dict[3] : 'True'
-                                    })
-                                break;
-                            
-                                case "iterator":
-                                    return Object.assign(value, {
-                                        iterator: `val in ${ dict[2] }`,
-                                        category: (dict[3]) ? dict[3] : false
-                                    })
-                                break;
-                                
-                                case "yesno":
-                                    return Object.assign(value, {
-                                        value: dict[2],
-                                        yes: (dict[3]) ? dict[3] : "yes",
-                                        no: (dict[4]) ? dict[4] : "no",
-                                    })
-                                break;
+                    this.data_mapper()
+                                      
+                    this.mixin({
+                        hdr: {
+                            class: this.impact_theme
+                        },
+                        bd: {
+                            class: "thm--shade15"
+                        },
+                        data_key: {
+                            class: this.impact_theme
+                        },
+                        data_hed: {
+                            class: this.impact_color
+                        },
+                        link: {
+                            class: this.impact_color
+                        }
+                    })
 
-                                case "link":
-                                    return Object.assign(value, {
-                                        value: dict[2],
-                                        link_label: (dict[3]) ? dict[3] : dict[2]
-                                    })
-                                break;
-                            
-                                default:
-                                    return Object.assign(value, {
-                                        value: (dict[2]) ? dict[2] : 'True',
-                                        display: (dict[3]) ? dict[3] : dict[2]
-                                    })
-
-                                break;
-                            }
-                        })
-                    }
-                    if (!this.style) {
-                        this.mixin({
-                            hdr: {
-                                class: this.impact_theme
-                            },
-                            bd: {
-                                class: "thm--shade15"
-                            },
-                            data_key: {
-                                class: this.impact_theme
-                            },
-                            data_hed: {
-                                class: this.impact_color
-                            },
-                            link: {
-                                class: this.impact_color
-                            }
-                        })
-                    }
                 }
             })
 
 
 block content
-    dl.card-list&attributes(card.list)
-        for item in card.map
-            case item.type
-                when "heading"
-                    +if(item.show)
-                        dt&attributes(card.data_hed)= item.label
-                when "mixin"
-                    +if(item.test)
-                        dt&attributes(card.data_key)= item.label
-                        dd&attributes(card.data_value)
-                            +#{item.mixin}
-                when "text"
-                    +if(item.value)
-                        dt&attributes(card.data_key)= item.label
-                        dd&attributes(card.data_value)
-                            if item.value == item.display
-                                = v(item.value, "safe")
-                            else
-                                = item.display
-                
-                when "money"
-                    +if(item.value)
-                        dt&attributes(card.data_key)= item.label
-                        dd&attributes(card.data_value)
-                            if item.value == item.display
-                                = `$${ v(item.value, "intcomma") }`
-                            else
-                                = item.display
+    mixin mixin_name
+        p Test mixin
 
-                when "yesno"
-                    +if(item.value)
-                        dt&attributes(card.data_key)= item.label
-                        dd&attributes(card.data_value)
-                            +if(item.value)
-                                = item.yes
-                                +else()
-                                    = item.no
-                
-                when "link"
-                    +if(item.value)
-                        dt&attributes(card.data_key)= item.label
-                        dd&attributes(card.data_value)
-                            a.tx--tdU.fx--shift(
-                                href=item.value.tag()
-                                target="_blank"
-                                rel="noopener"
-                                o-base="row--pStart--sMiddle rhy--xStart25"
-                            )
-                                span.tx--trnc= item.link_label
-                                svg.ico
-                                    use(href=`#ico--link-ext`)
-                
-                when "iterator"
-                    dt&attributes(card.data_key)= item.label
+
+    dl.card-data&attributes(card.grid)
+        for item in card.map
+            +if(item.test)
+                dt&attributes(
+                    (item.type == "heading") ? card.data_hed : card.data_key
+                )= item.label
+
+                if item.type !== "heading"
                     dd&attributes(card.data_value)
-                        ul
-                            +for(item.iterator)
-                                li&attributes(card.data_value_item)
-                                    if item.category
-                                        = v("val", `choice_display:'${item.category}'`, 'capfirst')  
-                                    else
-                                        = v("val", 'capfirst')
+                        case item.type
+                            when "mixin"
+                                +#{item.mixin}
+                            
+                            when "text"
+                                if item.value == item.display
+                                    = v(item.value, "safe")
+                                else
+                                    = item.display
+                            
+                            when "money"
+                                if item.value == item.display
+                                    = `$${ v(item.value, "intcomma") }`
+                                else
+                                    = item.display
+
+                            when "yesno"
+                                +if(item.value)
+                                    = item.yes
+                                    +else()
+                                        = item.no
+                            
+                            when "link"
+                                a.tx--tdU.fx--shift(
+                                    href=item.value.tag()
+                                    target="_blank"
+                                    rel="noopener"
+                                    o-base="row--pStart--sMiddle rhy--xStart25"
+                                )
+                                    span.tx--trnc= item.link_label
+                                    svg.ico
+                                        use(href=`#ico--link-ext`)
+                            
+                            when "group"
+                                ul
+                                    +for(item.group)
+                                        li&attributes(card.data_value_item)
+                                            if item.category
+                                                = v("val", `choice_display:'${item.category}'`, 'capfirst')  
+                                            else
+                                                = v("val", 'capfirst')
 
 
 block teardown

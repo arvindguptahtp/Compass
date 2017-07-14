@@ -5,37 +5,15 @@
        +o-eq(breakpoints)
             padding-x: 1px
 
-    &x0
-       +o-eq(breakpoints)
-            padding-x: 0
-
-    &x10
-       +o-eq(breakpoints)
-            padding-x: bvr(.1)
-    
-    &x25
-       +o-eq(breakpoints)
-            padding-x: bvr(.25)
-    
-    &x50
-       +o-eq(breakpoints)
-            padding-x: bvr(.5)
-
-    &x75
-       +o-eq(breakpoints)
-            padding-x: bvr(.75)
-    
-    &x100
-       +o-eq(breakpoints)
-            padding-x: bvr()
-    
-    &x150
-       +o-eq(breakpoints)
-            padding-x: bvr(1.5)
-
-    &x200
-       +o-eq(breakpoints)
-            padding-x: bvr(2)
+        for i in (0 10 25 50 75 100 125 150 175 200 250 300 350 400)
+            if i is 0        
+                num = 0
+            else
+                num = i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-x: bvr(num)
 
     
     
@@ -43,109 +21,49 @@
     &xStart
        +o-eq(breakpoints)
             padding-left: 1px
-
-    &xStart0
-       +o-eq(breakpoints)
-            padding-left: 0
-
-    &xStart10
-       +o-eq(breakpoints)
-            padding-left: bvr(.1)
     
-    &xStart25
-       +o-eq(breakpoints)
-            padding-left: bvr(.25)
-    
-    &xStart50
-       +o-eq(breakpoints)
-            padding-left: bvr(.5)
-    
-    &xStart100
-       +o-eq(breakpoints)
-            padding-left: bvr()
-    
-    &xStart150
-       +o-eq(breakpoints)
-            padding-left: bvr(1.5)
-
-    &xStart200
-       +o-eq(breakpoints)
-            padding-left: bvr(2)
+        for i in (0 10 25 50 75 100 125 150 175 200 250 300 350 400)
+            if i is 0        
+                num = 0
+            else
+                num = i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-left: bvr(num)
 
     
   
     // X End values (right)
     &xEnd
-       +o-eq(breakpoints)
+        +o-eq(breakpoints)
             padding-right: 1px
 
-    &xEnd0
-       +o-eq(breakpoints)
-            padding-right: 0
-
-    &xEnd10
-       +o-eq(breakpoints)
-            padding-right: bvr(.1)
+        for i in (0 10 25 50 75 100 125 150 175 200 250 300 350 400)
+            if i is 0        
+                num = 0
+            else
+                num = i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-right: bvr(num)
     
-    &xEnd25
-       +o-eq(breakpoints)
-            padding-right: bvr(.25)
-    
-    &xEnd50
-       +o-eq(breakpoints)
-            padding-right: bvr(.5)
-    
-    &xEnd100
-       +o-eq(breakpoints)
-            padding-right: bvr()
-    
-    &xEnd150
-       +o-eq(breakpoints)
-            padding-right: bvr(1.5)
-
-    &xEnd200
-       +o-eq(breakpoints)
-            padding-right: bvr(2)
-
-
         
     // Y values
     &y
        +o-eq(breakpoints)
             padding-y: 1px
 
-    &y0
-       +o-eq(breakpoints)
-            padding-y: 0
-
-    &y10
-       +o-eq(breakpoints)
-            padding-y: bvr(.1)
-    
-    &y25
-       +o-eq(breakpoints)
-            padding-y: bvr(.25)
-    
-    &y50
-       +o-eq(breakpoints)
-            padding-y: bvr(.5)
-    
-    &y75
-       +o-eq(breakpoints)
-            padding-y: bvr(.75)
-
-    &y100
-       +o-eq(breakpoints)
-            padding-y: bvr()
-    
-    &y150
-       +o-eq(breakpoints)
-            padding-y: bvr(1.5)
-
-    &y200
-       +o-eq(breakpoints)
-            padding-y: bvr(2)
-    
+        for i in (0 10 25 50 75 100 125 150 175 200 250 300 350 400)
+            if i is 0        
+                num = 0
+            else
+                num = i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-y: bvr(num)
 
 
     // Y Start values (Top)
@@ -153,102 +71,48 @@
        +o-eq(breakpoints)
             padding-top: 1px
 
-    &yStart0
-       +o-eq(breakpoints)
-            padding-top: 0
-
-    &yStart10
-       +o-eq(breakpoints)
-            padding-top: bvr(.1)
-    
-    &yStart25
-       +o-eq(breakpoints)
-            padding-top: bvr(.25)
-    
-    &yStart50
-       +o-eq(breakpoints)
-            padding-top: bvr(.5)
-    
-    &yStart100
-       +o-eq(breakpoints)
-            padding-top: bvr()
-    
-    &yStart150
-       +o-eq(breakpoints)
-            padding-top: bvr(1.5)
-
-    &yStart200
-       +o-eq(breakpoints)
-            padding-top: bvr(2)
+        for i in (0 10 25 50 75 100 125 150 175 200 250 300 350 400)
+            if i is 0        
+                num = 0
+            else
+                num = i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-top: bvr(num)
             
     
 
     // Y End values (Bottom)
-    // Y Start values (Top)
     &yEnd
        +o-eq(breakpoints)
             padding-bottom: 1px
             
-    &yEnd0
-       +o-eq(breakpoints)
-            padding-bottom: 0
+        for i in (0 10 25 50 75 100 125 150 175 200 250 300 350 400)
+            if i is 0        
+                num = 0
+            else
+                num = i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-bottom: bvr(num)
 
-    &yEnd10
-       +o-eq(breakpoints)
-            padding-bottom: bvr(.1)
-    
-    &yEnd25
-       +o-eq(breakpoints)
-            padding-bottom: bvr(.25)
-    
-    &yEnd50
-       +o-eq(breakpoints)
-            padding-bottom: bvr(.5)
-    
-    &yEnd100
-       +o-eq(breakpoints)
-            padding-bottom: bvr()
-    
-    &yEnd150
-       +o-eq(breakpoints)
-            padding-bottom: bvr(1.5)
-
-    &yEnd200
-       +o-eq(breakpoints)
-            padding-bottom: bvr(2)
 
     // both
     &xy
        +o-eq(breakpoints)
             padding: 1px
 
-    &xy0
-       +o-eq(breakpoints)
-            padding: 0
-
-    &xy10
-       +o-eq(breakpoints)
-            padding: bvr(.1)
-    
-    &xy25
-       +o-eq(breakpoints)
-            padding: bvr(.25)
-    
-    &xy50
-       +o-eq(breakpoints)
-            padding: bvr(.5)
-    
-    &xy100
-       +o-eq(breakpoints)
-            padding: bvr()
-    
-    &xy150
-       +o-eq(breakpoints)
-            padding: bvr(1.5)
-
-    &xy200
-       +o-eq(breakpoints)
-            padding: bvr(2)
+        for i in (0 10 25 50 75 100 125 150 175 200 250 300 350 400)
+            if i is 0        
+                num = 0
+            else
+                num = i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding: bvr(num)
 
     // padding within
     &xEdges0

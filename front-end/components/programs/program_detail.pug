@@ -52,49 +52,19 @@ block premain
 
 
 block detail_a
-    include /cards/data-list
+    include /cards/data-list--inverse
         -
             vefa
                 .data({
                     heading: "Program Information",
                     map: [
-                        ["iterator", "Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
-                        ["iterator","Region", page.region.io(), "Regions"],
-                        ["iterator","Setting", page.setting.io(), "Setting"],
+                        ["group", "Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
+                        ["group","Region", page.region.io(), "Regions"],
+                        ["group","Setting", page.setting.io(), "Setting"],
                         ["text", "Outcomes", page.outcomes.io()],
                         ["mixin", "Associated Fees", "card_fees"],
                         ["mixin", "Assessment", "card_assessment"]
-                    ],
-                    style: "alternate"
-                })
-                .define({
-                    element: {
-                        "o-base": "col--pStart iso--yStart25"
-                    },
-                    hdr: {
-                        "o-base": "pad--x25 pad--y25",
-                        "o-condensed": "pad--x50"
-                    },
-                    hed: {
-                        class: "tx--subhed--f1--100--aa"
-                    },
-                    bd: {
-                        "o-base": ""
-                    },
-                    list: {
-                        "o-base": "mod--balance rhy--yStart25",
-                        "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
-                    },
-                    data_key: {
-                        class: "thm--shade40 tx--small--f3--tcU",
-                        "o-base": "pad--xy25",
-                        "o-condensed": "pad--xy50"
-                    },
-                    data_value: {
-                        class: "thm--tint10 tx--f3",
-                        "o-base": "col--pStart--sStart pad--xy25",
-                        "o-condensed": "pad--xy50 gxs--s2"
-                    },
+                    ]
                 })
 
         mixin card_fees
@@ -109,10 +79,12 @@ block detail_a
         mixin card_assessment
             +if(page.assessment_available.io())
                 p Assessment Available
+                
                 +if(page.assessment_info.io())
                     p= page.assessment_info.tag()
-                +else()
-                    p N/A
+                
+                    +else()
+                        p N/A
 
 
 block detail_b
@@ -139,12 +111,17 @@ block detail_b
                 .data({
                     heading: "Student Demographics",
                     map: [
-                        ["iterator", "Grade Level", page.grade.io(), "ProgramGrades"],
-                        ["iterator", "Gender", page.gender.io(), "Gender"],
-                        ["iterator", "Race", page.race.io(), "Race"],
-                        ["iterator", "Targeted Student Needs", page.need.io(), "StudentNeeds"],
-                        ["iterator", "Unique Student Characteristics", page.character.io(), "StudentCharacteristics"]
+                        ["group", "Grade Level", page.grade.io(), "ProgramGrades"],
+                        ["group", "Gender", page.gender.io(), "Gender"],
+                        ["group", "Race", page.race.io(), "Race"],
+                        ["group", "Targeted Student Needs", page.need.io(), "StudentNeeds"],
+                        ["group", "Unique Student Characteristics", page.character.io(), "StudentCharacteristics"]
                     ]
+                })
+                .mixin({
+                    element: {
+                        class: "vx--z100"
+                    }
                 })
 
     
@@ -158,6 +135,11 @@ block detail_b
                         heading: "CIS Core Services",
                         services: page.services.io()
                     })
+                    .mixin({
+                        element: {
+                            class: "vx--z100"
+                        }
+                    })
 
         include /cards/link-list
             -
@@ -165,12 +147,16 @@ block detail_b
                     .data({
                         heading: "Program Associations",
                         links: [
-                            //- ["Test Link", "http://communities.org", "external_link"],
-                            ["National Partner", page.national_partner.io()],
-                            ["Featured Network", page.featured.io()],
+                            //- ["link", "Test Link", "http://communities.org", "external"],
+                            ["single", page.national_partner.io(), "National Partner"],
+                            ["group", page.featured.io(), "Featured Network"],
+                            ["group", page.network_use.io(), "Affiliate", false, `not in ${ page.featured.io() }`],
                         ], 
-                        as_internal: ["National Partner", "Featured Network"],
-                        as_group: ["National Partner", "Featured Network"],
+                    })
+                    .mixin({
+                        element: {
+                            class: "vx--z100"
+                        }
                     })
 
         include /cards/link-list
@@ -179,10 +165,13 @@ block detail_b
                     .data({
                         heading: "Additional Resources",
                         links: [
-                            ["National Database", page.national_databases.io()],
-                            ["Resource", page.related_resources.io()],
-                            ["", page.additional_resources.io()],
+                            ["group", page.national_databases.io(), "National Database", "external"],
+                            ["group", page.related_resources.io(), "Resource", "external"],
+                            ["group", page.additional_resources.io(), false, "external"],
                         ], 
-                        as_external: ["National Database", "Resource", ""],
-                        as_group: ["National Database", "Resource", ""],
+                    })
+                    .mixin({
+                        element: {
+                            class: "vx--z100"
+                        }
                     })

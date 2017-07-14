@@ -33,7 +33,7 @@ block view
             
             block hdr
                 header&attributes(card.hdr)
-                    h1&attributes(card.hed)= card.heading
+                    h1&attributes(card.hed)!= card.heading
             
             block bd
                 .bd&attributes(card.bd)

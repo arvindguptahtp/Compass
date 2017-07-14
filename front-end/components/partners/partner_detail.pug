@@ -45,7 +45,7 @@ block premain
 
 
 block detail_a
-    include /cards/data-list
+    include /cards/data-list--inverse
         -
             vefa.
                 data({
@@ -53,41 +53,11 @@ block detail_a
                     map: [
                         ["mixin", "Representative", "card_contact"],
                         ["text", "Core Partner", page.is_core_partner.io()],
-                        ["iterator", "Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
-                        ["iterator", "Organizational Reach", page.organizational_reach.io(), "Regions"],
-                        ["iterator", "Setting", page.setting.io(), "Setting"],
+                        ["group", "Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
+                        ["group", "Organizational Reach", page.organizational_reach.io(), "Regions"],
+                        ["group", "Setting", page.setting.io(), "Setting"],
                         ["mixin", "Associated Fees", "card_fees"]
                     ],
-                    style: "alternate"
-                })
-                .define({
-                    element: {
-                        "o-base": "col--pStart iso--yStart25"
-                    },
-                    hdr: {
-                        "o-base": "pad--x25 pad--y25",
-                        "o-condensed": "pad--x50"
-                    },
-                    hed: {
-                        class: "tx--subhed--f1--100--aa"
-                    },
-                    bd: {
-                        "o-base": ""
-                    },
-                    list: {
-                        "o-base": "mod--balance rhy--yStart25",
-                        "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
-                    },
-                    data_key: {
-                        class: "thm--shade40 tx--small--f3--tcU",
-                        "o-base": "pad--xy25",
-                        "o-condensed": "pad--x50"
-                    },
-                    data_value: {
-                        class: "thm--tint10 tx--f3",
-                        "o-base": "col--pStart--sStart pad--xy25",
-                        "o-condensed": "pad--x50 gxs--s2"
-                    },
                 })
         
         mixin card_contact
@@ -113,45 +83,15 @@ block detail_a
                         )= page.cost_description.tag("safe")
 
         
-    include /cards/data-list
+    include /cards/data-list--inverse
         -
             vefa
                 .data({
                     heading: "Student Demographics",
                     map: [
-                        ["iterator", "Grade Level", page.grade.io(), "PartnerGrades"],
-                        ["iterator", "Gender", page.gender.io(), 'Gender'],
-                    ],
-                    style: "alternate"
-                })
-                .define({
-                    element: {
-                        "o-base": "col--pStart iso--yStart25"
-                    },
-                    hdr: {
-                        "o-base": "pad--x25 pad--y25",
-                        "o-condensed": "pad--x50"
-                    },
-                    hed: {
-                        class: "tx--subhed--f1--100--aa"
-                    },
-                    bd: {
-                        "o-base": ""
-                    },
-                    list: {
-                        "o-base": "mod--balance rhy--yStart25",
-                        "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
-                    },
-                    data_key: {
-                        class: "thm--shade40 tx--small--f3--tcU",
-                        "o-base": "pad--xy25",
-                        "o-condensed": "pad--x50"
-                    },
-                    data_value: {
-                        class: "thm--tint10 tx--f3",
-                        "o-base": "col--pStart--sStart pad--xy25",
-                        "o-condensed": "pad--x50 gxs--s2"
-                    },
+                        ["group", "Grade Level", page.grade.io(), "PartnerGrades"],
+                        ["group", "Gender", page.gender.io(), 'Gender'],
+                    ]
                 })
 
 
@@ -170,13 +110,14 @@ block detail_b
                         })
                         .mixin({
                             element: {
-                                class: "thm--shade5",
+                                class: "thm--shade5 vx--z100",
                                 "o-extended": "gxs--s2"
                             },
                             hed: {
                                 class: page.impact_color
                             }
                         })
+                        
 
         include /copy/card
             -
@@ -187,7 +128,7 @@ block detail_b
                     })
                     .mixin({
                         element: {
-                            class: "thm--shade5",
+                            class: "thm--shade5 vx--z100",
                             "o-extended": "gxs--s2"
                         },
                         hed: {
@@ -208,6 +149,11 @@ block detail_b
                         heading: "CIS Core Service Categories",
                         services: page.services.io()
                     })
+                    .mixin({
+                        element: {
+                            class: "vx--z100"
+                        }
+                    })
                     
         include /cards/link-list
             -
@@ -216,11 +162,15 @@ block detail_b
                         heading: "Partner Associations",
                         links: [
                             //- ["Test Link", "http://communities.org", "external_link"],
-                            ["National Program", page.program.io()],
-                            ["Featured Network", page.featured.io()],
+                            ["group", page.program.io(), "National Program"],
+                            ["group", page.featured.io(), "Featured Network"],
+                            ["group", page.network_use.io(), "Affiliate", false, `not in ${ page.featured.io() }`],
                         ], 
-                        as_internal: ["National Program", "Featured Network"],
-                        as_group: ["National Program", "Featured Network"],
+                    })
+                    .mixin({
+                        element: {
+                            class: "vx--z100"
+                        }
                     })
 
         include /cards/link-list
@@ -230,9 +180,12 @@ block detail_b
                         heading: "Additional Resources",
                         links: [
                             //- ["Test Link", "http://communities.org"],
-                            ["Webinar", page.webinars.io()],
-                            ["Presentation", page.presentations.io()]
+                            ["group", page.webinars.io(), "Webinar", "external"],
+                            ["group", page.presentations.io(), "Presentation", "external"],
                         ], 
-                        as_external: ["Test Link", "Webinar", "Presentation"],
-                        as_group: ["Webinar", "Presentation"],
+                    })
+                    .mixin({
+                        element: {
+                            class: "vx--z100"
+                        }
                     })

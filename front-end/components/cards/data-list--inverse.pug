@@ -1,0 +1,26 @@
+extends data-list
+
+
+block variant
+    -
+        vefa.define({
+            hdr: {
+                "o-base": "pad--x25 pad--y25",
+                "o-condensed": "pad--x50"
+            },
+            hed: {
+                class: "tx--subhed--f1--100--aa"
+            },
+            bd: {
+                "o-base": false
+            },
+            data_key: {
+                class: "thm--shade40 tx--small--f3--tcU",
+            },
+            data_value: {
+                class: "thm--tint10 tx--f2--100",
+            },
+            on_mount () {
+                this.data_mapper()
+            }
+        })
