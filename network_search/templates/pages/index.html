@@ -272,16 +272,16 @@
       <picture>
         <source srcset="{% static 'res/logo.full.inverse.png.webp' %}" type="image/webp"><img class="site-logo" src="{% static 'res/logo.full.inverse.png' %}">
       </picture></a>
-    <nav o-base="row--pStart--xAuto" o-enhanced="hl--xEnd--bTint" o-full="col--pStart hl--xy0 hl--yStart--bTint">
-      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift" href="{% url 'affiliate_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
+    <nav o-base="row--pStart--xAuto" o-enhanced="hl--xEnd--bTint" o-full="col--pStart hl--xy0 hl--yStart--bTint">{% url 'affiliate_list' as slug %}
+      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %} is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--affiliates" href="{% url 'affiliate_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
             <use href="#ico--affiliates"></use>
-          </svg><span class="vx--a11y">Affiliates</span></a></li>
-      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift" href="{% url 'program_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
+          </svg><span class="vx--a11y">Affiliates</span></a></li>{% url 'program_list' as slug %}
+      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %} is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--programs" href="{% url 'program_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
             <use href="#ico--programs"></use>
-          </svg><span class="vx--a11y">Programs</span></a></li>
-      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift" href="{% url 'partner_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
+          </svg><span class="vx--a11y">Programs</span></a></li>{% url 'partner_list' as slug %}
+      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %} is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--partners" href="{% url 'partner_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
             <use href="#ico--partners"></use>
           </svg><span class="vx--a11y">Partners</span></a></li>
@@ -293,12 +293,6 @@
       </picture></a>
     <div class="colophon-site" o-base="mod--balance" o-standard="col---pStart--sEnd">
       <nav class="colophon-nav hl--yEnd--bTint" o-base="pad--yEnd50 iso--yEnd50 gx--colophon" o-standard="row--pEnd--sMiddle--xAuto">
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/" target="_top" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>CIS.org</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://resources.communitiesinschools.org" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Resources</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/terms/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Terms of Service</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/privacy-policy/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Privacy Policy</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/contact-us/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Contact Us</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="{% url 'admin:index' %}" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Admin</span></a></li>
       </nav>
       <address class="contactinfo--inline" o-condensed="rhy--yStart25">
         <div class="contactinfo-group" o-base="col--pStart" o-condensed="row--pEnd">

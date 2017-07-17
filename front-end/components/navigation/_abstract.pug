@@ -14,10 +14,15 @@ block init
             },
             methods: {
                 get_active_state (active_state) {
-                    let href = this.get_absolute_url()
-                    return (active_state && href.includes(active_state.slug)) 
-                        ? this.active
-                        : "" 
+                    if (django && this.slug) {
+                        return class_switch(`${active_state} in request.path`, this.active)
+                    }
+                    else {
+                        let href = this.get_absolute_url || ""
+                        return (active_state && href.includes(active_state.slug)) 
+                            ? this.active
+                            : "" 
+                    }
                 },
             },
             computed: {
@@ -45,11 +50,16 @@ block init
 
 
 block view
-    if nav_item.show
+    if nav_item.show || nav_item.published
+        
+        if nav_item.slug
+            +url(nav_item.slug, 'slug')
+        
         li(
             class=nav_item.class
         )&attributes(nav_item.element)
             a(
+                class=nav_item.get_active_state('slug')
                 href=nav_item.get_absolute_url
                 target=nav_item.target
             )&attributes(nav_item.control)

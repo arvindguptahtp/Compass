@@ -48,6 +48,9 @@ mixin comment
 mixin csrf
   != _single("csrf_token")
 
+mixin url(expression, variable)
+    if django
+        != _single( "url", `'${ expression }' as ${variable}` )
 
 mixin with(exp)
     if django
