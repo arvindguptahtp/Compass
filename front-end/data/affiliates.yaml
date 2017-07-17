@@ -14,73 +14,84 @@ fm_search:
 
     -   name: Demographics
         type: fieldset
-        folded: true
         fields:
             gender:
+                fold: true
                 name: gender
                 label: Students by Gender
                 widget: multi
             
             race:
+                fold: true
                 name: race
                 label: Students by Race/Ethnicity
                 widget: multi
             
             served:
+                fold: true
                 name: served
                 label: Unique Student Characteristics
                 widget: multi
 
     -   name: CIS Model Implementation
         type: fieldset
-        folded: true
         fields:
             academic_assistance:
+                fold: true
                 name: academic_assistance
                 label: Academic Assistance
                 widget: single
             
             basic_needs:
+                fold: true
                 name: basic_needs
                 label: Basic Needs
                 widget: single
             
             behavior_intervention:
+                fold: true
                 name: behavior_intervention
                 label: Behavior Intervention
                 widget: single
             
             college_career_prep:
+                fold: true
                 name: college_career_prep
                 label: College & Career Preparation
                 widget: single
             
             comm_service:
+                fold: true
                 name: comm_service
                 label: Community and Service Learning
                 widget: single
             
             enrichment:
+                fold: true
                 name: enrichment
                 label: Enrichment
                 widget: single
             
             family_engagement:
+                fold: true
                 name: family_engagement
                 label: Family Engagement
                 widget: single
             
             life_skills:
+                fold: true
                 name: life_skills
                 label: Life Skills
                 widget: single
             
             physical_fitness_health:
+                fold: true
                 name: physical_fitness_health
                 label: Professional Physical Health
                 widget: single
             
             prof_mental_health:
+                fold: true
                 name: prof_mental_health
                 label: Professional Mental Health
                 widget: single

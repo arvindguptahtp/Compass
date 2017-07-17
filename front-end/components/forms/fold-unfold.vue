@@ -32,17 +32,16 @@
 
 
 <template lang="pug">
-fieldset
+div
     header
         button(
             type="button"
             @click="update"
-            class="fm-fieldset-legend",
+            class="tx--small--f3--900--tcU--aa rxn--shade20 fx--shift",
             :class="[styles, {'is-active': !fold}]"
-            o-base="row--pGrid--sMiddle mod--balance pad--x25 pad--y25 rhy--xStart25",
-            o-standard="pad--x100"
+            o-base="row--pGrid--sMiddle mod--balance pad--x25 pad--y25 rhy--xStart25"
         )
-            span(v-text="title")
+            span {{ title }}
 
             svg.ico
                 use(:href="menu_icon")

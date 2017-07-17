@@ -42,42 +42,44 @@ block init
             }
         })
 
-        if(Vefa.has_bus("field")){
-            vefa.data(
-                Vefa.get_bus("field")
-            )
+        if(bus.data.field){
+            vefa.data(bus.data.field)
         }
 
 
 block view
     div(
         class=field.class
+        is=field.fold ? "fold-unfold" : false
+        :init="true"
+        title=field.label
     )&attributes(field.element)
         
         block hdr
             label(
+                slot="hdr"
                 for=field.uid
             )&attributes(field.control_label)
                 = field.label
             
-        
-        block bd
-            //- this is a general text input
-            //- most subclass should overwrite this
-            //- however, text, password, number, etc won't need to
-            //- and therefore, will only have to subclass the abstract
-            input(
-                type=field.type
-                id=field.uid
-                name=field.name
-                placeholder=field.placeholder
-                value=attr_switch(`${ field.value } != None`, v(field.value, "stringformat:'s'", "default_if_none:''"))
-                required=field.required
-            )&attributes(field.control)
+        div(slot="bd")
+            block bd
+                //- this is a general text input
+                //- most subclass should overwrite this
+                //- however, text, password, number, etc won't need to
+                //- and therefore, will only have to subclass the abstract
+                input(
+                    type=field.type
+                    id=field.uid
+                    name=field.name
+                    placeholder=field.placeholder
+                    value=attr_switch(`${ field.value } != None`, v(field.value, "stringformat:'s'", "default_if_none:''"))
+                    required=field.required
+                )&attributes(field.control)
 
 
-        //- block help_msg
+            //- block help_msg
 
-        //- block error_msg
+            //- block error_msg
 
-        //- block ftr
+            //- block ftr

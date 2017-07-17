@@ -16,50 +16,56 @@ fm_search:
         
     -   name: Demographics
         type: fieldset
-        folded: true
         fields:
             grade:
                 name: grade
                 label: Grades
+                fold: true
                 widget: multi
             
             gender:
                 name: gender
                 label: Gender
+                fold: true
                 widget: multi
             
             race:
                 name: race
-                label: Race
+                label: Race / Ethnicity
+                fold: truee
                 widget: multi
 
             need:
                 name: need
                 label: Targeted Student Needs
+                fold: true
                 widget: multi
     
     -   name: Program Details
         type: fieldset
-        folded: true
         fields:
             use_in_network:
                 name: use_in_network
                 label: Used by CIS Network
+                fold: true
                 widget: single_null
 
             free_of_cost:
                 name: free_of_cost
                 label: Free of Cost
+                fold: true
                 widget: single_null
             
             service_tiers:
                 name: service_tiers
                 label: Tiers of Service
+                fold: true
                 widget: multi
 
             evidence:
                 name: evidence
                 label: Tiers of Evidence
+                fold: true
                 widget: multi
 
 

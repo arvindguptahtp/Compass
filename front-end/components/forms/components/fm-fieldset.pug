@@ -4,43 +4,30 @@ block component
     -
         vefa = new Vefa({
             class: "fm-fieldset",
-            computed: {
-                folded_attrs() {
-                    return {
-                        is: "fold-unfold",
-                        "init": this.folded,
-                        title: this.name,
-                        styles: "tx--subhed--f1--100--aa rxn--shade20 fx--shift",
-                        "v-cloak": true
-                    }
-                }
-            },
             legend: {
-                class: "fm-fieldset-legend"
+                class: "fm-fieldset-legend tx--subhed--f1--100--aa",
+                "o-base": "row--pGrid--sMiddle mod--balance pad--x25 pad--y25 rhy--xStart25",
             }, 
             bd: {
                 slot: "bd", 
-                "o-base": "pad--x25 iso--yStart50", 
-                "o-standard": "pad--x100 rhy--yStart100"
+                "o-base": "pad--x25 iso--yStart25 rhy--yStart25", 
             }
         })
 
 
 block view
-    -
-        folded_attrs = (fmFieldset.folded)
-            ? fmFieldset.folded_attrs
-            : {}
-        
     fieldset(
         class=fmFieldset.class
         o-base="iso--yStart25"
-    )&attributes(folded_attrs)
+    )
+        if fmFieldset.name
+            div&attributes(fmFieldset.legend)= fmFieldset.name
+        
 
         .fm-fieldset-bd&attributes(fmFieldset.bd)
             if fmFieldset.fields
                 for fm_field in fmFieldset.fields
-                    - Vefa.set_bus("field", fm_field)
+                    - bus.data.field = fm_field
                     
                     case fm_field.widget
                         when "text"
@@ -75,6 +62,6 @@ block view
                     
 
     hr.thm--shade30(
-        o-base="pad--x25 iso--yStart25"
+        o-base="pad--x25 iso--yStart50"
         o-standard="pad--x100"
     )

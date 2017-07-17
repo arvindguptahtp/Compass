@@ -16,14 +16,3 @@ block subclass
 
 
 block hdr
-    header.fm-hdr&attributes(fm.header)
-        include /controls/submit
-            -
-                vefa
-                    .data(fm.control)
-                    .mixin({
-                        element: {
-                            "o-base": "vx--hidden iso--xStartAuto",
-                            "o-compressed": "vx--shown"
-                        }
-                    })

@@ -3018,6 +3018,12 @@ button {
 [o-base*='--900'] {
   font-weight: 900;
 }
+[class*='--ls50'] {
+  letter-spacing: 0.04em;
+}
+[o-base*='--ls50'] {
+  letter-spacing: 0.04em;
+}
 [class*='--ls100'] {
   letter-spacing: 0.08em;
 }
@@ -5011,6 +5017,9 @@ input[class*='rxn--tint'] {
   [o-compressed*='--900'] {
     font-weight: 900;
   }
+  [o-compressed*='--ls50'] {
+    letter-spacing: 0.04em;
+  }
   [o-compressed*='--ls100'] {
     letter-spacing: 0.08em;
   }
@@ -6613,6 +6622,9 @@ input[class*='rxn--tint'] {
   }
   [o-condensed*='--900'] {
     font-weight: 900;
+  }
+  [o-condensed*='--ls50'] {
+    letter-spacing: 0.04em;
   }
   [o-condensed*='--ls100'] {
     letter-spacing: 0.08em;
@@ -8217,6 +8229,9 @@ input[class*='rxn--tint'] {
   [o-standard*='--900'] {
     font-weight: 900;
   }
+  [o-standard*='--ls50'] {
+    letter-spacing: 0.04em;
+  }
   [o-standard*='--ls100'] {
     letter-spacing: 0.08em;
   }
@@ -9819,6 +9834,9 @@ input[class*='rxn--tint'] {
   }
   [o-enhanced*='--900'] {
     font-weight: 900;
+  }
+  [o-enhanced*='--ls50'] {
+    letter-spacing: 0.04em;
   }
   [o-enhanced*='--ls100'] {
     letter-spacing: 0.08em;
@@ -11423,6 +11441,9 @@ input[class*='rxn--tint'] {
   [o-extended*='--900'] {
     font-weight: 900;
   }
+  [o-extended*='--ls50'] {
+    letter-spacing: 0.04em;
+  }
   [o-extended*='--ls100'] {
     letter-spacing: 0.08em;
   }
@@ -13025,6 +13046,9 @@ input[class*='rxn--tint'] {
   }
   [o-full*='--900'] {
     font-weight: 900;
+  }
+  [o-full*='--ls50'] {
+    letter-spacing: 0.04em;
   }
   [o-full*='--ls100'] {
     letter-spacing: 0.08em;
