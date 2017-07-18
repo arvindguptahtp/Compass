@@ -399,11 +399,11 @@
                     </nav>{% endif %}
           <div o-base="rhy--yStart100">{% for partner in partners.object_list %}
                       <dl class="card--result-partner gx--result-partner" o-base="col--pStart mod--balance">
-                        <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="{{ partner.get_absolute_url| }}" o-base="row--pStart--sMiddle mod--balance pad--x25 pad--y10 rhy--xStart" o-standard="pad--x50">
-                            <h4 class="tx--subhed--f1--100">{{ partner| }}
+                        <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="{{ partner.get_absolute_url }}" o-base="row--pStart--sMiddle mod--balance pad--x25 pad--y10 rhy--xStart" o-standard="pad--x50">
+                            <h4 class="tx--subhed--f1--100">{{ partner }}
                             </h4></a></dt>
                         <dd class="gxi--overview hl--xy--bTint" o-base="mod--balance pad--xy25 rhy--yStart50" o-standard="pad--xy50">{% if partner.mission %}
-                          <div class="bd copy tx--small--f2" o-full="tx--base">{{ partner.mission| }}
+                          <div class="bd copy tx--small--f2" o-full="tx--base">{{ partner.mission }}
                           </div>{% endif %}
                           <footer o-base="row--pStart"><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="{{ partner.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>View Profile</span></a>
                           </footer>

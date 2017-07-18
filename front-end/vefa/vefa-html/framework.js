@@ -60,7 +60,7 @@ const log = {
     }
 }
 
-const django_tag = (prop, ...filters) => {
+const django_tag = (prop, filters) => {
     
     const template_filters = (filters) => {
         let filter_list = [""]
