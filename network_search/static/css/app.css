@@ -1456,8 +1456,8 @@ svg[o-base*='ico--xl'],
     grid-template-rows: auto 1fr auto;
     grid-template-areas: "a b b" "c d d" "c e e" "f f f";
   }
-  .gx--search {
-    grid-template-columns: 20vw 1fr;
+  [o-enhanced~='gx--search'] {
+    grid-template-columns: 1fr 4fr;
     grid-template-rows: auto -webkit-max-content;
     grid-template-rows: auto max-content;
     grid-template-areas: "a b" "a c";
