@@ -862,10 +862,10 @@ main {
     background: rgba(78, 138, 190, .1);
   }
   [class*='tx--broadside'] {
-    font-size: 44px;
-    font-size: calc(5.254vw + 6.78px);
-    line-height: 51px;
-    line-height: calc(6.25vw + 6px);
+    font-size: 37px;
+    font-size: calc(2.083vw + 22px);
+    line-height: 42px;
+    line-height: calc(2.5vw + 24px);
   }
   [o-compressed*='tx--display'] {
     font-size: 1.984rem;
@@ -1416,8 +1416,8 @@ main {
     background: rgba(78, 138, 190, .1);
   }
   [class*='tx--broadside'] {
-    font-size: 57.22px;
-    line-height: 66px;
+    font-size: 42px;
+    line-height: 48px;
   }
   [o-enhanced*='tx--display'] {
     font-size: 1.984rem;

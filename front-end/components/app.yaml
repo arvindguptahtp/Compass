@@ -27,7 +27,7 @@ type:
     broadside:
         relative: 
             lower: 32px 36px compressed
-            upper: 57.22px 66px enhanced
+            upper: 42px 48px enhanced
     
     display:
         font-size: 31.738px

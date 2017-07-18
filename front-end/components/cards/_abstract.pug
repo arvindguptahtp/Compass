@@ -13,7 +13,7 @@ block init
                 "o-base": "col--pStart"
             },
             hdr: {
-                "o-base": "mod--static pad--x50 pad--y25"
+                "o-base": "row--pGrid--sMiddle mod--static pad--x50 pad--y25"
             },
             hed: {
                 class: "tx--maj--f1--100--aa"
@@ -34,7 +34,10 @@ block view
             block hdr
                 header&attributes(card.hdr)
                     h1&attributes(card.hed)!= card.heading
-            
+
+                    if card.heading_meta
+                        span.tx--caption--f3--400--aa= card.heading_meta
+
             block bd
                 .bd&attributes(card.bd)
                     block content
