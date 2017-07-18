@@ -35,9 +35,14 @@
   </header>
   <main o-base="col--pStart ord--next" o-extended="gxi--d">
     <div class="strata--detail gx--profile" o-base="mod--balance">
-      <section class="gxi--a thm--affiliates" o-base="pad--x25 pad--y50 rhy--yStart50" o-standard="pad--y25 rhy--yStart100">{% if True %}
+      <nav class="gxi--breadcrumbs tx--small--f3 thm--shade5 vx--z200" o-base="row--pStart--sBase pad--xy25 rhy--xStart10" o-standard="row--pEnd--sBase pad--x50"><a class="co--ctrl fx--shift" href="../" o-base="row--pStart--sMiddle--xAuto rhy--xStart25">Affiliates</a>
+        <svg class="ico ico--xs">
+          <use xlink:href="#ico--ctrl-next"></use>
+        </svg><span class="tx--trnc">{{ affiliate }}</span>
+      </nav>
+      <section class="gxi--a thm--affiliates" o-base="pad--x25 pad--y50 rhy--yStart50" o-standard="pad--x50 rhy--yStart100">{% if True %}
                 <article class="card--list-data" o-base="col--pStart">
-                  <header o-base="pad--x25 pad--y25" o-condensed="pad--x50">
+                  <header o-base="pad--y25">
                     <h1 class="tx--subhed--f1--100--aa">Affiliate <small class="tx--small--t2--400">#{{ affiliate.cis_id }}</small></h1>
                   </header>
                   <div class="bd">

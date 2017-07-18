@@ -42,11 +42,25 @@ block content
     .strata--detail.gx--profile(
         o-base="mod--balance"
     )
-    
+        nav.gxi--breadcrumbs.tx--small--f3.thm--shade5.vx--z200(
+            o-base="row--pStart--sBase pad--xy25 rhy--xStart10"
+            o-standard="row--pEnd--sBase pad--x50"
+        )
+            a.co--ctrl.fx--shift(
+                href="../"
+                o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
+            )= page.icon.charAt(0).toUpperCase() + page.icon.slice(1)
+            
+            svg.ico.ico--xs
+                use(xlink:href="#ico--ctrl-next")
+            
+            span.tx--trnc()= poster.title
+
+        
         section.gxi--a(
             class=page.impact_theme
             o-base="pad--x25 pad--y50 rhy--yStart50"
-            o-standard="pad--y25 rhy--yStart100"
+            o-standard="pad--x50 rhy--yStart100"
         )
             block detail_a
 

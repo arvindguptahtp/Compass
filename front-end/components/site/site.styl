@@ -51,9 +51,10 @@ main
     grid-template-columns: 1fr
     grid-auto-rows: max-content
     grid-template-areas: 
+        "breadcrumbs" \
         "a" \
         "b" \ 
-        "c"
+        "c" \
     
     // +over(standard)
     //     grid-template-columns: repeat(3, 1fr)
@@ -64,14 +65,19 @@ main
     +over(standard)
         // grid-template-columns: minmax(250px, 500px) 5fr
         grid-template-columns: minmax(250px, 350px) 1fr
-        grid-template-rows: auto max-content
+        grid-template-rows: bvr(1.5) repeat(2, max-content)
         grid-template-areas: 
+            "a breadcrumbs" \
             "a b" \
             "a c"
 
 
 
 .gxi--
+    &breadcrumbs
+        +o-attr(breakpoints)
+            grid-area: breadcrumbs
+
     &title
         +o-attr(breakpoints)
             grid-area: title
