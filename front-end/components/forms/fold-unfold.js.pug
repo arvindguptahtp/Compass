@@ -1,0 +1,18 @@
+div
+    header
+        button(
+            type="button"
+            @click="update"
+            :class="[styles.class, {'is-active': !fold}]"
+            :o-base="styles['o-base']"
+            :o-standard="styles['o-standard']"
+        )
+            span {{ title }}
+
+            svg.ico
+                use(:href="menu_icon")
+    
+    div(v-show="!fold")
+        slot(
+            name="bd"
+        )

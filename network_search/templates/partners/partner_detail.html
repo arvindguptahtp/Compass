@@ -419,15 +419,15 @@
         <source srcset="{% static 'res/logo.full.inverse.png.webp' %}" type="image/webp"><img class="site-logo" src="{% static 'res/logo.full.inverse.png' %}">
       </picture></a>
     <nav o-base="row--pStart--xAuto" o-enhanced="hl--xEnd--bTint" o-full="col--pStart hl--xy0 hl--yStart--bTint">{% url 'affiliate_list' as slug %}
-      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %} is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--affiliates" href="{% url 'affiliate_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
+      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--affiliates" href="{% url 'affiliate_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
             <use href="#ico--affiliates"></use>
           </svg><span class="vx--a11y">Affiliates</span></a></li>{% url 'program_list' as slug %}
-      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %} is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--programs" href="{% url 'program_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
+      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--programs" href="{% url 'program_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
             <use href="#ico--programs"></use>
           </svg><span class="vx--a11y">Programs</span></a></li>{% url 'partner_list' as slug %}
-      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %} is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--partners" href="{% url 'partner_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
+      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--partners" href="{% url 'partner_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
             <use href="#ico--partners"></use>
           </svg><span class="vx--a11y">Partners</span></a></li>

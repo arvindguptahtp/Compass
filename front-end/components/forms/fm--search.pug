@@ -10,9 +10,23 @@ block subclass
                 title: "Search",
                 control: {
                     label: "Explore"
+                },
+                reset: {
+                    url: "'./'",
+                    label: "Clear Search"
                 }
             },
         })
 
 
 block hdr
+
+
+block ftr
+    footer&attributes(fm.footer)
+        include /controls/submit
+            - vefa.data(fm.control)
+
+        include /controls/link
+            - vefa.data(fm.reset)
+

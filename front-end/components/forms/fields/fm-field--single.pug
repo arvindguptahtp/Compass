@@ -26,23 +26,23 @@ block component
                     }
                 }
             },
-            control: {
-                class: "tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl",
-                "o-base": "row--pStart--sBase pad--x50 pad--y25 rhy--xStart25",
-            }, 
-            control_label: {
-                "o-base": "mod--balance"
-            },
-            control_group: {
-                class: "thm--shade20",
-                "o-base": "col--pStart--sStart"
-            }
+            //- control: {
+            //-     class: "tx--small--f3--100--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl",
+            //-     "o-base": "row--pStart--sBase pad--x50 pad--y25 rhy--xStart25",
+            //- }, 
+            //- control_label: {
+            //-     "o-base": "mod--balance"
+            //- },
+            //- control_group: {
+            //-     class: "thm--shade20",
+            //-     "o-base": "col--pStart--sStart"
+            //- }
         })
 
 
 
 block hdr
-    p&attributes(field.control_label)
+    p&attributes(field.field_label)
         = field.label
 
 
@@ -50,7 +50,7 @@ block hdr
 block bd
     //- come back to this, as we aren't using this now
     if choices[field.name]
-        div&attributes(field.control_group)
+        div&attributes(field.field_group)
             +for(field.choices)
                 
                 block choices
@@ -59,7 +59,7 @@ block bd
                     label(
                         for=field.uid
                         v-check="true"
-                    )&attributes(field.control)
+                    )&attributes(field.field_control)
                         
                         block input_int
                             +ifequal(`form.${field.name}.value`, 'choice_value')

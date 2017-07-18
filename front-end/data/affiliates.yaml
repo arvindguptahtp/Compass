@@ -15,6 +15,12 @@ fm_search:
     -   name: Demographics
         type: fieldset
         fields:
+            grades:
+                name: grades
+                label: Students by Grade
+                fold: true
+                widget: multi
+
             gender:
                 fold: true
                 name: gender
@@ -26,12 +32,24 @@ fm_search:
                 name: race
                 label: Students by Race/Ethnicity
                 widget: multi
-            
+
             served:
                 fold: true
                 name: served
                 label: Unique Student Characteristics
                 widget: multi
+
+            location:
+                name: location
+                label: Affiliates by Location
+                fold: true
+                widget: single
+
+            budget:
+                name: budget
+                label: Affiliates by Budget
+                fold: true
+                widget: single
 
     -   name: CIS Model Implementation
         type: fieldset

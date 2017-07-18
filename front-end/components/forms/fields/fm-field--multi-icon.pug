@@ -1,12 +1,15 @@
 extends fm-field--multi
 
-block variant
+append variant
     -
         vefa.define({
-            control: {
-                class: "tx--small--f3--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl",
+            field_control: {
                 "o-base": "row--pStart--sMiddle pad--x50 pad--y25 rhy--xStart25",
             }, 
+        }).mixin({
+            field_control: {
+                class: "ico--xl"
+            }
         })
 
 

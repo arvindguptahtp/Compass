@@ -17,7 +17,7 @@ module.exports = (config, locals) => {
             Vefa
         }
     )
-            
+
     return {
         test: /\.pug$/,
         use: [

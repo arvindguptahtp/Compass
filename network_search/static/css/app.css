@@ -96,6 +96,9 @@
 [class*='thm--affiliates'] [class*="--bShade"] {
   border-color: #680b03;
 }
+[class*='thm--affiliates'] .co--ctrl {
+  color: #fdbdb8;
+}
 [class*='thm--programs'] {
   color: #fff;
   background-color: #4b2332;
@@ -103,12 +106,18 @@
 [class*='thm--programs'] [class*="--bShade"] {
   border-color: #13090c;
 }
+[class*='thm--programs'] .co--ctrl {
+  color: #e6c8d3;
+}
 [class*='thm--partners'] {
   color: #fff;
   background-color: #008751;
 }
 [class*='thm--partners'] [class*="--bShade"] {
   border-color: #00653d;
+}
+[class*='thm--partners'] .co--ctrl {
+  color: #b4ffe1;
 }
 .thm--primary {
   background-color: #00539e;
@@ -208,6 +217,15 @@
 .co--minor.fx--shift:active,
 .co--minor.fx--shift.is-active {
   color: #181411;
+}
+.co--ctrl {
+  color: #f68e1e;
+}
+.co--ctrl.fx--shift:hover,
+.co--ctrl.fx--shift.is-reacting {
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="1.3" /><feFuncG type="linear" slope="1.3" /><feFuncB type="linear" slope="1.3" /></feComponentTransfer></filter></svg>#filter');
+  -webkit-filter: brightness(130%);
+          filter: brightness(130%);
 }
 .co--copy {
   color: #333;

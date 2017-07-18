@@ -3,11 +3,11 @@ extends /_vefa
 block init
     //- element: {},
     //- label: {},
-    //- inner_label: {},
     //- required: {},
     //- group: {},
     //- control: {},
-    //- control_block: {},
+    //- control_label: {},
+    //- control_group: {},
     //- help_msg: {},
     //- error_msg: {},
 
@@ -32,13 +32,27 @@ block init
                     return `${ this.form }.${ this.name }.value`
                 }
             },
-            control: {
-                class: "tx--f3--ls100 rhy--xStart50 thm--tint20 rxn--shade60 fx--shift",
-                "o-base": "row--pGrid--sMiddle pad--x50 pad--y25 rhy--xStart25",
-                "o-standard": "tx--small--f3--tc0"
-            }, 
-            control_label: {
+            field: {
+                class: "tx--f3--100--ls100 rhy--xStart50 thm--tint20 rxn--shade60 fx--shift",
+                "o-base": "row--pStart--sBase pad--x50 pad--y25 rhy--xStart25",
+                "o-standard": "tx--small"
+            },
+            field_control: {
+                class: "tx--f3--400--ls100--aa rhy--xStart50 rxn--shade60 fx--shift",
+                "o-base": "row--pGrid--sBase pad--x50 pad--y25 rhy--xStart25",
+                "o-standard": "tx--small"
+            },
+            field_group: {
+                class: "thm--shade20",
+                "o-base": "col--pStart--sStart"
+            },
+            field_label: {
                 class: "tx--small--f3--900--tcU--aa",
+                "o-base": "mod--balance",
+            },
+            fold_label: {
+                class: "tx--small--f3--900--tcU--aa rxn--shade60 fx--shift",
+                "o-base": "row--pGrid--sBase mod--balance pad--x50 pad--y25 rhy--xStart25",
             }
         })
 
@@ -47,19 +61,21 @@ block init
         }
 
 
+
 block view
     div(
-        class=field.class
+        class=field.class        
+        title=field.label
         is=field.fold ? "fold-unfold" : false
         :init="true"
-        title=field.label
+        :styles=field.fold ? field.fold_label : false
     )&attributes(field.element)
         
         block hdr
             label(
                 slot="hdr"
                 for=field.uid
-            )&attributes(field.control_label)
+            )&attributes(field.field_label)
                 = field.label
             
         div(slot="bd")
@@ -75,7 +91,7 @@ block view
                     placeholder=field.placeholder
                     value=attr_switch(`${ field.value } != None`, v(field.value, "stringformat:'s'", "default_if_none:''"))
                     required=field.required
-                )&attributes(field.control)
+                )&attributes(field.field)
 
 
             //- block help_msg
