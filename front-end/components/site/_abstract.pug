@@ -52,6 +52,7 @@ block view
             +include('includes/head_js')
         
         include /includes/favicons
+        +include('includes/favicons')
         meta(name="apple-mobile-web-app-title" content=site.title)
         meta(name="application-name" content=site.title)
         meta(name="theme-color" content="#ffåffff")
@@ -69,7 +70,7 @@ block view
         onmouseover=""
     )
         block wrapper
-            include /includes/icons
+            +include('includes/icons')
 
             block masthead
                 include /runners/masthead--logo-full

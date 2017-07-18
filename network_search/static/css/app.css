@@ -453,6 +453,72 @@ hr {
 [class*='--f3'] {
   font-family: acumin-pro-condensed, arial;
 }
+.ico {
+  height: 1em;
+  width: 1em;
+  line-height: 1;
+  overflow: hidden;
+}
+svg[class*='ico--base'],
+[class*='ico--base'] > .ico {
+  height: 1em;
+  width: 1em;
+}
+svg[o-base*='ico--base'],
+[o-base*='ico--base'] > .ico {
+  height: 1em;
+  width: 1em;
+}
+svg[class*='ico--xs'],
+[class*='ico--xs'] > .ico {
+  height: 0.75em;
+  width: 0.75em;
+}
+svg[o-base*='ico--xs'],
+[o-base*='ico--xs'] > .ico {
+  height: 0.75em;
+  width: 0.75em;
+}
+svg[class*='ico--s'],
+[class*='ico--s'] > .ico {
+  height: 1.5em;
+  width: 1.5em;
+}
+svg[o-base*='ico--s'],
+[o-base*='ico--s'] > .ico {
+  height: 1.5em;
+  width: 1.5em;
+}
+svg[class*='ico--md'],
+[class*='ico--md'] > .ico {
+  height: 1.75em;
+  width: 1.75em;
+}
+svg[o-base*='ico--md'],
+[o-base*='ico--md'] > .ico {
+  height: 1.75em;
+  width: 1.75em;
+}
+svg[class*='ico--l'],
+[class*='ico--l'] > .ico {
+  height: 2em;
+  width: 2em;
+}
+svg[o-base*='ico--l'],
+[o-base*='ico--l'] > .ico {
+  height: 2em;
+  width: 2em;
+}
+svg[class*='ico--xl'],
+[class*='ico--xl'] > .ico {
+  height: 2.5em;
+  width: 2.5em;
+}
+svg[o-base*='ico--xl'],
+[o-base*='ico--xl'] > .ico {
+  height: 2.5em;
+  width: 2.5em;
+}
 .copy a {
   text-decoration: underline;
   font-weight: 400;
@@ -645,72 +711,6 @@ main {
   -webkit-filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0)) brightness(100%);
           filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0)) brightness(100%);
 }
-.ico {
-  height: 1em;
-  width: 1em;
-  line-height: 1;
-  overflow: hidden;
-}
-svg[class*='ico--base'],
-[class*='ico--base'] > .ico {
-  height: 1em;
-  width: 1em;
-}
-svg[o-base*='ico--base'],
-[o-base*='ico--base'] > .ico {
-  height: 1em;
-  width: 1em;
-}
-svg[class*='ico--xs'],
-[class*='ico--xs'] > .ico {
-  height: 0.75em;
-  width: 0.75em;
-}
-svg[o-base*='ico--xs'],
-[o-base*='ico--xs'] > .ico {
-  height: 0.75em;
-  width: 0.75em;
-}
-svg[class*='ico--s'],
-[class*='ico--s'] > .ico {
-  height: 1.5em;
-  width: 1.5em;
-}
-svg[o-base*='ico--s'],
-[o-base*='ico--s'] > .ico {
-  height: 1.5em;
-  width: 1.5em;
-}
-svg[class*='ico--md'],
-[class*='ico--md'] > .ico {
-  height: 1.75em;
-  width: 1.75em;
-}
-svg[o-base*='ico--md'],
-[o-base*='ico--md'] > .ico {
-  height: 1.75em;
-  width: 1.75em;
-}
-svg[class*='ico--l'],
-[class*='ico--l'] > .ico {
-  height: 2em;
-  width: 2em;
-}
-svg[o-base*='ico--l'],
-[o-base*='ico--l'] > .ico {
-  height: 2em;
-  width: 2em;
-}
-svg[class*='ico--xl'],
-[class*='ico--xl'] > .ico {
-  height: 2.5em;
-  width: 2.5em;
-}
-svg[o-base*='ico--xl'],
-[o-base*='ico--xl'] > .ico {
-  height: 2.5em;
-  width: 2.5em;
-}
 .fm--login {
   max-width: 600px;
 }
@@ -899,6 +899,36 @@ svg[o-base*='ico--xl'],
     font-size: 0.875rem;
     line-height: 1.714285714285714;
   }
+  svg[o-compressed*='ico--base'],
+  [o-compressed*='ico--base'] > .ico {
+    height: 1em;
+    width: 1em;
+  }
+  svg[o-compressed*='ico--xs'],
+  [o-compressed*='ico--xs'] > .ico {
+    height: 0.75em;
+    width: 0.75em;
+  }
+  svg[o-compressed*='ico--s'],
+  [o-compressed*='ico--s'] > .ico {
+    height: 1.5em;
+    width: 1.5em;
+  }
+  svg[o-compressed*='ico--md'],
+  [o-compressed*='ico--md'] > .ico {
+    height: 1.75em;
+    width: 1.75em;
+  }
+  svg[o-compressed*='ico--l'],
+  [o-compressed*='ico--l'] > .ico {
+    height: 2em;
+    width: 2em;
+  }
+  svg[o-compressed*='ico--xl'],
+  [o-compressed*='ico--xl'] > .ico {
+    height: 2.5em;
+    width: 2.5em;
+  }
   [o-compressed~='gx--ui'] {
     grid-template-columns: 80px 2fr 2fr;
     grid-template-rows: auto 1fr auto;
@@ -942,36 +972,6 @@ svg[o-base*='ico--xl'],
   }
   [o-compressed*='gxi--addtional'] {
     grid-area: additional;
-  }
-  svg[o-compressed*='ico--base'],
-  [o-compressed*='ico--base'] > .ico {
-    height: 1em;
-    width: 1em;
-  }
-  svg[o-compressed*='ico--xs'],
-  [o-compressed*='ico--xs'] > .ico {
-    height: 0.75em;
-    width: 0.75em;
-  }
-  svg[o-compressed*='ico--s'],
-  [o-compressed*='ico--s'] > .ico {
-    height: 1.5em;
-    width: 1.5em;
-  }
-  svg[o-compressed*='ico--md'],
-  [o-compressed*='ico--md'] > .ico {
-    height: 1.75em;
-    width: 1.75em;
-  }
-  svg[o-compressed*='ico--l'],
-  [o-compressed*='ico--l'] > .ico {
-    height: 2em;
-    width: 2em;
-  }
-  svg[o-compressed*='ico--xl'],
-  [o-compressed*='ico--xl'] > .ico {
-    height: 2.5em;
-    width: 2.5em;
   }
   .gx--result-affiliate {
     grid-template-areas: "title title title title" "state state state profile" "students students budget budget";
@@ -1076,6 +1076,36 @@ svg[o-base*='ico--xl'],
     font-size: 0.875rem;
     line-height: 1.714285714285714;
   }
+  svg[o-condensed*='ico--base'],
+  [o-condensed*='ico--base'] > .ico {
+    height: 1em;
+    width: 1em;
+  }
+  svg[o-condensed*='ico--xs'],
+  [o-condensed*='ico--xs'] > .ico {
+    height: 0.75em;
+    width: 0.75em;
+  }
+  svg[o-condensed*='ico--s'],
+  [o-condensed*='ico--s'] > .ico {
+    height: 1.5em;
+    width: 1.5em;
+  }
+  svg[o-condensed*='ico--md'],
+  [o-condensed*='ico--md'] > .ico {
+    height: 1.75em;
+    width: 1.75em;
+  }
+  svg[o-condensed*='ico--l'],
+  [o-condensed*='ico--l'] > .ico {
+    height: 2em;
+    width: 2em;
+  }
+  svg[o-condensed*='ico--xl'],
+  [o-condensed*='ico--xl'] > .ico {
+    height: 2.5em;
+    width: 2.5em;
+  }
   [o-condensed~='gx--ui'] {
     grid-template-columns: 80px 2fr 2fr;
     grid-template-rows: auto 1fr auto;
@@ -1122,36 +1152,6 @@ svg[o-base*='ico--xl'],
   }
   .site-logo {
     max-width: 160px;
-  }
-  svg[o-condensed*='ico--base'],
-  [o-condensed*='ico--base'] > .ico {
-    height: 1em;
-    width: 1em;
-  }
-  svg[o-condensed*='ico--xs'],
-  [o-condensed*='ico--xs'] > .ico {
-    height: 0.75em;
-    width: 0.75em;
-  }
-  svg[o-condensed*='ico--s'],
-  [o-condensed*='ico--s'] > .ico {
-    height: 1.5em;
-    width: 1.5em;
-  }
-  svg[o-condensed*='ico--md'],
-  [o-condensed*='ico--md'] > .ico {
-    height: 1.75em;
-    width: 1.75em;
-  }
-  svg[o-condensed*='ico--l'],
-  [o-condensed*='ico--l'] > .ico {
-    height: 2em;
-    width: 2em;
-  }
-  svg[o-condensed*='ico--xl'],
-  [o-condensed*='ico--xl'] > .ico {
-    height: 2.5em;
-    width: 2.5em;
   }
   .gx--result-partner {
     grid-template-areas: "title      network" "overview   overview" "services   service-tier";
@@ -1250,6 +1250,36 @@ svg[o-base*='ico--xl'],
     font-size: 0.875rem;
     line-height: 1.714285714285714;
   }
+  svg[o-standard*='ico--base'],
+  [o-standard*='ico--base'] > .ico {
+    height: 1em;
+    width: 1em;
+  }
+  svg[o-standard*='ico--xs'],
+  [o-standard*='ico--xs'] > .ico {
+    height: 0.75em;
+    width: 0.75em;
+  }
+  svg[o-standard*='ico--s'],
+  [o-standard*='ico--s'] > .ico {
+    height: 1.5em;
+    width: 1.5em;
+  }
+  svg[o-standard*='ico--md'],
+  [o-standard*='ico--md'] > .ico {
+    height: 1.75em;
+    width: 1.75em;
+  }
+  svg[o-standard*='ico--l'],
+  [o-standard*='ico--l'] > .ico {
+    height: 2em;
+    width: 2em;
+  }
+  svg[o-standard*='ico--xl'],
+  [o-standard*='ico--xl'] > .ico {
+    height: 2.5em;
+    width: 2.5em;
+  }
   [o-standard~='gx--ui'] {
     grid-template-columns: 80px 2fr 2fr;
     grid-template-rows: auto 1fr auto;
@@ -1306,36 +1336,6 @@ svg[o-base*='ico--xl'],
   .poster--icon,
   .poster--details {
     grid-gap: 0 12px;
-  }
-  svg[o-standard*='ico--base'],
-  [o-standard*='ico--base'] > .ico {
-    height: 1em;
-    width: 1em;
-  }
-  svg[o-standard*='ico--xs'],
-  [o-standard*='ico--xs'] > .ico {
-    height: 0.75em;
-    width: 0.75em;
-  }
-  svg[o-standard*='ico--s'],
-  [o-standard*='ico--s'] > .ico {
-    height: 1.5em;
-    width: 1.5em;
-  }
-  svg[o-standard*='ico--md'],
-  [o-standard*='ico--md'] > .ico {
-    height: 1.75em;
-    width: 1.75em;
-  }
-  svg[o-standard*='ico--l'],
-  [o-standard*='ico--l'] > .ico {
-    height: 2em;
-    width: 2em;
-  }
-  svg[o-standard*='ico--xl'],
-  [o-standard*='ico--xl'] > .ico {
-    height: 2.5em;
-    width: 2.5em;
   }
   .fm-fieldset-legend::after {
     left: 12px;
@@ -1451,6 +1451,36 @@ svg[o-base*='ico--xl'],
     font-size: 0.875rem;
     line-height: 1.714285714285714;
   }
+  svg[o-enhanced*='ico--base'],
+  [o-enhanced*='ico--base'] > .ico {
+    height: 1em;
+    width: 1em;
+  }
+  svg[o-enhanced*='ico--xs'],
+  [o-enhanced*='ico--xs'] > .ico {
+    height: 0.75em;
+    width: 0.75em;
+  }
+  svg[o-enhanced*='ico--s'],
+  [o-enhanced*='ico--s'] > .ico {
+    height: 1.5em;
+    width: 1.5em;
+  }
+  svg[o-enhanced*='ico--md'],
+  [o-enhanced*='ico--md'] > .ico {
+    height: 1.75em;
+    width: 1.75em;
+  }
+  svg[o-enhanced*='ico--l'],
+  [o-enhanced*='ico--l'] > .ico {
+    height: 2em;
+    width: 2em;
+  }
+  svg[o-enhanced*='ico--xl'],
+  [o-enhanced*='ico--xl'] > .ico {
+    height: 2.5em;
+    width: 2.5em;
+  }
   [o-enhanced~='gx--ui'] {
     grid-template-columns: 80px 2fr 2fr;
     grid-template-rows: auto 1fr auto;
@@ -1500,36 +1530,6 @@ svg[o-base*='ico--xl'],
   }
   [o-enhanced*='gxi--addtional'] {
     grid-area: additional;
-  }
-  svg[o-enhanced*='ico--base'],
-  [o-enhanced*='ico--base'] > .ico {
-    height: 1em;
-    width: 1em;
-  }
-  svg[o-enhanced*='ico--xs'],
-  [o-enhanced*='ico--xs'] > .ico {
-    height: 0.75em;
-    width: 0.75em;
-  }
-  svg[o-enhanced*='ico--s'],
-  [o-enhanced*='ico--s'] > .ico {
-    height: 1.5em;
-    width: 1.5em;
-  }
-  svg[o-enhanced*='ico--md'],
-  [o-enhanced*='ico--md'] > .ico {
-    height: 1.75em;
-    width: 1.75em;
-  }
-  svg[o-enhanced*='ico--l'],
-  [o-enhanced*='ico--l'] > .ico {
-    height: 2em;
-    width: 2em;
-  }
-  svg[o-enhanced*='ico--xl'],
-  [o-enhanced*='ico--xl'] > .ico {
-    height: 2.5em;
-    width: 2.5em;
   }
   .gx--result-affiliate {
     grid-template-areas: "title title title profile" "state state students budget";
@@ -1638,6 +1638,36 @@ svg[o-base*='ico--xl'],
     font-size: 0.875rem;
     line-height: 1.714285714285714;
   }
+  svg[o-extended*='ico--base'],
+  [o-extended*='ico--base'] > .ico {
+    height: 1em;
+    width: 1em;
+  }
+  svg[o-extended*='ico--xs'],
+  [o-extended*='ico--xs'] > .ico {
+    height: 0.75em;
+    width: 0.75em;
+  }
+  svg[o-extended*='ico--s'],
+  [o-extended*='ico--s'] > .ico {
+    height: 1.5em;
+    width: 1.5em;
+  }
+  svg[o-extended*='ico--md'],
+  [o-extended*='ico--md'] > .ico {
+    height: 1.75em;
+    width: 1.75em;
+  }
+  svg[o-extended*='ico--l'],
+  [o-extended*='ico--l'] > .ico {
+    height: 2em;
+    width: 2em;
+  }
+  svg[o-extended*='ico--xl'],
+  [o-extended*='ico--xl'] > .ico {
+    height: 2.5em;
+    width: 2.5em;
+  }
   [o-extended~='gx--ui'] {
     grid-template-columns: 80px 2fr 2fr;
     grid-template-rows: auto 1fr auto;
@@ -1681,36 +1711,6 @@ svg[o-base*='ico--xl'],
   }
   [o-extended*='gxi--addtional'] {
     grid-area: additional;
-  }
-  svg[o-extended*='ico--base'],
-  [o-extended*='ico--base'] > .ico {
-    height: 1em;
-    width: 1em;
-  }
-  svg[o-extended*='ico--xs'],
-  [o-extended*='ico--xs'] > .ico {
-    height: 0.75em;
-    width: 0.75em;
-  }
-  svg[o-extended*='ico--s'],
-  [o-extended*='ico--s'] > .ico {
-    height: 1.5em;
-    width: 1.5em;
-  }
-  svg[o-extended*='ico--md'],
-  [o-extended*='ico--md'] > .ico {
-    height: 1.75em;
-    width: 1.75em;
-  }
-  svg[o-extended*='ico--l'],
-  [o-extended*='ico--l'] > .ico {
-    height: 2em;
-    width: 2em;
-  }
-  svg[o-extended*='ico--xl'],
-  [o-extended*='ico--xl'] > .ico {
-    height: 2.5em;
-    width: 2.5em;
   }
 }
 @media only screen and (min-width: 1600px) {
@@ -1804,6 +1804,36 @@ svg[o-base*='ico--xl'],
     font-size: 0.875rem;
     line-height: 1.714285714285714;
   }
+  svg[o-full*='ico--base'],
+  [o-full*='ico--base'] > .ico {
+    height: 1em;
+    width: 1em;
+  }
+  svg[o-full*='ico--xs'],
+  [o-full*='ico--xs'] > .ico {
+    height: 0.75em;
+    width: 0.75em;
+  }
+  svg[o-full*='ico--s'],
+  [o-full*='ico--s'] > .ico {
+    height: 1.5em;
+    width: 1.5em;
+  }
+  svg[o-full*='ico--md'],
+  [o-full*='ico--md'] > .ico {
+    height: 1.75em;
+    width: 1.75em;
+  }
+  svg[o-full*='ico--l'],
+  [o-full*='ico--l'] > .ico {
+    height: 2em;
+    width: 2em;
+  }
+  svg[o-full*='ico--xl'],
+  [o-full*='ico--xl'] > .ico {
+    height: 2.5em;
+    width: 2.5em;
+  }
   [o-full~='gx--ui'] {
     grid-template-columns: 80px 2fr 2fr;
     grid-template-rows: auto 1fr auto;
@@ -1850,36 +1880,6 @@ svg[o-base*='ico--xl'],
   }
   .masthead-nav-ctrl {
     font-size: 32px;
-  }
-  svg[o-full*='ico--base'],
-  [o-full*='ico--base'] > .ico {
-    height: 1em;
-    width: 1em;
-  }
-  svg[o-full*='ico--xs'],
-  [o-full*='ico--xs'] > .ico {
-    height: 0.75em;
-    width: 0.75em;
-  }
-  svg[o-full*='ico--s'],
-  [o-full*='ico--s'] > .ico {
-    height: 1.5em;
-    width: 1.5em;
-  }
-  svg[o-full*='ico--md'],
-  [o-full*='ico--md'] > .ico {
-    height: 1.75em;
-    width: 1.75em;
-  }
-  svg[o-full*='ico--l'],
-  [o-full*='ico--l'] > .ico {
-    height: 2em;
-    width: 2em;
-  }
-  svg[o-full*='ico--xl'],
-  [o-full*='ico--xl'] > .ico {
-    height: 2.5em;
-    width: 2.5em;
   }
   .gx--detail-affiliate {
     grid-template-columns: 1fr 2fr;

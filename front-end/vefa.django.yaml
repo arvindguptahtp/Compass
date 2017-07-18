@@ -45,6 +45,8 @@ templates:
         - includes/css
         - includes/head_js
         - includes/footer_js
+        - includes/favicons
+        - includes/icons
         - pages/index
         - affiliates/affiliate_list
         - affiliates/affiliate_detail
