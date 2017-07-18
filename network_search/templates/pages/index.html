@@ -233,23 +233,23 @@
   <main o-base="col--pStart ord--next" o-extended="gxi--d">
     <nav o-base="gx--i1--gxy0 dx--w100" o-condensed="gx--i3--gxy0">
       <li class="thm--affiliates-shift" o-base="col--pStart"><a class="tx--broadside--f1--100 rxn--tint10 fx--shift" href="{% url 'affiliate_list' %}" o-base="row--pEnd--sEnd mod--balance pad--x50 pad--y100" o-enhanced="pad--x100" o-full="pad--xy200">
-          <div o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l" o-standard="row--pEnd--sEnd ico--base">
+          <div o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l" o-condensed="ico--s" o-standard="row--pEnd--sEnd ico--base">
             <svg class="ico">
-              <use href="#ico--affiliates"></use>
+              <use xlink:href="#ico--affiliates"></use>
             </svg>
             <div o-base="col--pEnd--sStart--xAuto"><span class="tx--hed" o-condensed="tx--subhed">Search </span><span o-condensed="tx--display">Affiliates</span></div>
           </div></a></li>
       <li class="thm--programs-shift fx--shift" o-base="col--pStart"><a class="tx--broadside--f1--100 rxn--tint10 fx--shift" href="{% url 'program_list' %}" o-base="row--pEnd--sEnd mod--balance pad--x50 pad--y100" o-enhanced="pad--x100" o-full="pad--xy200">
-          <div o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l" o-standard="row--pEnd--sEnd ico--base">
+          <div o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l" o-condensed="ico--s" o-standard="row--pEnd--sEnd ico--base">
             <svg class="ico">
-              <use href="#ico--programs"></use>
+              <use xlink:href="#ico--programs"></use>
             </svg>
             <div o-base="col--pEnd--sStart--xAuto"><span class="tx--hed" o-condensed="tx--subhed">Search </span><span o-condensed="tx--display">Programs</span></div>
           </div></a></li>
       <li class="thm--partners-shift fx--shift" o-base="col--pStart"><a class="tx--broadside--f1--100 rxn--tint10 fx--shift" href="{% url 'partner_list' %}" o-base="row--pEnd--sEnd mod--balance pad--x50 pad--y100" o-enhanced="pad--x100" o-full="pad--xy200">
-          <div o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l" o-standard="row--pEnd--sEnd ico--base">  
+          <div o-base="row--pEnd--sMiddle--xAuto iso--yStart200 rhy--xStart50 ico--l" o-condensed="ico--s" o-standard="row--pEnd--sEnd ico--base">  
             <svg class="ico">
-              <use href="#ico--partners"></use>
+              <use xlink:href="#ico--partners"></use>
             </svg>
             <div o-base="col--pEnd--sStart--xAuto"><span class="tx--hed" o-condensed="tx--subhed">Search </span><span o-condensed="tx--display">Partners</span></div>
           </div></a></li>
@@ -268,22 +268,22 @@
           </aside>
     </div>
   </div>
-  <nav class="masthead--nav thm--dark" role="navigation" o-base="row--pStart pad--xStart50 ord--start z--masthead" o-enhanced="pad--xStart100 pad--xEnd50" o-full="gxi--c pad--xy0">   <a class="masthead-home" href="/" target="_top" o-base="row--pMiddle--sMiddle--xAuto mod--fit pad--y25 iso--xEndAuto" o-full="vx--hidden">  
+  <nav class="masthead--nav thm--dark" role="navigation" o-base="row--pStart pad--xStart50 ord--start z--masthead" o-enhanced="pad--xStart100 pad--xEnd50" o-full="gxi--c pad--xy0">   <a class="masthead-home" href="/" target="_top" o-base="row--pMiddle--sMiddle--xAuto mod--fit pad--y50 iso--xEndAuto" o-condensed="pad--y25" o-full="vx--hidden">  
       <picture>
         <source srcset="{% static 'res/logo.full.inverse.png.webp' %}" type="image/webp"><img class="site-logo" src="{% static 'res/logo.full.inverse.png' %}">
       </picture></a>
     <nav o-base="row--pStart--xAuto" o-enhanced="hl--xEnd--bTint" o-full="col--pStart hl--xy0 hl--yStart--bTint">{% url 'affiliate_list' as slug %}
       <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--affiliates" href="{% url 'affiliate_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
-            <use href="#ico--affiliates"></use>
+            <use xlink:href="#ico--affiliates"></use>
           </svg><span class="vx--a11y">Affiliates</span></a></li>{% url 'program_list' as slug %}
       <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--programs" href="{% url 'program_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
-            <use href="#ico--programs"></use>
+            <use xlink:href="#ico--programs"></use>
           </svg><span class="vx--a11y">Programs</span></a></li>{% url 'partner_list' as slug %}
       <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--partners" href="{% url 'partner_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
-            <use href="#ico--partners"></use>
+            <use xlink:href="#ico--partners"></use>
           </svg><span class="vx--a11y">Partners</span></a></li>
     </nav>
   </nav>
@@ -293,6 +293,12 @@
       </picture></a>
     <div class="colophon-site" o-base="mod--balance" o-standard="col---pStart--sEnd">
       <nav class="colophon-nav hl--yEnd--bTint" o-base="pad--yEnd50 iso--yEnd50 gx--colophon" o-standard="row--pEnd--sMiddle--xAuto">
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/" target="_top" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>CIS.org</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://resources.communitiesinschools.org" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Resources</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/terms/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Terms of Service</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/privacy-policy/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Privacy Policy</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/contact-us/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Contact Us</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="{% url 'admin:index' %}" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Admin</span></a></li>
       </nav>
       <address class="contactinfo--inline" o-condensed="rhy--yStart25">
         <div class="contactinfo-group" o-base="col--pStart" o-condensed="row--pEnd">

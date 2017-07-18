@@ -33,6 +33,7 @@ block instance
 
 block premain
     div.detail-hdr(
+        o-base="col--pStart ord--next"
         o-extended="row--pStart gxi--b"
     )
         include /posters/icon
@@ -47,8 +48,8 @@ block premain
                     }
                 })
         
-        include /cards/ebr
-            - vefa.data({ ebr: page.ebr.io() })
+        //- include /cards/ebr
+        //-     - vefa.data({ ebr: page.ebr.io() })
 
 
 block detail_a
@@ -104,29 +105,33 @@ block detail_b
                     }
                 })
 
-    
-    include /cards/data-list
-        -
-            vefa
-                .data({
-                    heading: "Student Demographics",
-                    map: [
-                        ["group", "Grade Level", page.grade.io(), "ProgramGrades"],
-                        ["group", "Gender", page.gender.io(), "Gender"],
-                        ["group", "Race", page.race.io(), "Race"],
-                        ["group", "Targeted Student Needs", page.need.io(), "StudentNeeds"],
-                        ["group", "Unique Student Characteristics", page.character.io(), "StudentCharacteristics"]
-                    ]
-                })
-                .mixin({
-                    element: {
-                        class: "vx--z100"
-                    }
-                })
+    div(
+        o-base="col--pStart pad--x25 rhy--yStart50"
+        o-extended="iso--yStart100 rhy--yStart100"
+    )
+        include /cards/data-list
+            -
+                vefa
+                    .data({
+                        heading: "Student Demographics",
+                        map: [
+                            ["group", "Grade Level", page.grade.io(), "ProgramGrades"],
+                            ["group", "Gender", page.gender.io(), "Gender"],
+                            ["group", "Race", page.race.io(), "Race"],
+                            ["group", "Targeted Student Needs", page.need.io(), "StudentNeeds"],
+                            ["group", "Unique Student Characteristics", page.character.io(), "StudentCharacteristics"]
+                        ]
+                    })
+                    .mixin({
+                        element: {
+                            class: "vx--z100"
+                        }
+                    })
 
     
-    section(
-        o-base="col--pStart rhy--yStart100"
+    div(
+        o-base="col--pStart pad--x25 rhy--yStart50"
+        o-extended="iso--yStart100 rhy--yStart100"
     )
         include /cards/core-services
             -

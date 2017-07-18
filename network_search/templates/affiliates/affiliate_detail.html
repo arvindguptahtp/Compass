@@ -226,54 +226,54 @@
       <picture>
         <source srcset="{% static 'res/logo.solo.inverse.png.webp' %}" type="image/webp"><img class="site-logo--solo" src="{% static 'res/logo.solo.inverse.png' %}">
       </picture></a></header>
-  <header class="poster--icon row--pStart--sMiddle gx--poster tx--broadside thm--texture-tint co--affiliates" o-base="pad--xStart50 pad--y100" o-condensed="pad--y150" o-enhanced="pad--xStart100 pad--y200" o-extended="gxi--b">
+  <header class="poster--icon row--pStart--sMiddle gx--poster tx--broadside thm--texture-tint co--affiliates" o-base="pad--xStart50 pad--y100 ord--next" o-condensed="pad--y150" o-enhanced="pad--xStart100 pad--y200" o-extended="gxi--b">
     <svg class="ico poster-icon" o-base="gxi--a">
-      <use href="#ico--affiliates"></use>
+      <use xlink:href="#ico--affiliates"></use>
     </svg>
     <h1 class="poster-hed tx--broadside--f1--tcU" o-base="gxi--b">{{ affiliate }}
     </h1>
   </header>
   <main o-base="col--pStart ord--next" o-extended="gxi--d">
     <div class="strata--detail gx--profile" o-base="mod--balance">
-      <section class="gxi--a thm--affiliates" o-standard="pad--y100 pad--x25 rhy--yStart100">{% if True %}
+      <section class="gxi--a thm--affiliates" o-base="pad--x25 pad--y50 rhy--yStart50" o-standard="pad--y25 rhy--yStart100">{% if True %}
                 <article class="card--list-data" o-base="col--pStart">
                   <header o-base="pad--x25 pad--y25" o-condensed="pad--x50">
                     <h1 class="tx--subhed--f1--100--aa">Affiliate <small class="tx--small--t2--400">#{{ affiliate.cis_id }}</small></h1>
                   </header>
                   <div class="bd">
-                    <dl class="card-data" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if True %}
+                    <dl class="card-data" o-base="gx--i3--gxy10 mod--static rhy--yStart0" o-condensed="gx--i3--gxy10 mod--static rhy--yStart0">{% if True %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Executive Director</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
                                         <ul>
                                           <li>{{ affiliate.current_data.executive_director_name }}</li>
                                           <li><a class="tx--tdU fx--shift" href="mailto:{{ affiliate.current_data.executive_director_email }}">{{ affiliate.current_data.executive_director_email }}</a></li>
                                         </ul>
                               </dd>{% endif %}{% if True %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Program Lead</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
                                         <ul>
                                           <li>{{ affiliate.current_data.program_lead_name }}</li>
                                           <li><a class="tx--tdU fx--shift" href="mailto:{{ affiliate.current_data.program_lead_email }}">{{ affiliate.current_data.program_lead_email }}</a></li>
                                         </ul>
                               </dd>{% endif %}{% if affiliate.affiliate_location %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Location</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ affiliate.affiliate_location|choice_display:'AffiliateLocation' }}
+                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ affiliate.affiliate_location|choice_display:'AffiliateLocation' }}
                               </dd>{% endif %}{% if True %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Address</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">
+                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
                                         <ul>
                                           <li>{{ affiliate.address_street }}</li>
                                           <li>{{ affiliate.address_city }}, {{ affiliate.address_state }} {{ affiliate.address_postcode }}</li>
                                         </ul>
                               </dd>{% endif %}{% if affiliate.phone_number %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Phone Number</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ affiliate.phone_number|safe }}
+                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ affiliate.phone_number|safe }}
                               </dd>{% endif %}{% if affiliate.fax_number %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Fax Number</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ affiliate.fax_number|safe }}
+                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ affiliate.fax_number|safe }}
                               </dd>{% endif %}{% if affiliate.website %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Website</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2"><a class="tx--tdU fx--shift" href="{{ affiliate.affiliate.website }}" target="_blank" rel="noopener" o-base="row--pStart--sMiddle rhy--xStart25"><span class="tx--trnc">{{ affiliate }}</span>
+                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50"><a class="tx--tdU fx--shift" href="{{ affiliate.affiliate.website }}" target="_blank" rel="noopener" o-base="row--pStart--sMiddle rhy--xStart25"><span class="tx--trnc">{{ affiliate }}</span>
                                   <svg class="ico">
                                     <use href="#ico--link-ext"></use>
                                   </svg></a>
@@ -282,22 +282,22 @@
                   </div>
                 </article>{% endif %}
       </section>
-      <section class="gxi--b" o-base="col--pStart pad--yEnd50 rhy--yStart50" o-condensed="pad--xy100" o-extended="gx--i2--gxy100 rhy--yStart0">  
-        <div o-base="col--pStart rhy--yStart100">{% if True %}
+      <section class="gxi--b" o-base="col--pStart pad--y50 rhy--yStart50" o-condensed="pad--x25" o-extended="gx--i2--gxy25 rhy--yStart0">  
+        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart100 rhy--yStart100">{% if True %}
                     <article class="card--list-data vx--z100" o-base="col--pStart">
                       <header class="thm--affiliates" o-base="mod--static pad--x50 pad--y25">
                         <h1 class="tx--maj--f1--100--aa">Affiliate Resources</h1>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <dl class="card-data" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.budget_total %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Annual Budget</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">${{ eoy_data.budget_total|intcomma }}
+                        <dl class="card-data" o-base="mod--balance" o-condensed="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.budget_total %}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Annual Budget</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">${{ eoy_data.budget_total|intcomma }}
                                     </dd>{% endif %}{% if eoy_data.funding_public %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Total Public Funding</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">${{ eoy_data.funding_public|intcomma }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Total Public Funding</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">${{ eoy_data.funding_public|intcomma }}
                                     </dd>{% endif %}{% if eoy_data.funding_private %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Total Private Funding</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">${{ eoy_data.funding_private|intcomma }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Total Private Funding</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">${{ eoy_data.funding_private|intcomma }}
                                     </dd>{% endif %}
                         </dl>
                       </div>
@@ -307,105 +307,105 @@
                         <h1 class="tx--maj--f1--100--aa">Affiliate Case Management Performance</h1>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <dl class="card-data" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.students_k_11_promoted %}
+                        <dl class="card-data" o-base="mod--balance" o-condensed="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.students_k_11_promoted %}
                                     <dt class="tx--f3--600 co--copy co--affiliates" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3">Students in Grades K—11</dt>{% endif %}{% if eoy_data.students_k_11_promoted %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Promoted</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_promoted|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Promoted</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_k_11_promoted|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_k_11_retained %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Retained</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_retained|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Retained</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_k_11_retained|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_k_11_dropped_out %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Dropped Out</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_dropped_out|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Dropped Out</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_k_11_dropped_out|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_k_11_transferred %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Transferred</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_transferred|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Transferred</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_k_11_transferred|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_k_11_ged %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">GED</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_ged|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">GED</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_k_11_ged|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_k_11_expelled %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Expelled</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_expelled|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Expelled</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_k_11_expelled|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_k_11_incarcerated %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Incarcerated</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_incarcerated|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Incarcerated</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_k_11_incarcerated|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_k_11_deceased %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Deceased</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_deceased|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Deceased</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_k_11_deceased|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_k_11_other %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Other</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_other|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Other</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_k_11_other|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_k_11_unknown %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Unknown</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_k_11_unknown|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Unknown</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_k_11_unknown|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_grade_12_graduated %}
                                     <dt class="tx--f3--600 co--copy co--affiliates" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3">Students in Grade 12</dt>{% endif %}{% if eoy_data.students_grade_12_graduated %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Graduated</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_graduated|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Graduated</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_grade_12_graduated|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_grade_12_retained %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Retained</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_retained|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Retained</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_grade_12_retained|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_grade_12_dropped_out %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Dropped Out</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_dropped_out|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Dropped Out</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_grade_12_dropped_out|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_grade_12_transferred %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Transferred</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_transferred|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Transferred</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_grade_12_transferred|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_grade_12_ged %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">GED</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_ged|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">GED</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_grade_12_ged|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_grade_12_expelled %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Expelled</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_expelled|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Expelled</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_grade_12_expelled|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_grade_12_incarcerated %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Incarcerated</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_incarcerated|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Incarcerated</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_grade_12_incarcerated|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_grade_12_deceased %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Deceased</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_deceased|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Deceased</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_grade_12_deceased|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_grade_12_other %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Other</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_other|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Other</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_grade_12_other|safe }}
                                     </dd>{% endif %}{% if eoy_data.students_grade_12_unknown %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Unknown</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.students_grade_12_unknown|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Unknown</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.students_grade_12_unknown|safe }}
                                     </dd>{% endif %}
                         </dl>
                       </div>
                     </article>{% endif %}
         </div>
-        <div o-base="col--pStart rhy--yStart100"> {% if True %}
+        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart100 rhy--yStart100">{% if True %}
                     <article class="card--list-data vx--z100" o-base="col--pStart">
                       <header class="thm--affiliates" o-base="mod--static pad--x50 pad--y25">
                         <h1 class="tx--maj--f1--100--aa">School District Details</h1>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <dl class="card-data" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.school_districts %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">School District(s)</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">
+                        <dl class="card-data" o-base="mod--balance" o-condensed="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.school_districts %}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">School District(s)</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
                                       <ul>{% for val in eoy_data.school_districts %}
                                                   <li>{{ val|capfirst }}
                                                   </li>{% endfor %}
                                       </ul>
                                     </dd>{% endif %}{% if eoy_data.calculated_total_enrollment %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Total Enrollment</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{{ eoy_data.calculated_total_enrollment|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Total Enrollment</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.calculated_total_enrollment|safe }}
                                     </dd>{% endif %}{% if eoy_data.calculated_total_case_managed %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Number of Case-managed Students</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{{ eoy_data.calculated_total_case_managed|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Number of Case-managed Students</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.calculated_total_case_managed|safe }}
                                     </dd>{% endif %}{% if eoy_data.calculated_total_students_reached %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Total Students Reached</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{{ eoy_data.calculated_total_students_reached|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Total Students Reached</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.calculated_total_students_reached|safe }}
                                     </dd>{% endif %}{% if True %}
                                     <dt class="tx--f3--600 co--copy co--affiliates" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3">Affiliate Staffing</dt>{% endif %}{% if eoy_data.full_time_staff %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Full-time</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{{ eoy_data.full_time_staff|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Full-time</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.full_time_staff|safe }}
                                     </dd>{% endif %}{% if eoy_data.part_time_staff %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Part-time</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{{ eoy_data.part_time_staff|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Part-time</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.part_time_staff|safe }}
                                     </dd>{% endif %}{% if eoy_data.americorps_staff %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Americorps</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{{ eoy_data.americorps_staff|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Americorps</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.americorps_staff|safe }}
                                     </dd>{% endif %}
                         </dl>
                       </div>
@@ -415,35 +415,35 @@
                         <h1 class="tx--maj--f1--100--aa">By Race and Gender</h1>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <dl class="card-data" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.search_race %}
+                        <dl class="card-data" o-base="mod--balance" o-condensed="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.search_race %}
                                     <dt class="tx--f3--600 co--copy co--affiliates" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3">Students By Race/ Ethnicity</dt>{% endif %}{% if eoy_data.search_students_american_indian %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">American Indian</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.search_students_american_indian|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">American Indian</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.search_students_american_indian|safe }}
                                     </dd>{% endif %}{% if eoy_data.search_students_asian %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Asian</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.search_students_asian|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Asian</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.search_students_asian|safe }}
                                     </dd>{% endif %}{% if eoy_data.search_students_black %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Black</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.search_students_black|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Black</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.search_students_black|safe }}
                                     </dd>{% endif %}{% if eoy_data.search_students_hispanic %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Hispanic</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.search_students_hispanic|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Hispanic</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.search_students_hispanic|safe }}
                                     </dd>{% endif %}{% if eoy_data.search_students_white %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">White</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.search_students_white|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">White</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.search_students_white|safe }}
                                     </dd>{% endif %}{% if eoy_data.search_students_two_or_more %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Two or More</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.search_students_two_or_more|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Two or More</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.search_students_two_or_more|safe }}
                                     </dd>{% endif %}{% if eoy_data.search_students_other %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Other</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.search_students_other|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Other</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.search_students_other|safe }}
                                     </dd>{% endif %}{% if eoy_data.search_gender %}
                                     <dt class="tx--f3--600 co--copy co--affiliates" o-base="pad--xy25 iso--yEnd" o-condensed="pad--x50 gxs--s3">Students By Gender</dt>{% endif %}{% if eoy_data.search_students_male %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Male</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.search_students_male|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Male</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.search_students_male|safe }}
                                     </dd>{% endif %}{% if eoy_data.search_students_female %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50">Female</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50 gxs--s2">{{ eoy_data.search_students_female|safe }}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Female</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.search_students_female|safe }}
                                     </dd>{% endif %}
                         </dl>
                       </div>
@@ -453,42 +453,42 @@
                         <h1 class="tx--maj--f1--100--aa">Unique Student Characteristics</h1>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <dl class="card-data" o-base="mod--balance rhy--yStart25" o-extended="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.total_students_frpl > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">FRPL Eligible Students Served</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_frpl > 0 %}yes{% else %}no{% endif %}
+                        <dl class="card-data" o-base="mod--balance" o-condensed="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.total_students_frpl > 0 %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">FRPL Eligible Students Served</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_frpl > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}{% if eoy_data.total_students_ell > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">ELL Students Served</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_ell > 0 %}yes{% else %}no{% endif %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">ELL Students Served</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_ell > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}{% if eoy_data.total_students_foster > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Foster Care/Group Home</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_foster > 0 %}yes{% else %}no{% endif %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Foster Care/Group Home</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_foster > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}{% if eoy_data.total_students_homeless > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Homeless Youth</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_homeless > 0 %}yes{% else %}no{% endif %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Homeless Youth</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_homeless > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}{% if eoy_data.total_students_lgbt > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">LGBT</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_lgbt > 0 %}yes{% else %}no{% endif %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">LGBT</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_lgbt > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}{% if eoy_data.total_students_pregnant_parenting > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Pregnant/Parenting</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_pregnant_parenting > 0 %}yes{% else %}no{% endif %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Pregnant/Parenting</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_pregnant_parenting > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}{% if eoy_data.total_students_special_education > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Special Education</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_special_education > 0 %}yes{% else %}no{% endif %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Special Education</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_special_education > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}{% if eoy_data.total_students_substance_abuse > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Substance Abuse</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_substance_abuse > 0 %}yes{% else %}no{% endif %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Substance Abuse</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_substance_abuse > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}{% if eoy_data.total_students_adjudicated_youth > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Adjudicated Youth</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_adjudicated_youth > 0 %}yes{% else %}no{% endif %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Adjudicated Youth</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_adjudicated_youth > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}{% if eoy_data.total_students_child_of_military > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Child of Military</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_child_of_military > 0 %}yes{% else %}no{% endif %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Child of Military</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_child_of_military > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}{% if eoy_data.total_students_gang > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Gang Involvement</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_gang > 0 %}yes{% else %}no{% endif %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Gang Involvement</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_gang > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}{% if eoy_data.total_students_incarcerated_parent > 0 %}
-                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25" o-condensed="pad--x50 gxs--s2">Incarcerated Parent</dt>
-                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25" o-condensed="pad--x50">{% if eoy_data.total_students_incarcerated_parent > 0 %}yes{% else %}no{% endif %}
+                          <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Incarcerated Parent</dt>
+                          <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if eoy_data.total_students_incarcerated_parent > 0 %}yes{% else %}no{% endif %}
                           </dd>{% endif %}
                         </dl>
                       </div>
@@ -504,22 +504,22 @@
       </aside>
     </div>
   </main>
-  <nav class="masthead--nav thm--dark" role="navigation" o-base="row--pStart pad--xStart50 ord--start z--masthead" o-enhanced="pad--xStart100 pad--xEnd50" o-full="gxi--c pad--xy0">   <a class="masthead-home" href="/" target="_top" o-base="row--pMiddle--sMiddle--xAuto mod--fit pad--y25 iso--xEndAuto" o-full="vx--hidden">  
+  <nav class="masthead--nav thm--dark" role="navigation" o-base="row--pStart pad--xStart50 ord--start z--masthead" o-enhanced="pad--xStart100 pad--xEnd50" o-full="gxi--c pad--xy0">   <a class="masthead-home" href="/" target="_top" o-base="row--pMiddle--sMiddle--xAuto mod--fit pad--y50 iso--xEndAuto" o-condensed="pad--y25" o-full="vx--hidden">  
       <picture>
         <source srcset="{% static 'res/logo.full.inverse.png.webp' %}" type="image/webp"><img class="site-logo" src="{% static 'res/logo.full.inverse.png' %}">
       </picture></a>
     <nav o-base="row--pStart--xAuto" o-enhanced="hl--xEnd--bTint" o-full="col--pStart hl--xy0 hl--yStart--bTint">{% url 'affiliate_list' as slug %}
       <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--affiliates" href="{% url 'affiliate_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
-            <use href="#ico--affiliates"></use>
+            <use xlink:href="#ico--affiliates"></use>
           </svg><span class="vx--a11y">Affiliates</span></a></li>{% url 'program_list' as slug %}
       <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--programs" href="{% url 'program_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
-            <use href="#ico--programs"></use>
+            <use xlink:href="#ico--programs"></use>
           </svg><span class="vx--a11y">Programs</span></a></li>{% url 'partner_list' as slug %}
       <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--partners" href="{% url 'partner_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
-            <use href="#ico--partners"></use>
+            <use xlink:href="#ico--partners"></use>
           </svg><span class="vx--a11y">Partners</span></a></li>
     </nav>
   </nav>
@@ -529,6 +529,12 @@
       </picture></a>
     <div class="colophon-site" o-base="mod--balance" o-standard="col---pStart--sEnd">
       <nav class="colophon-nav hl--yEnd--bTint" o-base="pad--yEnd50 iso--yEnd50 gx--colophon" o-standard="row--pEnd--sMiddle--xAuto">
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/" target="_top" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>CIS.org</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://resources.communitiesinschools.org" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Resources</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/terms/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Terms of Service</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/privacy-policy/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Privacy Policy</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/contact-us/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Contact Us</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="{% url 'admin:index' %}" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Admin</span></a></li>
       </nav>
       <address class="contactinfo--inline" o-condensed="rhy--yStart25">
         <div class="contactinfo-group" o-base="col--pStart" o-condensed="row--pEnd">

@@ -20,7 +20,7 @@ block component
                     class: "thm--dark",
                     "o-base": "dx--w90 iso--xAuto iso--y100 rhy--yStart25",
                     "o-condensed": "dx--w60",
-                    "o-standard": "pad--x0 rhy--yStart50",
+                    "o-standard": "pad--x50 rhy--yStart50",
                     "o-full": "dx--w40"
                 },
                 footer: {
@@ -37,14 +37,11 @@ block bd
             vefa.data({
                 name: 'password',
                 label: "Password",
-                required: true
+                required: true,
+                fold: false
             })
             .mixin({
-                element: {
-                    "o-base": "pad--x25",
-                    "o-standard": "pad--x100"
-                },
-                control: {
+                field: {
                     autofocus: true
                 }
             })

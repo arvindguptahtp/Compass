@@ -1,34 +1,22 @@
 .gx--result-programs
+    grid-template-columns: 50% 50%
+    grid-template-rows: repeat(4, max-content)
     grid-template-areas:
-        "title      title       title" \
-        "network    network     services" \
-        "overview   overview    services" \
-        "ebr        ebr         services"
-    grid-template-columns: max-content 1fr max-content
+        "title title" \
+        "network network" \
+        "overview overview" \
+        "ebr services"
     grid-gap: 1px
-    
+        
     +over(compressed)
         grid-template-areas:
             "title      title       network" \
-            "ebr        overview    overview" \
-            "services   services    services"
-        grid-template-columns: minmax(100px, 180px) 2fr minmax(0, max-content)
-        grid-template-rows: auto auto 1fr
-
-    +over(condensed)
-        grid-template-areas:
-            "title      title       network" \
-            "ebr        overview    overview" \
+            "overview   overview    overview" \
             "ebr        services    services"
-        // grid-template-columns: 1fr 2fr max-content
-    //     grid-template-areas:
-    //         "title      service-tier" \
-    //         "overview   network" \
-    //         "overview   services"
-    //     grid-template-columns: 2fr 1fr
-    //     grid-template-rows: auto auto 1fr
+        grid-template-columns: minmax(100px, 180px) 1fr minmax(0, max-content)
+        grid-template-rows: repeat(3, max-content)
 
-    +over(extended)
+    +over(enhanced)
         grid-template-areas:
             "title      title  network" \
             "overview   ebr    services"

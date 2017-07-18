@@ -32,18 +32,6 @@ block premain
                         "o-extended": "gxi--b"
                     }
                 })
-//-         poster
-//-             .mix({
-//-                 element: {
-//-                     class: "thm--texture-tint",
-//-                     "o-base": "ord--next",
-//-                     "o-extended": "gxi--b"
-//-                 }
-//-             })
-//-             .data({
-//-                 hed: page.data.title
-//-             })
-//-     include /posters/details
 
 
 prepend view
@@ -57,16 +45,17 @@ block content
     
         section.gxi--a(
             class=page.impact_theme
-            o-standard="pad--y100 pad--x25 rhy--yStart100"
+            o-base="pad--x25 pad--y50 rhy--yStart50"
+            o-standard="pad--y25 rhy--yStart100"
         )
             block detail_a
 
         
         
         section.gxi--b(
-            o-base="col--pStart pad--yEnd50 rhy--yStart50"
-            o-condensed="pad--xy100"
-            o-extended="gx--i2--gxy100 rhy--yStart0"
+            o-base="col--pStart pad--y50 rhy--yStart50"
+            o-condensed="pad--x25"
+            o-extended="gx--i2--gxy25 rhy--yStart0"
         )   
             block detail_b
 

@@ -25,7 +25,8 @@ block subclass
                 },
                 link: {
                     class: "rxn--tint90 fx--shift",
-                    "o-base": "row--pStart--sMiddle pad--xy25 rhy--xStart25"
+                    "o-base": "col--pStart--sStart pad--xy25",
+                    "o-standard": "row--pStart--sMiddle rhy--xStart25"
                 },
                 external_link: {
                     class: "rxn--tint90 fx--shift",
@@ -143,7 +144,8 @@ block content
 
                                 if entry.tag
                                     small.tx--caption--f3--100--tcU(
-                                        o-base="mod--static iso--xStartAuto"
+                                        o-base="mod--static"
+                                        o-standard="iso--xStartAuto"
                                     )= entry.tag
                     
                     when "single"
@@ -161,7 +163,8 @@ block content
 
                                 if entry.tag
                                     small.tx--caption--f3--100--tcU(
-                                        o-base="mod--static iso--xStartAuto"
+                                        o-base="mod--static"
+                                        o-standard="iso--xStartAuto"
                                     )= entry.tag
 
 
@@ -175,7 +178,8 @@ block content
                                         rel= (entry.external) ? "noopener" : false 
                                     )&attributes(card.link)
                                         div.tx--trnc(
-                                            o-base="row--pStart--sMiddle--xAuto mod--fit rhy--xStart25 iso--xEnd100"
+                                            o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
+                                            o-standard="row--pStart--sMiddle--xAuto mod--fit iso--xEnd100"
                                         )
                                             span.tx--trnc= v('item')
 
@@ -185,5 +189,6 @@ block content
                                 
                                         if entry.tag
                                             small.tx--caption--f3--100--tcU(
-                                                o-base="mod--static iso--xStartAuto"
+                                                o-base="mod--static"
+                                                o-standard="iso--xStartAuto"
                                             )= entry.tag

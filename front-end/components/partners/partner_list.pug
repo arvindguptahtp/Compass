@@ -26,8 +26,8 @@ block form
 
 
 block results
-        +for("partner in partners.object_list")
-            include components/card--result-partner
+    +for("partner in partners.object_list")
+        include components/card--result-partner
 
-            +empty()
-                p No matching partners
+        +empty()
+            p No matching partners

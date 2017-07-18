@@ -39,8 +39,9 @@ append view
     +load('humanize choice_tags network_search_tags')
 
 block content
-    .strata--search.gx--search(
-        o-base="mod--balance"
+    //- .gx--search
+    .strata--search(
+        o-base="col--pStart mod--balance"
     )
         .gxi--a(
             class=`${ page.impact_theme }`
@@ -52,7 +53,8 @@ block content
         
         
         .gxi--b(
-            o-base="pad--x25 pad--y50 rhy--yStart100"
+            o-base="mod--fill pad--x25 pad--y50 rhy--yStart100"
+            o-condensed="pad--x50"
             o-enhanced="pad--x100 pad--y100 rhy--yStart200"
         )
             .copy.tx--maj--f1--100.co--pri(

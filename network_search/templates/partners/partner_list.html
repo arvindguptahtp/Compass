@@ -228,26 +228,26 @@
       </picture></a></header>
   <header class="poster--icon row--pStart--sMiddle gx--poster tx--broadside thm--texture-tint co--partners" o-base="pad--xStart50 pad--y100 ord--next" o-condensed="pad--y150" o-enhanced="pad--xStart100 pad--y200" o-extended="gxi--b">
     <svg class="ico poster-icon" o-base="gxi--a">
-      <use href="#ico--partners"></use>
+      <use xlink:href="#ico--partners"></use>
     </svg>
     <h1 class="poster-hed tx--broadside--f1--tcU" o-base="gxi--b">Partners
     </h1>
   </header>
   <main o-base="col--pStart ord--next" o-extended="gxi--d">
-    <div class="strata--search gx--search" o-base="mod--balance">
+    <div class="strata--search" o-base="col--pStart mod--balance">
       <div class="gxi--a thm--partners" o-base="col--pStart mod--balance">
-        <form class="fm--search-partner fx--z-up" action="." method="GET" o-base="pad--x25 pad--y50">
+        <form class="fm--search-partner fx--z-up" action="." method="GET" o-base="pad--x25 pad--y50" o-condensed="pad--xy50">
           <fieldset class="fm-fieldset" o-base="iso--yStart25">
             <div class="fm-fieldset-legend tx--subhed--f1--100--aa" o-base="row--pGrid--sMiddle mod--balance pad--x25 pad--y25 rhy--xStart25">Search</div>
             <div class="fm-fieldset-bd" slot="bd" o-base="pad--x25 iso--yStart25 rhy--yStart25">
-              <div class="fm-field--text" title="Keywords" :init="true">
+              <div class="fm-field--text" title="Keywords">
                 <label class="tx--small--f3--900--tcU--aa" slot="hdr" for="id_q" o-base="mod--balance">Keywords
                 </label>
                 <div slot="bd">
                   <input class="tx--f3--100--ls100 rhy--xStart50 thm--tint20 rxn--shade60 fx--shift" type="text" id="id_q" name="q" value="{% if form.q.value != None %}{{ form.q.value|stringformat:'s'|default_if_none:'' }}{% endif %}" o-base="row--pStart--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small">
                 </div>
               </div>
-              <div class="fm-field--single" title="CIS Core Service Categories" :init="true">
+              <div class="fm-field--single" title="CIS Core Service Categories">
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">CIS Core Service Categories
                 </p>
                 <div class="thm--shade20" slot="bd" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.services.field.choices %}{% if choice_value|safe in form.services.value or choice_value in form.services.value %}
@@ -365,12 +365,12 @@
             </div>
           </fieldset>
           <hr class="thm--shade30" o-base="pad--x25 iso--yStart50" o-standard="pad--x100">
-          <footer o-base="row--pGrid--sMiddle--xRev pad--x25 pad--y50">
+          <footer o-base="row--pGrid--sMiddle--xRev">
             <button class="ctrl--action-submit tx--f3--tcU thm--tint20 rxn--shade60 fx--shift" type="submit" name="submit" o-base="row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25" o-condensed="rhy--xStart50" o-condense="rhy--xStart50" o-standard="pad-y50 pad--x100"><span>Explore</span></button><a class="ctrl--link tx--small--f3--100--tdU co--ctrl fx--shift" href="{{ './' }}" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>Clear Search</span></a>
           </footer>{% csrf_token %}
         </form>
       </div>
-      <div class="gxi--b" o-base="pad--x25 pad--y50 rhy--yStart100" o-enhanced="pad--x100 pad--y100 rhy--yStart200">
+      <div class="gxi--b" o-base="mod--fill pad--x25 pad--y50 rhy--yStart100" o-condensed="pad--x50" o-enhanced="pad--x100 pad--y100 rhy--yStart200">
         <div class="copy tx--maj--f1--100 co--pri" o-full="dx--w60 iso--xAuto rhy--yStart50"><p>Partnerships are a key part of the <span class="caps">CIS</span> model. More importantly, strong partnerships ensure that we are delivering our model with fidelity. For years <span class="caps">CIS</span> has been partnering with other organizations to help reach the millions of students across our nation. All partners you find during your search on this site have been vetted by the national office partnership and evaluation team. Not finding what you’re looking for or need help? Contact Ashlee Chapman at <a href="mailto:chapmana@cisnet.org">chapmana@cisnet.org</a>.</p>
 
         </div>
@@ -470,22 +470,22 @@
       </aside>
     </div>
   </main>
-  <nav class="masthead--nav thm--dark" role="navigation" o-base="row--pStart pad--xStart50 ord--start z--masthead" o-enhanced="pad--xStart100 pad--xEnd50" o-full="gxi--c pad--xy0">   <a class="masthead-home" href="/" target="_top" o-base="row--pMiddle--sMiddle--xAuto mod--fit pad--y25 iso--xEndAuto" o-full="vx--hidden">  
+  <nav class="masthead--nav thm--dark" role="navigation" o-base="row--pStart pad--xStart50 ord--start z--masthead" o-enhanced="pad--xStart100 pad--xEnd50" o-full="gxi--c pad--xy0">   <a class="masthead-home" href="/" target="_top" o-base="row--pMiddle--sMiddle--xAuto mod--fit pad--y50 iso--xEndAuto" o-condensed="pad--y25" o-full="vx--hidden">  
       <picture>
         <source srcset="{% static 'res/logo.full.inverse.png.webp' %}" type="image/webp"><img class="site-logo" src="{% static 'res/logo.full.inverse.png' %}">
       </picture></a>
     <nav o-base="row--pStart--xAuto" o-enhanced="hl--xEnd--bTint" o-full="col--pStart hl--xy0 hl--yStart--bTint">{% url 'affiliate_list' as slug %}
       <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--affiliates" href="{% url 'affiliate_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
-            <use href="#ico--affiliates"></use>
+            <use xlink:href="#ico--affiliates"></use>
           </svg><span class="vx--a11y">Affiliates</span></a></li>{% url 'program_list' as slug %}
       <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--programs" href="{% url 'program_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
-            <use href="#ico--programs"></use>
+            <use xlink:href="#ico--programs"></use>
           </svg><span class="vx--a11y">Programs</span></a></li>{% url 'partner_list' as slug %}
       <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--partners" href="{% url 'partner_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
-            <use href="#ico--partners"></use>
+            <use xlink:href="#ico--partners"></use>
           </svg><span class="vx--a11y">Partners</span></a></li>
     </nav>
   </nav>
@@ -495,6 +495,12 @@
       </picture></a>
     <div class="colophon-site" o-base="mod--balance" o-standard="col---pStart--sEnd">
       <nav class="colophon-nav hl--yEnd--bTint" o-base="pad--yEnd50 iso--yEnd50 gx--colophon" o-standard="row--pEnd--sMiddle--xAuto">
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/" target="_top" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>CIS.org</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://resources.communitiesinschools.org" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Resources</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/terms/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Terms of Service</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/privacy-policy/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Privacy Policy</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/contact-us/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Contact Us</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="{% url 'admin:index' %}" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Admin</span></a></li>
       </nav>
       <address class="contactinfo--inline" o-condensed="rhy--yStart25">
         <div class="contactinfo-group" o-base="col--pStart" o-condensed="row--pEnd">

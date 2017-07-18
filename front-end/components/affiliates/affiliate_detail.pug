@@ -27,6 +27,7 @@ block premain
             .mixin({
                 element: {
                     class: `thm--texture-tint ${page.impact_color}`,
+                    "o-base":"ord--next",
                     "o-extended": "gxi--b"
                 }
             })
@@ -34,40 +35,6 @@ block premain
 
 
 block detail_a
-    //- - 
-    //-     card_alt = {
-    //-         element: {
-    //-             "o-base": "col--pStart"
-    //-         },
-    //-         hdr: {
-    //-             "o-base": "pad--x25 pad--yEnd25",
-    //-             "o-condensed": "pad--x50"
-    //-         },
-    //-         hed: {
-    //-             class: "tx--subhed--f1--100--aa"
-    //-         },
-    //-         bd: {
-    //-             "o-base": ""
-    //-         },
-    //-         list: {
-    //-             "o-base": "mod--balance rhy--yStart25",
-    //-             "o-extended": "gx--i3--gxy10 mod--static rhy--yStart0"
-    //-         },
-    //-         data_hed: {
-    //-             class: `thm--shade60 tx--small--f3--900--aa`,
-    //-         },
-    //-         data_key: {
-    //-             class: "thm--shade40 tx--small--f3--tcU",
-    //-             "o-base": "pad--xy25",
-    //-             "o-condensed": "pad--xy50"
-    //-         },
-    //-         data_value: {
-    //-             class: "thm--tint10 tx--f3",
-    //-             "o-base": "col--pStart--sStart pad--xy25",
-    //-             "o-condensed": "pad--xy50 gxs--s2"
-    //-         },
-    //-     }
-
     include /cards/data-list--inverse
         -
             vefa
@@ -110,7 +77,8 @@ block detail_a
 
 block detail_b
     div(
-        o-base="col--pStart rhy--yStart100"
+        o-base="col--pStart pad--x25 rhy--yStart50"
+        o-extended="iso--yStart100 rhy--yStart100"
     )
         include /cards/data-list
             -
@@ -168,8 +136,9 @@ block detail_b
 
         
     div(
-        o-base="col--pStart rhy--yStart100"
-    )  
+        o-base="col--pStart pad--x25 rhy--yStart50"
+        o-extended="iso--yStart100 rhy--yStart100"
+    )
         include /cards/data-list
             -
                 vefa
@@ -186,14 +155,14 @@ block detail_b
                             ["text", "Americorps", 'eoy_data.americorps_staff'],
                         ]
                     })
-                    .define({
-                        data_key: {
-                            "o-condensed": "pad--x50 gxs--s2"
-                        },
-                        data_value: {
-                            "o-condensed": "pad--x50"
-                        }
-                    })
+                    //- .define({
+                    //-     data_key: {
+                    //-         "o-condensed": "pad--x50 gxs--s2"
+                    //-     },
+                    //-     data_value: {
+                    //-         "o-condensed": "pad--x50"
+                    //-     }
+                    //- })
                     .mixin({
                         element: {
                             class: "vx--z100"
@@ -246,14 +215,14 @@ block detail_b
                                 ['yesno', 'Incarcerated Parent', 'eoy_data.total_students_incarcerated_parent > 0'],
                             ]
                         })
-                        .define({
-                            data_key: {
-                                "o-condensed": "pad--x50 gxs--s2"
-                            },
-                            data_value: {
-                                "o-condensed": "pad--x50"
-                            }
-                        })
+                        //- .define({
+                        //-     data_key: {
+                        //-         "o-condensed": "pad--x50 gxs--s2"
+                        //-     },
+                        //-     data_value: {
+                        //-         "o-condensed": "pad--x50"
+                        //-     }
+                        //- })
                         .mixin({
                             element: {
                                 class: "vx--z100"

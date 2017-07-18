@@ -22,6 +22,7 @@ block instance
 
 block premain
     div.detail-hdr(
+        o-base="col--pStart ord--next"
         o-extended="row--pStart gxi--b"
     )
         include /posters/icon
@@ -40,7 +41,7 @@ block premain
                         }
                     })
 
-        include /cards/ebr
+        //- include /cards/ebr
             - vefa.data({ ebr: page.ebr.io() })
 
 
@@ -99,7 +100,8 @@ block detail_a
 
 block detail_b
     div(
-        o-base="col--pStart rhy--yStart100"
+        o-base="col--pStart pad--x25 rhy--yStart50"
+        o-extended="iso--yStart100 rhy--yStart100"
     )
         include /copy/card
             -
@@ -137,11 +139,6 @@ block detail_b
                     })
         
         
-
-        
-    div(
-        o-base="col--pStart rhy--yStart100"
-    )
         include /cards/core-services
             -
                 vefa
@@ -153,8 +150,13 @@ block detail_b
                         element: {
                             class: "vx--z100"
                         }
-                    })
-                    
+                    })        
+
+        
+    div(
+        o-base="col--pStart pad--x25 rhy--yStart50"
+        o-extended="iso--yStart100 rhy--yStart100"
+    )
         include /cards/link-list
             -
                 vefa

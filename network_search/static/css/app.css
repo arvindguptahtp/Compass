@@ -509,8 +509,11 @@ main {
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "a b b" "c d d" "c e e" "f f f";
 }
-.gx--search {
-  grid-template-areas: "a" "b";
+.gx--profile {
+  grid-template-columns: 1fr;
+  grid-auto-rows: -webkit-max-content;
+  grid-auto-rows: max-content;
+  grid-template-areas: "a" "b" "c";
 }
 [class*='gxi--title'] {
   grid-area: title;
@@ -769,16 +772,17 @@ svg[o-base*='ico--xl'],
   grid-template-areas: "a" "b" "c";
 }
 .gx--result-affiliate {
-  grid-template-areas: "title      title       title   title" "state      state       state   profile" "students   students    budget  budget";
-  grid-template-columns: repeat(3, 1fr) -webkit-max-content;
-  grid-template-columns: repeat(3, 1fr) max-content;
-  grid-template-rows: repeat(4, auto);
+  grid-template-areas: "title      title" "state      profile" "students   students" "budget     budget";
+  grid-template-columns: 2fr 1fr;
+  grid-auto-rows: -webkit-max-content;
+  grid-auto-rows: max-content;
   grid-gap: 1px;
 }
 .gx--result-programs {
-  grid-template-areas: "title      title       title" "network    network     services" "overview   overview    services" "ebr        ebr         services";
-  grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
-  grid-template-columns: max-content 1fr max-content;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(4, -webkit-max-content);
+  grid-template-rows: repeat(4, max-content);
+  grid-template-areas: "title title" "network network" "overview overview" "ebr services";
   grid-gap: 1px;
 }
 .gx--detail-partner {
@@ -786,9 +790,10 @@ svg[o-base*='ico--xl'],
   grid-template-areas: "a" "b" "c";
 }
 .gx--result-partner {
-  grid-template-areas: "title      title           title" "network    service-tier    service-tier" "overview   overview        services";
-  grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
-  grid-template-columns: max-content 1fr max-content;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(4, -webkit-max-content);
+  grid-template-rows: repeat(4, max-content);
+  grid-template-areas: "title title" "overview overview" "services network" "services service-tier";
   grid-gap: 1px;
 }
 @media only screen and (min-width: 0px) {
@@ -968,11 +973,16 @@ svg[o-base*='ico--xl'],
     height: 2.5em;
     width: 2.5em;
   }
+  .gx--result-affiliate {
+    grid-template-areas: "title title title title" "state state state profile" "students students budget budget";
+    grid-template-columns: repeat(4, 25%);
+  }
   .gx--result-programs {
-    grid-template-areas: "title      title       network" "ebr        overview    overview" "services   services    services";
-    grid-template-columns: minmax(100px, 180px) 2fr minmax(0, -webkit-max-content);
-    grid-template-columns: minmax(100px, 180px) 2fr minmax(0, max-content);
-    grid-template-rows: auto auto 1fr;
+    grid-template-areas: "title      title       network" "overview   overview    overview" "ebr        services    services";
+    grid-template-columns: minmax(100px, 180px) 1fr minmax(0, -webkit-max-content);
+    grid-template-columns: minmax(100px, 180px) 1fr minmax(0, max-content);
+    grid-template-rows: repeat(3, -webkit-max-content);
+    grid-template-rows: repeat(3, max-content);
   }
 }
 @media only screen and (min-width: 660px) {
@@ -1143,17 +1153,10 @@ svg[o-base*='ico--xl'],
     height: 2.5em;
     width: 2.5em;
   }
-  .gx--result-affiliate {
-    grid-template-areas: "title title title title profile" "state students students budget budget";
-    grid-template-columns: repeat(5, 1fr);
-  }
-  .gx--result-programs {
-    grid-template-areas: "title      title       network" "ebr        overview    overview" "ebr        services    services";
-  }
   .gx--result-partner {
-    grid-template-areas: "title      title" "overview   service-tier" "overview   network" "overview   services";
+    grid-template-areas: "title      network" "overview   overview" "services   service-tier";
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto auto 1fr;
+    grid-template-rows: repeat(3, auto);
   }
 }
 @media only screen and (min-width: 768px) {
@@ -1252,6 +1255,12 @@ svg[o-base*='ico--xl'],
     grid-template-rows: auto 1fr auto;
     grid-template-areas: "a b b" "c d d" "c e e" "f f f";
   }
+  .gx--profile {
+    grid-template-columns: minmax(250px, 350px) 1fr;
+    grid-template-rows: auto -webkit-max-content;
+    grid-template-rows: auto max-content;
+    grid-template-areas: "a b" "a c";
+  }
   [o-standard*='gxi--title'] {
     grid-area: title;
   }
@@ -1339,11 +1348,6 @@ svg[o-base*='ico--xl'],
   .gx--detail-partner {
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "b a a" "c c c";
-  }
-  .gx--result-partner {
-    grid-template-areas: "title      service-tier" "overview   network" "overview   services";
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto 1fr;
   }
 }
 @media only screen and (min-width: 960px) {
@@ -1527,6 +1531,21 @@ svg[o-base*='ico--xl'],
     height: 2.5em;
     width: 2.5em;
   }
+  .gx--result-affiliate {
+    grid-template-areas: "title title title profile" "state state students budget";
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3px;
+  }
+  .gx--result-programs {
+    grid-template-areas: "title      title  network" "overview   ebr    services";
+    grid-template-columns: 1fr minmax(100px, 180px) minmax(150px, 250px);
+    grid-gap: 3px;
+  }
+  .gx--result-partner {
+    grid-template-areas: "title      title           network" "overview   service-tier    services";
+    grid-template-columns: 1fr minmax(100px, 220px) minmax(150px, 250px);
+    grid-gap: 3px;
+  }
 }
 @media only screen and (min-width: 1200px) {
   [o-extended*='thm--light'] {
@@ -1693,21 +1712,6 @@ svg[o-base*='ico--xl'],
     height: 2.5em;
     width: 2.5em;
   }
-  .gx--result-affiliate {
-    grid-template-areas: "title title title title profile" "state state state students budget";
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 3px;
-  }
-  .gx--result-programs {
-    grid-template-areas: "title      title  network" "overview   ebr    services";
-    grid-template-columns: 1fr minmax(100px, 180px) minmax(150px, 250px);
-    grid-gap: 3px;
-  }
-  .gx--result-partner {
-    grid-template-areas: "title      title           network" "overview   service-tier    services";
-    grid-template-columns: 1fr minmax(100px, 220px) minmax(150px, 250px);
-    grid-gap: 3px;
-  }
 }
 @media only screen and (min-width: 1600px) {
   [o-full*='thm--light'] {
@@ -1804,12 +1808,6 @@ svg[o-base*='ico--xl'],
     grid-template-columns: 80px 2fr 2fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas: "a b b" "c d d" "c e e" "f f f";
-  }
-  .gx--profile {
-    grid-template-columns: minmax(250px, 500px) 5fr;
-    grid-template-rows: auto -webkit-max-content;
-    grid-template-rows: auto max-content;
-    grid-template-areas: "a b" "a c";
   }
   [o-full*='gxi--title'] {
     grid-area: title;

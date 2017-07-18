@@ -17,33 +17,34 @@
             "b a a a a" \
             "b c c c c"
             
-.gx--result-partner
-    grid-template-areas:
-        "title      title           title" \
-        "network    service-tier    service-tier" \
-        "overview   overview        services"
 
-    grid-template-columns: max-content 1fr max-content
+.gx--result-partner
+    grid-template-columns: 50% 50%
+    grid-template-rows: repeat(4, max-content)
+    grid-template-areas:
+    "title title" \
+    "overview overview" \
+    "services network" \
+    "services service-tier"
     grid-gap: 1px
     
     +over(condensed)
         grid-template-areas:
-            "title      title" \
-            "overview   service-tier" \
-            "overview   network" \
-            "overview   services"
+            "title      network" \
+            "overview   overview" \
+            "services   service-tier"
         grid-template-columns: 2fr 1fr
-        grid-template-rows: auto auto auto 1fr
+        grid-template-rows: repeat(3, auto)
 
-    +over(standard)
-        grid-template-areas:
-            "title      service-tier" \
-            "overview   network" \
-            "overview   services"
-        grid-template-columns: 2fr 1fr
-        grid-template-rows: auto auto 1fr
+    // +over(standard)
+    //     grid-template-areas:
+    //         "title      service-tier" \
+    //         "overview   network" \
+    //         "overview   services"
+    //     grid-template-columns: 2fr 1fr
+    //     grid-template-rows: auto auto 1fr
 
-    +over(extended)
+    +over(enhanced)
         grid-template-areas:
             "title      title           network" \
             "overview   service-tier    services"

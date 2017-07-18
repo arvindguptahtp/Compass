@@ -31,21 +31,21 @@ footer.colophon.tx--f3--100.thm--dark(
             each instance in nav.colophon
                 include /navigation/nav-item--static
                     -
-                        vefa.define(
-                            "nav-item--static", 
-                            {
-                                element: {
-                                    class: "colophon-nav-item",
-                                    "o-base": "row--pStart--sMiddle--xAuto",
-                                    "o-standard": "pad--x25 pad--xEdges0 hl--xStart--bTint"
-                                },
-                                control: {
-                                    class: "colophon-nav-ctrl co--ctrl fx--shift",
-                                    "o-base": "mod--fill pad--y10",
-                                    "o-condensed": "tx--taMiddle pad--y0"
-                                }
-                            }   
-                        )
+                        vefa.define({
+                            data: {
+                                route: instance
+                            },
+                            element: {
+                                class: "colophon-nav-item",
+                                "o-base": "row--pStart--sMiddle--xAuto",
+                                "o-standard": "pad--x25 pad--xEdges0 hl--xStart--bTint"
+                            },
+                            control: {
+                                class: "colophon-nav-ctrl co--ctrl fx--shift",
+                                "o-base": "mod--fill pad--y10",
+                                "o-condensed": "tx--taMiddle pad--y0"
+                            }
+                        })
                 
 
         
