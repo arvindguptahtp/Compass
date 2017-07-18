@@ -223,7 +223,7 @@
                           </article>
                         </dd>
                         <dd class="gxi--network thm--shade10" o-base="row--pStart" o-condensed="row--pMiddle--sMiddle pad--xy25" o-enhanced="pad--xy50">
-                          <div class="{% if partner.use_in_network %}thm--partners {% endif %} {% if not partner.use_in_network %}thm--inactive {% endif %}" o-base="row--pStart mod--balance" o-condensed="row--pStart--xAuto mod--static"><span class="thm--shade5 tx--small--f1--100--tcU" o-base="mod--balance--aMiddle pad--y10 pad--x25">    {% if partner.use_in_network %}Active in Network{% else %}Inactive in Network{% endif %}</span></div>
+                          <div class="{% if partner.network_use.all|length > 0 %}thm--partners {% endif %} {% if partner.network_use.all|length == 0 %}thm--inactive {% endif %}" o-base="row--pStart mod--balance" o-condensed="row--pStart--xAuto mod--static"><span class="thm--shade5 tx--small--f1--100--tcU" o-base="mod--balance--aMiddle pad--y10 pad--x25">    {% if partner.network_use.all|length > 0 %}Active in Network{% else %}Inactive in Network{% endif %}</span></div>
                         </dd>
                         <dd class="gxi--service-tier" o-base="col--pStart mod--balance">
                           <header class="card-hdr thm--partners" o-base="ord--start">

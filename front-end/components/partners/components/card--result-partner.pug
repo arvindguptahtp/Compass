@@ -22,7 +22,7 @@ block instance
                 title: 'partner',
                 slug: 'get_absolute_url',
                 overview: 'mission',
-                network: 'use_in_network',
+                network: 'network_use',
                 service_tiers: 'tiers_of_service',
                 services: 'service_categories'
             })      
@@ -58,15 +58,15 @@ block result_network
         o-enhanced="pad--xy50"
     )
         div(
-            class=class_switch(card.network.io(), "thm--partners")
-            class=class_switch(`not ${ card.network.io() }`, "thm--inactive")
+            class!=class_switch(`${card.network.io()}.all|length > 0`, "thm--partners")
+            class!=class_switch(`${card.network.io()}.all|length == 0`, "thm--inactive")
             o-base="row--pStart mod--balance"
             o-condensed="row--pStart--xAuto mod--static"
         )
             span.thm--shade5.tx--small--f1--100--tcU(
                 o-base="mod--balance--aMiddle pad--y10 pad--x25"
             )     
-                +if(card.network.io())
+                +if(`${card.network.io()}.all|length > 0`)
                     = card.labels.network_yes
                     +else()
                         = card.labels.network_no
