@@ -60,13 +60,21 @@ block detail_a
                     heading: "Program Information",
                     map: [
                         ["group", "Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
-                        ["group","Region", page.region.io(), "Regions"],
+                        ["mixin","Region", "card_region"],
                         ["group","Setting", page.setting.io(), "Setting"],
                         ["text", "Outcomes", page.outcomes.io()],
                         ["mixin", "Associated Fees", "card_fees"],
                         ["mixin", "Assessment", "card_assessment"]
                     ]
                 })
+
+        mixin card_region
+            p
+                +if(page.region_other.io())
+                    = page.region_other.tag()
+                    +else()
+                        +for(`val in ${page.region.io()}`)
+                            = v('val', `choice_display:'Regions'`, 'capfirst')
 
         mixin card_fees
             +if(page.is_cost_free.io())

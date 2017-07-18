@@ -548,7 +548,7 @@ class Vefa {
                         : `${key}.${this}`
                 }
 
-                String.prototype.tag = function ( filters ) {
+                String.prototype.tag = function ( ...filters ) {
                     let val = (key == this)
                         ? this
                         : this.io()

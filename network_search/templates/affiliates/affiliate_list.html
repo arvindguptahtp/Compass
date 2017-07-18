@@ -463,8 +463,8 @@ is here for <span class="caps">CIS</span> affiliates to search for and connect t
                     </nav>{% endif %}
           <div o-base="rhy--yStart100">{% for affiliate in affiliates.object_list %}
                       <dl class="card--result-partner gx--result-affiliate" o-base="col--pStart mod--balance">
-                        <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="{{ affiliate.get_absolute_url }}" o-base="row--pStart--sMiddle mod--balance pad--x25 pad--y10 rhy--xStart" o-standard="pad--x50">
-                            <h4 class="tx--subhed--f1--100">{{ affiliate }}
+                        <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="{{ affiliate.get_absolute_url| }}" o-base="row--pStart--sMiddle mod--balance pad--x25 pad--y10 rhy--xStart" o-standard="pad--x50">
+                            <h4 class="tx--subhed--f1--100">{{ affiliate| }}
                             </h4></a></dt>
                         <dd class="gxi--profile"><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="{{ affiliate.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>View Profile</span></a>
                         </dd>{% if affiliate.state %}

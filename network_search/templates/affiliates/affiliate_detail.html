@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   </head>
-  <title>{{ affiliate }} : CIS Search Tool</title>{% include 'includes/css.html' %}{% include 'includes/head_js.html' %}{% load static %}
+  <title>{{ affiliate| }} : CIS Search Tool</title>{% include 'includes/css.html' %}{% include 'includes/head_js.html' %}{% load static %}
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'res/favicons/apple-touch-icon.png' %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'res/favicons/favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'res/favicons/favicon-16x16.png' %}">
@@ -230,7 +230,7 @@
     <svg class="ico poster-icon" o-base="gxi--a">
       <use xlink:href="#ico--affiliates"></use>
     </svg>
-    <h1 class="poster-hed tx--broadside--f1--tcU" o-base="gxi--b">{{ affiliate }}
+    <h1 class="poster-hed tx--broadside--f1--tcU" o-base="gxi--b">{{ affiliate| }}
     </h1>
   </header>
   <main o-base="col--pStart ord--next" o-extended="gxi--d">
@@ -238,32 +238,32 @@
       <section class="gxi--a thm--affiliates" o-base="pad--x25 pad--y50 rhy--yStart50" o-standard="pad--y25 rhy--yStart100">{% if True %}
                 <article class="card--list-data" o-base="col--pStart">
                   <header o-base="pad--x25 pad--y25" o-condensed="pad--x50">
-                    <h1 class="tx--subhed--f1--100--aa">Affiliate <small class="tx--small--t2--400">#{{ affiliate.cis_id }}</small></h1>
+                    <h1 class="tx--subhed--f1--100--aa">Affiliate <small class="tx--small--t2--400">#{{ affiliate.cis_id| }}</small></h1>
                   </header>
                   <div class="bd">
                     <dl class="card-data" o-base="gx--i3--gxy10 mod--static rhy--yStart0" o-condensed="gx--i3--gxy10 mod--static rhy--yStart0">{% if True %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Executive Director</dt>
                               <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
                                         <ul>
-                                          <li>{{ affiliate.current_data.executive_director_name }}</li>
-                                          <li><a class="tx--tdU fx--shift" href="mailto:{{ affiliate.current_data.executive_director_email }}">{{ affiliate.current_data.executive_director_email }}</a></li>
+                                          <li>{{ affiliate.current_data.executive_director_name| }}</li>
+                                          <li><a class="tx--tdU fx--shift" href="mailto:{{ affiliate.current_data.executive_director_email| }}">{{ affiliate.current_data.executive_director_email| }}</a></li>
                                         </ul>
                               </dd>{% endif %}{% if True %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Program Lead</dt>
                               <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
                                         <ul>
-                                          <li>{{ affiliate.current_data.program_lead_name }}</li>
-                                          <li><a class="tx--tdU fx--shift" href="mailto:{{ affiliate.current_data.program_lead_email }}">{{ affiliate.current_data.program_lead_email }}</a></li>
+                                          <li>{{ affiliate.current_data.program_lead_name| }}</li>
+                                          <li><a class="tx--tdU fx--shift" href="mailto:{{ affiliate.current_data.program_lead_email| }}">{{ affiliate.current_data.program_lead_email| }}</a></li>
                                         </ul>
                               </dd>{% endif %}{% if affiliate.affiliate_location %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Location</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ affiliate.affiliate_location|choice_display:'AffiliateLocation' }}
+                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ affiliate.affiliate_location|choice_display:'AffiliateLocation',capfirst }}
                               </dd>{% endif %}{% if True %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Address</dt>
                               <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
                                         <ul>
-                                          <li>{{ affiliate.address_street }}</li>
-                                          <li>{{ affiliate.address_city }}, {{ affiliate.address_state }} {{ affiliate.address_postcode }}</li>
+                                          <li>{{ affiliate.address_street| }}</li>
+                                          <li>{{ affiliate.address_city| }}, {{ affiliate.address_state| }} {{ affiliate.address_postcode| }}</li>
                                         </ul>
                               </dd>{% endif %}{% if affiliate.phone_number %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Phone Number</dt>
@@ -273,7 +273,7 @@
                               <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ affiliate.fax_number|safe }}
                               </dd>{% endif %}{% if affiliate.website %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Website</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50"><a class="tx--tdU fx--shift" href="{{ affiliate.affiliate.website }}" target="_blank" rel="noopener" o-base="row--pStart--sMiddle rhy--xStart25"><span class="tx--trnc">{{ affiliate }}</span>
+                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50"><a class="tx--tdU fx--shift" href="{{ affiliate.affiliate.website| }}" target="_blank" rel="noopener" o-base="row--pStart--sMiddle rhy--xStart25"><span class="tx--trnc">{{ affiliate| }}</span>
                                   <svg class="ico">
                                     <use href="#ico--link-ext"></use>
                                   </svg></a>

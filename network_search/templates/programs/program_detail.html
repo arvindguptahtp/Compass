@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   </head>
-  <title>{{ program }} : CIS Search Tool</title>{% include 'includes/css.html' %}{% include 'includes/head_js.html' %}{% load static %}
+  <title>{{ program| }} : CIS Search Tool</title>{% include 'includes/css.html' %}{% include 'includes/head_js.html' %}{% load static %}
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'res/favicons/apple-touch-icon.png' %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'res/favicons/favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'res/favicons/favicon-16x16.png' %}">
@@ -231,7 +231,7 @@
       <svg class="ico poster-icon" o-base="gxi--a">
         <use xlink:href="#ico--programs"></use>
       </svg>
-      <h1 class="poster-hed tx--broadside--f1--tcU" o-base="gxi--b">{{ program }}
+      <h1 class="poster-hed tx--broadside--f1--tcU" o-base="gxi--b">{{ program| }}
       </h1>
     </header>
   </div>
@@ -250,13 +250,11 @@
                                           <li>{{ val|choice_display:'TiersOfService'|capfirst }}
                                           </li>{% endfor %}
                                 </ul>
-                              </dd>{% endif %}{% if program.region %}
+                              </dd>{% endif %}{% if True %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Region</dt>
                               <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
-                                <ul>{% for val in program.region %}
-                                          <li>{{ val|choice_display:'Regions'|capfirst }}
-                                          </li>{% endfor %}
-                                </ul>
+                                        <p>{% if program.region_other %}{{ program.region_other| }}{% else %}{% for val in program.region %}{{ val|choice_display:'Regions'|capfirst }}{% endfor %}{% endif %}
+                                        </p>
                               </dd>{% endif %}{% if program.setting %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Setting</dt>
                               <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
@@ -276,7 +274,7 @@
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Assessment</dt>
                               <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if program.assessment_available %}
                                                 <p>Assessment Available</p>{% if program.assessment_info %}
-                                                        <p>{{ program.assessment_info }}</p>{% else %}
+                                                        <p>{{ program.assessment_info| }}</p>{% else %}
                                                                 <p>N/A</p>{% endif %}{% endif %}
                               </dd>{% endif %}
                     </dl>
