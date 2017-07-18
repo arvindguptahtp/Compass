@@ -1,7 +1,4 @@
 title: Affiliates
-summary: >
-  The CIS affiliate brings the students to schools in their community. All across the US, 164 CIS affiliates help to serve students in 363 districts and 2,400 K-12 sites.
-
 
 fm_search:
     -   name: Search
@@ -12,7 +9,7 @@ fm_search:
                 label: Keywords
                 widget: text
 
-    -   name: Demographics
+    -   name: Student Demographics
         type: fieldset
         fields:
             grades:
@@ -38,18 +35,6 @@ fm_search:
                 name: served
                 label: Unique Student Characteristics
                 widget: multi
-
-            location:
-                name: location
-                label: Affiliates by Location
-                fold: true
-                widget: single
-
-            budget:
-                name: budget
-                label: Affiliates by Budget
-                fold: true
-                widget: single
 
     -   name: CIS Model Implementation
         type: fieldset
@@ -113,7 +98,21 @@ fm_search:
                 name: prof_mental_health
                 label: Professional Mental Health
                 widget: single
+    
+    -   name: Affiliate Details
+        type: fieldset
+        fields:
+            location:
+                name: location
+                label: Affiliates by Location
+                fold: true
+                widget: single
 
+            budget:
+                name: budget
+                label: Affiliates by Budget
+                fold: true
+                widget: single
 
 
 fixtures:

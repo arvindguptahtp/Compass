@@ -32,9 +32,3 @@
 
 
 <template lang="pug" src="./fold-unfold.js.pug"></template>
-
-
-<comments>
-class="tx--small--f3--900--tcU--aa rxn--shade20 fx--shift",
-o-base="row--pGrid--sMiddle mod--balance pad--x25 pad--y25 rhy--xStart25"
-</comments>

@@ -49,26 +49,26 @@ block hdr
 
 block bd
     //- come back to this, as we aren't using this now
-    if choices[field.name]
-        div&attributes(field.field_group)
-            +for(field.choices)
-                
-                block choices
-                    block input_ext
+    //- if choices[field.name]
+    div(slot="bd")&attributes(field.field_group)
+        +for(field.choices)
+            
+            block choices
+                block input_ext
 
-                    label(
-                        for=field.uid
-                        v-check="true"
-                    )&attributes(field.field_control)
-                        
-                        block input_int
-                            +ifequal(`form.${field.name}.value`, 'choice_value')
-                                input(checked=true)&attributes(field.input_attrs)
-                                
-                                +else()
-                                    input&attributes(field.input_attrs)
+                label(
+                    for=field.uid
+                    v-check="true"
+                )&attributes(field.field_control)
+                    
+                    block input_int
+                        +ifequal(`form.${field.name}.value`, 'choice_value')
+                            input(checked=true)&attributes(field.input_attrs)
+                            
+                            +else()
+                                input&attributes(field.input_attrs)
 
-                        span(
-                            o-base="mod--balance"
-                        )
-                            = v(field.choice.label)
+                    span(
+                        o-base="mod--balance"
+                    )
+                        = v(field.choice.label)

@@ -78,8 +78,8 @@ block view
             )&attributes(field.field_label)
                 = field.label
             
-        div(slot="bd")
-            block bd
+        block bd
+            div(slot="bd")
                 //- this is a general text input
                 //- most subclass should overwrite this
                 //- however, text, password, number, etc won't need to
