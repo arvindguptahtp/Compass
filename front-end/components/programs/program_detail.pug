@@ -51,6 +51,35 @@ block premain
         //- include /cards/ebr
         //-     - vefa.data({ ebr: page.ebr.io() })
 
+block asset_controls
+    div(
+        o-base="row--pStart--sMiddle mod--balance"
+    )
+        +if(page.program_weblink.io())
+            include /controls/action
+                -
+                    vefa.data({
+                        url: page.program_weblink.io(),
+                        label: `Website`
+                    })
+                    .define({
+                        element: {
+                            class: "tx--small--f3 rxn--ctrl-impt fx--shift"
+                        }
+                    })
+
+        include /controls/download
+            -
+                vefa.data({
+                    file: `../${page.id.tag()}.pdf`,
+                    label: "Download PDF report",
+                    name: page.title.tag()
+                })
+                .define({
+                    element: {
+                        class: "tx--small--f3 rxn--ctrl-download fx--shift"
+                    }
+                })
 
 block detail_a
     include /cards/data-list--inverse

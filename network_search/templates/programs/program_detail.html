@@ -37,11 +37,15 @@
   </div>
   <main o-base="col--pStart ord--next" o-extended="gxi--d">
     <div class="strata--detail gx--profile" o-base="mod--balance">
-      <nav class="gxi--breadcrumbs tx--small--f3 thm--shade5 vx--z200" o-base="row--pStart--sBase pad--xy25 rhy--xStart10" o-standard="row--pEnd--sBase pad--x50"><a class="co--ctrl fx--shift" href="../" o-base="row--pStart--sMiddle--xAuto rhy--xStart25">Programs</a>
-        <svg class="ico ico--xs">
-          <use xlink:href="#ico--ctrl-next"></use>
-        </svg><span class="tx--trnc">{{ program }}</span>
-      </nav>
+      <div class="gxi--breadcrumbs tx--small--f3 thm--shade5 vx--z200" o-base="row--pStart--sMiddle" o-standard="row--pGrid--sMiddle">
+        <div o-base="row--pStart--sMiddle mod--balance">{% if program.program_weblink %}<a class="ctrl--action tx--small--f3 rxn--ctrl-impt fx--shift" href="{{ program.program_weblink }}" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>Website</span></a>{% endif %}<a class="ctrl--download tx--small--f3 rxn--ctrl-download fx--shift" href="../{{ program.id }}.pdf" download="{{ program }}" o-base="pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>Download PDF report</span></a>
+        </div>
+        <nav o-base="row--pStart--sBase mod--balance pad--xy25 rhy--xStart10" o-standard="row--pEnd--sBase pad--x50"><a class="co--ctrl fx--shift" href="../" o-base="row--pStart--sMiddle--xAuto rhy--xStart25">Programs</a>
+          <svg class="ico ico--xs">
+            <use xlink:href="#ico--ctrl-next"></use>
+          </svg><span class="tx--trnc">{{ program }}</span>
+        </nav>
+      </div>
       <section class="gxi--a thm--programs" o-base="pad--x25 pad--y50 rhy--yStart50" o-standard="pad--x50 rhy--yStart100">{% if True %}
                 <article class="card--list-data" o-base="col--pStart">
                   <header o-base="pad--y25">

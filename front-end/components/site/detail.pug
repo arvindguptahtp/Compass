@@ -42,19 +42,26 @@ block content
     .strata--detail.gx--profile(
         o-base="mod--balance"
     )
-        nav.gxi--breadcrumbs.tx--small--f3.thm--shade5.vx--z200(
-            o-base="row--pStart--sBase pad--xy25 rhy--xStart10"
-            o-standard="row--pEnd--sBase pad--x50"
-        )
-            a.co--ctrl.fx--shift(
-                href="../"
-                o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
-            )= page.icon.charAt(0).toUpperCase() + page.icon.slice(1)
+        if page && page.icon
+            div.gxi--breadcrumbs.tx--small--f3.thm--shade5.vx--z200(
+                o-base="row--pStart--sMiddle"
+                o-standard="row--pGrid--sMiddle"
+            )
+                block asset_controls
             
-            svg.ico.ico--xs
-                use(xlink:href="#ico--ctrl-next")
-            
-            span.tx--trnc()= poster.title
+                nav(
+                    o-base="row--pStart--sBase mod--balance pad--xy25 rhy--xStart10"
+                    o-standard="row--pEnd--sBase pad--x50"
+                )
+                    a.co--ctrl.fx--shift(
+                        href="../"
+                        o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
+                    )= page.icon.charAt(0).toUpperCase() + page.icon.slice(1)
+                    
+                    svg.ico.ico--xs
+                        use(xlink:href="#ico--ctrl-next")
+                    
+                    span.tx--trnc()= poster.title
 
         
         section.gxi--a(

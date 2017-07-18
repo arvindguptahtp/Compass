@@ -706,9 +706,6 @@ main {
 .poster-icon {
   line-height: 1;
 }
-.poster-crumbs {
-  margin-top: -24px;
-}
 .ctrl--action-submit {
   filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur in="SourceAlpha" stdDeviation="10" /><feOffset dx="1" dy="1" result="offsetblur" /><feFlood flood-color="rgba(255,255,255,0.5)" /><feComposite in2="offsetblur" operator="in" /><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="1" /><feFuncG type="linear" slope="1" /><feFuncB type="linear" slope="1" /></feComponentTransfer></filter></svg>#filter');
   -webkit-filter: drop-shadow(0 0 10px rgba(255, 255, 255, .5)) brightness(100%);
