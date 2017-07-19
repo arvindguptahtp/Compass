@@ -47,6 +47,38 @@ def test_affiliate_data_funding():
     assert affiliate_data.funding_private == 360
 
 
+def test_budget_as_range():
+    affiliate_data = AffiliateEOYData(
+        budget_total=499999,
+    )
+    assert affiliate_data.budget_as_range() == choices.BudgetLevel.zero_five.value
+
+    affiliate_data = AffiliateEOYData(
+        budget_total=500000,
+    )
+    assert affiliate_data.budget_as_range() == choices.BudgetLevel.zero_five.value
+
+    affiliate_data = AffiliateEOYData(
+        budget_total=500001,
+    )
+    assert affiliate_data.budget_as_range() == choices.BudgetLevel.five_one.value
+
+    affiliate_data = AffiliateEOYData(
+        budget_total=999999,
+    )
+    assert affiliate_data.budget_as_range() == choices.BudgetLevel.five_one.value
+
+    affiliate_data = AffiliateEOYData(
+        budget_total=1000000,
+    )
+    assert affiliate_data.budget_as_range() == choices.BudgetLevel.five_one.value
+
+    affiliate_data = AffiliateEOYData(
+        budget_total=1000001,
+    )
+    assert affiliate_data.budget_as_range() == choices.BudgetLevel.one.value
+
+
 @pytest.mark.django_db
 def test_gender_data(current_eoy):
     affiliate = affiliate_factory()

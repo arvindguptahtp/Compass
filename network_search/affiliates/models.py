@@ -510,6 +510,19 @@ class AffiliateEOYData(TimeStampedModel):
 
         self.save()
 
+    def budget_as_range(self) -> str:
+        """
+        Returns a description of the total budget as a descriptive range
+        
+        E.g. '500k-1M'
+        """
+        if self.budget_total <= 500000:
+            return choices.BudgetLevel.zero_five.value
+        elif self.budget_total <= 1000000:
+            return choices.BudgetLevel.five_one.value
+        else:
+            return choices.BudgetLevel.one.value
+
 
 class Affiliate(BaseResource):
     """
