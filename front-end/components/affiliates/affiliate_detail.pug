@@ -117,8 +117,8 @@ block detail_b
                         heading: "Affiliate Resources",
                         map: [
                             ["money", "Annual Budget", 'eoy_data.budget_total'],
-                            ['pct', 'Pct of Public Funding', 'eoy_data.budget_total and eoy_data.funding_public', v('eoy_data.funding_percent_public')],
-                            ['pct', 'Pct of Private Funding', 'eoy_data.budget_total and eoy_data.funding_private', v('eoy_data.funding_percent_private')],
+                            ['pct', 'Pct of Public Funding', 'eoy_data.funding_total and eoy_data.funding_public', `${v('eoy_data.funding_percent_public')}%`],
+                            ['pct', 'Pct of Private Funding', 'eoy_data.funding_total and eoy_data.funding_private', `${v('eoy_data.funding_percent_private')}%`],
                         ]
                     })
                     .mixin({

@@ -275,11 +275,11 @@ class AffiliateEOYData(TimeStampedModel):
 
     @cached_property
     def funding_percent_private(self) -> int:
-        return int(round(self.funding_private / self.funding_total, ndigits=0))
+        return int(round((self.funding_private / self.funding_total) * 100, ndigits=0))
 
     @cached_property
     def funding_percent_public(self):
-        return int(round(self.funding_public / self.funding_total, ndigits=0))
+        return int(round((self.funding_public / self.funding_total) * 100, ndigits=0))
 
     total_enrollment = models.IntegerField(default=0, editable=False)
 
