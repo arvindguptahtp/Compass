@@ -1,14 +1,21 @@
-const reporter = require("./reporter.js")
-
-const common = require("./vefa-html/common.js")()
+const reporter = require("../reporter.js")
+const Vefa = require("../vefa-html/framework")
 
 module.exports = (config, locals) => {
 
     locals = Object.assign(
         locals, 
-        require("./vefa-html/structure")(locals)
+        require("../vefa-html/django")(locals)
     )
-    
+
+
+    locals = Object.assign(
+        locals, 
+        {
+            Vefa
+        }
+    )
+
     return {
         test: /\.pug$/,
         use: [
@@ -19,14 +26,14 @@ module.exports = (config, locals) => {
             {
                 loader: "vefa-html-loader",
                 options: {
-                    locals: locals,
+                    context: config.templates.context || true,
+                    emit: config.templates.emit || false,
+                    locals,
+                    pretty: true,
+                    cache: true,
                     filters: {
                         md ( block, opts ) {
                            return locals.markdown(block);
-                        },
-                        v (block, expression) {
-                            expression = common.get_expression(expression)
-                            return `{{ ${ expression } }}`
                         }
                     }
                 }
@@ -34,8 +41,3 @@ module.exports = (config, locals) => {
         ]
     }
 }
-
-
-// filters: Object.assign(
-//     require(`${CFG.src}/vefa-html/pug.js`)(locals)
-// )

@@ -1,9 +1,10 @@
-const Vefa = require("./vefa-html/framework")
+const reporter = require("../reporter.js")
+const Vefa = require("../vefa-html/framework")
 
 module.exports = (cfg, locals) => {
     locals = Object.assign(
         locals, 
-        require("./vefa-html/structure")(locals)
+        require("../vefa-html/django")(locals)
     )
 
 

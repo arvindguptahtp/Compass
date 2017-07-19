@@ -55,36 +55,36 @@ module.exports = (env) => {
         switch (TASKING) {
             case "assets":
                 return [
-                    require('./vefa/rules.images')(CFG),
-                    require('./vefa/rules.assets')(CFG)
+                    require('./vefa/rules/rules.images')(CFG),
+                    require('./vefa/rules/rules.assets')(CFG)
                 ]
             break;
             case "vue":
                 return [
-                    require('./vefa/rules.babel')(CFG),
-                    require('./vefa/rules.vue')(CFG, locals),
+                    require('./vefa/rules/rules.babel')(CFG),
+                    require('./vefa/rules/rules.vue')(CFG, locals),
                 ]
             break;
             case "html": 
                 return [
-                    require('./vefa/rules.django')(CFG, locals),
+                    require('./vefa/rules/rules.django')(CFG, locals),
                 ]
             case "dev": 
                 return [
-                    require('./vefa/rules.babel')(CFG),
-                    require('./vefa/rules.vue')(CFG, locals),
-                    require('./vefa/rules.styles')(CFG),
-                    require('./vefa/rules.django')(CFG, locals),
+                    require('./vefa/rules/rules.babel')(CFG),
+                    require('./vefa/rules/rules.vue')(CFG, locals),
+                    require('./vefa/rules/rules.styles')(CFG),
+                    require('./vefa/rules/rules.django')(CFG, locals),
                 ]
             break;
             default:
                 return [
-                    require('./vefa/rules.babel')(CFG),
-                    require('./vefa/rules.vue')(CFG, locals),
-                    require('./vefa/rules.styles')(CFG),
-                    require('./vefa/rules.django')(CFG, locals),
-                    require('./vefa/rules.images')(CFG),
-                    require('./vefa/rules.assets')(CFG)
+                    require('./vefa/rules/rules.babel')(CFG),
+                    require('./vefa/rules/rules.vue')(CFG, locals),
+                    require('./vefa/rules/rules.styles')(CFG),
+                    require('./vefa/rules/rules.django')(CFG, locals),
+                    require('./vefa/rules/rules.images')(CFG),
+                    require('./vefa/rules/rules.assets')(CFG)
                 ]
         }
     })()

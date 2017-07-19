@@ -1,4 +1,4 @@
-const js_rules = 
+const reporter = require("../reporter.js")
 
 module.exports = (locals) => ({
     test: /\.js$/,

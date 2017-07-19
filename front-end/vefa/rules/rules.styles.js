@@ -1,4 +1,4 @@
-const reporter = require("./reporter.js")
+const reporter = require("../reporter.js")
 
 module.exports = (config) => {
     let postcss_opts = {
@@ -34,7 +34,7 @@ module.exports = (config) => {
     
     let library_opts =config.styles.libraries 
         ? config.styles.libraries
-        : ['../vefa/vefa-css/*']
+        : ['../../vefa/vefa-css/*']
 
     return {
         test: /\.styl$/,

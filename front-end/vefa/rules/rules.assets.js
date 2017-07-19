@@ -1,3 +1,5 @@
+const reporter = require("../reporter.js")
+
 module.exports = (config) => {
     return {
         test: /\.(eot|woff|ttf|otf|pdf|ico|xml|woff2|json|svg|)$/i,
