@@ -149,6 +149,12 @@ block content
                                 else
                                     = item.display
                             
+                            when "pct"
+                                if item.value == item.display
+                                    = `${ v(item.value) }%`
+                                else
+                                    = item.display
+
                             when "money"
                                 if item.value == item.display
                                     = `$${ v(item.value, "intcomma") }`

@@ -101,12 +101,12 @@
                         <dl class="card-data" o-base="mod--balance" o-condensed="gx--i3--gxy10 mod--static rhy--yStart0">{% if eoy_data.budget_total %}
                                     <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Annual Budget</dt>
                                     <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">${{ eoy_data.budget_total|intcomma }}
-                                    </dd>{% endif %}{% if eoy_data.funding_public %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Total Public Funding</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">${{ eoy_data.funding_public|intcomma }}
-                                    </dd>{% endif %}{% if eoy_data.funding_private %}
-                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Total Private Funding</dt>
-                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">${{ eoy_data.funding_private|intcomma }}
+                                    </dd>{% endif %}{% if eoy_data.funding_percent_public %}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Pct of Public Funding</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.funding_percent_public }}%
+                                    </dd>{% endif %}{% if eoy_data.funding_percent_private %}
+                                    <dt class="tx--small--f3--tcU thm--affiliates" o-base="pad--xy25 iso--yStart25" o-condensed="pad--x50">Pct of Private Funding</dt>
+                                    <dd class="thm--tint70 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ eoy_data.funding_percent_private }}%
                                     </dd>{% endif %}
                         </dl>
                       </div>
