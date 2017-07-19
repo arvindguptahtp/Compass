@@ -9,8 +9,6 @@ script(
 )
 script(src=static("js/app.js"))
 
-- google_uid = 'UA-6686018-11'
-
 script.
     var useAnalytics = true;
     try {
@@ -39,6 +37,6 @@ script.
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', google_uid, 'auto');
+        ga('create', 'UA-6686018-11', 'auto');
         ga('send', 'pageview');
     }
