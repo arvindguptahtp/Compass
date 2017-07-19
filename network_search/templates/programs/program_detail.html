@@ -59,6 +59,14 @@
                                           <li>{{ val|choice_display:'TiersOfService'|capfirst }}
                                           </li>{% endfor %}
                                 </ul>
+                              </dd>{% endif %}{% if program.region_other or program.region %}
+                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Region</dt>
+                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                        <p>{% if program.region_other %}{{ program.region_other }}{% else %}{% if program.region %}
+                                                                  <ul>{% for val in program.region %}
+                                                                            <li>{{ val|choice_display:'Regions'|capfirst }}</li>{% endfor %}
+                                                                  </ul>{% endif %}{% endif %}
+                                        </p>
                               </dd>{% endif %}{% if program.setting %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Setting</dt>
                               <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
@@ -74,7 +82,7 @@
                               <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if program.is_cost_free %}
                                                 <p>Free of Cost</p>{% else %}{% if program.cost_description %}
                                                                 <p style="word-break:word;">{{ program.cost_description|safe }}</p>{% endif %}{% endif %}
-                              </dd>{% endif %}{% if True %}
+                              </dd>{% endif %}{% if program.assessment_avalable %}
                               <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25" o-condensed="pad--x50">Assessment</dt>
                               <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if program.assessment_available %}
                                                 <p>Assessment Available</p>{% if program.assessment_info %}
