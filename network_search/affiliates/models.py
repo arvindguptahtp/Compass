@@ -554,7 +554,7 @@ class Affiliate(BaseResource):
     objects = affiliates
     default_manager = models.Manager()
 
-    class Meta:
+    class Meta(BaseResource.Meta):
         verbose_name = "Affiliate"
         verbose_name_plural = "Affiliates"
 
