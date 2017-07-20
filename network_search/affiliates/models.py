@@ -80,7 +80,7 @@ class AffiliateQueryset(ResourceQueryset):
         eoy = EndOfYear.years.current()
         if eoy is None:
             logger.error("Attempting to search affiliates without an active reporting year")
-            return qs
+            return qs.distinct('name')
 
         logger.debug("Searching affiliates using {}".format(eoy))
         qs = qs.filter(affiliate_eoy_data__year=eoy)
@@ -157,7 +157,7 @@ class AffiliateQueryset(ResourceQueryset):
                 }
                 qs = qs.filter(**filter_kwargs)
 
-        return qs.filter(affiliate_eoy_data__year=eoy).distinct()
+        return qs.filter(affiliate_eoy_data__year=eoy).distinct('name')
 
 
 class EndOfYear(TimeStampedModel):

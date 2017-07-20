@@ -46,7 +46,7 @@ class PartnerQueryset(ResourceQueryset):
         elif use_in_network is False:
             qs = qs.exclude(network_use=True)
 
-        return qs
+        return qs.distinct('name')
 
 
 class Partner(BaseResource):
