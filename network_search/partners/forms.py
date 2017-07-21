@@ -3,7 +3,6 @@ from django import forms
 from network_search.core import choices
 from network_search.core.forms import SearchForm
 from network_search.partners.models import Partner
-from network_search.affiliates.models import Affiliate
 
 
 class PartnerAdminForm(forms.ModelForm):
@@ -17,11 +16,6 @@ class PartnerAdminForm(forms.ModelForm):
         choices=choices.Gender.as_choices(),
         required=False,
         widget=forms.CheckboxSelectMultiple,
-    )
-    featured_network = forms.ModelMultipleChoiceField(
-        queryset=Affiliate.affiliates.all(),
-        required=False,
-        label="Featured affiliates"
     )
     setting = forms.MultipleChoiceField(
         choices=choices.Setting.as_choices(),

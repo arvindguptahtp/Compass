@@ -3,7 +3,6 @@ from django import forms
 from network_search.core import choices
 from network_search.core.forms import SearchForm
 from network_search.programs.models import Program
-from network_search.affiliates.models import Affiliate
 
 
 class ProgramAdminForm(forms.ModelForm):
@@ -66,12 +65,6 @@ class ProgramAdminForm(forms.ModelForm):
     assessment_available = forms.BooleanField(
         required=False,
         label="Assessment available?",
-    )
-
-    featured_network = forms.ModelMultipleChoiceField(
-        queryset=Affiliate.affiliates.all(),
-        required=False,
-        label="Featured affiliates"
     )
 
     class Meta:
