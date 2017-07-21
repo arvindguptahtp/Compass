@@ -26,6 +26,18 @@ def test_school_districts():
     assert affiliate.school_districts == ["City of Fun", "Town of Boring", "County of Learning"]
 
 
+@pytest.mark.django_db
+def test_affiliate_full_state():
+    """This populates the full_state_name field"""
+    affiliate = affiliate_factory(state='VA')
+    assert affiliate.full_state_name == "Virginia"
+    affiliate = affiliate_factory(state='va')
+    assert affiliate.full_state_name == "Virginia"
+
+    affiliate = affiliate_factory(state='NY')
+    assert affiliate.full_state_name == "New York"
+
+
 def test_affiliate_data_funding():
     affiliate_data = AffiliateEOYData(
         funding_public_federal=1000,

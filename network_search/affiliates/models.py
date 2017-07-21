@@ -15,6 +15,7 @@ from django.utils.functional import cached_property
 from django.contrib.postgres.fields import ArrayField
 
 from network_search.core import choices
+from network_search.core.templatetags.network_search_tags import us_state
 from network_search.core.models import DataUpload
 from network_search.core.models import BaseResource
 from network_search.core.models import ResourceQueryset
@@ -531,7 +532,7 @@ class Affiliate(BaseResource):
     All EOY data is related to this model
     """
     url_name = "affiliate_detail"
-    search_content_fields = ["name", "official_name"]
+    search_content_fields = ["name", "official_name", "full_state_name"]
 
     # Descriptive organizational info
     state = models.CharField(max_length=2)
@@ -549,6 +550,7 @@ class Affiliate(BaseResource):
         max_length=3,
         choices=choices.AffiliateLocation.as_choices(),
     )
+    full_state_name = models.CharField(max_length=100, null=True, editable=False)
 
     affiliates = AffiliateQueryset.as_manager()
     objects = affiliates
@@ -563,6 +565,10 @@ class Affiliate(BaseResource):
         Get the affiliate data for the latest published reporting year
         """
         return self.affiliate_eoy_data.filter(year=EndOfYear.years.current()).first()
+
+    def save(self, **kwargs):
+        self.full_state_name = us_state(self.state)
+        super().save(**kwargs)
 
 
 class SchoolEOYData(TimeStampedModel):
