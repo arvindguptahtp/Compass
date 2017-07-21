@@ -1,6 +1,7 @@
 from django import forms
 
 from network_search.core.models import Link
+from network_search.affiliates.models import Affiliate
 
 
 class SearchForm(forms.Form):
@@ -25,3 +26,14 @@ class RequiredLinkForm(forms.ModelForm):
     class Meta:
         fields = '__all__'
         model = Link
+
+
+class FeaturedMixin:
+    """Filter featured affiliates"""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if getattr(self.instance, 'pk'):
+            self.fields['featured_network'].queryset = self.instance.network_use.all()
+        else:
+            self.fields['featured_network'].queryset = Affiliate.affiliates.none()

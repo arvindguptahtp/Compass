@@ -1,11 +1,12 @@
 from django import forms
 
 from network_search.core import choices
+from network_search.core.forms import FeaturedMixin
 from network_search.core.forms import SearchForm
 from network_search.partners.models import Partner
 
 
-class PartnerAdminForm(forms.ModelForm):
+class PartnerAdminForm(FeaturedMixin, forms.ModelForm):
 
     grade = forms.MultipleChoiceField(
         choices=choices.PartnerGrades.as_choices(),
