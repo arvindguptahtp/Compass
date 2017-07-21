@@ -37,3 +37,6 @@ class PartnerAdmin(admin.ModelAdmin):
                        'cost_description', 'is_core_partner', 'network_use', 'featured_network'),
         }),
     )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).active()

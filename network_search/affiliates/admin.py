@@ -31,6 +31,9 @@ class AffiliateAdmin(admin.ModelAdmin):
     list_display = ('name', 'state')
     search_fields = ('name', 'state')
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).active()
+
 
 @admin.register(models.EndOfYear)
 class EndOfYearAdmin(admin.ModelAdmin):

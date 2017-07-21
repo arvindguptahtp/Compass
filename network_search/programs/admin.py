@@ -51,3 +51,6 @@ class ProgramAdmin(admin.ModelAdmin):
             'fields': ['outcomes', 'tiers_of_evidence'],
         }),
     ]
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).active()
