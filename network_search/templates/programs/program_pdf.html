@@ -5,6 +5,14 @@
     <section>
         <h3>Description</h3>
         <p>{{ program.description }}</p>
+        {% if program.program_weblink %}
+            <p>More information: <a href="{{ program.program_weblink }}">{{ program.program_weblink }}</a></p>
+        {% endif %}
+
+    {% if program.national_partner %}
+        National Partner Organization: <a href="{{ base_url }}{{ program.national_partner.get_absolute_url }}">{{ program.national_partner }}</a>
+    {% endif %}
+
     </section>
 
     <section>
@@ -19,6 +27,15 @@
 
             <h4>Race</h4>
             {% pdf_choices program.race "Race" %}
+
+            <h4>Student Needs</h4>
+            {% pdf_choices program.student_need "StudentNeeds" %}
+
+            <h4>Student Characteristics</h4>
+            {% pdf_choices program.student_characteristics "StudentCharacteristics" %}
+
+            <h4>CIS Core Services</h4>
+            {% pdf_choices program.service_categories "CoreServices" %}
 
         </div>
 
@@ -35,6 +52,32 @@
             <h4>Tier of Evidence</h4>
             {% pdf_choices program.tiers_of_evidence "TiersOfEvidence" %}
 
+            <h4>Region</h4>
+            {% if program.region_other %}
+                {{ program.region_other }}
+            {% else %}
+                {% pdf_choices program.region "Regions" %}
+            {% endif %}
+
+            <h4>Fees</h4>
+            {% if program.is_cost_free %}
+                No fees associated with the program
+            {% else %}
+                {{ program.cost_description }}
+            {% endif %}
+
+        <h4>Assessment</h4>
+            {% if program.assessment_available %}
+                {{ program.assessment_info }}
+            {% else %}
+                No assessment is available.
+            {% endif %}
+
+        {% if program.outcomes %}
+        <h4>Outcomes</h4>
+            <p>{{ program.outcomes }}</p>
+        {% endif %}
+
         </div>
 
     </section>
@@ -45,14 +88,46 @@
         {% if not program.network_use.exists %}
             This program is not used by the Communities In School network.
         {% else %}
-            <h3>Featured Affiliates</h3>
-            {% for affiliate in program.featured_network.all %}
-            {% endfor %}
-            {% for affiliate in program.network_use.all %}
-                <li><a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a></li>
-            {% endfor %}
+            {% if program.featured_network.exists %}
+                <h3>Featured Affiliates</h3>
+                {% for affiliate in program.featured_network.all %}
+                    <li><a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a></li>
+                {% endfor %}
+            {% else %}
+                This program is used in the Communities In Schools network.
+            {% endif %}
 
         {% endif %}
+    </section>
+
+    <section class="resources">
+    <h3>Additional Resources</h3>
+    {% for resource in program.additional_resources.all %}
+        <li>
+            {% if resource.url %}<a href="{{ resource.url }}">{% endif %}
+            {{ resource.label }}
+            {% if resource.url and resource.title %}({{ resource.url }}){% endif %}
+            {% if resource.url %}</a>{% endif %}
+        </li>
+    {% endfor %}
+
+        {% for resource in program.national_databases.all %}
+            <li>
+                {% if resource.url %}<a href="{{ resource.url }}">{% endif %}
+                {{ resource.label }}
+                {% if resource.url and resource.title %}({{ resource.url }}){% endif %}
+                {% if resource.url %}</a>{% endif %}
+            </li>
+        {% endfor %}
+
+        {% for resource in program.related_resources.all %}
+            <li>
+                {% if resource.url %}<a href="{{ resource.url }}">{% endif %}
+                {{ resource.label }}
+                {% if resource.url and resource.title %}({{ resource.url }}){% endif %}
+                {% if resource.url %}</a>{% endif %}
+            </li>
+        {% endfor %}
     </section>
 
 
