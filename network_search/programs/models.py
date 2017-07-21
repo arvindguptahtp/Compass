@@ -48,7 +48,7 @@ class ProgramQueryset(ResourceQueryset):
 
 class Program(BaseResource):
     url_name = "program_detail"
-    search_content_fields = ['name']
+    search_content_fields = ['name', 'summary', 'description']
 
     summary = models.TextField(blank=True)
     description = models.TextField(blank=True)
