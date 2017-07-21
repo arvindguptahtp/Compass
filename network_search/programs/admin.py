@@ -25,7 +25,7 @@ class RelatedResourceInline(admin.TabularInline):
 @admin.register(Program)
 class ProgramAdmin(admin.ModelAdmin):
     form = ProgramAdminForm
-    filter_horizontal = ['network_use']
+    filter_horizontal = ['network_use', 'featured_network']
     inlines = [NationalDatabaseInline, RelatedResourceInline, AdditionalResourceInline]
 
     fieldsets = [

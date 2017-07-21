@@ -20,7 +20,7 @@ class PresentationInline(admin.TabularInline):
 class PartnerAdmin(admin.ModelAdmin):
     form = PartnerAdminForm
     inlines = [WebinarInline, PresentationInline]
-    filter_horizontal = ['network_use']
+    filter_horizontal = ['network_use', 'featured_network']
     fieldsets = (
         (None, {
             'fields': ('name',),
