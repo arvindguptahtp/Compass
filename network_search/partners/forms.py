@@ -58,13 +58,6 @@ class PartnerAdminForm(forms.ModelForm):
         model = Partner
         exclude = ['search_content']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        if getattr(self.instance, 'pk'):
-            self.fields['featured_network'].queryset = self.instance.network_use.all()
-        else:
-            self.fields['featured_network'].queryset = Affiliate.affiliates.none()
-
 
 class PartnerSearchForm(SearchForm):
     """
