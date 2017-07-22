@@ -15,11 +15,6 @@ block instance
                 featured: 'featured_network'
             })
 
-        //- cost: 'partner.is_cost_free',
-        //- cost_desc: 'partner.cost_description',
-        //- core_partner: 'partner.is_core_partner',
-
-
 block premain
     div.detail-hdr(
         o-base="col--pStart ord--next"
@@ -34,7 +29,7 @@ block premain
                             icon: page.icon
                         }
                     )
-                    .mixin({
+                    .dom_mix({
                         element: {
                             class: `thm--texture-tint ${page.impact_color}`,
 
@@ -47,7 +42,7 @@ block premain
 
 block asset_controls
     div(
-        o-base="row--pStart--sMiddle mod--balance"
+        o-base="row--pEnd--sMiddle mod--balance"
     )
         +if(page.website.io())
             include /controls/action
@@ -56,7 +51,7 @@ block asset_controls
                         url: page.website.io(),
                         label: `Website`
                     })
-                    .define({
+                    .dom_mix({
                         element: {
                             class: "tx--small--f3 rxn--ctrl-impt fx--shift"
                         }
@@ -69,7 +64,7 @@ block asset_controls
                     label: "Download PDF report",
                     name: page.title.tag()
                 })
-                .define({
+                .dom_mix({
                     element: {
                         class: "tx--small--f3 rxn--ctrl-download fx--shift"
                     }
@@ -83,7 +78,7 @@ block detail_a
             vefa.
                 data({
                     heading: "Partner Information",
-                    map: [
+                    items: [
                         ["mixin", "Representative", "card_contact"],
                         ["text", "Core Partner", page.is_core_partner.io()],
                         ["group", "Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
@@ -116,7 +111,7 @@ block detail_a
             vefa
                 .data({
                     heading: "Student Demographics",
-                    map: [
+                    items: [
                         ["group", "Grade Level", page.grade.io(), "PartnerGrades"],
                         ["group", "Gender", page.gender.io(), 'Gender'],
                     ]
@@ -137,7 +132,7 @@ block detail_b
                             heading: "Mission",
                             copy: page.mission.io()
                         })
-                        .mixin({
+                        .dom_mix({
                             element: {
                                 class: "thm--shade5 vx--z100",
                                 "o-extended": "gxs--s2"
@@ -155,7 +150,7 @@ block detail_b
                         heading: "Overview",
                         copy: page.overview.io()
                     })
-                    .mixin({
+                    .dom_mix({
                         element: {
                             class: "thm--shade5 vx--z100",
                             "o-extended": "gxs--s2"
@@ -173,7 +168,7 @@ block detail_b
                         heading: "CIS Core Service Categories",
                         services: page.services.io()
                     })
-                    .mixin({
+                    .dom_mix({
                         element: {
                             class: "vx--z100"
                         }
@@ -197,7 +192,7 @@ block detail_b
                             ["group", page.network_use.io(), "Affiliate", false, `not in ${ page.featured.io() }`],
                         ], 
                     })
-                    .mixin({
+                    .dom_mix({
                         element: {
                             class: "vx--z100"
                         }
@@ -214,7 +209,7 @@ block detail_b
                             ["group", page.presentations.io(), "Presentation", "external"],
                         ], 
                     })
-                    .mixin({
+                    .dom_mix({
                         element: {
                             class: "vx--z100"
                         }

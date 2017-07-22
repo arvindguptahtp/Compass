@@ -1,18 +1,13 @@
 title: Programs
 
 fm_search:
-    -   name: Search
+    -   name: Search Filters
         type: fieldset
         fields:
             q:
                 name: q
                 label: Keywords
                 widget: text
-
-            services:
-                name: services
-                label: CIS Core Services
-                widget: multi_icon
         
     -   name: Demographics
         type: fieldset
@@ -40,6 +35,12 @@ fm_search:
                 label: Targeted Student Needs
                 fold: true
                 widget: multi
+
+            services:
+                name: services
+                label: CIS Core Service Categories
+                fold: true
+                widget: multi_icon
     
     -   name: Program Details
         type: fieldset

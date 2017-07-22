@@ -3,14 +3,12 @@ extends _abstract
 block subclass
     -
         vefa
-            .define({
-                class: "poster--text",
-                data: {
+            .define("poster--text")
+                .data({
                     title: "Generic"
-                }
-            })
-            .mixin({
-                element: {
-                    "o-base": "row--pStart--sMiddle"
-                }
-            })
+                })
+                .dom_mix({
+                    element: {
+                        "o-base": "row--pStart--sMiddle"
+                    }
+                })

@@ -2,17 +2,18 @@ extends _abstract
 
 block component
     -
-        vefa.define({
-            class: "fm-field--single",
-            data: {
-                type: "radio",
+        vefa.define("fm-field--single")
+            .options({
+                type: "radio"
+            })
+            .data({
                 choice: {
                     label: 'choice_label',
                     value: 'choice_value'
                 },
                 index: 'forloop.counter'
-            },
-            computed: {
+            })
+            .computed({
                 choices () {
                     return `choice_value, choice_label in form.${this.name}.field.choices`
                 },
@@ -25,19 +26,7 @@ block component
                         "o-base": "mod--static",
                     }
                 }
-            },
-            //- control: {
-            //-     class: "tx--small--f3--100--ls100 rhy--xStart50 rxn--shade60 fx--shift ico--xl",
-            //-     "o-base": "row--pStart--sBase pad--x50 pad--y25 rhy--xStart25",
-            //- }, 
-            //- control_label: {
-            //-     "o-base": "mod--balance"
-            //- },
-            //- control_group: {
-            //-     class: "thm--shade20",
-            //-     "o-base": "col--pStart--sStart"
-            //- }
-        })
+            })
 
 
 
@@ -46,10 +35,8 @@ block hdr
         = field.label
 
 
-
 block bd
-    //- come back to this, as we aren't using this now
-    //- if choices[field.name]
+    
     div(slot="bd")&attributes(field.field_group)
         +for(field.choices)
             

@@ -2,27 +2,26 @@ extends /_vefa
 
 block init
     -
-        vefa = new Vefa({
-            class: "card",
-            data: {
+        vefa = new Vefa("card")
+            .data({
                 exists: "True",
                 impact_theme: (page && page.impact_theme) ? page.impact_theme : "",
                 impact_color: (page && page.impact_color) ? page.impact_color : "",
-            },
-            element: {
-                "o-base": "col--pStart"
-            },
-            hdr: {
-                "o-base": "row--pGrid--sMiddle mod--static pad--x50 pad--y25"
-            },
-            hed: {
-                class: "tx--maj--f1--100--aa"
-            },
-            bd: {
-                "o-base": "mod--balance pad--xy25 rhy--yStart25"
-            }
-        })
-
+            })
+            .dom({
+                element: {
+                    "o-base": "col--pStart"
+                },
+                hdr: {
+                    "o-base": "row--pGrid--sMiddle mod--static pad--x50 pad--y25"
+                },
+                hed: {
+                    class: "tx--maj--f1--100--aa"
+                },
+                bd: {
+                    "o-base": "mod--balance pad--xy25 rhy--yStart25"
+                }
+            })
 
 
 block view

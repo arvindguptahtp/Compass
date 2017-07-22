@@ -3,11 +3,8 @@ extends _abstract
 
 block variant
     -
-        vefa
-            .define({
-                class: "poster--icon",
-            })
-            .mixin({
+        vefa.define("poster--icon")
+            .dom_mix({
                 element: {
                     class: "row--pStart--sMiddle gx--poster tx--broadside"
                 },

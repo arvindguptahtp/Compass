@@ -12,17 +12,17 @@ block init
     //- error_msg: {},
 
     -
-        vefa = new Vefa({
-            class: 'field',
-            data: {
+        vefa = new Vefa('field')
+            .data({
                 name: "field",
                 label: "Label",
+                form: bus.get("form") || "form",
                 required: false,
                 placeholder: false,
+                autofocus: false,
                 index: false,
-            },
-            inject: ['form'],
-            computed: {
+            })
+            .computed({
                 uid () {
                     return (this.index)
                         ? `id_${this.name}_${ v(this.index) }`
@@ -31,38 +31,47 @@ block init
                 value () {
                     return `${ this.form }.${ this.name }.value`
                 }
-            },
-            field: {
-                class: "tx--f3--100--ls100 rhy--xStart50 thm--tint20 rxn--shade60 fx--shift",
-                "o-base": "row--pStart--sBase pad--x50 pad--y25 rhy--xStart25",
-                "o-standard": "tx--small"
-            },
-            field_control: {
-                class: "tx--f3--400--ls100--aa rhy--xStart50 rxn--shade60 fx--shift",
-                "o-base": "row--pGrid--sBase pad--x50 pad--y25 rhy--xStart25",
-                "o-standard": "tx--small"
-            },
-            field_group: {
-                class: "thm--shade20",
-                "o-base": "col--pStart--sStart"
-            },
-            field_label: {
-                class: "tx--small--f3--900--tcU--aa",
-                "o-base": "mod--balance",
-            },
-            fold_label: {
-                class: "tx--small--f3--900--tcU--aa rxn--shade60 fx--shift",
-                "o-base": "row--pGrid--sBase mod--balance pad--x50 pad--y25 rhy--xStart25",
-            }
-        })
+            })
+            .dom({
+                element: {},
+                field: {
+                    class: "tx--f3--100--ls100 rhy--xStart50 thm--tint20 rxn--shade60 fx--shift",
+                    "o-base": "row--pStart--sBase pad--x50 pad--y25 rhy--xStart25",
+                    "o-standard": "tx--small"
+                },
+                field_control: {
+                    class: "tx--f3--400--ls100--aa rhy--xStart50 rxn--shade60 fx--shift",
+                    "o-base": "row--pGrid--sBase pad--x50 pad--y25 rhy--xStart25",
+                    "o-standard": "tx--small"
+                },
+                field_group: {
+                    class: "thm--shade20",
+                    "o-base": "col--pStart--sStart"
+                },
+                field_label: {
+                    class: "tx--small--f3--900--tcU--aa",
+                    "o-base": "mod--balance",
+                },
+                fold_label: {
+                    class: "tx--small--f3--900--tcU--aa rxn--shade60 fx--shift",
+                    "o-base": "row--pGrid--sBase mod--balance pad--x50 pad--y25 rhy--xStart25",
+                }
+            })
 
-        if(bus.data.field){
-            vefa.data(bus.data.field)
+        //- override based on bus
+        if (bus.has("field")) {
+            vefa.data(bus.get("field"))
         }
 
 
 
 block view
+    //- -
+    //-         console.log(vefa.$data.form)
+    //-         console.log(field.$data.form)
+    //-         console.log(bus.get("field").name)
+    //-         console.log(vefa.$data)
+    //-         console.log(field.$data)
     div(
         class=field.class        
         title=field.label
@@ -89,13 +98,14 @@ block view
                     id=field.uid
                     name=field.name
                     placeholder=field.placeholder
+                    autofocus=field.autofocus
                     value=attr_switch(`${ field.value } != None`, v(field.value, "stringformat:'s'", "default_if_none:''"))
                     required=field.required
                 )&attributes(field.field)
 
 
-            //- block help_msg
+            block help_msg
 
-            //- block error_msg
+            block error_msg
 
-            //- block ftr
+            block ftr

@@ -2,13 +2,11 @@ extends /_vefa
 
 block init
     -
-        vefa = new Vefa({
-            class: "copy",
-            data: {
+        vefa = new Vefa("copy")
+            .data({
                 heading: "Card Header",
                 copy: "Some content"
-            }
-        })
+            })
 
 
 

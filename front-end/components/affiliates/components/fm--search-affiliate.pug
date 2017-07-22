@@ -2,9 +2,7 @@ extends /forms/fm--search
 
 block instance
     -
-        vefa.define({
-            class: 'fm--search-affiliate',
-            data: {
+        vefa.define('fm--search-affiliate')
+            .data({
                 fieldsets: affiliates.fm_search
-            }
-        })
+            })

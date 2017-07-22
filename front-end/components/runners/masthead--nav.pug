@@ -31,23 +31,16 @@ nav.masthead--nav.thm--dark(
             each instance in nav.primary
                 include /navigation/nav-item--static--icon
                     -
-                        nav_item.define(
-                            "nav-item--static--icon",
-                            {
-                                data: {
-                                    route: instance
-                                },
+                        nav_item
+                            .data({
+                                route: instance
+                            })
+                            .dom_mix({
                                 element: {
                                     class: "masthead-nav-item hl--xStart--bTint",
-                                    "o-base": "col--pStart--xAuto mod--static",
                                     "o-full": "hl--xy0 hl--yEnd--bTint"
                                 },
                                 control: {
-                                    class: `masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift`,
-                                    "o-base": "row--pStart--sMiddle pad--xy50 ico--md",
+                                    class: "masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift",
                                 },
-                                label: {
-                                    class: "vx--a11y"
-                                }
-                            }
-                        )
+                            })

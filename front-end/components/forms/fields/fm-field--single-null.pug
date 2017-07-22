@@ -3,18 +3,18 @@ extends fm-field--single
 
 block variant
     -
-        vefa.define({
-            computed: {
+        vefa.computed({
                 choices () {
                     return `choice_value, choice_label in form.${this.name}.field.widget.choices`
                 },
-            }
-        })
+            })
 
 
 
 prepend choices
     +cycle("None True False as value silent")
+
+
 
 block input_int
     +ifequal(field.value, 'value')

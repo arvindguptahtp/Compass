@@ -2,10 +2,9 @@ extends /_vefa
 
 block init
     -
-        vefa = new Vefa({
-            class: "strata"
-        })
+        vefa = new Vefa("strata")
     
+
 //- make sure that the yielded content doesnt go to the vefa abstract
 //- block instance
 
@@ -14,8 +13,10 @@ block view
         class=strata.class
     )&attributes(strata.element)
         
+        block bd
         if pug_mixins.strata_view
             +strata_view()
+
 
 block teardown
     if pug_mixins.strata_view

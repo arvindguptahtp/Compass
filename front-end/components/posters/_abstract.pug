@@ -2,19 +2,19 @@ extends /_vefa
 
 block init
     -
-        vefa = new Vefa({
-            class: "poster",
-            element: {
-                "o-base": "pad--xStart50 pad--y100",
-                "o-condensed": "pad--y150",
-                "o-enhanced": "pad--xStart100 pad--y200"
-            },
-            hed: {
-                class: "tx--broadside--f1--tcU",
-            },
-        })
+        vefa = new Vefa("poster")
+            .dom({
+                element: {
+                    "o-base": "pad--xStart50 pad--y100",
+                    "o-condensed": "pad--y150",
+                    "o-enhanced": "pad--xStart100 pad--y200"
+                },
+                hed: {
+                    class: "tx--broadside--f1--tcU",
+                },
+            })
 
-//- row--pStart--sBase mod--static
+
 
 block view
     header(

@@ -2,9 +2,24 @@ extends _abstract
 
 block component
     -
-        vefa.define({
-            class: "fm-field--text",
-            data: {
+        vefa.define("fm-field--text")
+            .options({
                 type: 'text'
-            }
-        })
+            })
+
+
+//- block preinstance
+//-     -
+//-         vefa.echo("preinstance global")
+//-         vefa.echo("preinstance current stack", Vefa.get_current())
+
+
+//- //- block instance
+//- //-     -
+//- //-         vefa.echo("instance global")
+//- //-         vefa.echo("instance current stack", Vefa.get_current())
+
+//- append instance
+//-     -
+//-         vefa.echo("appendinstance global")
+//-         vefa.echo("appendinstance current stack", Vefa.get_current())

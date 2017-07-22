@@ -2,32 +2,37 @@ extends /_vefa
 
 block init
     -
-        vefa = new Vefa({
-            class: "ctrl",
-            data: {
+        vefa = new Vefa("ctrl")
+            .data({
+                slug: false,
                 url: false,
                 target: false,
                 label: false
-            },
-            element: {
-                "o-base": "row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm",
-                "o-condensed": "rhy--xStart50",
-            },
-        })
-
-
-//- block instance
-//-     yield
+            })
+            .computed({
+                get_absolute_url () {
+                    if (this.url) {
+                        return this.url
+                    }
+                    else if (this.slug) {
+                        return url(this.slug)
+                    }
+                },   
+            })
+            .dom({
+                element: {
+                    "o-base": "row--pMiddle--sMiddle--xAuto pad--x50 pad--y10 rhy--xStart25 ico--sm",
+                    "o-condensed": "rhy--xStart50"
+                },
+            })
 
 
 block view
     a(
         class=ctrl.class
-        href=v(ctrl.url)
+        href=ctrl.get_absolute_url
         target=ctrl.target
     )&attributes(ctrl.element)
-
-        //- block icon
 
         block bd
             span= ctrl.label

@@ -1,4 +1,4 @@
-const reporter = require("../reporter.js")
+const reporter = require("../lib/reporter.js")
 
 module.exports = (config) => {
     

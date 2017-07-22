@@ -2,19 +2,20 @@ extends /cards/result
 
 block instance
     -
-        vefa.define({
-            class: 'gx--result-programs',
-        })
-        .data({
-            key: "program",
-            labels: {
-                network_yes: "Used by CIS Network",
-                network_no: false
-            }
-        })
+        vefa.define("card--result-programs")
+            .data({
+                key: "program",
+                labels: {
+                    network_yes: "Used by CIS Network",
+                    network_no: false
+                }
+            })
+            .dom_mix({
+                element: {
+                    class: 'gx--result-programs',
+                }
+            })
     
-    if django
-        -
             vefa.data({
                 title: "program",
                 slug: 'get_absolute_url',
@@ -42,14 +43,14 @@ block result_overview
             include /controls/action
                 -
                     vefa.data({
-                        url: card.slug.io(),
+                        url: card.slug.tag(),
                         label: "View Profile"
                     })
 
 
 block result_ebr                    
     dd.gxi--ebr.thm--dark
-        - bus.data({ ebr: card.ebr.io() })
+        - bus.set("ebr", card.ebr.io())
         include /cards/ebr
 
 
@@ -85,7 +86,7 @@ block result_services
                 h5.tx--small--f1--100--tcU--taMiddle(
                     o-base="pad--x25 pad--y10"
                     o-condensed="pad--x50 pad--y25"
-                ) CIS Core Services
+                ) CIS Core Service Categories
 
             ul.card-bd.gx--auto.thm--shade50(
                 o-base="mod--balance"

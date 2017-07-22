@@ -5,19 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   </head>
-  <title>Welcome : CIS Search Tool</title>{% include 'includes/css.html' %}{% include 'includes/head_js.html' %}{% load static %}
-  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'res/favicons/apple-touch-icon.png' %}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'res/favicons/favicon-32x32.png' %}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'res/favicons/favicon-16x16.png' %}">
-  <link rel="manifest" href="{% static 'res/favicons/manifest.json' %}">
-  <link rel="mask-icon" href="{% static 'res/favicons/safari-pinned-tab.svg' %}" color="#00539e">
-  <link rel="shortcut icon" href="{% static 'res/favicons/favicon.ico' %}">
-  <meta name="apple-mobile-web-app-title" content="Communities In Schools">
-  <meta name="application-name" content="Communities In Schools">
-  <meta name="theme-color" content="#00539e">{% include 'includes/favicons.html' %}
+  <title>Welcome : CIS Search Tool</title>{% include 'includes/css.html' %}{% include 'includes/head_js.html' %}{% include 'includes/favicons.html' %}
   <meta name="apple-mobile-web-app-title" content="CIS Search Tool">
   <meta name="application-name" content="CIS Search Tool">
-  <meta name="theme-color" content="#ffåffff">
+  <meta name="theme-color" content="#ffffff">
   <meta name="format-detection" content="telephone=no">
 </html>
 <body o-base="col--pStart" o-full="gx--ui" dir="ltr" ontouchstart="" onmouseover="">{% include 'includes/icons.html' %}
@@ -62,10 +53,10 @@
     </div>
   </main>
   <div o-base="ord--next" o-extended="gxi--e">
-    <div class="strata thm--light-alt hl--yStart--bTint" o-base="col--pStart pad--xy50 rhy--yStart100" o-enhanced="pad--xy100">
-          <aside class="tx--maj--f1--100" o-base="col--pMiddle--sMiddle rhy--yStart25" o-condensed="row--pEnd--sMiddle rhy--xStart50">
-            <p>Please submit your feedback on our new tool:</p><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="{{ 'https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link' }}" target="_blank" o-base="row--pMiddle--sMiddle--xAuto rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>Fill out our survey</span></a>
-          </aside>
+    <div class="strata thm--light-alt hl--yStart--bTint" o-base="col--pStart pad--xy50 rhy--yStart100" o-enhanced="pad--xy100 pad--xy100">
+      <aside class="tx--maj--f1--100" o-base="col--pMiddle--sMiddle rhy--yStart25" o-condensed="row--pEnd--sMiddle rhy--xStart50">
+        <p>Please submit your feedback on our new tool:</p><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link" target="_blank" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 ico--sm pad--y25" o-condensed="rhy--xStart50"><span>Fill out our survey</span></a>
+      </aside>
     </div>
   </div>
   <nav class="masthead--nav thm--dark" role="navigation" o-base="row--pStart pad--xStart50 ord--start z--masthead" o-enhanced="pad--xStart100 pad--xEnd50" o-full="gxi--c pad--xy0">   <a class="masthead-home" href="/" target="_top" o-base="row--pMiddle--sMiddle--xAuto mod--fit pad--y50 iso--xEndAuto" o-condensed="pad--y25" o-full="vx--hidden">  
@@ -73,15 +64,15 @@
         <source srcset="{% static 'res/logo.full.inverse.png.webp' %}" type="image/webp"><img class="site-logo" src="{% static 'res/logo.full.inverse.png' %}">
       </picture></a>
     <nav o-base="row--pStart--xAuto" o-enhanced="hl--xEnd--bTint" o-full="col--pStart hl--xy0 hl--yStart--bTint">{% url 'affiliate_list' as slug %}
-      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--affiliates" href="{% url 'affiliate_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
+      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} rxn--affiliates masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift" href="{% url 'affiliate_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
             <use xlink:href="#ico--affiliates"></use>
           </svg><span class="vx--a11y">Affiliates</span></a></li>{% url 'program_list' as slug %}
-      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--programs" href="{% url 'program_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
+      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} rxn--programs masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift" href="{% url 'program_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
             <use xlink:href="#ico--programs"></use>
           </svg><span class="vx--a11y">Programs</span></a></li>{% url 'partner_list' as slug %}
-      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift rxn--partners" href="{% url 'partner_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
+      <li class="nav-item--static--icon masthead-nav-item hl--xStart--bTint" o-base="col--pStart--xAuto mod--static" o-full="hl--xy0 hl--yEnd--bTint hl--xy0 hl--yEnd--bTint"><a class="{% if slug in request.path %}is-active {% endif %} rxn--partners masthead-nav-ctrl tx--display--taMiddle--f1--100 fx--shift" href="{% url 'partner_list' %}" o-base="row--pStart--sMiddle pad--xy50 ico--md">
           <svg class="ico">
             <use xlink:href="#ico--partners"></use>
           </svg><span class="vx--a11y">Partners</span></a></li>

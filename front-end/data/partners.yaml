@@ -3,18 +3,13 @@ summary: >
     Partnerships are a key part of the CIS model. More importantly, strong partnerships ensure that we are delivering our model with fidelity. For years CIS has been partnering with other organizations to help reach the millions of students across our nation. All partners you find during your search on this site have been vetted by the national office partnership and evaluation team. Not finding what you’re looking for or need help? Contact Ashlee Chapman at [chapmana@cisnet.org](mailto:chapmana@cisnet.org).
 
 fm_search:
-    -   name: Search
+    -   name: Search Filters
         type: fieldset
         fields:
             q:  
                 name: q
                 label: Keywords
                 widget: text
-
-            services:
-                name: services
-                label: CIS Core Service Categories
-                widget: multi_icon
 
     -   name: Demographics
         type: fieldset
@@ -36,6 +31,12 @@ fm_search:
                 label: Student Needs
                 fold: true
                 widget: multi
+
+            services:
+                name: services
+                label: CIS Core Service Categories
+                fold: true
+                widget: multi_icon
     
     -   name: Partner Details
         type: fieldset

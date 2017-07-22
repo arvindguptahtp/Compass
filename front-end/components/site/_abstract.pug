@@ -2,14 +2,12 @@ extends /_vefa
 
 block init
     -
-        vefa = new Vefa({
-            class: "page",
-            _title_type: 'static_titlebar',
-            data: {
+        vefa = new Vefa("page")
+            .data({
                 title: false,
-                icon: false,
-            },
-            methods: {
+                icon: false
+            })
+            .methods({
                 data_titlebar () {
                     let title = (this.title.tag)
                         ? `${ this.title.tag() } : `
@@ -24,13 +22,15 @@ block init
                         
                     return `${title}${site.title}`
                 },
-            },
-            computed: {
-                titlebar (type = this._title_type) {
-                    return this[type]()
+            })
+            .computed({
+                titlebar (type = this.title_type) {
+                    return this[`${type}_titlebar`]()
                 }
-            }
-        })
+            })
+            .options({
+                title_type: 'static',
+            })
 
 
 
@@ -51,11 +51,10 @@ block view
         block head_js
             +include('includes/head_js')
         
-        include /includes/favicons
         +include('includes/favicons')
         meta(name="apple-mobile-web-app-title" content=site.title)
         meta(name="application-name" content=site.title)
-        meta(name="theme-color" content="#ffåffff")
+        meta(name="theme-color" content="#ffffff")
 
         block metatags
 

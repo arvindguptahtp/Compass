@@ -1,6 +1,4 @@
 include /_django
--
-    bus = bus || new Vefa({ class: "bus" })
 
 mixin iter(num=1)
     - run = Array(num).fill(0)
@@ -8,6 +6,7 @@ mixin iter(num=1)
     while index < num
         block
         - index++
+
 
     
 //--------------------------------------------
@@ -18,6 +17,8 @@ mixin iter(num=1)
 //- 
 //--------------------------------------------
 -
+    bus = bus || new Vefa("bus")
+    
     {
         let vefa = { }
 
@@ -44,8 +45,11 @@ block init
         if (vefa._view) {
             eval(`${vefa._view.toString()} = vefa`)
         }
+        bus.set("lifecycle", "subclass")
 block subclass
+- bus.set("lifecycle", "component")
 block component
+- bus.set("lifecycle", "variant")
 block variant
 
 -
@@ -53,7 +57,6 @@ block variant
         //- Vefa.$dump(vefa, "On Subclass")
         Vefa.set_current(vefa)
     }
-
 
 
 //--------------------------------------------
@@ -65,9 +68,13 @@ block variant
 //- 
 //- 
 //--------------------------------------------
+
+
 -
     {
+        bus.set("lifecycle", "instance")
         let vefa = Vefa.get_current()
+        
 
 block instance
     yield
@@ -78,7 +85,6 @@ block instance
         Vefa.set_current(vefa)
 
     }
-
 //--------------------------------------------
 //- 
 //- MOUNT SCOPE
@@ -88,16 +94,14 @@ block instance
 //--------------------------------------------
 -
     {
+        bus.set("lifecycle", "before_mount")
         let vefa = Vefa.get_current()
         Vefa.run_lifecycle(vefa, "before_mount")
-        //- Vefa.$inject(vefa)
         Vefa.$weave(vefa)
+        bus.set("lifecycle", "on_mount")
         Vefa.run_lifecycle(vefa, "on_mount")
-        //- Vefa.$dump(vefa, "On Mount")
         Vefa.set_current(vefa)
     }
-
-
 
 //--------------------------------------------
 //- 
@@ -108,25 +112,12 @@ block instance
 //--------------------------------------------
 -
     {
-        let view = vefa = Vefa.get_current()
-        //- make the view variable into a local variable
+        bus.set("lifecycle", "view")
+        let vefa = Vefa.get_current()
+        vefa = (vefa.proxied) ? Vefa.proxy(vefa) : vefa
+        //- make view and the vefa._view variable into a local variable reflect the vefa member
+        let view = vefa
         if (vefa._view) eval(`${vefa._view.toString()} = vefa`)
-        
-        let proxy = function () {
-            vefa = new Proxy(
-                Vefa.get_current(),
-                {
-                    get: function(target, name) {
-                        return name in target 
-                            ? target[name]
-                            : name
-                    }
-                }
-            )
-            
-            if (vefa._view) eval(`${vefa._view.toString()} = vefa`)
-        }
-        
 
 
 block view
@@ -146,11 +137,12 @@ block view
 //--------------------------------------------
 -
     {
+        bus.set("lifecycle", "teardown")
         let vefa = Vefa.get_current()
 
 block teardown
 
 -
         Vefa.run_lifecycle(vefa, "on_teardown")
-        Vefa.$unravel(vefa) 
+        Vefa.$unravel(vefa)
     }

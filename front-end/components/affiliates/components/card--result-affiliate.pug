@@ -2,23 +2,21 @@ extends /cards/result
 
 block instance
     -
-        vefa.define({
-            class: 'card--result-partner',
-            data: {
+        vefa.define('card--result-partner')
+            .proxy()
+            .data({
                 key: 'affiliate',
                 labels: {
                     network_yes: 'Active in Network',
                     network_no: 'Inactive in Network'
                 }
-            },
-            element: {
-                class: 'gx--result-affiliate',
-            }
-            
-        })
+            })
+            .dom_mix({
+                element: {
+                    class: 'gx--result-affiliate',
+                }
+            })
 
-    if django
-        -
             vefa
                 .data({
                     title: 'affiliate',
@@ -35,7 +33,7 @@ block result_overview
         include /controls/action
             -
                 vefa.data({
-                    url: card.slug.io(),
+                    url: card.slug.tag(),
                     label: "View Profile"
                 })
 

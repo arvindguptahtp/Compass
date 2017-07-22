@@ -2,14 +2,11 @@ extends /site/general
 
 block instance
     -
-        vefa.define({
-            class: "page--index",
-            data: {
-                title: "Welcome"
-            },
-        })
-    
+        vefa
+            .define("page--index")
+            .data({ title: "Welcome"})
 
+    
 block premain
     include /posters/text
         -
@@ -17,7 +14,7 @@ block premain
                 .data(
                     { title: site.title }
                 )
-                .mixin({
+                .dom_mix({
                     element: {
                         class: "thm--texture",
                         "o-base": "ord--next",
@@ -120,7 +117,7 @@ block content
     include /strata/strata
         -
             vefa
-                .mixin({
+                .dom_mix({
                     element: {
                         "o-extended": "col--pMiddle--sMiddle mod--balance"
                     }

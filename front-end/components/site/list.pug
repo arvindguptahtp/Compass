@@ -2,23 +2,20 @@ extends _abstract
 
 block subclass
     -
-        vefa.define({
-            class: "page--list",
-            data: {
+        vefa.define("page--list")
+            .data({
                 title: "List Template",
                 list_type: "programs",
                 impact_color: "co--pri",
                 impact_theme: "thm--dark",
-            },
-            methods: {
+            })
+            .methods({
                 get (key) {
                     return `${ this.list_type }.${ key }`
                 }
-            },
-        })
+            })
 
 block premain
-    
     include /posters/icon
         -
             poster
@@ -26,7 +23,7 @@ block premain
                     title: page.title,
                     icon: page.icon
                 })
-                .mixin({
+                .dom_mix({
                     element: {
                         class: `thm--texture-tint ${page.impact_color}`,
                         "o-base": "ord--next",
@@ -39,7 +36,6 @@ append view
     +load('humanize choice_tags network_search_tags')
 
 block content
-    //- .gx--search
     .strata--search(
         o-base="col--pStart mod--balance"
         o-enhanced="gx--search"
@@ -50,7 +46,6 @@ block content
         )
             block form
                 include /forms/fm--search
-        
         
         
         .gxi--b(

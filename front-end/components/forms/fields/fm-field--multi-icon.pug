@@ -2,15 +2,17 @@ extends fm-field--multi
 
 append variant
     -
-        vefa.define({
-            field_control: {
-                "o-base": "row--pStart--sMiddle pad--x50 pad--y25 rhy--xStart25",
-            }, 
-        }).mixin({
-            field_control: {
-                class: "ico--xl"
-            }
-        })
+        vefa
+            .dom_switch({
+                field_control: {
+                    "o-base": ["row--pGrid--sBase", "row--pStart--sMiddle"]
+                }
+            })
+            .dom_mix({
+                field_control: {
+                    class: "ico--xl",
+                }, 
+            })
 
 
 block input_ext

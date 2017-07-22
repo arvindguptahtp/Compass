@@ -2,14 +2,13 @@ extends _abstract
 
 block subclass
     -
-        vefa
-            .define({
-                class: "ctrl--download",
-                data: {
-                    label: "Submit",
-                    file: "",
-                    name: ""
-                },
+        vefa.define("ctrl--download")
+            .data({
+                label: "Download",
+                file: "",
+                name: ""
+            })
+            .dom({
                 element: {
                     class: "tx--small--f1--100--tcU rxn--ctrl-download fx--shift",
                     "o-base": "pad--y25 pad--x50",

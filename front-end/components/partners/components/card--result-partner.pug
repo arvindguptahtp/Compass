@@ -2,22 +2,20 @@ extends /cards/result
 
 block instance
     -
-        vefa.define({
-            class: 'card--result-partner',
-            data: {
+        vefa.define('card--result-partner')
+            .data({
                 key: 'partner',
                 labels: {
                     network_yes: 'Active in Network',
                     network_no: 'Inactive in Network'
                 }
-            },
-            element: {
-                class: 'gx--result-partner'
-            },
-        })
+            })
+            .dom_mix({
+                element: {
+                    class: 'gx--result-partner'
+                },
+            })
 
-    if django
-        -
             vefa.data({
                 title: 'partner',
                 slug: 'get_absolute_url',
@@ -46,7 +44,7 @@ block result_overview
             include /controls/action
                 -
                     vefa.data({
-                        url: card.slug.io(),
+                        url: card.slug.tag(),
                         label: "View Profile"
                     })
 
@@ -120,7 +118,7 @@ block result_services
                 h5.tx--small--f1--100--tcU--taMiddle(
                     o-base="pad--x25 pad--y10"
                     o-condensed="pad--x50 pad--y25"
-                ) CIS Core Services
+                ) CIS Core Service Categories
 
             ul.card-bd.gx--auto.thm--shade50(
                 o-base="mod--balance"

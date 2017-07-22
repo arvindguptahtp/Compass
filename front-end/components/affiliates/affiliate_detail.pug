@@ -24,7 +24,7 @@ block premain
                     title: page.title.tag(),
                     icon: page.icon
             })
-            .mixin({
+            .dom_mix({
                 element: {
                     class: `thm--texture-tint ${page.impact_color}`,
                     "o-base":"ord--next",
@@ -35,7 +35,7 @@ block premain
 
 block asset_controls
     div(
-        o-base="row--pStart--sMiddle mod--balance"
+        o-base="row--pEnd--sMiddle mod--balance"
     )
         +if(page.website.io())
             include /controls/action
@@ -44,7 +44,7 @@ block asset_controls
                         url: page.website.io(),
                         label: `Website`
                     })
-                    .define({
+                    .dom_mix({
                         element: {
                             class: "tx--small--f3 rxn--ctrl-impt fx--shift"
                         }
@@ -57,7 +57,7 @@ block asset_controls
                     label: "Download PDF report",
                     name: page.title.tag()
                 })
-                .define({
+                .dom_mix({
                     element: {
                         class: "tx--small--f3 rxn--ctrl-download fx--shift"
                     }
@@ -70,13 +70,12 @@ block detail_a
             vefa
                 .data({
                     heading: `Affiliate <small class="tx--small--t2--400">#${page.cis_id.tag()}</small>`,
-                    map: [
+                    items: [
                         ["mixin", "Executive Director", "card_exec"],
                         ["mixin", "Program Lead", "card_lead"],
                         ["text", "Location", page.location.io(), page.location.tag("choice_display:'AffiliateLocation'", 'capfirst')],
                         ["mixin", "Address", "card_contact"],
                         ["text", "Phone Number", page.phone_number.io()],
-                        ["text", "Fax Number", page.fax_number.io()],
                         ["link", "Website", page.website.io(), page.title.tag()]                     
                     ],
                 })
@@ -115,13 +114,13 @@ block detail_b
                 vefa
                     .data({
                         heading: "Affiliate Resources",
-                        map: [
+                        items: [
                             ["money", "Annual Budget", 'eoy_data.budget_total'],
                             ['pct', 'Pct of Public Funding', 'eoy_data.funding_total and eoy_data.funding_public', `${v('eoy_data.funding_percent_public')}%`],
                             ['pct', 'Pct of Private Funding', 'eoy_data.funding_total and eoy_data.funding_private', `${v('eoy_data.funding_percent_private')}%`],
                         ]
                     })
-                    .mixin({
+                    .dom_mix({
                         element: {
                             class: "vx--z100"
                         }
@@ -132,7 +131,7 @@ block detail_b
                 vefa
                     .data({
                         heading: "Affiliate Case Management Performance",
-                        map: [
+                        items: [
                             ['heading', 'Students in Grades K—11', 'eoy_data.students_k_11_promoted'],
                             ['text', 'Promoted', 'eoy_data.students_k_11_promoted'],
                             ['text', 'Retained', 'eoy_data.students_k_11_retained'],
@@ -158,7 +157,7 @@ block detail_b
                             ['text', 'Unknown', 'eoy_data.students_grade_12_unknown'],
                         ]
                     })
-                    .mixin({
+                    .dom_mix({
                         element: {
                             class: "vx--z100"
                         }
@@ -174,7 +173,7 @@ block detail_b
                 vefa
                     .data({
                         heading: "School District Details",
-                        map: [
+                        items: [
                             ["group", "School District(s)", 'eoy_data.school_districts'],
                             ["text", "Total Enrollment", 'eoy_data.calculated_total_enrollment'],
                             ["text", "Number of Case-managed Students", 'eoy_data.calculated_total_case_managed'],
@@ -193,7 +192,7 @@ block detail_b
                     //-         "o-condensed": "pad--x50"
                     //-     }
                     //- })
-                    .mixin({
+                    .dom_mix({
                         element: {
                             class: "vx--z100"
                         }
@@ -204,7 +203,7 @@ block detail_b
                 vefa
                     .data({
                         heading: "By Race and Gender",
-                        map: [
+                        items: [
                             ['heading', 'Students By Race/ Ethnicity', 'eoy_data.search_race'],
                             ['text', 'American Indian', 'eoy_data.search_students_american_indian'],
                             ['text', 'Asian', 'eoy_data.search_students_asian'],
@@ -218,7 +217,7 @@ block detail_b
                             ['text', 'Female', 'eoy_data.search_students_female']
                         ]
                     })
-                    .mixin({
+                    .dom_mix({
                         element: {
                             class: "vx--z100"
                         }
@@ -230,7 +229,7 @@ block detail_b
                     vefa
                         .data({
                             heading: "Unique Student Characteristics",
-                            map: [
+                            items: [
                                 ['yesno', 'FRPL Eligible Students Served', 'eoy_data.total_students_frpl > 0'],
                                 ['yesno', 'ELL Students Served', 'eoy_data.total_students_ell > 0'],
                                 ['yesno', 'Foster Care/Group Home', 'eoy_data.total_students_foster > 0'],
@@ -253,7 +252,7 @@ block detail_b
                         //-         "o-condensed": "pad--x50"
                         //-     }
                         //- })
-                        .mixin({
+                        .dom_mix({
                             element: {
                                 class: "vx--z100"
                             }

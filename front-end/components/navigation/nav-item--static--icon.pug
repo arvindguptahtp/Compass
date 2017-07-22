@@ -2,9 +2,19 @@ extends nav-item--static
 
 append variant
     -
-        vefa.define({ 
-            class: "nav-item--static--icon",
-        })
+        vefa.define("nav-item--static--icon")
+            .dom({
+                element: {
+                    "o-base": "col--pStart--xAuto mod--static",
+                    "o-full": "hl--xy0 hl--yEnd--bTint"
+                },
+                control: {
+                    "o-base": "row--pStart--sMiddle pad--xy50 ico--md",
+                },
+                label: {
+                    class: "vx--a11y"
+                }
+            })
 
 
 prepend label

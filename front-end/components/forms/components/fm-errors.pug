@@ -2,32 +2,34 @@ extends /_vefa
 
 block init
     -
-        vefa = new Vefa({
-            class: 'fm-errors',
-            inject: ['form'],
-            computed: {
+        vefa = new Vefa('fm-errors')
+            .data({
+                form: bus.get('form') || 'form'
+            })
+            .computed({
                 errors () {
                     return `${ this.form }.errors`
                 },
                 get_fields () {
                     return `field in ${ this.form }`
                 }
-            },
-            element: {
-                class: "thm--warning bk--encase",
-                "o-base": "col--pStart pad--x25",
-                "o-standard": "pad--x100"
-            },
-            label: {
-                class: "thm--shade50 rxn--shade25 fx--shift tx--small--f3--tcU",
-                "o-base": "pad--x25 pad--y10"
-            },
-            group: {
-                class: "thm--shade25 tx--small--f3",
-                "o-base": "pad--x25 pad--y25"
-            },
-            item: {}
-        })
+            })
+            .dom({
+                element: {
+                    class: "thm--warning bk--encase",
+                    "o-base": "col--pStart pad--x25",
+                    "o-standard": "pad--x100"
+                },
+                label: {
+                    class: "thm--shade50 rxn--shade25 fx--shift tx--small--f3--tcU",
+                    "o-base": "pad--x25 pad--y10"
+                },
+                group: {
+                    class: "thm--shade25 tx--small--f3",
+                    "o-base": "pad--x25 pad--y25"
+                },
+                item: {}
+            })
             
                 
 

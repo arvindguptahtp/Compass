@@ -2,24 +2,23 @@ extends _abstract
 
 block subclass
     -
-        vefa
-            .define({
-                class: "card--coreservices",
-                data: {
-                    services: "service_categories"
-                },
-                computed: {
-                    icons () {
-                        return `item in ${this.services}`
-                    }
-                },
+        vefa.define("card--coreservices")
+            .data({
+                services: "service_categories"
+            })
+            .computed({
+                icons () {
+                    return `item in ${this.services}`
+                }
+            })
+            .dom_mix({
                 icon_list: {
                     "o-base": "mod--balance rhy--yStart25",
                     "o-condensed": "gx--i2--gxy10 rhy--yStart0",
                     "o-standard": "gx--i1--gxy25",
                     "o-enhanced": "gx--i2--gxy10",
                     "o-extended": "gx--i1--gxy25",
-                    "o-full": "gx--i2--gxy10",
+                    "o-full": "gx--i2--gxy25",
                 },
                 list_item: {
                     class: "thm--tint70",
@@ -32,10 +31,12 @@ block subclass
                 label: {
                     class: "tx--small--f2",
                     "o-base": "col--pMiddle--sStart mod--balance pad--xy25"
-                },
+                }
+            })
+            .options({
                 on_mount () {
                     if (!this.style) {
-                        this.mixin({
+                        this.dom_mix({
                             hdr: {
                                 class: this.impact_theme
                             },

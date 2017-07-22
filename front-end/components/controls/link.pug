@@ -2,11 +2,8 @@ extends _abstract
 
 block subclass
     -
-        vefa
-            .define({
-                class: "ctrl--link",
-            })
-            .mixin({
+        vefa.define("ctrl--link")
+            .dom_mix({
                 element: {
                     class: "tx--small--f3--100--tdU co--ctrl fx--shift",
                     "o-base": "pad--y25 pad--x50"

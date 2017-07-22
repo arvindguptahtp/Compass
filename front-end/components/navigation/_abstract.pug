@@ -2,17 +2,16 @@ extends /_vefa
 
 block init
     -
-        vefa = new Vefa({
-            class: "nav_item",
-            data: {
+        vefa = new Vefa("nav_item")
+            .data({
                 slug: false,
                 url: false,
                 target: false,
                 text: false,
                 show: true,
                 active: "is-active"
-            },
-            methods: {
+            })
+            .methods({
                 get_active_state (active_state) {
                     if (django && this.slug) {
                         return class_switch(`${active_state} in request.path`, this.active)
@@ -24,8 +23,8 @@ block init
                             : "" 
                     }
                 },
-            },
-            computed: {
+            })
+            .computed({
                 get_absolute_url () {
                     if (this.url) {
                         return this.url
@@ -33,20 +32,11 @@ block init
                     else if (this.slug) {
                         return url(this.slug)
                     }
-                },
-                
-            }
-        })
-    
-    //- -
-    //-     active = (active_state) => {
-    //-         if (django) {
-    //-             return class_switch(`request.url == ${navigation.data.url}`, 'is-active')
-    //-         }
-            
-    //-         return 
-    //-     }
-    //- (page && page.data.slug && page.slug == link.slug) ? "is-active" : false
+                },   
+            })
+            .dom(['element', 'control', 'label'])
+
+
 
 
 block view
@@ -60,6 +50,7 @@ block view
         )&attributes(nav_item.element)
             a(
                 class=nav_item.get_active_state('slug')
+                class=nav_item.add_class || ""
                 href=nav_item.get_absolute_url
                 target=nav_item.target
             )&attributes(nav_item.control)

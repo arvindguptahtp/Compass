@@ -2,9 +2,9 @@ extends _abstract
 
 block subclass
     -
-        vefa.define({
-            class: "card--result",
-            data: {
+        vefa.define("card--result")
+            .proxy()
+            .data({
                 key: "program",
                 title: "'Result Title'",
                 overview: "Result Overview",
@@ -12,19 +12,18 @@ block subclass
                     network_yes: true,
                     network_no: false
                 },
-            },
-            methods: {
+            })
+            .methods({
                 toString () { return (this.key) ? this.key : this }
-            },
-            element: {
-                "o-base": "col--pStart mod--balance",
-            },
-        })
+            })
+            .dom_mix({
+                    element: {
+                    "o-base": "col--pStart mod--balance",
+                },
+            })
 
 
 block view
-    - proxy()
-
     dl(
         class=card.class
     )&attributes(card.element)

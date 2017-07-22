@@ -8,13 +8,12 @@ const fs = require('fs')
 // processor functionalities
 const webpack = require('webpack')
 const entries = require('webpack-entries')
-
-const locals_loader = require("./vefa/locals_loader")
 const notifier = require("webpack-notifier")
 const browser_sync = require('browser-sync-webpack-plugin')
 const friendly_errors = require('friendly-errors-webpack-plugin')
 const yaml = require('js-yaml')
-const reporter = require("./vefa/reporter")
+const reporter = require("./vefa/lib/reporter")
+const locals_loader = require("./vefa/webpack/locals_loader")
 
 const typogr = require('typogr')
 const md = require('markdown-it')({
@@ -55,36 +54,36 @@ module.exports = (env) => {
         switch (TASKING) {
             case "assets":
                 return [
-                    require('./vefa/rules/rules.images')(CFG),
-                    require('./vefa/rules/rules.assets')(CFG)
+                    require('./vefa/webpack/rules.images')(CFG),
+                    require('./vefa/webpack/rules.assets')(CFG)
                 ]
             break;
             case "vue":
                 return [
-                    require('./vefa/rules/rules.babel')(CFG),
-                    require('./vefa/rules/rules.vue')(CFG, locals),
+                    require('./vefa/webpack/rules.babel')(CFG),
+                    require('./vefa/webpack/rules.vue')(CFG, locals),
                 ]
             break;
             case "html": 
                 return [
-                    require('./vefa/rules/rules.django')(CFG, locals),
+                    require('./vefa/webpack/rules.django')(CFG, locals),
                 ]
             case "dev": 
                 return [
-                    require('./vefa/rules/rules.babel')(CFG),
-                    require('./vefa/rules/rules.vue')(CFG, locals),
-                    require('./vefa/rules/rules.styles')(CFG),
-                    require('./vefa/rules/rules.django')(CFG, locals),
+                    require('./vefa/webpack/rules.babel')(CFG),
+                    require('./vefa/webpack/rules.vue')(CFG, locals),
+                    require('./vefa/webpack/rules.styles')(CFG),
+                    require('./vefa/webpack/rules.django')(CFG, locals),
                 ]
             break;
             default:
                 return [
-                    require('./vefa/rules/rules.babel')(CFG),
-                    require('./vefa/rules/rules.vue')(CFG, locals),
-                    require('./vefa/rules/rules.styles')(CFG),
-                    require('./vefa/rules/rules.django')(CFG, locals),
-                    require('./vefa/rules/rules.images')(CFG),
-                    require('./vefa/rules/rules.assets')(CFG)
+                    require('./vefa/webpack/rules.babel')(CFG),
+                    require('./vefa/webpack/rules.vue')(CFG, locals),
+                    require('./vefa/webpack/rules.styles')(CFG),
+                    require('./vefa/webpack/rules.django')(CFG, locals),
+                    require('./vefa/webpack/rules.images')(CFG),
+                    require('./vefa/webpack/rules.assets')(CFG)
                 ]
         }
     })()

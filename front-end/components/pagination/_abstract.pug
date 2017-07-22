@@ -14,17 +14,16 @@ extends /_vefa
 //-------------------   
 block init
     -
-        vefa = new Vefa({
-            class: "pagination",
-            data: {
+        vefa = new Vefa("pagination")
+            .data({
                 obj: 'abstract',
                 page: 'page',
                 labels: {
                     prev: 'Previous',
                     next: 'Next'
                 },
-            },
-            computed: {
+            })
+            .computed({
                 has_previous () { return `${ this.obj }.has_previous` },
                 has_next () { return `${ this.obj }.has_next` },
                 pages () { return `${ this.obj }.pages` },
@@ -45,19 +44,20 @@ block init
                     let query = `${ this.page }.querystring`
                     return `?${ v(query) }`
                 }
-            },
-            element: {
-                class: "tx--f1--aa",
-                "o-base": "row--pStart--sMiddle",
-            },
-            group: {
-                "o-base": "row--pMiddle--sMiddle mod--balance rhy--xStart10 ord--next"
-            },
-            ctrl: {
-                class: "thm--dark rxn--tint30 fx--shift",
-                "o-base": "row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs"
-            },
-        })
+            })
+            .dom({
+                element: {
+                    class: "tx--f1--aa",
+                    "o-base": "row--pStart--sMiddle",
+                },
+                group: {
+                    "o-base": "row--pMiddle--sMiddle mod--balance rhy--xStart10 ord--next"
+                },
+                ctrl: {
+                    class: "thm--dark rxn--tint30 fx--shift",
+                    "o-base": "row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs"
+                }
+            })
 
 
 

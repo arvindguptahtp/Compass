@@ -2,21 +2,20 @@ extends _abstract
 
 block subclass
     -
-        vefa
-            .define({
-                class: "card--list-links",
-                data: {
-                    heading: "",
-                    links: [
-                        ["label", "data_member", "style"],
-                        ["type", "data_member / test_member", "tag", "rel"],
-                        ["group", "data_member / test_member", "tag", "rel"],
-                        ["mixin", "mixin name", "test_member"],
-                    ],
-                    as_group: [],
-                    as_internal: [],
-                    as_external: [],
-                }, 
+        vefa.define("card--list-links")
+            .data({
+                heading: "",
+                links: [
+                    ["label", "data_member", "style"],
+                    ["type", "data_member / test_member", "tag", "rel"],
+                    ["group", "data_member / test_member", "tag", "rel"],
+                    ["mixin", "mixin name", "test_member"],
+                ],
+                as_group: [],
+                as_internal: [],
+                as_external: [],
+            }) 
+            .dom_mix({
                 list: {
                     "o-base": "mod--balance rhy--yStart25",
                 },
@@ -31,8 +30,9 @@ block subclass
                 external_link: {
                     class: "rxn--tint90 fx--shift",
                     "o-base": "row--pStart--sMiddle pad--xy25 rhy--xStart25"
-                },
-                methods: {
+                }
+            })
+            .methods({
                     data_mapper () {
                         if(this.links) {
                             let exists_arr = []
@@ -104,23 +104,24 @@ block subclass
                             if (exists_override) this.exists = "True"
                         }
                     }
-                },
-                on_mount () {
-                    this.data_mapper()
-                        
-                    this.mixin({
-                        hdr: {
-                            class: this.impact_theme
-                        },
-                        bd: {
-                            class: "thm--shade15"
-                        },
-                        link: {
-                            class: this.impact_color
-                        }
-                    })
-                }
-            })
+                })
+                .options({
+                    on_mount () {
+                        this.data_mapper()
+                            
+                        this.dom_mix({
+                            hdr: {
+                                class: this.impact_theme
+                            },
+                            bd: {
+                                class: "thm--shade15"
+                            },
+                            link: {
+                                class: this.impact_color
+                            }
+                        })
+                    }
+                })
 
 
 

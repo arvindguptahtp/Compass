@@ -3,26 +3,23 @@ extends _abstract
 block subclass
     -
         vefa
-            .define({
-                class: "ctrl--action-submit",
-                data: {
-                    name: "submit", 
-                    label: "Submit"
-                },
+            .define("ctrl--action-submit")
+            .data({
+                name: "submit", 
+                label: "Submit"
+            })
+            .dom_mix({
                 element: {
                     class: "tx--f3--tcU thm--tint20 rxn--shade60 fx--shift",
-                    "o-base": "row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25",
-                    "o-condense": "rhy--xStart50",
-                    "o-standard": "pad-y50 pad--x100"
-                },
+                    
+                }
             })
-
 
 
 block view
     button(
-        class=ctrl.class
         type="submit"
+        class=ctrl.class
         name=ctrl.name
     )&attributes(ctrl.element)
         

@@ -3,17 +3,14 @@ extends fm-field--single
 
 block variant
     -
-        vefa.define({
-            data: {
+        vefa.data({
                 type: "checkbox",
-            }, 
-            computed: {
+            }) 
+            .computed({
                 validator () {
                     return `choice_value|safe in ${ this.value } or choice_value in ${ this.value }`
                 }
-            }
-        })
-
+            })
 
 block input_int
     +if(field.validator)

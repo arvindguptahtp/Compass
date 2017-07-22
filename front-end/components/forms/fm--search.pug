@@ -3,10 +3,8 @@ extends _abstract
 
 block subclass
     -
-        vefa.define({
-            name: "Search Form",
-            class: "fm--search",
-            data: {
+        vefa.define("fm--search")
+            .data({
                 title: "Search",
                 control: {
                     label: "Explore"
@@ -15,8 +13,7 @@ block subclass
                     url: "'./'",
                     label: "Clear Search"
                 }
-            },
-        })
+            })
 
 
 block hdr

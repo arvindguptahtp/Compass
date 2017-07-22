@@ -1,34 +1,36 @@
-module.exports = (locals) => {
-
-    const _tag = (prop, expression="") => {
-        if (expression) {
-            return `{% ${ prop } ${ expression } %}`
-        }
-
-        return `{% ${ prop } %}`
+const _tag = (prop, expression="") => {
+    if (expression) {
+        return `{% ${ prop } ${ expression } %}`
     }
 
-    const template_filters = (filters) => {
+    return `{% ${ prop } %}`
+}
+
+const template_filters = (filters) => {
+    if (filters.length > 0) {
         let filter_list = [""]
         filter_list.push(...filters)
         filter_list = filter_list.join("|")
         return filter_list
     }
+    return ""
+}
 
-    const _endtag = (prop) => {
-        return `{% end${ prop } %}`
+const _endtag = (prop) => {
+    return `{% end${ prop } %}`
+}
+
+const _single = (prop, expression="") => {
+    let template = `{% ${ prop } %}`
+
+    if (expression) {
+        template = `{% ${ prop } ${ expression } %}`
     }
 
-    const _single = (prop, expression="") => {
-        let template = `{% ${ prop } %}`
+    return template
+}
 
-        if (expression) {
-            template = `{% ${ prop } ${ expression } %}`
-        }
-
-        return template
-    }
-
+module.exports = (locals) => {
     return {
         output_json (obj) {
             return JSON.stringify(obj);

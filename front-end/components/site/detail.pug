@@ -2,19 +2,20 @@ extends _abstract
 
 block subclass
     -
-        vefa
-            .define({
-                class: "page--detail",
-                _title_type: 'data_titlebar',
-                data: {
-                    title: "Detail Template"
-                },
-                methods: {
-                    get (key) {
-                        return `${ this.grouping }.${ key }`
-                    }
-                },
+        vefa.define("page--detail")
+            .proxy()
+            .data({
+                title: "Detail Template"
             })
+            .methods({
+                get (key) {
+                    return `${ this.grouping }.${ key }`
+                }
+            })
+            .options({
+                title_type: 'data',
+            })
+            
 
 
 block premain
@@ -25,7 +26,7 @@ block premain
                     title: page.title,
                     icon: page.icon
                 })
-                .mixin({
+                .dom_mix({
                     element: {
                         class: `thm--texture-tint ${page.primary_color}`,
                         "o-base": "ord--next",
@@ -34,24 +35,18 @@ block premain
                 })
 
 
-prepend view
-    - proxy()
-
-
 block content
     .strata--detail.gx--profile(
         o-base="mod--balance"
     )
         if page && page.icon
-            div.gxi--breadcrumbs.tx--small--f3.thm--shade5.vx--z200(
+            .gxi--breadcrumbs.tx--small--f3(
                 o-base="row--pStart--sMiddle"
                 o-standard="row--pGrid--sMiddle"
             )
-                block asset_controls
-            
                 nav(
                     o-base="row--pStart--sBase mod--balance pad--xy25 rhy--xStart10"
-                    o-standard="row--pEnd--sBase pad--x50"
+                    o-standard="row--pStart--sBase pad--x50"
                 )
                     a.co--ctrl.fx--shift(
                         href="../"
@@ -61,7 +56,9 @@ block content
                     svg.ico.ico--xs
                         use(xlink:href="#ico--ctrl-next")
                     
-                    span.tx--trnc()= poster.title
+                    span.tx--trnc()= page.title.tag()
+                
+                block asset_controls
 
         
         section.gxi--a(

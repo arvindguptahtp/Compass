@@ -2,23 +2,26 @@ extends _abstract
 
 block subclass
     -
-        vefa.define({
-            class: "nav-item--static",
-            data: {},
-            on_instance () {
-                if (routes[this.route]) {
-                    this.$data = Object.assign(this.$data, routes[this.route])
-                    this.$data.text = this.$data.title
-                }
-                else {
-                    this.$data.show = false
-                }
-            },
-            on_mount () {
-                this.mixin({
-                    control: {
-                        class: this.add_class || ""
+        vefa.define("nav-item--static")
+            .options({
+                on_instance () {
+                    if (routes[this.route]) {
+                        this.$data = Object.assign(this.$data, routes[this.route])
+                        this.$data.text = this.$data.title
                     }
-                })
-            }
-        })
+                    else {
+                        this.$data.show = false
+                    }
+                    
+                }
+            })
+            .dom({
+                element: {
+                    "o-base": "row--pStart--sMiddle--xAuto",
+                    "o-standard": "pad--x25 pad--xEdges0 hl--xStart--bTint"
+                },
+                control: {
+                    "o-base": "mod--fill pad--y10",
+                    "o-condensed": "tx--taMiddle pad--y0"
+                }                
+            })

@@ -2,9 +2,8 @@ extends /site/list
 
 block instance
     -
-        vefa.define({
-            class: "list--partners",
-            data: {
+        vefa.define("list--partners")
+            .data({
                 title: partners.title,
                 impact_color: "co--partners",
                 impact_theme: "thm--partners",
@@ -14,10 +13,8 @@ block instance
                 slug: routes.partners.slug,
                 summary: partners.summary,
                 results_collection: partners.fixtures,
-                list_type: "partners",
-                
-            }
-        })
+                list_type: "partners",  
+            })
 
 
 block form

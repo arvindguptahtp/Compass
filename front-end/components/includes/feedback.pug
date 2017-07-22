@@ -1,29 +1,28 @@
-include /strata/strata
+extends /strata/strata
+
+block instance
     -
         vefa
-            .define({
+            .dom_mix({
                 element: {
+                    class: "thm--light-alt hl--yStart--bTint",
                     "o-enhanced": "pad--xy100"
                 }
             })
-            .mixin({
-                element: {
-                    class: "thm--light-alt hl--yStart--bTint"
-                }
-            })
-    
-    mixin strata_view
-        aside.tx--maj--f1--100(
-            o-base="col--pMiddle--sMiddle rhy--yStart25"
-            o-condensed="row--pEnd--sMiddle rhy--xStart50"
-        )
-            p Please submit your feedback on our new tool:
-            
-            include /controls/action
-                -
-                    vefa.data({
-                        //- url: "'https://www.surveymonkey.com/r/9WVJVGV'",
-                        url: "'https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link'",
-                        label: "Fill out our survey",
-                        target: "_blank"
-                    })
+
+
+block bd
+    aside.tx--maj--f1--100(
+        o-base="col--pMiddle--sMiddle rhy--yStart25"
+        o-condensed="row--pEnd--sMiddle rhy--xStart50"
+    )
+        p Please submit your feedback on our new tool:
+        
+        include /controls/action
+            -
+                vefa.data({
+                    //- url: "'https://www.surveymonkey.com/r/9WVJVGV'",
+                    url: "https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link",
+                    label: "Fill out our survey",
+                    target: "_blank"
+                })
