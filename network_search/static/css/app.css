@@ -296,18 +296,21 @@ hr {
 }
 .rxn--affiliates:hover,
 .rxn--affiliates.is-reacting,
+.rxn--affiliates:focus,
 .rxn--affiliates:active,
 .rxn--affiliates.is-active {
   background: #8b0e04;
 }
 .rxn--programs:hover,
 .rxn--programs.is-reacting,
+.rxn--programs:focus,
 .rxn--programs:active,
 .rxn--programs.is-active {
   background: #4b2332;
 }
 .rxn--partners:hover,
 .rxn--partners.is-reacting,
+.rxn--partners:focus,
 .rxn--partners:active,
 .rxn--partners.is-active {
   background: #008751;

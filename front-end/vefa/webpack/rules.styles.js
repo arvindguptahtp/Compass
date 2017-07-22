@@ -31,11 +31,7 @@ module.exports = (config) => {
     postcss_opts.cssnext = config.styles.browsers
         ? Object.assign(postcss_opts.cssnext, config.styles.browsers)
         : {}
-    
-    let library_opts =config.styles.libraries 
-        ? config.styles.libraries
-        : ['../../vefa/vefa-css/*']
-
+   
     return {
         test: /\.styl$/,
         use: [
@@ -69,7 +65,6 @@ module.exports = (config) => {
             {
                 loader: "stylus-loader",
                 options: {
-                    import: library_opts,
                     define: config.styles.define
                 }
             }

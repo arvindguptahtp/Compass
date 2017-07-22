@@ -6,24 +6,10 @@ config = json(app, { hash: true });
 co = config.co
 breakpoints = class base compressed condensed standard enhanced extended full
 
+@require "_lib/*"
+
 // webfont(file: "../res/fonts/theserifb-w5plain", name: 'the_serif', types: woff woff2)
 // webfont(file: "../res/fonts/theserifb-w7bold", name: 'the_serif', types: woff woff2, bold: 700)
-
-
-// ==========================================================================
-// SITE-WIDE MIXINS
-//
-//
-@custom-selector :--all-states :hover\, .is-reacting\, :active\, .is-active;
-@custom-selector :--follows-check :checked +;
-@custom-selector :--hover :hover\, .is-reacting;
-@custom-selector :--active :focus\, :active\, .is-active;
-@custom-selector :--layers ::before\, ::after;
-
-@custom-selector :--middle-of-3 :nth-of-type(3n-1):not(:last-child);
-@custom-selector :--odd :nth-of-type(odd);
-@custom-selector :--even :nth-of-type(even);
-
 
 // ==========================================================================
 // Theme-specific VEFA F(CSS)
