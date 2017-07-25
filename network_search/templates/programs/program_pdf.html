@@ -28,10 +28,10 @@
             <h4>Race</h4>
             {% pdf_choices program.race "Race" %}
 
-            <h4>Student Needs</h4>
+            <h4>Targeted Student Needs</h4>
             {% pdf_choices program.student_need "StudentNeeds" %}
 
-            <h4>Student Characteristics</h4>
+            <h4>Unique Student Characteristics</h4>
             {% pdf_choices program.student_characteristics "StudentCharacteristics" %}
 
             <h4>CIS Core Services</h4>
@@ -46,7 +46,7 @@
             <h4>Setting</h4>
             {% pdf_choices program.setting "Setting" %}
 
-            <h4>Tier of Service</h4>
+            <h4>Tiers of Service</h4>
             {% pdf_choices program.tiers_of_service "TiersOfService" %}
 
             <h4>Tier of Evidence</h4>
@@ -59,7 +59,7 @@
                 {% pdf_choices program.region "Regions" %}
             {% endif %}
 
-            <h4>Fees</h4>
+            <h4>Associated Fees</h4>
             {% if program.is_cost_free %}
                 No fees associated with the program
             {% else %}
@@ -84,12 +84,11 @@
 
 
     <section>
-        <h3>Use in network</h3>
+        <h3>Program Associations</h3>
         {% if not program.network_use.exists %}
             This program is not used by the Communities In School network.
         {% else %}
             {% if program.featured_network.exists %}
-                <h3>Featured Affiliates</h3>
                 {% for affiliate in program.featured_network.all %}
                     <li><a href="{{ affiliate.get_absolute_url }}">{{ affiliate }}</a></li>
                 {% endfor %}
