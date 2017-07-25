@@ -522,6 +522,24 @@ svg[o-base*='ico--xl'],
   height: 2.5em;
   width: 2.5em;
 }
+use.st0 {
+  color: rgba(255, 255, 255, .25);
+}
+use.st1 {
+  color: #f78e1e;
+}
+use.st2 {
+  color: #e31837;
+}
+use.st3 {
+  color: #008752;
+}
+use.st4 {
+  color: #00549e;
+}
+use.st5 {
+  color: #fff;
+}
 .copy a {
   text-decoration: underline;
   font-weight: 400;
@@ -1302,8 +1320,8 @@ main {
   }
   .gx--profile {
     grid-template-columns: minmax(250px, 350px) 1fr;
-    grid-template-rows: 36px repeat(2, -webkit-max-content);
-    grid-template-rows: 36px repeat(2, max-content);
+    grid-template-rows: 36px auto -webkit-max-content;
+    grid-template-rows: 36px auto max-content;
     grid-template-areas: "a breadcrumbs" "a b" "a c";
   }
   [o-standard*='gxi--breadcrumbs'] {

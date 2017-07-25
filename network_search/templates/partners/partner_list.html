@@ -64,16 +64,6 @@
                                 </label>{% endfor %}
                 </div>
               </div>
-              <div class="fm-field--single" title="Student Needs" is="fold-unfold" :init="true" :styles='{"class":"tx--small--f3--900--tcU--aa rxn--shade60 fx--shift","o-base":"row--pGrid--sBase mod--balance pad--x50 pad--y25 rhy--xStart25"}'>
-                <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">Student Needs
-                </p>
-                <div class="thm--shade20" slot="bd" o-base="col--pStart--sStart">{% for choice_value, choice_label in form.need.field.choices %}
-                                <label class="tx--f3--400--ls100--aa rhy--xStart50 rxn--shade60 fx--shift" for="id_need_{{ forloop.counter }}" v-check="true" o-base="row--pGrid--sBase pad--x50 pad--y25 rhy--xStart25" o-standard="tx--small">{% if choice_value|safe in form.need.value or choice_value in form.need.value %}
-                                                <input checked type="radio" id="id_need_{{ forloop.counter }}" name="need" value="{{ choice_value }}" o-base="mod--static">{% else %}
-                                                              <input type="radio" id="id_need_{{ forloop.counter }}" name="need" value="{{ choice_value }}" o-base="mod--static">{% endif %}<span o-base="mod--balance">{{ choice_label }}</span>
-                                </label>{% endfor %}
-                </div>
-              </div>
               <div class="fm-field--single" title="CIS Core Service Categories" is="fold-unfold" :init="true" :styles='{"class":"tx--small--f3--900--tcU--aa rxn--shade60 fx--shift","o-base":"row--pGrid--sBase mod--balance pad--x50 pad--y25 rhy--xStart25"}'>
                 <p class="tx--small--f3--900--tcU--aa" o-base="mod--balance">CIS Core Service Categories
                 </p>

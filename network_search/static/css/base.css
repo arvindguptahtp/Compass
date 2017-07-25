@@ -60,9 +60,11 @@ picture img {
 }
 svg {
   display: block;
+}
+svg:not(.ico--selfFill) {
   fill: currentColor;
 }
-svg a {
+svg:not(.ico--selfFill) a {
   fill: currentColor;
 }
 span svg {

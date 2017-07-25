@@ -54,7 +54,6 @@ class Vefa {
             
             this.vefa_id = Vefa.add(this)
 
-            // log.info("Vefa", this)
             return this
         }
         
@@ -323,7 +322,6 @@ class Vefa {
     static $unravel (vefa) {
         // make sure it exsits and if proxied and doesn't exist, lets make sure we ignore it
         if (vefa.provide && vefa.provide !== "provide") {
-            console.log(vefa.provide)
             vefa.provide.forEach( tuple => injector.delete(tuple[0]) )
         }
         Vefa.remove(vefa.vefa_id)

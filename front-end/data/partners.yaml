@@ -25,12 +25,6 @@ fm_search:
                 label: Gender
                 fold: true
                 widget: multi
-            
-            need:
-                name: need
-                label: Student Needs
-                fold: true
-                widget: multi
 
             services:
                 name: services
