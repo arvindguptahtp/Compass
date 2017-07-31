@@ -35,9 +35,6 @@ block premain
                         class: `thm--texture-tint ${page.impact_color}`,
                     }
                 })
-        
-        //- include /cards/ebr
-        //-     - vefa.data({ ebr: page.ebr.io() })
 
 block asset_controls
         +if(page.national_partner.io())
@@ -114,24 +111,30 @@ block detail_a
 
 
 block detail_b
-    include /copy/card-lede
-        -
-            vefa.data({
-                    heading: "Program Description",
-                    copy: page.overview.io()
-                })
-                .dom_mix({
-                    element: {
-                        "o-extended": "gxi--gs2"
-                    },
-                    hed: {
-                        class: page.impact_color
-                    }
-                })
+    div(
+        o-extended="row--pStart--sStart gxi--gs2 pad--x25 rhy--xStart50"
+    )
+        include /cards/ebr--alt
+            - vefa.data({ ebr: page.ebr.io() })
+        
+        include /copy/card-lede
+            -
+                vefa.data({
+                        heading: "Program Description",
+                        copy: page.overview.io()
+                    })
+                    .dom_mix({
+                        element: {
+                            "o-extended": "mod--balance"
+                        },
+                        hed: {
+                            class: page.impact_color
+                        }
+                    })
 
     div(
         o-base="col--pStart pad--x25 rhy--yStart50"
-        o-extended="iso--yStart100 rhy--yStart100"
+        o-extended="iso--yStart50 rhy--yStart100"
     )
         include /cards/data-list
             -
@@ -148,7 +151,7 @@ block detail_b
     
     div(
         o-base="col--pStart pad--x25 rhy--yStart50"
-        o-extended="iso--yStart100 rhy--yStart100"
+        o-extended="iso--yStart50 rhy--yStart100"
     )
         include /cards/link-list
             -

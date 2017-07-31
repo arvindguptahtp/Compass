@@ -1,0 +1,75 @@
+extends _abstract
+
+block subclass
+    -
+        vefa.define("card--ebr")
+            .data({
+                ebr: bus.get("ebr") || 'T1'
+            })
+
+
+
+block view
+    +load("choice_tags")
+    
+    article.hl--xy(
+        class=card.class
+        o-base="col--pStart mod--balance pos--rel rhy--yStart50"
+    )
+        header.card-hdr(
+            o-base="ord--start"
+        )
+            h5.tx--small--f1--100--tcU--taMiddle(
+                class=card.impact_theme
+                o-base="pad--x25 pad--y10"
+                o-condensed="pad--x50 pad--y25"
+            ) Tier of Evidence
+        
+        +if(`${ card.ebr } != ''`)
+            .card-bd(
+                o-base="row--pMiddle--sMiddle mod--balance pad--x50"
+            )
+                svg.ico.ico--ebr
+                    use(
+                        xlink:href=`#ico--ebr-${v(card.ebr)}`
+                    )
+
+            footer.card-ftr.tx--f1--100--tcU--ls100--taMiddle(
+                class=card.impact_color
+                o-base="pad--x25 pad--y10"
+                o-condensed="pad--x50 pad--y25"
+            )
+                = v(card.ebr, "choice_display:'TiersOfEvidence'")
+            
+            +else()
+                .card-bd.ord--end(
+                    o-base="col--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50"
+                )
+                    h5.tx--display--f1(
+                        class=card.impact_color
+                    ) N/A
+                    
+                    p.tx--chrome--f3(
+                        o-base="row--pMiddle--sMiddle rhy--xStart25"
+                    )
+                        span Not yet graded.
+
+                        //- slideover
+                            svg.ico--dx75.ico--info(
+                                slot="activate"
+                            )
+                                use(href="#ico--info")
+
+                            .bd(
+                                v-cloak
+                                slot="content"
+                                o-base="col--pMiddle--sMiddle rhy--yStart50"
+                            )
+                                h6.tx--maj--f1--100--taMiddle How do we determine our Tiers&nbsp;of&nbsp;Evidence?
+                                include /controls/download
+                                    -
+                                        vefa.data({
+                                            label: "Download PDF",
+                                            file: static("res/Determining_Evidence-Base_Cheat_Sheet.pdf"),
+                                            name: "Determining Evidence-Base Cheat Sheet"
+                                        })

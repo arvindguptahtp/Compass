@@ -124,48 +124,45 @@ block detail_a
 
 block detail_b
     div(
-        o-base="col--pStart pad--x25 rhy--yStart50"
-        o-extended="rhy--yStart100"
+        o-extended="row--pStart--sStart gxi--gs2 pad--x25 rhy--xStart50"
     )
-        include /copy/card
-            -
+        include /cards/ebr--alt
+            - vefa.data({ ebr: page.ebr.io() })
+
+        div(
+            o-base="rhy--yStart100"
+        )
+            include /copy/card-lede
+                -
+                        vefa
+                            .data({
+                                heading: "Mission",
+                                copy: page.mission.io()
+                            })
+                            .dom_mix({
+                                hed: {
+                                    class: page.impact_color
+                                }
+                            })
+                            
+
+            include /copy/card-lede
+                -
                     vefa
                         .data({
-                            heading: "Mission",
-                            copy: page.mission.io()
+                            heading: "Overview",
+                            copy: page.overview.io()
                         })
                         .dom_mix({
-                            element: {
-                                class: "thm--tint95",
-                                "o-extended": "gxs--s2"
-                            },
                             hed: {
                                 class: page.impact_color
                             }
                         })
-                        
-
-        include /copy/card
-            -
-                vefa
-                    .data({
-                        heading: "Overview",
-                        copy: page.overview.io()
-                    })
-                    .dom_mix({
-                        element: {
-                            class: "thm--tint95",
-                            "o-extended": "gxs--s2"
-                        },
-                        hed: {
-                            class: page.impact_color
-                        }
-                    })
         
         
     div(
         o-base="col--pStart pad--x25 rhy--yStart50"
-        o-extended="rhy--yStart100"
+        o-extended="iso--yStart50 rhy--yStart100"
     )
         include /cards/link-list
             -
@@ -203,6 +200,10 @@ block detail_b
                         }
                     })
 
+    div(
+        o-base="col--pStart pad--x25 rhy--yStart50"
+        o-extended="iso--yStart50 rhy--yStart100"
+    )
         include /cards/link-list--tagged
             -
                 vefa

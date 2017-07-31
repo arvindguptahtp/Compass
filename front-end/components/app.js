@@ -21,7 +21,7 @@ new Vue({
 })
 
 new Vue({
-    el: '.detail-hdr',
+    el: '.card--ebr',
     components: {
         Slideover
     },

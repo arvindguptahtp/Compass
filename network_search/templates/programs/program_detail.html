@@ -108,15 +108,33 @@
                 </article>{% endif %}
       </section>
       <section class="gxi--b" o-base="col--pStart pad--y50 rhy--yStart50" o-condensed="pad--x25" o-extended="gdx--gc2--gxy50 rhy--yStart0">  
-        <article class="copy--card-lede" o-base="mod--static pad--x50 rhy--yStart50" o-standard="pad--x25" o-extended="gxi--gs2">
-          <header>
-            <h2 class="tx--hed--f1--100 co--programs">Program Description
-            </h2>
-          </header>
-          <div class="bd tx--maj">{{ program.description|linebreaks }}
-          </div>
-        </article>
-        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart100 rhy--yStart100">{% if True %}
+        <div o-extended="row--pStart--sStart gxi--gs2 pad--x25 rhy--xStart50">{% load choice_tags %}
+          <article class="hl--xy card--ebr" o-base="col--pStart mod--balance pos--rel rhy--yStart50">
+            <header class="card-hdr" o-base="ord--start">
+              <h5 class="tx--small--f1--100--tcU--taMiddle thm--programs" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tier of Evidence</h5>
+            </header>{% if program.evidence_base != '' %}
+                      <div class="card-bd" o-base="row--pMiddle--sMiddle mod--balance pad--x50">
+                        <svg class="ico ico--ebr">
+                          <use xlink:href="#ico--ebr-{{ program.evidence_base }}"></use>
+                        </svg>
+                      </div>
+                      <footer class="card-ftr tx--f1--100--tcU--ls100--taMiddle co--programs" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">{{ program.evidence_base|choice_display:'TiersOfEvidence' }}
+                      </footer>{% else %}
+                                <div class="card-bd ord--end" o-base="col--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50">
+                                  <h5 class="tx--display--f1 co--programs">N/A</h5>
+                                  <p class="tx--chrome--f3" o-base="row--pMiddle--sMiddle rhy--xStart25"><span>Not yet graded.</span></p>
+                                </div>{% endif %}
+          </article>
+          <article class="copy--card-lede" o-base="mod--static pad--x50" o-standard="pad--x25" o-extended="mod--balance">
+            <header>
+              <h2 class="tx--hed--f1--100 co--programs">Program Description
+              </h2>
+            </header>
+            <div class="bd tx--maj">{{ program.description|linebreaks }}
+            </div>
+          </article>
+        </div>
+        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart50 rhy--yStart100">{% if True %}
                     <article class="card--list-data vx--z100" o-base="col--pStart">
                       <header class="thm--programs" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
                         <h1 class="tx--maj--f1--100--aa">Student Demographics</h1>
@@ -174,7 +192,7 @@
                       </div>
                     </article>{% endif %}
         </div>
-        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart100 rhy--yStart100">{% if program.featured_network.count > 0 or program.network_use.count > 0 %}
+        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart50 rhy--yStart100">{% if program.featured_network.count > 0 or program.network_use.count > 0 %}
                     <article class="card--list-links vx--z100" o-base="col--pStart">
                       <header class="thm--programs" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
                         <h1 class="tx--maj--f1--100--aa">Used by CIS Network</h1><span class="tx--caption--f3--400--aa">As reported in recent year's EOY data</span>
@@ -200,17 +218,17 @@
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
                         <ul o-base="mod--balance rhy--yStart25">{% if program.national_databases %}{% for item in program.national_databases.all %}
-                                                        <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                        <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
                                                                           <svg class="ico--dx100">
                                                                             <use href="#ico--database"></use>
                                                                           </svg></span><span class="tx--trnc" o-base="pad--xy25">{{ item|truncatechars:72 }}</span><small class="tx--caption--f3--100--tcU" o-base="mod--static--aMiddle pad--xy25" o-standard="iso--xStartAuto">National Database</small></a>
                                                         </li>{% endfor %}{% endif %}{% if program.related_resources %}{% for item in program.related_resources.all %}
-                                                            <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                            <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
                                                                               <svg class="ico--dx100">
                                                                                 <use href="#ico--resource"></use>
                                                                               </svg></span><span class="tx--trnc" o-base="pad--xy25">{{ item|truncatechars:72 }}</span><small class="tx--caption--f3--100--tcU" o-base="mod--static--aMiddle pad--xy25" o-standard="iso--xStartAuto">Resource</small></a>
                                                             </li>{% endfor %}{% endif %}{% if program.additional_resources %}{% for item in program.additional_resources.all %}
-                                                            <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                            <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
                                                                               <svg class="ico--dx100">
                                                                                 <use href="#ico--link-ext"></use>
                                                                               </svg></span><span class="tx--trnc" o-base="pad--xy25">{{ item|truncatechars:72 }}</span></a>
@@ -226,7 +244,7 @@
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
                         <ul o-base="mod--balance rhy--yStart25" o-condensed="gx--i2--gxy10 rhy--yStart0" o-standard="gx--i1--gxy25" o-enhanced="gx--i2--gxy10" o-extended="gx--i1--gxy25" o-full="gdx--gc5--grAuto--gxy10">{% for item in program.service_categories %}
-                                    <li class="thm--tint70 hl--yEnd--bCurrent co--partners" o-base="col--pMiddle--sMiddle pad--xy50 rhy--yStart50" style="border-width: 2px;">
+                                    <li class="thm--tint70 hl--yEnd--bCurrent co--programs" o-base="col--pMiddle--sMiddle pad--xy50 rhy--yStart50" style="border-width: 2px;">
                                       <div class="co--minor">
                                         <svg class="ico--dx250">
                                           <use href="#ico--{{ item }}"></use>

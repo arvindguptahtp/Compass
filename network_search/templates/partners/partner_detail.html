@@ -135,25 +135,43 @@
                 </article>{% endif %}
       </section>
       <section class="gxi--b" o-base="col--pStart pad--y50 rhy--yStart50" o-condensed="pad--x25" o-extended="gdx--gc2--gxy50 rhy--yStart0">  
-        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="rhy--yStart100">
-          <article class="copy--card thm--tint95" o-base="mod--static pad--x25 pad--y25" o-standard="pad--x50" o-extended="gxs--s2">
-            <header>
-              <h2 class="tx--maj--f1--100 co--partners">Mission
-              </h2>
-            </header>
-            <div class="bd">{{ partner.mission|linebreaks }}
-            </div>
+        <div o-extended="row--pStart--sStart gxi--gs2 pad--x25 rhy--xStart50">{% load choice_tags %}
+          <article class="hl--xy card--ebr" o-base="col--pStart mod--balance pos--rel rhy--yStart50">
+            <header class="card-hdr" o-base="ord--start">
+              <h5 class="tx--small--f1--100--tcU--taMiddle thm--partners" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">Tier of Evidence</h5>
+            </header>{% if partner.evidence_base != '' %}
+                      <div class="card-bd" o-base="row--pMiddle--sMiddle mod--balance pad--x50">
+                        <svg class="ico ico--ebr">
+                          <use xlink:href="#ico--ebr-{{ partner.evidence_base }}"></use>
+                        </svg>
+                      </div>
+                      <footer class="card-ftr tx--f1--100--tcU--ls100--taMiddle co--partners" o-base="pad--x25 pad--y10" o-condensed="pad--x50 pad--y25">{{ partner.evidence_base|choice_display:'TiersOfEvidence' }}
+                      </footer>{% else %}
+                                <div class="card-bd ord--end" o-base="col--pMiddle--sMiddle mod--balance pad--x50 pad--yEnd50">
+                                  <h5 class="tx--display--f1 co--partners">N/A</h5>
+                                  <p class="tx--chrome--f3" o-base="row--pMiddle--sMiddle rhy--xStart25"><span>Not yet graded.</span></p>
+                                </div>{% endif %}
           </article>
-          <article class="copy--card thm--tint95" o-base="mod--static pad--x25 pad--y25" o-standard="pad--x50" o-extended="gxs--s2">
-            <header>
-              <h2 class="tx--maj--f1--100 co--partners">Overview
-              </h2>
-            </header>
-            <div class="bd">{{ partner.overview|linebreaks }}
-            </div>
-          </article>
+          <div o-base="rhy--yStart100">
+            <article class="copy--card-lede" o-base="mod--static pad--x50" o-standard="pad--x25">
+              <header>
+                <h2 class="tx--hed--f1--100 co--partners">Mission
+                </h2>
+              </header>
+              <div class="bd tx--maj">{{ partner.mission|linebreaks }}
+              </div>
+            </article>
+            <article class="copy--card-lede" o-base="mod--static pad--x50" o-standard="pad--x25">
+              <header>
+                <h2 class="tx--hed--f1--100 co--partners">Overview
+                </h2>
+              </header>
+              <div class="bd tx--maj">{{ partner.overview|linebreaks }}
+              </div>
+            </article>
+          </div>
         </div>
-        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="rhy--yStart100">{% if partner.featured_network.count > 0 or partner.network_use.count > 0 %}
+        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart50 rhy--yStart100">{% if partner.featured_network.count > 0 or partner.network_use.count > 0 %}
                     <article class="card--list-links vx--z100" o-base="col--pStart">
                       <header class="thm--partners" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
                         <h1 class="tx--maj--f1--100--aa">Active In CIS Network</h1><span class="tx--caption--f3--400--aa">As reported in recent year's EOY data</span>
@@ -172,7 +190,9 @@
                                                                         </li>{% endif %}{% endfor %}{% endif %}
                         </ul>
                       </div>
-                    </article>{% endif %}{% if partner.webinars.count > 0 or partner.presentations.count > 0 %}
+                    </article>{% endif %}
+        </div>
+        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart50 rhy--yStart100">{% if partner.webinars.count > 0 or partner.presentations.count > 0 %}
                     <article class="card--list-tagged-links vx--z100" o-base="col--pStart">
                       <header class="thm--partners" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
                         <h1 class="tx--maj--f1--100--aa">Additional Resources</h1>

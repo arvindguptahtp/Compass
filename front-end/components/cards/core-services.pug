@@ -57,7 +57,8 @@ block content
     ul&attributes(card.icon_list)
         
         +for(card.icons)
-            li.thm--tint70.hl--yEnd--bCurrent.co--partners(
+            li.thm--tint70.hl--yEnd--bCurrent(
+                class=card.impact_color
                 o-base="col--pMiddle--sMiddle pad--xy50 rhy--yStart50"
                 style="border-width: 2px"
             )
