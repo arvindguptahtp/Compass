@@ -257,7 +257,7 @@ is here for <span class="caps">CIS</span> affiliates to search for and connect t
                         <dt class="gxi--title thm--shade10" o-base="row--pStart"><a class="co--pri rxn--tint50 fx--shift" href="{{ affiliate.get_absolute_url }}" o-base="row--pStart--sMiddle mod--balance pad--x25 pad--y10 rhy--xStart" o-standard="pad--x50">
                             <h4 class="tx--subhed--f1--100">{{ affiliate }}
                             </h4></a></dt>
-                        <dd class="gxi--profile"><a class="ctrl--action fx--shift" href="{{ affiliate.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25"><span>View Profile</span></a>
+                        <dd class="gxi--profile"><a class="ctrl--action-impt fx--shift tx--small--f3--100--tcU rxn--ctrl-impt" href="{{ affiliate.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25"><span>View Profile</span></a>
                         </dd>{% if affiliate.state %}
                             <dd class="gxi--state tx--base--f1--100 hl--xy--bTint" o-base="row--pStart--sMiddle pad--x25 pad--y10 rhy--xStart25" o-condensed="pad--x50"><span>{{ affiliate.state|us_state }}</span>{% if affiliate.affiliate_location == 'Ur' %}<span>(Urban)</span>{% endif %}{% if affiliate.affiliate_location == 'R' %}<span>(Rural)</span>{% endif %}
                             </dd>{% endif %}

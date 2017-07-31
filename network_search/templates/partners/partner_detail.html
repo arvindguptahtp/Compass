@@ -34,10 +34,10 @@
             <use xlink:href="#ico--ctrl-next"></use>
           </svg><span class="tx--trnc">{{ partner }}</span>
         </div>
-        <div o-base="row--pEnd--sMiddle mod--balance">{% if partner.program.all %}<a class="ctrl--action fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="{{ partner.program }}" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25 iso--xEnd">
+        <div o-base="row--pEnd--sMiddle mod--balance">{% if partner.program.all %}<a class="ctrl--action fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="{{ partner.program.all.0.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25 iso--xEnd">
                 <svg class="ico">
                   <use href="#ico--programs"></use>
-                </svg><span>{{ partner.program.all.0 }}</span></a>{% endif %}{% if partner.website %}<a class="ctrl--action fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="{{ partner.website }}" target="_blank" rel="noopener noreferrer" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25 iso--xEnd">
+                </svg><span>Evidence-based Program</span></a>{% endif %}{% if partner.website %}<a class="ctrl--action fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="{{ partner.website }}" target="_blank" rel="noopener noreferrer" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25 iso--xEnd">
             <svg class="ico">
               <use href="#ico--link-ext"></use>
             </svg><span>Website</span></a>{% endif %}<a class="ctrl--download fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="../{{ partner.id }}.pdf" download="{{ partner }}" o-base="row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25">

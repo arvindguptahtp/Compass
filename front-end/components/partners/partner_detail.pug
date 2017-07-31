@@ -45,8 +45,8 @@ block asset_controls
         include /controls/action
             -
                 vefa.data({
-                    url: page.program.tag(),
-                    label: `{{ ${ page.program.io() }.all.0 }}`,
+                    url: v(`${ page.program.io() }.all.0.get_absolute_url`),
+                    label: 'Evidence-based Program',
                     icon: "programs"
                 })
                 .dom_mix({
