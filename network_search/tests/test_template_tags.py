@@ -37,3 +37,10 @@ def test_us_state():
 def test_state_tag_template():
     tmpl = template.Template("{% load network_search_tags %}{{ state|us_state }}")
     assert tmpl.render(template.Context({"state": "va"})).strip() == "Virginia"
+
+
+def test_url_with_http():
+    assert network_search_tags.linkable("http://www.yahoo.com") == "http://www.yahoo.com"
+    assert network_search_tags.linkable("https://www.yahoo.com") == "https://www.yahoo.com"
+    assert network_search_tags.linkable("www.yahoo.com") == "http://www.yahoo.com"
+    assert network_search_tags.linkable("") == ""
