@@ -37,3 +37,16 @@ class FeaturedMixin:
             self.fields['featured_network'].queryset = self.instance.network_use.all()
         else:
             self.fields['featured_network'].queryset = Affiliate.affiliates.none()
+
+
+class AnySelect(forms.NullBooleanSelect):
+    """
+    Replaces 'Unknown' with 'Any' in selection options
+    """
+    def __init__(self, attrs=None):
+        choices = (
+            ('1', 'Any'),
+            ('2', 'Yes'),
+            ('3', 'No'),
+        )
+        super(forms.Select, self).__init__(attrs, choices)

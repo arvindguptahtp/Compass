@@ -1,6 +1,7 @@
 from django import forms
 
 from network_search.core import choices
+from network_search.core.forms import AnySelect
 from network_search.core.forms import FeaturedMixin
 from network_search.core.forms import SearchForm
 from network_search.programs.models import Program
@@ -99,15 +100,20 @@ class ProgramSearchForm(SearchForm):
     )
     use_in_network = forms.NullBooleanField(
         required=False,
+        widget=AnySelect,
     )
     services = forms.MultipleChoiceField(
         label="Service Categories",
         choices=choices.CoreServices.as_choices(),
         required=False,
     )
-    free_of_cost = forms.NullBooleanField(required=False)
+    free_of_cost = forms.NullBooleanField(
+        required=False,
+        widget=AnySelect,
+    )
     evidence = forms.MultipleChoiceField(
         label="Tiers of Evidence",
         choices=choices.TiersOfEvidence.as_choices(),
+        widget=AnySelect,
         required=False,
     )
