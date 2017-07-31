@@ -1,9 +1,9 @@
 from django import forms
 
 from network_search.core import choices
-from network_search.core.forms import FeaturedMixin
-from network_search.core.forms import SearchForm
 from network_search.core.forms import AnySelect
+from network_search.core.forms import SearchForm
+from network_search.core.forms import FeaturedMixin
 from network_search.partners.models import Partner
 
 

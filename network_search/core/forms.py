@@ -43,6 +43,7 @@ class AnySelect(forms.NullBooleanSelect):
     """
     Replaces 'Unknown' with 'Any' in selection options
     """
+
     def __init__(self, attrs=None):
         choices = (
             ('1', 'Any'),
