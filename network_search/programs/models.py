@@ -39,9 +39,9 @@ class ProgramQueryset(ResourceQueryset):
             qs = qs.filter(is_cost_free=cost_free)
 
         if use_in_network is True:
-            qs = qs.filter(network_use=True)
+            qs = qs.exclude(network_use=None)
         elif use_in_network is False:
-            qs = qs.exclude(network_use=True)
+            qs = qs.filter(network_use=None)
 
         return qs.distinct('name')
 
