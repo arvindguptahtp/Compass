@@ -51,7 +51,7 @@
                           <dl class="datagrid-grid" o-extended="gdx--gc--gxy10">{% if True %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Executive Director</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxi--gs2" o-condensed="pad--x50">
                                             <ul>
                                               <li>{{ affiliate.current_data.executive_director_name }}</li>
                                               <li><a class="tx--tdU fx--shift" href="mailto:{{ affiliate.current_data.executive_director_email }}">{{ affiliate.current_data.executive_director_email }}</a></li>
@@ -60,7 +60,7 @@
                                 </div>{% endif %}{% if True %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Program Lead</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxi--gs2" o-condensed="pad--x50">
                                             <ul>
                                               <li>{{ affiliate.current_data.program_lead_name }}</li>
                                               <li><a class="tx--tdU fx--shift" href="mailto:{{ affiliate.current_data.program_lead_email }}">{{ affiliate.current_data.program_lead_email }}</a></li>
@@ -69,12 +69,12 @@
                                 </div>{% endif %}{% if affiliate.affiliate_location %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Location</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ affiliate.affiliate_location|choice_display:'AffiliateLocation'|capfirst }}
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxi--gs2" o-condensed="pad--x50">{{ affiliate.affiliate_location|choice_display:'AffiliateLocation'|capfirst }}
                                   </dd>
                                 </div>{% endif %}{% if True %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Address</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxi--gs2" o-condensed="pad--x50">
                                             <ul>
                                               <li>{{ affiliate.address_street }}</li>
                                               <li>{{ affiliate.address_city }}, {{ affiliate.address_state }} {{ affiliate.address_postcode }}</li>
@@ -83,7 +83,7 @@
                                 </div>{% endif %}{% if affiliate.phone_number %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Phone Number</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ affiliate.phone_number|safe }}
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxi--gs2" o-condensed="pad--x50">{{ affiliate.phone_number|safe }}
                                   </dd>
                                 </div>{% endif %}
                           </dl>

@@ -56,7 +56,7 @@
                           <dl class="datagrid-grid" o-extended="gdx--gc--gxy10">{% if program.tiers_of_service %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Tiers of Service</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxi--gs2" o-condensed="pad--x50">
                                     <ul>{% for val in program.tiers_of_service %}
                                           <li>{{ val|choice_display:'TiersOfService'|capfirst }}
                                           </li>{% endfor %}
@@ -65,7 +65,7 @@
                                 </div>{% endif %}{% if program.region_other or program.region %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Region</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if program.region %}
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxi--gs2" o-condensed="pad--x50">{% if program.region %}
                                                 <ul>{% for val in program.region %}
                                                       <li>{{ val|choice_display:'Regions'|capfirst }}</li>{% endfor %}
                                                 </ul>{% endif %}{% if program.region_other %}
@@ -76,7 +76,7 @@
                                 </div>{% endif %}{% if program.setting %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Setting</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxi--gs2" o-condensed="pad--x50">
                                     <ul>{% for val in program.setting %}
                                           <li>{{ val|choice_display:'Setting'|capfirst }}
                                           </li>{% endfor %}
@@ -85,19 +85,19 @@
                                 </div>{% endif %}{% if program.outcomes %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Outcomes</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ program.outcomes|safe }}
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxi--gs2" o-condensed="pad--x50">{{ program.outcomes|safe }}
                                   </dd>
                                 </div>{% endif %}{% if True %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Associated Fees</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if program.is_cost_free %}
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxi--gs2" o-condensed="pad--x50">{% if program.is_cost_free %}
                                                 <p>Free of Cost</p>{% else %}{% if program.cost_description %}
                                                         <p style="word-break:word;">{{ program.cost_description|safe }}</p>{% endif %}{% endif %}
                                   </dd>
                                 </div>{% endif %}{% if program.assessment_available %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Assessment</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if program.assessment_info %}
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxi--gs2" o-condensed="pad--x50">{% if program.assessment_info %}
                                                 <p>{{ program.assessment_info }}</p>{% else %}
                                                     <p>Assessment Available</p>{% endif %}
                                   </dd>

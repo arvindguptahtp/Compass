@@ -81,8 +81,8 @@ block detail_a
                 data({
                     heading: "Partner Information",
                     items: [
+                        ["heading", "Core Partner", page.is_core_partner.io()],
                         ["mixin", "Representative", "card_contact"],
-                        ["text", "Core Partner", page.is_core_partner.io()],
                         ["group", "Tiers of Service", page.tiers_of_service.io(), "TiersOfService"],
                         ["group", "Organizational Reach", page.organizational_reach.io(), "Regions"],
                         ["group", "Setting", page.setting.io(), "Setting"],
