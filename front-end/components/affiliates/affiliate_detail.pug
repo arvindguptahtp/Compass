@@ -215,6 +215,19 @@ block detail_b
                                 }
                             })
 
+        
+        include /cards/link-list
+            -
+                vefa
+                    .data({
+                        heading: "Active Programs",
+                        heading_meta: "As reported in recent year's EOY data",
+                        items: [
+                            //- ["Test Link", "http://communities.org", "external_link"],
+                            ["group", page.programs.io(), "programs"],
+                        ], 
+                    })
+
 
     +if('eoy_data.total_students_served > 0')
         div(

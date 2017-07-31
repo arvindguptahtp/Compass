@@ -366,55 +366,69 @@
                                               </dl>
                                             </section>{% endif %}
                       </div>
+                    </article>{% endif %}{% if affiliate.programs.count > 0 %}
+                    <article class="card--list-links vx--z100" o-base="col--pStart">
+                      <header class="thm--affiliates" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
+                        <h1 class="tx--maj--f1--100--aa">Active Programs</h1><span class="tx--caption--f3--400--aa">As reported in recent year's EOY data</span>
+                      </header>
+                      <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
+                        <ul o-base="mod--balance rhy--yStart25">{% if affiliate.programs %}{% for item in affiliate.programs.all %}
+                                                        <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--affiliates" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                                          <svg class="ico--dx100">
+                                                                            <use href="#ico--programs"></use>
+                                                                          </svg></span><span class="tx--trnc" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
+                                                        </li>{% endfor %}{% endif %}
+                        </ul>
+                      </div>
                     </article>{% endif %}
         </div>{% if eoy_data.total_students_served > 0 %}
-                  <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart50 gxi--gs2">{% if True %}
-                      <article class="card--open" o-base="col--pStart">
-                        <header class="thm--affiliates" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
-                          <h1 class="tx--maj--f1--100--aa">Unique Student Characteristics</h1>
-                        </header>
-                        <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                            <ul o-extended="gdx--gc6--gr2--gxy10">{% if eoy_data.total_students_frpl > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">FRPL Eligible Students Served</p>
-                                </li>{% endif %}{% if eoy_data.total_students_ell > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">ELL Students Served</p>
-                                </li>{% endif %}{% if eoy_data.total_students_foster > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Foster Care/Group Home</p>
-                                </li>{% endif %}{% if eoy_data.total_students_homeless > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Homeless Youth</p>
-                                </li>{% endif %}{% if eoy_data.total_students_lgbt > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">LGBT</p>
-                                </li>{% endif %}{% if eoy_data.total_students_pregnant_parenting > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Pregnant/Parenting</p>
-                                </li>{% endif %}{% if eoy_data.total_students_special_education > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Special Education</p>
-                                </li>{% endif %}{% if eoy_data.total_students_substance_abuse > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Substance Abuse</p>
-                                </li>{% endif %}{% if eoy_data.total_students_adjudicated_youth > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Adjudicated Youth</p>
-                                </li>{% endif %}{% if eoy_data.total_students_child_of_military > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Child of Military</p>
-                                </li>{% endif %}{% if eoy_data.total_students_gang > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Gang Involvement</p>
-                                </li>{% endif %}{% if eoy_data.total_students_incarcerated_parent > 0 %}
-                                <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
-                                  <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Incarcerated Parent</p>
-                                </li>{% endif %}
-                            </ul>
-                        </div>
-                      </article>{% endif %}
-                  </div>{% endif %}
+                    <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart50 gxi--gs2">{% if True %}
+                        <article class="card--open" o-base="col--pStart">
+                          <header class="thm--affiliates" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
+                            <h1 class="tx--maj--f1--100--aa">Unique Student Characteristics</h1>
+                          </header>
+                          <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
+                              <ul o-extended="gdx--gc6--gr2--gxy10">{% if eoy_data.total_students_frpl > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">FRPL Eligible Students Served</p>
+                                  </li>{% endif %}{% if eoy_data.total_students_ell > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">ELL Students Served</p>
+                                  </li>{% endif %}{% if eoy_data.total_students_foster > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Foster Care/Group Home</p>
+                                  </li>{% endif %}{% if eoy_data.total_students_homeless > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Homeless Youth</p>
+                                  </li>{% endif %}{% if eoy_data.total_students_lgbt > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">LGBT</p>
+                                  </li>{% endif %}{% if eoy_data.total_students_pregnant_parenting > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Pregnant/Parenting</p>
+                                  </li>{% endif %}{% if eoy_data.total_students_special_education > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Special Education</p>
+                                  </li>{% endif %}{% if eoy_data.total_students_substance_abuse > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Substance Abuse</p>
+                                  </li>{% endif %}{% if eoy_data.total_students_adjudicated_youth > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Adjudicated Youth</p>
+                                  </li>{% endif %}{% if eoy_data.total_students_child_of_military > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Child of Military</p>
+                                  </li>{% endif %}{% if eoy_data.total_students_gang > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Gang Involvement</p>
+                                  </li>{% endif %}{% if eoy_data.total_students_incarcerated_parent > 0 %}
+                                  <li class="thm--tint70 hl--yEnd--bCurrent co--affiliates" o-base="col--pEnd--sStart" style="border-width: 2px;">
+                                    <p class="tx--maj--f3--100 co--copy" o-base="pad--xy25 iso--yStart200">Incarcerated Parent</p>
+                                  </li>{% endif %}
+                              </ul>
+                          </div>
+                        </article>{% endif %}
+                    </div>{% endif %}
       </section>
       <aside class="gxi--c">
         <div class="strata thm--light-alt hl--yStart--bTint" o-base="col--pStart pad--xy50 rhy--yStart100" o-enhanced="pad--xy100 pad--xy100">
