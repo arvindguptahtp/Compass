@@ -65,12 +65,13 @@
                                 </div>{% endif %}{% if program.region_other or program.region %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Region</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
-                                            <p>{% if program.region_other %}{{ program.region_other }}{% else %}{% if program.region %}
-                                                          <ul>{% for val in program.region %}
-                                                                <li>{{ val|choice_display:'Regions'|capfirst }}</li>{% endfor %}
-                                                          </ul>{% endif %}{% endif %}
-                                            </p>
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if program.region %}
+                                                <ul>{% for val in program.region %}
+                                                      <li>{{ val|choice_display:'Regions'|capfirst }}</li>{% endfor %}
+                                                </ul>{% endif %}{% if program.region_other %}
+                                                <ul>
+                                                  <li>{{ program.region_other }}</li>
+                                                </ul>{% endif %}
                                   </dd>
                                 </div>{% endif %}{% if program.setting %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
@@ -93,13 +94,12 @@
                                                 <p>Free of Cost</p>{% else %}{% if program.cost_description %}
                                                         <p style="word-break:word;">{{ program.cost_description|safe }}</p>{% endif %}{% endif %}
                                   </dd>
-                                </div>{% endif %}{% if program.assessment_avalable %}
+                                </div>{% endif %}{% if program.assessment_available %}
                                 <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                   <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Assessment</dt>
-                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if program.assessment_available %}
-                                                <p>Assessment Available</p>{% if program.assessment_info %}
-                                                    <p>{{ program.assessment_info }}</p>{% else %}
-                                                        <p>N/A</p>{% endif %}{% endif %}
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if program.assessment_info %}
+                                                <p>{{ program.assessment_info }}</p>{% else %}
+                                                    <p>Assessment Available</p>{% endif %}
                                   </dd>
                                 </div>{% endif %}
                           </dl>

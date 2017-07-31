@@ -82,19 +82,19 @@ block detail_a
                         ["group","Setting", page.setting.io(), "Setting"],
                         ["text", "Outcomes", page.outcomes.io()],
                         ["mixin", "Associated Fees", "card_fees"],
-                        ["mixin", "Assessment", "card_assessment", page.assessment_avalable.io()]
+                        ["mixin", "Assessment", "card_assessment", page.assessment_available.io()]
                     ]
                 })
 
         mixin card_region
-            p
-                +if(page.region_other.io())
-                    = page.region_other.tag()
-                    +else()
-                        +if(page.region.io())
-                            ul
-                                +for(`val in ${page.region.io()}`)
-                                    li= v('val', `choice_display:'Regions'`, 'capfirst')
+            +if(page.region.io())
+                ul
+                    +for(`val in ${page.region.io()}`)
+                        li= v('val', `choice_display:'Regions'`, 'capfirst')
+            
+            +if(page.region_other.io())
+                ul
+                    li= page.region_other.tag()
 
         mixin card_fees
             +if(page.is_cost_free.io())
@@ -106,14 +106,11 @@ block detail_a
                         )= page.cost_description.tag("safe")
         
         mixin card_assessment
-            +if(page.assessment_available.io())
-                p Assessment Available
-                
-                +if(page.assessment_info.io())
-                    p= page.assessment_info.tag()
-                
-                    +else()
-                        p N/A
+            +if(page.assessment_info.io())
+                p= page.assessment_info.tag()
+
+                +else()
+                   p Assessment Available
 
 
 block detail_b
