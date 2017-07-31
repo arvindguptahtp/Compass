@@ -10,14 +10,13 @@ block subclass
                     label: "Explore"
                 },
                 reset: {
-                    url: "'./'",
+                    url: ".",
                     label: "Clear Search"
                 }
             })
 
 
 block hdr
-
 
 block ftr
     footer&attributes(fm.footer)
@@ -26,4 +25,3 @@ block ftr
 
         include /controls/link
             - vefa.data(fm.reset)
-

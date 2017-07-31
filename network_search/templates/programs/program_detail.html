@@ -35,13 +35,13 @@
           </svg><span class="tx--trnc">{{ program }}</span>
         </div>
         <div o-base="row--pEnd--sMiddle mod--balance">{% if program.national_partner %}<a class="ctrl--action fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="{{ program.national_partner.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25 iso--xEnd">
-                <svg class="ico">
+                <svg class="ico--dx100">
                   <use href="#ico--partners"></use>
                 </svg><span>National Partner</span></a>{% endif %}{% if program.program_weblink %}<a class="ctrl--action fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="{{ program.program_weblink }}" target="_blank" rel="noopener noreferrer" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25 iso--xEnd">
-            <svg class="ico">
+            <svg class="ico--dx100">
               <use href="#ico--link-ext"></use>
             </svg><span>Website</span></a>{% endif %}<a class="ctrl--download fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="../{{ program.id }}.pdf" download="{{ program }}" o-base="row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25">
-            <svg class="ico">
+            <svg class="ico--dx100">
               <use href="#ico--download"></use>
             </svg><span>Report (PDF)</span></a>
         </div>
