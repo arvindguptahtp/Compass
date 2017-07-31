@@ -114,6 +114,5 @@ class ProgramSearchForm(SearchForm):
     evidence = forms.MultipleChoiceField(
         label="Tiers of Evidence",
         choices=choices.TiersOfEvidence.as_choices(),
-        widget=AnySelect,
         required=False,
     )
