@@ -16,92 +16,15 @@ block subclass
                 ],
             })
             .dom_mix({
-                grid: {
-                    "o-base": "mod--balance",
-                    "o-condensed": "gx--i3--gxy10 mod--static rhy--yStart0"
+                element: {
+                    class: "vx--z100",
                 },
                 item: {
                     class: "thm--tint70 tx--f3--900",
                 },
-                data_hed: {
-                    class: `tx--f3--600 co--copy`,
-                    "o-base": "pad--xy25 iso--yEnd",
-                    "o-condensed": "gxs--s3",
-                },
-                data_key: {
-                    class: `tx--small--f2--tcU`,
-                    "o-base": "pad--xy25 iso--yStart25",
-                },
-                data_value: {
-                    class: `thm--tint70 tx--f2`,
-                    "o-base": "col--pStart pad--xy25 gxs--s2",
-                }
             }) 
-            .methods({
-                data_mapper () {
-                    if (this.items) {
-                        this.items = this.items.map( (dict) => {
-                            let value = {
-                                type: dict[0],
-                                label: dict[1]
-                            }
-                            
-                            switch(dict[0]) {
-                                case "heading":
-                                    return Object.assign(value, {
-                                        test: (dict[2]) ? dict[2] : 'True'
-                                    })
-                                break;
-                                
-                                case "mixin":
-                                    return Object.assign(value, {
-                                        mixin: dict[2], 
-                                        test: (dict[3]) ? dict[3] : 'True'
-                                    })
-                                break;
-                            
-                                case "group":
-                                    return Object.assign(value, {
-                                        group: `val in ${ dict[2] }`,
-                                        test: dict[2],
-                                        category: (dict[3]) ? dict[3] : false
-                                    })
-                                break;
-                                
-                                case "yesno":
-                                    return Object.assign(value, {
-                                        value: dict[2],
-                                        test: dict[2],
-                                        yes: (dict[3]) ? dict[3] : "yes",
-                                        no: (dict[4]) ? dict[4] : "no",
-                                    })
-                                break;
-
-                                case "link":
-                                    return Object.assign(value, {
-                                        value: dict[2],
-                                        test: dict[2]  ? dict[2] : 'True',
-                                        link_label: (dict[3]) ? dict[3] : dict[2]
-                                    })
-                                break;
-                            
-                                default:
-                                    return Object.assign(value, {
-                                        value: (dict[2]) ? dict[2] : 'True',
-                                        test: dict[2]  ? dict[2] : 'True',
-                                        display: (dict[3]) ? dict[3] : dict[2]
-                                    })
-
-                                break;
-                            }
-                        })
-                    }
-                }
-            })
             .options({
                 on_mount () {
-                    this.data_mapper()
-
                     this.dom_mix({
                         hdr: {
                             class: this.impact_theme
@@ -109,15 +32,7 @@ block subclass
                         bd: {
                             class: "thm--shade15"
                         },
-                        data_key: {
-                            class: this.impact_theme
-                        },
-                        data_hed: {
-                            class: this.impact_color
-                        },
-                        link: {
-                            class: this.impact_color
-                        }
+                        
                     })
 
                 }
@@ -127,63 +42,14 @@ block content
     mixin mixin_name
         p Test mixin
 
-
-    dl.card-data&attributes(card.grid)
-        for item in card.items
-            +if(item.test)
-                dt&attributes(
-                    (item.type == "heading") ? card.data_hed : card.data_key
-                )= item.label
-
-                if item.type !== "heading"
-                    dd&attributes(card.data_value)
-                        case item.type
-                            when "mixin"
-                                +#{item.mixin}
-                            
-                            when "text"
-                                if item.value == item.display
-                                    = v(item.value, "safe")
-                                else
-                                    = item.display
-                            
-                            when "pct"
-                                if item.value == item.display
-                                    = `${ v(item.value) }%`
-                                else
-                                    = item.display
-
-                            when "money"
-                                if item.value == item.display
-                                    = `$${ v(item.value, "intcomma") }`
-                                else
-                                    = item.display
-
-                            when "yesno"
-                                +if(item.value)
-                                    = item.yes
-                                    +else()
-                                        = item.no
-                            
-                            when "link"
-                                a.tx--tdU.fx--shift(
-                                    href=item.value.tag()
-                                    target="_blank"
-                                    rel="noopener"
-                                    o-base="row--pStart--sMiddle rhy--xStart25"
-                                )
-                                    span.tx--trnc= item.link_label
-                                    svg.ico
-                                        use(href=`#ico--link-ext`)
-                            
-                            when "group"
-                                ul
-                                    +for(item.group)
-                                        li&attributes(card.data_value_item)
-                                            if item.category
-                                                = v("val", `choice_display:'${item.category}'`, 'capfirst')  
-                                            else
-                                                = v("val", 'capfirst')
-
+    include /datagrids/base
+        -
+            vefa.data({items:card.items})
+                .dom_mix({
+                    grid: {
+                        "o-extended": "gdx--gc--gxy10"
+                    }
+                })
+    
 
 block teardown

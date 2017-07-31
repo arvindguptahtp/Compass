@@ -1,0 +1,11 @@
+.ico--
+    &dx
+        for i in (25 50 75 100 125 150 175 200 250 300 350 400)
+            if i is 0        
+                num = 0
+            else
+                num = i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    sq: bvr(num)

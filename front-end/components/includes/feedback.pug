@@ -18,11 +18,11 @@ block bd
     )
         p Please submit your feedback on our new tool:
         
-        include /controls/action
+        include /controls/impt
             -
                 vefa.data({
                     //- url: "'https://www.surveymonkey.com/r/9WVJVGV'",
                     url: "https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link",
                     label: "Fill out our survey",
-                    target: "_blank"
+                    external: true
                 })

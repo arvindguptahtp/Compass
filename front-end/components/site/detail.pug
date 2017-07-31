@@ -40,11 +40,11 @@ block content
         o-base="mod--balance"
     )
         if page && page.icon
-            .gxi--breadcrumbs.tx--small--f3(
+            nav.gxi--breadcrumbs.tx--small--f3.hl--yEnd--bTint(
                 o-base="row--pStart--sMiddle"
                 o-standard="row--pGrid--sMiddle"
             )
-                nav(
+                div(
                     o-base="row--pStart--sBase mod--balance pad--xy25 rhy--xStart10"
                     o-standard="row--pStart--sBase pad--x50"
                 )
@@ -58,12 +58,28 @@ block content
                     
                     span.tx--trnc()= page.title.tag()
                 
-                block asset_controls
+                div(
+                    o-base="row--pEnd--sMiddle mod--balance"
+                )
+                    block asset_controls
+        
+                    include /controls/download
+                        -
+                            vefa.data({
+                                file: `../${page.id.tag()}.pdf`,
+                                label: "Report (PDF)",
+                                name: page.title.tag()
+                            })
+                            .dom_mix({
+                                element: {
+                                    class: "tx--small--f3--tcU rxn--ctrl-neutral"
+                                }
+                            })
 
         
         section.gxi--a(
             class=page.impact_theme
-            o-base="pad--x25 pad--y50 rhy--yStart50"
+            o-base="pad--x25 pad--yStart25 pad--yEnd50 rhy--yStart50"
             o-standard="pad--x50 rhy--yStart100"
         )
             block detail_a
@@ -73,7 +89,7 @@ block content
         section.gxi--b(
             o-base="col--pStart pad--y50 rhy--yStart50"
             o-condensed="pad--x25"
-            o-extended="gx--i2--gxy25 rhy--yStart0"
+            o-extended="gdx--gc2--gxy50 rhy--yStart0"
         )   
             block detail_b
 

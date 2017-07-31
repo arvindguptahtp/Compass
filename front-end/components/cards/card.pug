@@ -1,0 +1,31 @@
+extends _abstract
+
+block subclass
+    -
+        vefa.define("card--open")
+            .options({
+                on_mount () {
+
+                    this.dom_mix({
+                        hdr: {
+                            class: this.impact_theme
+                        },
+                        bd: {
+                            class: "thm--shade15"
+                        },
+                        link: {
+                            class: this.impact_color
+                        }
+                    })
+
+                }
+            })
+
+block content
+    if pug_mixins.open_bd
+        +open_bd()
+
+
+block teardown
+    if pug_mixins.open_bd
+        - delete pug_mixins.open_bd

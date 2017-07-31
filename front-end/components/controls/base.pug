@@ -1,0 +1,14 @@
+extends _abstract
+
+block subclass
+    -
+        vefa.define("link")
+            .dom({
+                element: {}
+            })
+
+
+prepend bd
+    if ctrl.icon
+        svg.ico
+            use(href=`#ico--${ctrl.icon}`)

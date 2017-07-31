@@ -28,86 +28,115 @@
   </div>
   <main o-base="col--pStart ord--next" o-extended="gxi--d">
     <div class="strata--detail gx--profile" o-base="mod--balance">
-      <div class="gxi--breadcrumbs tx--small--f3" o-base="row--pStart--sMiddle" o-standard="row--pGrid--sMiddle">
-        <nav o-base="row--pStart--sBase mod--balance pad--xy25 rhy--xStart10" o-standard="row--pStart--sBase pad--x50"><a class="co--ctrl fx--shift" href="../" o-base="row--pStart--sMiddle--xAuto rhy--xStart25">Partners</a>
+      <nav class="gxi--breadcrumbs tx--small--f3 hl--yEnd--bTint" o-base="row--pStart--sMiddle" o-standard="row--pGrid--sMiddle">
+        <div o-base="row--pStart--sBase mod--balance pad--xy25 rhy--xStart10" o-standard="row--pStart--sBase pad--x50"><a class="co--ctrl fx--shift" href="../" o-base="row--pStart--sMiddle--xAuto rhy--xStart25">Partners</a>
           <svg class="ico ico--xs">
             <use xlink:href="#ico--ctrl-next"></use>
           </svg><span class="tx--trnc">{{ partner }}</span>
-        </nav>
-        <div o-base="row--pEnd--sMiddle mod--balance">{% if partner.website %}<a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift tx--small--f3 rxn--ctrl-impt fx--shift" href="partner.website" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 ico--sm pad--y25" o-condensed="rhy--xStart50"><span>Website</span></a>{% endif %}<a class="ctrl--download tx--small--f1--100--tcU rxn--ctrl-download fx--shift tx--small--f3 rxn--ctrl-download fx--shift" href="../{{ partner.id }}.pdf" download="{{ partner }}" o-base="pad--y25 pad--x50"><span>Download PDF report</span></a>
         </div>
-      </div>
-      <section class="gxi--a thm--partners" o-base="pad--x25 pad--y50 rhy--yStart50" o-standard="pad--x50 rhy--yStart100">{% if True %}
+        <div o-base="row--pEnd--sMiddle mod--balance">{% if partner.program.all %}<a class="ctrl--action fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="{{ partner.program }}" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25 iso--xEnd">
+                <svg class="ico">
+                  <use href="#ico--programs"></use>
+                </svg><span>{{ partner.program.all.0 }}</span></a>{% endif %}{% if partner.website %}<a class="ctrl--action fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="{{ partner.website }}" target="_blank" rel="noopener noreferrer" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25 iso--xEnd">
+            <svg class="ico">
+              <use href="#ico--link-ext"></use>
+            </svg><span>Website</span></a>{% endif %}<a class="ctrl--download fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="../{{ partner.id }}.pdf" download="{{ partner }}" o-base="row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25">
+            <svg class="ico">
+              <use href="#ico--download"></use>
+            </svg><span>Report (PDF)</span></a>
+        </div>
+      </nav>
+      <section class="gxi--a thm--partners" o-base="pad--x25 pad--yStart25 pad--yEnd50 rhy--yStart50" o-standard="pad--x50 rhy--yStart100">{% if True %}
                 <article class="card--list-data-inv" o-base="col--pStart">
-                  <header o-base="pad--y25">
+                  <header o-base="pad--yEnd25">
                     <h1 class="tx--subhed--f1--100--aa">Partner Information</h1>
                   </header>
-                  <div class="bd" o-base="">
-                    <dl class="card-data" o-base="gx--i3--gxy10 mod--static rhy--yStart0" o-condensed="gx--i3--gxy10 mod--static rhy--yStart0">{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Representative</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
-                                        <p>{{ partner.contact_name }}</p>
-                                        <p><i>{{ partner.contact_title }}</i></p><a class="tx--tdU fx--shift" href="mailto:{{ partner.contact_email }}">{{ partner.contact_email }}</a>
-                              </dd>{% endif %}{% if partner.is_core_partner %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Core Partner</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ partner.is_core_partner|safe }}
-                              </dd>{% endif %}{% if partner.tiers_of_service %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Tiers of Service</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
-                                <ul>{% for val in partner.tiers_of_service %}
+                  <div class="bd" o-base="">{% if True %}
+                        <section o-base="col--pStart">
+                          <dl class="datagrid-grid" o-extended="gdx--gc--gxy10">{% if True %}
+                                <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
+                                  <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Representative</dt>
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                            <p>{{ partner.contact_name }}</p>
+                                            <p><i>{{ partner.contact_title }}</i></p><a class="tx--tdU fx--shift" href="mailto:{{ partner.contact_email }}">{{ partner.contact_email }}</a>
+                                  </dd>
+                                </div>{% endif %}{% if partner.is_core_partner %}
+                                <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
+                                  <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Core Partner</dt>
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{{ partner.is_core_partner|safe }}
+                                  </dd>
+                                </div>{% endif %}{% if partner.tiers_of_service %}
+                                <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
+                                  <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Tiers of Service</dt>
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                    <ul>{% for val in partner.tiers_of_service %}
                                           <li>{{ val|choice_display:'TiersOfService'|capfirst }}
                                           </li>{% endfor %}
-                                </ul>
-                              </dd>{% endif %}{% if partner.organizational_reach %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Organizational Reach</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
-                                <ul>{% for val in partner.organizational_reach %}
+                                    </ul>
+                                  </dd>
+                                </div>{% endif %}{% if partner.organizational_reach %}
+                                <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
+                                  <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Organizational Reach</dt>
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                    <ul>{% for val in partner.organizational_reach %}
                                           <li>{{ val|choice_display:'Regions'|capfirst }}
                                           </li>{% endfor %}
-                                </ul>
-                              </dd>{% endif %}{% if partner.setting %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Setting</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
-                                <ul>{% for val in partner.setting %}
+                                    </ul>
+                                  </dd>
+                                </div>{% endif %}{% if partner.setting %}
+                                <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
+                                  <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Setting</dt>
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                    <ul>{% for val in partner.setting %}
                                           <li>{{ val|choice_display:'Setting'|capfirst }}
                                           </li>{% endfor %}
-                                </ul>
-                              </dd>{% endif %}{% if True %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Associated Fees</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if partner.is_cost_free %}
+                                    </ul>
+                                  </dd>
+                                </div>{% endif %}{% if True %}
+                                <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
+                                  <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Associated Fees</dt>
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">{% if partner.is_cost_free %}
                                                 <p>Free of Cost</p>{% else %}{% if partner.cost_description %}
-                                                                <p style="word-break:word;">{{ partner.cost_description|safe }}</p>{% endif %}{% endif %}
-                              </dd>{% endif %}
-                    </dl>
+                                                        <p style="word-break:word;">{{ partner.cost_description|safe }}</p>{% endif %}{% endif %}
+                                  </dd>
+                                </div>{% endif %}
+                          </dl>
+                        </section>{% endif %}
                   </div>
                 </article>{% endif %}{% if True %}
                 <article class="card--list-data-inv" o-base="col--pStart">
-                  <header o-base="pad--y25">
+                  <header o-base="pad--yEnd25">
                     <h1 class="tx--subhed--f1--100--aa">Student Demographics</h1>
                   </header>
-                  <div class="bd" o-base="">
-                    <dl class="card-data" o-base="gx--i3--gxy10 mod--static rhy--yStart0" o-condensed="gx--i3--gxy10 mod--static rhy--yStart0">{% if partner.grade %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Grade Level</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
-                                <ul>{% for val in partner.grade %}
+                  <div class="bd" o-base="">{% if True %}
+                        <section o-base="col--pStart">
+                          <dl class="datagrid-grid" o-extended="gdx--gc--gxy10">{% if partner.grade %}
+                                <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
+                                  <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Grade Level</dt>
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                    <ul>{% for val in partner.grade %}
                                           <li>{{ val|choice_display:'PartnerGrades'|capfirst }}
                                           </li>{% endfor %}
-                                </ul>
-                              </dd>{% endif %}{% if partner.gender %}
-                              <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Gender</dt>
-                              <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
-                                <ul>{% for val in partner.gender %}
+                                    </ul>
+                                  </dd>
+                                </div>{% endif %}{% if partner.gender %}
+                                <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
+                                  <dt class="thm--shade40 tx--small--f3--tcU" o-base="pad--xy25">Gender</dt>
+                                  <dd class="thm--tint10 tx--f2--100" o-base="col--pStart pad--xy25 gxs--s2" o-condensed="pad--x50">
+                                    <ul>{% for val in partner.gender %}
                                           <li>{{ val|choice_display:'Gender'|capfirst }}
                                           </li>{% endfor %}
-                                </ul>
-                              </dd>{% endif %}
-                    </dl>
+                                    </ul>
+                                  </dd>
+                                </div>{% endif %}
+                          </dl>
+                        </section>{% endif %}
                   </div>
                 </article>{% endif %}
       </section>
-      <section class="gxi--b" o-base="col--pStart pad--y50 rhy--yStart50" o-condensed="pad--x25" o-extended="gx--i2--gxy25 rhy--yStart0">  
-        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart100 rhy--yStart100">
-          <article class="copy--card thm--shade5 vx--z100" o-base="mod--static pad--x25 pad--y25" o-standard="pad--x50" o-extended="gxs--s2">
+      <section class="gxi--b" o-base="col--pStart pad--y50 rhy--yStart50" o-condensed="pad--x25" o-extended="gdx--gc2--gxy50 rhy--yStart0">  
+        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="rhy--yStart100">
+          <article class="copy--card thm--tint95" o-base="mod--static pad--x25 pad--y25" o-standard="pad--x50" o-extended="gxs--s2">
             <header>
               <h2 class="tx--maj--f1--100 co--partners">Mission
               </h2>
@@ -115,67 +144,69 @@
             <div class="bd">{{ partner.mission|linebreaks }}
             </div>
           </article>
-          <article class="copy--card thm--shade5 vx--z100" o-base="mod--static pad--x25 pad--y25" o-standard="pad--x50" o-extended="gxs--s2">
+          <article class="copy--card thm--tint95" o-base="mod--static pad--x25 pad--y25" o-standard="pad--x50" o-extended="gxs--s2">
             <header>
               <h2 class="tx--maj--f1--100 co--partners">Overview
               </h2>
             </header>
             <div class="bd">{{ partner.overview|linebreaks }}
             </div>
-          </article>{% if True %}
-                    <article class="card--coreservices vx--z100" o-base="col--pStart">
-                      <header class="thm--partners" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
-                        <h1 class="tx--maj--f1--100--aa">CIS Core Service Categories</h1>
-                      </header>
-                      <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <ul o-base="mod--balance rhy--yStart25" o-condensed="gx--i2--gxy10 rhy--yStart0" o-standard="gx--i1--gxy25" o-enhanced="gx--i2--gxy10" o-extended="gx--i1--gxy25" o-full="gx--i2--gxy25">{% for item in partner.service_categories %}
-                                    <li class="thm--tint70" o-base="row--pStart">
-                                      <svg class="ico ico--xl thm--partners" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--xy25">
-                                        <use href="#ico--{{ item }}"></use>
-                                      </svg>
-                                      <div class="tx--small--f2" o-base="col--pMiddle--sStart mod--balance pad--xy25"><span>{{ item|choice_display:'CoreServices' }}</span></div>
-                                    </li>{% endfor %}
-                        </ul>
-                      </div>
-                    </article>{% endif %}
+          </article>
         </div>
-        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart100 rhy--yStart100">{% if partner.program.count > 0 or partner.featured_network.count > 0 or partner.network_use.count > 0 %}
+        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="rhy--yStart100">{% if partner.featured_network.count > 0 or partner.network_use.count > 0 %}
                     <article class="card--list-links vx--z100" o-base="col--pStart">
                       <header class="thm--partners" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
                         <h1 class="tx--maj--f1--100--aa">Active In CIS Network</h1><span class="tx--caption--f3--400--aa">As reported in recent year's EOY data</span>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <ul o-base="mod--balance rhy--yStart25">{% if partner.program %}{% for item in partner.program.all %}{% if True %}
-                                                        <li class="thm--tint70 tx--small--f2"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart pad--xy25" o-standard="row--pStart--sMiddle rhy--xStart25">
-                                                            <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto rhy--xStart25" o-standard="row--pStart--sMiddle--xAuto mod--fit iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
-                                                            </div><small class="tx--caption--f3--100--tcU" o-base="mod--static" o-standard="iso--xStartAuto">National Program</small></a></li>{% endif %}{% endfor %}{% endif %}{% if partner.featured_network %}{% for item in partner.featured_network.all %}{% if True %}
-                                                        <li class="thm--tint70 tx--small--f2"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart pad--xy25" o-standard="row--pStart--sMiddle rhy--xStart25">
-                                                            <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto rhy--xStart25" o-standard="row--pStart--sMiddle--xAuto mod--fit iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
-                                                            </div><small class="tx--caption--f3--100--tcU" o-base="mod--static" o-standard="iso--xStartAuto">Featured Network</small></a></li>{% endif %}{% endfor %}{% endif %}{% if partner.network_use %}{% for item in partner.network_use.all %}{% if item not in partner.featured_network.all %}
-                                                        <li class="thm--tint70 tx--small--f2"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart pad--xy25" o-standard="row--pStart--sMiddle rhy--xStart25">
-                                                            <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto rhy--xStart25" o-standard="row--pStart--sMiddle--xAuto mod--fit iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
-                                                            </div><small class="tx--caption--f3--100--tcU" o-base="mod--static" o-standard="iso--xStartAuto">Affiliate</small></a></li>{% endif %}{% endfor %}{% endif %}
+                        <ul o-base="mod--balance rhy--yStart25">{% if partner.featured_network %}{% for item in partner.featured_network.all %}
+                                                        <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 hl--xEnd--bTint co--partners" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                                          <svg class="ico--dx150">
+                                                                            <use href="#ico--affiliates"></use>
+                                                                          </svg></span><span class="tx--trnc tx--900" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
+                                                        </li>{% endfor %}{% endif %}{% if partner.network_use %}{% for item in partner.network_use.all %}{% if item not in partner.featured_network.all %}
+                                                                        <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                                                          <svg class="ico--dx150">
+                                                                                            <use href="#ico--affiliates"></use>
+                                                                                          </svg></span><span class="tx--trnc" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
+                                                                        </li>{% endif %}{% endfor %}{% endif %}
                         </ul>
                       </div>
                     </article>{% endif %}{% if partner.webinars.count > 0 or partner.presentations.count > 0 %}
-                    <article class="card--list-links vx--z100" o-base="col--pStart">
+                    <article class="card--list-tagged-links vx--z100" o-base="col--pStart">
                       <header class="thm--partners" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
                         <h1 class="tx--maj--f1--100--aa">Additional Resources</h1>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <ul o-base="mod--balance rhy--yStart25">{% if partner.webinars %}{% for item in partner.webinars.all %}{% if True %}
-                                                        <li class="thm--tint70 tx--small--f2"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener" o-base="col--pStart--sStart pad--xy25" o-standard="row--pStart--sMiddle rhy--xStart25">
-                                                            <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto rhy--xStart25" o-standard="row--pStart--sMiddle--xAuto mod--fit iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
-                                                              <svg class="ico">
-                                                                <use href="#ico--link-ext"></use>
-                                                              </svg>
-                                                            </div><small class="tx--caption--f3--100--tcU" o-base="mod--static" o-standard="iso--xStartAuto">Webinar</small></a></li>{% endif %}{% endfor %}{% endif %}{% if partner.presentations %}{% for item in partner.presentations.all %}{% if True %}
-                                                        <li class="thm--tint70 tx--small--f2"><a class="rxn--tint90 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener" o-base="col--pStart--sStart pad--xy25" o-standard="row--pStart--sMiddle rhy--xStart25">
-                                                            <div class="tx--trnc" o-base="row--pStart--sMiddle--xAuto rhy--xStart25" o-standard="row--pStart--sMiddle--xAuto mod--fit iso--xEnd100"><span class="tx--trnc">{{ item }}</span>
-                                                              <svg class="ico">
-                                                                <use href="#ico--link-ext"></use>
-                                                              </svg>
-                                                            </div><small class="tx--caption--f3--100--tcU" o-base="mod--static" o-standard="iso--xStartAuto">Presentation</small></a></li>{% endif %}{% endfor %}{% endif %}
+                        <ul o-base="mod--balance rhy--yStart25">{% if partner.webinars %}{% for item in partner.webinars.all %}
+                                                        <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                                          <svg class="ico--dx100">
+                                                                            <use href="#ico--webinar"></use>
+                                                                          </svg></span><span class="tx--trnc" o-base="pad--xy25">{{ item|truncatechars:72 }}</span><small class="tx--caption--f3--100--tcU" o-base="mod--static--aMiddle pad--xy25" o-standard="iso--xStartAuto">Webinar</small></a>
+                                                        </li>{% endfor %}{% endif %}{% if partner.presentations %}{% for item in partner.presentations.all %}
+                                                            <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                                              <svg class="ico--dx100">
+                                                                                <use href="#ico--presentation"></use>
+                                                                              </svg></span><span class="tx--trnc" o-base="pad--xy25">{{ item|truncatechars:72 }}</span><small class="tx--caption--f3--100--tcU" o-base="mod--static--aMiddle pad--xy25" o-standard="iso--xStartAuto">Presentation</small></a>
+                                                            </li>{% endfor %}{% endif %}
+                        </ul>
+                      </div>
+                    </article>{% endif %}
+        </div>
+        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart50 gxi--gs2">  {% if True %}
+                    <article class="card--coreservices vx--z100" o-base="col--pStart">
+                      <header class="thm--partners" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
+                        <h1 class="tx--maj--f1--100--aa">CIS Core Service Categories</h1>
+                      </header>
+                      <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
+                        <ul o-base="mod--balance rhy--yStart25" o-condensed="gx--i2--gxy10 rhy--yStart0" o-standard="gx--i1--gxy25" o-enhanced="gx--i2--gxy10" o-extended="gx--i1--gxy25" o-full="gdx--gc5--grAuto--gxy10">{% for item in partner.service_categories %}
+                                    <li class="thm--tint70 hl--yEnd--bCurrent co--partners" o-base="col--pMiddle--sMiddle pad--xy50 rhy--yStart50" style="border-width: 2px;">
+                                      <div class="co--minor">
+                                        <svg class="ico--dx250">
+                                          <use href="#ico--{{ item }}"></use>
+                                        </svg>
+                                      </div><span class="tx--f3--100--taMiddle co--copy">{{ item|choice_display:'CoreServices' }}</span>
+                                    </li>{% endfor %}
                         </ul>
                       </div>
                     </article>{% endif %}
@@ -184,7 +215,7 @@
       <aside class="gxi--c">
         <div class="strata thm--light-alt hl--yStart--bTint" o-base="col--pStart pad--xy50 rhy--yStart100" o-enhanced="pad--xy100 pad--xy100">
           <aside class="tx--maj--f1--100" o-base="col--pMiddle--sMiddle rhy--yStart25" o-condensed="row--pEnd--sMiddle rhy--xStart50">
-            <p>Please submit your feedback on our new tool:</p><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link" target="_blank" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 ico--sm pad--y25" o-condensed="rhy--xStart50"><span>Fill out our survey</span></a>
+            <p>Please submit your feedback on our new tool:</p><a class="ctrl--action-impt fx--shift tx--small--f3--100--tcU rxn--ctrl-impt" href="https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25"><span>Fill out our survey</span></a>
           </aside>
         </div>
       </aside>

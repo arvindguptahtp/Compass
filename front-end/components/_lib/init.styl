@@ -145,62 +145,73 @@ reset(forms=true)
         display: inline-block
         vertical-align: baseline
 
+    sub
+    sup
+        font-size: 75%
+        line-height: 0
+        position: relative
+        vertical-align: baseline
+    
+    sub
+        bottom: -0.25em
+
+    sup
+        top: -0.5em
 
     address
         font-style: normal
 
-    if forms
-        form
-            :focus
-                outline: 0
-
-            ::-moz-focus-inner
-                padding: 0
-                border: 0
-
-        fieldset
-            border: 0
-
-        input,
-        select,
-        textarea,
-        button
-            margin: 0
-            vertical-align: middle
-            border: 0
-            border-radius: 0
-            cursor: pointer
-            text-decoration: none
-
-        button
-            width: auto
-            text-align: center
-            background: none
-            white-space: nowrap
-            -moz-appearance: none
-            -webkit-appearance: none
-            appearance: none
-            user-select: none
-
-        :hover
+    form
         :focus
-        :active
-            text-decoration: none
             outline: 0
 
-        [disabled]
-        :disabled
-        .is-disabled
-            cursor: default
-
-        [type="checkbox"]
-        [type="radio"]
-            // should probably default this to a flex box style... why border-radius?
-            position: static
-            width: auto
+        ::-moz-focus-inner
             padding: 0
             border: 0
-            border-radius: 0
+
+    fieldset
+        border: 0
+
+    input,
+    select,
+    textarea,
+    button
+        margin: 0
+        vertical-align: middle
+        border: 0
+        border-radius: 0
+        cursor: pointer
+        text-decoration: none
+
+    button
+        width: auto
+        text-align: center
+        background: none
+        white-space: nowrap
+        -moz-appearance: none
+        -webkit-appearance: none
+        appearance: none
+        user-select: none
+
+    :hover
+    :focus
+    :active
+        text-decoration: none
+        outline: 0
+
+    [disabled]
+    :disabled
+    .is-disabled
+        cursor: default
+
+    [type="checkbox"]
+    [type="radio"]
+        // should probably default this to a flex box style... why border-radius?
+        position: static
+        width: auto
+        padding: 0
+        border: 0
+        border-radius: 0
 
 
 

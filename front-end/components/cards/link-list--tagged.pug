@@ -1,0 +1,47 @@
+extends link-list
+
+block variant
+    -
+        vefa.define("card--list-tagged-links")
+            .dom({
+                tag: {
+                    class: "tx--caption--f3--100--tcU",
+                    "o-base": "mod--static--aMiddle pad--xy25",
+                    "o-standard": "iso--xStartAuto"
+                }
+            })
+
+
+block view_mixins
+    mixin link_item(item)
+        li&attributes(card.item)
+            include /controls/base
+                -
+                    vefa.data({
+                            url: item.url,
+                            label: item.label,
+                            external: (item.external)
+                        })
+                        .dom({
+                            element: {
+                                class: "rxn--shade5 fx--shift co--partners",
+                                "o-base": "col--pStart--sStart",
+                                "o-standard": "row--pStart--sFull rhy--xStart25"
+                            },
+                            bd: {
+                                class: "tx--trnc",
+                                "o-base": "pad--xy25"
+                            }
+                        })
+
+                mixin ctrl_pre()
+                    if item.icon
+                        span&attributes(card.icon)
+                            svg.ico--dx100
+                                use(href=`#ico--${item.icon}`)
+
+                mixin ctrl_post()
+                    if item.tag
+                        small&attributes(card.tag)
+                            = item.tag
+

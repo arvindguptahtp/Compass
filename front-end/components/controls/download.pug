@@ -10,8 +10,8 @@ block subclass
             })
             .dom({
                 element: {
-                    class: "tx--small--f1--100--tcU rxn--ctrl-download fx--shift",
-                    "o-base": "pad--y25 pad--x50",
+                    class: "fx--shift",
+                    "o-base": "row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25",
                 },
             })
 
@@ -24,6 +24,10 @@ block view
         download=(ctrl.name) ? ctrl.name : false
     )&attributes(ctrl.element)
         
+        svg.ico
+            use(href=`#ico--download`)
+
+
         block bd
             span= ctrl.label
 

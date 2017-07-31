@@ -40,36 +40,36 @@ block premain
         //-     - vefa.data({ ebr: page.ebr.io() })
 
 block asset_controls
-    div(
-        o-base="row--pEnd--sMiddle mod--balance"
-        o-standard="pad--xEnd50 rhy--xStart50"
-    )
+        +if(page.national_partner.io())
+            include /controls/action
+                -
+                    vefa.data({
+                            url: v(`${page.national_partner.io()}.get_absolute_url`),
+                            label: page.national_partner.tag(),
+                            icon: 'partners'
+                        })
+                        .dom_mix({
+                            element: {
+                                class: "tx--small--f3--tcU rxn--ctrl-neutral",
+                                "o-base": "iso--xEnd"
+                            }
+                        })
+
         +if(page.program_weblink.io())
             include /controls/action
                 -
                     vefa.data({
                             url: page.program_weblink.tag(),
                             label: `Website`,
-                            target: "_blank"
+                            external: true, 
+                            icon: "link-ext"
                         })
                         .dom_mix({
                             element: {
-                                class: "tx--small--f3 rxn--ctrl-impt fx--shift"
+                                class: "tx--small--f3--tcU rxn--ctrl-neutral",
+                                "o-base": "iso--xEnd"
                             }
                         })
-
-        include /controls/download
-            -
-                vefa.data({
-                        file: `../${page.id.tag()}.pdf`,
-                        label: "Download PDF report",
-                        name: page.title.tag()
-                    })
-                    .dom_mix({
-                        element: {
-                            class: "tx--small--f3 rxn--ctrl-download fx--shift"
-                        }
-                    })
 
 block detail_a
     include /cards/data-list--inverse
@@ -125,7 +125,7 @@ block detail_b
                 })
                 .dom_mix({
                     element: {
-                        "o-extended": "gxs--s2"
+                        "o-extended": "gxi--gs2"
                     },
                     hed: {
                         class: page.impact_color
@@ -148,60 +148,65 @@ block detail_b
                             ["group", "Unique Student Characteristics", page.character.io(), "StudentCharacteristics"]
                         ]
                     })
-                    .dom_mix({
-                        element: {
-                            class: "vx--z100"
-                        }
-                    })
-
     
     div(
         o-base="col--pStart pad--x25 rhy--yStart50"
         o-extended="iso--yStart100 rhy--yStart100"
     )
-        include /cards/core-services
-            -
-                vefa
-                    .data({
-                        heading: "CIS Core Services",
-                        services: page.services.io()
-                    })
-                    .dom_mix({
-                        element: {
-                            class: "vx--z100"
-                        }
-                    })
-
         include /cards/link-list
             -
                 vefa.data({
                         heading: "Used by CIS Network",
                         heading_meta: "As reported in recent year's EOY data",
-                        links: [
-                            //- ["link", "Test Link", "http://communities.org", "external"],
-                            ["single", page.national_partner.io(), "National Partner"],
-                            ["group", page.featured.io(), "Featured Network"],
-                            ["group", page.network_use.io(), "Affiliate", false, `not in ${ page.featured.io() }`],
+                        items: [
+                            ["group", page.featured.io(), "featured-affiliates"],
+                            ["group", page.network_use.io(), "affiliates"],
                         ], 
                     })
+                    .dom({
+                        svg: {
+                            class: "ico--dx150"
+                        }
+                    })
                     .dom_mix({
-                        element: {
-                            class: "vx--z100"
+                        featured_icon: {
+                            class: page.impact_color
+                        }
+                    })
+                    .options({
+                        on_mount () {
+                            this.data_mapper()
+                            this.update_dom()
+                            this.items.map(
+                                (item) => {
+                                    item.featured = (item.icon === "featured-affiliates")
+                                    item.icon = "affiliates"
+                                    item.item_verify = (!item.featured) ? `item not in ${ page.featured.io() }.all` : false
+                                }
+                            )
                         }
                     })
 
-        include /cards/link-list
+        include /cards/link-list--tagged
             -
                 vefa.data({
                         heading: "Additional Resources",
-                        links: [
-                            ["group", page.national_databases.io(), "National Database", "external"],
-                            ["group", page.related_resources.io(), "Resource", "external"],
-                            ["group", page.additional_resources.io(), false, "external"],
+                        items: [
+                            ["group", page.national_databases.io(), "database", true, "National Database"],
+                            ["group", page.related_resources.io(), "resource", true, "Resource"],
+                            ["group", page.additional_resources.io(), "link-ext", true],
                         ], 
                     })
-                    .dom_mix({
-                        element: {
-                            class: "vx--z100"
-                        }
-                    })
+    
+    div(
+        o-base="col--pStart pad--x25 rhy--yStart50"
+        o-extended="iso--yStart50 gxi--gs2"
+    )   
+        include /cards/core-services
+            -
+                vefa
+                    .data({
+                        heading: "CIS Core Service Categories",
+                        services: page.services.io()
+                    })  
+

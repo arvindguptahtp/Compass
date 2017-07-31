@@ -34,32 +34,19 @@ block premain
 
 
 block asset_controls
-    div(
-        o-base="row--pEnd--sMiddle mod--balance"
-    )
-        +if(page.website.io())
-            include /controls/action
-                -
-                    vefa.data({
-                        url: page.website.io(),
-                        label: `Website`
-                    })
-                    .dom_mix({
-                        element: {
-                            class: "tx--small--f3 rxn--ctrl-impt fx--shift"
-                        }
-                    })
-
-        include /controls/download
+    +if(page.website.io())
+        include /controls/action
             -
                 vefa.data({
-                    file: `../${page.id.tag()}.pdf`,
-                    label: "Download PDF report",
-                    name: page.title.tag()
+                    url: page.website.tag(),
+                    label: `Website`,
+                    external: true, 
+                    icon: "link-ext"
                 })
                 .dom_mix({
                     element: {
-                        class: "tx--small--f3 rxn--ctrl-download fx--shift"
+                        class: "tx--small--f3--tcU rxn--ctrl-neutral",
+                        "o-base": "iso--x"
                     }
                 })
 
@@ -69,14 +56,13 @@ block detail_a
         -
             vefa
                 .data({
-                    heading: `Affiliate`,
+                    heading: `Affiliate Information`,
                     items: [
                         ["mixin", "Executive Director", "card_exec"],
                         ["mixin", "Program Lead", "card_lead"],
                         ["text", "Location", page.location.io(), page.location.tag("choice_display:'AffiliateLocation'", 'capfirst')],
                         ["mixin", "Address", "card_contact"],
-                        ["text", "Phone Number", page.phone_number.io()],
-                        ["link", "Website", page.website.io(), page.title.tag()]                     
+                        ["text", "Phone Number", page.phone_number.io()],               
                     ],
                 })
 
@@ -107,7 +93,7 @@ block detail_a
 block detail_b
     div(
         o-base="col--pStart pad--x25 rhy--yStart50"
-        o-extended="iso--yStart100 rhy--yStart100"
+        o-extended=" rhy--yStart100"
     )
         include /cards/data-list
             -
@@ -115,15 +101,22 @@ block detail_b
                     .data({
                         heading: "Affiliate Resources",
                         items: [
-                            ["money", "Annual Budget", 'eoy_data.budget_total'],
+                            ["money", "Annual Budget", 'eoy_data.budget_as_range'],
                             ['pct', 'Pct of Public Funding', 'eoy_data.funding_total and eoy_data.funding_public', `${v('eoy_data.funding_percent_public')}%`],
                             ['pct', 'Pct of Private Funding', 'eoy_data.funding_total and eoy_data.funding_private', `${v('eoy_data.funding_percent_private')}%`],
                         ]
                     })
-                    .dom_mix({
-                        element: {
-                            class: "vx--z100"
-                        }
+
+        include /cards/data-list
+            -
+                vefa
+                    .data({
+                        heading: "Affiliate Staffing",
+                        items: [
+                            ["text", "Full-time", 'eoy_data.full_time_staff'],
+                            ["text", "Part-time", 'eoy_data.part_time_staff'],
+                            ["text", "Americorps", 'eoy_data.americorps_staff'],
+                        ]
                     })
         
         include /cards/data-list
@@ -157,16 +150,11 @@ block detail_b
                             ['text', 'Unknown', 'eoy_data.students_grade_12_unknown'],
                         ]
                     })
-                    .dom_mix({
-                        element: {
-                            class: "vx--z100"
-                        }
-                    })
 
         
     div(
         o-base="col--pStart pad--x25 rhy--yStart50"
-        o-extended="iso--yStart100 rhy--yStart100"
+        o-extended="rhy--yStart100"
     )
         include /cards/data-list
             -
@@ -178,85 +166,94 @@ block detail_b
                             ["text", "Total Enrollment", 'eoy_data.calculated_total_enrollment'],
                             ["text", "Number of Case-managed Students", 'eoy_data.calculated_total_case_managed'],
                             ["text", "Total Students Reached", 'eoy_data.calculated_total_students_reached'],
-                            ["heading", "Affiliate Staffing"],
-                            ["text", "Full-time", 'eoy_data.full_time_staff'],
-                            ["text", "Part-time", 'eoy_data.part_time_staff'],
-                            ["text", "Americorps", 'eoy_data.americorps_staff'],
                         ]
                     })
-                    //- .define({
-                    //-     data_key: {
-                    //-         "o-condensed": "pad--x50 gxs--s2"
-                    //-     },
-                    //-     data_value: {
-                    //-         "o-condensed": "pad--x50"
-                    //-     }
-                    //- })
-                    .dom_mix({
-                        element: {
-                            class: "vx--z100"
-                        }
-                    })
 
-        include /cards/data-list
+        include /cards/card
             -
                 vefa
                     .data({
                         heading: "By Race and Gender",
-                        items: [
-                            ['heading', 'Students By Race/ Ethnicity', 'eoy_data.search_race'],
-                            ['text', 'American Indian', 'eoy_data.search_students_american_indian'],
-                            ['text', 'Asian', 'eoy_data.search_students_asian'],
-                            ['text', 'Black', 'eoy_data.search_students_black'],
-                            ['text', 'Hispanic', 'eoy_data.search_students_hispanic'],
-                            ['text', 'White', 'eoy_data.search_students_white'],
-                            ['text', 'Two or More', 'eoy_data.search_students_two_or_more'],
-                            ['text', 'Other', 'eoy_data.search_students_other'],
-                            ['heading', 'Students By Gender', 'eoy_data.search_gender'],
-                            ['text', 'Male', 'eoy_data.search_students_male'],
-                            ['text', 'Female', 'eoy_data.search_students_female']
-                        ]
-                    })
-                    .dom_mix({
-                        element: {
-                            class: "vx--z100"
-                        }
+                        exists: "eoy_data.search_race or eoy_data.search_gender"
                     })
 
-        +if('eoy_data.total_students_served > 0')
-            include /cards/data-list
+            mixin open_bd
+                include /datagrids/base
+                    -
+                        vefa.data({
+                                title: "Students By Race/ Ethnicity",
+                                exists: "eoy_data.search_race",
+                                items: [
+                                    ['text', 'American Indian', 'eoy_data.search_students_american_indian'],
+                                    ['text', 'Asian', 'eoy_data.search_students_asian'],
+                                    ['text', 'Black', 'eoy_data.search_students_black'],
+                                    ['text', 'Hispanic', 'eoy_data.search_students_hispanic'],
+                                    ['text', 'White', 'eoy_data.search_students_white'],
+                                    ['text', 'Two or More', 'eoy_data.search_students_two_or_more'],
+                                    ['text', 'Other', 'eoy_data.search_students_other'],
+                                ]
+                            })
+                            .dom_mix({
+                                grid: {
+                                    "o-extended": "gdx--gc2--gxy10"
+                                }
+                            })
+
+                include /datagrids/base
+                    -
+                        vefa.data({
+                                title: "Students By Gender",
+                                exists: "eoy_data.search_gender",
+                                items: [
+                                    ['text', 'Male', 'eoy_data.search_students_male'],
+                                    ['text', 'Female', 'eoy_data.search_students_female']
+                                ]
+                            })
+                            .dom_mix({
+                                grid: {
+                                    "o-extended": "gdx--gc2--gxy10"
+                                }
+                            })
+
+
+    +if('eoy_data.total_students_served > 0')
+        div(
+            o-base="col--pStart pad--x25 rhy--yStart50"
+            o-extended="iso--yStart50 gxi--gs2"
+        )
+            include /cards/card
                 -
                     vefa
                         .data({
                             heading: "Unique Student Characteristics",
-                            items: [
-                                ['yesno', 'FRPL Eligible Students Served', 'eoy_data.total_students_frpl > 0'],
-                                ['yesno', 'ELL Students Served', 'eoy_data.total_students_ell > 0'],
-                                ['yesno', 'Foster Care/Group Home', 'eoy_data.total_students_foster > 0'],
-                                ['yesno', 'Homeless Youth', 'eoy_data.total_students_homeless > 0'],
-                                ['yesno', 'LGBT', 'eoy_data.total_students_lgbt > 0'],
-                                ['yesno', 'Pregnant/Parenting', 'eoy_data.total_students_pregnant_parenting > 0'],
-                                ['yesno', 'Special Education', 'eoy_data.total_students_special_education > 0'],
-                                ['yesno', 'Substance Abuse', 'eoy_data.total_students_substance_abuse > 0'],
-                                ['yesno', 'Adjudicated Youth', 'eoy_data.total_students_adjudicated_youth > 0'],
-                                ['yesno', 'Child of Military', 'eoy_data.total_students_child_of_military > 0'],
-                                ['yesno', 'Gang Involvement', 'eoy_data.total_students_gang > 0'],
-                                ['yesno', 'Incarcerated Parent', 'eoy_data.total_students_incarcerated_parent > 0'],
-                            ]
-                        })
-                        //- .define({
-                        //-     data_key: {
-                        //-         "o-condensed": "pad--x50 gxs--s2"
-                        //-     },
-                        //-     data_value: {
-                        //-         "o-condensed": "pad--x50"
-                        //-     }
-                        //- })
-                        .dom_mix({
-                            element: {
-                                class: "vx--z100"
-                            }
                         })
 
-            
-        
+                mixin open_bd
+                    ul(
+                        o-extended="gdx--gc6--gr2--gxy10"
+                    )
+                        -
+                            items = [
+                                ['FRPL Eligible Students Served', 'eoy_data.total_students_frpl > 0'],
+                                ['ELL Students Served', 'eoy_data.total_students_ell > 0'],
+                                ['Foster Care/Group Home', 'eoy_data.total_students_foster > 0'],
+                                ['Homeless Youth', 'eoy_data.total_students_homeless > 0'],
+                                ['LGBT', 'eoy_data.total_students_lgbt > 0'],
+                                ['Pregnant/Parenting', 'eoy_data.total_students_pregnant_parenting > 0'],
+                                ['Special Education', 'eoy_data.total_students_special_education > 0'],
+                                ['Substance Abuse', 'eoy_data.total_students_substance_abuse > 0'],
+                                ['Adjudicated Youth', 'eoy_data.total_students_adjudicated_youth > 0'],
+                                ['Child of Military', 'eoy_data.total_students_child_of_military > 0'],
+                                ['Gang Involvement', 'eoy_data.total_students_gang > 0'],
+                                ['Incarcerated Parent', 'eoy_data.total_students_incarcerated_parent > 0'],
+                            ]
+                            
+                        each item in items
+                            +if(item[1])
+                                li.thm--tint70.hl--yEnd--bCurrent.co--affiliates(
+                                    o-base="col--pEnd--sStart"
+                                    style="border-width: 2px"
+                                )
+                                    p.tx--maj--f3--100.co--copy(
+                                        o-base="pad--xy25 iso--yStart200"
+                                    )= item[0]

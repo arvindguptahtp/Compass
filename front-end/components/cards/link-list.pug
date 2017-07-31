@@ -1,195 +1,185 @@
 extends _abstract
 
 block subclass
+    //- [type, data_member / test_member, icon, external, tag],
     -
         vefa.define("card--list-links")
             .data({
                 heading: "",
-                links: [
-                    ["label", "data_member", "style"],
-                    ["type", "data_member / test_member", "tag", "rel"],
-                    ["group", "data_member / test_member", "tag", "rel"],
-                    ["mixin", "mixin name", "test_member"],
-                ],
-                as_group: [],
-                as_internal: [],
-                as_external: [],
-            }) 
+                items: false
+            })
+            .dom({
+                icon: {
+                    class: "thm--tint95 co--minor hl--xEnd--bTint",
+                    "o-base": "col--pMiddle--sMiddle--xAuto mod--static pad--x25"
+                },
+                featured_icon: {
+                    class: "thm--tint95 hl--xEnd--bTint",
+                    "o-base": "col--pMiddle--sMiddle--xAuto mod--static pad--x25"
+                },
+                svg: {
+                    class: "ico--dx100"
+                }
+            })
             .dom_mix({
+                element: {
+                    class: "vx--z100",
+                },
                 list: {
                     "o-base": "mod--balance rhy--yStart25",
                 },
                 item: {
-                    class: "thm--tint70 tx--small--f2",
+                    class: "thm--tint70 tx--f2--100",
                 },
                 link: {
-                    class: "rxn--tint90 fx--shift",
+                    class: "rxn--shade5 fx--shift",
                     "o-base": "col--pStart--sStart pad--xy25",
                     "o-standard": "row--pStart--sMiddle rhy--xStart25"
                 },
                 external_link: {
-                    class: "rxn--tint90 fx--shift",
+                    class: "thm--shade10 rxn--shade5 fx--shift",
                     "o-base": "row--pStart--sMiddle pad--xy25 rhy--xStart25"
                 }
             })
             .methods({
-                    data_mapper () {
-                        if(this.links) {
-                            let exists_arr = []
-                            let exists_override = false
-                            
-                            this.links = this.links.map( (dict) => {
-                                let value = {
-                                    type: dict[0]
-                                }
-
-                                switch(dict[0]) {
-                                    case "group":
-                                        exists_arr.push( `${ dict[1] }.count > 0`)
-
-                                        return Object.assign(value, {
-                                            group: `item in ${ dict[1] }.all`,
-                                            test: dict[1],
-                                            tag: (dict[2]),
-                                            external: (dict[3] == "external") ? true : false,
-                                            item_test: (dict[4]) ? `item ${dict[4]}.all` : "True"
-                                        })
-                                    break;
-
-                                    case "single":
-                                        exists_arr.push(dict[1])
-
-                                        return Object.assign(value, {
-                                            label: dict[1],
-                                            url: `${dict[1]}.get_absolute_url`,
-                                            test: dict[1],
-                                            tag: (dict[2]),
-                                            external: (dict[3] == "external") ? true : false,
-                                        })
-                                    break;
-                                    
-                                    case "mixin":
-                                        if (dict[3]) exists_arr.push(dict[3])
-
-                                        return Object.assign(value, {
-                                            mixin: dict[1], 
-                                            test: (dict[3]) ? dict[3] : 'True',
-                                            external: (dict[3] == "external") ? true : false,
-                                        })
-                                    break;
-
-                                    case "link":
-                                        exists_override = true
-                                        
-                                        return Object.assign(value, {
-                                            label: dict[1], 
-                                            url: dict[2],
-                                            tag: (dict[3]),
-                                            test: "True",
-                                            external: (dict[4] == "external") ? true : false,
-                                        })
-                                    break;
-
-                                    default: 
-                                        return Object.assign(value, {
-                                            test: "False"
-                                        })
-                                    break;
-
-                                }
-                            })
-
-                            this.exists = exists_arr.join(" or ")
-                            
-                            if (exists_override) this.exists = "True"
-                        }
+                spec_as_link (item) {
+                    return {
+                        label: item[1],
+                        verify: 'True',
+                        url: item[2],
+                        icon: item[3],
+                        external: (item[4]),
+                        tag: (item[5]),
+                        
                     }
-                })
-                .options({
-                    on_mount () {
-                        this.data_mapper()
-                            
-                        this.dom_mix({
-                            hdr: {
-                                class: this.impact_theme
+                },
+
+                spec_as_group (item) {
+                    return {
+                        group: `item in ${ item[1] }.all`,
+                        label: v('item', "truncatechars:72"),
+                        verify: item[1],
+                        url: (item[3]) ? v('item.url') : v('item.get_absolute_url'),
+                        icon: item[2],
+                        external: (item[3]),
+                        tag: (item[4]),
+                        
+                    }
+                },
+
+                spec_as_default () {
+                    return {
+                        verify: "False"
+                    }
+                },
+                
+                spec (item) {
+                    const type = item[0]
+                    const assigner = (this[`spec_as_${type}`]) 
+                        ? this[`spec_as_${type}`](item)
+                        : this.spec_as_default(item)
+
+                    return Object.assign( {type}, assigner )
+                },
+
+                data_exists (item) {
+                    const exists_case = {
+                        group: `${ item.verify }.count > 0`
+                    }
+                    return exists_case[item.type]
+                },
+
+                data_mapper () {
+                    if(this.items) {
+                        let exists_override = false
+                        
+                        this.items = this.items.map( this.spec, this )
+
+                        this.exists = (this.items.find(x => x.type === 'link' ))
+                            ? 'True'
+                            : this.items.map( this.data_exists, this).join(' or ')
+                    }
+                },
+
+                update_dom () {
+                    this.dom_mix({
+                        hdr: {
+                            class: this.impact_theme
+                        },
+                        bd: {
+                            class: "thm--shade15"
+                        },
+                        link: {
+                            class: this.impact_color
+                        }
+                    })
+                }
+            })
+            .options({
+                on_mount () {
+                    this.data_mapper()
+                    this.update_dom()
+                  
+                }
+            })
+
+
+block view_mixins
+    mixin link_item(item)
+        li&attributes(card.item)
+            include /controls/base
+                -
+                    vefa.data({
+                            url: item.url,
+                            label: item.label,
+                            external: (item.external)
+                        })
+                        .dom({
+                            element: {
+                                class: `rxn--shade5 fx--shift ${ card.impact_color }`,
+                                "o-base": "col--pStart--sStart",
+                                "o-standard": "row--pStart--sFull rhy--xStart25"
                             },
                             bd: {
-                                class: "thm--shade15"
-                            },
-                            link: {
-                                class: this.impact_color
+                                class: `tx--trnc`,
+                                "o-base": "pad--x25 pad--y50"
+                            }
+                        })
+                    
+                    if (item.featured){
+                        vefa.dom_switch({
+                            bd: {
+                                class: ['', 'tx--900']
                             }
                         })
                     }
-                })
+                        
+
+                mixin ctrl_pre()
+                    if item.icon
+                        span&attributes(
+                            (item.featured) 
+                            ? card.featured_icon
+                            : card.icon
+                        )
+                            svg&attributes(card.svg)
+                                use(href=`#ico--${item.icon}`)
+
 
 
 
 block content
     ul&attributes(card.list)
-        for entry in card.links
-            +if(entry.test)
-                case entry.type
-                    when "link"
-                        li&attributes(card.item)
-                            a(
-                                href=entry.url
-                                target= (entry.external) ? "_blank" : false 
-                                rel= (entry.external) ? "noopener" : false 
-                            )&attributes(card.link)
-                                span.tx--trnc= entry.label
-
-                                if entry.external
-                                    svg.ico
-                                        use(href=`#ico--link-ext`)
-
-                                if entry.tag
-                                    small.tx--caption--f3--100--tcU(
-                                        o-base="mod--static"
-                                        o-standard="iso--xStartAuto"
-                                    )= entry.tag
-                    
-                    when "single"
-                        li&attributes(card.item)
-                            a(
-                                href=v(entry.url)
-                                target= (entry.external) ? "_blank" : false 
-                                rel= (entry.external) ? "noopener" : false 
-                            )&attributes(card.link)
-                                span.tx--trnc= v(entry.label)
-
-                                if entry.external
-                                    svg.ico
-                                        use(href=`#ico--link-ext`)
-
-                                if entry.tag
-                                    small.tx--caption--f3--100--tcU(
-                                        o-base="mod--static"
-                                        o-standard="iso--xStartAuto"
-                                    )= entry.tag
-
-
+        for item in card.items
+            +if(item.verify)
+                case item.type
                     when "group"
-                        +for(entry.group)
-                            +if(entry.item_test)
-                                li&attributes(card.item)
-                                    a(
-                                        href=(entry.external) ? v('item.url') : v('item.get_absolute_url')
-                                        target= (entry.external) ? "_blank" : false 
-                                        rel= (entry.external) ? "noopener" : false 
-                                    )&attributes(card.link)
-                                        div.tx--trnc(
-                                            o-base="row--pStart--sMiddle--xAuto rhy--xStart25"
-                                            o-standard="row--pStart--sMiddle--xAuto mod--fit iso--xEnd100"
-                                        )
-                                            span.tx--trnc= v('item')
+                        +for(item.group)
+                            if item.item_verify
+                                +if(item.item_verify)
+                                    +link_item(item)
+                            else
+                                +link_item(item)
 
-                                            if entry.external
-                                                svg.ico
-                                                    use(href=`#ico--link-ext`)
-                                
-                                        if entry.tag
-                                            small.tx--caption--f3--100--tcU(
-                                                o-base="mod--static"
-                                                o-standard="iso--xStartAuto"
-                                            )= entry.tag
+                    when "link"
+                        +link_item(item)

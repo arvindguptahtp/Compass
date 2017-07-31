@@ -12,13 +12,16 @@ block subclass
                 }
             })
             .dom_mix({
+                element: {
+                    class: "vx--z100",
+                },
                 icon_list: {
                     "o-base": "mod--balance rhy--yStart25",
                     "o-condensed": "gx--i2--gxy10 rhy--yStart0",
                     "o-standard": "gx--i1--gxy25",
                     "o-enhanced": "gx--i2--gxy10",
                     "o-extended": "gx--i1--gxy25",
-                    "o-full": "gx--i2--gxy25",
+                    "o-full": "gdx--gc5--grAuto--gxy10",
                 },
                 list_item: {
                     class: "thm--tint70",
@@ -29,25 +32,23 @@ block subclass
                     "o-base": "col--pMiddle--sMiddle--xAuto mod--static pad--xy25"
                 },
                 label: {
-                    class: "tx--small--f2",
+                    class: "tx--small--f2 hl--xy--bTint hl--xStart0",
                     "o-base": "col--pMiddle--sStart mod--balance pad--xy25"
                 }
             })
             .options({
                 on_mount () {
-                    if (!this.style) {
-                        this.dom_mix({
-                            hdr: {
-                                class: this.impact_theme
-                            },
-                            bd: {
-                                class: "thm--shade15"
-                            },
-                            icon: {
-                                class: this.impact_theme
-                            },
-                        })
-                    }
+                    this.dom_mix({
+                        hdr: {
+                            class: this.impact_theme
+                        },
+                        bd: {
+                            class: "thm--shade15"
+                        },
+                        icon: {
+                            class: this.impact_theme
+                        },
+                    })
                 }
             })
 
@@ -56,10 +57,15 @@ block content
     ul&attributes(card.icon_list)
         
         +for(card.icons)
-            li&attributes(card.list_item)
-
-                svg.ico&attributes(card.icon)
-                    use(href=`#ico--${ v("item") }`)
+            li.thm--tint70.hl--yEnd--bCurrent.co--partners(
+                o-base="col--pMiddle--sMiddle pad--xy50 rhy--yStart50"
+                style="border-width: 2px"
+            )
+                //- &attributes(card.list_item)
+                div.co--minor
+                    svg.ico--dx250
+                        use(href=`#ico--${ v("item") }`)
                     
-                div&attributes(card.label)
-                    span= v( 'item', "choice_display:'CoreServices'" )
+                //- div&attributes(card.label)
+                span.tx--f3--100--taMiddle.co--copy
+                    = v( 'item', "choice_display:'CoreServices'" )

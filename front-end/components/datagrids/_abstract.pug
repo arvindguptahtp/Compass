@@ -1,0 +1,194 @@
+extends /_vefa
+
+//- [
+//-     ["type", "label", "data_member", "category"],
+//-     ["heading", "Header Label", "test_member"],
+//-     ["mixin", "Mixin Label", "mixin_name", "test_member"],
+//-     ["group", "Group Label", "data_member / test_statement", "category"],
+//-     ["bool", "Boolean Label", "data_member", "yes_value", "no_value"],
+//-     ["link", "Link Label", "data_member", "display_value"],
+//-     ["text", "Text Label", "data_member / test_statement", "display_value"],
+//- ],
+
+block init
+    -
+        vefa = new Vefa("datagrid")
+            .data({
+                title: false,
+                items: false,
+                impact_theme: (page && page.impact_theme) ? page.impact_theme : "",
+                impact_color: (page && page.impact_color) ? page.impact_color : "",
+                exists: "True",
+            })
+            .dom({
+                element: {
+                    "o-base": "col--pStart"
+                },
+                hdr: {
+                    class: "hl--yEnd",
+                    "o-base": "row--pGrid--sMiddle mod--static pad--xy25 iso--yEnd10"
+                },
+                hed: {
+                    class: `tx--f3--600 co--copy`,
+                    "o-base": "",
+                },
+                data_item: {
+                    "o-base": "mod--balance",
+                    "o-condensed": "gdx--gc3--gxy10 mod--static rhy--yStart0"
+                },
+                data_hed: {
+                    class: `tx--f3--600 co--copy hl--yEnd`,
+                    "o-base": "gxi--gs3 row--pGrid--sMiddle mod--static pad--xy25"
+                },
+                data_key: {
+                    class: `thm--shade10 tx--small--f3--tcU--700`,
+                    "o-base": "pad--xy25 iso--yStart0",
+                },
+                data_value: {
+                    class: `thm--tint70 tx--f2`,
+                    "o-base": "col--pMiddle pad--xy25 gxi--gs2",
+                }
+            })
+            .methods({
+                update_init_styles () {
+                    this.dom_mix({
+                        link: {
+                            class: this.impact_color
+                        }
+                    })
+                },
+                data_mapper () {
+                    if (this.items) {
+                        this.items = this.items.map( (dict) => {
+                            let value = {
+                                type: dict[0],
+                                label: dict[1] 
+                            }
+
+                            switch (dict[0]) {
+                                case "heading":
+                                    return Object.assign(value, {
+                                        verify: (dict[2]) ? dict[2] : 'True'
+                                    })
+                                break;
+                                
+                                case "mixin":
+                                    return Object.assign(value, {
+                                        mixin: dict[2], 
+                                        verify: (dict[3]) ? dict[3] : 'True'
+                                    })
+                                break;
+                            
+                                case "group":
+                                    return Object.assign(value, {
+                                        group: `val in ${ dict[2] }`,
+                                        verify: dict[2],
+                                        category: (dict[3]) ? dict[3] : false
+                                    })
+                                break;
+                                
+                                case "bool":
+                                    return Object.assign(value, {
+                                        verify: dict[2],
+                                        yes: (dict[3]) ? dict[3] : "yes",
+                                        no: (dict[4]) ? dict[4] : "no",
+                                    })
+                                break;
+
+                                case "link":
+                                    return Object.assign(value, {
+                                        value: dict[2],
+                                        verify: dict[2] ? dict[2] : 'True',
+                                        display: (dict[3]) ? dict[3] : dict[2]
+                                    })
+                                break;
+                            
+                                default: // text
+                                    return Object.assign(value, {
+                                        value: (dict[2]) ? dict[2] : 'True',
+                                        verify: dict[2]  ? dict[2] : 'True',
+                                        display: (dict[3]) ? dict[3] : dict[2]
+                                    })
+
+                                break;
+                            }
+                        })
+                    }
+                }
+            })
+            .options({
+                on_mount () {
+                    this.data_mapper()
+                    this.update_init_styles()
+                }
+            })
+
+
+block view
+    +if(datagrid.exists)
+        section&attributes(datagrid.element)
+            
+            if datagrid.title
+                header.datagrid-hdr&attributes(datagrid.hdr)
+                    h3.datagrid-hed&attributes(datagrid.hed)
+                        = datagrid.title
+
+            if datagrid.items
+                dl.datagrid-grid&attributes(datagrid.grid)
+                    for item in datagrid.items
+                        //-  uses WHATWG allowances
+                        +if(item.verify)
+                            div&attributes(datagrid.data_item)
+                                dt&attributes(
+                                    (item.type == "heading") ? datagrid.data_hed : datagrid.data_key
+                                )= item.label
+
+                                if item.type !== "heading"
+                                    dd&attributes(datagrid.data_value)
+                                        case item.type
+                                            when "mixin"
+                                                +#{item.mixin}
+                        
+                                            when "text"
+                                                if item.value == item.display
+                                                    = v(item.value, "safe")
+                                                else
+                                                    = item.display
+                        
+                                            when "pct"
+                                                if item.value == item.display
+                                                    = `${ v(item.value) }%`
+                                                else
+                                                    = item.display
+
+                                            when "money"
+                                                if item.value == item.display
+                                                    = `$${ v(item.value, "intcomma") }`
+                                                else
+                                                    = item.display
+
+                                            when "yesno"
+                                                +if(item.value)
+                                                    = item.yes
+                                                +else()
+                                                    = item.no
+                    
+                                            when "link"
+                                                a.tx--tdU.fx--shift(
+                                                    href=item.value.tag()
+                                                    target="_blank"
+                                                    rel="noopener"
+                                                    o-base="row--pStart--sMiddle rhy--xStart25"
+                                                )
+                                                    span.tx--trnc= item.link_label
+                                                    svg.ico
+                                                        use(href=`#ico--link-ext`)
+                    
+                                            when "group"
+                                                ul
+                                                    +for(item.group)
+                                                        li&attributes(datagrid.data_value_item)
+                                                            if item.category
+                                                                = v("val", `choice_display:'${item.category}'`, 'capfirst')  
+                                                            else
+                                                                = v("val", 'capfirst')

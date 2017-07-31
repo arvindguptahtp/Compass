@@ -6,7 +6,7 @@ block subclass
             .define("ctrl--action")
             .dom_mix({
                 element: {
-                    class: "tx--small--f1--100--tcU rxn--ctrl-impt fx--shift",
+                    class: "fx--shift",
                 }
             })
             .dom_switch({
@@ -14,3 +14,9 @@ block subclass
                     "o-base": ["pad--y10", "pad--y25"]
                 }
             })
+
+
+prepend bd
+    if ctrl.icon
+        svg.ico
+            use(href=`#ico--${ctrl.icon}`)

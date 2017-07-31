@@ -4,10 +4,13 @@ block init
     -
         vefa = new Vefa("ctrl")
             .data({
+                label: false,
                 slug: false,
                 url: false,
+                external: false,
                 target: false,
-                label: false
+                rel: false
+                
             })
             .computed({
                 get_absolute_url () {
@@ -17,12 +20,13 @@ block init
                     else if (this.slug) {
                         return url(this.slug)
                     }
-                },   
+                },
+                target () { return (this.external) ? "_blank" : false },
+                rel () { return (this.external) ? "noopener noreferrer" : false }
             })
             .dom({
                 element: {
-                    "o-base": "row--pMiddle--sMiddle--xAuto pad--x50 pad--y10 rhy--xStart25 ico--sm",
-                    "o-condensed": "rhy--xStart50"
+                    "o-base": "row--pMiddle--sMiddle--xAuto pad--x50 pad--y10 rhy--xStart25",
                 },
             })
 
@@ -32,7 +36,22 @@ block view
         class=ctrl.class
         href=ctrl.get_absolute_url
         target=ctrl.target
+        rel=ctrl.rel
     )&attributes(ctrl.element)
 
-        block bd
-            span= ctrl.label
+        if pug_mixins.ctrl_pre
+            +ctrl_pre()
+
+        if pug_mixins.ctrl_instance
+            +ctrl_instance()
+        else
+            block bd
+                span&attributes(ctrl.bd)= ctrl.label
+
+        if pug_mixins.ctrl_post
+            +ctrl_post()
+
+block teardown
+    - delete pug_mixins.ctrl_pre
+    - delete pug_mixins.ctrl_instance
+    - delete pug_mixins.ctrl_post

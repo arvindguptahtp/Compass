@@ -147,7 +147,7 @@
           </fieldset>
           <hr class="thm--shade30" o-base="pad--x25 iso--yStart50" o-standard="pad--x100">
           <footer o-base="row--pGrid--sMiddle--xRev iso--yStart50">
-            <button class="ctrl--action-submit tx--f3--tcU thm--tint20 rxn--shade60 fx--shift" type="submit" name="submit" o-base="row--pMiddle--sMiddle--xAuto pad--x50 pad--y10 rhy--xStart25 ico--sm" o-condensed="rhy--xStart50"><span>Explore</span></button><a class="ctrl--link tx--small--f3--100--tdU co--ctrl fx--shift" href="'./'" o-base="row--pMiddle--sMiddle--xAuto pad--x50 pad--y10 rhy--xStart25 ico--sm pad--y25 pad--x50" o-condensed="rhy--xStart50"><span>Clear Search</span></a>
+            <button class="ctrl--action-submit tx--f3 thm--tint20 rxn--shade60 fx--shift" type="submit" name="submit" o-base="row--pMiddle--sMiddle--xAuto pad--x50 pad--y10 rhy--xStart25"><span>Explore</span></button><a class="ctrl--link tx--small--f3--100--tdU co--ctrl fx--shift" href="'./'" o-base="row--pMiddle--sMiddle--xAuto pad--x50 pad--y10 rhy--xStart25 pad--y25 pad--x50"><span>Clear Search</span></a>
           </footer>{% csrf_token %}
         </form>
       </div>
@@ -191,7 +191,7 @@
                         <dd class="gxi--overview hl--xy--bTint" o-base="mod--balance pad--xy25 rhy--yStart50" o-standard="pad--xy50">{% if program.summary %}
                           <div class="bd copy tx--small--f2" o-full="tx--base">{{ program.summary }}
                           </div>{% endif %}
-                          <footer o-base="row--pStart"><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="{{ program.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 ico--sm pad--y25" o-condensed="rhy--xStart50"><span>View Profile</span></a>
+                          <footer o-base="row--pStart"><a class="ctrl--action fx--shift" href="{{ program.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25"><span>View Profile</span></a>
                           </footer>
                         </dd>
                         <dd class="gxi--services" o-base="col--pStart">
@@ -232,7 +232,10 @@
                                 <use href="#ico--info"></use>
                               </svg>
                               <div class="bd" v-cloak slot="content" o-base="col--pMiddle--sMiddle rhy--yStart50">
-                                <h6 class="tx--maj--f1--100--taMiddle">How do we determine our Tiers&nbsp;of&nbsp;Evidence?</h6><a class="ctrl--download tx--small--f1--100--tcU rxn--ctrl-download fx--shift" href="{% static 'res/Determining_Evidence-Base_Cheat_Sheet.pdf' %}" download="Determining Evidence-Base Cheat Sheet" o-base="pad--y25 pad--x50"><span>Download PDF</span></a>
+                                <h6 class="tx--maj--f1--100--taMiddle">How do we determine our Tiers&nbsp;of&nbsp;Evidence?</h6><a class="ctrl--download fx--shift" href="{% static 'res/Determining_Evidence-Base_Cheat_Sheet.pdf' %}" download="Determining Evidence-Base Cheat Sheet" o-base="row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25">
+                                  <svg class="ico">
+                                    <use href="#ico--download"></use>
+                                  </svg><span>Download PDF</span></a>
                               </div>
                             </slideover>
                           </article>
@@ -266,7 +269,7 @@
       <aside class="gxi--c">
         <div class="strata thm--light-alt hl--yStart--bTint" o-base="col--pStart pad--xy50 rhy--yStart100" o-enhanced="pad--xy100 pad--xy100">
           <aside class="tx--maj--f1--100" o-base="col--pMiddle--sMiddle rhy--yStart25" o-condensed="row--pEnd--sMiddle rhy--xStart50">
-            <p>Please submit your feedback on our new tool:</p><a class="ctrl--action tx--small--f1--100--tcU rxn--ctrl-impt fx--shift" href="https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link" target="_blank" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 ico--sm pad--y25" o-condensed="rhy--xStart50"><span>Fill out our survey</span></a>
+            <p>Please submit your feedback on our new tool:</p><a class="ctrl--action-impt fx--shift tx--small--f3--100--tcU rxn--ctrl-impt" href="https://docs.google.com/forms/d/e/1FAIpQLSfaeBBaqP6ChbS94CZBK774fVsOrjCer4Yrs5I4iX_iuIPe3g/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25"><span>Fill out our survey</span></a>
           </aside>
         </div>
       </aside>

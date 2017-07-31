@@ -1,5 +1,78 @@
-// Generalized Grids
+// / Generalized Grids
 // -------------------------------------------------------------        
+.gdx--
+    +o-attr(breakpoints)
+        +grid()
+            display: grid
+            grid-gap: 0
+            grid-auto-flow: row
+.gdy--
+    +o-attr(breakpoints)
+        +grid()
+            display: grid
+            grid-gap: 0
+            grid-auto-flow: column
+
+.--
+    // column set up
+    &gc
+        for i in (1 2 3 4 5 6 7 8 9 10 11 12)
+            &{i}
+                +o-attr(breakpoints)
+                    if i is 1
+                        grid-template-columns: 1fr
+                    else
+                        grid-template-columns: repeat(i, 1fr)
+        
+        &Auto
+            +o-attr(breakpoints)
+                grid-template-columns: repeat(auto-fill, 1fr)
+
+    // row set up
+    &gr
+        for i in (1 2 3 4 5 6 7 8 9 10 11 12)
+            &{i}
+                +o-attr(breakpoints)
+                    if i is 1
+                        grid-template-rows: 1fr
+                    else
+                        grid-template-rows: repeat(i, 1fr)
+        &Auto
+            +o-attr(breakpoints)
+                grid-template-rows: repeat(auto-fill, 1fr)
+
+    &gsMiddle
+        +o-attr(breakpoints)
+            align-content: center
+
+    // grid-gap set up
+    &gxy
+        +o-attr(breakpoints)
+            grid-gap: 1px
+
+        for i in (0 10 25 50 75 100 150 200 250)
+            &{i}
+                if i is 0        
+                    num = 0
+                else if i is 10
+                    num = .125
+                else
+                    num = i/100
+                
+                +o-attr(breakpoints)
+                    grid-gap: bvr(num)
+
+    // grid-span set u
+    &gs
+        for i in (2 3 4 5 6 7 8 9 10 11 12)
+            &{i}
+                +o-attr(breakpoints)
+                    grid-area: "span 1 / span %s" % i
+
+
+
+
+
 .gx--
     +o-attr(breakpoints)
         +grid()
@@ -11,55 +84,17 @@
         +o-attr(breakpoints)
             grid-template-columns: 1fr
 
-    &i2
-        +o-attr(breakpoints)
-            grid-template-columns: repeat(2, minmax(0, 1fr))
+    &i
+        for i in (2 3 4 5 6 7 8 9 10 11 12)
+           
+            &{i}
+                +o-attr(breakpoints)
+                    grid-template-columns: repeat(i, minmax(0, 1fr))
 
-    &i3
-        +o-attr(breakpoints)
-            grid-template-columns: repeat(3, minmax(0, 1fr))
-    
-    &i4
-        +o-attr(breakpoints)
-            grid-template-columns: repeat(4, minmax(0, 1fr))
-
-.--
-    &gxy
-        +o-attr(breakpoints)
-            grid-gap: 1px
-
-    &gxy0
-        +o-attr(breakpoints)
-            grid-gap: 0
-    &gxy10
-        +o-attr(breakpoints)
-            grid-gap: bvr(.125)
-
-    &gxy25
-        +o-attr(breakpoints)
-            grid-gap: bvr(.25)
-
-    &gxy50
-        +o-attr(breakpoints)
-            grid-gap: bvr(.5)
-
-    &gxy100
-        +o-attr(breakpoints)
-            grid-gap: bvr(1)
-    
-    &gxy150
-        +o-attr(breakpoints)
-            grid-gap: bvr(1.5)
-
-    &gxy200
-        +o-attr(breakpoints)
-            grid-gap: bvr(2)
-
-
-.--
-    &gsMiddle
-        +o-attr(breakpoints)
-            align-content: center
+// .--
+//     &gsMiddle
+//         +o-attr(breakpoints)
+//             align-content: center
     
 
 
@@ -91,9 +126,9 @@
         +o-attr(breakpoints)
             grid-area: f
     
-    &g
-        +o-attr(breakpoints)
-            grid-area: g
+    // &g
+    //     +o-attr(breakpoints)
+    //         grid-area: g
 
 
 .gxs--

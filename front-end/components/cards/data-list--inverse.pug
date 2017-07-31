@@ -6,31 +6,45 @@ block variant
         vefa.define("card--list-data-inv")
             .dom({
                 hdr: {
-                    "o-base": "pad--y25",
+                    "o-base": "pad--yEnd25",
                 },
                 hed: {
                     class: "tx--subhed--f1--100--aa"
                 },
-                grid: {
-                    "o-base": "gx--i3--gxy10 mod--static rhy--yStart0",
-                    "o-condensed": "gx--i3--gxy10 mod--static rhy--yStart0"
-                },
                 bd: {
                     "o-base": ""
                 },
-                data_key: {
-                    class: "thm--shade40 tx--small--f3--tcU",
-                    "o-base": "pad--xy25",
-                },
-                data_value: {
-                    class: "thm--tint10 tx--f2--100",
-                    "o-base": "col--pStart pad--xy25 gxs--s2",
-                    "o-condensed": "pad--x50"
-                },
             })
-            .options({
-                on_mount () {
-                    this.data_mapper()
+            .dom_switch({
+                element: {
+                    class: ["vx--z100", ""]
                 }
             })
-            
+            .options({
+                on_mount () {}
+            })
+
+block content
+    mixin mixin_name
+        p Test mixin
+
+    include /datagrids/base
+        -
+            vefa.data({items:card.items})
+                .dom({
+                    grid: {
+                        "o-extended": "gdx--gc--gxy10"
+                    },
+                    data_key: {
+                        class: "thm--shade40 tx--small--f3--tcU",
+                        "o-base": "pad--xy25",
+                    },
+                    data_value: {
+                        class: "thm--tint10 tx--f2--100",
+                        "o-base": "col--pStart pad--xy25 gxs--s2",
+                        "o-condensed": "pad--x50"
+                    },
+                })
+    
+
+block teardown
