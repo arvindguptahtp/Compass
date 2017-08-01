@@ -139,7 +139,7 @@ class StudentNeeds(Choice):
     mh = 'Mental Health Needs'
     ac = 'Academic Needs'
     hr = 'High Risk Behavior'
-    pr = 'Pregnant/Parenting'
+    pr = 'Pregnant/Parenting/Prevention'
     ccr = 'College/Career Readiness'
     pfe = 'Parent/Family Engagement'
     ell = 'English Language Learners'
