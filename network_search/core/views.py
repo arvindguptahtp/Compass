@@ -1,10 +1,10 @@
 from django.conf import settings
-from easy_pdf.views import PDFTemplateResponseMixin
-from pure_pagination import Paginator
-from pure_pagination import PageNotAnInteger
+from django.core.exceptions import ImproperlyConfigured
 from django.views.generic import FormView
 from django.views.generic import TemplateView
-from django.core.exceptions import ImproperlyConfigured
+from easy_pdf.views import PDFTemplateResponseMixin
+from pure_pagination import PageNotAnInteger
+from pure_pagination import Paginator
 
 
 class HomePage(TemplateView):
@@ -28,14 +28,20 @@ class SearchView(FormView):
     """
     List and search base view used by individual resources
 
+    Includes in the context the form, the queryset, and a `few_results` boolean
+    value which indicates whether the user performed an active search (hitting
+    submit on a form) and got fewer than one whole page worth of results.
+
     Attributes:
         queryset: the queryset to list and filter
         form_class: the form class for
         template_name: path to the template
         context_object_name: string name of the paging object
+        paginate_by: integer for number of objects to include per page
     """
     queryset = None
     context_object_name = "paginator"
+    paginate_by = 20
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -56,22 +62,38 @@ class SearchView(FormView):
         kwargs.update({'data': request_dict})
         return kwargs
 
+    def did_search(self) -> bool:
+        request_dict = self.request.GET.copy() if self.request.method == 'GET' else self.request.POST.copy()
+        for key in request_dict.keys():
+            if request_dict.get(key, None):
+                return True
+        return False
+
+    def get_queryset(self, form):
+        if form.is_valid():
+            return self.queryset.search(**form.cleaned_data)
+        else:
+            return self.queryset
+
     def get(self, request, *args, **kwargs):
         form = self.get_form()
-        if form.is_valid():
-            queryset = self.queryset.search(**form.cleaned_data)
-        else:
-            queryset = self.queryset
+        queryset = self.get_queryset(form)
 
         try:
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
 
-        p = Paginator(queryset, request=request, per_page=20)
+        p = Paginator(queryset, request=request, per_page=self.paginate_by)
         paged_queryset = p.page(page)
 
+        if p.count < self.paginate_by and self.did_search():
+            few_results = True
+        else:
+            few_results = False
+
         return self.render_to_response(self.get_context_data(**{
+            'few_results': few_results,
             'form': form,
             self.context_object_name: paged_queryset,
         }))
