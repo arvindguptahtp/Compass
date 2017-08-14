@@ -7,6 +7,7 @@ from network_search.core import choices
 from network_search.tests.fixtures import affiliate_factory
 from network_search.tests.fixtures import school_data_factory
 from network_search.affiliates.models import Affiliate
+from network_search.programs.models import Program
 from network_search.affiliates.models import AffiliateEOYData
 
 
@@ -24,6 +25,32 @@ def test_school_districts():
     affiliate = AffiliateEOYData(districts="City of Fun, Town of Boring, County of Learning")
     assert affiliate.school_districts_count == 3
     assert affiliate.school_districts == ["City of Fun", "Town of Boring", "County of Learning"]
+
+
+@pytest.mark.django_db
+def test_program_evidence_sorting():
+    """Ensure programs properly save highest evidence"""
+    defaults = {
+        'name': "Blibbidy",
+        'summary': "Hello",
+        'description': "World",
+    }
+    program = Program(
+        tiers_of_evidence=[choices.TiersOfEvidence.t1],
+        **defaults
+    )
+    program.save()
+    assert program._tier_sorting == 5
+
+    program.tiers_of_evidence = [choices.TiersOfEvidence.t3, choices.TiersOfEvidence.t1]
+    assert program._tier_sorting == 5
+
+    program = Program(
+        tiers_of_evidence=[choices.TiersOfEvidence.t3],
+        **defaults
+    )
+    program.save()
+    assert program._tier_sorting == 3
 
 
 @pytest.mark.django_db

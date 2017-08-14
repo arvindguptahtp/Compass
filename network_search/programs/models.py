@@ -1,9 +1,20 @@
-from django.db import models
-from django.contrib.postgres.fields import ArrayField
+from collections import OrderedDict
 
-from network_search.core.models import Link
+from django.contrib.postgres.fields import ArrayField
+from django.db import models
+
+from network_search.core.choices import TiersOfEvidence
 from network_search.core.models import BaseResource
+from network_search.core.models import Link
 from network_search.core.models import ResourceQueryset
+
+tier_levels = OrderedDict([
+    (TiersOfEvidence.t1, 5),
+    (TiersOfEvidence.t2, 4),
+    (TiersOfEvidence.t3, 3),
+    (TiersOfEvidence.t4, 2),
+    (TiersOfEvidence.t5, 1),
+])
 
 
 class ProgramQueryset(ResourceQueryset):
@@ -44,6 +55,14 @@ class ProgramQueryset(ResourceQueryset):
             qs = qs.filter(network_use=None)
 
         return qs.distinct('name')
+
+    def sorted(self, order_by: str = '') -> models.QuerySet:
+        """Allows some non-standard sorting"""
+        if order_by == 'evidence':
+            return self.order_by('_tier_sorting')
+        elif order_by == '-evidence':
+            return self.order_by('-_tier_sorting')
+        return self.order_by(order_by)
 
 
 class Program(BaseResource):
@@ -100,6 +119,11 @@ class Program(BaseResource):
         blank=True,
         null=True,
     )
+    _tier_sorting = models.IntegerField(
+        editable=False,
+        null=True,
+        default=0,
+    )
 
     _study_details = models.TextField(name='study details', blank=True, null=True, help_text="Not for display")
 
@@ -132,6 +156,14 @@ class Program(BaseResource):
 
     programs = ProgramQueryset.as_manager()
     objects = programs
+
+    def save(self, *args, **kwargs):
+        tiers = self.tiers_of_evidence or []
+        for key, val in tier_levels.items():
+            if key in tiers:
+                self._tier_sorting = val
+                break
+        super().save(*args, **kwargs)
 
     def evidence_base(self):
         """Returns either the last evidence choice or ''

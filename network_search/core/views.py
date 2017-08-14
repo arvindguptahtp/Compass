@@ -70,15 +70,17 @@ class SearchView(FormView):
                 return True
         return False
 
-    def get_queryset(self, form):
+    def get_queryset(self, form, sort=''):
         if form.is_valid():
-            return self.queryset.search(**form.cleaned_data)
+            qs = self.queryset.search(**form.cleaned_data)
         else:
-            return self.queryset
+            qs = self.queryset
+        return qs.sorted(sort) if sort else qs
 
     def get(self, request, *args, **kwargs):
         form = self.get_form()
-        queryset = self.get_queryset(form)
+        sort = request.GET.get('sort', 'name')
+        queryset = self.get_queryset(form, sort=sort)
 
         try:
             page = request.GET.get('page', 1)
@@ -97,5 +99,6 @@ class SearchView(FormView):
             'few_results': few_results,
             'few_results_message': self.few_results_message,
             'form': form,
+            'sort': sort,
             self.context_object_name: paged_queryset,
         }))

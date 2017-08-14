@@ -115,9 +115,24 @@ class ResourceQueryset(models.QuerySet):
             Searched/filtered queryset
 
         """
-        qs = self.all()
         query = kwargs.pop('q', '')
         if query:
-            qs = qs.filter(search_content=query)
+            return self.filter(search_content=query)
+        return self
 
-        return qs
+    def sorted(self, order_by: str = '') -> models.QuerySet:
+        """
+        Common interface for returning a custom sort of the queryset.
+
+        Provided so that custom implementations can add non-standard ways of handling sorting
+
+        Args:
+            order_by: the string representing either the direct order argument or an indicator
+
+        Returns:
+            the ordered queryset
+
+        """
+        if not order_by:
+            return self
+        return self.order_by(order_by)
