@@ -28,7 +28,7 @@ def test_school_districts():
 
 
 @pytest.mark.django_db
-def test_program_evidence_sorting():
+def test_program_evidence_sortability():
     """Ensure programs properly save highest evidence"""
     defaults = {
         'name': "Blibbidy",
@@ -36,21 +36,54 @@ def test_program_evidence_sorting():
         'description': "World",
     }
     program = Program(
-        tiers_of_evidence=[choices.TiersOfEvidence.t1],
+        tiers_of_evidence=[choices.TiersOfEvidence.t1.name],
         **defaults
     )
     program.save()
-    assert program._tier_sorting == 5
+    assert program.tier_sorting == 5
 
-    program.tiers_of_evidence = [choices.TiersOfEvidence.t3, choices.TiersOfEvidence.t1]
-    assert program._tier_sorting == 5
+    program.tiers_of_evidence = [choices.TiersOfEvidence.t3.name, choices.TiersOfEvidence.t1.name]
+    assert program.tier_sorting == 5
 
     program = Program(
-        tiers_of_evidence=[choices.TiersOfEvidence.t3],
+        tiers_of_evidence=[choices.TiersOfEvidence.t3.name],
         **defaults
     )
     program.save()
-    assert program._tier_sorting == 3
+    assert program.tier_sorting == 3
+
+
+@pytest.mark.django_db
+def test_program_evidence_sorting():
+
+    high_evidence = Program(
+        tiers_of_evidence=[choices.TiersOfEvidence.t1],
+        **{
+            'name': "High",
+            'summary': "Hello",
+            'description': "World",
+        }
+    )
+    high_evidence.save()
+
+    moderate_evidence = Program(
+        tiers_of_evidence=[choices.TiersOfEvidence.t3],
+        **{
+              'name': "Moderate",
+              'summary': "Hello",
+              'description': "World",
+          }
+    )
+    moderate_evidence.save()
+
+    results = Program.programs.active().search(q='world')
+    assert len(results) == 2
+
+    results = Program.programs.active().search(q='world', order_by='name')
+    assert len(results) == 2
+
+    results = Program.programs.active().search(q='world', order_by='evidence')
+    assert len(results) == 2
 
 
 @pytest.mark.django_db

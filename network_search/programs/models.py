@@ -9,16 +9,28 @@ from network_search.core.models import Link
 from network_search.core.models import ResourceQueryset
 
 tier_levels = OrderedDict([
-    (TiersOfEvidence.t1, 5),
-    (TiersOfEvidence.t2, 4),
-    (TiersOfEvidence.t3, 3),
-    (TiersOfEvidence.t4, 2),
-    (TiersOfEvidence.t5, 1),
+    (TiersOfEvidence.t1.name, 5),
+    (TiersOfEvidence.t2.name, 4),
+    (TiersOfEvidence.t3.name, 3),
+    (TiersOfEvidence.t4.name, 2),
+    (TiersOfEvidence.t5.name, 1),
 ])
 
 
 class ProgramQueryset(ResourceQueryset):
     def search(self, **kwargs):
+        order_by = kwargs.pop('order_by', 'name')
+
+        distinct = ['name']
+        ordering = ['name']
+
+        if 'evidence' in order_by:
+            distinct = ['tier_sorting', 'name']
+            if order_by == 'evidence':
+                ordering = ['tier_sorting', 'name']
+            else:
+                ordering = ['-tier_sorting', 'name']
+
         qs = super().search(**kwargs)
 
         grades = kwargs.pop('grade', [])
@@ -54,14 +66,14 @@ class ProgramQueryset(ResourceQueryset):
         elif use_in_network is False:
             qs = qs.filter(network_use=None)
 
-        return qs.distinct('name')
+        return qs.distinct(*distinct).order_by(*ordering)
 
     def sorted(self, order_by: str = '') -> models.QuerySet:
         """Allows some non-standard sorting"""
         if order_by == 'evidence':
-            return self.order_by('_tier_sorting')
+            return self.order_by('tier_sorting')
         elif order_by == '-evidence':
-            return self.order_by('-_tier_sorting')
+            return self.order_by('-tier_sorting')
         return self.order_by(order_by)
 
 
@@ -119,8 +131,7 @@ class Program(BaseResource):
         blank=True,
         null=True,
     )
-    _tier_sorting = models.IntegerField(
-        editable=False,
+    tier_sorting = models.IntegerField(
         null=True,
         default=0,
     )
@@ -161,7 +172,7 @@ class Program(BaseResource):
         tiers = self.tiers_of_evidence or []
         for key, val in tier_levels.items():
             if key in tiers:
-                self._tier_sorting = val
+                self.tier_sorting = val
                 break
         super().save(*args, **kwargs)
 

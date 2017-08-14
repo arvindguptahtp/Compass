@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='program',
-            name='_tier_sorting',
+            name='tier_sorting',
             field=models.IntegerField(default=0, editable=False, null=True),
         ),
     ]

@@ -115,10 +115,12 @@ class ResourceQueryset(models.QuerySet):
             Searched/filtered queryset
 
         """
+        qs = self.active()
         query = kwargs.pop('q', '')
         if query:
-            return self.filter(search_content=query)
-        return self
+            qs = qs.filter(search_content=query)
+
+        return qs
 
     def sorted(self, order_by: str = '') -> models.QuerySet:
         """

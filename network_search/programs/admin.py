@@ -25,6 +25,7 @@ class RelatedResourceInline(admin.TabularInline):
 @admin.register(Program)
 class ProgramAdmin(admin.ModelAdmin):
     form = ProgramAdminForm
+    list_display = ['name', 'tier_sorting']
     filter_horizontal = ['network_use', 'featured_network']
     inlines = [NationalDatabaseInline, RelatedResourceInline, AdditionalResourceInline]
 

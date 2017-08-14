@@ -72,7 +72,7 @@ class SearchView(FormView):
 
     def get_queryset(self, form, sort=''):
         if form.is_valid():
-            qs = self.queryset.search(**form.cleaned_data)
+            qs = self.queryset.search(order_by=sort, **form.cleaned_data)
         else:
             qs = self.queryset
         return qs.sorted(sort) if sort else qs
