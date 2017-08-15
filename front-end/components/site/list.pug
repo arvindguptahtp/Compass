@@ -53,16 +53,23 @@ block content
             o-condensed="pad--x50"
             o-enhanced="pad--x100 pad--y100 rhy--yStart200"
         )
-            .copy.tx--maj--f1--100.co--pri(
-                o-full="dx--w60 iso--xAuto rhy--yStart50"
-            )
-                block summary
-                if page.summary
-                    != markdown(page.summary)
-                
-            hr.thm--shade15(
-                o-base="dx--w60 iso--xAuto"
-            )
+            +if('not pagination and not few_results or pagination.current < 2')
+                .copy.tx--maj--f1--100.co--pri(
+                    o-full="dx--w60 iso--xAuto rhy--yStart50"
+                )
+                    block summary
+                    if page.summary
+                        != markdown(page.summary)
+                    
+                hr.thm--shade15(
+                    o-base="dx--w60 iso--xAuto"
+                )
+            
+            +if('few_results and few_results_message')
+                p.tx--maj--f1--400.co--pri(
+                    o-base="pad--xStart50 pad--yStart75 rhy--yStart50"
+                )= v('few_results_message')
+
             
             if page.results_collection
                 section.search-river(

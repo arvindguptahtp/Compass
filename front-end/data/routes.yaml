@@ -2,7 +2,7 @@ org:
     title: CIS.org
     url: https://www.communitiesinschools.org/
     published: true
-    target: _top
+    target: _blank
 
 resources:
     title: Resources
@@ -14,21 +14,25 @@ terms:
     title: Terms of Service
     url: https://www.communitiesinschools.org/terms/
     published: true
+    target: _blank
 
 privacy:
     title: Privacy Policy
     url: https://www.communitiesinschools.org/privacy-policy/
     published: true
+    target: _blank
 
 contact:
     title: Contact Us
     url: https://www.communitiesinschools.org/contact-us/
     published: true
+    target: _blank
 
 admin:
     title: Admin
     url: "{% url 'admin:index' %}"
     published: true
+    target: _blank
 
 partners:
     title: Partners

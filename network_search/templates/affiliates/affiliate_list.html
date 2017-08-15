@@ -224,12 +224,13 @@
           </footer>
         </form>
       </div>
-      <div class="gxi--b" o-base="mod--fill pad--x25 pad--y50 rhy--yStart100" o-condensed="pad--x50" o-enhanced="pad--x100 pad--y100 rhy--yStart200">
-        <div class="copy tx--maj--f1--100 co--pri" o-full="dx--w60 iso--xAuto rhy--yStart50"><p>Communities In Schools works in 164 communities, 363 school districts reaching 1.5 million students across the country. The <span class="caps">CIS</span> Affiliate Search Tool
+      <div class="gxi--b" o-base="mod--fill pad--x25 pad--y50 rhy--yStart100" o-condensed="pad--x50" o-enhanced="pad--x100 pad--y100 rhy--yStart200">{% if not pagination and not few_results or pagination.current < 2 %}
+                    <div class="copy tx--maj--f1--100 co--pri" o-full="dx--w60 iso--xAuto rhy--yStart50"><p>Communities In Schools works in 164 communities, 363 school districts reaching 1.5 million students across the country. The <span class="caps">CIS</span> Affiliate Search Tool
 is here for <span class="caps">CIS</span> affiliates to search for and connect to peer <span class="caps">CIS</span> organizations based on demographic search criteria. With questions, reach out to <a href="mailto:XYZ@cisnet.org"><span class="caps">XYZ</span>@cisnet.org</a></p>
 
-        </div>
-        <hr class="thm--shade15" o-base="dx--w60 iso--xAuto">
+                    </div>
+                    <hr class="thm--shade15" o-base="dx--w60 iso--xAuto">{% endif %}{% if few_results and few_results_message %}
+                    <p class="tx--maj--f1--400 co--pri" o-base="pad--xStart50 pad--yStart75 rhy--yStart50">{{ few_results_message }}</p>{% endif %}
         <section class="search-river" o-base="rhy--yStart50">{% if affiliates.pages|length > 1 %}
                     <nav class="pagination tx--f1--aa" o-base="row--pStart--sMiddle">{% if affiliates.has_previous %}<a class="page-ctrl--prev ord--start thm--dark rxn--tint30 fx--shift" href="?{{ affiliates.previous_page_number.querystring }}" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs">
                                   <svg class="ico">
@@ -276,7 +277,9 @@ is here for <span class="caps">CIS</span> affiliates to search for and connect t
                           </dl>
                         </dd>
                       </dl>{% empty %}
-                          <p>No matching affiliates</p>{% endfor %}
+                          <div class="tx--subhed thm--shade5 co--affiliates hl--yStart--bColor vx--z100" o-base="pad--xy100">
+                            <p class="co--copy">No matching affiliates</p>
+                          </div>{% endfor %}
           </div>{% if affiliates.pages|length > 1 %}
                     <nav class="pagination tx--f1--aa" o-base="row--pStart--sMiddle">{% if affiliates.has_previous %}<a class="page-ctrl--prev ord--start thm--dark rxn--tint30 fx--shift" href="?{{ affiliates.previous_page_number.querystring }}" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs">
                                   <svg class="ico">
@@ -335,12 +338,12 @@ is here for <span class="caps">CIS</span> affiliates to search for and connect t
       </picture></a>
     <div class="colophon-site" o-base="mod--balance" o-standard="col---pStart--sEnd">
       <nav class="colophon-nav hl--yEnd--bTint" o-base="pad--yEnd50 iso--yEnd50 gx--colophon" o-standard="row--pEnd--sMiddle--xAuto">
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/" target="_top" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>CIS.org</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>CIS.org</span></a></li>
         <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://resources.communitiesinschools.org" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Resources</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/terms/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Terms of Service</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/privacy-policy/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Privacy Policy</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/contact-us/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Contact Us</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="{% url 'admin:index' %}" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Admin</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/terms/" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Terms of Service</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/privacy-policy/" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Privacy Policy</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/contact-us/" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Contact Us</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="{% url 'admin:index' %}" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Admin</span></a></li>
       </nav>
       <address class="contactinfo--inline" o-condensed="rhy--yStart25">
         <div class="contactinfo-group" o-base="col--pStart" o-condensed="row--pEnd">

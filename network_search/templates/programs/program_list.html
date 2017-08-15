@@ -151,16 +151,17 @@
           </footer>
         </form>
       </div>
-      <div class="gxi--b" o-base="mod--fill pad--x25 pad--y50 rhy--yStart100" o-condensed="pad--x50" o-enhanced="pad--x100 pad--y100 rhy--yStart200">
-        <div class="copy tx--maj--f1--100 co--pri" o-full="dx--w60 iso--xAuto rhy--yStart50"><p>Evidence-based programming is a great resource for members of the <span class="caps">CIS</span> network family to effectively serve case-managed students and schools. This tool allows <span class="caps">CIS</span> practitioners and managers to search<span class="widont">&nbsp;</span>by:</p>
+      <div class="gxi--b" o-base="mod--fill pad--x25 pad--y50 rhy--yStart100" o-condensed="pad--x50" o-enhanced="pad--x100 pad--y100 rhy--yStart200">{% if not pagination and not few_results or pagination.current < 2 %}
+                    <div class="copy tx--maj--f1--100 co--pri" o-full="dx--w60 iso--xAuto rhy--yStart50"><p>Evidence-based programming is a great resource for members of the <span class="caps">CIS</span> network family to effectively serve case-managed students and schools. This tool allows <span class="caps">CIS</span> practitioners and managers to search<span class="widont">&nbsp;</span>by:</p>
 <ul>
 <li>Student demographics, characteristics, or needs of your<span class="widont">&nbsp;</span>students.</li>
 <li>Tier of service, if the program is being implemented in the network, program costs, and tier of<span class="widont">&nbsp;</span>evidence.</li>
 </ul>
 <p>Programs with a higher tier of evidence will be indicated by a fully-colored <span class="caps">CIS</span> logo in the search<span class="widont">&nbsp;</span>results.</p>
 
-        </div>
-        <hr class="thm--shade15" o-base="dx--w60 iso--xAuto">
+                    </div>
+                    <hr class="thm--shade15" o-base="dx--w60 iso--xAuto">{% endif %}{% if few_results and few_results_message %}
+                    <p class="tx--maj--f1--400 co--pri" o-base="pad--xStart50 pad--yStart75 rhy--yStart50">{{ few_results_message }}</p>{% endif %}
         <section class="search-river" o-base="rhy--yStart50">{% if programs.pages|length > 1 %}
                     <nav class="pagination tx--f1--aa" o-base="row--pStart--sMiddle">{% if programs.has_previous %}<a class="page-ctrl--prev ord--start thm--dark rxn--tint30 fx--shift" href="?{{ programs.previous_page_number.querystring }}" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 pad--y10 rhy--xStart25 ico--xs">
                                   <svg class="ico">
@@ -300,12 +301,12 @@
       </picture></a>
     <div class="colophon-site" o-base="mod--balance" o-standard="col---pStart--sEnd">
       <nav class="colophon-nav hl--yEnd--bTint" o-base="pad--yEnd50 iso--yEnd50 gx--colophon" o-standard="row--pEnd--sMiddle--xAuto">
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/" target="_top" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>CIS.org</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>CIS.org</span></a></li>
         <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://resources.communitiesinschools.org" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Resources</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/terms/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Terms of Service</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/privacy-policy/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Privacy Policy</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/contact-us/" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Contact Us</span></a></li>
-        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="{% url 'admin:index' %}" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Admin</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/terms/" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Terms of Service</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/privacy-policy/" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Privacy Policy</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="https://www.communitiesinschools.org/contact-us/" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Contact Us</span></a></li>
+        <li class="nav-item--static colophon-nav-item" o-base="row--pStart--sMiddle--xAuto" o-standard="pad--x25 pad--xEdges0 hl--xStart--bTint"><a class="colophon-nav-ctrl co--ctrl fx--shift" href="{% url 'admin:index' %}" target="_blank" o-base="mod--fill pad--y10" o-condensed="tx--taMiddle pad--y0"><span>Admin</span></a></li>
       </nav>
       <address class="contactinfo--inline" o-condensed="rhy--yStart25">
         <div class="contactinfo-group" o-base="col--pStart" o-condensed="row--pEnd">

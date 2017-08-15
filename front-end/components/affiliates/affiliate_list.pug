@@ -9,6 +9,7 @@ block instance
                 impact_theme: "thm--affiliates",
                 icon: "affiliates",
                 content_type: "affiliates",
+                few_results: affiliates.few_results,
 
                 slug: routes.affiliates.slug,
                 summary: affiliates.summary,
@@ -16,7 +17,7 @@ block instance
             })
 
 
-block summary
+block summary    
     :md
         Communities In Schools works in 164 communities, 363 school districts reaching 1.5 million students across the country. The CIS Affiliate Search Tool 
         is here for CIS affiliates to search for and connect to peer CIS organizations based on demographic search criteria. With questions, reach out to [XYZ@cisnet.org](mailto:XYZ@cisnet.org)
@@ -25,9 +26,12 @@ block form
     include /affiliates/components/fm--search-affiliate
 
 
-block results
+block results    
     +for('affiliate in affiliates.object_list')
         include /affiliates/components/card--result-affiliate
-
+        
         +empty()
-            p No matching affiliates
+            .tx--subhed.thm--shade5.co--affiliates.hl--yStart--bColor.vx--z100(
+                o-base="pad--xy100"
+            )
+                p.co--copy No matching affiliates
