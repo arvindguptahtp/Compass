@@ -41,7 +41,7 @@ class SearchView(FormView):
     """
     queryset = None
     context_object_name = "paginator"
-    paginate_by = 3
+    paginate_by = 20
     few_results_message = """Try adjusting the filter options to broaden your search."""
 
     def __init__(self, **kwargs):
@@ -100,5 +100,6 @@ class SearchView(FormView):
             'few_results_message': self.few_results_message,
             'form': form,
             'sort': sort,
+            'num_of_results': p.count,
             self.context_object_name: paged_queryset,
         }))

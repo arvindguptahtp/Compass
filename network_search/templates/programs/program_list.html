@@ -164,7 +164,7 @@
                     <p class="tx--maj--f1--400 co--pri" o-base="pad--xStart50 pad--yStart75 rhy--yStart50">{{ few_results_message }}</p>{% endif %}
         <section class="search-river" o-base="rhy--yStart50">
           <div o-condensed="row--pStart--sMiddle">
-            <p class="co--pri hl--xEnd--bTint" o-base="pad--xEnd50">{{ programs.object_list|length }} result{{ programs.object_list|pluralize }}
+            <p class="co--pri hl--xEnd--bTint" o-base="pad--xEnd50">{{ num_of_results }} result{{ num_of_results|pluralize }}
             </p>{% if programs.pages|length > 1 %}
                         <nav class="pagination tx--small--f2" o-base="row--pStart--sMiddle--xAuto">{% if programs.has_previous %}<a class="page-ctrl--prev ord--start co--minor fx--shift" href="?{{ programs.previous_page_number.querystring }}" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 rhy--xStart10 ico--xs">
                                         <svg class="ico">
@@ -249,7 +249,7 @@
                                   <p>No matching programs.</p>{% endfor %}
           </div>
           <div o-condensed="row--pStart--sMiddle">
-            <p class="co--pri hl--xEnd--bTint" o-base="pad--xEnd50">{{ programs.object_list|length }} result{{ programs.object_list|pluralize }}
+            <p class="co--pri hl--xEnd--bTint" o-base="pad--xEnd50">{{ num_of_results }} result{{ num_of_results|pluralize }}
             </p>{% if programs.pages|length > 1 %}
                         <nav class="pagination tx--small--f2" o-base="row--pStart--sMiddle--xAuto">{% if programs.has_previous %}<a class="page-ctrl--prev ord--start co--minor fx--shift" href="?{{ programs.previous_page_number.querystring }}" o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 rhy--xStart10 ico--xs">
                                         <svg class="ico">
