@@ -113,9 +113,9 @@ block detail_b
                     .data({
                         heading: "Affiliate Staffing",
                         items: [
-                            ["text", "Full-time", 'eoy_data.full_time_staff'],
-                            ["text", "Part-time", 'eoy_data.part_time_staff'],
-                            ["text", "Americorps", 'eoy_data.americorps_staff'],
+                            ["text", "Full-time", 'eoy_data.full_time_staff', false, "staffmember"],
+                            ["text", "Part-time", 'eoy_data.part_time_staff', false, "staffmember"],
+                            ["text", "Americorps", 'eoy_data.americorps_staff', false, "staffmember"],
                         ]
                     })
         
@@ -126,28 +126,28 @@ block detail_b
                         heading: "Affiliate Case Management Performance",
                         items: [
                             ['heading', 'Students in Grades K—11', 'eoy_data.students_k_11_promoted'],
-                            ['text', 'Promoted', 'eoy_data.students_k_11_promoted'],
-                            ['text', 'Retained', 'eoy_data.students_k_11_retained'],
-                            ['text', 'Dropped Out', 'eoy_data.students_k_11_dropped_out'],
-                            ['text', 'Transferred', 'eoy_data.students_k_11_transferred'],
-                            ['text', 'GED', 'eoy_data.students_k_11_ged'],
-                            ['text', 'Expelled', 'eoy_data.students_k_11_expelled'],
-                            ['text', 'Incarcerated', 'eoy_data.students_k_11_incarcerated'],
-                            ['text', 'Deceased', 'eoy_data.students_k_11_deceased'],
-                            ['text', 'Other', 'eoy_data.students_k_11_other'],
-                            ['text', 'Unknown', 'eoy_data.students_k_11_unknown'],
+                            ['text', 'Promoted', 'eoy_data.students_k_11_promoted', false, "student"],
+                            ['text', 'Retained', 'eoy_data.students_k_11_retained', false, "student"],
+                            ['text', 'Dropped Out', 'eoy_data.students_k_11_dropped_out', false, "student"],
+                            ['text', 'Transferred', 'eoy_data.students_k_11_transferred', false, "student"],
+                            ['text', 'GED', 'eoy_data.students_k_11_ged', false, "student"],
+                            ['text', 'Expelled', 'eoy_data.students_k_11_expelled', false, "student"],
+                            ['text', 'Incarcerated', 'eoy_data.students_k_11_incarcerated', false, "student"],
+                            ['text', 'Deceased', 'eoy_data.students_k_11_deceased', false, "student"],
+                            ['text', 'Other', 'eoy_data.students_k_11_other', false, "student"],
+                            ['text', 'Unknown', 'eoy_data.students_k_11_unknown', false, "student"],
                             
                             ['heading', 'Students in Grade 12', 'eoy_data.students_grade_12_graduated'],
-                            ['text', 'Graduated', 'eoy_data.students_grade_12_graduated'],
-                            ['text', 'Retained', 'eoy_data.students_grade_12_retained'],
-                            ['text', 'Dropped Out', 'eoy_data.students_grade_12_dropped_out'],
-                            ['text', 'Transferred', 'eoy_data.students_grade_12_transferred'],
-                            ['text', 'GED', 'eoy_data.students_grade_12_ged'],
-                            ['text', 'Expelled', 'eoy_data.students_grade_12_expelled'],
-                            ['text', 'Incarcerated', 'eoy_data.students_grade_12_incarcerated'],
-                            ['text', 'Deceased', 'eoy_data.students_grade_12_deceased'],
-                            ['text', 'Other', 'eoy_data.students_grade_12_other'],
-                            ['text', 'Unknown', 'eoy_data.students_grade_12_unknown'],
+                            ['text', 'Graduated', 'eoy_data.students_grade_12_graduated', false, "student"],
+                            ['text', 'Retained', 'eoy_data.students_grade_12_retained', false, "student"],
+                            ['text', 'Dropped Out', 'eoy_data.students_grade_12_dropped_out', false, "student"],
+                            ['text', 'Transferred', 'eoy_data.students_grade_12_transferred', false, "student"],
+                            ['text', 'GED', 'eoy_data.students_grade_12_ged', false, "student"],
+                            ['text', 'Expelled', 'eoy_data.students_grade_12_expelled', false, "student"],
+                            ['text', 'Incarcerated', 'eoy_data.students_grade_12_incarcerated', false, "student"],
+                            ['text', 'Deceased', 'eoy_data.students_grade_12_deceased', false, "student"],
+                            ['text', 'Other', 'eoy_data.students_grade_12_other', false, "student"],
+                            ['text', 'Unknown', 'eoy_data.students_grade_12_unknown', false, "student"],
                         ]
                     })
 
@@ -163,9 +163,9 @@ block detail_b
                         heading: "School District Details",
                         items: [
                             ["group", "School District(s)", 'eoy_data.school_districts'],
-                            ["text", "Total Enrollment", 'eoy_data.calculated_total_enrollment'],
-                            ["text", "Number of Case-managed Students", 'eoy_data.calculated_total_case_managed'],
-                            ["text", "Total Students Reached", 'eoy_data.calculated_total_students_reached'],
+                            ["text", "Total Enrollment", 'eoy_data.calculated_total_enrollment', false, "student"],
+                            ["text", "Number of Case-managed Students", 'eoy_data.calculated_total_case_managed', false, "student"],
+                            ["text", "Total Students Reached", 'eoy_data.calculated_total_students_reached', false, "student"],
                         ]
                     })
 
@@ -184,13 +184,13 @@ block detail_b
                                 title: "Students By Race/ Ethnicity",
                                 exists: "eoy_data.search_race",
                                 items: [
-                                    ['text', 'American Indian', 'eoy_data.search_students_american_indian'],
-                                    ['text', 'Asian', 'eoy_data.search_students_asian'],
-                                    ['text', 'Black', 'eoy_data.search_students_black'],
-                                    ['text', 'Hispanic', 'eoy_data.search_students_hispanic'],
-                                    ['text', 'White', 'eoy_data.search_students_white'],
-                                    ['text', 'Two or More', 'eoy_data.search_students_two_or_more'],
-                                    ['text', 'Other', 'eoy_data.search_students_other'],
+                                    ['text', 'American Indian', 'eoy_data.search_students_american_indian', false, "student"],
+                                    ['text', 'Asian', 'eoy_data.search_students_asian', false, "student"],
+                                    ['text', 'Black', 'eoy_data.search_students_black', false, "student"],
+                                    ['text', 'Hispanic', 'eoy_data.search_students_hispanic', false, "student"],
+                                    ['text', 'White', 'eoy_data.search_students_white', false, "student"],
+                                    ['text', 'Two or More', 'eoy_data.search_students_two_or_more', false, "student"],
+                                    ['text', 'Other', 'eoy_data.search_students_other', false, "student"],
                                 ]
                             })
                             .dom_mix({
@@ -205,8 +205,8 @@ block detail_b
                                 title: "Students By Gender",
                                 exists: "eoy_data.search_gender",
                                 items: [
-                                    ['text', 'Male', 'eoy_data.search_students_male'],
-                                    ['text', 'Female', 'eoy_data.search_students_female']
+                                    ['text', 'Male', 'eoy_data.search_students_male', false, "student"],
+                                    ['text', 'Female', 'eoy_data.search_students_female', false, "student"]
                                 ]
                             })
                             .dom_mix({

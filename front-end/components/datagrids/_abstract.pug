@@ -107,7 +107,8 @@ block init
                                     return Object.assign(value, {
                                         value: (dict[2]) ? dict[2] : 'True',
                                         verify: dict[2]  ? dict[2] : 'True',
-                                        display: (dict[3]) ? dict[3] : dict[2]
+                                        display: (dict[3]) ? dict[3] : dict[2],
+                                        suffix: (dict[4]) ? dict[4] : false,
                                     })
 
                                 break;
@@ -154,6 +155,10 @@ block view
                                                     = v(item.value, "safe")
                                                 else
                                                     = item.display
+                                                
+                                                if item.suffix
+                                                    = ` ${item.suffix}`
+                                                    = v(item.value, "pluralize")
                         
                                             when "pct"
                                                 if item.value == item.display

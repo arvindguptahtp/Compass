@@ -176,12 +176,12 @@
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
                         <ul o-base="mod--balance rhy--yStart25">{% if partner.featured_network %}{% for item in partner.featured_network.all %}
-                                                        <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 hl--xEnd--bTint co--partners" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                        <li class="thm--tint70 tx--f2"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 hl--xEnd--bTint co--partners" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
                                                                           <svg class="ico--dx150">
                                                                             <use href="#ico--affiliates"></use>
                                                                           </svg></span><span class="tx--trnc tx--900" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
                                                         </li>{% endfor %}{% endif %}{% if partner.network_use %}{% for item in partner.network_use.all %}{% if item not in partner.featured_network.all %}
-                                                                        <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                                        <li class="thm--tint70 tx--f2"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
                                                                                           <svg class="ico--dx150">
                                                                                             <use href="#ico--affiliates"></use>
                                                                                           </svg></span><span class="tx--trnc" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
@@ -197,12 +197,12 @@
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
                         <ul o-base="mod--balance rhy--yStart25">{% if partner.webinars %}{% for item in partner.webinars.all %}
-                                                        <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                        <li class="thm--tint70 tx--f2"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
                                                                           <svg class="ico--dx100">
                                                                             <use href="#ico--webinar"></use>
                                                                           </svg></span><span class="tx--trnc" o-base="pad--xy25">{{ item|truncatechars:72 }}</span><small class="tx--caption--f3--100--tcU" o-base="mod--static--aMiddle pad--xy25" o-standard="iso--xStartAuto">Webinar</small></a>
                                                         </li>{% endfor %}{% endif %}{% if partner.presentations %}{% for item in partner.presentations.all %}
-                                                            <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                            <li class="thm--tint70 tx--f2"><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
                                                                               <svg class="ico--dx100">
                                                                                 <use href="#ico--presentation"></use>
                                                                               </svg></span><span class="tx--trnc" o-base="pad--xy25">{{ item|truncatechars:72 }}</span><small class="tx--caption--f3--100--tcU" o-base="mod--static--aMiddle pad--xy25" o-standard="iso--xStartAuto">Presentation</small></a>

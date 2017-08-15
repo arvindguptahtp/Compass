@@ -128,17 +128,17 @@
                               <dl class="datagrid-grid" o-extended="gdx--gc--gxy10">{% if eoy_data.full_time_staff %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Full-time</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.full_time_staff|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.full_time_staff|safe }} staffmember{{ eoy_data.full_time_staff|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.part_time_staff %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Part-time</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.part_time_staff|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.part_time_staff|safe }} staffmember{{ eoy_data.part_time_staff|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.americorps_staff %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Americorps</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.americorps_staff|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.americorps_staff|safe }} staffmember{{ eoy_data.americorps_staff|pluralize }}
                                       </dd>
                                     </div>{% endif %}
                               </dl>
@@ -157,52 +157,52 @@
                                     </div>{% endif %}{% if eoy_data.students_k_11_promoted %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Promoted</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_promoted|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_promoted|safe }} student{{ eoy_data.students_k_11_promoted|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_k_11_retained %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Retained</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_retained|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_retained|safe }} student{{ eoy_data.students_k_11_retained|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_k_11_dropped_out %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Dropped Out</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_dropped_out|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_dropped_out|safe }} student{{ eoy_data.students_k_11_dropped_out|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_k_11_transferred %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Transferred</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_transferred|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_transferred|safe }} student{{ eoy_data.students_k_11_transferred|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_k_11_ged %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">GED</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_ged|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_ged|safe }} student{{ eoy_data.students_k_11_ged|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_k_11_expelled %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Expelled</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_expelled|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_expelled|safe }} student{{ eoy_data.students_k_11_expelled|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_k_11_incarcerated %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Incarcerated</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_incarcerated|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_incarcerated|safe }} student{{ eoy_data.students_k_11_incarcerated|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_k_11_deceased %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Deceased</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_deceased|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_deceased|safe }} student{{ eoy_data.students_k_11_deceased|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_k_11_other %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Other</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_other|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_other|safe }} student{{ eoy_data.students_k_11_other|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_k_11_unknown %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Unknown</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_unknown|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_k_11_unknown|safe }} student{{ eoy_data.students_k_11_unknown|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_grade_12_graduated %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
@@ -210,52 +210,52 @@
                                     </div>{% endif %}{% if eoy_data.students_grade_12_graduated %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Graduated</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_graduated|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_graduated|safe }} student{{ eoy_data.students_grade_12_graduated|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_grade_12_retained %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Retained</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_retained|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_retained|safe }} student{{ eoy_data.students_grade_12_retained|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_grade_12_dropped_out %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Dropped Out</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_dropped_out|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_dropped_out|safe }} student{{ eoy_data.students_grade_12_dropped_out|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_grade_12_transferred %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Transferred</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_transferred|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_transferred|safe }} student{{ eoy_data.students_grade_12_transferred|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_grade_12_ged %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">GED</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_ged|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_ged|safe }} student{{ eoy_data.students_grade_12_ged|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_grade_12_expelled %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Expelled</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_expelled|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_expelled|safe }} student{{ eoy_data.students_grade_12_expelled|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_grade_12_incarcerated %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Incarcerated</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_incarcerated|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_incarcerated|safe }} student{{ eoy_data.students_grade_12_incarcerated|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_grade_12_deceased %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Deceased</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_deceased|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_deceased|safe }} student{{ eoy_data.students_grade_12_deceased|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_grade_12_other %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Other</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_other|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_other|safe }} student{{ eoy_data.students_grade_12_other|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.students_grade_12_unknown %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Unknown</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_unknown|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.students_grade_12_unknown|safe }} student{{ eoy_data.students_grade_12_unknown|pluralize }}
                                       </dd>
                                     </div>{% endif %}
                               </dl>
@@ -282,17 +282,17 @@
                                     </div>{% endif %}{% if eoy_data.calculated_total_enrollment %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Total Enrollment</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.calculated_total_enrollment|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.calculated_total_enrollment|safe }} student{{ eoy_data.calculated_total_enrollment|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.calculated_total_case_managed %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Number of Case-managed Students</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.calculated_total_case_managed|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.calculated_total_case_managed|safe }} student{{ eoy_data.calculated_total_case_managed|pluralize }}
                                       </dd>
                                     </div>{% endif %}{% if eoy_data.calculated_total_students_reached %}
                                     <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                       <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Total Students Reached</dt>
-                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.calculated_total_students_reached|safe }}
+                                      <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.calculated_total_students_reached|safe }} student{{ eoy_data.calculated_total_students_reached|pluralize }}
                                       </dd>
                                     </div>{% endif %}
                               </dl>
@@ -312,37 +312,37 @@
                                               <dl class="datagrid-grid" o-extended="gdx--gc2--gxy10">{% if eoy_data.search_students_american_indian %}
                                                           <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                                             <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">American Indian</dt>
-                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_american_indian|safe }}
+                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_american_indian|safe }} student{{ eoy_data.search_students_american_indian|pluralize }}
                                                             </dd>
                                                           </div>{% endif %}{% if eoy_data.search_students_asian %}
                                                           <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                                             <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Asian</dt>
-                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_asian|safe }}
+                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_asian|safe }} student{{ eoy_data.search_students_asian|pluralize }}
                                                             </dd>
                                                           </div>{% endif %}{% if eoy_data.search_students_black %}
                                                           <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                                             <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Black</dt>
-                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_black|safe }}
+                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_black|safe }} student{{ eoy_data.search_students_black|pluralize }}
                                                             </dd>
                                                           </div>{% endif %}{% if eoy_data.search_students_hispanic %}
                                                           <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                                             <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Hispanic</dt>
-                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_hispanic|safe }}
+                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_hispanic|safe }} student{{ eoy_data.search_students_hispanic|pluralize }}
                                                             </dd>
                                                           </div>{% endif %}{% if eoy_data.search_students_white %}
                                                           <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                                             <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">White</dt>
-                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_white|safe }}
+                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_white|safe }} student{{ eoy_data.search_students_white|pluralize }}
                                                             </dd>
                                                           </div>{% endif %}{% if eoy_data.search_students_two_or_more %}
                                                           <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                                             <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Two or More</dt>
-                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_two_or_more|safe }}
+                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_two_or_more|safe }} student{{ eoy_data.search_students_two_or_more|pluralize }}
                                                             </dd>
                                                           </div>{% endif %}{% if eoy_data.search_students_other %}
                                                           <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                                             <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Other</dt>
-                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_other|safe }}
+                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_other|safe }} student{{ eoy_data.search_students_other|pluralize }}
                                                             </dd>
                                                           </div>{% endif %}
                                               </dl>
@@ -355,12 +355,12 @@
                                               <dl class="datagrid-grid" o-extended="gdx--gc2--gxy10">{% if eoy_data.search_students_male %}
                                                           <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                                             <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Male</dt>
-                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_male|safe }}
+                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_male|safe }} student{{ eoy_data.search_students_male|pluralize }}
                                                             </dd>
                                                           </div>{% endif %}{% if eoy_data.search_students_female %}
                                                           <div o-base="mod--balance" o-condensed="gdx--gc3--gxy10 mod--static rhy--yStart0">
                                                             <dt class="thm--shade10 tx--small--f3--tcU--700" o-base="pad--xy25 iso--yStart0">Female</dt>
-                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_female|safe }}
+                                                            <dd class="thm--tint70 tx--f2" o-base="col--pMiddle pad--xy25 gxi--gs2">{{ eoy_data.search_students_female|safe }} student{{ eoy_data.search_students_female|pluralize }}
                                                             </dd>
                                                           </div>{% endif %}
                                               </dl>
@@ -373,7 +373,7 @@
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
                         <ul o-base="mod--balance rhy--yStart25">{% if affiliate.programs %}{% for item in affiliate.programs.all %}
-                                                        <li class="thm--tint70 tx--f2--100"><a class="link rxn--shade5 fx--shift co--affiliates" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                                                        <li class="thm--tint70 tx--f2"><a class="link rxn--shade5 fx--shift co--affiliates" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
                                                                           <svg class="ico--dx100">
                                                                             <use href="#ico--programs"></use>
                                                                           </svg></span><span class="tx--trnc" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
