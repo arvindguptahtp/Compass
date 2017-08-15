@@ -12,7 +12,7 @@
   <meta name="format-detection" content="telephone=no">
 </html>
 <body o-base="col--pStart" o-full="gx--ui" dir="ltr" ontouchstart="" onmouseover="">{% include 'includes/icons.html' %}
-  <header class="masthead--landing thm--dark" role="banner" o-base="col--pMiddle--sMiddle vx--hidden" o-full="gxi--a vx--shown"><a class="masthead-home rxn--shade40 fx--shift" href="/" target="_top" o-base="row--pMiddle--sMiddle mod--balance">  
+  <header class="masthead--landing thm--dark" role="banner" o-base="col--pMiddle--sMiddle vx--hidden" o-full="gxi--a vx--shown"><a class="masthead-home rxn--shade40 fx--shift" href="/" o-base="row--pMiddle--sMiddle mod--balance">  
       <h2 class="vx--a11y">Communities In Schools</h2>
       <picture>
         <source srcset="{% static 'res/logo.solo.inverse.png.webp' %}" type="image/webp"><img class="site-logo--solo" src="{% static 'res/logo.solo.inverse.png' %}">
@@ -37,13 +37,13 @@
         <div o-base="row--pEnd--sMiddle mod--balance">{% if program.national_partner %}<a class="ctrl--action fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="{{ program.national_partner.get_absolute_url }}" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25 iso--xEnd">
                 <svg class="ico--dx100">
                   <use href="#ico--partners"></use>
-                </svg><span>National Partner</span></a>{% endif %}{% if program.program_weblink %}<a class="ctrl--action fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="{{ program.program_weblink }}" target="_blank" rel="noopener noreferrer" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25 iso--xEnd">
-            <svg class="ico--dx100">
-              <use href="#ico--link-ext"></use>
-            </svg><span>Website</span></a>{% endif %}<a class="ctrl--download fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="../{{ program.id }}.pdf" download="{{ program }}" o-base="row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25">
+                </svg><span>National Partner</span></a>{% endif %}<a class="ctrl--download fx--shift tx--small--f3--tcU rxn--ctrl-neutral" href="../{{ program.id }}.pdf" download="{{ program }}" o-base="row--pMiddle--sMiddle--xAuto pad--y25 pad--x50 rhy--xStart25">
             <svg class="ico--dx100">
               <use href="#ico--download"></use>
-            </svg><span>Report (PDF)</span></a>
+            </svg><span>Report (PDF)</span></a>{% if program.program_weblink %}<a class="ctrl--action fx--shift tx--small--f3--tcU rxn--ctrl-action" href="{{ program.program_weblink }}" target="_blank" rel="noopener noreferrer" o-base="row--pMiddle--sMiddle--xAuto pad--x50 rhy--xStart25 pad--y25 iso--xEnd">
+                      <svg class="ico--dx100">
+                        <use href="#ico--link-ext"></use>
+                      </svg><span>Website</span></a>{% endif %}
         </div>
       </nav>
       <section class="gxi--a thm--programs" o-base="pad--x25 pad--yStart25 pad--yEnd50 rhy--yStart50" o-standard="pad--x50 rhy--yStart100">{% if True %}
@@ -265,7 +265,7 @@
       </aside>
     </div>
   </main>
-  <nav class="masthead--nav thm--dark" role="navigation" o-base="row--pStart pad--xStart50 ord--start z--masthead" o-enhanced="pad--xStart100 pad--xEnd50" o-full="gxi--c pad--xy0">   <a class="masthead-home" href="/" target="_top" o-base="row--pMiddle--sMiddle--xAuto mod--fit pad--y50 iso--xEndAuto" o-condensed="pad--y25" o-full="vx--hidden">  
+  <nav class="masthead--nav thm--dark" role="navigation" o-base="row--pStart pad--xStart50 ord--start z--masthead" o-enhanced="pad--xStart100 pad--xEnd50" o-full="gxi--c pad--xy0">   <a class="masthead-home" href="/" o-base="row--pMiddle--sMiddle--xAuto mod--fit pad--y50 iso--xEndAuto" o-condensed="pad--y25" o-full="vx--hidden">  
       <picture>
         <source srcset="{% static 'res/logo.full.inverse.png.webp' %}" type="image/webp"><img class="site-logo" src="{% static 'res/logo.full.inverse.png' %}">
       </picture></a>
@@ -284,7 +284,7 @@
           </svg><span class="vx--a11y">Partners</span></a></li>
     </nav>
   </nav>
-  <footer class="colophon tx--f3--100 thm--dark" role="contentinfo" o-base="pad--x50 pad--y100 rhy--yStart100 ord--end" o-standard="row--pGrid--sTop rhy--xStart100" o-enhanced="pad--x100" o-full="gxi--f pad--y200"><a class="colophon-brand" href="https://communitiesinschools.orgr/" target="_top" o-base="mod--static pad--yEnd50 iso--yEnd50 z--masthead">  
+  <footer class="colophon tx--f3--100 thm--dark" role="contentinfo" o-base="pad--x50 pad--y100 rhy--yStart100 ord--end" o-standard="row--pGrid--sTop rhy--xStart100" o-enhanced="pad--x100" o-full="gxi--f pad--y200"><a class="colophon-brand" href="/" o-base="mod--static pad--yEnd50 iso--yEnd50 z--masthead">  
       <picture>
         <source data-srcset="{% static 'res/logo.full.inverse.png.webp' %}" type="image/webp"><img class="site-logo lazyload" data-src="{% static 'res/logo.full.inverse.png' %}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
       </picture></a>

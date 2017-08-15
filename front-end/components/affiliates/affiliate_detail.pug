@@ -33,7 +33,7 @@ block premain
             })
 
 
-block asset_controls
+append asset_controls
     +if(page.website.io())
         include /controls/action
             -
@@ -45,7 +45,7 @@ block asset_controls
                 })
                 .dom_mix({
                     element: {
-                        class: "tx--small--f3--tcU rxn--ctrl-neutral",
+                        class: "tx--small--f3--tcU rxn--ctrl-action",
                         "o-base": "iso--x"
                     }
                 })

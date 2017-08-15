@@ -36,11 +36,8 @@ block premain
                         }
                     })
 
-        //- include /cards/ebr
-            - vefa.data({ ebr: page.ebr.io() })
 
-
-block asset_controls
+prepend asset_controls
     +if(`${page.program.io()}.all`)
         include /controls/action
             -
@@ -56,6 +53,7 @@ block asset_controls
                     }
                 })
 
+append asset_controls
     +if(page.website.io())
         include /controls/action
             -
@@ -67,7 +65,7 @@ block asset_controls
                 })
                 .dom_mix({
                     element: {
-                        class: "tx--small--f3--tcU rxn--ctrl-neutral",
+                        class: "tx--small--f3--tcU rxn--ctrl-action",
                         "o-base": "iso--xEnd"
                     }
                 })

@@ -62,19 +62,18 @@ block content
                     o-base="row--pEnd--sMiddle mod--balance"
                 )
                     block asset_controls
-        
-                    include /controls/download
-                        -
-                            vefa.data({
-                                file: `../${page.id.tag()}.pdf`,
-                                label: "Report (PDF)",
-                                name: page.title.tag()
-                            })
-                            .dom_mix({
-                                element: {
-                                    class: "tx--small--f3--tcU rxn--ctrl-neutral"
-                                }
-                            })
+                        include /controls/download
+                            -
+                                vefa.data({
+                                    file: `../${page.id.tag()}.pdf`,
+                                    label: "Report (PDF)",
+                                    name: page.title.tag()
+                                })
+                                .dom_mix({
+                                    element: {
+                                        class: "tx--small--f3--tcU rxn--ctrl-neutral"
+                                    }
+                                })
 
         
         section.gxi--a(

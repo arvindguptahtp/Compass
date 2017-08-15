@@ -36,37 +36,38 @@ block premain
                     }
                 })
 
-block asset_controls
-        +if(page.national_partner.io())
-            include /controls/action
-                -
-                    vefa.data({
-                            url: v(`${page.national_partner.io()}.get_absolute_url`),
-                            label: 'National Partner',
-                            icon: 'partners'
-                        })
-                        .dom_mix({
-                            element: {
-                                class: "tx--small--f3--tcU rxn--ctrl-neutral",
-                                "o-base": "iso--xEnd"
-                            }
-                        })
+prepend asset_controls
+    +if(page.national_partner.io())
+        include /controls/action
+            -
+                vefa.data({
+                        url: v(`${page.national_partner.io()}.get_absolute_url`),
+                        label: 'National Partner',
+                        icon: 'partners'
+                    })
+                    .dom_mix({
+                        element: {
+                            class: "tx--small--f3--tcU rxn--ctrl-neutral",
+                            "o-base": "iso--xEnd"
+                        }
+                    })
 
-        +if(page.program_weblink.io())
-            include /controls/action
-                -
-                    vefa.data({
-                            url: page.program_weblink.tag(),
-                            label: `Website`,
-                            external: true, 
-                            icon: "link-ext"
-                        })
-                        .dom_mix({
-                            element: {
-                                class: "tx--small--f3--tcU rxn--ctrl-neutral",
-                                "o-base": "iso--xEnd"
-                            }
-                        })
+append asset_controls
+    +if(page.program_weblink.io())
+        include /controls/action
+            -
+                vefa.data({
+                        url: page.program_weblink.tag(),
+                        label: `Website`,
+                        external: true, 
+                        icon: "link-ext"
+                    })
+                    .dom_mix({
+                        element: {
+                            class: "tx--small--f3--tcU rxn--ctrl-action",
+                            "o-base": "iso--xEnd"
+                        }
+                    })
 
 block detail_a
     include /cards/data-list--inverse
