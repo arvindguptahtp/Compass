@@ -75,17 +75,39 @@ block content
                 section.search-river(
                     o-base="rhy--yStart50"
                 )
+                    div(
+                        o-condensed="row--pStart--sMiddle"
+                    )
+                        if page.results 
+                            p.co--pri.hl--xEnd--bTint(
+                                o-base="pad--xEnd50"
+                            )
+                                = v(page.results, "length")
+                                = ` result${ v(page.results, "pluralize") }`
 
-                    include /pagination/default
-                        - vefa.data({obj: page.content_type})
-                        
+                            include /pagination/default
+                                - vefa.data({obj: page.content_type})
+
+
                     div(
                         o-base="rhy--yStart100"
                     )
                         block results
                     
-                    include /pagination/default
-                        - vefa.data({obj: page.content_type})
+
+                    div(
+                        o-condensed="row--pStart--sMiddle"
+                    )
+                        if page.results 
+                            p.co--pri.hl--xEnd--bTint(
+                                o-base="pad--xEnd50"
+                            )
+                                = v(page.results, "length")
+                                = ` result${ v(page.results, "pluralize") }`
+
+                            include /pagination/default
+                                - vefa.data({obj: page.content_type})
+
 
 
         

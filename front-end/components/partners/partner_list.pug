@@ -9,7 +9,8 @@ block instance
                 impact_theme: "thm--partners",
                 icon: "partners",
                 content_type: "partners",
-                
+                results: "partners.object_list",
+
                 slug: routes.partners.slug,
                 summary: partners.summary,
                 results_collection: partners.fixtures,
@@ -20,7 +21,6 @@ block instance
 block form
     include /partners/components/fm--search-partner
     
-
 
 block results
     +for("partner in partners.object_list")

@@ -798,19 +798,22 @@ main {
 .card-list dt:first-child {
   margin-top: 0;
 }
-[class*='page-ctrl'] {
-  min-width: 2em;
-  min-height: 2em;
-}
 [class*='page-ctrl'].is-disabled {
-  color: #003d7d;
-  background: #fff;
   opacity: 0.5;
 }
-[class*='page-ctrl'].is-current {
+[class*='page-ctrl'].is-current,
+[class*='page-ctrl']:hover {
   color: #003d7d;
-  background: #fff;
-  border: 1px solid #003d7d;
+  -webkit-transform: scale(1.25);
+          transform: scale(1.25);
+  -webkit-transform-origin: center 1em;
+          transform-origin: center 1em;
+}
+[class*='page-ctrl']:hover {
+  -webkit-transition-property: color, -webkit-transform;
+  transition-property: color, -webkit-transform;
+  transition-property: color, transform;
+  transition-property: color, transform, -webkit-transform;
 }
 .gx--detail-affiliate {
   grid-template-columns: 1fr;
