@@ -57,7 +57,7 @@ append asset_controls
         include /controls/action
             -
                 vefa.data({
-                        url: page.program_weblink.tag(),
+                        url: page.program_weblink.tag('linkable'),
                         label: `Website`,
                         external: true, 
                         icon: "link-ext"
