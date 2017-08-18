@@ -5,10 +5,12 @@ Fields namespaced with `search_` are aggregate fields.
 """
 
 import logging
+from functools import reduce
 from typing import Optional
 
 from django.db import models
 from django.db.models import F
+from django.db.models import Q
 from django.db.models import Sum
 from model_utils.models import TimeStampedModel
 from django.utils.functional import cached_property
@@ -116,29 +118,32 @@ class AffiliateQueryset(ResourceQueryset):
 
         if genders:
             qs = qs.filter(
-                affiliate_eoy_data__search_gender__contains=genders,
+                affiliate_eoy_data__search_gender__overlap=genders,
                 affiliate_eoy_data__year=eoy,
             )
         if race:
             qs = qs.filter(
-                affiliate_eoy_data__search_race__contains=race,
+                affiliate_eoy_data__search_race__overlap=race,
                 affiliate_eoy_data__year=eoy,
             )
         if served:
             qs = qs.filter(
-                affiliate_eoy_data__search_served__contains=served,
+                affiliate_eoy_data__search_served__overlap=served,
                 affiliate_eoy_data__year=eoy,
             )
 
+        filtered_fields = []
         for grade in grades:
             db_fields = grade_fields[grade]
+            filter_field = 'grade_level_{}'.format(grade)
+            filtered_fields.append(filter_field)
             qs = qs.filter(
                 affiliate_eoy_data__year=eoy,
             ).annotate(
-                grade_level=sum([F('affiliate_eoy_data__school_data__{}'.format(field)) for field in db_fields])
-            ).filter(
-                grade_level__gt=0,
+                **{filter_field: sum([F('affiliate_eoy_data__school_data__{}'.format(field)) for field in db_fields])}
             )
+        grades_query = reduce(lambda q, value: q | Q(**{'{}__gt'.format(value): 0}), filtered_fields, Q())
+        qs = qs.filter(grades_query)
 
         for staff_level in staff:
             db_fields = staff_fields[staff_level]
