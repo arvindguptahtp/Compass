@@ -213,7 +213,7 @@ def test_search_gender(affiliate_universe):
     form = AffiliateSearchForm(data={'gender': [Gender.f.name, Gender.m.name]})
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
-    assert results.count() == 1
+    assert results.count() == 2
 
     form = AffiliateSearchForm(data={'gender': []})
     assert form.is_valid()
@@ -372,3 +372,8 @@ def test_search_grade(affiliate_universe):
     assert form.is_valid()
     results = Affiliate.affiliates.search(**form.cleaned_data)
     assert results.count() == 1
+
+    form = AffiliateSearchForm(data={'grades': [GradeLevel.el.name, GradeLevel.ms.name, GradeLevel.hs.name]})
+    assert form.is_valid()
+    results = Affiliate.affiliates.search(**form.cleaned_data)
+    assert results.count() == 2
