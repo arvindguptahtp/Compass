@@ -88,7 +88,7 @@ def test_search_gender(empty_program, gs_program, bsa_program, girls_boys_club_p
 
     form = ProgramSearchForm(data={'gender': [Gender.f.name, Gender.m.name]})
     assert form.is_valid()
-    assert {girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))
+    assert {gs_program, bsa_program, girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))  # noqa
 
     form = ProgramSearchForm(data={'gender': []})
     assert form.is_valid()
@@ -108,7 +108,7 @@ def test_search_grade(empty_program, gs_program, bsa_program, girls_boys_club_pr
 
     form = ProgramSearchForm(data={'grade': [AffiliateGrades.el.name, AffiliateGrades.ms.name]})
     assert form.is_valid()
-    assert {girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))
+    assert {gs_program, bsa_program, girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))  # noqa
 
     form = ProgramSearchForm(data={'grade': []})
     assert form.is_valid()
@@ -128,7 +128,7 @@ def test_search_race(empty_program, gs_program, bsa_program, girls_boys_club_pro
 
     form = ProgramSearchForm(data={'race': [Race.am.name, Race.asn.name]})
     assert form.is_valid()
-    assert {girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))
+    assert {gs_program, bsa_program, girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))  # noqa
 
     form = ProgramSearchForm(data={'race': []})
     assert form.is_valid()
@@ -148,7 +148,7 @@ def test_search_student_need(empty_program, gs_program, bsa_program, girls_boys_
 
     form = ProgramSearchForm(data={'need': [StudentNeeds.bi.name, StudentNeeds.att.name]})
     assert form.is_valid()
-    assert {girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))
+    assert {gs_program, bsa_program, girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))  # noqa
 
     form = ProgramSearchForm(data={'need': []})
     assert form.is_valid()
@@ -168,7 +168,7 @@ def test_search_tiers_of_services(empty_program, gs_program, bsa_program, girls_
 
     form = ProgramSearchForm(data={'service_tiers': [TiersOfService.i.name, TiersOfService.ii.name]})
     assert form.is_valid()
-    assert {girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))
+    assert {gs_program, bsa_program, girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))  # noqa
 
     form = ProgramSearchForm(data={'service_tiers': []})
     assert form.is_valid()
@@ -188,7 +188,7 @@ def test_search_service_categories(empty_program, gs_program, bsa_program, girls
 
     form = ProgramSearchForm(data={"services": [CoreServices.aa.name, CoreServices.bi.name]})
     assert form.is_valid()
-    assert {girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))
+    assert {gs_program, bsa_program, girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))  # noqa
 
     form = ProgramSearchForm(data={"services": []})
     assert form.is_valid()
@@ -208,7 +208,7 @@ def test_search_evidence(empty_program, gs_program, bsa_program, girls_boys_club
 
     form = ProgramSearchForm(data={'evidence': [TiersOfEvidence.t1.name, TiersOfEvidence.t2.name]})
     assert form.is_valid()
-    assert {girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))
+    assert {gs_program, bsa_program, girls_boys_club_program} == set(Program.programs.search(**form.cleaned_data))  # noqa
 
     form = ProgramSearchForm(data={'evidence': []})
     assert form.is_valid()

@@ -44,19 +44,19 @@ class ProgramQueryset(ResourceQueryset):
         use_in_network = kwargs.pop('use_in_network', None)
 
         if grades:
-            qs = qs.filter(grade__contains=grades)
+            qs = qs.filter(grade__overlap=grades)
         if genders:
-            qs = qs.filter(gender__contains=genders)
+            qs = qs.filter(gender__overlap=genders)
         if race:
-            qs = qs.filter(race__contains=race)
+            qs = qs.filter(race__overlap=race)
         if needs:
-            qs = qs.filter(student_need__contains=needs)
+            qs = qs.filter(student_need__overlap=needs)
         if service_tiers:
-            qs = qs.filter(tiers_of_service__contains=service_tiers)
+            qs = qs.filter(tiers_of_service__overlap=service_tiers)
         if services:
-            qs = qs.filter(service_categories__contains=services)
+            qs = qs.filter(service_categories__overlap=services)
         if evidence:
-            qs = qs.filter(tiers_of_evidence__contains=evidence)
+            qs = qs.filter(tiers_of_evidence__overlap=evidence)
 
         if cost_free is not None:
             qs = qs.filter(is_cost_free=cost_free)
