@@ -78,7 +78,7 @@ def test_search_gender(empty_partner, girl_scouts, boy_scouts, girls_and_boys_cl
 
     form = PartnerSearchForm(data={'gender': [Gender.f.name, Gender.m.name]})
     assert form.is_valid()
-    assert {girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+    assert {girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
 
     form = PartnerSearchForm(data={'gender': []})
     assert form.is_valid()
@@ -98,7 +98,7 @@ def test_search_grade(empty_partner, girl_scouts, boy_scouts, girls_and_boys_clu
 
     form = PartnerSearchForm(data={'grade': [AffiliateGrades.el.name, AffiliateGrades.ms.name]})
     assert form.is_valid()
-    assert {girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+    assert {girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
 
     form = PartnerSearchForm(data={'grade': []})
     assert form.is_valid()
@@ -118,7 +118,7 @@ def test_search_student_need(empty_partner, girl_scouts, boy_scouts, girls_and_b
 
     form = PartnerSearchForm(data={'need': [StudentNeeds.bi.name, StudentNeeds.att.name]})
     assert form.is_valid()
-    assert {girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+    assert {girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
 
     form = PartnerSearchForm(data={'need': []})
     assert form.is_valid()
@@ -138,7 +138,7 @@ def test_search_reach(empty_partner, girl_scouts, boy_scouts, girls_and_boys_clu
 
     form = PartnerSearchForm(data={'reach': [Regions.n.name, Regions.i.name]})
     assert form.is_valid()
-    assert {girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+    assert {girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
 
     form = PartnerSearchForm(data={'reach': []})
     assert form.is_valid()
@@ -158,7 +158,7 @@ def test_search_tiers_of_services(empty_partner, girl_scouts, boy_scouts, girls_
 
     form = PartnerSearchForm(data={'service_tiers': [TiersOfService.i.name, TiersOfService.ii.name]})
     assert form.is_valid()
-    assert {girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+    assert {girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
 
     form = PartnerSearchForm(data={'service_tiers': []})
     assert form.is_valid()
@@ -178,7 +178,7 @@ def test_search_setting(empty_partner, girl_scouts, boy_scouts, girls_and_boys_c
 
     form = PartnerSearchForm(data={'setting': [Setting.aft.name, Setting.sch.name]})
     assert form.is_valid()
-    assert {girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+    assert {girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
 
     form = PartnerSearchForm(data={'setting': []})
     assert form.is_valid()
@@ -198,7 +198,7 @@ def test_search_service_categories(empty_partner, girl_scouts, boy_scouts, girls
 
     form = PartnerSearchForm(data={"services": [CoreServices.aa.name, CoreServices.bi.name]})
     assert form.is_valid()
-    assert {girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+    assert {girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
 
     form = PartnerSearchForm(data={"services": []})
     assert form.is_valid()
@@ -218,7 +218,7 @@ def test_search_evidence(empty_partner, girl_scouts, boy_scouts, girls_and_boys_
 
     form = PartnerSearchForm(data={'evidence': [TiersOfEvidence.t1.name, TiersOfEvidence.t2.name]})
     assert form.is_valid()
-    assert {girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))
+    assert {girl_scouts, boy_scouts, girls_and_boys_club} == set(Partner.partners.search(**form.cleaned_data))  # noqa
 
     form = PartnerSearchForm(data={'evidence': []})
     assert form.is_valid()
