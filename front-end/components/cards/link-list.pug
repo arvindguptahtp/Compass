@@ -126,7 +126,7 @@ block subclass
 
 block view_mixins
     mixin link_item(item)
-        li&attributes(card.item)
+        li(v-cloak)&attributes(card.item)
             include /controls/base
                 -
                     vefa.data({
@@ -169,7 +169,7 @@ block view_mixins
 
 
 block content
-    ul&attributes(card.list)
+    ul(slot="bd")&attributes(card.list)
         for item in card.items
             +if(item.verify)
                 case item.type

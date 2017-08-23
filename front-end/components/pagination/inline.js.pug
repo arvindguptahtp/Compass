@@ -1,0 +1,25 @@
+.pagination--inline
+    .bd
+        slot(name="bd")
+
+    nav.tx--small--f2(
+        o-base="row--pStart--sMiddle"
+    )
+        button.page-ctrl--prev.ord--start(
+            class="co--minor fx--shift"
+            o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 rhy--xStart10 ico--xs"
+            @click="prev_page"
+            :class="{ 'is-disabled': !has_prev }"
+        )
+            svg.ico
+                use(href=`#ico--ctrl-prev`)
+            span Previous
+        button.page-ctrl--next.ord--end(
+            class="co--minor fx--shift"
+            o-base="row--pMiddle--sMiddle--xAuto mod--static pad--x25 rhy--xStart10 ico--xs"
+            @click="next_page"
+            :class="{ 'is-disabled': !has_next }"
+        )
+            span Next
+            svg.ico
+                use(href=`#ico--ctrl-next`)

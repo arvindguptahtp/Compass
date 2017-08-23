@@ -161,6 +161,15 @@ block detail_b
                         heading_meta: "As reported in recent year's EOY data",
                         items: [
                             ["group", page.featured.io(), "featured-affiliates"],
+                            ["group", page.featured.io(), "featured-affiliates"],
+                            ["group", page.featured.io(), "featured-affiliates"],
+                            ["group", page.featured.io(), "featured-affiliates"],
+                            ["group", page.featured.io(), "featured-affiliates"],
+                            ["group", page.featured.io(), "featured-affiliates"],
+                            ["group", page.network_use.io(), "affiliates"],
+                            ["group", page.network_use.io(), "affiliates"],
+                            ["group", page.network_use.io(), "affiliates"],
+                            ["group", page.network_use.io(), "affiliates"],
                             ["group", page.network_use.io(), "affiliates"],
                         ], 
                     })
@@ -172,6 +181,9 @@ block detail_b
                     .dom_mix({
                         featured_icon: {
                             class: page.impact_color
+                        },
+                        bd: {
+                            is: "inline-pagination"
                         }
                     })
                     .options({

@@ -91,7 +91,7 @@
                   </div>
                 </article>{% endif %}
       </section>
-      <section class="gxi--b" o-base="col--pStart pad--y50 rhy--yStart50" o-condensed="pad--x25" o-extended="gdx--gc2--gxy50 rhy--yStart0">  
+      <section class="profile-detail gxi--b" o-base="col--pStart pad--y50 rhy--yStart50" o-condensed="pad--x25" o-extended="gdx--gc2--gxy50 rhy--yStart0">  
         <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended=" rhy--yStart100">{% if True %}
                     <article class="card--list-data vx--z100" o-base="col--pStart">
                       <header class="thm--affiliates" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
@@ -372,8 +372,8 @@
                         <h1 class="tx--maj--f1--100--aa">Active Programs</h1><span class="tx--caption--f3--400--aa">As reported in recent year's EOY data</span>
                       </header>
                       <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
-                        <ul o-base="mod--balance rhy--yStart25">{% if affiliate.programs %}{% for item in affiliate.programs.all %}
-                                                        <li class="thm--tint70 tx--f2"><a class="link rxn--shade5 fx--shift co--affiliates" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
+                        <ul slot="bd" o-base="mod--balance rhy--yStart25">{% if affiliate.programs %}{% for item in affiliate.programs.all %}
+                                                        <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--affiliates" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
                                                                           <svg class="ico--dx100">
                                                                             <use href="#ico--programs"></use>
                                                                           </svg></span><span class="tx--trnc" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
