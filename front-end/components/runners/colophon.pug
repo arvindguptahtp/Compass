@@ -70,17 +70,10 @@ footer.colophon.tx--f3--100.thm--dark(
                 o-base="col--pStart"
                 o-condensed="row--pEnd"
             )
-                a.contactinfo-item--tel(
-                    href="tel:#{ contact.tel.href }"
-                    target="_top"
-                ).
-                    Tel:&nbsp;#{contact.tel.nice} (#{contact.tel.base})
-
                 a.contactinfo-item--email(
-                    href="mailto:#{ contact.email }"
+                    href=`mailto:${ contact.email }?subject=CIS Compass Inquiry`
                     target="_top"
-                    o-condensed="pad--xStart25 iso--xStart25 hl--xStart--bTint"
                 ).
-                    E-mail:&nbsp;#{contact.email}
+                    Questions? Reach out here.
 
                 

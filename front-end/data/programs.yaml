@@ -1,4 +1,14 @@
 title: Programs
+summary: |
+    Members of the CIS network serve students by leveraging evidence-based programming. To make the process of finding these programs easier, the CIS national 
+    office has created a one-stop resource for finding vetted, relevant evidence-based programs to implement at the local level. Stakeholders can filter by 
+    student demographics, needs, tier of service, program cost, and a other criteria.
+
+    Programs with a higher tier of evidence are indicated by a fully-colored CIS logo in the search results.
+    
+    Programs used in the network will be marked by a green “Used by CIS network” button in the search results. 
+
+    Click on View Profile for program description and more information. 
 
 fm_search:
     -   name: Search Filters

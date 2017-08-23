@@ -8,12 +8,13 @@ block instance
 
     
 block premain
-    include /posters/text
+    include /posters/icon
         -
             vefa
-                .data(
-                    { title: site.title }
-                )
+                .data({ 
+                    title: site.title,
+                    icon: 'compass'
+                })
                 .dom_mix({
                     element: {
                         class: "thm--texture",
@@ -128,6 +129,13 @@ block content
                 o-enhanced="dx--w60 iso--xAuto"
             )
                 :md
-                    Welcome to the CIS Search Tool! This search tool is designed to help CIS staff (i.e. Program Directors, Site Coordinators) find and locate Affiliate offices around the national network, nationally-vetted partnerships, and nationally-vetted Evidence-Based programs that are being delivered with fidelity.
- 
-                    To begin a search, click on any of the three labeled tabs: Affiliate, Programs, or Partners.
+                    Welcome to Compass. This tool is designed to help Communities In Schools staff find and connect with affiliates and state offices across the network; 
+                    engage with nationally vetted partnerships; and identify evidence-based programs being delivered with fidelity at the local level. 
+
+                    ## How does it work? 
+                    
+                    - **Affiliates**: Search by affiliate size, model implementation, student unique needs, budget, or other key indicators. 
+                    - **Programs**: Search by demographics and program details, including tiers of evidence.
+                    - **Partners**: Search by grade, core service category, tiers of service and organizational reach.
+
+                    To begin a search, click on any of the three labeled tabs: Affiliates, Programs, or Partners. 

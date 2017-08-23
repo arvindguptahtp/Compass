@@ -4,6 +4,8 @@ block instance
     -
         vefa.data({
             title: programs.title,
+            summary: programs.summary,
+            
             impact_color: "co--programs",
             impact_theme: "thm--programs",
             icon: "programs",
@@ -14,17 +16,6 @@ block instance
             results_collection: programs.fixtures,
             
         })
-
-
-block summary
-    :md
-        Evidence-based programming is a great resource for members of the CIS network family to effectively serve case-managed students and schools. This tool allows CIS practitioners and managers to search by:
-    
-        - Student demographics, characteristics, or needs of your students.
-        - Tier of service, if the program is being implemented in the network, program costs, and tier of evidence.
-        
-        Programs with a higher tier of evidence will be indicated by a fully-colored CIS logo in the search results.
-
 
 block form
     include /programs/components/fm--search-program
