@@ -174,7 +174,7 @@
                       <header class="thm--partners" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
                         <h1 class="tx--maj--f1--100--aa">Active In CIS Network</h1><span class="tx--caption--f3--400--aa">As reported in recent year's EOY data</span>
                       </header>
-                      <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25">
+                      <div class="bd thm--shade15" o-base="mod--balance pad--xy25 rhy--yStart25" is="inline-pagination">
                         <ul slot="bd" o-base="mod--balance rhy--yStart25">{% if partner.featured_network %}{% for item in partner.featured_network.all %}
                                                         <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--partners" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 hl--xEnd--bTint co--partners" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
                                                                           <svg class="ico--dx150">
