@@ -1,7 +1,7 @@
 .slideover
     button.ctrl--open(
         type="button"
-        @click="toggleModal"
+        @click="toggle_modal"
         v-show="!show"
     )
         slot(name="activate")
@@ -10,10 +10,11 @@
         .thm--shade90.pos--abs--xy(
             o-base="col--pMiddle--sMiddle pad--xy50"
             v-show="show"
+            @click="toggle_modal"
         )
             button.ctrl--close(
                 type="button"
-                @click="toggleModal"
+                @click="toggle_modal"
             )
                 svg.ico--s.ico--close
                     use(href="#ico--close")

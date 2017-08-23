@@ -19,11 +19,3 @@ new Vue({
         Slideover
     },
 })
-
-new Vue({
-    el: '.card--ebr',
-    components: {
-        Slideover
-    },
-})
-

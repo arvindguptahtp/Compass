@@ -1,7 +1,7 @@
 export const checkstate = {
     inserted (el, binding) {
-        let ctrl = el.querySelector("input")
-        let toggle = () => {
+        const ctrl = el.querySelector("input")
+        const toggle = () => {
             if (ctrl && ctrl.checked) {
                 el.classList.add("is-active")
             }
