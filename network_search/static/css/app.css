@@ -756,6 +756,9 @@ main {
   -webkit-filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0)) brightness(100%);
           filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0)) brightness(100%);
 }
+input:not([type="radio"]):not([type="checkbox"]) {
+  cursor: text;
+}
 .fm--login {
   max-width: 600px;
 }
