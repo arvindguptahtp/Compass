@@ -192,7 +192,7 @@
                       </div>
                     </article>{% endif %}
         </div>
-        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart50 rhy--yStart100">{% if program.featured_network.count > 0 or program.featured_network.count > 0 or program.featured_network.count > 0 or program.featured_network.count > 0 or program.featured_network.count > 0 or program.featured_network.count > 0 or program.network_use.count > 0 or program.network_use.count > 0 or program.network_use.count > 0 or program.network_use.count > 0 or program.network_use.count > 0 %}
+        <div o-base="col--pStart pad--x25 rhy--yStart50" o-extended="iso--yStart50 rhy--yStart100">{% if program.featured_network.count > 0 or program.network_use.count > 0 %}
                     <article class="card--list-links vx--z100" o-base="col--pStart">
                       <header class="thm--programs" o-base="row--pGrid--sMiddle mod--static pad--x50 pad--y25">
                         <h1 class="tx--maj--f1--100--aa">Used by CIS Network</h1><span class="tx--caption--f3--400--aa">As reported in recent year's EOY data</span>
@@ -203,52 +203,7 @@
                                                                           <svg class="ico--dx150">
                                                                             <use href="#ico--affiliates"></use>
                                                                           </svg></span><span class="tx--trnc tx--900" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
-                                                        </li>{% endfor %}{% endif %}{% if program.featured_network %}{% for item in program.featured_network.all %}
-                                                            <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 hl--xEnd--bTint co--programs" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
-                                                                              <svg class="ico--dx150">
-                                                                                <use href="#ico--affiliates"></use>
-                                                                              </svg></span><span class="tx--trnc tx--900" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
-                                                            </li>{% endfor %}{% endif %}{% if program.featured_network %}{% for item in program.featured_network.all %}
-                                                            <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 hl--xEnd--bTint co--programs" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
-                                                                              <svg class="ico--dx150">
-                                                                                <use href="#ico--affiliates"></use>
-                                                                              </svg></span><span class="tx--trnc tx--900" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
-                                                            </li>{% endfor %}{% endif %}{% if program.featured_network %}{% for item in program.featured_network.all %}
-                                                            <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 hl--xEnd--bTint co--programs" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
-                                                                              <svg class="ico--dx150">
-                                                                                <use href="#ico--affiliates"></use>
-                                                                              </svg></span><span class="tx--trnc tx--900" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
-                                                            </li>{% endfor %}{% endif %}{% if program.featured_network %}{% for item in program.featured_network.all %}
-                                                            <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 hl--xEnd--bTint co--programs" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
-                                                                              <svg class="ico--dx150">
-                                                                                <use href="#ico--affiliates"></use>
-                                                                              </svg></span><span class="tx--trnc tx--900" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
-                                                            </li>{% endfor %}{% endif %}{% if program.featured_network %}{% for item in program.featured_network.all %}
-                                                            <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 hl--xEnd--bTint co--programs" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
-                                                                              <svg class="ico--dx150">
-                                                                                <use href="#ico--affiliates"></use>
-                                                                              </svg></span><span class="tx--trnc tx--900" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
-                                                            </li>{% endfor %}{% endif %}{% if program.network_use %}{% for item in program.network_use.all %}{% if item not in program.featured_network.all %}
-                                                                        <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
-                                                                                          <svg class="ico--dx150">
-                                                                                            <use href="#ico--affiliates"></use>
-                                                                                          </svg></span><span class="tx--trnc" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
-                                                                        </li>{% endif %}{% endfor %}{% endif %}{% if program.network_use %}{% for item in program.network_use.all %}{% if item not in program.featured_network.all %}
-                                                                        <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
-                                                                                          <svg class="ico--dx150">
-                                                                                            <use href="#ico--affiliates"></use>
-                                                                                          </svg></span><span class="tx--trnc" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
-                                                                        </li>{% endif %}{% endfor %}{% endif %}{% if program.network_use %}{% for item in program.network_use.all %}{% if item not in program.featured_network.all %}
-                                                                        <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
-                                                                                          <svg class="ico--dx150">
-                                                                                            <use href="#ico--affiliates"></use>
-                                                                                          </svg></span><span class="tx--trnc" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
-                                                                        </li>{% endif %}{% endfor %}{% endif %}{% if program.network_use %}{% for item in program.network_use.all %}{% if item not in program.featured_network.all %}
-                                                                        <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
-                                                                                          <svg class="ico--dx150">
-                                                                                            <use href="#ico--affiliates"></use>
-                                                                                          </svg></span><span class="tx--trnc" o-base="pad--x25 pad--y50">{{ item|truncatechars:72 }}</span></a>
-                                                                        </li>{% endif %}{% endfor %}{% endif %}{% if program.network_use %}{% for item in program.network_use.all %}{% if item not in program.featured_network.all %}
+                                                        </li>{% endfor %}{% endif %}{% if program.network_use %}{% for item in program.network_use.all %}{% if item not in program.featured_network.all %}
                                                                         <li class="thm--tint70 tx--f2" v-cloak><a class="link rxn--shade5 fx--shift co--programs" href="{{ item.get_absolute_url }}" o-base="col--pStart--sStart" o-standard="row--pStart--sFull rhy--xStart25"><span class="thm--tint95 co--minor hl--xEnd--bTint" o-base="col--pMiddle--sMiddle--xAuto mod--static pad--x25">
                                                                                           <svg class="ico--dx150">
                                                                                             <use href="#ico--affiliates"></use>
