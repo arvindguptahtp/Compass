@@ -111,4 +111,3 @@ class SearchView(FormView):
             'num_of_results': p.count,
             self.context_object_name: paged_queryset,
         }))
-
