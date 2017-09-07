@@ -2,8 +2,9 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
 from django.views import defaults as default_views
+
+from network_search.core.views import csrf_exempt_password
 
 admin.site.site_header = "CIS Search Tool"
 admin.site.site_title = "CIS Search Tool"
@@ -11,7 +12,7 @@ admin.site.site_title = "CIS Search Tool"
 urlpatterns = [
     url(settings.ADMIN_URL, admin.site.urls),
     url(r'', include('network_search.core.urls')),
-    url(r'^protect/', include('simple_auth.urls')),
+    url(r'^protect/$', view=csrf_exempt_password, name="simple_auth_password"),
     url(r'^partners/', include('network_search.partners.urls')),
     url(r'^programs/', include('network_search.programs.urls')),
     url(r'^affiliates/', include('network_search.affiliates.urls')),

@@ -1,10 +1,18 @@
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import FormView
 from django.views.generic import TemplateView
 from easy_pdf.views import PDFTemplateResponseMixin
 from pure_pagination import PageNotAnInteger
 from pure_pagination import Paginator
+from simple_auth.views import simple_password
+
+
+@csrf_exempt
+def csrf_exempt_password(request):
+    """A CSRF exempt version of the simple auth password view"""
+    return simple_password(request)
 
 
 class HomePage(TemplateView):
@@ -103,3 +111,4 @@ class SearchView(FormView):
             'num_of_results': p.count,
             self.context_object_name: paged_queryset,
         }))
+
