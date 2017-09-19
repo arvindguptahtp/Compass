@@ -1,0 +1,27 @@
+o(color=red)
+    outline: 1px solid color
+
+
+
+bk(color=red)
+    o()
+    visibility: visible !important
+    background-color: rgba(color, 50%)
+    background-clip: content-box
+
+
+
+dev_tools(color=red, namespace=null)
+    .{namespace}bk
+        bk(color)
+
+    .{namespace}o
+        o(color)
+
+    .{namespace}lh-test
+        layers()
+
+        &::after
+            border-bottom: color
+            width: 1000%
+            position: absolute 0px auto auto 0px

@@ -1,0 +1,72 @@
+init_matrices(breakpoints)
+
+// .mtx-separator
+//     margin-x: auto // remove and add iso--xA
+//     height: 1px
+//     border: 0
+//     background: co.hairline.base
+        
+//     &:last-child:not(:only-child)
+//         display: none
+
+
+// Matrix declarations
+// mtx--
+//     &auto
+//         +o-eq()
+//             &:nth-child(n):nth-child(n)
+//                 width: unset
+//                 flex: unset
+//                 margin: unset
+
+// .mtx--
+//     +o-attr(class base standard)
+//         +grid()
+//             display: grid
+//             grid-gap: bvr(1)
+//             grid-template-rows: auto
+
+//     &river
+//         +o-attr(base)
+//             +grid()
+//                 grid-template-areas: "a b c"
+//                 grid-template-columns:
+//                     minmax(0, 1fr) \
+//                     minmax(0, config.max_site_width) \
+//                     minmax(0, 1fr)
+//                 grid-gap: 0
+                
+//                 > *
+//                     grid-column: b
+
+//     &cards
+//         +o-attr(condensed)
+//             grid-template-columns: repeat(2, minmax(300px, 390px)) 
+
+//     &i1
+//         +o-attr(base)
+//             grid-template-columns: 1fr
+
+//     &i1--contained
+//         +o-attr(base)
+//             grid-template-columns: minmax(300px, 320px)
+
+    
+//     &i2
+//         +o-attr(condensed)
+//             grid-template-columns: repeat(2, 1fr)
+    
+//     &i2--contained
+//         +o-attr(condensed)
+//             grid-template-columns: repeat(2, minmax(300px, 390px)) 
+    
+//     &i3
+//         +o-attr(enhanced)
+//             grid-template-columns: repeat(3, 1fr)
+
+
+// .gtr
+//     &XS
+//         +o-attr(base)
+//             grid-gap: 1px
+    

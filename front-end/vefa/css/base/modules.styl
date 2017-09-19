@@ -1,0 +1,98 @@
+// Modules
+// namespace: mod
+
+.mod--
+
+    &static
+        +o-attr(breakpoints)
+            flex: none
+    
+    &balance
+        +o-attr(breakpoints)
+            flex: 1 1 auto
+        
+    &fit
+        +o-attr(breakpoints)
+            flex: initial //0 1 auto
+    
+    &fill
+        +o-attr(breakpoints)
+            flex: 1 0 100%
+
+    &bounds
+        +o-attr(breakpoints)
+            position: absolute 0
+            height: 100%
+            width: 100%
+            object-fit: cover
+
+
+    
+
+.--o
+    &Init
+        +o-attr(breakpoints)
+            order: -1
+            
+    &Flow
+        +o-attr(breakpoints)
+            order: initial
+
+    &Start
+        +o-attr(breakpoints)
+            order: 0
+    
+    &Next
+        +o-attr(breakpoints)
+            order: 1
+    
+    &End
+        +o-attr(breakpoints)
+            order: 100
+
+
+
+
+.--a
+    &Auto
+        +o-attr(breakpoints)
+            align-self: auto
+    &Start
+        +o-attr(breakpoints)
+            align-self: flex-start
+    &End
+        +o-attr(breakpoints)
+            align-self: flex-end
+    &Middle
+        +o-attr(breakpoints)
+            align-self: center
+    &Full
+        +o-attr(breakpoints)
+            align-self: stretch
+    &Base
+        +o-attr(breakpoints)
+            align-self: baseline
+
+
+
+
+spans = 1..12
+
+.--g
+    &Item
+        for i in (A B C D E F G)
+            &{i}
+                +o-attr(breakpoints)
+                    grid-area: i
+
+
+    &xFill
+        for i in spans
+            +o-attr(breakpoints)
+                grid-column: span i
+
+
+    &yFill
+        for i in spans
+            +o-attr(breakpoints)
+                grid-row: span i

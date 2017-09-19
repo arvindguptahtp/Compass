@@ -12,10 +12,30 @@ block variant
                     "o-base": "gxi--b"
                 }
             })
-
+            .options({
+                on_mount () {
+                    if (this.icon == "compass") {
+                        this.dom({
+                            element: {
+                                class: "row--pStart--sMiddle gx--poster tx--broadside thm--texture",
+                                "o-base": "pad--xStart50 pad--y100 ord--next",
+                                "o-condensed": "pad--y100",
+                                "o-enhanced": "pad--xStart100",
+                                "o-extended": "gxi--b"
+                            },
+                        })
+                    }
+                }
+            })
 
 prepend bd
-    svg.ico.poster-icon(
-        o-base="gxi--a"
-    )
-        use(xlink:href=`#ico--${poster.icon}`)
+    if poster.icon == "compass"
+        svg.ico.poster-icon(
+            style="width:200px; height:100px;"
+        )
+            use(xlink:href=`#ico--${poster.icon}`)
+    else
+        svg.ico.poster-icon(
+            o-base="gxi--a"
+        )
+            use(xlink:href=`#ico--${poster.icon}`)

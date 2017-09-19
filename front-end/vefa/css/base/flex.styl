@@ -1,0 +1,79 @@
+// Flex containers
+// .col/.row
+
+.col--
+    +o-attr(breakpoints)
+        display: flex
+        flex-wrap: nowrap
+        width: 100%
+        flex-direction: column
+
+.--c
+    &Auto
+        +o-attr(breakpoints)
+            height: auto
+
+    &Rev
+        +o-attr(breakpoints)
+            flex-direction: column-reverse
+
+
+
+.row--
+    +o-attr(breakpoints)
+        display: flex
+        flex-wrap: nowrap
+        width: 100%
+        flex-direction: row
+        
+        > * + *
+            margin-top: 0
+
+.--r
+    &Auto
+        +o-attr(breakpoints)
+            width: auto
+    
+    &Rev
+        +o-attr(breakpoints)
+            flex-direction: row-reverse
+
+    
+// Primary Axis
+.--p
+    &Grid
+        +o-attr(breakpoints)
+            justify-content: space-between
+    &Space
+        +o-attr(breakpoints)
+            justify-content: space-around
+    &Start
+        +o-attr(breakpoints)
+            justify-content: flex-start
+    &End
+        +o-attr(breakpoints)
+            justify-content: flex-end
+    &Middle
+        +o-attr(breakpoints)
+            justify-content: center
+
+
+// Secondary Axis
+.--s
+    &Start
+        +o-attr(breakpoints)
+            align-items: flex-start
+    &End
+        +o-attr(breakpoints)
+            align-items: flex-end
+    &Middle
+        +o-attr(breakpoints)
+            align-items: center
+    &Full
+        +o-attr(breakpoints)
+            align-items: stretch
+    &Base
+        +o-attr(breakpoints)
+            align-items: baseline
+
+

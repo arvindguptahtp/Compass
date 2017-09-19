@@ -1,0 +1,147 @@
+// Reactions (basic)
+// namespace: rxn
+
+:root
+    --rxn-opacity: 1
+
+.rxn--
+    &shade
+        _black = co.black ? co.black : #000
+        
+        +o-attr(breakpoints)
+            +add-after()
+                z-index: 0
+                position: absolute 0
+                background-color: _black
+                opacity: 0
+
+            &:--all-states
+                input&
+                    background-color: rgba(_black, .5)
+                    background-color: "rgba(%s, %s, %s, var(--rxn-opacity, .5))" % (red(_black) green(_black) blue(_black))
+            
+            &:--all-states
+            :--follows-check &
+                &::after
+                    opacity: .5
+                    opacity: var(--rxn-opacity, .5)
+
+        for i in range(1, 4)
+            &{i}
+                +o-attr(breakpoints)
+                    --rxn-opacity: (i / 100)
+
+        
+        for i in range(5, 100, 5)
+            &{i}
+                +o-attr(breakpoints)
+                    --rxn-opacity: (i / 100)
+
+    
+    &tone
+        _gray = co.gray ? co.gray : #808080
+        
+        +o-attr(breakpoints)
+            +add-after()
+                z-index: 0
+                position: absolute 0
+                background-color: _gray
+                opacity: 0
+
+            &:--all-states
+                input&
+                    background-color: rgba(_gray, .5)
+                    background-color: "rgba(%s, %s, %s, var(--rxn-opacity, .5))" % (red(_gray) green(_gray) blue(_gray))
+            
+            &:--all-states
+            :--follows-check &
+                &::after
+                    opacity: .5
+                    opacity: var(--rxn-opacity, .5)
+
+        for i in range(1, 4)
+            &{i}
+                +o-attr(breakpoints)
+                    --rxn-opacity: (i / 100)
+
+        
+        for i in range(5, 100, 5)
+            &{i}
+                +o-attr(breakpoints)
+                    --rxn-opacity: (i / 100)
+    
+    
+    
+    &tint
+        _white = co.white ? co.white : #FFF
+
+        +o-attr(breakpoints)
+            +add-after()
+                z-index: 0
+                position: absolute 0
+                background-color: _white
+                opacity: 0
+            
+            &:--all-states
+                input&
+                    background-color: rgba(_white, .5)
+                    background-color: "rgba(%s, %s, %s, var(--rxn--opacity))" % (red(_white) green(_white) blue(_white))
+            
+            &:--all-states,
+            :--follows-check &
+                &::after
+                    opacity: .5
+                    opacity: var(--rxn-opacity, .5)
+        
+        for i in range(1, 4)
+            &{i}
+                +o-attr(breakpoints)
+                    --rxn-opacity: (i / 100)
+                    
+        for i in range(5, 100, 5)
+            &{i}
+                +o-attr(breakpoints)
+                    --rxn-opacity: (i / 100)
+
+
+.--
+    &rDrop
+        &100
+            +o-attr(breakpoints)
+                &:--all-states
+                    box-shadow: 
+                        0 1px 3px bl(12%),
+                        0 1px 2px bl(24%)
+        
+        &200
+            +o-attr(breakpoints)
+                &:--all-states
+                    box-shadow:
+                        0 3px 6px bl(16%), 
+                        0 3px 6px bl(23%)
+
+        &300
+            +o-attr(breakpoints)
+                &:--all-states
+                    box-shadow:
+                        0 10px 20px bl(19%),
+                        0 6px 6px bl(23%)
+
+        &400
+            +o-attr(breakpoints)
+                &:--all-states
+                    box-shadow:
+                        0 14px 28px bl(25%),
+                        0 10px 10px bl(22%)
+        &500
+            +o-attr(breakpoints)
+                &:--all-states
+                    box-shadow:
+                        0 19px 38px bl(30%),
+                        0 15px 12px bl(22%)
+    
+    &encase
+        +o-attr(breakpoints)
+            &:--all-states
+                background-clip: content-box
+

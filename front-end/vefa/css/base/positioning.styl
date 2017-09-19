@@ -1,0 +1,86 @@
+// Postioning
+// namespace: pxn--
+
+.psx--
+    &nil
+        +o-attr(breakpoints)
+            position: static
+            float: none
+    
+    &rel
+        +o-attr(breakpoints)
+            position: relative
+
+    &abs
+        +o-attr(breakpoints)
+            position: absolute
+
+        &--x
+            +o-attr(breakpoints)
+                right: 0
+                left: 0
+        &--xStart
+            +o-attr(breakpoints)
+                left: 0
+        &--xEnd
+            +o-attr(breakpoints)
+                right: 0
+        &--y
+            +o-attr(breakpoints)
+                top: 0
+                bottom: 0
+        &--yStart
+            +o-attr(breakpoints)
+                top: 0
+        &--yEnd
+            +o-attr(breakpoints)
+                bottom: 0
+        &--xy
+            +o-attr(breakpoints)
+                top: 0
+                bottom: 0
+                right: 0
+                left: 0
+
+    &fix
+        +o-attr(breakpoints)
+            position: fixed
+
+        &--x
+            +o-attr(breakpoints)
+                right: 0
+                left: 0
+        &--xStart
+            +o-attr(breakpoints)
+                left: 0
+        &--xEnd
+            +o-attr(breakpoints)
+                right: 0
+        &--y
+            +o-attr(breakpoints)
+                top: 0
+                bottom: 0
+        &--yStart
+            +o-attr(breakpoints)
+                top: 0
+        &--yEnd
+            +o-attr(breakpoints)
+                bottom: 0
+        &--xy
+            +o-attr(breakpoints)
+                top: 0
+                bottom: 0
+                right: 0
+                left: 0
+
+.--z
+    z_index = 0..9
+    // make element shift its z-axis to a managed level
+    // spares us from typing in random numbers or setting everything to 9999
+    for i in (z_index)
+        num = i * 100
+
+        &{num}
+            +o-attr(breakpoints)
+                z-index: -1 if i is 0
+                z-index: num unless i is 0

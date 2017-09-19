@@ -1,0 +1,48 @@
+// ==========================================================================
+// Max Content Width
+//
+// Allows for centered content regions with full windowed backgrounds
+//
+//
+max-content-width(max_content, lower_bound=null)
+    // computed
+    computed_fence = max_content
+    computed_fence = computed_fence + lower_bound*2 if lower_bound
+
+    +over(computed_fence)
+        padding-left: 'calc( (100vw - %s)/2 )' % max_content
+        padding-right: @padding-left
+
+
+
+
+// ==========================================================================
+// Square dimensions
+//
+//
+sq(arg)
+    height: arg
+    width: arg
+
+
+
+
+// ==========================================================================
+// Margin/Padding helpers
+//
+//
+padding-x(pad_value, pad_value_2=null)
+    padding-left: pad_value
+    padding-right: pad_value_2 ? pad_value_2 : pad_value
+
+padding-y(pad_value, pad_value_2=null)
+    padding-top: pad_value
+    padding-bottom: pad_value_2 ? pad_value_2 : pad_value
+
+margin-x(pad_value, pad_value_2=null)
+    margin-left: pad_value
+    margin-right: pad_value_2 ? pad_value_2 : pad_value
+
+margin-y(pad_value, pad_value_2=null)
+    margin-top: pad_value
+    margin-bottom: pad_value_2 ? pad_value_2 : pad_value

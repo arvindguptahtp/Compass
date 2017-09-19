@@ -1,0 +1,92 @@
+// Themes/Thematics (basic)
+// namespace: thx
+:root
+    --mtf-opacity: .5
+
+.mtf--
+    &mShade
+        _black = co.black ? co.black : #000
+        
+        +o-attr(breakpoints)
+            background-color: "rgba(%s, %s, %s, var(--mtf-opacity))" % (red(_black) green(_black) blue(_black))
+
+        for i in range(1, 4)
+            &{i}
+                +o-attr(breakpoints)
+                    --mtf-opacity: (i / 100)
+        
+        for i in range(5, 100, 5)
+            &{i}
+                +o-attr(breakpoints)
+                    --mtf-opacity: (i / 100)
+
+    &mTone
+        _gray = co.gray ? co.gray : #808080
+        
+        +o-attr(breakpoints)
+            background-color: "rgba(%s, %s, %s, var(--mtf-opacity))" % (red(_gray) green(_gray) blue(_gray))
+
+        for i in range(1, 4)
+            &{i}
+                +o-attr(breakpoints)
+                    --mtf-opacity: (i / 100)
+        
+        for i in range(5, 100, 5)
+            &{i}
+                +o-attr(breakpoints)
+                    --mtf-opacity: (i / 100)
+
+    
+    &mTint
+        _white = co.white ? co.white : #FFF
+
+        +o-attr(breakpoints)
+            background-color: "rgba(%s, %s, %s, var(--mtf-opacity))" % (red(_white) green(_white) blue(_white))
+
+        
+        for i in range(1, 4)
+            &{i}
+                +o-attr(breakpoints)
+                    --mtf-opacity: (i / 100)
+        
+        for i in range(5, 100, 5)
+            &{i}
+                +o-attr(breakpoints)
+                    --mtf-opacity: (i / 100)
+
+    
+.--
+    &mDrop
+        &100
+            +o-attr(breakpoints)
+                box-shadow: 
+                    0 1px 3px bl(12%),
+                    0 1px 2px bl(24%)
+        
+        &200
+            +o-attr(breakpoints)
+                box-shadow:
+                    0 3px 6px bl(16%), 
+                    0 3px 6px bl(23%)
+
+        &300
+            +o-attr(breakpoints)
+                box-shadow:
+                    0 10px 20px bl(19%),
+                    0 6px 6px bl(23%)
+
+        &400
+            +o-attr(breakpoints)
+                box-shadow:
+                    0 14px 28px bl(25%),
+                    0 10px 10px bl(22%)
+        &500
+            +o-attr(breakpoints)
+                box-shadow:
+                    0 19px 38px bl(30%),
+                    0 15px 12px bl(22%)
+    
+    &encase
+        +o-attr(breakpoints)
+            background-clip: content-box
+

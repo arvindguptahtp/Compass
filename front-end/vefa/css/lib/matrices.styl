@@ -1,0 +1,267 @@
+// ==========================================================================
+// Flex Matrices
+//
+// Rows that wrap to form object grids
+//
+//
+_m = {
+    columns: 2,
+    width: 50%,
+    spacing: 1vw,
+    vertical: 1vw,
+    custom: 0
+}
+
+init_matrices(types="class")
+
+    for type in types
+        if (type == "class" || config.breakpoints[type] == 0px)
+            
+            if (type != "class")
+                type = "o-%s" % type
+            
+            [{type}*="matrix--"]
+                display: flex
+                flex-flow: row wrap
+                width: 100%
+
+                // hide any empty matrix/grid
+                &:empty
+                    visibility: collapse
+                    margin: 0
+       
+        else
+            +over(type)    
+                type = "o-%s" % type
+                
+                [{type}*="matrix--"]
+                    display: flex
+                    flex-flow: row wrap
+                    width: 100%
+
+                    // hide any empty matrix/grid
+                    &:empty
+                        visibility: collapse
+                        margin: 0
+
+
+
+calculate(columns, spacing, verictal)
+    _m['columns'] = columns
+    _m['custom'] = 0
+
+    // width per element per row, change to a percentage
+    _m['width'] = (100 / _m.columns)
+    _m['width'] = unit(_m.width, "%")
+    // 3 elements = 33.333%
+
+    // set up vertical spacing
+    // row_spacing = unit(spacing, "px") unless vertical
+    _m['vertical'] = (vertical >= 0) ? vertical : spacing
+
+    // set up spacing between elements
+    // get total spacing between elements in a row
+    // iteration of spacing is 1 less than the number of elements in row
+    _m['spacing'] = spacing ? spacing : 0
+    _m['between_columns'] = (spacing / columns) * (columns - 1) if spacing
+    
+    _m['mod_width'] = _m.width
+    _m['mod_width'] = s("calc( %s - %s )", _m.width, _m.between_columns) if spacing
+
+    _m['reset'] = {
+        
+    }
+
+
+// matrix -> nth-child
+// matrix-of-type: -> nth-of-type
+matrix(columns=1, spacing=null, vertical=-1)
+    calculate(columns, spacing, verictal)
+    _m['type'] = "nth-child"
+    _m['last-type'] = "nth-last-child"
+    
+    // specificity: 0 0 3 0
+    &:{_m['type']}(n)
+        &:{_m['type']}(n)
+            width: _m['mod_width']
+            flex: unset
+            margin: unset
+
+    // specificity: 0 0 3 0
+    // all but the first row
+    &:{_m['type']}(n)
+        &:not( :{_m['type']}(-n+{ _m.columns }) )
+            margin-top: _m.vertical if _m.vertical > 0
+    
+
+matrix-of-type(columns=1, spacing=null, vertical=-1)
+    calculate(columns, spacing, verictal)
+    _m['type'] = "nth-of-type"
+    _m['last-type'] = "nth-last-of-type"
+    
+    // specificity: 0 0 3 0
+    &:{_m['type']}(n)
+        &:{_m['type']}(n)
+            width: _m['mod_width']
+            flex: unset
+            margin: unset
+    
+    // specificity: 0 0 3 0
+    // all but the last row-ish (works for spacing but little else)
+    &:{_m['type']}(n)
+        &:not( :{_m['type']}(-n + { _m.columns }) )
+            margin-top: _m.vertical if _m.vertical > 0
+
+
+// give horizontal spacing to all but the first child in a row
+matrix-spacing(spacing=_m.spacing)
+    // specificity: 0 0 3 0    
+    &:{_m['type']}(n)
+        &:not( :{_m['type']}({_m.columns}n + 1) )
+            margin-left: spacing
+
+matrix-last-row-yStart()
+    &:{_m['type']}(n):last-of-type
+        margin-right: auto
+        
+matrix-last-row-yEnd()
+    el=_m.columns
+    &:{_m['type']}({el}n+1):{_m['last-type']}(-n+{el})
+        margin-left: auto
+
+
+
+// set all last row
+matrix-last-row(el=_m.columns)
+    // specificity: 0 0 3 0
+    &:{_m['type']}({el}n + 1)
+        &:{_m['last-type']}(-n + {el}),
+        &:{_m['last-type']}(-n + {el}) ~ *
+            {block}
+
+// set all last row if row is unbalanced
+matrix-last-uneven-row(el=_m.columns)
+    // specificity: 0 0 3 0
+    end_offset = el - 1
+    
+    &:{_m['type']}({el}n + 1)
+        &:{_m['last-type']}(-n + {end_offset}),
+        &:{_m['last-type']}(-n + {end_offset}) ~ *
+            {block}
+
+
+
+// select specific child
+matrix-child(mod)
+    &:{_m['type']}(n)
+        &:{_m['type']}({mod})
+            {block}
+        
+// selects the last uneven child
+matrix-last-uneven-child(el=_m.columns)
+    iterations = el - 2
+    
+    // specificity: 0 0 3 0
+    &:{_m['type']}({el}n + 1)
+        &:last-child
+            {block}
+
+    for i in 1..iterations
+        // specificity: 0 0 3 0
+        &:{_m['type']}({el}n + {i}) + :last-child
+            {block}
+
+// select the last {x} children
+matrix-last-children(children)
+    // specificity: 0 0 3 0
+    &:{_m['type']}(n)
+        &:{_m['last-type']}(-n + {children})
+            {block}    
+
+matrix-row(row)
+    last_item = _m.columns * row
+    first_item = last_item - _m.columns + 1
+    
+    // specificity: 0 0 3 0
+    &:{_m['type']}(n + {first_item})
+        &:{_m['type']}(-n + {last_item})
+            {block}    
+
+
+matrix-change-child-size(mod, mod_span=_m.columns)
+    // this can only be used once per matrix
+    // partial width
+    // _m['between_columns'] = (spacing / columns) * (columns - 1) if spacing
+    // _m['width'] = s("calc( %s - %s )", _m.width, _m.between_columns) if spacing
+    // mod_width = s("calc( %s - %s )", _m.width, _m.between_columns) if _m.spacing
+    _width = _m.width * mod_span
+    _columns = _m.columns
+    
+    _between = _m.spacing / (_m.columns / (_m.columns - mod_span))
+        
+    mod_width = s("calc(%s - %s)", _width, _between)
+    mod_width = _width if unit(_width, "") == 100
+   
+    _mod_column = 1
+    _mod_column = (mod - 1) / _columns if mod > 1 || _m.custom >= 1
+    
+        
+    // specificity:0 0 3 0
+    &:{_m['type']}(n)
+        &:nth-child({mod})
+            width: mod_width
+            {block}
+    
+    // specificity:0 0 3 0
+    &:{_m['type']}(n)
+        &:{_m['type']}(n+{mod})
+            margin: unset
+            
+
+    _position = mod
+    _position = mod + 1 if (_mod_column == 1)
+    
+    _offset = _columns - mod_span + 2
+        
+    &:{_m['type']}(n + {_position})
+        &:not(:{_m['type']}({ _columns }n + {_offset}))
+            margin-left: _m.spacing
+            
+    &:{_m['type']}(n + {mod})
+        &:not(:{_m['type']}(-n + {_offset - 1}))
+            margin-top: _m.vertical if _m.vertical > 0
+    
+
+separators()
+    &:{_m['type']}(n)
+        &:not( :{_m['last-type']}(-n + { _m.columns }) )
+            margin-bottom: _m.vertical if _m.vertical > 0            
+
+
+v-sep(elements=1)
+    elements = "%sn" % (elements > 1 ? elements : null )
+    
+    &:nth-of-type({elements})
+        {block} 
+        height: auto unless @height
+        width: 1px
+        
+        
+        _margin = (_m.spacing / 2)
+        _width = ( @width / 2)
+        margin-x: 'calc(%s - %s)' % (_margin _width)
+        
+    &:nth-of-type({_m.columns}n)
+        display: none
+        
+h-sep(elements=1)
+    elements = "%sn" % (elements > 1 ? elements : null )
+    
+    &:nth-of-type({elements}):not(:last-child)
+        display: block
+        height: 1px
+        width: 100%
+        _vert = (_m.vertical / 2)
+        margin-y: -1*_vert _vert
+        {block}
+    

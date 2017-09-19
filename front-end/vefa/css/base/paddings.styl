@@ -1,0 +1,117 @@
+pad_limit = 0 10 25 50 75 100 125 150 175 200 225 250 275 300 325 350 375 400
+
+
+.pad--
+
+    &x
+        +o-eq(breakpoints)
+            padding-x: 1px
+
+        
+        for i in (pad_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-x: bvr(num)
+
+
+
+    // X Start values (left)
+    &xStart
+        +o-eq(breakpoints)
+            padding-left: 1px
+
+        for i in (pad_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-left: bvr(num)
+
+
+
+    // X End values (right)
+    &xEnd
+        +o-eq(breakpoints)
+            padding-right: 1px
+
+        for i in (pad_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-right: bvr(num)
+
+        
+    // Y values
+    &y
+        +o-eq(breakpoints)
+            padding-y: 1px
+
+        for i in (pad_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-y: bvr(num)
+
+
+    // Y Start values (Top)
+    &yStart
+        +o-eq(breakpoints)
+            padding-top: 1px
+
+        for i in (pad_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-top: bvr(num)
+            
+
+
+    // Y End values (Bottom)
+    &yEnd
+        +o-eq(breakpoints)
+            padding-bottom: 1px
+            
+        for i in (pad_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding-bottom: bvr(num)
+
+
+    // both
+    &xy
+        +o-eq(breakpoints)
+            padding: 1px
+
+        for i in (pad_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    padding: bvr(num)
+
+
+
+    // padding within
+    &xEdges0
+        +o-eq(breakpoints)
+            &:first-child
+                padding-left: 0
+            
+            &:last-child
+                padding-right: 0
+
+    // padding within
+    &yEdges0
+        +o-eq(breakpoints)
+            &:first-child
+                padding-top: 0
+            
+            &:last-child
+                padding-bottom: 0

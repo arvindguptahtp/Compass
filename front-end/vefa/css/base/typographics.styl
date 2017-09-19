@@ -1,0 +1,105 @@
+// Type
+// namespace: tpx
+
+
+.--t
+    // Font Weight
+    for i in (1..9)
+        num = i * 100
+        &{num}
+            +o-attr(breakpoints)
+                font-weight: num
+    
+
+
+// Letter spacing
+.--tSpace
+    &0
+        +o-attr(breakpoints)
+            letter-spacing: -.08em
+    &50
+        +o-attr(breakpoints)
+            letter-spacing: -.04em
+    &150
+        +o-attr(breakpoints)
+            letter-spacing: .04em
+    &200
+        +o-attr(breakpoints)
+            letter-spacing: .08em      
+
+
+    
+// Text Align
+.--t
+    &Just
+        +o-attr(breakpoints)
+            text-align: justify
+    
+    &Start
+        +o-attr(breakpoints)
+            text-align: left
+    
+    &Middle
+        +o-attr(breakpoints)
+            text-align: center
+
+        &--tJust
+            +o-attr(breakpoints)
+                text-align-last: center
+
+    &End
+        +o-attr(breakpoints)
+            text-align: right
+
+        &--tJust
+            +o-attr(breakpoints)
+                text-align-last: right
+    
+
+
+// Text Transform
+.--tc
+    &0
+        +o-attr(breakpoints)
+            text-transform: unset
+
+    &C
+        +o-attr(breakpoints)
+            text-transform: capitalize
+    
+    &U
+        +o-attr(breakpoints)
+            text-transform: uppercase
+    
+    &L
+        +o-attr(breakpoints)
+            text-transform: lowercase
+
+
+
+// Text Decoration
+.--td
+    &0
+        +o-attr(breakpoints)
+            text-decoration: unset
+
+    &U
+        +o-attr(breakpoints)
+            text-decoration: underline
+    
+
+    
+// Anti-aliased text
+.--aa
+    +o-attr(breakpoints)
+        -webkit-font-smoothing: antialiased
+ 
+    
+// truncate
+.--trnc
+    +o-attr(breakpoints)
+        max-width: 100%
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+        word-wrap: normal

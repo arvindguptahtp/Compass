@@ -1,0 +1,122 @@
+// Presentation
+// The following mixins are used for presentation: colors, color mixes, textures
+
+// ==========================================================================
+// Black and white color overloads
+//
+// Commonly we add opacity to black or white for faded colors (and overlays) to
+// give a sense of attention, depth, texture to other items. Use these as quick
+// syntatic sugar.
+//
+// @opacity (int) - between 0 and 100, level of opacity. no unit needed
+//
+// Example:
+//
+//    .element_class
+//        color: bl(50)
+//        background: wh(75)
+//
+//
+bl(opacity = 100)
+    rgba(#000, unit(opacity, "%"))
+
+wh(opacity = 100)
+    rgba(#fff, unit(opacity, "%"))
+
+
+change(color, value)
+    if value < 0%
+        value = abs(value)
+        return shade(color, value)
+    else
+        return tint(color, value)
+
+
+// // ==========================================================================
+// // Midpoint colors
+// //
+// // Mixes two colors together to get a third at the midpoint of the two supplied
+// // colors. returns an rgb color
+// //
+// // @first (color) - first color to mix
+// // @second (color) - second color to mix
+// // @alpha (float) - amount of final alpha value, defaults to 1
+// //
+// //
+// middle(first, second, alpha=1)
+//     reds = ( red(first) + red(second) ) * .5
+//     greens = ( green(first) + green(second) ) * .5
+//     blues = ( blue(first) + blue(second) ) * .5
+
+//     rgba(reds, greens, blues, alpha)
+
+
+// // ==========================================================================
+// // Border
+// //
+// //
+// border()
+//     len = length(arguments)
+//     border: 0 if arguments == 0
+//     border: 1px solid arguments if len == 1 && arguments != 0
+//     border: 1px arguments if len == 2 && arguments != 0
+//     border: arguments if len > 1
+
+// border-top()
+//     len = length(arguments)
+//     border-top: 0 if arguments == 0
+//     border-top: 1px solid arguments if len == 1 && arguments != 0
+//     border-top: 1px arguments if len == 2 && arguments != 0
+//     border-top: arguments if len > 1
+
+// border-bottom()
+//     len = length(arguments)
+//     border-bottom: 0 if arguments == 0
+//     border-bottom: 1px solid arguments if len == 1 && arguments != 0
+//     border-bottom: 1px arguments if len == 2 && arguments != 0
+//     border-bottom: arguments if len > 1
+
+// border-left()
+//     len = length(arguments)
+//     border-left: 0 if arguments == 0
+//     border-left: 1px solid arguments if len == 1 && arguments != 0
+//     border-left: 1px arguments if len == 2 && arguments != 0
+//     border-left: arguments if len > 1
+
+// border-right()
+//     len = length(arguments)
+//     border-right: 0 if arguments == 0
+//     border-right: 1px solid arguments if len == 1 && arguments != 0
+//     border-right: 1px arguments if len == 2 && arguments != 0
+//     border-right: arguments if len > 1
+
+
+
+
+// // ==========================================================================
+// // OOCSS hairline definitions
+// // create a series of hairline classes; all hairlines get copy color or black, unless overloaded.
+// //
+// //
+// hairline_defs = {
+//     xy: "border"
+//     t: "border-top"
+//     b: "border-bottom"
+//     r: "border-right"
+//     l: "border-left"
+//     x: "border-right" "border-left"
+//     y: "border-top" "border-bottom"
+// }
+
+// hairlines(types, coloring, classification='class', namespace='hl')
+//      for key in types
+//         key = join("", key)
+        
+//         sel = '"%s--%s"' % (unquote(namespace) unquote(key))
+//         /[{classification}*={ sel }]
+//             for prop in hairline_defs[key]
+//                 {prop}: coloring
+//         // else
+//         //     .hl--{key}
+//         //         for prop in hairline_defs[key]
+//         //             {prop}: coloring

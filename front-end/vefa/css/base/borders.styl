@@ -1,0 +1,117 @@
+// Borders
+// .hl--
+
+// <HR> can be useful delineators, so lets make them "hairline borders"
+// and now we can assign a motif/background to them
+
+hr
+    height: 1px
+    background-clip: content-box
+
+
+:root
+    --border-width: 1px
+    --border-style: solid
+    --border-color: currentColor
+    --border-primary-color: currentColor
+    --border-tint-color: currentColor
+    --border-shade-color: currentColor
+
+
+.hl--
+    &x0
+        +o-eq(breakpoints)
+            border-left: unset
+            border-right: unset
+
+    &x
+        +o-eq(breakpoints)
+            border-left: inherit
+            border-right: inherit
+            border-left: var(--border-width) var(--border-style) var(--border-color)
+            border-right: var(--border-width) var(--border-style) var(--border-color)
+                
+    &xStart0
+        +o-eq(breakpoints)
+            border-left: unset
+    
+    &xStart
+        +o-eq(breakpoints)
+            border-left: inherit
+            border-left: var(--border-width) var(--border-style) var(--border-color)
+
+    &xEnd0
+        +o-eq(breakpoints)
+            border-right: unset
+    
+    &xEnd
+        +o-eq(breakpoints)
+            border-left: inherit
+            border-right: var(--border-width) var(--border-style) var(--border-color)
+
+    &y0
+        +o-eq(breakpoints)
+            border-top: unset
+            border-bottom: unset
+
+    &y
+        +o-eq(breakpoints)
+            border-top: inherit
+            border-bottom: inherit
+            border-top: var(--border-width) var(--border-style) var(--border-color)
+            border-bottom: var(--border-width) var(--border-style) var(--border-color)
+
+    &yStart0
+        +o-eq(breakpoints)
+            border-top: unset
+    
+    &yStart
+        +o-eq(breakpoints)
+            border-top: inherit
+            border-top: var(--border-width) var(--border-style) var(--border-color)
+
+    &yEnd0
+        +o-eq(breakpoints)
+            border-bottom: unset
+
+    &yEnd
+        +o-eq(breakpoints)
+            border-bottom: inherit
+            border-bottom: var(--border-width) var(--border-style) var(--border-color)
+
+    &xy0
+        +o-eq(breakpoints)
+            border: unset
+
+    &xy
+        +o-eq(breakpoints)
+            border: inherit
+            border: var(--border-width) var(--border-style) var(--border-color)
+
+
+.hl--
+    &primary
+        +o-attr(breakpoints)
+            border-color: var(--border-primary-color)
+    &tint
+        +o-attr(breakpoints)
+            border-color: var(--border-tint-color)
+    &shade
+        +o-attr(breakpoints)
+            border-color: var(--border-shade-color)
+
+.--radi
+    for i in range(0, 100, 5)
+        &{i}
+            +o-attr(breakpoints)
+                border-radius: bvr(i/100)
+        
+        if i == 30
+            &33
+                +o-attr(breakpoints)
+                    border-radius: bvr(.33)
+
+        if i == 66
+            &66
+                +o-attr(breakpoints)
+                    border-radius: bvr(.66)

@@ -1,0 +1,218 @@
+// Base Font Size
+bfs(value=null)
+    if value
+        return floor( config.base.font_size * value )
+    else
+        return config.base.font_size
+
+rfs(value)
+    size = round( value / config.base.font_size, 3 )
+    return unit( size, "rem" )
+
+
+// Base Line Height
+blh(value=null)
+    if value
+        return floor( config.base.line_height * value )
+    else
+        return config.base.line_height
+        
+       
+rlh(value=null, fs=@font-size)
+    size = rfs(value) / fs if unit(fs) == "rem"
+    size = value / fs if unit(fs) == "px"
+    return unit(size, "")
+
+
+
+// ==========================================================================
+// Type Stack
+// list your font stack from your type_stacks objecft
+//
+//
+stack(name)
+    type_set = ()
+    if config.type_stacks
+        for cl, dec in config.type_stacks
+            if unquote(cl) == name
+                push(type_set, config.type_stacks[name])
+                sets = shift(type_set)
+
+                for set in type_set
+                    temp = join(", ", set)
+                    push( sets, temp )
+
+                font-family: unquote( join(", ", sets) )
+
+
+
+// ==========================================================================
+// Init type
+//
+get-type(declaration, type_obj=config.type)
+    fs = ""
+    for cl, dec in type_obj
+        if cl is declaration
+            for prop, val in dec
+                fs = val if prop == "font-size"
+                unless prop is "meta" || prop is "relative"
+                    {prop}: val if (prop is not "font-size") && (prop is not "line-height")
+                    {prop}: rfs(val) if prop == "font-size"
+                    {prop}: rlh(val, fs) if prop == "line-height"
+
+
+relative-type(declaration, type_obj=config.type)
+    for cl, dec in type_obj
+        if cl is declaration
+            relative-font-size: dec["relative"]["lower"], dec["relative"]["upper"]
+
+
+relative-font-size(minimum, maximum, give_minimum=true)
+    min_size = minimum[0]
+    min_lh = null
+    min_bound = minimum[1]
+
+    if length(minimum) > 2
+        min_lh = minimum[1]
+        min_bound = minimum[2]
+
+    max_size = maximum[0]
+    max_lh = null
+    max_bound = maximum[1]
+
+    if length(maximum) > 2
+        max_lh = maximum[1]
+        max_bound = maximum[2]
+
+    min_bound = type(min_bound) == "ident" ? config.breakpoints[min_bound] : min_bound
+    max_bound = type(max_bound) == "ident" ? config.breakpoints[max_bound] : max_bound
+    
+    // min values
+    if give_minimum
+        font-size: min_size
+        line-height: min_lh if min_lh
+
+    
+    
+    // responsive / relative
+    +over(min_bound)
+        d_size = unit(abs(max_size - min_size), "")
+        d_bound = unit(max_bound - min_bound, "")
+        delta = (d_size / d_bound)
+        b = round(min_size - delta * min_bound, 3)
+
+        delta = round(delta * 100vw, 3)
+        
+        prop = "font-size"
+
+        {prop}: floor( (min_size + max_size) / 2)
+        {prop}: 'calc( %s + %s)' % (delta b) if b > 0
+        {prop}: 'calc( %s - %s)' % (delta abs(b)) if b < 0
+
+        // original and more complex math
+        // font-size: calc( min_size + d_size * (100vw - min_bound) / d_bound)
+        // font-size: s("calc( %s + %s * (100vw - %s) /  %s)", min_size, d_size, min_bound, d_bound)
+        
+        if min_lh and max_lh and min_lh is not max_lh
+            lh_size = unit(abs(max_lh - min_lh), "")
+            delta_lh = (lh_size / d_bound)
+            b_lh = round(min_lh - delta_lh * min_bound, 3)
+            delta_lh = round(delta_lh * 100vw, 3)
+            
+            prop = "line-height"
+            
+            {prop}: floor( (min_lh + max_lh) / 2)
+            {prop}: 'calc( %s + %s)' % (delta_lh b_lh) if b > 0
+            {prop}: 'calc( %s - %s)' % (delta_lh abs(b_lh)) if b < 0
+            
+            // original and more complex math
+            // line-height: calc( min_lh + lh_size * (100vw - min_bound) /  d_bound)
+            // line-height: s("calc( %s + %s * (100vw - %s) /  %s)", min_lh, lh_size, min_bound, d_bound) 
+
+    // max values
+    +over(max_bound)
+        font-size: max_size
+        line-height: max_lh if max_lh
+
+
+
+
+// ==========================================================================
+// Webfont
+//
+// load a font-face with a FontSpring bulletproof font declaration
+//
+// @file - the file and its location. no file type
+// @name - user defined font family name to be called
+// @types - otf, ttf, eot, woff, woff2
+// @italic - boolean for if italic version or not
+// @bold - (100 - 900, steps of 100) specify font-weight of font, if applicable
+//
+//
+webfont(file="", name='FF1', types=null, italic=null, bold=null)
+    @font-face
+        font-family: name
+
+        if types and file
+            file = unquote(file)
+            _src_= ()
+            for _type_ in types
+                _temp_ = s('url("%s.otf") format("opentype")', file) if _type_ is "otf"
+                _temp_ = s('url("%s.ttf") format("truetype")', file) if _type_ is "ttf"
+                _temp_ = s('url("%s.eot?") format("embedded-opentype")', file) if _type_ is "eot"
+                _temp_ = s('url("%s.woff") format("woff")', file) if _type_ is "woff"
+                _temp_ = s('url("%s.woff2") format("woff2")', file) if _type_ is "woff2"
+
+                push(_src_, _temp_)
+
+            src: unquote(join(", ", _src_))
+
+        if italic
+            font-style: italic
+
+        if bold
+            _bold_ = bold
+            font-weight: _bold_
+
+
+
+// ==========================================================================
+// Default font stacks
+//
+// Listing of basic (and best supported) font-stacks out of the box for use on
+// sites. See http://unitinteractive.com/blog/2008/06/26/better-css-font-stacks/ (discontinued)
+//
+//
+arial = Arial, "Helvetica Neue", Helvetica, sans-serif
+baskerville = Baskerville, "Times New Roman", Times, serif
+baskervilleTitle = Baskerville, Times, "Times New Roman", serif
+cambria = Cambria, Georgia, Palatino, "Palatino Linotype", "Times New Roman", Times, serif
+centurygothic = "Century Gothic", "Apple Gothic", sans-serif
+consolas = Consolas, "Lucida Console", Monaco, "Courier New", Courier, monospace
+copperplate = Copperplate, "Copperplate Gothic Light", serif
+courier = "Courier New", Courier, monospace
+franklin = "Franklin Gothic Medium", "Arial Narrow Bold", arial
+futura = Futura, "Century Gothic", "Apple Gothic", sans-serif
+garamond = Garamond, "Hoefler Text", "Times New Roman", Times, serif
+garamondTitle = Garamond, "Hoefler Text", Palatino, "Palatino Linotype", serif
+geneva = Geneva, "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif
+genevaTitle = Geneva, Verdana, "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif
+georgia = Georgia, Palatino, "Palatino Linotype", "Times New Roman", Times, serif
+georgiaTitle = Georgia, "Times New Roman", Times, serif
+gillsans = "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif
+gillsansTitle = "Gill Sans", "Gill Sans MT", "Trebuchet MS", Calibri, sans-serif
+gillsansBold = "GillSans-Bold", "Gill Sans MT-Bold", Calibri, "Trebuchet MS", sans-serif
+helvetica = "Helvetica Neue", Arial, Helvetica, sans-serif
+helveticaTitle = Helvetica, "Helvetica Neue", Arial, sans-serif
+impact = Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif
+lucidasans = "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif
+monaco = Monaco, "Courier New", Courier, monospace
+palatino = Palatino, "Palatino Linotype", Georgia, "Times New Roman", Times, serif
+palatinoTitle = Palatino, "Palatino Linotype", "Hoefler Text", "Times New Roman", Times, serif
+tahoma = Tahoma, Geneva, Verdana
+tahomaTitle = Tahoma, Verdana, Geneva
+times = "Times New Roman", Times, serif
+trebuchet = "Trebuchet MS", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif
+trebuchetTitle = "Trebuchet MS", Tahoma, Arial, sans-serif
+verdana = Verdana, Geneva, Tahoma, sans-serif
+verdanaTitle = Verdana, Tahoma, Geneva, sans-serif

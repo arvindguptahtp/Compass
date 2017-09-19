@@ -1,0 +1,76 @@
+over( min )
+    // serve from above this width
+    min = config.breakpoints[min] if typeof(min) is 'ident'
+    condition = 'only screen and (min-width: %s)' % min
+    @media condition
+        {block}
+
+under( max )
+    // serve to 1px below this width
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    max = max - 1px
+    condition = 'only screen and (max-width: %s)' % max
+    @media condition
+        {block}
+
+
+
+under-landscape( max )
+    // serve to 1px below this width
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    max = max - 1px
+    condition = 'only screen and (max-width: %s) and (orientation: landscape)' % max
+    @media condition
+        {block}
+
+over-landscape( min )
+    // serve from above this width in landscape mode
+    min = config.breakpoints[min] if typeof(min) is 'ident'
+    condition = 'only screen and (orientation: landscape) and (min-width: %s)' % min
+    @media condition
+        {block}
+
+
+
+under-portrait( max )
+    // serve to 1px below this width
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    max = max - 1px
+    condition = 'only screen and (orientation: portrait) and (max-width: %s)' % max
+    @media condition
+        {block}
+
+over-portrait( min )
+    // serve from above this width in portrait mode
+    min = config.breakpoints[min] if typeof(min) is 'ident'
+    condition = 'only screen and (orientation: portrait) and (min-width: %s)' % min
+    @media condition
+        {block}
+
+
+
+shorter-than( max )
+    // serve to 1px below this height
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    max = max - 1px
+    condition = 'only screen and (max-height: %s)' % max
+    @media condition
+        {block}
+
+taller-than( max )
+    // serve from above this height
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    condition = 'only screen and (min-height: %s)' % max
+    @media condition
+        {block}
+
+
+
+inbetween( min, max )
+    // serve from above this width, to 1px below the next breakpoint
+    min = config.breakpoints[min] if typeof(min) is 'ident'
+    max = config.breakpoints[max] if typeof(max) is 'ident'
+    max = max - 1px
+    condition = 'only screen and (min-width: %s) and (max-width: %s)' % ( min max )
+    @media condition
+        {block}

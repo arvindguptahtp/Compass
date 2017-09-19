@@ -1,0 +1,27 @@
+// Visibility / Optics
+// namespace: opx
+
+
+[v-cloak]
+    display: none !important
+    
+
+
+.opx--
+    &a11y
+        +o-eq(breakpoints)
+            position: absolute !important
+            left: -100vw
+            width: 0
+            clip: rect(0,0,0,0)
+            overflow: hidden
+
+    &no
+        +o-eq(breakpoints)
+            visibility: hidden
+            display: none
+
+    &yes
+        +o-eq(breakpoints)
+            visibility: visible
+            display: flex

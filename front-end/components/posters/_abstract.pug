@@ -14,8 +14,6 @@ block init
                 },
             })
 
-
-
 block view
     header(
         class=poster.class
@@ -23,7 +21,8 @@ block view
         block hdr
         
         block bd
-            h1.poster-hed&attributes(poster.hed)
-                != poster.title
+            if poster.title
+                h1.poster-hed&attributes(poster.hed)
+                    != poster.title
         
         block ftr

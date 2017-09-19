@@ -1,0 +1,179 @@
+// Dimensions
+// namespace: dxn
+:root
+    --aspect-ratio: 1
+
+
+// Vertical Rhythm
+.--dx    
+    &Full
+        +o-attr(breakpoints)
+            max-content-width: config.max_site_width, bvr(2)
+    
+    for i in (0..16)
+        num = (i is 0) ? 0 : i * 25
+        
+        &{i}
+            +o-attr(breakpoints)
+                width: bvr(num)
+
+
+// Viewport Width
+.--vx
+    for i in (1..20)
+        num = 5 * i
+        
+        &{num}
+            +o-attr(breakpoints)
+                max-width: '%svw' % num
+                width: '%s%' % num
+
+        if num == 30
+            &33
+                +o-attr(breakpoints)
+                    max-width: 33vw
+                    width: 33%
+
+        if num == 65
+            &66
+                +o-attr(breakpoints)
+                    max-width: 66vw
+                    width: 66%
+
+    
+    
+// Vertical Rhythm
+.--dy
+    for i in (0..16)
+        num = (i is 0) ? 0 : i * 25
+        
+        &{i}
+            +o-attr(breakpoints)
+                height: bvr(num)
+
+
+// Viewport Width
+.--vy
+    for i in (1..20)
+        num = 5 * i
+        
+        &{num}
+            +o-attr(breakpoints)
+                max-height: '%svw' % num
+                height: '%s%' % num
+
+        if num == 30
+            &33
+                +o-attr(breakpoints)
+                    max-height: 33vw
+                    height: 33%
+
+        if num == 65
+            &66
+                +o-attr(breakpoints)
+                    max-height: 66vw
+                    height: 66%
+
+
+
+
+// Vertical Rhythm
+.--dxy
+    for i in (0..16)
+        num = (i is 0) ? 0 : i * 25
+        
+        &{i}
+            +o-attr(breakpoints)
+                sq: bvr(num)
+   
+// Viewport Width
+.--vxy
+    for i in (1..20)
+        num = 5 * i
+        
+        &{num}
+            +o-attr(breakpoints)
+                max-width: '%svw' % num
+                max-height: '%svw' % num
+                width: '%s%' % num
+                height: '%s%' % num
+
+        if num == 30
+            &33
+                +o-attr(breakpoints)
+                    max-width: 33vw
+                    max-height: 33vw
+                    width: 33%
+                    height: 33%
+
+        if num == 65
+            &66
+                +o-attr(breakpoints)
+                    max-width: 33vw
+                    max-height: 66vw
+                    width: 66%
+                    height: 66%
+
+
+.--txy
+    // Text-relative
+    for i in (0..16)
+        num = (i is 0) ? 0 : i * 25
+        
+        &{num}
+            +o-attr(breakpoints)
+                sq: num * .01em
+
+
+// Aspect Ratios
+.--ar
+    +o-attr(breakpoints)
+        position: relative
+        overflow: hidden
+        padding: 0
+        
+        &::after
+            content: ''
+            display: block
+            height: 0
+            padding-bottom: calc(100% / var(--aspect-ratio))
+
+        > img
+            object-fit: cover
+
+    &1x3
+        +o-attr(breakpoints)
+            --aspect-ratio: 1/3
+    &3x1
+        +o-attr(breakpoints)
+            --aspect-ratio: 3/1
+    &3x4
+        +o-attr(breakpoints)
+            --aspect-ratio: 3/4
+    &4x3
+        +o-attr(breakpoints)
+            --aspect-ratio: 4/3
+    &4x5
+        +o-attr(breakpoints)
+            --aspect-ratio: 4/5
+    &5x4
+        +o-attr(breakpoints)
+            --aspect-ratio: 5/4
+    &5x8
+        +o-attr(breakpoints)
+            --aspect-ratio: 5/8
+    &8x5
+        +o-attr(breakpoints)
+            --aspect-ratio: 8/5
+    &9x16
+        +o-attr(breakpoints)
+            --aspect-ratio: 9/16
+    &16x9
+        +o-attr(breakpoints)
+            --aspect-ratio: 16/9
+    &Silver
+        +o-attr(breakpoints)
+            --aspect-ratio: 2.414
+    &Golden
+        +o-attr(breakpoints)
+            --aspect-ratio: 1.618

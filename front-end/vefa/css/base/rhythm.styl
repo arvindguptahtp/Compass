@@ -1,0 +1,117 @@
+// Rhythm
+// namespace: .rhy--
+// Container based. Use only one flag per declaration
+
+rhy_limit = 0 10 25 50 75 100 125 150 175 200 250 300 350 400
+
+
+.rhy--
+    
+    // X values
+    &x
+        +o-eq(breakpoints)
+            > * + *
+                margin-x: 1px
+    
+        for i in (rhy_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    > * + *
+                        margin-x: bvr(num)
+
+    
+    
+    // X Start values (left)
+    &xStart
+        +o-eq(breakpoints)
+            > * + *
+                margin-left: 1px
+
+        for i in (rhy_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    > * + *
+                        margin-left: bvr(num)
+
+    
+  
+    // X End values (right)
+    &xEnd
+        +o-eq(breakpoints)
+            > * + *
+                margin-right: 1px
+
+        for i in (rhy_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    > * + *
+                        margin-right: bvr(num)
+
+
+        
+    // Y values
+    &y
+        +o-eq(breakpoints)
+            > * + *
+                margin-y: 1px
+
+        for i in (rhy_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    > * + *
+                        margin-y: bvr(num)
+    
+
+
+    // Y Start values (Top)
+    &yStart
+        +o-eq(breakpoints)
+            > * + *
+                margin-top: 1px
+
+        for i in (rhy_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    > * + *
+                        margin-top: bvr(num)
+            
+    
+
+    // Y End values (Bottom)
+    &yEnd
+        +o-eq(breakpoints)
+            > * + *
+                margin-bottom: 1px
+
+        for i in (rhy_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    > * + *
+                        margin-bottom: bvr(num)
+
+    
+    // XY values
+    &xy
+        +o-eq(breakpoints)
+            > * + *
+                margin: 1px
+
+        for i in (rhy_limit)
+            num = (i is 0) ? 0 : i/100
+            
+            &{i}
+                +o-eq(breakpoints)
+                    > * + *
+                        margin: bvr(num)

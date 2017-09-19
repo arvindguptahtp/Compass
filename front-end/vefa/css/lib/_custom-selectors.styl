@@ -1,0 +1,15 @@
+// control states on links and buttons
+@custom-selector :--all-states :hover\, .is-reacting\, :focus\, :active\, .is-active;
+@custom-selector :--follows-check :checked +;
+@custom-selector :--hover :hover\, .is-reacting;
+@custom-selector :--active :focus\, :active\, .is-active;
+
+
+// pseudo elements
+@custom-selector :--layers ::before\, ::after;
+
+
+// nth-children
+@custom-selector :--middle-of-3 :nth-of-type(3n-1):not(:last-child);
+@custom-selector :--odd :nth-of-type(odd);
+@custom-selector :--even :nth-of-type(even);
